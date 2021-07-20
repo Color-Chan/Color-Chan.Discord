@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>Color_Chan.Discord.Commands.Tests</RootNamespace>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="GitHubActionsTestLogger" Version="1.2.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
+        <PackageReference Include="Moq" Version="4.16.1" />
+        <PackageReference Include="nunit" Version="3.13.2" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj" />
+        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Invalid\Color-Chan.Discord.Commands.Tests.Invalid.csproj" />
+        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Valid\Color-Chan.Discord.Commands.Tests.Valid.csproj" />
+    </ItemGroup>
+
+</Project>

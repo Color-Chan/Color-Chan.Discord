@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>Color_Chan.Discord.Commands.Tests.Invalid</RootNamespace>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\src\Color-Chan.Discord.Commands\Color-Chan.Discord.Commands.csproj" />
+    </ItemGroup>
+
+</Project>

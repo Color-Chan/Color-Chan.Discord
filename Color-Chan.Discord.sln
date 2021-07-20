@@ -1,0 +1,92 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3355E69A-02D6-49CA-877E-4D9594222CE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1BA385BC-A756-40AE-9892-D9C172455B76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord", "src\Color-Chan.Discord\Color-Chan.Discord.csproj", "{CF46BD2A-7C2B-4C29-BBA5-758A8B6BC25E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Rest", "src\Color-Chan.Discord.Rest\Color-Chan.Discord.Rest.csproj", "{308601DC-3204-428F-9131-C9EA9B1F02CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Commands", "src\Color-Chan.Discord.Commands\Color-Chan.Discord.Commands.csproj", "{A2977B86-02B0-4CC2-B740-5C67075CC41A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Core", "src\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj", "{BE737AF0-1688-470C-B0D2-50EFBE25348F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{BE3999FC-A454-4BB3-9F5B-FF0A6DBF9A1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mockCommandAssemblies", "mockCommandAssemblies", "{ADBC5773-D0F4-4A9E-BC6F-6EF9220718A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Core.Benchmarks", "tests\benchmarks\Color-Chan.Discord.Core.Benchmarks\Color-Chan.Discord.Core.Benchmarks.csproj", "{565FFF7B-0C93-4CDE-BAD7-749EC1A873D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Commands.Tests.Invalid", "tests\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Invalid\Color-Chan.Discord.Commands.Tests.Invalid.csproj", "{575DEF62-C60F-478C-868F-F8BDA630043D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Commands.Tests.Valid", "tests\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Valid\Color-Chan.Discord.Commands.Tests.Valid.csproj", "{DF5C6FFE-9289-4961-AFB7-ADFC77CFA306}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Commands.Tests", "tests\Color-Chan.Discord.Commands.Tests\Color-Chan.Discord.Commands.Tests.csproj", "{8305C83E-DBCF-4F5F-9E08-6D050CD33204}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Core.Tests", "tests\Color-Chan.Discord.Core.Tests\Color-Chan.Discord.Core.Tests.csproj", "{1FDADB8E-DC21-47BD-A3FF-6D170F5F2CBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Rest.Tests", "tests\Color-Chan.Discord.Rest.Tests\Color-Chan.Discord.Rest.Tests.csproj", "{47E4B187-33E2-437E-9840-E12D41275743}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF46BD2A-7C2B-4C29-BBA5-758A8B6BC25E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF46BD2A-7C2B-4C29-BBA5-758A8B6BC25E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF46BD2A-7C2B-4C29-BBA5-758A8B6BC25E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF46BD2A-7C2B-4C29-BBA5-758A8B6BC25E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{308601DC-3204-428F-9131-C9EA9B1F02CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308601DC-3204-428F-9131-C9EA9B1F02CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308601DC-3204-428F-9131-C9EA9B1F02CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308601DC-3204-428F-9131-C9EA9B1F02CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2977B86-02B0-4CC2-B740-5C67075CC41A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2977B86-02B0-4CC2-B740-5C67075CC41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2977B86-02B0-4CC2-B740-5C67075CC41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2977B86-02B0-4CC2-B740-5C67075CC41A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE737AF0-1688-470C-B0D2-50EFBE25348F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE737AF0-1688-470C-B0D2-50EFBE25348F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE737AF0-1688-470C-B0D2-50EFBE25348F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE737AF0-1688-470C-B0D2-50EFBE25348F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565FFF7B-0C93-4CDE-BAD7-749EC1A873D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565FFF7B-0C93-4CDE-BAD7-749EC1A873D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565FFF7B-0C93-4CDE-BAD7-749EC1A873D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565FFF7B-0C93-4CDE-BAD7-749EC1A873D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{575DEF62-C60F-478C-868F-F8BDA630043D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{575DEF62-C60F-478C-868F-F8BDA630043D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{575DEF62-C60F-478C-868F-F8BDA630043D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{575DEF62-C60F-478C-868F-F8BDA630043D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF5C6FFE-9289-4961-AFB7-ADFC77CFA306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF5C6FFE-9289-4961-AFB7-ADFC77CFA306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF5C6FFE-9289-4961-AFB7-ADFC77CFA306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF5C6FFE-9289-4961-AFB7-ADFC77CFA306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8305C83E-DBCF-4F5F-9E08-6D050CD33204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8305C83E-DBCF-4F5F-9E08-6D050CD33204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8305C83E-DBCF-4F5F-9E08-6D050CD33204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8305C83E-DBCF-4F5F-9E08-6D050CD33204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FDADB8E-DC21-47BD-A3FF-6D170F5F2CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FDADB8E-DC21-47BD-A3FF-6D170F5F2CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FDADB8E-DC21-47BD-A3FF-6D170F5F2CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FDADB8E-DC21-47BD-A3FF-6D170F5F2CBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E4B187-33E2-437E-9840-E12D41275743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E4B187-33E2-437E-9840-E12D41275743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E4B187-33E2-437E-9840-E12D41275743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E4B187-33E2-437E-9840-E12D41275743}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF46BD2A-7C2B-4C29-BBA5-758A8B6BC25E} = {3355E69A-02D6-49CA-877E-4D9594222CE4}
+		{308601DC-3204-428F-9131-C9EA9B1F02CA} = {3355E69A-02D6-49CA-877E-4D9594222CE4}
+		{A2977B86-02B0-4CC2-B740-5C67075CC41A} = {3355E69A-02D6-49CA-877E-4D9594222CE4}
+		{BE737AF0-1688-470C-B0D2-50EFBE25348F} = {3355E69A-02D6-49CA-877E-4D9594222CE4}
+		{BE3999FC-A454-4BB3-9F5B-FF0A6DBF9A1D} = {1BA385BC-A756-40AE-9892-D9C172455B76}
+		{ADBC5773-D0F4-4A9E-BC6F-6EF9220718A4} = {1BA385BC-A756-40AE-9892-D9C172455B76}
+		{565FFF7B-0C93-4CDE-BAD7-749EC1A873D2} = {BE3999FC-A454-4BB3-9F5B-FF0A6DBF9A1D}
+		{575DEF62-C60F-478C-868F-F8BDA630043D} = {ADBC5773-D0F4-4A9E-BC6F-6EF9220718A4}
+		{DF5C6FFE-9289-4961-AFB7-ADFC77CFA306} = {ADBC5773-D0F4-4A9E-BC6F-6EF9220718A4}
+		{8305C83E-DBCF-4F5F-9E08-6D050CD33204} = {1BA385BC-A756-40AE-9892-D9C172455B76}
+		{1FDADB8E-DC21-47BD-A3FF-6D170F5F2CBC} = {1BA385BC-A756-40AE-9892-D9C172455B76}
+		{47E4B187-33E2-437E-9840-E12D41275743} = {1BA385BC-A756-40AE-9892-D9C172455B76}
+	EndGlobalSection
+EndGlobal
