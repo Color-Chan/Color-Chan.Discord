@@ -1,4 +1,4 @@
-name: .NET Build and test Color-Chan.Discord
+name: .NET Build Color-Chan.Discord
 on:
   push:
 jobs:
