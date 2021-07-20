@@ -11,7 +11,7 @@
         <RepositoryType>git</RepositoryType>
         <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 5.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-      <Product>Color-Chan.Discord</Product>
+        <Product>Color-Chan.Discord</Product>
     </PropertyGroup>
 
     <ItemGroup>
