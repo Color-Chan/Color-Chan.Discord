@@ -1,7 +1,11 @@
 ﻿using System;
 using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Rest.Extensions;
+using Color_Chan.Discord.Services;
+using Color_Chan.Discord.Services.Implementations;
+using Color_Chan.Discord.Tokens;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Color_Chan.Discord.Extensions
 {
@@ -11,18 +15,27 @@ namespace Color_Chan.Discord.Extensions
         ///     Add the dependencies for Color-Chan.Discord to the <see cref="IServiceCollection" />.
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection" />.</param>
-        /// <param name="token">The Discord Bot token.</param>
+        /// <param name="botToken">
+        ///     The bot token of your application.
+        ///     This can be found at https://discord.com/developers/applications/{APPLICATION_ID}/bot
+        /// </param>
+        /// <param name="publicBotToken">
+        ///     The public token of your application.
+        ///     This can be found at https://discord.com/developers/applications/{APPLICATION_ID}/information
+        /// </param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="token" /> is null.</exception>
-        public static IServiceCollection AddColorChanDiscord(this IServiceCollection services, string token)
+        public static IServiceCollection AddColorChanDiscord(this IServiceCollection services, string botToken, string publicBotToken)
         {
-            if (token == null) throw new ArgumentNullException(nameof(token));
+            if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
-            services.AddColorChanDiscordRest(token);
+            services.AddColorChanDiscordRest(botToken);
             services.AddColorChanDiscordCommand();
 
+            services.AddSingleton<IPublicDiscordToken>(serviceProvider => new PublicDiscordToken(publicBotToken));
+            services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
+            
             return services;
         }
     }
