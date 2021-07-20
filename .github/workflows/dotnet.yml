@@ -1,0 +1,27 @@
+name: .NET Build and test Color-Chan.Discord
+on:
+  push:
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v1
+
+      - run: echo ${{matrix.os}}
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+         dotnet-version: 5.0.x
+         
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build Color-Chan.Discord
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run unit tests
+        run: dotnet test --no-build --configuration Release --logger GitHubActions
