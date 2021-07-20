@@ -7,9 +7,11 @@
         <Title>Color-Chan.Discord</Title>
         <Authors>BrammyS</Authors>
         <PackageProjectUrl>https://github.com/Color-Chan/Color-Chan.Discord</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/Color-Chan/Color-Chan.Discord/blob/main/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 5.</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+      <Product>Color-Chan.Discord</Product>
     </PropertyGroup>
 
     <ItemGroup>
