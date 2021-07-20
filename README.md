@@ -4,7 +4,17 @@
 Color-Chan.Discord is a C# Discord library made for slash commands. Using Discord webhooks and ASP.NET 5.
 The library is still in development so it should not be used yet, it should oonly be used for testing purposes.
 
-## 1. Compiling
+## 1. Instllation
+Color-Chan.Discord is available on NuGet.
+* [Color-Chan.Discord Comming soon]()
+
+You can also install induvidial components from Color-Chan.Discord on NuGet:
+* [Color-Chan.Discord.Commands Comming soon]()
+* [Color-Chan.Discord.Rest Comming soon]()
+* [Color-Chan.Discord.Core Comming soon]()
+* [Color-Chan.Discord.Host Comming soon]()
+
+## 2. Compiling
 You will need the following to compile Color-Chan.Discord:
 
 ### With an IDE
@@ -14,7 +24,7 @@ You will need the following to compile Color-Chan.Discord:
 ### With the command line
 * [.NET sdk](https://dotnet.microsoft.com/download)
 
-## 2. Versioning
+## 3. Versioning
 Color-Chan.Discord uses [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200).
 ### Summary
 The versioning will be using the following format: MAJOR.MINOR.PATCH.
