@@ -1,5 +1,6 @@
 # Color-Chan.Discord
 [![Color-Chan.Discord](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/color-chan/color-chan.discord/badge)](https://www.codefactor.io/repository/github/color-chan/color-chan.discord)
 [![NuGet](https://img.shields.io/nuget/vpre/Color-Chan.Discord.svg?maxAge=600?style=plastic)](https://www.nuget.org/packages/Color-Chan.Discord)
 
 
