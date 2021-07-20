@@ -16,13 +16,11 @@ jobs:
         git branch --remote --contains | grep origin/main
     - name: Set VERSION variable from tag
       run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
-    - name: Build
+    - name: Build Color-Chan.Discord
       run: dotnet build --configuration Release /p:Version=${VERSION}
-    - name: Test
+    - name: Run unit tests
       run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
-    - name: Pack
+    - name: Pack Color-Chan.Discord
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
-    - name: Push
-      run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg --source https://nuget.pkg.github.com/BrammyS/index.json --api-key ${NUGET_TOKEN}
-      env:
-        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+    - name: Push Color-Chan.Discord
+      run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg  --api-key ${{ secrets.PAT }} --source "github"
