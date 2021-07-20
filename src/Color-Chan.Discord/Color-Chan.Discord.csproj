@@ -4,8 +4,23 @@
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>Color_Chan.Discord</RootNamespace>
         <Nullable>enable</Nullable>
+        <Title>Color-Chan.Discord</Title>
+        <Authors>BrammyS</Authors>
+        <PackageProjectUrl>https://github.com/Color-Chan/Color-Chan.Discord</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/Color-Chan/Color-Chan.Discord/blob/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Sodium.Core" Version="1.2.3" />
+    </ItemGroup>
+    
     <ItemGroup>
         <ProjectReference Include="..\Color-Chan.Discord.Commands\Color-Chan.Discord.Commands.csproj" />
         <ProjectReference Include="..\Color-Chan.Discord.Rest\Color-Chan.Discord.Rest.csproj" />
