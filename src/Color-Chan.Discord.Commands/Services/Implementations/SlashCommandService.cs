@@ -54,7 +54,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 if (!_slashCommands.TryAdd(key.ToLower(), commandInfo))
                     throw new Exception($"Failed to register {commandInfo.CommandName}");
 
-            _logger.LogInformation("Added {Count} commands", _slashCommands.Count);
+            _logger.LogInformation("Added {Count} commands", _slashCommands.Count.ToString());
 
             await _commandAutoSyncService.AddUpdateApplicationCommandsAsync(commandInfos.Select(x=>x.Value), _configurations).ConfigureAwait(false);
         }

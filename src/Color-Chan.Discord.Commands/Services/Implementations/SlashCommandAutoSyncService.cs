@@ -47,6 +47,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                     .Contains(guildId))
                 ).ToList();
 
+                // Todo: set application id somewhere.
                 var guildResult = await _restApplication.BulkOverwriteGuildApplicationCommandsAsync(669311564272369682, guildId, guildCommands).ConfigureAwait(false);
 
                 if (!guildResult.IsSuccessful)
@@ -60,6 +61,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             var globalSlashCommands = BuildSlashCommandsParams(slashCommandInfos.Where(x => x.Guilds is null || !x.Guilds.Any())).ToList();
 
+            // Todo: set application id somewhere.
             var globalResult = await _restApplication.BulkOverwriteGlobalApplicationCommandsAsync(669311564272369682, globalSlashCommands).ConfigureAwait(false);
 
             if (globalResult.IsSuccessful)

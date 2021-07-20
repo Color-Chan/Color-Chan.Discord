@@ -8,7 +8,7 @@ namespace Color_Chan.Discord.Commands.Commands
 {
     public class SlashCommandContext : ISlashCommandContext
     {
-        public SlashCommandContext(IDiscordGuildMember member, IDiscordUser user, IDiscordMessage message, IDiscordInteractionCommand command)
+        public SlashCommandContext(IDiscordGuildMember? member, IDiscordUser user, IDiscordMessage message, IDiscordInteractionCommand command)
         {
             Member = member;
             User = user;
