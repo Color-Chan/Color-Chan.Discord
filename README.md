@@ -1,18 +1,17 @@
 # Color-Chan.Discord
 [![Color-Chan.Discord](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml)
+[![NuGet](https://img.shields.io/nuget/vpre/Color-Chan.Discord.svg?maxAge=2592000?style=plastic)](https://www.nuget.org/packages/Color-Chan.Discord)
+
 
 Color-Chan.Discord is a C# Discord library made for slash commands. Using Discord webhooks and ASP.NET 5.
 The library is still in development so it should not be used yet, it should oonly be used for testing purposes.
 
 ## 1. Installation
-Color-Chan.Discord is available on NuGet.
-* [Color-Chan.Discord Comming soon]()
+Color-Chan.Discord is available on [NuGet](https://www.nuget.org/packages/Color-Chan.Discord).
+* [Color-Chan.Discord](https://www.nuget.org/packages/Color-Chan.Discord)
 
 You can also install induvidial components from Color-Chan.Discord on NuGet:
-* [Color-Chan.Discord.Commands Comming soon]()
-* [Color-Chan.Discord.Rest Comming soon]()
-* [Color-Chan.Discord.Core Comming soon]()
-* [Color-Chan.Discord.Host Comming soon]()
+* [Comming soon](https://www.nuget.org/packages/Color-Chan.Discord)
 
 ## 2. Compiling
 You will need the following to compile Color-Chan.Discord:
