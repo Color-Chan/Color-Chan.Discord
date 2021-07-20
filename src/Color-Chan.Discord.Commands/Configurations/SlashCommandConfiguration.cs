@@ -7,11 +7,12 @@ namespace Color_Chan.Discord.Commands.Configurations
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandConfiguration" />.
         /// </summary>
-        public SlashCommandConfiguration()
+        /// <param name="slashCommandsAutoSync">The settings that will be used for auto sync</param>
+        public SlashCommandConfiguration(SlashCommandsAutoSync slashCommandsAutoSync)
         {
-            SlashCommandsAutoSync = SlashCommandsAutoSync.Disabled;
+            SlashCommandsAutoSync = slashCommandsAutoSync;
         }
-        
+
         /// <summary>
         ///     Configurations for the slash commands auto sync feature.
         /// </summary>

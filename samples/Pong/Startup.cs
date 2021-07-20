@@ -1,7 +1,6 @@
 using Color_Chan.Discord.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,20 +19,15 @@ namespace Pong
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddColorChanDiscord("TOKEN", "PUBLIC_TOKEN"); // <----- 
+
             services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // Enables the ability to read the raw body data in a api controller.
-            // This is needed for the authentication.
-            app.Use((context, next) =>
-            {
-                context.Request.EnableBuffering(); // <----- 
-                return next(); // <-----  
-            });
-            
+            app.UseColorChan(); // <----- 
+
             app.UseRouting();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -17,12 +18,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 {
     public class SlashCommandService : ISlashCommandService
     {
+        private readonly ISlashCommandAutoSyncService _commandAutoSyncService;
         private readonly ILogger<SlashCommandService> _logger;
         private readonly ISlashCommandRequirementService _requirementService;
-        private readonly ISlashCommandAutoSyncService _commandAutoSyncService;
         private readonly ISlashCommandBuildService _slashCommandBuildService;
         private readonly ConcurrentDictionary<string, ISlashCommandInfo> _slashCommands = new();
-        private SlashCommandConfiguration _configurations = new ();
+        private SlashCommandConfiguration? _configurations;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandService" />.
@@ -56,7 +57,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             _logger.LogInformation("Added {Count} commands", _slashCommands.Count.ToString());
 
-            await _commandAutoSyncService.AddUpdateApplicationCommandsAsync(commandInfos.Select(x=>x.Value), _configurations).ConfigureAwait(false);
+            // Default config if no config was set.
+            _configurations ??= new SlashCommandConfiguration(SlashCommandsAutoSync.Disabled);
+
+            await _commandAutoSyncService.AddUpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
         }
 
         /// <inheritdoc />

@@ -72,12 +72,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             foreach (var typeInfo in assembly.DefinedTypes)
                 if (typeInfo.IsPublic || typeInfo.IsNestedPublic)
-                {
                     if (IsValidModuleDefinition(typeInfo))
-                    {
                         result.Add(typeInfo);
-                    }
-                }
 
             return result;
         }

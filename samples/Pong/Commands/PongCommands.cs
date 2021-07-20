@@ -20,7 +20,7 @@ namespace Pong.Commands
                     Content = "Pong!"
                 }
             };
-            
+
             return Task.FromResult<IDiscordInteractionResponse>(response);
         }
     }

@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace Color_Chan.Discord.Core.Common.API.Converters
 {
     /// <summary>
-    ///     Converters a <see cref="uint"/> json value to a <see cref="Color"/>.
+    ///     Converters a <see cref="uint" /> json value to a <see cref="Color" />.
     /// </summary>
     public class ColorConverter : JsonConverter<Color>
     {

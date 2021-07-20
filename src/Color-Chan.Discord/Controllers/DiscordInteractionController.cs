@@ -18,11 +18,11 @@ namespace Color_Chan.Discord.Controllers
     public class DiscordInteractionController : ControllerBase
     {
         private readonly IDiscordInteractionAuthService _authService;
-        private readonly ISlashCommandService _slashCommandService;
         private readonly ILogger<DiscordInteractionController> _logger;
         private readonly IServiceProvider _serviceProvider;
+        private readonly ISlashCommandService _slashCommandService;
 
-        public DiscordInteractionController(IDiscordInteractionAuthService authService, ISlashCommandService slashCommandService, 
+        public DiscordInteractionController(IDiscordInteractionAuthService authService, ISlashCommandService slashCommandService,
             ILogger<DiscordInteractionController> logger, IServiceProvider serviceProvider)
         {
             _authService = authService;
@@ -30,7 +30,7 @@ namespace Color_Chan.Discord.Controllers
             _logger = logger;
             _serviceProvider = serviceProvider;
         }
-        
+
         [HttpPost("interaction")]
         public async Task<ActionResult<DiscordInteractionResponseData>> HandleInteractionRequestAsync([FromBody] DiscordInteractionData interactionData)
         {
@@ -47,17 +47,15 @@ namespace Color_Chan.Discord.Controllers
                 _logger.LogWarning("Failed to verify interaction command {Id}", interactionData.Id.ToString());
                 return Unauthorized("Failed to verify signatures");
             }
-            
+
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
 
             // Todo: make a dedicated interaction command handler.
-            
+
             if (interactionData.Type == DiscordInteractionType.Ping)
-            {
                 return DiscordInteractionResponse
                     .PingResponse()
                     .ToDataModel();
-            }
 
             var interaction = new DiscordInteraction(interactionData);
 
@@ -65,8 +63,8 @@ namespace Color_Chan.Discord.Controllers
             {
                 var context = new SlashCommandContext(interaction.GuildMember, interaction.User!, interaction.Message!, interaction.Data);
                 var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, _serviceProvider).ConfigureAwait(false);
-                
-                if(result.IsSuccessful)
+
+                if (result.IsSuccessful)
                     return result.Entity!.ToDataModel();
             }
 
