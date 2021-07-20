@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 namespace Color_Chan.Discord.Core.Common.API.Converters
 {
     /// <summary>
-    ///     Converters a <see cref="ulong"/> <see cref="string"/> json value to a <see cref="ulong"/>.
+    ///     Converters a <see cref="ulong" /> <see cref="string" /> json value to a <see cref="ulong" />.
     /// </summary>
     public class Uint64Converter : JsonConverter<ulong>
     {

@@ -7,7 +7,7 @@ using Color_Chan.Discord.Core.Extensions;
 namespace Color_Chan.Discord.Core.Common.API.Converters
 {
     /// <summary>
-    ///     Converters a <see cref="ulong"/> <see cref="string"/> json value to a <see cref="DiscordGuildPermission"/>.
+    ///     Converters a <see cref="ulong" /> <see cref="string" /> json value to a <see cref="DiscordGuildPermission" />.
     /// </summary>
     public class DiscordGuildPermissionJsonConverter : JsonConverter<DiscordGuildPermission>
     {

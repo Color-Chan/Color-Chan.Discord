@@ -65,11 +65,11 @@ namespace Color_Chan.Discord.Commands.Services
         ISlashCommandInfo? SearchSlashCommand(string name);
 
         /// <summary>
-        ///     Configure the <see cref="ISlashCommandService"/>.
+        ///     Configure the <see cref="ISlashCommandService" />.
         /// </summary>
         /// <param name="options">The configurations.</param>
         /// <returns>
-        ///     The <see cref="ISlashCommandService"/> containing the config settings.
+        ///     The <see cref="ISlashCommandService" /> containing the config settings.
         /// </returns>
         SlashCommandConfiguration Configure(SlashCommandConfiguration options);
     }

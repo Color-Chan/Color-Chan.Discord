@@ -35,7 +35,7 @@ namespace Color_Chan.Discord.Extensions
 
             services.AddSingleton<IPublicDiscordToken>(serviceProvider => new PublicDiscordToken(publicBotToken));
             services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
-            
+
             return services;
         }
     }

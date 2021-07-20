@@ -17,7 +17,7 @@ namespace Color_Chan.Discord.Rest.Extensions
         public static bool TryParseBucketId(this HttpResponseHeaders headers, [NotNullWhen(true)] out string? id)
         {
             id = default;
-            if (!headers.TryGetValues("X-RateLimit-Bucket", out var ids)) 
+            if (!headers.TryGetValues("X-RateLimit-Bucket", out var ids))
                 return false;
 
             id = ids.SingleOrDefault();

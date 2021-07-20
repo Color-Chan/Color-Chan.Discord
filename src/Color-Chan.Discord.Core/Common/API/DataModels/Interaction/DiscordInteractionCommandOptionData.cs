@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
@@ -16,7 +17,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     Value of application command option type.
         /// </summary>
         [JsonPropertyName("type")]
-        public Application.DiscordApplicationCommandOptionType Type { get; set; }
+        public DiscordApplicationCommandOptionType Type { get; set; }
 
         /// <summary>
         ///     The value of the pair.

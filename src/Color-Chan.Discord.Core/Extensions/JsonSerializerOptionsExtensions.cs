@@ -9,9 +9,9 @@ namespace Color_Chan.Discord.Core.Extensions
         /// <summary>
         ///     Registers Color-Chan.Discord.Core's json options & converters.
         /// </summary>
-        /// <param name="options">The <see cref="JsonSerializerOptions"/>.</param>
+        /// <param name="options">The <see cref="JsonSerializerOptions" />.</param>
         /// <returns>
-        ///     The updated <see cref="JsonSerializerOptions"/>.
+        ///     The updated <see cref="JsonSerializerOptions" />.
         /// </returns>
         public static JsonSerializerOptions RegisterJsonOptions(this JsonSerializerOptions options)
         {
@@ -26,12 +26,12 @@ namespace Color_Chan.Discord.Core.Extensions
         }
 
         /// <summary>
-        ///     Adds a <see cref="TConverter"/> of type <see cref="JsonConverter"/> to the <see cref="JsonSerializerOptions"/>.
+        ///     Adds a <see cref="TConverter" /> of type <see cref="JsonConverter" /> to the <see cref="JsonSerializerOptions" />.
         /// </summary>
-        /// <param name="options">The <see cref="JsonSerializerOptions"/>.</param>
-        /// <typeparam name="TConverter">The type of the <see cref="JsonConverter{T}"/>.</typeparam>
+        /// <param name="options">The <see cref="JsonSerializerOptions" />.</param>
+        /// <typeparam name="TConverter">The type of the <see cref="JsonConverter{T}" />.</typeparam>
         /// <returns>
-        ///     The updated <see cref="JsonSerializerOptions"/>.
+        ///     The updated <see cref="JsonSerializerOptions" />.
         /// </returns>
         private static JsonSerializerOptions AddJsonConverter<TConverter>(this JsonSerializerOptions options) where TConverter : JsonConverter, new()
         {

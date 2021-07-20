@@ -10,7 +10,6 @@ namespace Color_Chan.Discord.Commands.Exceptions
         /// <param name="message">The exception message.</param>
         public UnsupportedSlashCommandParameterException(string message) : base(message)
         {
-            
         }
     }
 }

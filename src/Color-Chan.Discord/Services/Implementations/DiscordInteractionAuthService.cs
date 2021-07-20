@@ -13,7 +13,7 @@ namespace Color_Chan.Discord.Services.Implementations
         {
             _publicKeyBytes = Convert.FromHexString(publicDiscordToken.Token.AsSpan());
         }
-        
+
         /// <inheritdoc />
         public bool VerifySignature(string signature, string timestamp, string rawBody)
         {
