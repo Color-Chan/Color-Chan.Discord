@@ -23,4 +23,7 @@ jobs:
     - name: Pack Color-Chan.Discord
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
     - name: Push Color-Chan.Discord
-      run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg  --api-key ${{ secrets.PAT }} --source "github"
+      #run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg  --api-key ${{ secrets.PAT }} --source "github"
+      run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${PAT}
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
