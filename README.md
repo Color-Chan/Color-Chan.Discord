@@ -10,7 +10,13 @@ The library is still in development so it should not be used yet, it should oonl
 ## 1. Installation
 Color-Chan.Discord is available on [NuGet](https://www.nuget.org/packages/Color-Chan.Discord).
 * [Color-Chan.Discord](https://www.nuget.org/packages/Color-Chan.Discord)
-
+```powershell
+Install-Package Color-Chan.Discord
+```
+OR
+```powershell
+dotnet add package Color-Chan.Discord
+```
 You can also install induvidial components from Color-Chan.Discord on NuGet:
 * [Comming soon](https://www.nuget.org/packages/Color-Chan.Discord)
 
