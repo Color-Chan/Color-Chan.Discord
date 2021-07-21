@@ -8,6 +8,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     steps:
+      - name: Checkout
       - uses: actions/checkout@v1
 
       - run: echo ${{matrix.os}}
@@ -16,6 +17,11 @@ jobs:
         uses: actions/setup-dotnet@v1.7.2
         with:
          dotnet-version: 5.0.x
+
+      - name: Setup DocFX
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: install docfx
 
       - name: Install dependencies
         run: dotnet restore
