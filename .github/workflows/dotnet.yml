@@ -24,23 +24,5 @@ jobs:
       - name: Build Color-Chan.Discord
         run: dotnet build --no-restore --configuration Release
 
-      - name: Run unit tests
+      - name: Test Color-Chan.Discord
         run: dotnet test --no-build --configuration Release --logger GitHubActions
-
-      - name: Setup DocFX
-        uses: crazy-max/ghaction-chocolatey@v1
-        with:
-          args: install docfx
-
-      - name: DocFX Build
-        working-directory: docs
-        run: docfx docfx.json
-        continue-on-error: false
-
-      - name: Publish
-        if: github.event_name == 'push'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_PAGES }}
-          publish_dir: docs/_site
-          force_orphan: true
