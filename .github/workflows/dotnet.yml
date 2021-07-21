@@ -25,3 +25,16 @@ jobs:
 
       - name: Run unit tests
         run: dotnet test --no-build --configuration Release --logger GitHubActions
+
+      - name: DocFX Build
+        working-directory: docs
+        run: docfx docfx.json
+        continue-on-error: false
+
+      - name: Publish
+        if: github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_PAGES }}
+          publish_dir: docs/_site
+          force_orphan: true

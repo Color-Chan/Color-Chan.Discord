@@ -5,7 +5,7 @@
         {
           "files": [ "**/*.sln", "src/DotnetNew/*.csproj" ],
           "exclude": [ "**/bin/**", "**/obj/**" ],
-          "src": "./"
+          "src": "../"
         }
       ],
       "dest": "obj/api"
