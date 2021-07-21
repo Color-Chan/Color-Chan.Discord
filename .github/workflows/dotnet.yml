@@ -18,11 +18,6 @@ jobs:
         with:
          dotnet-version: 5.0.x
 
-      - name: Setup DocFX
-        uses: crazy-max/ghaction-chocolatey@v1
-        with:
-          args: install docfx
-
       - name: Install dependencies
         run: dotnet restore
 
@@ -31,6 +26,11 @@ jobs:
 
       - name: Run unit tests
         run: dotnet test --no-build --configuration Release --logger GitHubActions
+
+      - name: Setup DocFX
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: install docfx
 
       - name: DocFX Build
         working-directory: docs
