@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Drawing;
+using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
@@ -20,7 +21,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Integer representation of hexadecimal color code.
         /// </summary>
         [JsonPropertyName("color")]
-        public uint Color { get; init; }
+        public Color Color { get; init; }
 
         /// <summary>
         ///     If this role is pinned in the user listing.

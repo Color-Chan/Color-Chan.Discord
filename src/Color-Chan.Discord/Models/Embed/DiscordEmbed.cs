@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 using Color_Chan.Discord.Core.Common.Models.Embed;
@@ -24,7 +25,7 @@ namespace Color_Chan.Discord.Models.Embed
         public DateTimeOffset? Timestamp { get; init; }
 
         /// <inheritdoc />
-        public uint? Color { get; init; }
+        public Color? Color { get; init; }
 
         /// <inheritdoc />
         public IDiscordEmbedFooter? Footer { get; init; }

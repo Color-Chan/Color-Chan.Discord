@@ -18,7 +18,7 @@ namespace Pong
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddColorChanDiscord("TOKEN", "PUBLIC_TOKEN"); // <----- 
+            services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
 
             services.AddControllers();
         }
@@ -26,7 +26,7 @@ namespace Pong
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseColorChan(); // <----- 
+            app.UseColorChanDiscord(); // <---
 
             app.UseRouting();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

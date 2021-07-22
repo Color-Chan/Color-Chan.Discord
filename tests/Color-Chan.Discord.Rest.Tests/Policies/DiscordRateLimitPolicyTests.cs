@@ -40,7 +40,6 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-
         [TestCase("234", "guilds/5678564567")]
         [TestCase("456456", "guilds/78908906789678")]
         [TestCase("6789", "guilds/89078967567567")]
@@ -65,7 +64,6 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
             // Assert
             result.StatusCode.Should().Be(HttpStatusCode.TooManyRequests);
         }
-
 
         [TestCase("234", "1", "78545.234", "64.57", "asfd4ytvbnt67ig", "guilds/54678568456")]
         [TestCase("10", "1", "34576.123", "64.57", "abcd1234", "guilds/67894563456")]

@@ -27,7 +27,6 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         private readonly Mock<ILogger<SlashCommandService>> _commandServiceLoggerMock = new();
         private readonly Mock<ILogger<SlashCommandRequirementService>> _requirementServiceLoggerMock = new();
 
-
         [TestCase("Command1", "CommandMethod1Async")]
         [TestCase("Command2", "CommandMethod2Async")]
         [TestCase("Command3", "CommandMethod3Async")]
@@ -62,7 +61,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock.Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
-                .ReturnsAsync(new List<string>());
+                                  .ReturnsAsync(new List<string>());
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
             var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
@@ -90,7 +89,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock.Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
-                .ReturnsAsync(new List<string>());
+                                  .ReturnsAsync(new List<string>());
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
             var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
@@ -99,8 +98,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
             var mockContext = new Mock<ISlashCommandContext>();
             var serviceProvider = new ServiceCollection()
-                .AddLogging()
-                .BuildServiceProvider();
+                                  .AddLogging()
+                                  .BuildServiceProvider();
 
             // Act
             await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);

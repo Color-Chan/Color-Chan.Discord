@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Commands.Info
         ///     of the guilds that will get access to this slash command.
         /// </param>
         public SlashCommandInfo(string name, string description, MethodInfo command, TypeInfo module, IEnumerable<SlashCommandRequirementAttribute>? requirements = null,
-            IEnumerable<ISlashCommandOptionInfo>? commandOptions = null, IEnumerable<SlashCommandGuildAttribute>? guilds = null)
+                                IEnumerable<ISlashCommandOptionInfo>? commandOptions = null, IEnumerable<SlashCommandGuildAttribute>? guilds = null)
         {
             CommandName = name;
             Description = description;

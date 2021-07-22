@@ -1,0 +1,44 @@
+{
+  "code": 50035,
+  "errors": {
+    "0": {
+      "name": {
+        "_errors": [
+          {
+            "code": "STRING_TYPE_REGEX",
+            "message": "String value did not match validation regex."
+          }
+        ]
+      },
+      "options": {
+        "0": {
+          "choices": {
+            "0": {
+              "name": {
+                "_errors": [
+                  {
+                    "code": "BASE_TYPE_REQUIRED",
+                    "message": "This field is required"
+                  }
+                ]
+              }
+            }
+          },
+          "name": {
+            "_errors": [
+              {
+                "code": "STRING_TYPE_REGEX",
+                "message": "String value did not match validation regex."
+              },
+              {
+                "code": "APPLICATION_COMMAND_INVALID_NAME",
+                "message": "Command name is invalid"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "message": "Invalid Form Body"
+}

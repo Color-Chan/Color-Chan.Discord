@@ -1,4 +1,5 @@
-﻿using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+﻿using System.Drawing;
+using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild
 {
@@ -17,7 +18,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// <summary>
         ///     Integer representation of hexadecimal color code.
         /// </summary>
-        uint Color { get; init; }
+        Color Color { get; init; }
 
         /// <summary>
         ///     If this role is pinned in the user listing.

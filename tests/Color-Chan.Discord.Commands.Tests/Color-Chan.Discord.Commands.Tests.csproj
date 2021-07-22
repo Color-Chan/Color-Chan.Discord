@@ -4,6 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>Color_Chan.Discord.Commands.Tests</RootNamespace>
         <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>

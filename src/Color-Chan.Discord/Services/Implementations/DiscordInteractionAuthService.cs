@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Color_Chan.Discord.Tokens;
+using Color_Chan.Discord.Core;
 using Sodium;
 
 namespace Color_Chan.Discord.Services.Implementations
@@ -9,9 +9,9 @@ namespace Color_Chan.Discord.Services.Implementations
     {
         private readonly byte[] _publicKeyBytes;
 
-        public DiscordInteractionAuthService(IPublicDiscordToken publicDiscordToken)
+        public DiscordInteractionAuthService(DiscordTokens discordTokens)
         {
-            _publicKeyBytes = Convert.FromHexString(publicDiscordToken.Token.AsSpan());
+            _publicKeyBytes = Convert.FromHexString(discordTokens.PublicToken.AsSpan());
         }
 
         /// <inheritdoc />

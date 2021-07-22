@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Info;
-using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -36,7 +35,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <param name="requirementService">The <see cref="requirementService" /> that will used to execute the requirements.</param>
         /// <param name="commandAutoSyncService"></param>
         public SlashCommandService(ILogger<SlashCommandService> logger, ISlashCommandBuildService slashCommandBuildService, ISlashCommandRequirementService requirementService,
-            ISlashCommandAutoSyncService commandAutoSyncService)
+                                   ISlashCommandAutoSyncService commandAutoSyncService)
         {
             _logger = logger;
             _slashCommandBuildService = slashCommandBuildService;
@@ -58,9 +57,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             _logger.LogInformation("Added {Count} commands", _slashCommands.Count.ToString());
 
             // Default config if no config was set.
-            _configurations ??= new SlashCommandConfiguration(SlashCommandsAutoSync.Disabled);
+            _configurations ??= SlashCommandConfiguration.Default();
 
-            await _commandAutoSyncService.AddUpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
+            await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
         }
 
         /// <inheritdoc />

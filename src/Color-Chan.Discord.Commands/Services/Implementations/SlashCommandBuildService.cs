@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.Params;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Microsoft.Extensions.Logging;
 
@@ -35,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         ///     <see cref="ISlashCommandOptionInfo" />s.
         /// </param>
         public SlashCommandBuildService(ISlashCommandRequirementBuildService requirementBuildService, ISlashCommandGuildBuildService guildBuildService, ILogger<SlashCommandBuildService> logger,
-            ISlashCommandOptionBuildService optionBuildService)
+                                        ISlashCommandOptionBuildService optionBuildService)
         {
             _requirementBuildService = requirementBuildService;
             _guildBuildService = guildBuildService;
@@ -76,6 +77,26 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                         result.Add(typeInfo);
 
             return result;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<DiscordApplicationCommandParams> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos)
+        {
+            var applicationCommandParams = new List<DiscordApplicationCommandParams>();
+
+            foreach (var commandInfo in commandInfos)
+            {
+                var options = _optionBuildService.BuildSlashCommandsOptions(commandInfo.CommandOptions);
+                applicationCommandParams.Add(new DiscordApplicationCommandParams
+                {
+                    Name = commandInfo.CommandName,
+                    Description = commandInfo.Description,
+                    Options = options
+                });
+            }
+
+
+            return applicationCommandParams;
         }
 
         /// <summary>

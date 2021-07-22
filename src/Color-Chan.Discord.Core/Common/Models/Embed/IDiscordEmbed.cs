@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 
 namespace Color_Chan.Discord.Core.Common.Models.Embed
@@ -32,9 +33,9 @@ namespace Color_Chan.Discord.Core.Common.Models.Embed
         DateTimeOffset? Timestamp { get; init; }
 
         /// <summary>
-        ///     Color code of the embed.
+        ///     Color of the embed.
         /// </summary>
-        uint? Color { get; init; }
+        Color? Color { get; init; }
 
         /// <summary>
         ///     Footer information.
@@ -55,7 +56,6 @@ namespace Color_Chan.Discord.Core.Common.Models.Embed
         ///     Video information.
         /// </summary>
         IDiscordEmbedVideo? Video { get; init; }
-
 
         /// <summary>
         ///     Provider information.

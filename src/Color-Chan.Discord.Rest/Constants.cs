@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Color-Chan.Discord.Rest.Tests")]
 
 namespace Color_Chan.Discord.Rest
 {
-    public class Constants
+    internal class Constants
     {
         /// <summary>
         ///     The Version that will be used by <see cref="DiscordApiUrl" />.

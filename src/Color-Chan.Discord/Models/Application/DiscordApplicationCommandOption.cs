@@ -7,7 +7,7 @@ namespace Color_Chan.Discord.Models.Application
     public record DiscordApplicationCommandOption : IDiscordApplicationCommandOption
     {
         public DiscordApplicationCommandOption(DiscordApplicationCommandOptionType type, string name, string description, bool? isRequired = default,
-            IEnumerable<IDiscordApplicationCommandOptionChoice>? choice = null, IEnumerable<IDiscordApplicationCommandOption>? subOptions = null)
+                                               IEnumerable<IDiscordApplicationCommandOptionChoice>? choice = null, IEnumerable<IDiscordApplicationCommandOption>? subOptions = null)
         {
             Type = type;
             Name = name;

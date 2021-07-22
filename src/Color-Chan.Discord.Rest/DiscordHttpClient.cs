@@ -32,8 +32,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result<TEntity>> GetAsync<TEntity>(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, CancellationToken ct = default) where TEntity : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithQueryParameters(queries)
-                .WithMethod(HttpMethod.Get);
+                                 .WithQueryParameters(queries)
+                                 .WithMethod(HttpMethod.Get);
 
             return await SendRequestAsync<TEntity>(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -42,8 +42,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result<TEntity>> PostAsync<TEntity, TBody>(string endpoint, TBody body, CancellationToken ct = default) where TEntity : notnull where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithMethod(HttpMethod.Post)
-                .WithBody(body);
+                                 .WithMethod(HttpMethod.Post)
+                                 .WithBody(body);
 
             return await SendRequestAsync<TEntity>(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -52,8 +52,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result> PostAsync<TBody>(string endpoint, TBody body, CancellationToken ct = default) where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithMethod(HttpMethod.Post)
-                .WithBody(body);
+                                 .WithMethod(HttpMethod.Post)
+                                 .WithBody(body);
 
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -62,8 +62,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result<TEntity>> PatchAsync<TEntity, TBody>(string endpoint, TBody body, CancellationToken ct = default) where TEntity : notnull where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithMethod(HttpMethod.Patch)
-                .WithBody(body);
+                                 .WithMethod(HttpMethod.Patch)
+                                 .WithBody(body);
 
             return await SendRequestAsync<TEntity>(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -72,8 +72,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result> PatchAsync<TBody>(string endpoint, TBody body, CancellationToken ct = default) where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithMethod(HttpMethod.Patch)
-                .WithBody(body);
+                                 .WithMethod(HttpMethod.Patch)
+                                 .WithBody(body);
 
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -82,8 +82,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result<TEntity>> DeleteAsync<TEntity>(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, CancellationToken ct = default) where TEntity : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithQueryParameters(queries)
-                .WithMethod(HttpMethod.Delete);
+                                 .WithQueryParameters(queries)
+                                 .WithMethod(HttpMethod.Delete);
 
             return await SendRequestAsync<TEntity>(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -92,8 +92,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result> DeleteAsync(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, CancellationToken ct = default)
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithQueryParameters(queries)
-                .WithMethod(HttpMethod.Delete);
+                                 .WithQueryParameters(queries)
+                                 .WithMethod(HttpMethod.Delete);
 
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -102,8 +102,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result<TEntity>> PutAsync<TEntity, TBody>(string endpoint, TBody body, CancellationToken ct = default) where TEntity : notnull where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithMethod(HttpMethod.Put)
-                .WithBody(body);
+                                 .WithMethod(HttpMethod.Put)
+                                 .WithBody(body);
 
             return await SendRequestAsync<TEntity>(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -112,8 +112,8 @@ namespace Color_Chan.Discord.Rest
         public async Task<Result> PutAsync<TBody>(string endpoint, TBody body, CancellationToken ct = default) where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
-                .WithMethod(HttpMethod.Put)
-                .WithBody(body);
+                                 .WithMethod(HttpMethod.Put)
+                                 .WithBody(body);
 
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -188,7 +188,7 @@ namespace Color_Chan.Discord.Rest
             if (response.Content.Headers.ContentLength is not > 0) return new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A HTTP error occured");
 
             var jsonError = await JsonSerializer.DeserializeAsync<DiscordJsonErrorData>(await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false), _serializerOptions.Value, ct)
-                .ConfigureAwait(false);
+                                                .ConfigureAwait(false);
 
             return jsonError is null
                 ? new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A JSON error occured")
@@ -210,7 +210,7 @@ namespace Color_Chan.Discord.Rest
             if (response.Content.Headers.ContentLength is not > 0) return new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A HTTP error occured");
 
             var jsonError = await JsonSerializer.DeserializeAsync<DiscordJsonErrorData>(await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false), _serializerOptions.Value, ct)
-                .ConfigureAwait(false);
+                                                .ConfigureAwait(false);
 
             return jsonError is null
                 ? new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A JSON error occured")

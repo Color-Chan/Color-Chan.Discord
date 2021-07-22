@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Errors
 {
@@ -17,5 +18,10 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Errors
         public DiscordJsonError ErrorType { get; init; }
 
         //Todo: sub errors
+        /// <summary>
+        ///     The sub errors.
+        /// </summary>
+        [JsonPropertyName("errors")]
+        public IReadOnlyDictionary<string, PropertyErrorData>? Errors { get; init; }
     }
 }

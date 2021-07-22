@@ -14,7 +14,10 @@ namespace Color_Chan.Discord.Commands.Attributes
         /// </summary>
         /// <param name="name">The name of the command.</param>
         /// <param name="description">The description of what the command does.</param>
-        /// <exception cref="ArgumentException">Thrown when the command doesn't match the command name requirements.</exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when <paramref name="name" /> or <paramref name="description" /> doesn't
+        ///     match the command name requirements.
+        /// </exception>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> is
         ///     null.
@@ -29,8 +32,8 @@ namespace Color_Chan.Discord.Commands.Attributes
             if (!Regex.IsMatch(name, @"^[\w-]{1,32}$"))
                 throw new ArgumentException("Command names can not contain special characters and whitespaces");
 
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Description = description ?? throw new ArgumentNullException(nameof(description));
+            Name = name ?? throw new ArgumentNullException(nameof(name), "Command name can not be null");
+            Description = description ?? throw new ArgumentNullException(nameof(description), "Command description can not be null");
         }
 
         /// <summary>
