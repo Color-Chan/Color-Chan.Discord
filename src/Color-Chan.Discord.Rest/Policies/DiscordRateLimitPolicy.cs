@@ -29,7 +29,7 @@ namespace Color_Chan.Discord.Rest.Policies
 
         /// <inheritdoc />
         protected override async Task<HttpResponseMessage> ImplementationAsync(Func<Context, CancellationToken, Task<HttpResponseMessage>> action, Context context,
-            CancellationToken cancellationToken, bool continueOnCapturedContext)
+                                                                               CancellationToken cancellationToken, bool continueOnCapturedContext)
         {
             var endpoint = context.GetEndpoint();
 

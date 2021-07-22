@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <param name="requirementService">The <see cref="requirementService" /> that will used to execute the requirements.</param>
         /// <param name="commandAutoSyncService"></param>
         public SlashCommandService(ILogger<SlashCommandService> logger, ISlashCommandBuildService slashCommandBuildService, ISlashCommandRequirementService requirementService,
-            ISlashCommandAutoSyncService commandAutoSyncService)
+                                   ISlashCommandAutoSyncService commandAutoSyncService)
         {
             _logger = logger;
             _slashCommandBuildService = slashCommandBuildService;

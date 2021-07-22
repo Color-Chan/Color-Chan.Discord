@@ -27,7 +27,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         /// <inheritdoc />
         public virtual async Task<Result<DiscordApplicationCommandData>> CreateGlobalApplicationCommandAsync(ulong applicationId,
-            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default)
+                                                                                                             DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/commands";
             return await HttpClient.PostAsync<DiscordApplicationCommandData, DiscordCreateGlobalApplicationCommandParams>(endpoint, commandParams, ct).ConfigureAwait(false);
@@ -42,7 +42,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         /// <inheritdoc />
         public virtual async Task<Result<DiscordApplicationCommandData>> EditGlobalApplicationCommandAsync(ulong applicationId, ulong commandId,
-            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default)
+                                                                                                           DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/commands/{commandId.ToString()}";
             return await HttpClient.PatchAsync<DiscordApplicationCommandData, DiscordCreateGlobalApplicationCommandParams>(endpoint, commandParams, ct).ConfigureAwait(false);
@@ -64,7 +64,8 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         /// <inheritdoc />
         public virtual async Task<Result<IReadOnlyList<DiscordApplicationCommandData>>> BulkOverwriteGlobalApplicationCommandsAsync(ulong applicationId,
-            IEnumerable<DiscordCreateGlobalApplicationCommandParams> commandParams, CancellationToken ct = default)
+                                                                                                                                    IEnumerable<DiscordCreateGlobalApplicationCommandParams>
+                                                                                                                                        commandParams, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/commands";
             return await HttpClient.PutAsync<IReadOnlyList<DiscordApplicationCommandData>, IEnumerable<DiscordCreateGlobalApplicationCommandParams>>(endpoint, commandParams, ct).ConfigureAwait(false);
@@ -72,7 +73,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         /// <inheritdoc />
         public virtual async Task<Result<DiscordApplicationCommandData>> CreateGuildApplicationCommandAsync(ulong applicationId, ulong guildId,
-            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default)
+                                                                                                            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands";
             return await HttpClient.PostAsync<DiscordApplicationCommandData, DiscordCreateGlobalApplicationCommandParams>(endpoint, commandParams, ct).ConfigureAwait(false);
@@ -87,7 +88,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         /// <inheritdoc />
         public virtual async Task<Result<DiscordApplicationCommandData>> EditGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId,
-            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default)
+                                                                                                          DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/{commandId.ToString()}";
             return await HttpClient.PatchAsync<DiscordApplicationCommandData, DiscordCreateGlobalApplicationCommandParams>(endpoint, commandParams, ct).ConfigureAwait(false);
@@ -102,7 +103,8 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         /// <inheritdoc />
         public virtual async Task<Result<IReadOnlyList<DiscordApplicationCommandData>>> BulkOverwriteGuildApplicationCommandsAsync(ulong applicationId, ulong guildId,
-            IEnumerable<DiscordCreateGlobalApplicationCommandParams> commandParams, CancellationToken ct = default)
+                                                                                                                                   IEnumerable<DiscordCreateGlobalApplicationCommandParams>
+                                                                                                                                       commandParams, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands";
             return await HttpClient.PutAsync<IReadOnlyList<DiscordApplicationCommandData>, IEnumerable<DiscordCreateGlobalApplicationCommandParams>>(endpoint, commandParams, ct).ConfigureAwait(false);

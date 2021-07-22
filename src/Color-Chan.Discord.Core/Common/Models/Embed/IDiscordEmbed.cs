@@ -56,7 +56,6 @@ namespace Color_Chan.Discord.Core.Common.Models.Embed
         /// </summary>
         IDiscordEmbedVideo? Video { get; init; }
 
-
         /// <summary>
         ///     Provider information.
         /// </summary>

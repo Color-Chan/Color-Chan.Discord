@@ -34,8 +34,8 @@ namespace Color_Chan.Discord.Rest.Extensions
                 client.BaseAddress = Constants.DiscordApiUrl;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bot", token);
             }).AddTransientHttpErrorPolicy(policyBuilder => policyBuilder
-                .WaitAndRetryAsync(retryDelay)
-                .WrapAsync(customPolicy)
+                                                            .WaitAndRetryAsync(retryDelay)
+                                                            .WrapAsync(customPolicy)
             );
 
             // Add all rest classes with Transient live cycle that inherit DiscordRestBase.

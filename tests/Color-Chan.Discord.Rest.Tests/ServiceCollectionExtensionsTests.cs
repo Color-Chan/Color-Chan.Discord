@@ -15,8 +15,8 @@ namespace Color_Chan.Discord.Rest.Tests
         public void SetUp()
         {
             _serviceProvider = new ServiceCollection()
-                .AddColorChanDiscordRest("TOKEN")
-                .BuildServiceProvider();
+                               .AddColorChanDiscordRest("TOKEN")
+                               .BuildServiceProvider();
         }
 
         private IServiceProvider _serviceProvider = null!;

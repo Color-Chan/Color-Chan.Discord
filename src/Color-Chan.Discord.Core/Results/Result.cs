@@ -85,7 +85,6 @@ namespace Color_Chan.Discord.Core.Results
         }
     }
 
-
     public readonly struct Result<T> : IResult
     {
         /// <summary>

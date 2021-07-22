@@ -112,7 +112,6 @@ namespace Color_Chan.Discord.Rest.Models
             return true;
         }
 
-
         /// <summary>
         ///     Checks whether or not the bucket is available for a new request.
         /// </summary>

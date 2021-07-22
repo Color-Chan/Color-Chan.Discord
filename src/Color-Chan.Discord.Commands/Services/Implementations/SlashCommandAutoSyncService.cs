@@ -33,18 +33,18 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var slashCommandInfos = commandInfos.ToList();
 
             var guildIds = slashCommandInfos
-                .Where(x => x.Guilds is not null)
-                .SelectMany(x => x.Guilds!)
-                .Select(x => x.GuildId)
-                .Distinct();
+                           .Where(x => x.Guilds is not null)
+                           .SelectMany(x => x.Guilds!)
+                           .Select(x => x.GuildId)
+                           .Distinct();
 
             foreach (var guildId in guildIds)
             {
                 var guildCommands = BuildSlashCommandsParams(slashCommandInfos
-                    .Where(x => x.Guilds is not null &&
-                                x.Guilds
-                                    .Select(z => z.GuildId)
-                                    .Contains(guildId))
+                                                                 .Where(x => x.Guilds is not null &&
+                                                                             x.Guilds
+                                                                              .Select(z => z.GuildId)
+                                                                              .Contains(guildId))
                 ).ToList();
 
                 // Todo: set application id somewhere.

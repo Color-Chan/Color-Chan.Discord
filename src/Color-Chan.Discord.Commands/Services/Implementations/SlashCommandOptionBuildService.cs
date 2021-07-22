@@ -37,8 +37,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 if (choiceAttributes.Any())
                 {
                     var choices = choiceAttributes
-                        .Select(choiceAttribute => new KeyValuePair<string, string>(choiceAttribute.Name, choiceAttribute.Value))
-                        .ToList();
+                                  .Select(choiceAttribute => new KeyValuePair<string, string>(choiceAttribute.Name, choiceAttribute.Value))
+                                  .ToList();
 
                     options.Add(new SlashCommandOptionInfo(optionAttribute.Name, optionAttribute.Description, parameter.ParameterType, optionAttribute.IsRequired, choices));
                 }

@@ -23,7 +23,7 @@ namespace Color_Chan.Discord.Controllers
         private readonly ISlashCommandService _slashCommandService;
 
         public DiscordInteractionController(IDiscordInteractionAuthService authService, ISlashCommandService slashCommandService,
-            ILogger<DiscordInteractionController> logger, IServiceProvider serviceProvider)
+                                            ILogger<DiscordInteractionController> logger, IServiceProvider serviceProvider)
         {
             _authService = authService;
             _slashCommandService = slashCommandService;
@@ -54,8 +54,8 @@ namespace Color_Chan.Discord.Controllers
 
             if (interactionData.Type == DiscordInteractionType.Ping)
                 return DiscordInteractionResponse
-                    .PingResponse()
-                    .ToDataModel();
+                       .PingResponse()
+                       .ToDataModel();
 
             var interaction = new DiscordInteraction(interactionData);
 

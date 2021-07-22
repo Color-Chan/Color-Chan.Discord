@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="DiscordApplicationCommandData" /> with the request results.
         /// </returns>
         Task<Result<DiscordApplicationCommandData>> CreateGlobalApplicationCommandAsync(ulong applicationId,
-            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default
+                                                                                        DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default
         );
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="DiscordApplicationCommandData" /> with the request results.
         /// </returns>
         Task<Result<DiscordApplicationCommandData>> EditGlobalApplicationCommandAsync(ulong applicationId, ulong commandId,
-            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default);
+                                                                                      DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default);
 
         /// <summary>
         ///     Deletes a global application command.
@@ -105,7 +105,8 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     with the request results.
         /// </returns>
         Task<Result<IReadOnlyList<DiscordApplicationCommandData>>> BulkOverwriteGlobalApplicationCommandsAsync(ulong applicationId,
-            IEnumerable<DiscordCreateGlobalApplicationCommandParams> commandParams, CancellationToken ct = default);
+                                                                                                               IEnumerable<DiscordCreateGlobalApplicationCommandParams> commandParams,
+                                                                                                               CancellationToken ct = default);
 
         /// <summary>
         ///     Create a new guild application command.
@@ -122,7 +123,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="DiscordApplicationCommandData" /> with the request results.
         /// </returns>
         Task<Result<DiscordApplicationCommandData>> CreateGuildApplicationCommandAsync(ulong applicationId, ulong guildId,
-            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default
+                                                                                       DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default
         );
 
         /// <summary>
@@ -153,7 +154,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="DiscordApplicationCommandData" /> with the request results.
         /// </returns>
         Task<Result<DiscordApplicationCommandData>> EditGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId,
-            DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default);
+                                                                                     DiscordCreateGlobalApplicationCommandParams commandParams, CancellationToken ct = default);
 
         /// <summary>
         ///     Delete a guild application command.
@@ -183,6 +184,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     with the request results.
         /// </returns>
         Task<Result<IReadOnlyList<DiscordApplicationCommandData>>> BulkOverwriteGuildApplicationCommandsAsync(ulong applicationId, ulong guildId,
-            IEnumerable<DiscordCreateGlobalApplicationCommandParams> commandParams, CancellationToken ct = default);
+                                                                                                              IEnumerable<DiscordCreateGlobalApplicationCommandParams> commandParams,
+                                                                                                              CancellationToken ct = default);
     }
 }
