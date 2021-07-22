@@ -1,4 +1,5 @@
-﻿using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+﻿using System.Drawing;
+using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Models.Guild
@@ -24,7 +25,7 @@ namespace Color_Chan.Discord.Models.Guild
         public string Name { get; init; }
 
         /// <inheritdoc />
-        public uint Color { get; init; }
+        public Color Color { get; init; }
 
         /// <inheritdoc />
         public bool IsHoisted { get; init; }
