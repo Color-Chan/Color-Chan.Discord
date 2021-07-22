@@ -22,8 +22,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Testjson\**\*" />
-        <Content Include="Testjson\**\*">
+        <EmbeddedResource Include="TestJson\**\*" />
+        <Content Include="TestJson\**\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
