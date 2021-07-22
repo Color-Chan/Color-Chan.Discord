@@ -31,25 +31,25 @@ jobs:
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
 
     - name: Push Color-Chan.Discord github
-      run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${{ secrets.PAT }}
+      run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${{ secrets.PAT }} --skip-duplicate
 
     - name: Push Color-Chan.Discord nuget.org
-      run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
     - name: Push Color-Chan.Discord.Rest github
-      run: dotnet nuget push Color-Chan.Discord.Rest.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${{ secrets.PAT }}
+      run: dotnet nuget push Color-Chan.Discord.Rest.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${{ secrets.PAT }} --skip-duplicate
 
     - name: Push Color-Chan.Discord.Rest nuget.org
-      run: dotnet nuget push Color-Chan.Discord.Rest.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Color-Chan.Discord.Rest.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
       
     - name: Push Color-Chan.Discord.Core github
-      run: dotnet nuget push Color-Chan.Discord.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${{ secrets.PAT }}
+      run: dotnet nuget push Color-Chan.Discord.Core.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${{ secrets.PAT }} --skip-duplicate
 
     - name: Push Color-Chan.Discord.Core nuget.org
-      run: dotnet nuget push Color-Chan.Discord.Core.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Color-Chan.Discord.Core.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
       
     - name: Push Color-Chan.Discord.Commands github
-      run: dotnet nuget push Color-Chan.Discord.Commands.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${{ secrets.PAT }}
+      run: dotnet nuget push Color-Chan.Discord.Commands.${VERSION}.nupkg --source https://nuget.pkg.github.com/brammys/index.json --api-key ${{ secrets.PAT }} --skip-duplicate
 
     - name: Push Color-Chan.Discord.Commands nuget.org
-      run: dotnet nuget push Color-Chan.Discord.Commands.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push Color-Chan.Discord.Commands.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate

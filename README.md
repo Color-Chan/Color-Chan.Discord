@@ -17,8 +17,10 @@ OR
 ```powershell
 dotnet add package Color-Chan.Discord
 ```
-You can also install induvidial components from Color-Chan.Discord on NuGet:
-* [Comming soon](https://www.nuget.org/packages/Color-Chan.Discord)
+The induvidial components are also available on NuGet:
+* [Color-Chan.Discord.Rest](https://www.nuget.org/packages/Color-Chan.Discord.Rest)
+* [Color-Chan.Discord.Commands](https://www.nuget.org/packages/Color-Chan.Discord.Commands)
+* [Color-Chan.Discord.Core](https://www.nuget.org/packages/Color-Chan.Discord.Core)
 
 ## 2. Compiling
 You will need the following to compile Color-Chan.Discord:
