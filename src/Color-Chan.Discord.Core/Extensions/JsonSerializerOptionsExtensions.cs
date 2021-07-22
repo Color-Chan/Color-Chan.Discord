@@ -15,7 +15,7 @@ namespace Color_Chan.Discord.Core.Extensions
         /// </returns>
         public static JsonSerializerOptions RegisterJsonOptions(this JsonSerializerOptions options)
         {
-            options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+            options.IgnoreNullValues = true;
 
             options
                 .AddJsonConverter<Uint64Converter>()

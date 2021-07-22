@@ -9,7 +9,7 @@ namespace Pong.Commands
 {
     public class PongCommands : SlashCommandModule
     {
-        [SlashCommand("pong", "Ping Pong!")]
+        [SlashCommand("ping", "Ping Pong!")]
         public Task<IDiscordInteractionResponse> PongAsync()
         {
             var response = new DiscordInteractionResponse

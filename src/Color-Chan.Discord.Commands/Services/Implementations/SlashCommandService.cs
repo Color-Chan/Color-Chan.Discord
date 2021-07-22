@@ -58,7 +58,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             _logger.LogInformation("Added {Count} commands", _slashCommands.Count.ToString());
 
             // Default config if no config was set.
-            _configurations ??= new SlashCommandConfiguration(SlashCommandsAutoSync.Disabled);
+            _configurations ??= SlashCommandConfiguration.Default();
 
             await _commandAutoSyncService.AddUpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
         }
