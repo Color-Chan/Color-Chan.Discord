@@ -121,7 +121,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 choices.Add(new DiscordApplicationCommandOptionChoiceData
                 {
                     Name = choicePair.Key,
-                    Value = choicePair.Key
+                    Value = choicePair.Value
                 });
 
             return choices;
