@@ -78,7 +78,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             return result;
         }
-        
+
         /// <inheritdoc />
         public IEnumerable<DiscordCreateGlobalApplicationCommandParams> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos)
         {

@@ -42,7 +42,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// <summary>
         ///     Builds the slash command parameters so it can be send to Discord's API.
         /// </summary>
-        /// <param name="commandInfos">The <see cref="ISlashCommandInfo"/>s.</param>
+        /// <param name="commandInfos">The <see cref="ISlashCommandInfo" />s.</param>
         /// <returns>
         ///     The build slash command parameters.
         /// </returns>

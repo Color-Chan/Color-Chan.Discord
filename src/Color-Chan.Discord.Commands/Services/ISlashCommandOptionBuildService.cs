@@ -19,11 +19,15 @@ namespace Color_Chan.Discord.Commands.Services
         IEnumerable<ISlashCommandOptionInfo> GetCommandOptions(MethodInfo command);
 
         /// <summary>
-        ///     Builds a <see cref="IEnumerable{T}"/> of <see cref="DiscordApplicationCommandOptionData"/>s from <see cref="ISlashCommandInfo"/>s.
+        ///     Builds a <see cref="IEnumerable{T}" /> of <see cref="DiscordApplicationCommandOptionData" />s from
+        ///     <see cref="ISlashCommandInfo" />s.
         /// </summary>
-        /// <param name="commandOptionInfos">The <see cref="ISlashCommandInfo"/> that will be converted to <see cref="DiscordApplicationCommandOptionData"/>.</param>
+        /// <param name="commandOptionInfos">
+        ///     The <see cref="ISlashCommandInfo" /> that will be converted to
+        ///     <see cref="DiscordApplicationCommandOptionData" />.
+        /// </param>
         /// <returns>
-        ///     The generated <see cref="IEnumerable{T}"/> of <see cref="DiscordApplicationCommandOptionData"/>s
+        ///     The generated <see cref="IEnumerable{T}" /> of <see cref="DiscordApplicationCommandOptionData" />s
         /// </returns>
         /// <exception cref="UpdateSlashCommandException">Thrown when the command exceeds the maximum allowed options.</exception>
         IEnumerable<DiscordApplicationCommandOptionData>? BuildSlashCommandsOptions(IEnumerable<ISlashCommandOptionInfo>? commandOptionInfos);
@@ -32,11 +36,11 @@ namespace Color_Chan.Discord.Commands.Services
         ///     Builds the choices for a command option.
         /// </summary>
         /// <param name="choicePairs">
-        ///     The <see cref="IEnumerable{T}"/> of <see cref="KeyValuePair{TKey,TValue}"/>
+        ///     The <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey,TValue}" />
         ///     where the key is the choice name and the value is the choice value.
         /// </param>
         /// <returns>
-        ///     The generated <see cref="IEnumerable{T}"/> of <see cref="DiscordApplicationCommandOptionChoiceData"/>.
+        ///     The generated <see cref="IEnumerable{T}" /> of <see cref="DiscordApplicationCommandOptionChoiceData" />.
         /// </returns>
         /// <exception cref="UpdateSlashCommandException">Thrown when the command options exceeds the maximum allowed choices.</exception>
         IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, string>>? choicePairs);

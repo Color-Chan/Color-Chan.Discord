@@ -28,7 +28,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// </param>
         /// <param name="discordTokens">The tokens for the application.</param>
         /// <param name="logger">The <see cref="ILogger" /> for <see cref="SlashCommandAutoSyncService" />.</param>
-        /// <param name="commandBuildService">The <see cref="ISlashCommandBuildService"/> that will be used to build the slash commands parameters.</param>
+        /// <param name="commandBuildService">
+        ///     The <see cref="ISlashCommandBuildService" /> that will be used to build the slash
+        ///     commands parameters.
+        /// </param>
         public SlashCommandAutoSyncService(IDiscordRestApplication restApplication, DiscordTokens discordTokens, ILogger<SlashCommandAutoSyncService> logger,
                                            ISlashCommandBuildService commandBuildService)
         {

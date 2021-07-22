@@ -1,0 +1,50 @@
+{
+  "type": 4,
+  "name": "test name",
+  "description": "test Description",
+  "required": true,
+  "choices": [
+    {
+      "name": "Test name",
+      "value": "Test value"
+    },
+    {
+      "name": "Test name",
+      "value": "Test value"
+    },
+    {
+      "name": "Test name",
+      "value": "Test value"
+    },
+    {
+      "name": "Test name",
+      "value": "Test value"
+    }
+  ],
+  "options": [
+    {
+      "type": 4,
+      "name": "test name",
+      "description": "test Description",
+      "required": true,
+      "choices": [
+        {
+          "name": "Test name",
+          "value": "Test value"
+        },
+        {
+          "name": "Test name",
+          "value": "Test value"
+        },
+        {
+          "name": "Test name",
+          "value": "Test value"
+        },
+        {
+          "name": "Test name",
+          "value": "Test value"
+        }
+      ]
+    }
+  ]
+}

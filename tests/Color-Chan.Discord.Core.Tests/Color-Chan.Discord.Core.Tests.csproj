@@ -4,6 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>Color_Chan.Discord.Core.Tests</RootNamespace>
         <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,13 +16,17 @@
         <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
     </ItemGroup>
 
-
     <ItemGroup>
         <Folder Include="Common" />
-        <Folder Include="TestJson\API\DataModels" />
         <Folder Include="TestJson\API\Params" />
     </ItemGroup>
 
+    <ItemGroup>
+        <EmbeddedResource Include="Testjson\**\*" />
+        <Content Include="Testjson\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\src\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj" />

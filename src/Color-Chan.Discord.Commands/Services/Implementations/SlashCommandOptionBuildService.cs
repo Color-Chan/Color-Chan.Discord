@@ -54,7 +54,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             _logger.LogDebug("Found {Count} options for command {MethodName}", options.Count, command.Name);
             return options;
         }
-        
+
         /// <inheritdoc />
         public IEnumerable<DiscordApplicationCommandOptionData>? BuildSlashCommandsOptions(IEnumerable<ISlashCommandOptionInfo>? commandOptionInfos)
         {
@@ -72,14 +72,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     Choice = BuildChoiceData(optionInfo.Choices)
                 });
 
-            if (options.Count > MaxCommandOptions)
-            {
-                throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
-            }
-            
+            if (options.Count > MaxCommandOptions) throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
+
             return options;
         }
-        
+
         /// <inheritdoc />
         public IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, string>>? choicePairs)
         {
@@ -94,11 +91,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     Value = choicePair.Value
                 });
 
-            if (choices.Count > MaxCommandOptionChoices)
-            {
-                throw new UpdateSlashCommandException($"A slash command option can not have more then {MaxCommandOptionChoices} choices.");
-            }
-            
+            if (choices.Count > MaxCommandOptionChoices) throw new UpdateSlashCommandException($"A slash command option can not have more then {MaxCommandOptionChoices} choices.");
+
             return choices;
         }
     }

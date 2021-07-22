@@ -14,8 +14,14 @@ namespace Color_Chan.Discord.Commands.Attributes
         /// </summary>
         /// <param name="name">The name of the command.</param>
         /// <param name="description">The description of what the command does.</param>
-        /// <exception cref="ArgumentException">Thrown when <paramref name="name" /> or <paramref name="description" /> doesn't match the command name requirements.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="name" /> or <paramref name="description" /> is null.</exception>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when <paramref name="name" /> or <paramref name="description" /> doesn't
+        ///     match the command name requirements.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when <paramref name="name" /> or <paramref name="description" /> is
+        ///     null.
+        /// </exception>
         public SlashCommandAttribute(string name, string description)
         {
             if (name.Length is < 1 or > 32) throw new ArgumentException("Command names must be between 1 and 32 characters.");
