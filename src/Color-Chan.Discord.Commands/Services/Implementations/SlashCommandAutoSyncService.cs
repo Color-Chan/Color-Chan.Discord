@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Params;
 using Color_Chan.Discord.Core.Common.API.Rest;
@@ -15,15 +16,18 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
     {
         private readonly ILogger<SlashCommandAutoSyncService> _logger;
         private readonly IDiscordRestApplication _restApplication;
+        private readonly DiscordTokens _discordTokens;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="IDiscordRestApplication" />.
         /// </summary>
-        /// <param name="restApplication"></param>
+        /// <param name="restApplication">The <see cref="IDiscordRestApplication"/> that will be used to update and delete slash commands.</param>
+        /// <param name="discordTokens">The tokens for the application.</param>
         /// <param name="logger">The <see cref="ILogger" /> for <see cref="SlashCommandAutoSyncService" />.</param>
-        public SlashCommandAutoSyncService(IDiscordRestApplication restApplication, ILogger<SlashCommandAutoSyncService> logger)
+        public SlashCommandAutoSyncService(IDiscordRestApplication restApplication, DiscordTokens discordTokens, ILogger<SlashCommandAutoSyncService> logger)
         {
             _restApplication = restApplication;
+            _discordTokens = discordTokens;
             _logger = logger;
         }
 
@@ -46,9 +50,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                                               .Select(z => z.GuildId)
                                                                               .Contains(guildId))
                 ).ToList();
-
-                // Todo: set application id somewhere.
-                var guildResult = await _restApplication.BulkOverwriteGuildApplicationCommandsAsync(669311564272369682, guildId, guildCommands).ConfigureAwait(false);
+                
+                var guildResult = await _restApplication.BulkOverwriteGuildApplicationCommandsAsync(_discordTokens.ApplicationId, guildId, guildCommands).ConfigureAwait(false);
 
                 if (!guildResult.IsSuccessful)
                 {
@@ -60,9 +63,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
 
             var globalSlashCommands = BuildSlashCommandsParams(slashCommandInfos.Where(x => x.Guilds is null || !x.Guilds.Any())).ToList();
-
-            // Todo: set application id somewhere.
-            var globalResult = await _restApplication.BulkOverwriteGlobalApplicationCommandsAsync(669311564272369682, globalSlashCommands).ConfigureAwait(false);
+            
+            var globalResult = await _restApplication.BulkOverwriteGlobalApplicationCommandsAsync(_discordTokens.ApplicationId, globalSlashCommands).ConfigureAwait(false);
 
             if (globalResult.IsSuccessful)
             {
