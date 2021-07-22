@@ -35,11 +35,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B2D8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pong", "samples\Pong\Pong.csproj", "{4CF397C8-467A-436D-B16C-D885B2EA3DA3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{AF9CDF62-0D9C-4D06-887E-6EEAF79765A2}"
-	ProjectSection(SolutionItems) = preProject
-		images\Color-Chan03_256x.png = images\Color-Chan03_256x.png
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
@@ -14,5 +14,35 @@
     <ItemGroup>
         <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj" />
     </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Title>Color-Chan.Discord.Commands</Title>
+    <Authors>BrammyS</Authors>
+    <Copyright>BrammyS 2021</Copyright>
+    <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 5.</Description>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <EmbedAllSources>true</EmbedAllSources>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://www.nuget.org/packages/Color-Chan.Discord.Commands</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
+    <RepositoryBranch>main</RepositoryBranch>
+    <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
+    <PackageTags>slashcommands;discord;library;api</PackageTags>
+    <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
+  </PropertyGroup>
 
 </Project>
