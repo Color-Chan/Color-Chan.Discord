@@ -8,6 +8,14 @@ namespace Color_Chan.Discord.Commands.Services
 {
     public interface ISlashCommandAutoSyncService
     {
-        Task<Result> AddUpdateApplicationCommandsAsync(IEnumerable<ISlashCommandInfo> commandInfos, SlashCommandConfiguration configurations);
+        /// <summary>
+        ///     Updates the slash commands for the currently signed in application.
+        /// </summary>
+        /// <param name="commandInfos">The commandInfos that will be used to update slash commands.</param>
+        /// <param name="configurations">The configurations that will be used during the syncing process.</param>
+        /// <returns>
+        ///     The <see cref="Result" /> with the results of the update process.
+        /// </returns>
+        Task<Result> UpdateApplicationCommandsAsync(IEnumerable<ISlashCommandInfo> commandInfos, SlashCommandConfiguration configurations);
     }
 }

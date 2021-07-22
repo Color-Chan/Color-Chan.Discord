@@ -2,6 +2,7 @@
 using System.Reflection;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.Params;
 
 namespace Color_Chan.Discord.Commands.Services
 {
@@ -37,5 +38,14 @@ namespace Color_Chan.Discord.Commands.Services
         ///     <see cref="ISlashCommandModuleBase" />.
         /// </returns>
         IEnumerable<TypeInfo> GetSlashCommandModules(Assembly assembly);
+
+        /// <summary>
+        ///     Builds the slash command parameters so it can be send to Discord's API.
+        /// </summary>
+        /// <param name="commandInfos">The <see cref="ISlashCommandInfo"/>s.</param>
+        /// <returns>
+        ///     The build slash command parameters.
+        /// </returns>
+        IEnumerable<DiscordCreateGlobalApplicationCommandParams> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos);
     }
 }

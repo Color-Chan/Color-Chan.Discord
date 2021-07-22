@@ -4,12 +4,15 @@ using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
     public class SlashCommandOptionBuildService : ISlashCommandOptionBuildService
     {
+        private const int MaxCommandOptions = 25;
+        private const int MaxCommandOptionChoices = 25;
         private readonly ILogger<SlashCommandOptionBuildService> _logger;
 
         /// <summary>
@@ -50,6 +53,53 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             _logger.LogDebug("Found {Count} options for command {MethodName}", options.Count, command.Name);
             return options;
+        }
+        
+        /// <inheritdoc />
+        public IEnumerable<DiscordApplicationCommandOptionData>? BuildSlashCommandsOptions(IEnumerable<ISlashCommandOptionInfo>? commandOptionInfos)
+        {
+            if (commandOptionInfos is null) return null;
+
+            var options = new List<DiscordApplicationCommandOptionData>();
+
+            foreach (var optionInfo in commandOptionInfos)
+                options.Add(new DiscordApplicationCommandOptionData
+                {
+                    Name = optionInfo.Name,
+                    Description = optionInfo.Description,
+                    Type = optionInfo.Type,
+                    IsRequired = optionInfo.IsRequired,
+                    Choice = BuildChoiceData(optionInfo.Choices)
+                });
+
+            if (options.Count > MaxCommandOptions)
+            {
+                throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
+            }
+            
+            return options;
+        }
+        
+        /// <inheritdoc />
+        public IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, string>>? choicePairs)
+        {
+            if (choicePairs is null) return null;
+
+            var choices = new List<DiscordApplicationCommandOptionChoiceData>();
+
+            foreach (var choicePair in choicePairs)
+                choices.Add(new DiscordApplicationCommandOptionChoiceData
+                {
+                    Name = choicePair.Key,
+                    Value = choicePair.Value
+                });
+
+            if (choices.Count > MaxCommandOptionChoices)
+            {
+                throw new UpdateSlashCommandException($"A slash command option can not have more then {MaxCommandOptionChoices} choices.");
+            }
+            
+            return choices;
         }
     }
 }

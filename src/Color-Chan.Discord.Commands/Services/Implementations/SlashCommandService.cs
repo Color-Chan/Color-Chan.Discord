@@ -60,7 +60,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Default config if no config was set.
             _configurations ??= SlashCommandConfiguration.Default();
 
-            await _commandAutoSyncService.AddUpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
+            await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
         }
 
         /// <inheritdoc />

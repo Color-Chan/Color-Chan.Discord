@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.Params;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Microsoft.Extensions.Logging;
 
@@ -76,6 +77,26 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                         result.Add(typeInfo);
 
             return result;
+        }
+        
+        /// <inheritdoc />
+        public IEnumerable<DiscordCreateGlobalApplicationCommandParams> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos)
+        {
+            var applicationCommandParams = new List<DiscordCreateGlobalApplicationCommandParams>();
+
+            foreach (var commandInfo in commandInfos)
+            {
+                var options = _optionBuildService.BuildSlashCommandsOptions(commandInfo.CommandOptions);
+                applicationCommandParams.Add(new DiscordCreateGlobalApplicationCommandParams
+                {
+                    Name = commandInfo.CommandName,
+                    Description = commandInfo.Description,
+                    Options = options
+                });
+            }
+
+
+            return applicationCommandParams;
         }
 
         /// <summary>
