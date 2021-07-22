@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.Params
 {
-    public record DiscordCreateGlobalApplicationCommandParams
+    public record DiscordApplicationCommandParams
     {
         /// <summary>
         ///     1-32 lowercase character name matching ^[\w-]{1,32}$.
