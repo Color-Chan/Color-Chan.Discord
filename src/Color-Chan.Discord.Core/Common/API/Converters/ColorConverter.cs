@@ -15,9 +15,8 @@ namespace Color_Chan.Discord.Core.Common.API.Converters
         {
             if (reader.TokenType != JsonTokenType.Number)
                 throw new JsonException();
-
-            var colorNumber = reader.GetInt32();
-            return Color.FromArgb((int) (colorNumber ^ 0xFF000000));
+            
+            return Color.FromArgb((int) (reader.GetInt32() ^ 0xFF000000));
         }
 
         /// <inheritdoc />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
@@ -40,7 +41,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
         ///     Color code of the embed.
         /// </summary>
         [JsonPropertyName("color")]
-        public uint? Color { get; init; }
+        public Color? Color { get; init; }
 
         /// <summary>
         ///     Footer information.
