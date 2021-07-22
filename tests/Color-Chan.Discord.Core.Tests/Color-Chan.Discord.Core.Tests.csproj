@@ -18,6 +18,8 @@
 
     <ItemGroup>
         <Folder Include="Common" />
+        <Folder Include="TestJson\API\DataModels" />
+        <Folder Include="TestJson\API\Params" />
     </ItemGroup>
 
 
