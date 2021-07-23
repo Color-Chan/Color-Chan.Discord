@@ -62,6 +62,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 }
 ```
+The interaction end point will be located at `/api/v1/discord/interaction` you've added everything.
 
 ## 3. Compiling
 You will need the following to compile Color-Chan.Discord:
