@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Extensions;
@@ -14,28 +16,6 @@ namespace Color_Chan.Discord.Core.Tests
             WriteIndented = true
         }.RegisterJsonOptions();
 
-        private string _filePath = string.Empty;
-
-        [SetUp]
-        public void Setup()
-        {
-            var dataModelPath = Path.Combine("TestJson/API/DataModels/", typeof(TEntity).Name + ".json");
-            if (File.Exists(dataModelPath))
-            {
-                _filePath = dataModelPath;
-                return;
-            }
-
-            var paramsPath = Path.Combine("TestJson/API/Params/", typeof(TEntity).Name + ".json");
-            if (File.Exists(paramsPath))
-            {
-                _filePath = paramsPath;
-                return;
-            }
-
-            Assert.Fail($"Failed to find test json file for {typeof(TEntity).Name}.");
-        }
-
         [Test]
         public async Task Should_serialize()
         {
@@ -47,11 +27,11 @@ namespace Color_Chan.Discord.Core.Tests
             Assert.DoesNotThrowAsync(async () => await JsonSerializer.SerializeAsync(stream, entity, _jsonOptions));
         }
 
-        [Test]
-        public async Task Should_deserialize()
+        [TestCaseSource(nameof(GetFiles))]
+        public async Task Should_deserialize(string filepath)
         {
             // Arrange
-            await using var testJson = File.OpenRead(_filePath);
+            await using var testJson = File.OpenRead(filepath);
 
             // Act
             var entity = await JsonSerializer.DeserializeAsync<TEntity>(testJson, _jsonOptions);
@@ -60,11 +40,11 @@ namespace Color_Chan.Discord.Core.Tests
             entity.Should().NotBeNull();
         }
 
-        [Test]
-        public async Task Should_serialize_and_deserialize()
+        [TestCaseSource(nameof(GetFiles))]
+        public async Task Should_serialize_and_deserialize(string filepath)
         {
             // Arrange
-            await using var testJson = File.OpenRead(_filePath);
+            await using var testJson = File.OpenRead(filepath);
             await using var stream = new MemoryStream();
 
             // Act
@@ -85,6 +65,31 @@ namespace Color_Chan.Discord.Core.Tests
             var originalString = original.RootElement.GetRawText();
 
             serializedString.Should().BeEquivalentTo(originalString);
+        }
+
+        protected static IEnumerable<string> GetFiles()
+        {
+            var dataModelDirPath = Path.Combine("TestJson/API/DataModels/", typeof(TEntity).Name);
+            var paramsPath = Path.Combine("TestJson/API/Params/", typeof(TEntity).Name);
+
+            if (Directory.Exists(dataModelDirPath) && Directory.GetFiles(dataModelDirPath).Any())
+            {
+                foreach (var file in Directory.GetFiles(dataModelDirPath))
+                {
+                    yield return file;
+                }
+            }
+            else if (Directory.Exists(paramsPath) && Directory.GetFiles(paramsPath).Any())
+            {
+                foreach (var file in Directory.GetFiles(dataModelDirPath))
+                {
+                    yield return file;
+                }
+            }
+            else
+            {
+                Assert.Fail($"Failed to find test JSON files for {typeof(TEntity).Name}");
+            }
         }
     }
 }
