@@ -22,7 +22,48 @@ The induvidial components are also available on NuGet:
 * [Color-Chan.Discord.Commands](https://www.nuget.org/packages/Color-Chan.Discord.Commands)
 * [Color-Chan.Discord.Core](https://www.nuget.org/packages/Color-Chan.Discord.Core)
 
-## 2. Compiling
+## 2. Usage
+Create a new ASP.NET project and add the following to Program.cs and Startup.cs.
+
+### Program.cs
+You will have to replace `Assembly.GetExecutingAssembly()` with the assembly where your commands will be located.
+
+```csharp
+public static async Task Main(string[] args)
+{
+    var host = CreateHostBuilder(args).Build();
+    
+    // Configure Color-Chan.Discord.Commands
+    var config = new SlashCommandConfiguration(true); // <----- 
+    await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly(), config).ConfigureAwait(false); // <-----
+
+    // Run the WebHost, and start accepting requests.
+    await host.RunAsync().ConfigureAwait(false);
+}
+```
+
+### Startup.cs
+You will need to add your bot token, public key and application id, these can be found at [discordapp.com](https://discordapp.com/developers/applications/).
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
+
+    services.AddControllers()
+            .AddColorChanJson(); // <---
+}
+
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    app.UseColorChanDiscord(); // <---
+
+    app.UseRouting();
+    app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+}
+```
+
+## 3. Compiling
 You will need the following to compile Color-Chan.Discord:
 
 ### With an IDE
@@ -32,7 +73,7 @@ You will need the following to compile Color-Chan.Discord:
 ### With the command line
 * [.NET sdk](https://dotnet.microsoft.com/download)
 
-## 3. Versioning
+## 4. Versioning
 Color-Chan.Discord uses [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200).
 ### Summary
 The versioning will be using the following format: MAJOR.MINOR.PATCH.
