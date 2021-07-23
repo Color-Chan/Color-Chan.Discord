@@ -192,7 +192,7 @@ namespace Color_Chan.Discord.Rest
 
             return jsonError is null
                 ? new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A JSON error occured")
-                : new DiscordHttpErrorResult(response.StatusCode, $"Code {jsonError.ErrorType} : {jsonError.Message}");
+                : new DiscordHttpErrorResult(jsonError, response.StatusCode);
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace Color_Chan.Discord.Rest
 
             return jsonError is null
                 ? new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A JSON error occured")
-                : new DiscordHttpErrorResult(response.StatusCode, $"Code {jsonError.ErrorType} : {jsonError.Message}");
+                : new DiscordHttpErrorResult(jsonError, response.StatusCode);
         }
     }
 }
