@@ -40,4 +40,8 @@
     <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
   </PropertyGroup>
 
+    <ItemGroup>
+        <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+    </ItemGroup>
+
 </Project>
