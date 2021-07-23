@@ -2,6 +2,7 @@
 [![Color-Chan.Discord](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/color-chan/color-chan.discord/badge)](https://www.codefactor.io/repository/github/color-chan/color-chan.discord)
 [![NuGet](https://img.shields.io/nuget/vpre/Color-Chan.Discord.svg?maxAge=600?style=plastic)](https://www.nuget.org/packages/Color-Chan.Discord)
+[![NuGet](https://img.shields.io/nuget/dt/Color-Chan.Discord.svg?maxAge=600?style=plastic)](https://www.nuget.org/packages/Color-Chan.Discord)
 
 
 Color-Chan.Discord is a C# Discord library made for slash commands. Using Discord webhooks and .NET 5.
@@ -62,6 +63,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 }
 ```
+The interaction end point will be located at `/api/v1/discord/interaction` you've added everything.
 
 ## 3. Compiling
 You will need the following to compile Color-Chan.Discord:
