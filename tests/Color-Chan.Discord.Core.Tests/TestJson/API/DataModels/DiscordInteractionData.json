@@ -1,0 +1,47 @@
+{
+  "id": "9999999999999999",
+  "application_id": "9999999999999999",
+  "type": 3,
+  "data": {
+    "id": "9999999999999999",
+    "name": "test",
+    "options": [
+      {
+        "name": "test",
+        "type": 3,
+        "value": "test_test"
+      }
+    ]
+  },
+  "guild_id": "9999999999999999",
+  "channel_id": "9999999999999999",
+  "member": {
+    "user": {
+      "id": "9999999999999999",
+      "username": "BrammyS",
+      "discriminator": "0001",
+      "avatar": "b0395c717fcff9acbb827fed08da5790",
+      "bot": true,
+      "system": true,
+      "mfa_enabled": true,
+      "locale": "en-US",
+      "verified": true,
+      "email": "color-chan@discord.com",
+      "flags": 0,
+      "premium_type": 0,
+      "public_flags": 0
+    },
+    "nick": "testNick",
+    "roles": [
+      "9999999999999999",
+      "9999999999999999",
+      "9999999999999999"
+    ],
+    "joined_at": "1970-01-01T00:00:00+00:00",
+    "deaf": true,
+    "mute": true,
+    "permissions": "274877906943"
+  },
+  "token": "token",
+  "version": 1
+}

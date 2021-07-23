@@ -14,7 +14,8 @@ using Microsoft.Extensions.Logging;
 namespace Color_Chan.Discord.Controllers
 {
     [ApiController]
-    [Route("discord")]
+    [ApiVersion("1")]
+    [Route("api/v{apiVersion}/discord")]
     public class DiscordInteractionController : ControllerBase
     {
         private readonly IDiscordInteractionAuthService _authService;
