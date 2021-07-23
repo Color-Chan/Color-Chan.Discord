@@ -1,3 +1,4 @@
+using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +21,8 @@ namespace Pong
         {
             services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
 
-            services.AddControllers();
+            services.AddControllers()
+                    .AddColorChanJson(); // <---
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
