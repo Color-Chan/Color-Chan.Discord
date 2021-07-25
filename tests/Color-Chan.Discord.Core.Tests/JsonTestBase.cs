@@ -67,6 +67,9 @@ namespace Color_Chan.Discord.Core.Tests
             serializedString.Should().BeEquivalentTo(originalString);
         }
 
+        /// <summary>
+        ///     Get the test JSON files for the <see cref="TEntity"/>.
+        /// </summary>
         protected static IEnumerable<string> GetFiles()
         {
             var dataModelDirPath = Path.Combine("TestJson/API/DataModels/", typeof(TEntity).Name);
