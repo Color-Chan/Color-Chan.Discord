@@ -9,6 +9,8 @@ namespace Color_Chan.Discord.Commands.Attributes
     [AttributeUsage(AttributeTargets.Parameter)]
     public class SlashCommandOptionAttribute : Attribute
     {
+        private static readonly Regex CommandOptionNameRegex = new (@"^[\w-]{1,32}$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250));
+        
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandOptionAttribute" />.
         /// </summary>
@@ -30,7 +32,7 @@ namespace Color_Chan.Discord.Commands.Attributes
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (description.Length is < 1 or > 100) throw new ArgumentException("Command option descriptions must be between 1 and 100 characters.");
 
-            if (!Regex.IsMatch(name, @"^[\w-]{1,32}$"))
+            if (!CommandOptionNameRegex.IsMatch(name))
                 throw new ArgumentException("Command option names can not contain special characters and whitespaces");
 
             Name = name ?? throw new ArgumentNullException(nameof(name));
