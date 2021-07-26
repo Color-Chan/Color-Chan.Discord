@@ -49,7 +49,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         {
             if (!configurations.EnableAutoSync) return Result.FromSuccess();
 
-            _logger.LogInformation("Syncing slash commands");
+            _logger.LogInformation("Checking for new or outdated slash commands");
             var slashCommandInfos = commandInfos.ToList();
 
             // Update all guild commands.

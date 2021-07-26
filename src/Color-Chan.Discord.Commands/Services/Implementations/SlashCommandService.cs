@@ -54,12 +54,17 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 if (!_slashCommands.TryAdd(key.ToLower(), commandInfo))
                     throw new Exception($"Failed to register {commandInfo.CommandName}");
 
-            _logger.LogInformation("Added {Count} commands", _slashCommands.Count.ToString());
+            _logger.LogInformation("Finished adding {Count} commands to the command registry", _slashCommands.Count.ToString());
 
             // Default config if no config was set.
             _configurations ??= SlashCommandConfiguration.Default();
 
-            await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
+            var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
+
+            if (!result.IsSuccessful)
+            {
+                throw new SlashCommandAutoSyncException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
+            }
         }
 
         /// <inheritdoc />
