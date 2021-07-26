@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Commands.Extensions
                     return true;
                 }
 
-                if (!commandOption.IsRequired == existingOption.IsRequired)
+                if (commandOption.IsRequired != existingOption.IsRequired)
                 {
                     // IsRequired has been updated.
                     return true;
@@ -51,6 +51,12 @@ namespace Color_Chan.Discord.Commands.Extensions
 
                 if (commandOption.Choices != null)
                 {
+                    if (existingOption.Choices is not null && commandOption.Choices.Count() != existingOption.Choices.Count())
+                    {
+                        // Amount of choices has been updated.
+                        return true;
+                    }
+                    
                     foreach (var newChoice in commandOption.Choices)
                     {
                         var existingChoice = existingOption.Choices?.FirstOrDefault(x => x.Name.Equals(newChoice.Name));
@@ -63,7 +69,7 @@ namespace Color_Chan.Discord.Commands.Extensions
                         
                         // The command option choice already exists.
 
-                        if (newChoice.Value.Equals(existingChoice.Value))
+                        if (!newChoice.Value.Equals(existingChoice.Value))
                         {
                             // Value has been updated.
                             return true;

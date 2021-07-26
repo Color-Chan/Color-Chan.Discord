@@ -79,7 +79,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             
 
             // Create or update the slash commands.
-            var newGlobalSlashCommands = GetUpdatedOrNewCommands(existingCommands.Entity!, globalSlashCommands);
+            var newGlobalSlashCommands = globalSlashCommands.GetUpdatedOrNewCommands(existingCommands.Entity!);
+            _logger.LogInformation("Found {Count} new or updated slash commands", newGlobalSlashCommands.Count.ToString());
+            
             foreach (var newGlobalSlashCommand in newGlobalSlashCommands)
             {
                 // Creating or updating slash command.
@@ -133,7 +135,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 }
 
                 // Create or update the slash commands.
-                var newGuildSlashCommands = GetUpdatedOrNewCommands(existingCommands.Entity!, guildCommands);
+                var newGuildSlashCommands = guildCommands.GetUpdatedOrNewCommands(existingCommands.Entity!);
+                _logger.LogInformation("Found {Count} new or updated slash commands", newGuildSlashCommands.Count.ToString());
+
                 foreach (var newGuildSlashCommand in newGuildSlashCommands)
                 {
                     // Creating or updating slash command.
@@ -166,58 +170,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
             
             return Result.FromSuccess();
-        }
-
-        private IEnumerable<DiscordApplicationCommandParams> GetUpdatedOrNewCommands(IReadOnlyCollection<DiscordApplicationCommandData> existingCommands, IEnumerable<DiscordApplicationCommandParams> newCommands)
-        {
-            var updatedCommands = new List<DiscordApplicationCommandParams>();
-            
-            foreach (var newCommand in newCommands)
-            {
-                var existingCommand = existingCommands.FirstOrDefault(x => x.Name.Equals(newCommand.Name));
-
-                if (existingCommand is null)
-                {
-                    // New command found.
-                    updatedCommands.Add(newCommand);
-                    continue;
-                }
-                
-                // Found existing command.
-
-                if (!newCommand.Description.Equals(existingCommand.Description))
-                {
-                    // Description has been updated.
-                    updatedCommands.Add(newCommand);
-                    continue;
-                }
-                    
-                if (!newCommand.DefaultPermission == existingCommand.DefaultPermission)
-                {
-                    // DefaultPermission has been updated.
-                    updatedCommands.Add(newCommand);
-                    continue;
-                }
-
-                if (newCommand.Options!.Any())
-                {
-                    if (existingCommand.Options is null)
-                    {
-                        // Options has been updated.
-                        updatedCommands.Add(newCommand);
-                        continue;
-                    }
-                        
-                    if (newCommand.Options!.HasNewOrUpdatedOptions(existingCommand.Options.ToList()))
-                    {
-                        // Options has been updated.
-                        updatedCommands.Add(newCommand);
-                    }
-                }
-            }
-            
-            _logger.LogInformation("Found {Count} new or updated slash commands", updatedCommands.Count.ToString());
-            return updatedCommands;
         }
 
         private IEnumerable<ISlashCommandInfo> GetGuildCommandInfos(IEnumerable<ISlashCommandInfo> commandInfos, ulong guildId)
