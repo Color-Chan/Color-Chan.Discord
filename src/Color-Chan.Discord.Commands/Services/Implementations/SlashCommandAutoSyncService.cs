@@ -3,8 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
+using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.API.Params;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
@@ -55,9 +58,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             // Update all global commands.
             var globalResult = await UpdateGlobalCommandsAsync(slashCommandInfos).ConfigureAwait(false);
-            if (!globalResult.IsSuccessful) return Result.FromError(globalResult.ErrorResult ?? new ErrorResult("Failed to sync global slash commands"));
-
-            return Result.FromSuccess();
+            
+            return !globalResult.IsSuccessful
+                ? Result.FromError(globalResult.ErrorResult ?? new ErrorResult("Failed to sync global slash commands"))
+                : Result.FromSuccess();
         }
 
         private async Task<Result> UpdateGlobalCommandsAsync(IEnumerable<ISlashCommandInfo> slashCommandInfos)
@@ -66,17 +70,46 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var globalSlashCommands = _commandBuildService.BuildSlashCommandsParams(slashCommandInfos.Where(x => x.Guilds is null || !x.Guilds.Any())).ToList();
             if (globalSlashCommands.Count > MaxGlobalCommands) throw new UpdateSlashCommandException($"An application can not have more then {MaxGlobalCommands} global commands.");
 
-            // Push the slash commands to discord.
-            var globalResult = await _restApplication.BulkOverwriteGlobalApplicationCommandsAsync(_discordTokens.ApplicationId, globalSlashCommands).ConfigureAwait(false);
-            if (globalResult.IsSuccessful)
+            // Get the current global slash commands.
+            var existingCommands = await _restApplication.GetGlobalApplicationCommandsAsync(_discordTokens.ApplicationId).ConfigureAwait(false);
+            if (!existingCommands.IsSuccessful)
             {
-                _logger.LogDebug("Updated {Count} global slash commands", globalSlashCommands.Count.ToString());
-                _logger.LogInformation("Finished syncing slash commands");
-                return Result.FromSuccess();
+                return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to get existing global slash commands."));
+            }
+            
+
+            // Create or update the slash commands.
+            var newGlobalSlashCommands = globalSlashCommands.GetUpdatedOrNewCommands(existingCommands.Entity!);
+            _logger.LogInformation("Found {Count} new or updated slash commands", newGlobalSlashCommands.Count.ToString());
+            
+            foreach (var newGlobalSlashCommand in newGlobalSlashCommands)
+            {
+                // Creating or updating slash command.
+                var result = await _restApplication.CreateGlobalApplicationCommandAsync(_discordTokens.ApplicationId, newGlobalSlashCommand).ConfigureAwait(false);
+                if (!result.IsSuccessful)
+                {
+                    return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to create global slash commands."));
+                }
+                _logger.LogInformation("Updated or created global slash command {CommandName} {Id}", result.Entity!.Name, result.Entity!.Id.ToString());
             }
 
-            _logger.LogWarning("Failed to update global slash commands");
-            return Result.FromError(globalResult.ErrorResult ?? new ErrorResult("Failed to sync global slash commands"));
+            // Delete old global commands.
+            foreach (var existingCommand in existingCommands.Entity!)
+            {
+                if (!globalSlashCommands.Select(x => x.Name).Contains(existingCommand.Name))
+                {
+                    // Delete old global slash command.
+                    var result = await _restApplication.DeleteGlobalApplicationCommandAsync(_discordTokens.ApplicationId, existingCommand.Id).ConfigureAwait(false);
+                    if (!result.IsSuccessful)
+                    {
+                        return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to delete existing global slash commands."));
+                    }
+                    _logger.LogInformation("Deleted old global slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
+                }
+            }
+            
+            _logger.LogInformation("Finished syncing global slash commands");
+            return Result.FromSuccess();
         }
 
         private async Task<Result> UpdateGuildCommandsAsync(IReadOnlyCollection<ISlashCommandInfo> slashCommandInfos)
@@ -92,19 +125,50 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 // Build the slash commands.
                 var guildCommandInfos = GetGuildCommandInfos(slashCommandInfos, guildId);
                 var guildCommands = _commandBuildService.BuildSlashCommandsParams(guildCommandInfos).ToList();
-                if (guildCommands.Count > MaxGuildCommands) throw new UpdateSlashCommandException($"A guild can not have more then {MaxGuildCommands} global commands.");
+                if (guildCommands.Count > MaxGuildCommands) throw new UpdateSlashCommandException($"A guild can not have more then {MaxGuildCommands} slash commands.");
 
-                // Push the slash commands to discord.
-                var guildResult = await _restApplication.BulkOverwriteGuildApplicationCommandsAsync(_discordTokens.ApplicationId, guildId, guildCommands).ConfigureAwait(false);
-                if (!guildResult.IsSuccessful)
+                // Get the current guild slash commands.
+                var existingCommands = await _restApplication.GetGuildApplicationCommandsAsync(_discordTokens.ApplicationId, guildId).ConfigureAwait(false);
+                if (!existingCommands.IsSuccessful)
                 {
-                    _logger.LogWarning("Failed to update slash commands for guild {GuildId}", guildId.ToString());
-                    return Result.FromError(guildResult.ErrorResult ?? new ErrorResult($"Failed to sync slash commands for guild {guildId.ToString()}"));
+                    return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to get existing guild slash commands."));
                 }
 
-                _logger.LogDebug("Updated {Count} slash commands for guild {GuildId}", guildCommands.Count.ToString(), guildId.ToString());
-            }
+                // Create or update the slash commands.
+                var newGuildSlashCommands = guildCommands.GetUpdatedOrNewCommands(existingCommands.Entity!);
+                _logger.LogInformation("Found {Count} new or updated slash commands", newGuildSlashCommands.Count.ToString());
 
+                foreach (var newGuildSlashCommand in newGuildSlashCommands)
+                {
+                    // Creating or updating slash command.
+                    var result = await _restApplication.CreateGuildApplicationCommandAsync(_discordTokens.ApplicationId, guildId, newGuildSlashCommand).ConfigureAwait(false);
+                    if (!result.IsSuccessful)
+                    {
+                        return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to create guild slash commands."));
+                    }
+
+                    _logger.LogInformation("Updated or created guild slash command {CommandName} {Id}", result.Entity!.Name, result.Entity!.Id.ToString());
+                }
+
+                // Delete old guild guild commands.
+                foreach (var existingCommand in existingCommands.Entity!)
+                {
+                    if (!guildCommands.Select(x => x.Name).Contains(existingCommand.Name))
+                    {
+                        // Delete old guild slash command.
+                        var result = await _restApplication.DeleteGuildApplicationCommandAsync(_discordTokens.ApplicationId, guildId, existingCommand.Id).ConfigureAwait(false);
+                        if (!result.IsSuccessful)
+                        {
+                            return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to delete existing guild slash commands."));
+                        }
+
+                        _logger.LogInformation("Deleted old guild slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
+                    }
+                }
+
+                _logger.LogInformation("Finished syncing guild slash commands for guild {Id}", guildId.ToString());
+            }
+            
             return Result.FromSuccess();
         }
 

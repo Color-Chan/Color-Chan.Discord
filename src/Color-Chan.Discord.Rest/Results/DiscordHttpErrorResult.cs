@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Color_Chan.Discord.Core.Common.API.DataModels.Errors;
 
 namespace Color_Chan.Discord.Rest.Results
 {
@@ -7,9 +8,9 @@ namespace Color_Chan.Discord.Rest.Results
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordHttpErrorResult" />.
         /// </summary>
+        /// <param name="errorData">The error data.</param>
         /// <param name="statusCode">The <see cref="HttpStatusCode" /> of the response.</param>
-        /// <param name="errorMessage">The message of the error.</param>
-        public DiscordHttpErrorResult(HttpStatusCode statusCode, string errorMessage) : base(statusCode, errorMessage)
+        public DiscordHttpErrorResult(DiscordJsonErrorData errorData, HttpStatusCode statusCode) : base(statusCode, errorData.Message)
         {
         }
     }

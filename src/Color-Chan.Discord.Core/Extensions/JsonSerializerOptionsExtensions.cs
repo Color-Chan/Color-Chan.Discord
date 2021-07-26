@@ -20,6 +20,7 @@ namespace Color_Chan.Discord.Core.Extensions
             options
                 .AddJsonConverter<Uint64Converter>()
                 .AddJsonConverter<ColorConverter>()
+                .AddJsonConverter<PropertyErrorDataConverter>()
                 .AddJsonConverter<DiscordGuildPermissionJsonConverter>();
 
             return options;
