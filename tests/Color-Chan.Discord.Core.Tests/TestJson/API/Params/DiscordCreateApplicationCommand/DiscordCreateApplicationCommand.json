@@ -1,0 +1,5 @@
+{
+  "name": "test name",
+  "description": "test Description",
+  "default_permission": true
+}
