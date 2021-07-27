@@ -6,7 +6,7 @@ using Color_Chan.Discord.Commands.Commands;
 using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
-using Color_Chan.Discord.Models.Interaction;
+using Color_Chan.Discord.Rest.Models.Interaction;
 using Color_Chan.Discord.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

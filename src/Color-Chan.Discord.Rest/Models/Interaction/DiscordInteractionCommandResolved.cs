@@ -5,9 +5,9 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
-using Color_Chan.Discord.Models.Guild;
+using Color_Chan.Discord.Rest.Models.Guild;
 
-namespace Color_Chan.Discord.Models.Interaction
+namespace Color_Chan.Discord.Rest.Models.Interaction
 {
     public record DiscordInteractionCommandResolved : IDiscordInteractionCommandResolved
     {

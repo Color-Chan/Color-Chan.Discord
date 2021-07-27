@@ -40,12 +40,12 @@ namespace Color_Chan.Discord.Core
         ///     Null when the slash command was used in DMs.
         /// </remarks>
         ulong? GuildId { get; set; }
-        
+
         /// <summary>
         ///     The Channel id of the current Channel.
         /// </summary>
         ulong ChannelId { get; set; }
-        
+
         /// <summary>
         ///     Id of the application this interaction is for.
         /// </summary>

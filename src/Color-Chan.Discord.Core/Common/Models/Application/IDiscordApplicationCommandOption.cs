@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Application
         /// <summary>
         ///     Choices for string and int types for the user to pick from.
         /// </summary>
-        public IEnumerable<IDiscordApplicationCommandOptionChoice>? Choice { get; set; }
+        public IEnumerable<IDiscordApplicationCommandOptionChoice>? Choices { get; set; }
 
         /// <summary>
         ///     If the option is a subcommand or subcommand group type, this nested options will be the parameters.

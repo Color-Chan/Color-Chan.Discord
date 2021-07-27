@@ -5,7 +5,7 @@ using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 
-namespace Color_Chan.Discord.Models.Embed
+namespace Color_Chan.Discord.Rest.Models.Embed
 {
     public record DiscordEmbed : IDiscordEmbed
     {

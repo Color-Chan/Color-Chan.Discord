@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.Models.Application;
 
-namespace Color_Chan.Discord.Models.Application
+namespace Color_Chan.Discord.Rest.Models.Application
 {
     public record DiscordApplicationCommandOption : IDiscordApplicationCommandOption
     {
-        public DiscordApplicationCommandOption(DiscordApplicationCommandOptionType type, string name, string description, bool? isRequired = default,
-                                               IEnumerable<IDiscordApplicationCommandOptionChoice>? choice = null, IEnumerable<IDiscordApplicationCommandOption>? subOptions = null)
+        public DiscordApplicationCommandOption(DiscordApplicationCommandOptionData data)
         {
-            Type = type;
-            Name = name;
-            Description = description;
-            IsRequired = isRequired;
-            Choice = choice;
-            SubOptions = subOptions;
+            Type = data.Type;
+            Name = data.Name;
+            Description = data.Description;
+            IsRequired = data.IsRequired;
+            Choices = data.Choices?.Select(choice => new DiscordApplicationCommandOptionChoice(choice.Name, choice.Value));
+            SubOptions = data.SubOptions?.Select(subOption => new DiscordApplicationCommandOption(subOption));
         }
 
         /// <inheritdoc />
@@ -30,7 +30,7 @@ namespace Color_Chan.Discord.Models.Application
         public bool? IsRequired { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<IDiscordApplicationCommandOptionChoice>? Choice { get; set; }
+        public IEnumerable<IDiscordApplicationCommandOptionChoice>? Choices { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordApplicationCommandOption>? SubOptions { get; set; }

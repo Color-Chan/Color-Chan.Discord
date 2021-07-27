@@ -5,7 +5,7 @@ using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 
-namespace Color_Chan.Discord.Models.Interaction
+namespace Color_Chan.Discord.Rest.Models.Interaction
 {
     public record DiscordInteractionCommandCallback : IDiscordInteractionCommandCallback
     {

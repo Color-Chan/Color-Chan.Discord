@@ -3,7 +3,7 @@ using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 
-namespace Color_Chan.Discord.Models.Interaction
+namespace Color_Chan.Discord.Rest.Models.Interaction
 {
     public record DiscordInteractionCommand : IDiscordInteractionCommand
     {

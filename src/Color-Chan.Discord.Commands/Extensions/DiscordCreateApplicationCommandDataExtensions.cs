@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Params;
+using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Commands.Extensions
 {
-    public static class DiscordApplicationCommandExtensions
+    public static class DiscordCreateApplicationCommandDataExtensions
     {
         public static List<DiscordCreateApplicationCommand> GetUpdatedOrNewCommands(this IEnumerable<DiscordCreateApplicationCommand> newCommands,
-                                                                                    IReadOnlyCollection<DiscordApplicationCommandData> existingCommands)
+                                                                                    IReadOnlyCollection<IDiscordApplicationCommand> existingCommands)
         {
             var updatedCommands = new List<DiscordCreateApplicationCommand>();
 
@@ -54,10 +54,8 @@ namespace Color_Chan.Discord.Commands.Extensions
                 }
 
                 if (newCommand.Options!.Any() != existingCommand.Options is not null)
-                {
                     // New command doesnt have any options but the existing does.
                     updatedCommands.Add(newCommand);
-                }
             }
 
             return updatedCommands;

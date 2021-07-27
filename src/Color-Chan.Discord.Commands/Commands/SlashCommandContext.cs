@@ -23,7 +23,7 @@ namespace Color_Chan.Discord.Commands.Commands
 
         /// <inheritdoc />
         public IDiscordMessage Message { get; init; }
-        
+
         /// <inheritdoc />
         public IDiscordInteractionCommand Command { get; init; }
 

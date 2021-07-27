@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 
-namespace Color_Chan.Discord.Models.Guild
+namespace Color_Chan.Discord.Rest.Models.Guild
 {
     public record DiscordGuildMember : IDiscordGuildMember
     {

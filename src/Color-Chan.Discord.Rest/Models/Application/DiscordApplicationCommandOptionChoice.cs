@@ -1,6 +1,6 @@
 ﻿using Color_Chan.Discord.Core.Common.Models.Application;
 
-namespace Color_Chan.Discord.Models.Application
+namespace Color_Chan.Discord.Rest.Models.Application
 {
     public record DiscordApplicationCommandOptionChoice : IDiscordApplicationCommandOptionChoice
     {

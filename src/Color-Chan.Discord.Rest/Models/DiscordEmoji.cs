@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 
-namespace Color_Chan.Discord.Models
+namespace Color_Chan.Discord.Rest.Models
 {
     public record DiscordEmoji : IDiscordEmoji
     {

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
@@ -45,7 +44,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest.Guild
         ///     with the request results.
         /// </returns>
         Task<Result<IReadOnlyList<IDiscordGuildRole>>> ModifyGuildRolePositionsAsync(ulong guildId, IEnumerable<DiscordModifyGuildRolePositions> modifyGuildRoles, string? auditLogReason = null,
-                                                                                        CancellationToken ct = default);
+                                                                                     CancellationToken ct = default);
 
         /// <summary>
         ///     Modify a guild role.

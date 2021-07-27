@@ -7,7 +7,7 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Message;
 
-namespace Color_Chan.Discord.Models.Message
+namespace Color_Chan.Discord.Rest.Models.Message
 {
     public record DiscordMessage : IDiscordMessage
     {

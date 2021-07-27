@@ -3,6 +3,7 @@ using System.Linq;
 using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Params;
+using Color_Chan.Discord.Rest.Models.Application;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -169,7 +170,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
         public void Should_not_detect_any_new_commands()
         {
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().BeEmpty();
@@ -186,7 +187,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             });
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -209,7 +210,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -225,7 +226,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -241,7 +242,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -257,7 +258,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -273,7 +274,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -289,7 +290,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -321,7 +322,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -353,7 +354,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -386,7 +387,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -420,7 +421,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -442,7 +443,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();
@@ -465,7 +466,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
 
             // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands);
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
             // Assert
             result.Should().NotBeNullOrEmpty();

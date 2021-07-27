@@ -1,17 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Commands.Extensions
 {
-    public static class DiscordApplicationCommandOptionDataExtensions
+    public static class DiscordApplicationCommandOptionExtensions
     {
-        public static bool HasNewOrUpdatedOptions(this IEnumerable<DiscordApplicationCommandOptionData> newOptions, IReadOnlyCollection<DiscordApplicationCommandOptionData> existingCommand)
+        public static bool HasNewOrUpdatedOptions(this IEnumerable<DiscordApplicationCommandOptionData> newOptions, IReadOnlyCollection<IDiscordApplicationCommandOption> existingCommand)
         {
             return HasNewOrUpdatedOptions(newOptions.ToList(), existingCommand);
         }
 
-        public static bool HasNewOrUpdatedOptions(this IReadOnlyCollection<DiscordApplicationCommandOptionData> newOptions, IReadOnlyCollection<DiscordApplicationCommandOptionData> existingCommand)
+        public static bool HasNewOrUpdatedOptions(this IReadOnlyCollection<DiscordApplicationCommandOptionData> newOptions, IReadOnlyCollection<IDiscordApplicationCommandOption> existingCommand)
         {
             if (newOptions!.Count != existingCommand!.Count)
                 // Amount of choices has been updated.

@@ -6,7 +6,7 @@ using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.API.Rest.Guild;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
-using Color_Chan.Discord.Models.Guild;
+using Color_Chan.Discord.Rest.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.API.Rest.Guild
 {
@@ -41,7 +41,8 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
                                                                                                           string? auditLogReason = null, CancellationToken ct = default)
         {
             string endpoint = $"guilds/{guildId.ToString()}/roles";
-            var result = await HttpClient.PatchAsync<IReadOnlyList<DiscordGuildRoleData>, IEnumerable<DiscordModifyGuildRolePositions>>(endpoint, modifyGuildRoles, auditLogReason, ct).ConfigureAwait(false);
+            var result = await HttpClient.PatchAsync<IReadOnlyList<DiscordGuildRoleData>, IEnumerable<DiscordModifyGuildRolePositions>>(endpoint, modifyGuildRoles, auditLogReason, ct)
+                                         .ConfigureAwait(false);
             return ConvertResult(result);
         }
 
@@ -63,26 +64,17 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
 
         private Result<IDiscordGuildRole> ConvertResult(Result<DiscordGuildRoleData> result)
         {
-            if (!result.IsSuccessful || result.Entity is null)
-            {
-                return Result<IDiscordGuildRole>.FromError(null, result.ErrorResult);
-            }
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildRole>.FromError(null, result.ErrorResult);
 
             return Result<IDiscordGuildRole>.FromSuccess(new DiscordGuildRole(result.Entity));
         }
-        
+
         private Result<IReadOnlyList<IDiscordGuildRole>> ConvertResult(Result<IReadOnlyList<DiscordGuildRoleData>> result)
         {
-            if (!result.IsSuccessful || result.Entity is null)
-            {
-                return Result<IReadOnlyList<IDiscordGuildRole>>.FromError(null, result.ErrorResult);
-            }
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordGuildRole>>.FromError(null, result.ErrorResult);
 
             var roles = new List<IDiscordGuildRole>();
-            foreach (var roleData in result.Entity)
-            {
-                roles.Add(new DiscordGuildRole(roleData));
-            }
+            foreach (var roleData in result.Entity) roles.Add(new DiscordGuildRole(roleData));
 
             return Result<IReadOnlyList<IDiscordGuildRole>>.FromSuccess(roles);
         }
