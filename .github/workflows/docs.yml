@@ -41,3 +41,4 @@ jobs:
           github_token: ${{ secrets.GH_PAGES }}
           publish_dir: docs/_site
           force_orphan: true
+          cname: discord-library.colorchan.com
