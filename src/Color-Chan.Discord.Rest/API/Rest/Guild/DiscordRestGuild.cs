@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.API.Rest.Guild;
+using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Rest.API.Rest.Guild
@@ -22,26 +23,26 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
         }
         
         /// <inheritdoc cref="IDiscordRestGuildRole"/>
-        public virtual Task<Result<IReadOnlyList<DiscordGuildRoleData>>> GetGuildRolesAsync(ulong guildId, CancellationToken ct = default)
+        public virtual Task<Result<IReadOnlyList<IDiscordGuildRole>>> GetGuildRolesAsync(ulong guildId, CancellationToken ct = default)
         {
             return _restGuildRole.GetGuildRolesAsync(guildId, ct);
         }
 
         /// <inheritdoc cref="IDiscordRestGuildRole"/>
-        public virtual Task<Result<DiscordGuildRoleData>> CreateGuildRoleAsync(ulong guildId, DiscordCreateGuildRole role, string? auditLogReason = null, CancellationToken ct = default)
+        public virtual Task<Result<IDiscordGuildRole>> CreateGuildRoleAsync(ulong guildId, DiscordCreateGuildRole role, string? auditLogReason = null, CancellationToken ct = default)
         {
             return _restGuildRole.CreateGuildRoleAsync(guildId, role, auditLogReason, ct);
         }
 
         /// <inheritdoc cref="IDiscordRestGuildRole"/>
-        public virtual Task<Result<IReadOnlyList<DiscordGuildRoleData>>> ModifyGuildRolePositionsAsync(ulong guildId, IEnumerable<DiscordModifyGuildRolePositions> modifyGuildRoles,
+        public virtual Task<Result<IReadOnlyList<IDiscordGuildRole>>> ModifyGuildRolePositionsAsync(ulong guildId, IEnumerable<DiscordModifyGuildRolePositions> modifyGuildRoles,
                                                                                                              string? auditLogReason = null, CancellationToken ct = default)
         {
             return _restGuildRole.ModifyGuildRolePositionsAsync(guildId, modifyGuildRoles, auditLogReason, ct);
         }
 
         /// <inheritdoc cref="IDiscordRestGuildRole"/>
-        public virtual Task<Result<DiscordGuildRoleData>> ModifyGuildRoleAsync(ulong guildId, ulong roleId, DiscordModifyGuildRole role, string? auditLogReason = null,
+        public virtual Task<Result<IDiscordGuildRole>> ModifyGuildRoleAsync(ulong guildId, ulong roleId, DiscordModifyGuildRole role, string? auditLogReason = null,
                                                                                      CancellationToken ct = default)
         {
             return _restGuildRole.ModifyGuildRoleAsync(guildId, roleId, role, auditLogReason, ct);

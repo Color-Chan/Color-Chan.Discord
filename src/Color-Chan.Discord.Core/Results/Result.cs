@@ -134,7 +134,7 @@ namespace Color_Chan.Discord.Core.Results
         /// <returns>
         ///     The unsuccessful instance of <see cref="Result" />.
         /// </returns>
-        public static Result<T> FromError(T? entity, IErrorResult errorResult)
+        public static Result<T> FromError(T? entity, IErrorResult? errorResult)
         {
             return new(entity, errorResult, null);
         }
@@ -148,7 +148,7 @@ namespace Color_Chan.Discord.Core.Results
         /// <returns>
         ///     The unsuccessful instance of <see cref="Result" />.
         /// </returns>
-        public static Result<T> FromError(T? entity, IErrorResult errorResult, IResult innerResult)
+        public static Result<T> FromError(T? entity, IErrorResult? errorResult, IResult innerResult)
         {
             return new(entity, errorResult, innerResult);
         }
