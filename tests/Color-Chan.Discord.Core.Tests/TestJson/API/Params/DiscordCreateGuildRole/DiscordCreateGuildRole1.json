@@ -1,0 +1,7 @@
+{
+  "name": "Role name",
+  "permissions": "0",
+  "color": 0,
+  "hoist": true,
+  "mentionable": false
+}
