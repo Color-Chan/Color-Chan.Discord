@@ -30,7 +30,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
                                                                                                              DiscordCreateApplicationCommand command, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/commands";
-            return await HttpClient.PostAsync<DiscordApplicationCommandData, DiscordCreateApplicationCommand>(endpoint, command, ct).ConfigureAwait(false);
+            return await HttpClient.PostAsync<DiscordApplicationCommandData, DiscordCreateApplicationCommand>(endpoint, command, ct: ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -45,7 +45,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
                                                                                                            DiscordCreateApplicationCommand command, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/commands/{commandId.ToString()}";
-            return await HttpClient.PatchAsync<DiscordApplicationCommandData, DiscordCreateApplicationCommand>(endpoint, command, ct).ConfigureAwait(false);
+            return await HttpClient.PatchAsync<DiscordApplicationCommandData, DiscordCreateApplicationCommand>(endpoint, command, ct: ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -68,7 +68,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
                                                                                                                                         commandParams, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/commands";
-            return await HttpClient.PutAsync<IReadOnlyList<DiscordApplicationCommandData>, IEnumerable<DiscordCreateApplicationCommand>>(endpoint, commandParams, ct).ConfigureAwait(false);
+            return await HttpClient.PutAsync<IReadOnlyList<DiscordApplicationCommandData>, IEnumerable<DiscordCreateApplicationCommand>>(endpoint, commandParams, ct: ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -76,7 +76,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
                                                                                                             DiscordCreateApplicationCommand command, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands";
-            return await HttpClient.PostAsync<DiscordApplicationCommandData, DiscordCreateApplicationCommand>(endpoint, command, ct).ConfigureAwait(false);
+            return await HttpClient.PostAsync<DiscordApplicationCommandData, DiscordCreateApplicationCommand>(endpoint, command, ct: ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -87,11 +87,11 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result<DiscordApplicationCommandData>> EditGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId,
+        public virtual async Task<Result<DiscordApplicationCommandData>> EditGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId, 
                                                                                                           DiscordCreateApplicationCommand command, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/{commandId.ToString()}";
-            return await HttpClient.PatchAsync<DiscordApplicationCommandData, DiscordCreateApplicationCommand>(endpoint, command, ct).ConfigureAwait(false);
+            return await HttpClient.PatchAsync<DiscordApplicationCommandData, DiscordCreateApplicationCommand>(endpoint, command, ct: ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -107,7 +107,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
                                                                                                                                        commandParams, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands";
-            return await HttpClient.PutAsync<IReadOnlyList<DiscordApplicationCommandData>, IEnumerable<DiscordCreateApplicationCommand>>(endpoint, commandParams, ct).ConfigureAwait(false);
+            return await HttpClient.PutAsync<IReadOnlyList<DiscordApplicationCommandData>, IEnumerable<DiscordCreateApplicationCommand>>(endpoint, commandParams, ct: ct).ConfigureAwait(false);
         }
     }
 }

@@ -81,8 +81,13 @@ namespace Color_Chan.Discord.Rest
         /// <returns>
         ///     The updated <see cref="HttpRequestMessageBuilder" />.
         /// </returns>
-        public HttpRequestMessageBuilder WithHeader(string name, string value)
+        public HttpRequestMessageBuilder WithHeader(string name, string? value)
         {
+            if (value is null)
+            {
+                return this;
+            }
+            
             _headers.Add(name, value);
             return this;
         }
