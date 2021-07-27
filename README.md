@@ -77,7 +77,7 @@ You will need the following to compile Color-Chan.Discord:
 * [.NET sdk](https://dotnet.microsoft.com/download)
 
 ## 4. Versioning
-Color-Chan.Discord uses [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200).
+Color-Chan.Discord uses [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200) for its versioning.
 ### Summary
 The versioning will be using the following format: MAJOR.MINOR.PATCH.
 
