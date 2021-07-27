@@ -7,10 +7,11 @@ namespace Color_Chan.Discord.Commands.Extensions
 {
     public static class DiscordApplicationCommandExtensions
     {
-        public static List<DiscordCreateApplicationCommand> GetUpdatedOrNewCommands(this IEnumerable<DiscordCreateApplicationCommand> newCommands, IReadOnlyCollection<DiscordApplicationCommandData> existingCommands)
+        public static List<DiscordCreateApplicationCommand> GetUpdatedOrNewCommands(this IEnumerable<DiscordCreateApplicationCommand> newCommands,
+                                                                                    IReadOnlyCollection<DiscordApplicationCommandData> existingCommands)
         {
             var updatedCommands = new List<DiscordCreateApplicationCommand>();
-            
+
             foreach (var newCommand in newCommands)
             {
                 var existingCommand = existingCommands.FirstOrDefault(x => x.Name.Equals(newCommand.Name));
@@ -21,7 +22,7 @@ namespace Color_Chan.Discord.Commands.Extensions
                     updatedCommands.Add(newCommand);
                     continue;
                 }
-                
+
                 // Found existing command.
 
                 if (!newCommand.Description.Equals(existingCommand.Description))
@@ -30,7 +31,7 @@ namespace Color_Chan.Discord.Commands.Extensions
                     updatedCommands.Add(newCommand);
                     continue;
                 }
-                    
+
                 if (!newCommand.DefaultPermission == existingCommand.DefaultPermission)
                 {
                     // DefaultPermission has been updated.
@@ -46,22 +47,19 @@ namespace Color_Chan.Discord.Commands.Extensions
                         updatedCommands.Add(newCommand);
                         continue;
                     }
-                        
+
                     if (newCommand.Options!.HasNewOrUpdatedOptions(existingCommand.Options.ToList()))
-                    {
                         // Options has been updated.
                         updatedCommands.Add(newCommand);
-                    }
                 }
 
                 if (newCommand.Options!.Any() != existingCommand.Options is not null)
                 {
                     // New command doesnt have any options but the existing does.
                     updatedCommands.Add(newCommand);
-                    continue;
                 }
             }
-            
+
             return updatedCommands;
         }
     }

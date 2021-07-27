@@ -1,4 +1,3 @@
-using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

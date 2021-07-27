@@ -85,7 +85,8 @@ namespace Color_Chan.Discord.Rest
         /// <returns>
         ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
-        Task<Result<TEntity>> DeleteAsync<TEntity>(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull;
+        Task<Result<TEntity>> DeleteAsync<TEntity>(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, string? auditLogReason = null, CancellationToken ct = default)
+            where TEntity : notnull;
 
         /// <summary>
         ///     Send a <see cref="HttpMethod.Delete" /> request to the <paramref name="endpoint" />.

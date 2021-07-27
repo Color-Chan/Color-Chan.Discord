@@ -6,6 +6,5 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Embed
     [TestFixture]
     public class DiscordEmbedFieldDataTests : JsonTestBase<DiscordEmbedFieldData>
     {
-        
     }
 }

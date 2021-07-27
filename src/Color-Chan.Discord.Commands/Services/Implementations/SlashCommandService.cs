@@ -61,10 +61,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
 
-            if (!result.IsSuccessful)
-            {
-                throw new SlashCommandAutoSyncException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
-            }
+            if (!result.IsSuccessful) throw new SlashCommandAutoSyncException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
         }
 
         /// <inheritdoc />

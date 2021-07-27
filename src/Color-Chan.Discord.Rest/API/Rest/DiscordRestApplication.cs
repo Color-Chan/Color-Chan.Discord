@@ -87,7 +87,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result<DiscordApplicationCommandData>> EditGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId, 
+        public virtual async Task<Result<DiscordApplicationCommandData>> EditGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId,
                                                                                                           DiscordCreateApplicationCommand command, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/{commandId.ToString()}";

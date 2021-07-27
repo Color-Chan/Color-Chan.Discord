@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
-        
+
         /// <summary>
         ///     The bitwise value of the enabled/disabled permissions. Default is @everyone permissions in guild.
         /// </summary>

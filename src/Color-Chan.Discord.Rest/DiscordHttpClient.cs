@@ -40,7 +40,8 @@ namespace Color_Chan.Discord.Rest
         }
 
         /// <inheritdoc />
-        public async Task<Result<TEntity>> PostAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull where TBody : notnull
+        public async Task<Result<TEntity>> PostAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default)
+            where TEntity : notnull where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
@@ -62,7 +63,8 @@ namespace Color_Chan.Discord.Rest
         }
 
         /// <inheritdoc />
-        public async Task<Result<TEntity>> PatchAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull where TBody : notnull
+        public async Task<Result<TEntity>> PatchAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default)
+            where TEntity : notnull where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
@@ -84,7 +86,8 @@ namespace Color_Chan.Discord.Rest
         }
 
         /// <inheritdoc />
-        public async Task<Result<TEntity>> DeleteAsync<TEntity>(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull
+        public async Task<Result<TEntity>> DeleteAsync<TEntity>(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, string? auditLogReason = null,
+                                                                CancellationToken ct = default) where TEntity : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
@@ -106,7 +109,8 @@ namespace Color_Chan.Discord.Rest
         }
 
         /// <inheritdoc />
-        public async Task<Result<TEntity>> PutAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull where TBody : notnull
+        public async Task<Result<TEntity>> PutAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default)
+            where TEntity : notnull where TBody : notnull
         {
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)

@@ -25,17 +25,17 @@ namespace Color_Chan.Discord.Core.Common.API.Converters
             while (reader.TokenType != JsonTokenType.EndObject)
             {
                 if (reader.TokenType != JsonTokenType.PropertyName) throw new JsonException();
-                
+
                 var propertyName = reader.GetString();
-                
+
                 if (propertyName is null) throw new JsonException();
                 if (!reader.Read()) throw new JsonException();
-                
+
                 // Check if the property contains the error info.
                 if (propertyName.Equals(StartErrorInfo))
                 {
                     if (reader.TokenType != JsonTokenType.StartArray) throw new JsonException();
-                    
+
                     // Deserialize the sub errors.
                     errors = JsonSerializer.Deserialize<List<PropertyErrorInfoData>>(ref reader, options);
                     if (!reader.Read()) throw new JsonException();
@@ -45,7 +45,7 @@ namespace Color_Chan.Discord.Core.Common.API.Converters
 
                 // The current line in the reader contains an a sub error.
                 memberErrors ??= new Dictionary<string, PropertyErrorData>();
-                
+
                 var propertyErrorDetails = JsonSerializer.Deserialize<PropertyErrorData>(ref reader, options);
                 if (propertyErrorDetails is null) throw new JsonException();
 

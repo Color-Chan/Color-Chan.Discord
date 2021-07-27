@@ -16,16 +16,16 @@ namespace Color_Chan.Discord.Rest
         private readonly string _endpoint;
 
         /// <summary>
+        ///     A <see cref="Dictionary{TKey,TValue}" /> of <see cref="string" />, <see cref="string" /> holding the headers.
+        /// </summary>
+        private readonly Dictionary<string, string> _headers = new();
+
+        /// <summary>
         ///     A <see cref="Dictionary{TKey,TValue}" /> of <see cref="string" />, <see cref="string" /> holding the query
         ///     parameters.
         /// </summary>
         private readonly Dictionary<string, string> _queryParameters = new();
 
-        /// <summary>
-        ///     A <see cref="Dictionary{TKey,TValue}" /> of <see cref="string" />, <see cref="string" /> holding the headers.
-        /// </summary>
-        private readonly Dictionary<string, string> _headers = new();
-        
         /// <summary>
         ///     The JSON content of the <see cref="HttpRequestMessage" />.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Color_Chan.Discord.Rest
             _queryParameters.Add(name, value);
             return this;
         }
-        
+
         /// <summary>
         ///     Adds a header to the <see cref="HttpRequestMessageBuilder" />.
         /// </summary>
@@ -83,15 +83,12 @@ namespace Color_Chan.Discord.Rest
         /// </returns>
         public HttpRequestMessageBuilder WithHeader(string name, string? value)
         {
-            if (value is null)
-            {
-                return this;
-            }
-            
+            if (value is null) return this;
+
             _headers.Add(name, value);
             return this;
         }
-        
+
         /// <summary>
         ///     Adds header parameters to the <see cref="HttpRequestMessageBuilder" />.
         /// </summary>
@@ -157,14 +154,11 @@ namespace Color_Chan.Discord.Rest
 
             var request = new HttpRequestMessage(_method, _endpoint + (queryParameters.Count > 0 ? "?" + queryParameters : string.Empty))
             {
-                Content = _content,
+                Content = _content
             };
 
-            foreach (var (key, value) in _headers)
-            {
-                request.Headers.Add(key, value);
-            }
-            
+            foreach (var (key, value) in _headers) request.Headers.Add(key, value);
+
             var context = new Context {{"endpoint", _endpoint}};
             request.SetPolicyExecutionContext(context);
 

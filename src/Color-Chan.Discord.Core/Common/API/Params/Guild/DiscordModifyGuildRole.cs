@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         /// </summary>
         [JsonPropertyName("name")]
         public string? Name { get; init; }
-        
+
         /// <summary>
         ///     The bitwise value of the enabled/disabled permissions.
         /// </summary>
@@ -19,7 +19,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         public DiscordGuildPermission? Permissions { get; init; }
 
         /// <summary>
-        ///     The RGB color value. 
+        ///     The RGB color value.
         /// </summary>
         [JsonPropertyName("color")]
         public Color? Color { get; set; }

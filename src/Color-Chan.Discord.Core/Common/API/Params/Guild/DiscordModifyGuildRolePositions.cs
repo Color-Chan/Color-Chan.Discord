@@ -9,7 +9,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         /// </summary>
         [JsonPropertyName("id")]
         public ulong Id { get; set; }
-        
+
         /// <summary>
         ///     Sorting position of the role.
         /// </summary>

@@ -68,7 +68,7 @@ namespace Color_Chan.Discord.Core.Tests
         }
 
         /// <summary>
-        ///     Get the test JSON files for the <see cref="TEntity"/>.
+        ///     Get the test JSON files for the <see cref="TEntity" />.
         /// </summary>
         protected static IEnumerable<string> GetFiles()
         {
@@ -76,23 +76,12 @@ namespace Color_Chan.Discord.Core.Tests
             var paramsPath = Path.Combine("TestJson/API/Params/", typeof(TEntity).Name);
 
             if (Directory.Exists(dataModelDirPath) && Directory.GetFiles(dataModelDirPath).Any())
-            {
                 foreach (var file in Directory.GetFiles(dataModelDirPath))
-                {
                     yield return file;
-                }
-            }
             else if (Directory.Exists(paramsPath) && Directory.GetFiles(paramsPath).Any())
-            {
                 foreach (var file in Directory.GetFiles(paramsPath))
-                {
                     yield return file;
-                }
-            }
-            else
-            {
-                Assert.Fail($"Failed to find test JSON files for {typeof(TEntity).Name}");
-            }
+            else Assert.Fail($"Failed to find test JSON files for {typeof(TEntity).Name}");
         }
     }
 }
