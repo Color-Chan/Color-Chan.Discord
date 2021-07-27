@@ -25,8 +25,8 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     New global application commands will be available in all guilds after 1 hour.
         /// </summary>
         /// <param name="applicationId">The id of the application.</param>
-        /// <param name="commandParams">
-        ///     The <see cref="DiscordApplicationCommandParams" /> containing the application
+        /// <param name="command">
+        ///     The <see cref="DiscordCreateApplicationCommand" /> containing the application
         ///     command details.
         /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="DiscordApplicationCommandData" /> with the request results.
         /// </returns>
         Task<Result<DiscordApplicationCommandData>> CreateGlobalApplicationCommandAsync(ulong applicationId,
-                                                                                        DiscordApplicationCommandParams commandParams, CancellationToken ct = default
+                                                                                        DiscordCreateApplicationCommand command, CancellationToken ct = default
         );
 
         /// <summary>
@@ -56,8 +56,8 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// </summary>
         /// <param name="applicationId">The id of the application.</param>
         /// <param name="commandId">The id of the application command.</param>
-        /// <param name="commandParams">
-        ///     The <see cref="DiscordApplicationCommandParams" /> containing the new
+        /// <param name="command">
+        ///     The <see cref="DiscordCreateApplicationCommand" /> containing the new
         ///     application command details.
         /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
@@ -65,7 +65,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="DiscordApplicationCommandData" /> with the request results.
         /// </returns>
         Task<Result<DiscordApplicationCommandData>> EditGlobalApplicationCommandAsync(ulong applicationId, ulong commandId,
-                                                                                      DiscordApplicationCommandParams commandParams, CancellationToken ct = default);
+                                                                                      DiscordCreateApplicationCommand command, CancellationToken ct = default);
 
         /// <summary>
         ///     Deletes a global application command.
@@ -97,7 +97,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <param name="applicationId">The id of the application.</param>
         /// <param name="commandParams">
         ///     A <see cref="IEnumerable{T}" /> of
-        ///     <see cref="DiscordApplicationCommandParams" /> containing the new application command details.
+        ///     <see cref="DiscordCreateApplicationCommand" /> containing the new application command details.
         /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
@@ -105,7 +105,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     with the request results.
         /// </returns>
         Task<Result<IReadOnlyList<DiscordApplicationCommandData>>> BulkOverwriteGlobalApplicationCommandsAsync(ulong applicationId,
-                                                                                                               IEnumerable<DiscordApplicationCommandParams> commandParams,
+                                                                                                               IEnumerable<DiscordCreateApplicationCommand> commandParams,
                                                                                                                CancellationToken ct = default);
 
         /// <summary>
@@ -114,8 +114,8 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// </summary>
         /// <param name="applicationId">The id of the application.</param>
         /// <param name="guildId">The guild id.</param>
-        /// <param name="commandParams">
-        ///     The <see cref="DiscordApplicationCommandParams" /> containing the application
+        /// <param name="command">
+        ///     The <see cref="DiscordCreateApplicationCommand" /> containing the application
         ///     command details.
         /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
@@ -123,7 +123,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="DiscordApplicationCommandData" /> with the request results.
         /// </returns>
         Task<Result<DiscordApplicationCommandData>> CreateGuildApplicationCommandAsync(ulong applicationId, ulong guildId,
-                                                                                       DiscordApplicationCommandParams commandParams, CancellationToken ct = default
+                                                                                       DiscordCreateApplicationCommand command, CancellationToken ct = default
         );
 
         /// <summary>
@@ -145,8 +145,8 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <param name="applicationId">The id of the application.</param>
         /// <param name="guildId">The guild id.</param>
         /// <param name="commandId">The id of the application command.</param>
-        /// <param name="commandParams">
-        ///     The <see cref="DiscordApplicationCommandParams" /> containing the new
+        /// <param name="command">
+        ///     The <see cref="DiscordCreateApplicationCommand" /> containing the new
         ///     application command details.
         /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
@@ -154,7 +154,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="DiscordApplicationCommandData" /> with the request results.
         /// </returns>
         Task<Result<DiscordApplicationCommandData>> EditGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId,
-                                                                                     DiscordApplicationCommandParams commandParams, CancellationToken ct = default);
+                                                                                     DiscordCreateApplicationCommand command, CancellationToken ct = default);
 
         /// <summary>
         ///     Delete a guild application command.
@@ -176,7 +176,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <param name="guildId">The guild id.</param>
         /// <param name="commandParams">
         ///     A <see cref="IEnumerable{T}" /> of
-        ///     <see cref="DiscordApplicationCommandParams" /> containing the new guild application command details.
+        ///     <see cref="DiscordCreateApplicationCommand" /> containing the new guild application command details.
         /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
@@ -184,7 +184,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     with the request results.
         /// </returns>
         Task<Result<IReadOnlyList<DiscordApplicationCommandData>>> BulkOverwriteGuildApplicationCommandsAsync(ulong applicationId, ulong guildId,
-                                                                                                              IEnumerable<DiscordApplicationCommandParams> commandParams,
+                                                                                                              IEnumerable<DiscordCreateApplicationCommand> commandParams,
                                                                                                               CancellationToken ct = default);
     }
 }

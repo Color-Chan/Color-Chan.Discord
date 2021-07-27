@@ -9,12 +9,12 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Extensions
 {
     [TestFixture]
-    public class DiscordApplicationCommandParamsExtensionsTests
+    public class DiscordApplicationCommandExtensionsTests
     {
         [SetUp]
         public void SetUp()
         {
-            NewCommands = new List<DiscordApplicationCommandParams>
+            NewCommands = new List<DiscordCreateApplicationCommand>
             {
                 new()
                 {
@@ -161,7 +161,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             };
         }
 
-        private List<DiscordApplicationCommandParams> NewCommands { get; set; } = null!;
+        private List<DiscordCreateApplicationCommand> NewCommands { get; set; } = null!;
 
         private static List<DiscordApplicationCommandData> ExistingCommands { get; set; } = null!;
 
