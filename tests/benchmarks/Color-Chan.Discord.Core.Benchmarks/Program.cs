@@ -4,7 +4,7 @@ namespace Color_Chan.Discord.Core.Benchmarks
 {
     public class Program
     {
-        public void Main()
+        public static void Main()
         {
             BenchmarkGuildPermissionExtensions();
         }

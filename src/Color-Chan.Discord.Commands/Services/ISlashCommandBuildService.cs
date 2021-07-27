@@ -46,6 +46,6 @@ namespace Color_Chan.Discord.Commands.Services
         /// <returns>
         ///     The build slash command parameters.
         /// </returns>
-        IEnumerable<DiscordApplicationCommandParams> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos);
+        IEnumerable<DiscordCreateApplicationCommand> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos);
     }
 }

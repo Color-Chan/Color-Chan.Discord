@@ -10,13 +10,13 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Errors
         /// </summary>
         [JsonPropertyName("code")]
         public DiscordJsonError ErrorType { get; init; }
-        
+
         /// <summary>
         ///     The sub errors.
         /// </summary>
         [JsonPropertyName("errors")]
         public IReadOnlyDictionary<string, PropertyErrorData>? Errors { get; init; }
-        
+
         /// <summary>
         ///     The error message.
         /// </summary>

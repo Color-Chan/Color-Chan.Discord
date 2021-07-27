@@ -80,14 +80,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public IEnumerable<DiscordApplicationCommandParams> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos)
+        public IEnumerable<DiscordCreateApplicationCommand> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos)
         {
-            var applicationCommandParams = new List<DiscordApplicationCommandParams>();
+            var applicationCommandParams = new List<DiscordCreateApplicationCommand>();
 
             foreach (var commandInfo in commandInfos)
             {
                 var options = _optionBuildService.BuildSlashCommandsOptions(commandInfo.CommandOptions);
-                applicationCommandParams.Add(new DiscordApplicationCommandParams
+                applicationCommandParams.Add(new DiscordCreateApplicationCommand
                 {
                     Name = commandInfo.CommandName,
                     Description = commandInfo.Description,

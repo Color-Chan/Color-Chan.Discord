@@ -9,8 +9,8 @@ namespace Color_Chan.Discord.Commands.Attributes
     [AttributeUsage(AttributeTargets.Parameter)]
     public class SlashCommandOptionAttribute : Attribute
     {
-        private static readonly Regex CommandOptionNameRegex = new (@"^[\w-]{1,32}$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250));
-        
+        private static readonly Regex CommandOptionNameRegex = new(@"^[\w-]{1,32}$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(250));
+
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandOptionAttribute" />.
         /// </summary>

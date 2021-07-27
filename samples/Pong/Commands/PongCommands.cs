@@ -7,8 +7,8 @@ using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
-using Color_Chan.Discord.Models.Embed;
-using Color_Chan.Discord.Models.Interaction;
+using Color_Chan.Discord.Rest.Models.Embed;
+using Color_Chan.Discord.Rest.Models.Interaction;
 
 namespace Pong.Commands
 {

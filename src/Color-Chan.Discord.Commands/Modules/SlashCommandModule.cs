@@ -5,13 +5,13 @@ namespace Color_Chan.Discord.Commands.Modules
 {
     public class SlashCommandModule : ISlashCommandModuleBase
     {
-        public ISlashCommandContext Context { get; set; } = null!;
+        public ISlashCommandContext SlashContext { get; set; } = null!;
 
         /// <inheritdoc />
         /// <exception cref="ArgumentNullException">When the given context was null.</exception>
-        public void SetContext(ISlashCommandContext context)
+        public void SetContext(ISlashCommandContext slashContext)
         {
-            Context = context ?? throw new ArgumentNullException(nameof(context));
+            SlashContext = slashContext ?? throw new ArgumentNullException(nameof(slashContext));
         }
     }
 }
