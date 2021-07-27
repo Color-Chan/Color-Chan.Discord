@@ -131,6 +131,16 @@ namespace Color_Chan.Discord.Rest
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<Result> PutAsync(string endpoint, string? auditLogReason = null, CancellationToken ct = default)
+        {
+            var requestBuilder = new HttpRequestMessageBuilder(endpoint)
+                                 .WithHeader(AuditLogHeaderKey, auditLogReason)
+                                 .WithMethod(HttpMethod.Put);
+
+            return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
+        }
+
         /// <summary>
         ///     Send a request with the discord http client.
         /// </summary>

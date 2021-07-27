@@ -5,6 +5,7 @@
         <RootNamespace>Color_Chan.Discord.Core.Benchmarks</RootNamespace>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
+        <OutputType>Exe</OutputType>
     </PropertyGroup>
 
     <ItemGroup>

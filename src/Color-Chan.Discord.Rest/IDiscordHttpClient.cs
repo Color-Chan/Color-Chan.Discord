@@ -126,5 +126,16 @@ namespace Color_Chan.Discord.Rest
         ///     The <see cref="Result" />.
         /// </returns>
         Task<Result> PutAsync<TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TBody : notnull;
+
+        /// <summary>
+        ///     Send a <see cref="HttpMethod.Put" /> request to the <paramref name="endpoint" />.
+        /// </summary>
+        /// <param name="endpoint">The endpoint to where the request will be send to.</param>
+        /// <param name="auditLogReason">The reason for this action that will be set in the audit logs.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result" />.
+        /// </returns>
+        Task<Result> PutAsync(string endpoint, string? auditLogReason = null, CancellationToken ct = default);
     }
 }
