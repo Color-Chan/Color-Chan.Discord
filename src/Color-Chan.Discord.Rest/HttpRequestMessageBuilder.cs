@@ -22,6 +22,11 @@ namespace Color_Chan.Discord.Rest
         private readonly Dictionary<string, string> _queryParameters = new();
 
         /// <summary>
+        ///     A <see cref="Dictionary{TKey,TValue}" /> of <see cref="string" />, <see cref="string" /> holding the headers.
+        /// </summary>
+        private readonly Dictionary<string, string> _headers = new();
+        
+        /// <summary>
         ///     The JSON content of the <see cref="HttpRequestMessage" />.
         /// </summary>
         private StringContent? _content;
@@ -65,6 +70,37 @@ namespace Color_Chan.Discord.Rest
         public HttpRequestMessageBuilder WithQueryParameter(string name, string value)
         {
             _queryParameters.Add(name, value);
+            return this;
+        }
+        
+        /// <summary>
+        ///     Adds a header to the <see cref="HttpRequestMessageBuilder" />.
+        /// </summary>
+        /// <param name="name">The name of the header.</param>
+        /// <param name="value">The value of the header.</param>
+        /// <returns>
+        ///     The updated <see cref="HttpRequestMessageBuilder" />.
+        /// </returns>
+        public HttpRequestMessageBuilder WithHeader(string name, string value)
+        {
+            _headers.Add(name, value);
+            return this;
+        }
+        
+        /// <summary>
+        ///     Adds header parameters to the <see cref="HttpRequestMessageBuilder" />.
+        /// </summary>
+        /// <param name="headers">The <see cref="IEnumerable{T}" /> containing the headers.</param>
+        /// <returns>
+        ///     The updated <see cref="HttpRequestMessageBuilder" />.
+        /// </returns>
+        public HttpRequestMessageBuilder WithHeaders(IEnumerable<KeyValuePair<string, string>>? headers)
+        {
+            if (headers is null)
+                return this;
+
+            foreach (var (key, value) in headers) WithHeader(key, value);
+
             return this;
         }
 
@@ -116,10 +152,14 @@ namespace Color_Chan.Discord.Rest
 
             var request = new HttpRequestMessage(_method, _endpoint + (queryParameters.Count > 0 ? "?" + queryParameters : string.Empty))
             {
-                Content = _content
+                Content = _content,
             };
 
-
+            foreach (var (key, value) in _headers)
+            {
+                request.Headers.Add(key, value);
+            }
+            
             var context = new Context {{"endpoint", _endpoint}};
             request.SetPolicyExecutionContext(context);
 
