@@ -84,7 +84,7 @@ namespace Color_Chan.Discord.Core.Tests
             }
             else if (Directory.Exists(paramsPath) && Directory.GetFiles(paramsPath).Any())
             {
-                foreach (var file in Directory.GetFiles(dataModelDirPath))
+                foreach (var file in Directory.GetFiles(paramsPath))
                 {
                     yield return file;
                 }
