@@ -8,9 +8,8 @@ namespace Color_Chan.Discord.Commands.Commands
 {
     public class SlashCommandContext : ISlashCommandContext
     {
-        public SlashCommandContext(IDiscordGuildMember? member, IDiscordUser user, IDiscordMessage message, IDiscordInteractionCommand command)
+        public SlashCommandContext(IDiscordUser user, IDiscordMessage message, IDiscordInteractionCommand command)
         {
-            Member = member;
             User = user;
             Message = message;
             Command = command;
@@ -24,8 +23,17 @@ namespace Color_Chan.Discord.Commands.Commands
 
         /// <inheritdoc />
         public IDiscordMessage Message { get; init; }
-
+        
         /// <inheritdoc />
         public IDiscordInteractionCommand Command { get; init; }
+
+        /// <inheritdoc />
+        public ulong? GuildId { get; set; }
+
+        /// <inheritdoc />
+        public ulong ChannelId { get; set; }
+
+        /// <inheritdoc />
+        public ulong ApplicationId { get; init; }
     }
 }

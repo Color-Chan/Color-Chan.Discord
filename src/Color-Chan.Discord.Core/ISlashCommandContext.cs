@@ -14,7 +14,7 @@ namespace Color_Chan.Discord.Core
         ///     The guild user that has made the interaction request.
         /// </summary>
         /// <remarks>
-        ///     Only available when the interaction was send in a Guild.
+        ///     Null when the slash command was used in DMs.
         /// </remarks>
         IDiscordGuildMember? Member { get; init; }
 
@@ -31,6 +31,24 @@ namespace Color_Chan.Discord.Core
         /// <summary>
         ///     The message of the interaction request.
         /// </summary>
-        public IDiscordMessage Message { get; init; }
+        IDiscordMessage Message { get; init; }
+
+        /// <summary>
+        ///     The Guild id of the current guild.
+        /// </summary>
+        /// <remarks>
+        ///     Null when the slash command was used in DMs.
+        /// </remarks>
+        ulong? GuildId { get; set; }
+        
+        /// <summary>
+        ///     The Channel id of the current Channel.
+        /// </summary>
+        ulong ChannelId { get; set; }
+        
+        /// <summary>
+        ///     Id of the application this interaction is for.
+        /// </summary>
+        ulong ApplicationId { get; init; }
     }
 }

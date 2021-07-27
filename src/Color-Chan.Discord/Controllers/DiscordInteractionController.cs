@@ -62,7 +62,13 @@ namespace Color_Chan.Discord.Controllers
 
             if (interaction.Data is not null)
             {
-                var context = new SlashCommandContext(interaction.GuildMember, interaction.User!, interaction.Message!, interaction.Data);
+                var context = new SlashCommandContext(interaction.User!, interaction.Message!, interaction.Data)
+                {
+                    Member = interaction.GuildMember,
+                    GuildId = interaction.GuildId,
+                    ChannelId = interaction.ChannelId!.Value,
+                    ApplicationId = interaction.ApplicationId
+                };
                 var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, _serviceProvider).ConfigureAwait(false);
 
                 if (result.IsSuccessful)
