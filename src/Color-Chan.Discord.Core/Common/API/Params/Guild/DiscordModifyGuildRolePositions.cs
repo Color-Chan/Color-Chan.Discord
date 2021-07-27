@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Color_Chan.Discord.Core.Common.API.Params
+namespace Color_Chan.Discord.Core.Common.API.Params.Guild
 {
     public class DiscordModifyGuildRolePositions
     {

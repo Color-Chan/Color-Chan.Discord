@@ -2,7 +2,7 @@ using System.Drawing;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
-namespace Color_Chan.Discord.Core.Common.API.Params
+namespace Color_Chan.Discord.Core.Common.API.Params.Guild
 {
     public record DiscordModifyGuildRole
     {
