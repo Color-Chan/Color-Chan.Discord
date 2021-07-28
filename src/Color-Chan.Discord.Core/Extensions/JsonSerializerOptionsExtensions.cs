@@ -7,7 +7,7 @@ namespace Color_Chan.Discord.Core.Extensions
     public static class JsonSerializerOptionsExtensions
     {
         /// <summary>
-        ///     Registers Color-Chan.Discord.Core's json options & converters.
+        ///     Registers Color-Chan.Discord.Core's json options and converters.
         /// </summary>
         /// <param name="options">The <see cref="JsonSerializerOptions" />.</param>
         /// <returns>
