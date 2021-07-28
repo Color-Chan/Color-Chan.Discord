@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
         public IDiscordEmbedAuthor? Author { get; init; }
 
         /// <inheritdoc />
-        public IEnumerable<IDiscordEmbedField>? Fields { get; init; } = new List<IDiscordEmbedField>();
+        public IEnumerable<IDiscordEmbedField>? Fields { get; init; }
 
         public DiscordEmbedData ToDataModel()
         {
