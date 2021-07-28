@@ -20,8 +20,7 @@ namespace Pong
         {
             services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
 
-            services.AddControllers()
-                    .AddColorChanJson(); // <---
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
