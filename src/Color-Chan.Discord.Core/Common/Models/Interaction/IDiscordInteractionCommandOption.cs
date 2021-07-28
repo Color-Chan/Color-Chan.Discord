@@ -37,6 +37,11 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         int GetIntValue();
 
         /// <summary>
+        ///     The <see cref="double" /> value of <see cref="Value" />.
+        /// </summary>
+        double GetNumberValue();
+
+        /// <summary>
         ///     The <see cref="bool" /> value of <see cref="Value" />.
         /// </summary>
         bool GetBoolValue();
