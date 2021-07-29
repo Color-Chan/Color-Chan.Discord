@@ -10,6 +10,9 @@ using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Services
 {
+    /// <summary>
+    ///     Holds all methods to setup, build and execute slash commands.
+    /// </summary>
     public interface ISlashCommandService
     {
         /// <summary>

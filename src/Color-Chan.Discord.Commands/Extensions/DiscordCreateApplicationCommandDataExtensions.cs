@@ -5,10 +5,10 @@ using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Commands.Extensions
 {
-    public static class DiscordCreateApplicationCommandDataExtensions
+    internal static class DiscordCreateApplicationCommandDataExtensions
     {
-        public static List<DiscordCreateApplicationCommand> GetUpdatedOrNewCommands(this IEnumerable<DiscordCreateApplicationCommand> newCommands,
-                                                                                    IReadOnlyCollection<IDiscordApplicationCommand> existingCommands)
+        internal static List<DiscordCreateApplicationCommand> GetUpdatedOrNewCommands(this IEnumerable<DiscordCreateApplicationCommand> newCommands,
+                                                                                      IReadOnlyCollection<IDiscordApplicationCommand> existingCommands)
         {
             var updatedCommands = new List<DiscordCreateApplicationCommand>();
 

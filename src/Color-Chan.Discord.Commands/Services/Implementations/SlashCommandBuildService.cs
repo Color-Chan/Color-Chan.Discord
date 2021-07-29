@@ -11,9 +11,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandBuildService : ISlashCommandBuildService
     {
-        private static readonly TypeInfo ModuleTypeInfo = typeof(ISlashCommandModuleBase).GetTypeInfo();
+        private static readonly TypeInfo ModuleTypeInfo = typeof(ISlashCommandModule).GetTypeInfo();
         private readonly ISlashCommandGuildBuildService _guildBuildService;
         private readonly ILogger<SlashCommandBuildService> _logger;
         private readonly ISlashCommandOptionBuildService _optionBuildService;
@@ -36,7 +37,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         ///     <see cref="ISlashCommandOptionInfo" />s.
         /// </param>
         public SlashCommandBuildService(ISlashCommandRequirementBuildService requirementBuildService, ISlashCommandGuildBuildService guildBuildService, ILogger<SlashCommandBuildService> logger,
-                                        ISlashCommandOptionBuildService optionBuildService)
+                                          ISlashCommandOptionBuildService optionBuildService)
         {
             _requirementBuildService = requirementBuildService;
             _guildBuildService = guildBuildService;

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandOptionBuildService : ISlashCommandOptionBuildService
     {
         private const int MaxCommandOptions = 25;

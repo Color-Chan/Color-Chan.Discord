@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandService : ISlashCommandService
     {
         private readonly ISlashCommandAutoSyncService _commandAutoSyncService;
@@ -35,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <param name="requirementService">The <see cref="requirementService" /> that will used to execute the requirements.</param>
         /// <param name="commandAutoSyncService"></param>
         public SlashCommandService(ILogger<SlashCommandService> logger, ISlashCommandBuildService slashCommandBuildService, ISlashCommandRequirementService requirementService,
-                                   ISlashCommandAutoSyncService commandAutoSyncService)
+                                     ISlashCommandAutoSyncService commandAutoSyncService)
         {
             _logger = logger;
             _slashCommandBuildService = slashCommandBuildService;
@@ -57,11 +58,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             _logger.LogInformation("Finished adding {Count} commands to the command registry", _slashCommands.Count.ToString());
 
             // Default config if no config was set.
-            _configurations ??= SlashCommandConfiguration.Default();
+            _configurations ??= new SlashCommandConfiguration();
 
             var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
 
-            if (!result.IsSuccessful) throw new SlashCommandAutoSyncException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
+            if (!result.IsSuccessful) throw new UpdateSlashCommandException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
         }
 
         /// <inheritdoc />
@@ -116,17 +117,17 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <summary>
-        ///     Get a new instance of a <see cref="ISlashCommandModuleBase" /> with its required dependencies.
+        ///     Get a new instance of a <see cref="ISlashCommandModule" /> with its required dependencies.
         /// </summary>
         /// <param name="serviceProvider">The <see cref="IServiceProvider" /> containing the required dependencies.</param>
         /// <param name="command">The command method that will be executed.</param>
         /// <returns>
-        ///     A new instance of the <see cref="ISlashCommandModuleBase" />.
+        ///     A new instance of the <see cref="ISlashCommandModule" />.
         /// </returns>
         /// <exception cref="ModuleCastNullReferenceException"></exception>
-        private ISlashCommandModuleBase GetSlashCommandModuleInstance(IServiceProvider serviceProvider, MemberInfo command)
+        private ISlashCommandModule GetSlashCommandModuleInstance(IServiceProvider serviceProvider, MemberInfo command)
         {
-            if (ActivatorUtilities.CreateInstance(serviceProvider, command.DeclaringType!) is not ISlashCommandModuleBase instance)
+            if (ActivatorUtilities.CreateInstance(serviceProvider, command.DeclaringType!) is not ISlashCommandModule instance)
                 throw new ModuleCastNullReferenceException("Failed to cast module to IInteractionCommandModuleBase");
 
             return instance;

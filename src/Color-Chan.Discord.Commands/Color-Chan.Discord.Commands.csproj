@@ -40,6 +40,14 @@
     <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\Color-Chan.Discord.Commands.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
     <ItemGroup>
         <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
     </ItemGroup>

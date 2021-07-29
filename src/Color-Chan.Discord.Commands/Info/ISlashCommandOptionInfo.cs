@@ -3,6 +3,9 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Commands.Info
 {
+    /// <summary>
+    ///     Contains all the information about a slash command option.
+    /// </summary>
     public interface ISlashCommandOptionInfo
     {
         /// <summary>

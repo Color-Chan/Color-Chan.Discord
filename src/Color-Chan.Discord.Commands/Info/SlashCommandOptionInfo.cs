@@ -5,6 +5,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Commands.Info
 {
+    /// <inheritdoc />
     public class SlashCommandOptionInfo : ISlashCommandOptionInfo
     {
         /// <summary>

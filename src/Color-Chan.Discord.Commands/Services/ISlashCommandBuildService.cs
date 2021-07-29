@@ -6,6 +6,9 @@ using Color_Chan.Discord.Core.Common.API.Params;
 
 namespace Color_Chan.Discord.Commands.Services
 {
+    /// <summary>
+    ///     Holds all the methods to build the <see cref="ISlashCommandInfo"/>.
+    /// </summary>
     public interface ISlashCommandBuildService
     {
         /// <summary>
@@ -26,7 +29,7 @@ namespace Color_Chan.Discord.Commands.Services
 
         /// <summary>
         ///     Get all the interaction command modules.
-        ///     These modules need to inherit <see cref="ISlashCommandModuleBase" /> so they can be found by the
+        ///     These modules need to inherit <see cref="ISlashCommandModule" /> so they can be found by the
         ///     <see cref="ISlashCommandBuildService" />.
         /// </summary>
         /// <param name="assembly">
@@ -35,7 +38,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// </param>
         /// <returns>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="TypeInfo" />s that inherits
-        ///     <see cref="ISlashCommandModuleBase" />.
+        ///     <see cref="ISlashCommandModule" />.
         /// </returns>
         IEnumerable<TypeInfo> GetSlashCommandModules(Assembly assembly);
 

@@ -3,8 +3,12 @@ using Color_Chan.Discord.Core;
 
 namespace Color_Chan.Discord.Commands.Modules
 {
-    public class SlashCommandModule : ISlashCommandModuleBase
+    /// <inheritdoc />
+    public class SlashCommandModule : ISlashCommandModule
     {
+        /// <summary>
+        ///     The current context the the slash command.
+        /// </summary>
         public ISlashCommandContext SlashContext { get; set; } = null!;
 
         /// <inheritdoc />

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandRequirementBuildService : ISlashCommandRequirementBuildService
     {
         private readonly ILogger<SlashCommandRequirementBuildService> _logger;

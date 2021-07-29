@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
     {
         private const int MaxGlobalCommands = 100;
@@ -34,7 +35,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         ///     commands parameters.
         /// </param>
         public SlashCommandAutoSyncService(IDiscordRestApplication restApplication, DiscordTokens discordTokens, ILogger<SlashCommandAutoSyncService> logger,
-                                           ISlashCommandBuildService commandBuildService)
+                                             ISlashCommandBuildService commandBuildService)
         {
             _commandBuildService = commandBuildService;
             _restApplication = restApplication;
