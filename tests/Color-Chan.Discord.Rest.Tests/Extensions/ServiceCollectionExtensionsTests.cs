@@ -57,18 +57,10 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
         }
 
         [Test]
-        public void Should_resolve_IDiscordRestGuildRole()
+        public void Should_resolve_IDiscordRestGuild()
         {
             // Arrange
-            var application = _serviceProvider.GetService<IDiscordRestGuildRole>();
-            application.Should().NotBeNull();
-        }
-
-        [Test]
-        public void Should_resolve_IDiscordRestGuildMember()
-        {
-            // Arrange
-            var application = _serviceProvider.GetService<IDiscordRestGuildMember>();
+            var application = _serviceProvider.GetService<IDiscordRestGuild>();
             application.Should().NotBeNull();
         }
     }

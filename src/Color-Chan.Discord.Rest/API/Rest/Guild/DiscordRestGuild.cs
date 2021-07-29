@@ -1,114 +1,195 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.API.Rest.Guild;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
+using Color_Chan.Discord.Rest.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.API.Rest.Guild
 {
-    public class DiscordRestGuild : DiscordRestBase
+    public class DiscordRestGuild : DiscordRestBase, IDiscordRestGuild
     {
-        private readonly IDiscordRestGuildMember _restGuildMember;
-        private readonly IDiscordRestGuildRole _restGuildRole;
-
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordRestGuild" />.
         /// </summary>
         /// <inheritdoc />
-        public DiscordRestGuild(IDiscordHttpClient httpClient, IDiscordRestGuildRole restGuildRole, IDiscordRestGuildMember restGuildMember) : base(httpClient)
+        public DiscordRestGuild(IDiscordHttpClient httpClient) : base(httpClient)
         {
-            _restGuildRole = restGuildRole;
-            _restGuildMember = restGuildMember;
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildRole" />
-        public virtual Task<Result<IReadOnlyList<IDiscordGuildRole>>> GetGuildRolesAsync(ulong guildId, CancellationToken ct = default)
+        // All api calls for guild roles.
+        #region Guild role
+
+        /// <inheritdoc />
+        public virtual async Task<Result<IReadOnlyList<IDiscordGuildRole>>> GetGuildRolesAsync(ulong guildId, CancellationToken ct = default)
         {
-            return _restGuildRole.GetGuildRolesAsync(guildId, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/roles";
+            var result = await HttpClient.GetAsync<IReadOnlyList<DiscordGuildRoleData>>(endpoint, ct: ct).ConfigureAwait(false);
+            return ConvertResult(result);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildRole" />
-        public virtual Task<Result<IDiscordGuildRole>> CreateGuildRoleAsync(ulong guildId, DiscordCreateGuildRole role, string? auditLogReason = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuildRole>> CreateGuildRoleAsync(ulong guildId, DiscordCreateGuildRole role, string? auditLogReason = null, CancellationToken ct = default)
         {
-            return _restGuildRole.CreateGuildRoleAsync(guildId, role, auditLogReason, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/roles";
+            var result = await HttpClient.PostAsync<DiscordGuildRoleData, DiscordCreateGuildRole>(endpoint, role, auditLogReason, ct).ConfigureAwait(false);
+            return ConvertResult(result);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildRole" />
-        public virtual Task<Result<IReadOnlyList<IDiscordGuildRole>>> ModifyGuildRolePositionsAsync(ulong guildId, IEnumerable<DiscordModifyGuildRolePositions> modifyGuildRoles,
-                                                                                                    string? auditLogReason = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result<IReadOnlyList<IDiscordGuildRole>>> ModifyGuildRolePositionsAsync(ulong guildId, IEnumerable<DiscordModifyGuildRolePositions> modifyGuildRoles,
+                                                                                                          string? auditLogReason = null, CancellationToken ct = default)
         {
-            return _restGuildRole.ModifyGuildRolePositionsAsync(guildId, modifyGuildRoles, auditLogReason, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/roles";
+            var result = await HttpClient.PatchAsync<IReadOnlyList<DiscordGuildRoleData>, IEnumerable<DiscordModifyGuildRolePositions>>(endpoint, modifyGuildRoles, auditLogReason, ct)
+                                         .ConfigureAwait(false);
+            return ConvertResult(result);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildRole" />
-        public virtual Task<Result<IDiscordGuildRole>> ModifyGuildRoleAsync(ulong guildId, ulong roleId, DiscordModifyGuildRole role, string? auditLogReason = null,
-                                                                            CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuildRole>> ModifyGuildRoleAsync(ulong guildId, ulong roleId, DiscordModifyGuildRole role, string? auditLogReason = null,
+                                                                                  CancellationToken ct = default)
         {
-            return _restGuildRole.ModifyGuildRoleAsync(guildId, roleId, role, auditLogReason, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/roles/{roleId.ToString()}";
+            var result = await HttpClient.PostAsync<DiscordGuildRoleData, DiscordModifyGuildRole>(endpoint, role, auditLogReason, ct).ConfigureAwait(false);
+            return ConvertResult(result);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildRole" />
-        public virtual Task<Result> ModifyGuildRoleAsync(ulong guildId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result> ModifyGuildRoleAsync(ulong guildId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
         {
-            return _restGuildRole.ModifyGuildRoleAsync(guildId, roleId, auditLogReason, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/roles/{roleId.ToString()}";
+            return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result<IDiscordGuildMember>> GetGuildMemberAsync(ulong guildId, ulong userId, CancellationToken ct = default)
+        private Result<IDiscordGuildRole> ConvertResult(Result<DiscordGuildRoleData> result)
         {
-            return _restGuildMember.GetGuildMemberAsync(guildId, userId, ct);
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildRole>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordGuildRole>.FromSuccess(new DiscordGuildRole(result.Entity));
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result<IReadOnlyList<IDiscordGuildMember>>> ListGuildMembersAsync(ulong guildId, int limit = 1, ulong afterId = 0, CancellationToken ct = default)
+        private Result<IReadOnlyList<IDiscordGuildRole>> ConvertResult(Result<IReadOnlyList<DiscordGuildRoleData>> result)
         {
-            return _restGuildMember.ListGuildMembersAsync(guildId, limit, afterId, ct);
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordGuildRole>>.FromError(null, result.ErrorResult);
+
+            var roles = new List<IDiscordGuildRole>();
+            foreach (var roleData in result.Entity) roles.Add(new DiscordGuildRole(roleData));
+
+            return Result<IReadOnlyList<IDiscordGuildRole>>.FromSuccess(roles);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result<IReadOnlyList<IDiscordGuildMember>>> SearchGuildMembersAsync(ulong guildId, string query, int limit = 1, CancellationToken ct = default)
+        #endregion
+
+        // All api calls for guild members.
+        #region Guild member
+
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuildMember>> GetGuildMemberAsync(ulong guildId, ulong userId, CancellationToken ct = default)
         {
-            return _restGuildMember.SearchGuildMembersAsync(guildId, query, limit, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
+            var result = await HttpClient.GetAsync<DiscordGuildMemberData>(endpoint, ct: ct).ConfigureAwait(false);
+            return ConvertResult(result);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result<IDiscordGuildMember?>> AddGuildMemberAsync(ulong guildId, ulong userId, DiscordAddGuildMember addGuildMember, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result<IReadOnlyList<IDiscordGuildMember>>> ListGuildMembersAsync(ulong guildId, int limit = 1, ulong afterId = 0, CancellationToken ct = default)
         {
-            return _restGuildMember.AddGuildMemberAsync(guildId, userId, addGuildMember, ct);
+            var queries = new List<KeyValuePair<string, string>>
+            {
+                new(Constants.LimitQueryName, limit.ToString()),
+                new(Constants.AfterQueryName, afterId.ToString())
+            };
+
+            string endpoint = $"guilds/{guildId.ToString()}/members";
+            var result = await HttpClient.GetAsync<IReadOnlyList<DiscordGuildMemberData>>(endpoint, queries, ct).ConfigureAwait(false);
+            return ConvertResult(result);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result<IDiscordGuildMember>> ModifyGuildMemberAsync(ulong guildId, ulong userId, DiscordModifyGuildMember modifyGuildMember,
-                                                                                string? auditLogReason = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result<IReadOnlyList<IDiscordGuildMember>>> SearchGuildMembersAsync(ulong guildId, string query, int limit = 1, CancellationToken ct = default)
         {
-            return _restGuildMember.ModifyGuildMemberAsync(guildId, userId, modifyGuildMember, auditLogReason, ct);
+            var queries = new List<KeyValuePair<string, string>>
+            {
+                new(Constants.LimitQueryName, limit.ToString()),
+                new(Constants.SearchQueryName, query)
+            };
+
+            string endpoint = $"guilds/{guildId.ToString()}/members/search";
+            var result = await HttpClient.GetAsync<IReadOnlyList<DiscordGuildMemberData>>(endpoint, queries, ct).ConfigureAwait(false);
+            return ConvertResult(result);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result> ModifyCurrentUserNickAsync(ulong guildId, DiscordModifyCurrentUserNick modifyGuildMember,
-                                                               string? auditLogReason = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuildMember?>> AddGuildMemberAsync(ulong guildId, ulong userId, DiscordAddGuildMember addGuildMember, CancellationToken ct = default)
         {
-            return _restGuildMember.ModifyCurrentUserNickAsync(guildId, modifyGuildMember, auditLogReason, ct);
+            // Todo: can return null!
+            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
+            var result = await HttpClient.PutAsync<DiscordGuildMemberData, DiscordAddGuildMember>(endpoint, addGuildMember, ct: ct).ConfigureAwait(false);
+
+            if (result.IsSuccessful && result.Entity is null) return Result<IDiscordGuildMember?>.FromSuccess(null);
+
+            return ConvertResult(result!)!;
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result> AddGuildMemberRoleAsync(ulong guildId, ulong userId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuildMember>> ModifyGuildMemberAsync(ulong guildId, ulong userId, DiscordModifyGuildMember modifyGuildMember,
+                                                                                      string? auditLogReason = null, CancellationToken ct = default)
         {
-            return _restGuildMember.AddGuildMemberRoleAsync(guildId, userId, roleId, auditLogReason, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
+            var result = await HttpClient.PatchAsync<DiscordGuildMemberData, DiscordModifyGuildMember>(endpoint, modifyGuildMember, auditLogReason, ct).ConfigureAwait(false);
+            return ConvertResult(result);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result> RemoveGuildMemberRoleAsync(ulong guildId, ulong userId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result> ModifyCurrentUserNickAsync(ulong guildId, DiscordModifyCurrentUserNick modifyGuildMember,
+                                                                     string? auditLogReason = null, CancellationToken ct = default)
         {
-            return _restGuildMember.RemoveGuildMemberRoleAsync(guildId, userId, roleId, auditLogReason, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/members/@me/nick";
+            return await HttpClient.PatchAsync(endpoint, modifyGuildMember, auditLogReason, ct).ConfigureAwait(false);
         }
 
-        /// <inheritdoc cref="IDiscordRestGuildMember" />
-        public virtual Task<Result> RemoveGuildMemberAsync(ulong guildId, ulong userId, string? auditLogReason = null, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result> AddGuildMemberRoleAsync(ulong guildId, ulong userId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
         {
-            return _restGuildMember.RemoveGuildMemberAsync(guildId, userId, auditLogReason, ct);
+            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}/roles/{roleId.ToString()}";
+            return await HttpClient.PutAsync(endpoint, auditLogReason, ct).ConfigureAwait(false);
         }
+
+        /// <inheritdoc />
+        public virtual async Task<Result> RemoveGuildMemberRoleAsync(ulong guildId, ulong userId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
+        {
+            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}/roles/{roleId.ToString()}";
+            return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public virtual async Task<Result> RemoveGuildMemberAsync(ulong guildId, ulong userId, string? auditLogReason = null, CancellationToken ct = default)
+        {
+            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
+            return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
+        }
+
+        private Result<IDiscordGuildMember> ConvertResult(Result<DiscordGuildMemberData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildMember>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordGuildMember>.FromSuccess(new DiscordGuildMember(result.Entity));
+        }
+
+        private Result<IReadOnlyList<IDiscordGuildMember>> ConvertResult(Result<IReadOnlyList<DiscordGuildMemberData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordGuildMember>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordGuildMember>();
+            foreach (var data in result.Entity) list.Add(new DiscordGuildMember(data));
+
+            return Result<IReadOnlyList<IDiscordGuildMember>>.FromSuccess(list);
+        }
+
+        #endregion
     }
 }
