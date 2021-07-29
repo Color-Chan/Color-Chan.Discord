@@ -15,6 +15,9 @@ using Microsoft.Extensions.Options;
 
 namespace Color_Chan.Discord.Controllers
 {
+    /// <summary>
+    ///     The api controller that will receive all the interaction events from discord.
+    /// </summary>
     [ApiController]
     [ApiVersion("1")]
     [Route("api/v{apiVersion}/discord")]
@@ -27,6 +30,14 @@ namespace Color_Chan.Discord.Controllers
         private readonly JsonSerializerOptions _serializerOptions;
         private readonly ISlashCommandService _slashCommandService;
 
+        /// <summary>
+        ///     Initializes a new instance of <see cref="DiscordInteractionController" />.
+        /// </summary>
+        /// <param name="authService">The <see cref="IDiscordInteractionAuthService"/> that will verify the request.</param>
+        /// <param name="slashCommandService">The <see cref="ISlashCommandService"/> that will handle slash command interactions.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <param name="serializerOptions">The JSON options used for serialization.</param>
         public DiscordInteractionController(IDiscordInteractionAuthService authService, ISlashCommandService slashCommandService, ILogger<DiscordInteractionController> logger, 
                                             IServiceProvider serviceProvider , IOptions<JsonSerializerOptions> serializerOptions)
         {
@@ -37,6 +48,13 @@ namespace Color_Chan.Discord.Controllers
             _serializerOptions = serializerOptions.Value;
         }
 
+        /// <summary>
+        ///     Handles an interaction event from discord.
+        /// </summary>
+        /// <returns>
+        ///     An <see cref="ActionResult"/> with the json result of the request.
+        /// </returns>
+        /// <exception cref="JsonException">Thrown when the provided request body isn't valid.</exception>
         [HttpPost("interaction")]
         public async Task<ActionResult> HandleInteractionRequestAsync()
         {
