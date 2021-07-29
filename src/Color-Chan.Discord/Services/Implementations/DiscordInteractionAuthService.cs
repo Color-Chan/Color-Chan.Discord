@@ -13,7 +13,7 @@ namespace Color_Chan.Discord.Services.Implementations
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordInteractionAuthService" />.
         /// </summary>
-        /// <param name="discordTokens">The <see cref="DiscordTokens"/> containing all the necessary tokens.</param>
+        /// <param name="discordTokens">The <see cref="DiscordTokens" /> containing all the necessary tokens.</param>
         public DiscordInteractionAuthService(DiscordTokens discordTokens)
         {
             _publicKeyBytes = Convert.FromHexString(discordTokens.PublicToken.AsSpan());

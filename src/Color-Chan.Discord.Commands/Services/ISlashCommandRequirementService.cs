@@ -8,7 +8,7 @@ using Color_Chan.Discord.Core;
 namespace Color_Chan.Discord.Commands.Services
 {
     /// <summary>
-    ///     Holds all the methods to execute all <see cref="SlashCommandRequirementAttribute"/>s for a slash command.
+    ///     Holds all the methods to execute all <see cref="SlashCommandRequirementAttribute" />s for a slash command.
     /// </summary>
     public interface ISlashCommandRequirementService
     {

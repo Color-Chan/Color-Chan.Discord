@@ -33,8 +33,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         ///     The <see cref="ISlashCommandBuildService" /> that will get and build the
         ///     commands.
         /// </param>
-        /// <param name="requirementService">The <see cref="ISlashCommandRequirementService" /> that will used to execute the requirements.</param>
-        /// <param name="commandAutoSyncService">The <see cref="ISlashCommandAutoSyncService"/> that handles all the syncing of the slash commands.</param>
+        /// <param name="requirementService">
+        ///     The <see cref="ISlashCommandRequirementService" /> that will used to execute the
+        ///     requirements.
+        /// </param>
+        /// <param name="commandAutoSyncService">
+        ///     The <see cref="ISlashCommandAutoSyncService" /> that handles all the syncing of
+        ///     the slash commands.
+        /// </param>
         public SlashCommandService(ILogger<SlashCommandService> logger, ISlashCommandBuildService slashCommandBuildService,
                                    ISlashCommandRequirementService requirementService, ISlashCommandAutoSyncService commandAutoSyncService)
         {

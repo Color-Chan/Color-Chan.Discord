@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         ///     <see cref="ISlashCommandOptionInfo" />s.
         /// </param>
         public SlashCommandBuildService(ISlashCommandRequirementBuildService requirementBuildService, ISlashCommandGuildBuildService guildBuildService, ILogger<SlashCommandBuildService> logger,
-                                          ISlashCommandOptionBuildService optionBuildService)
+                                        ISlashCommandOptionBuildService optionBuildService)
         {
             _requirementBuildService = requirementBuildService;
             _guildBuildService = guildBuildService;

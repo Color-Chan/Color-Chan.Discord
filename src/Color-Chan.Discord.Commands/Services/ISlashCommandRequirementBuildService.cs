@@ -5,7 +5,7 @@ using Color_Chan.Discord.Commands.Attributes;
 namespace Color_Chan.Discord.Commands.Services
 {
     /// <summary>
-    ///     Holds all the methods to build <see cref="SlashCommandRequirementAttribute"/> for the slash commands.
+    ///     Holds all the methods to build <see cref="SlashCommandRequirementAttribute" /> for the slash commands.
     /// </summary>
     public interface ISlashCommandRequirementBuildService
     {

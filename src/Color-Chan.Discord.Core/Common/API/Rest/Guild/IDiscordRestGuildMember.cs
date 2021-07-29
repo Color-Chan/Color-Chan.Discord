@@ -51,7 +51,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest.Guild
         /// </summary>
         /// <param name="guildId">The guild id.</param>
         /// <param name="userId">The user id of the new member.</param>
-        /// <param name="addGuildMember">The <see cref="DiscordAddGuildMember"/> containing the body.</param>
+        /// <param name="addGuildMember">The <see cref="DiscordAddGuildMember" /> containing the body.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     A <see cref="Result{T}" /> of <see cref="IDiscordGuildMember" />.
@@ -64,7 +64,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest.Guild
         /// </summary>
         /// <param name="guildId">The guild id.</param>
         /// <param name="userId">The user id of the guild member.</param>
-        /// <param name="modifyGuildMember">The <see cref="DiscordModifyGuildMember"/> data that will be used to modify the user.</param>
+        /// <param name="modifyGuildMember">The <see cref="DiscordModifyGuildMember" /> data that will be used to modify the user.</param>
         /// <param name="auditLogReason">The reason for this action. This will be shown in the audit logs.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
@@ -77,7 +77,10 @@ namespace Color_Chan.Discord.Core.Common.API.Rest.Guild
         ///     Modify the current users nickname.
         /// </summary>
         /// <param name="guildId">The guild id.</param>
-        /// <param name="modifyGuildMember">The <see cref="DiscordModifyCurrentUserNick"/> data that will be used to modify the user.</param>
+        /// <param name="modifyGuildMember">
+        ///     The <see cref="DiscordModifyCurrentUserNick" /> data that will be used to modify the
+        ///     user.
+        /// </param>
         /// <param name="auditLogReason">The reason for this action. This will be shown in the audit logs.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>

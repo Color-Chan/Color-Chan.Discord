@@ -39,7 +39,7 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
             discordClient2.BaseAddress.Should().Be(Constants.DiscordApiUrl);
             discordClient1.GetHashCode().Should().NotBe(discordClient2.GetHashCode());
         }
-        
+
         [Test]
         public void Should_resolve_IDiscordHttpClient()
         {
@@ -55,7 +55,7 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
             var application = _serviceProvider.GetService<IDiscordRestApplication>();
             application.Should().NotBeNull();
         }
-        
+
         [Test]
         public void Should_resolve_IDiscordRestGuildRole()
         {
@@ -63,7 +63,7 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
             var application = _serviceProvider.GetService<IDiscordRestGuildRole>();
             application.Should().NotBeNull();
         }
-        
+
         [Test]
         public void Should_resolve_IDiscordRestGuildMember()
         {

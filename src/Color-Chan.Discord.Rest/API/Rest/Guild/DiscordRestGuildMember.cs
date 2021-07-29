@@ -67,10 +67,7 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
             string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
             var result = await HttpClient.PutAsync<DiscordGuildMemberData, DiscordAddGuildMember>(endpoint, addGuildMember, ct: ct).ConfigureAwait(false);
 
-            if (result.IsSuccessful && result.Entity is null)
-            {
-                return Result<IDiscordGuildMember?>.FromSuccess(null);
-            }
+            if (result.IsSuccessful && result.Entity is null) return Result<IDiscordGuildMember?>.FromSuccess(null);
 
             return ConvertResult(result!)!;
         }

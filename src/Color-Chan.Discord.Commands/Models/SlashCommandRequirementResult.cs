@@ -1,7 +1,7 @@
 ﻿namespace Color_Chan.Discord.Commands.Models
 {
     /// <summary>
-    ///     Contains a result for a slash command requirement. 
+    ///     Contains a result for a slash command requirement.
     /// </summary>
     public class SlashCommandRequirementResult
     {

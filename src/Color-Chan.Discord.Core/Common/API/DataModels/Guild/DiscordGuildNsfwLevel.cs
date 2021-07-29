@@ -10,17 +10,17 @@
         ///     Default NSFW level.
         /// </summary>
         Default = 0,
-        
+
         /// <summary>
         ///     Explicit allowed content.
         /// </summary>
         Explicit = 1,
-        
+
         /// <summary>
         ///     No explicit allowed content.
         /// </summary>
         Safe = 2,
-        
+
         /// <summary>
         ///     AgeRestricted guild.
         /// </summary>

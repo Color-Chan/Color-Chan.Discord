@@ -17,7 +17,7 @@ namespace Pong
             var config = new SlashCommandConfiguration
             {
                 EnableAutoSync = true // <----- 
-            }; 
+            };
             await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly(), config).ConfigureAwait(false); // <----- 
 
             // Run the WebHost, and start accepting requests.

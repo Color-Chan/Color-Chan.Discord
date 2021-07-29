@@ -6,7 +6,7 @@ using Color_Chan.Discord.Commands.Info;
 namespace Color_Chan.Discord.Commands.Services
 {
     /// <summary>
-    ///     Holds all the methods to build <see cref="ISlashCommandInfo"/> for guilds only.
+    ///     Holds all the methods to build <see cref="ISlashCommandInfo" /> for guilds only.
     /// </summary>
     public interface ISlashCommandGuildBuildService
     {

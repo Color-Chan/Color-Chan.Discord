@@ -7,7 +7,7 @@ using Color_Chan.Discord.Core.Common.API.Params;
 namespace Color_Chan.Discord.Commands.Services
 {
     /// <summary>
-    ///     Holds all the methods to build the <see cref="ISlashCommandInfo"/>.
+    ///     Holds all the methods to build the <see cref="ISlashCommandInfo" />.
     /// </summary>
     public interface ISlashCommandBuildService
     {

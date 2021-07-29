@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 namespace Color_Chan.Discord.Extensions
 {
     /// <summary>
-    ///     Contains all the extension methods for <see cref="IApplicationBuilder"/>.
+    ///     Contains all the extension methods for <see cref="IApplicationBuilder" />.
     /// </summary>
     public static class ApplicationBuilderExtensions
     {

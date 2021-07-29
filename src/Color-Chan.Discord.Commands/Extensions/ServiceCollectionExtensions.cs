@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 namespace Color_Chan.Discord.Commands.Extensions
 {
     /// <summary>
-    ///     Contains all the extensions methods for <see cref="IServiceCollection"/>.
+    ///     Contains all the extensions methods for <see cref="IServiceCollection" />.
     /// </summary>
     public static class ServiceCollectionExtensions
     {

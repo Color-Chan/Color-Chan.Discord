@@ -4,7 +4,8 @@ using Color_Chan.Discord.Commands.Attributes;
 namespace Color_Chan.Discord.Commands.Exceptions
 {
     /// <summary>
-    ///     An exception that should be thrown when a parameter for a command is missing the <see cref="SlashCommandOptionAttribute"/>.
+    ///     An exception that should be thrown when a parameter for a command is missing the
+    ///     <see cref="SlashCommandOptionAttribute" />.
     /// </summary>
     public class NoOptionAttributeArgumentException : ArgumentException
     {

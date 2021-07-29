@@ -26,20 +26,20 @@ namespace Color_Chan.Discord.Controllers
         private const string ReturnContentType = "application/json";
         private readonly IDiscordInteractionAuthService _authService;
         private readonly ILogger<DiscordInteractionController> _logger;
-        private readonly IServiceProvider _serviceProvider;
         private readonly JsonSerializerOptions _serializerOptions;
+        private readonly IServiceProvider _serviceProvider;
         private readonly ISlashCommandService _slashCommandService;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordInteractionController" />.
         /// </summary>
-        /// <param name="authService">The <see cref="IDiscordInteractionAuthService"/> that will verify the request.</param>
-        /// <param name="slashCommandService">The <see cref="ISlashCommandService"/> that will handle slash command interactions.</param>
+        /// <param name="authService">The <see cref="IDiscordInteractionAuthService" /> that will verify the request.</param>
+        /// <param name="slashCommandService">The <see cref="ISlashCommandService" /> that will handle slash command interactions.</param>
         /// <param name="logger">The logger.</param>
         /// <param name="serviceProvider">The service provider.</param>
         /// <param name="serializerOptions">The JSON options used for serialization.</param>
-        public DiscordInteractionController(IDiscordInteractionAuthService authService, ISlashCommandService slashCommandService, ILogger<DiscordInteractionController> logger, 
-                                            IServiceProvider serviceProvider , IOptions<JsonSerializerOptions> serializerOptions)
+        public DiscordInteractionController(IDiscordInteractionAuthService authService, ISlashCommandService slashCommandService, ILogger<DiscordInteractionController> logger,
+                                            IServiceProvider serviceProvider, IOptions<JsonSerializerOptions> serializerOptions)
         {
             _authService = authService;
             _slashCommandService = slashCommandService;
@@ -52,14 +52,14 @@ namespace Color_Chan.Discord.Controllers
         ///     Handles an interaction event from discord.
         /// </summary>
         /// <returns>
-        ///     An <see cref="ActionResult"/> with the json result of the request.
+        ///     An <see cref="ActionResult" /> with the json result of the request.
         /// </returns>
         /// <exception cref="JsonException">Thrown when the provided request body isn't valid.</exception>
         [HttpPost("interaction")]
         public async Task<ActionResult> HandleInteractionRequestAsync()
         {
             // Todo: Benchmark
-            
+
             // Get the raw body data.
             using var bodyReader = new StreamReader(Request.Body);
             if (bodyReader.BaseStream.CanSeek) bodyReader.BaseStream.Seek(0, SeekOrigin.Begin);
@@ -77,10 +77,7 @@ namespace Color_Chan.Discord.Controllers
             // Convert the JSON body to a DiscordInteractionData object.
             if (Request.Body.CanSeek) Request.Body.Seek(0, SeekOrigin.Begin);
             var interactionData = await JsonSerializer.DeserializeAsync<DiscordInteractionData>(Request.Body, _serializerOptions).ConfigureAwait(false);
-            if (interactionData is null)
-            {
-                throw new JsonException("Failed to deserialize JSON body to DiscordInteractionData");
-            }
+            if (interactionData is null) throw new JsonException("Failed to deserialize JSON body to DiscordInteractionData");
 
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
 
@@ -98,12 +95,9 @@ namespace Color_Chan.Discord.Controllers
         private async Task<DiscordInteractionResponseData> HandleSlashCommandAsync(IDiscordInteraction interaction)
         {
             // Todo: make a dedicated interaction slash command handler.
-            
-            if (interaction.Data is null)
-            {
-                throw new NullReferenceException("Interaction data can not be null for a slash command!");
-            }
-            
+
+            if (interaction.Data is null) throw new NullReferenceException("Interaction data can not be null for a slash command!");
+
             var context = new SlashCommandContext(interaction.User!, interaction.Message!, interaction.Data)
             {
                 Member = interaction.GuildMember,
@@ -111,7 +105,7 @@ namespace Color_Chan.Discord.Controllers
                 ChannelId = interaction.ChannelId!.Value,
                 ApplicationId = interaction.ApplicationId
             };
-            
+
             var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, _serviceProvider).ConfigureAwait(false);
             if (result.IsSuccessful) return result.Entity!.ToDataModel();
             return new DiscordInteractionResponseData();

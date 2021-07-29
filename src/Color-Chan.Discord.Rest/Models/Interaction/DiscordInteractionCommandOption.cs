@@ -47,7 +47,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
 
             return (int) Value;
         }
-        
+
         /// <inheritdoc />
         public double GetNumberValue()
         {
