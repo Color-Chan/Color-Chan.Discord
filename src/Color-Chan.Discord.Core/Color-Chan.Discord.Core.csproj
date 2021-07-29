@@ -45,11 +45,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DocumentationFile>bin\Debug\Color-Chan.Discord.Core.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DocumentationFile>bin\Release\Color-Chan.Discord.Core.xml</DocumentationFile>
+    <DocumentationFile></DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
     <ItemGroup>
