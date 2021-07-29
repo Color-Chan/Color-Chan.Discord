@@ -1,8 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
+namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    public record DiscordGuildStageinstanceData
+    /// <summary>
+    ///     Represents a Stage Instance Structure API model.
+    ///     https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-stage-instance-structure
+    /// </summary>
+    public record DiscordStageinstanceData
     {
         /// <summary>
         ///     The id of this Stage instance.
@@ -32,7 +36,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     The privacy level of the Stage instance.
         /// </summary>
         [JsonPropertyName("privacy_level")]
-        public DiscordGuildStagePrivacyLevel PrivacyLevel { get; init; }
+        public DiscordStagePrivacyLevel PrivacyLevel { get; init; }
 
         /// <summary>
         ///     Whether or not Stage discovery is disabled.
