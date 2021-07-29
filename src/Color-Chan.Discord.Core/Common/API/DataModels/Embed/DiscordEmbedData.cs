@@ -5,6 +5,10 @@ using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
 {
+    /// <summary>
+    ///     Represents a discord Embed Object API model.
+    ///     https://discord.com/developers/docs/resources/channel#embed-object
+    /// </summary>
     public record DiscordEmbedData
     {
         /// <summary>

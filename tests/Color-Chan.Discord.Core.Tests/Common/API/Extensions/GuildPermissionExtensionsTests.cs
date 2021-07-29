@@ -14,7 +14,7 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.Extensions
                                 DiscordGuildPermission.KickMembers |
                                 DiscordGuildPermission.CreateInstantInvite |
                                 DiscordGuildPermission.ChangeNickname |
-                                DiscordGuildPermission.ManageEmojis)]
+                                DiscordGuildPermission.ManageEmojisAndStickers)]
         [TestCase("671088820", DiscordGuildPermission.ManageGuild |
                                DiscordGuildPermission.ManageChannels |
                                DiscordGuildPermission.BanMembers |
@@ -60,7 +60,7 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.Extensions
                                 DiscordGuildPermission.KickMembers |
                                 DiscordGuildPermission.CreateInstantInvite |
                                 DiscordGuildPermission.ChangeNickname |
-                                DiscordGuildPermission.ManageEmojis)]
+                                DiscordGuildPermission.ManageEmojisAndStickers)]
         [TestCase("671088820", DiscordGuildPermission.ManageGuild |
                                DiscordGuildPermission.ManageChannels |
                                DiscordGuildPermission.BanMembers |

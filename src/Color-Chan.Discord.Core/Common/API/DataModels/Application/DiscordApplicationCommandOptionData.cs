@@ -3,6 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
 {
+    /// <summary>
+    ///     Represents a discord Application Command Option Structure API model.
+    ///     https://discord.com/developers/docs/interactions/slash-commands#application-command-object-application-command-option-structure
+    /// </summary>
     public record DiscordApplicationCommandOptionData
     {
         /// <summary>
@@ -30,7 +34,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
         public bool? IsRequired { get; set; }
 
         /// <summary>
-        ///     Choices for string and int types for the user to pick from.
+        ///     Choices for string, int and number types for the user to pick from.
         /// </summary>
         [JsonPropertyName("choices")]
         public IEnumerable<DiscordApplicationCommandOptionChoiceData>? Choices { get; set; }

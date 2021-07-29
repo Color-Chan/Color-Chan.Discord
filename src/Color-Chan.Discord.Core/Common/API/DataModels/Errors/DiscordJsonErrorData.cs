@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Errors
 {
+    /// <summary>
+    ///     Represents a discord Json error response.
+    /// </summary>
     public record DiscordJsonErrorData
     {
         /// <summary>

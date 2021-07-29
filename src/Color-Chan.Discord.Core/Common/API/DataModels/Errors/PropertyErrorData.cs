@@ -2,6 +2,9 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Errors
 {
+    /// <summary>
+    ///     Represents a discord Json error response property.
+    /// </summary>
     public record PropertyErrorData
     {
         /// <summary>

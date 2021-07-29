@@ -3,6 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
+    /// <summary>
+    ///     Represents a discord Welcome Screen Structure API model.
+    ///     https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-structure
+    /// </summary>
     public record DiscordGuildWelcomeScreenData
     {
         /// <summary>

@@ -1,5 +1,8 @@
 ﻿namespace Color_Chan.Discord.Core.Results
 {
+    /// <summary>
+    ///     A result object.
+    /// </summary>
     public interface IResult
     {
         /// <summary>

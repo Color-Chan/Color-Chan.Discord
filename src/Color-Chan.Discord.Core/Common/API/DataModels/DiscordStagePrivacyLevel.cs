@@ -1,6 +1,10 @@
-﻿namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
+﻿namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    public enum DiscordGuildStagePrivacyLevel
+    /// <summary>
+    ///     Represents a Privacy Level API model.
+    ///     https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-privacy-level
+    /// </summary>
+    public enum DiscordStagePrivacyLevel
     {
         /// <summary>
         ///     The Stage instance is visible publicly, such as on Stage discovery.

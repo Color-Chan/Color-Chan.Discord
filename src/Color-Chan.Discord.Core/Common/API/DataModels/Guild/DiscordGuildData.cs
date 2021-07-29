@@ -5,8 +5,8 @@ using System.Text.Json.Serialization;
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
     /// <summary>
-    ///     Guilds in Discord represent an isolated collection of users and channels, and are often referred to as "servers" in
-    ///     the UI.
+    ///     Represents a discord Guild Structure API model.
+    ///     https://discord.com/developers/docs/resources/guild#guild-object-guild-structure
     /// </summary>
     public record DiscordGuildData
     {
@@ -355,6 +355,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("stage_instances")]
-        public DiscordGuildStageinstanceData? StageInstances { get; set; }
+        public DiscordStageinstanceData? StageInstances { get; set; }
     }
 }

@@ -5,6 +5,9 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild
 {
+    /// <summary>
+    ///     A local representation for <see cref="DiscordGuildData"/>. 
+    /// </summary>
     public interface IDiscordGuild
     {
         /// <summary>
