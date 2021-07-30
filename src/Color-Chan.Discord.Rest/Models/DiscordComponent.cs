@@ -7,6 +7,18 @@ namespace Color_Chan.Discord.Rest.Models
 {
     public record DiscordComponent : IDiscordComponent
     {
+        public DiscordComponent(DiscordComponentData data)
+        {
+            Type = data.Type;
+            ButtonStyle = data.ButtonStyle;
+            Label = data.Label;
+            Emoji = data.Emoji is not null ? new DiscordEmoji(data.Emoji) : null;
+            CustomId = data.CustomId;
+            Url = data.Url;
+            Disabled = data.Disabled;
+            ChildComponents = data.ChildComponents?.Select(componentData => new DiscordComponent(componentData));
+        }
+
         /// <inheritdoc />
         public DiscordComponentType Type { get; init; }
 

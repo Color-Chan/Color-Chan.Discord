@@ -5,8 +5,13 @@ using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
 
-namespace Color_Chan.Discord.Core.Common.API.Rest.Guild
+namespace Color_Chan.Discord.Core.Common.API.Rest
 {
+    // Todo: Implement missing API methods
+    /// <summary>
+    ///     Contains all the API calls mentioned in the guild object documentation.
+    ///     https://discord.com/developers/docs/resources/guild
+    /// </summary>
     public interface IDiscordRestGuild
     {
         /// <summary>

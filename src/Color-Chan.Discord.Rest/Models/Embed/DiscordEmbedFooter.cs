@@ -5,6 +5,17 @@ namespace Color_Chan.Discord.Rest.Models.Embed
 {
     public record DiscordEmbedFooter : IDiscordEmbedFooter
     {
+        public DiscordEmbedFooter()
+        {
+        }
+        
+        public DiscordEmbedFooter(DiscordEmbedFooterData data)
+        {
+            Text = data.Text;
+            IconUrl = data.IconUrl;
+            ProxyIconUrl = data.ProxyIconUrl;
+        }
+
         /// <inheritdoc />
         public string Text { get; init; } = null!;
 

@@ -9,6 +9,27 @@ namespace Color_Chan.Discord.Rest.Models.Embed
 {
     public record DiscordEmbed : IDiscordEmbed
     {
+        public DiscordEmbed()
+        {
+        }
+
+        public DiscordEmbed(DiscordEmbedData data)
+        {
+            Title = data.Title;
+            Type = data.Type;
+            Description = data.Description;
+            Url = data.Url;
+            Timestamp = data.Timestamp;
+            Color = data.Color;
+            Footer =  data.Footer is not null ? new DiscordEmbedFooter(data.Footer) : null;
+            Image = data.Image is not null ? new DiscordEmbedImage(data.Image) : null;
+            Thumbnail = data.Thumbnail is not null ? new DiscordEmbedThumbnail(data.Thumbnail) : null;
+            Video = data.Video is not null ? new DiscordEmbedVideo(data.Video) : null;
+            Provider = data.Provider is not null ? new DiscordEmbedProvider(data.Provider) : null;
+            Author = data.Author is not null ? new DiscordEmbedAuthor(data.Author) : null;
+            Fields = data.Fields?.Select(fieldData => new DiscordEmbedField(fieldData));
+        }
+
         /// <inheritdoc />
         public string? Title { get; init; }
 

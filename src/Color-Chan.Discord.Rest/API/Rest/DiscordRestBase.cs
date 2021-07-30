@@ -1,5 +1,8 @@
 ﻿namespace Color_Chan.Discord.Rest.API.Rest
 {
+    /// <summary>
+    ///     The base for all rest classes.
+    /// </summary>
     public abstract class DiscordRestBase
     {
         /// <summary>

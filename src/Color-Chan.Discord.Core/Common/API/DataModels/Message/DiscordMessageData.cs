@@ -160,7 +160,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         ///     Data showing the source of a cross post, channel follow add, pin, or reply message.
         /// </summary>
         [JsonPropertyName("message_reference")]
-
         public DiscordMessageReferenceData? ReferenceMessage { get; set; }
 
         /// <summary>
@@ -179,7 +178,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         ///     If the field exists but is null, the referenced message was deleted.
         /// </remarks>
         [JsonPropertyName("referenced_message")]
-
         public DiscordMessageData? ReferencedMessage { get; set; }
 
         /// <summary>

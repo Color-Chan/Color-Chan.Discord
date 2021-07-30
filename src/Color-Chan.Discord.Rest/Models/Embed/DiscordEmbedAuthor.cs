@@ -5,6 +5,19 @@ namespace Color_Chan.Discord.Rest.Models.Embed
 {
     public record DiscordEmbedAuthor : IDiscordEmbedAuthor
     {
+        public DiscordEmbedAuthor()
+        {
+            
+        }
+        
+        public DiscordEmbedAuthor(DiscordEmbedAuthorData data)
+        {
+            Name = data.Name;
+            Url = data.Url;
+            IconUrl = data.IconUrl;
+            ProxyIconUrl = data.ProxyIconUrl;
+        }
+
         /// <inheritdoc />
         public string? Name { get; init; }
 

@@ -25,9 +25,14 @@ namespace Color_Chan.Discord.Rest
             internal static string LimitQueryName { get; } = "limit";
         
             /// <summary>
-            ///     The query name to get result after a certain value. Can be sed for paging.
+            ///     The query name to get result after a certain value. Can be used for paging.
             /// </summary>
             internal static string AfterQueryName { get; } = "after";
+            
+            /// <summary>
+            ///     The query name to get result before a certain value. Can be used for paging.
+            /// </summary>
+            internal static string BeforeQueryName { get; } = "before";
         
             /// <summary>
             ///     The query name to search by a value.
@@ -38,6 +43,11 @@ namespace Color_Chan.Discord.Rest
             ///     The query name to get a result back with counts.
             /// </summary>
             internal static string WithCountsQueryName { get; } = "with_counts";
+            
+            /// <summary>
+            ///     The query name to get a result around a certain value.
+            /// </summary>
+            internal static string AroundQueryName { get; } = "around";
         }
     }
 }

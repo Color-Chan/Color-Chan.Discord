@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
+using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -82,6 +83,11 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ///     Channels specifically mentioned in this message.
         /// </summary>
         IEnumerable<ulong>? MentionsChannel { get; set; }
+        
+        /// <summary>
+        ///     Any attached files.
+        /// </summary>
+        IEnumerable<IDiscordAttachment> Attachments { get; set; }
 
         /// <summary>
         ///     Any embedded content.
@@ -112,6 +118,16 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ///     Type of message.
         /// </summary>
         DiscordMessageType Type { get; set; }
+        
+        /// <summary>
+        ///     The activity data, Sent with Rich Presence-related chat embeds.
+        /// </summary>
+        IDiscordMessageActivity? Activity { get; set; }
+
+        /// <summary>
+        ///     The application data, sent with Rich Presence-related chat embeds.
+        /// </summary>
+        IDiscordApplication? Application { get; set; }
 
         /// <summary>
         ///     If the message is a response to an Interaction, this is the id of the interaction's application.
@@ -119,10 +135,26 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ulong? ApplicationId { get; set; }
 
         /// <summary>
+        ///     Data showing the source of a cross post, channel follow add, pin, or reply message.
+        /// </summary>
+        IDiscordMessageReference? ReferenceMessage { get; set; }
+        
+        /// <summary>
         ///     Message flags combined as a bitfield.
         /// </summary>
         DiscordMessageFlags? Flags { get; set; }
 
+        /// <summary>
+        ///     The message associated with <see cref="ReferenceMessage" />.
+        /// </summary>
+        /// <remarks>
+        ///     This field is only returned for messages with a type of 19 (REPLY) or 21 (THREAD_STARTER_MESSAGE).
+        ///     If the message is a reply but the referenced_message field is not present,
+        ///     the backend did not attempt to fetch the message that was being replied to, so its state is unknown.
+        ///     If the field exists but is null, the referenced message was deleted.
+        /// </remarks>
+        IDiscordMessage? ReferencedMessage { get; set; }
+        
         /// <summary>
         ///     Sent if the message is a response to an Interaction.
         /// </summary>
@@ -137,5 +169,13 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ///     Sent if the message contains components like buttons, action rows, or other interactive components.
         /// </summary>
         IEnumerable<IDiscordComponent>? Components { get; set; }
+        
+        /// <summary>
+        ///     Sent if the message contains stickers.
+        /// </summary>
+        /// <remarks>
+        ///     Bots cannot send stickers.
+        /// </remarks>
+        public IEnumerable<IDiscordMessageStickerItem>? StickerItems { get; set; }
     }
 }
