@@ -7,9 +7,8 @@ namespace Color_Chan.Discord.Rest.Models.Embed
     {
         public DiscordEmbedAuthor()
         {
-            
         }
-        
+
         public DiscordEmbedAuthor(DiscordEmbedAuthorData data)
         {
             Name = data.Name;

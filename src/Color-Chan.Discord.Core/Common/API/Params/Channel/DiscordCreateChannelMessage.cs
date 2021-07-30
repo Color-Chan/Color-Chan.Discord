@@ -17,17 +17,17 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Channel
         /// </remarks>
         [JsonPropertyName("content")]
         public string? Content { get; set; }
-        
+
         /// <summary>
         ///     True if this is a TTS message.
         /// </summary>
         [JsonPropertyName("tts")]
         public bool? Tts { get; set; }
-        
+
         // Todo: implemented file content support.
         // [JsonPropertyName("file")]
         // public file file { get; set; }
-        
+
         /// <summary>
         ///     Embedded rich content (up to 6000 characters).
         /// </summary>
@@ -36,12 +36,12 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Channel
         /// </remarks>
         [JsonPropertyName("embeds")]
         public IEnumerable<DiscordEmbedData>? Embeds { get; set; }
-        
+
         /// <summary>
         ///     Embedded rich content.
         /// </summary>
         [JsonPropertyName("embed ")]
-        [Obsolete("deprecated in favor of embeds")] 
+        [Obsolete("deprecated in favor of embeds")]
         public IEnumerable<DiscordEmbedData>? Embed { get; set; }
 
         /// <summary>
@@ -49,19 +49,19 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Channel
         /// </summary>
         [JsonPropertyName("allowed_mentions")]
         public IEnumerable<DiscordAllowedMentionsData>? AllowedMentions { get; set; }
-        
+
         /// <summary>
         ///     Include to make your message a reply.
         /// </summary>
         [JsonPropertyName("message_reference")]
         public DiscordMessageReferenceData? MessageReference { get; set; }
-        
+
         /// <summary>
         ///     The components to include with the message.
         /// </summary>
         [JsonPropertyName("components")]
         public IEnumerable<DiscordComponentData>? Components { get; set; }
-        
+
         /// <summary>
         ///     IDs of up to 3 stickers in the server to send in the message
         /// </summary>

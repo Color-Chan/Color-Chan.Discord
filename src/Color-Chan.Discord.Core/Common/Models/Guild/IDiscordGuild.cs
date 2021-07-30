@@ -181,7 +181,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
-        
+
         /// <summary>
         ///     Users in the guild.
         /// </summary>
@@ -189,7 +189,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         IEnumerable<IDiscordGuildMember>? Members { get; set; }
-        
+
         /// <summary>
         ///     Channels in the guild.
         /// </summary>
@@ -197,7 +197,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         IEnumerable<IDiscordChannel>? Channels { get; set; }
-        
+
         /// <summary>
         ///     All active threads in the guild that current user has permission to view.
         /// </summary>
@@ -281,7 +281,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         ///     with_counts is true.
         /// </summary>
         int? ApproximatePresenceCount { get; set; }
-        
+
         /// <summary>
         ///     The welcome screen of a Community guild, shown to new members, returned in an Invite's guild object.
         /// </summary>
@@ -291,7 +291,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         ///     Guild NSFW level.
         /// </summary>
         DiscordGuildNsfwLevel NsfwLevel { get; set; }
-        
+
         /// <summary>
         ///     Stage instances in the guild.
         /// </summary>

@@ -8,7 +8,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
         public DiscordEmbedFooter()
         {
         }
-        
+
         public DiscordEmbedFooter(DiscordEmbedFooterData data)
         {
             Text = data.Text;

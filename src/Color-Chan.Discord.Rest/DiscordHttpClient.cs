@@ -61,7 +61,7 @@ namespace Color_Chan.Discord.Rest
 
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
-        
+
         /// <inheritdoc />
         public async Task<Result<TEntity>> PostAsync<TEntity>(string endpoint, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull
         {

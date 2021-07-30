@@ -7,8 +7,8 @@ namespace Color_Chan.Discord.Rest.Models.Embed
     {
         public DiscordEmbedVideo()
         {
-            
         }
+
         public DiscordEmbedVideo(DiscordEmbedVideoData data)
         {
             Url = data.Url;

@@ -30,8 +30,8 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             VerificationLevel = data.VerificationLevel;
             DefaultMessageNotifications = data.DefaultMessageNotifications;
             ExplicitContentFilter = data.ExplicitContentFilter;
-            Roles = data.Roles.Select(roleData=>new DiscordGuildRole(roleData));
-            Emojis = data.Emojis.Select(emojiData=>new DiscordEmoji(emojiData));
+            Roles = data.Roles.Select(roleData => new DiscordGuildRole(roleData));
+            Emojis = data.Emojis.Select(emojiData => new DiscordEmoji(emojiData));
             Features = data.Features;
             MfaLevel = data.MfaLevel;
             ApplicationId = data.ApplicationId;
@@ -43,9 +43,9 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             Unavailable = data.Unavailable;
             MemberCount = data.MemberCount;
             VoiceStates = data.VoiceStates;
-            Members = data.Members?.Select(memberData=>new DiscordGuildMember(memberData));
-            Channels = data.Channels?.Select(channelData=>new DiscordChannel(channelData));
-            Threads = data.Threads?.Select(channelData=>new DiscordChannel(channelData));
+            Members = data.Members?.Select(memberData => new DiscordGuildMember(memberData));
+            Channels = data.Channels?.Select(channelData => new DiscordChannel(channelData));
+            Threads = data.Threads?.Select(channelData => new DiscordChannel(channelData));
             Presences = data.Presences;
             MaxPresences = data.MaxPresences;
             MaxMembers = data.MaxMembers;
@@ -62,57 +62,56 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             WelcomeScreen = data.WelcomeScreen is not null ? new DiscordGuildWelcomeScreen(data.WelcomeScreen) : null;
             NsfwLevel = data.NsfwLevel;
             StageInstances = data.StageInstances is not null ? new DiscordStageInstance(data.StageInstances) : null;
-
         }
 
         /// <inheritdoc />
         public ulong Id { get; init; }
 
         /// <inheritdoc />
-        public string Name { get; init; } 
-        
+        public string Name { get; init; }
+
         /// <inheritdoc />
         public string? Icon { get; init; }
-        
+
         /// <inheritdoc />
         public string? IconHash { get; init; }
-        
+
         /// <inheritdoc />
         public string? Splash { get; init; }
-        
+
         /// <inheritdoc />
         public string? DiscoverySplash { get; init; }
-        
+
         /// <inheritdoc />
         public bool? IsOwner { get; init; }
-        
+
         /// <inheritdoc />
         public ulong OwnerId { get; init; }
-        
+
         /// <inheritdoc />
         public string? CurrentUserPermission { get; set; }
-        
+
         /// <inheritdoc />
         public string? Region { get; set; }
-        
+
         /// <inheritdoc />
         public ulong? AfkChannelId { get; set; }
-        
+
         /// <inheritdoc />
         public int AfkTimeout { get; set; }
-        
+
         /// <inheritdoc />
         public bool? WidgetEnabled { get; set; }
-        
+
         /// <inheritdoc />
         public ulong? WidgetChannelId { get; set; }
-        
+
         /// <inheritdoc />
         public DiscordGuildVerificationLevel VerificationLevel { get; set; }
-        
+
         /// <inheritdoc />
         public DiscordGuildDefaultMessageNotificationLevel DefaultMessageNotifications { get; set; }
-        
+
         /// <inheritdoc />
         public DiscordGuildExplicitContentFilterLevel ExplicitContentFilter { get; set; }
 
@@ -120,86 +119,86 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public IEnumerable<IDiscordGuildRole> Roles { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<IDiscordEmoji> Emojis { get; set; } 
+        public IEnumerable<IDiscordEmoji> Emojis { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<string> Features { get; set; }
-        
+
         /// <inheritdoc />
         public DiscordGuildMfaLevel MfaLevel { get; set; }
-        
+
         /// <inheritdoc />
         public ulong? ApplicationId { get; set; }
-        
+
         /// <inheritdoc />
         public ulong? SystemChannelId { get; set; }
-        
+
         /// <inheritdoc />
         public DiscordSystemChannelFlags SystemChannelFlags { get; set; }
-        
+
         /// <inheritdoc />
         public ulong? RulesChannelId { get; set; }
-        
+
         /// <inheritdoc />
         public DateTimeOffset? JoinedAt { get; set; }
-        
+
         /// <inheritdoc />
         public bool? Large { get; set; }
-        
+
         /// <inheritdoc />
         public bool? Unavailable { get; set; }
-        
+
         /// <inheritdoc />
         public int? MemberCount { get; set; }
-        
+
         /// <inheritdoc />
         public IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordGuildMember>? Members { get; set; }
-        
+
         /// <inheritdoc />
-        public IEnumerable<IDiscordChannel>? Channels { get; set; } 
+        public IEnumerable<IDiscordChannel>? Channels { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordChannel>? Threads { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<DiscordGuildPresenceData>? Presences { get; set; }
-        
+
         /// <inheritdoc />
         public int? MaxPresences { get; set; }
-        
+
         /// <inheritdoc />
         public int? MaxMembers { get; set; }
-        
+
         /// <inheritdoc />
         public string? VanityUrlCode { get; set; }
-        
+
         /// <inheritdoc />
         public string? Description { get; set; }
-        
+
         /// <inheritdoc />
         public string? Banner { get; set; }
-        
+
         /// <inheritdoc />
         public DiscordGuildPremiumTier PremiumTier { get; set; }
-        
+
         /// <inheritdoc />
         public int? PremiumSubscriptionCount { get; set; }
-        
+
         /// <inheritdoc />
         public string PreferredLocale { get; set; }
-        
+
         /// <inheritdoc />
         public ulong? PublicUpdatesChannelId { get; set; }
-        
+
         /// <inheritdoc />
         public int? MaxVideoChannelUsers { get; set; }
-        
+
         /// <inheritdoc />
         public int? ApproximateMemberCount { get; set; }
-        
+
         /// <inheritdoc />
         public int? ApproximatePresenceCount { get; set; }
 

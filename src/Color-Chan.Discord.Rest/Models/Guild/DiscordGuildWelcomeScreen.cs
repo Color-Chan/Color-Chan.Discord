@@ -10,7 +10,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public DiscordGuildWelcomeScreen(DiscordGuildWelcomeScreenData dataWelcomeScreen)
         {
             Description = dataWelcomeScreen.Description;
-            WelcomeChannels = dataWelcomeScreen.WelcomeChannels.Select(data=>new DiscordGuildWelcomeChannel(data));
+            WelcomeChannels = dataWelcomeScreen.WelcomeChannels.Select(data => new DiscordGuildWelcomeChannel(data));
         }
 
         /// <inheritdoc />

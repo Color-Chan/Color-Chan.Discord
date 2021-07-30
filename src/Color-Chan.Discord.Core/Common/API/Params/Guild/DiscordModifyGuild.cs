@@ -18,7 +18,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         /// </summary>
         [JsonPropertyName("icon")]
         public string? Icon { get; init; }
-        
+
         /// <summary>
         ///     Splash hash.
         /// </summary>

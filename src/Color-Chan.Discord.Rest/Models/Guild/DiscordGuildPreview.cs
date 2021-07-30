@@ -15,8 +15,8 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             Icon = data.Icon;
             Splash = data.Splash;
             DiscoverySplash = data.DiscoverySplash;
-            Roles = data.Roles.Select(roleData=>new DiscordGuildRole(roleData));
-            Emojis = data.Emojis.Select(emojiData=>new DiscordEmoji(emojiData));
+            Roles = data.Roles.Select(roleData => new DiscordGuildRole(roleData));
+            Emojis = data.Emojis.Select(emojiData => new DiscordEmoji(emojiData));
             ApproximateMemberCount = data.ApproximateMemberCount;
             ApproximatePresenceCount = data.ApproximatePresenceCount;
             Description = data.Description;
@@ -36,19 +36,19 @@ namespace Color_Chan.Discord.Rest.Models.Guild
 
         /// <inheritdoc />
         public string? DiscoverySplash { get; init; }
-        
+
         /// <inheritdoc />
         public IEnumerable<IDiscordGuildRole> Roles { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordEmoji> Emojis { get; set; }
-        
+
         /// <inheritdoc />
         public int? ApproximateMemberCount { get; set; }
 
         /// <inheritdoc />
         public int? ApproximatePresenceCount { get; set; }
-        
+
         /// <inheritdoc />
         public string? Description { get; init; }
     }

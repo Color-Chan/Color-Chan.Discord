@@ -34,7 +34,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         /// </summary>
         [JsonPropertyName("discovery_splash")]
         public string? DiscoverySplash { get; init; }
-        
+
         /// <summary>
         ///     Roles in the guild.
         /// </summary>
@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         /// </summary>
         [JsonPropertyName("emojis")]
         public IEnumerable<DiscordEmojiData> Emojis { get; set; } = new List<DiscordEmojiData>();
-        
+
         /// <summary>
         ///     Approximate number of members in this guild, returned from the GET /guilds/{id} endpoint when with_counts is true.
         /// </summary>
@@ -59,7 +59,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         /// </summary>
         [JsonPropertyName("approximate_presence_count")]
         public int? ApproximatePresenceCount { get; set; }
-        
+
         /// <summary>
         ///     The description for the guild, if the guild is discoverable.
         /// </summary>

@@ -17,7 +17,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <summary>
         ///     Create a new guild.
         /// </summary>
-        /// <param name="createGuild">The <see cref="DiscordCreateGuild"/> params that will be used to create the guild.</param>
+        /// <param name="createGuild">The <see cref="DiscordCreateGuild" /> params that will be used to create the guild.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     A <see cref="Result{T}" /> of <see cref="IDiscordGuild" /> with the request results.
@@ -28,7 +28,10 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     Get a guild.
         /// </summary>
         /// <param name="guildId">The ID fo the guild.</param>
-        /// <param name="withCounts">Whether or not the <see cref="IDiscordGuild"/> will contain approximate member and presence counts for the guild.</param>
+        /// <param name="withCounts">
+        ///     Whether or not the <see cref="IDiscordGuild" /> will contain approximate member and presence
+        ///     counts for the guild.
+        /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     A <see cref="Result{T}" /> of <see cref="IDiscordGuild" /> with the request results.
@@ -36,10 +39,11 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         Task<Result<IDiscordGuild>> GetGuildAsync(ulong guildId, bool withCounts = false, CancellationToken ct = default);
 
         /// <summary>
-        ///  Get a preview of a guild.
+        ///     Get a preview of a guild.
         /// </summary>
         /// <remarks>
-        /// If the user is not in the guild, then the guild must be lurkable (it must be Discoverable or have a live public stage).
+        ///     If the user is not in the guild, then the guild must be lurkable (it must be Discoverable or have a live public
+        ///     stage).
         /// </remarks>
         /// <param name="guildId">the guild id.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
@@ -52,7 +56,10 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     Modifies a guild.
         /// </summary>
         /// <param name="guildId">The guild id.</param>
-        /// <param name="modifyGuild">The <see cref="DiscordModifyGuild"/> containing the data that will be used to modify the guild.</param>
+        /// <param name="modifyGuild">
+        ///     The <see cref="DiscordModifyGuild" /> containing the data that will be used to modify the
+        ///     guild.
+        /// </param>
         /// <param name="auditLogReason">The reason for this action. This will be shown in the audit logs.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
@@ -69,7 +76,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     A <see cref="Result" /> with the request results.
         /// </returns>
         Task<Result> DeleteGuildAsync(ulong guildId, CancellationToken ct = default);
-        
+
         /// <summary>
         ///     Get a list of <see cref="IDiscordGuildRole" />s.
         /// </summary>

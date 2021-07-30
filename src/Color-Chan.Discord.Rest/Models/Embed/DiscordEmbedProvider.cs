@@ -7,8 +7,8 @@ namespace Color_Chan.Discord.Rest.Models.Embed
     {
         public DiscordEmbedProvider()
         {
-            
         }
+
         public DiscordEmbedProvider(DiscordEmbedProviderData data)
         {
             Name = data.Name;

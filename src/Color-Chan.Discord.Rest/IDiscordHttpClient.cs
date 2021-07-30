@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Rest
         ///     The <see cref="Result" />.
         /// </returns>
         Task<Result> PostAsync<TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TBody : notnull;
-        
+
         /// <summary>
         ///     Send a <see cref="HttpMethod.Post" /> request to the <paramref name="endpoint" />.
         /// </summary>

@@ -13,7 +13,7 @@ using Color_Chan.Discord.Rest.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.API.Rest
 {
-    /// <inheritdoc cref="IDiscordRestGuild"/>
+    /// <inheritdoc cref="IDiscordRestGuild" />
     public class DiscordRestGuild : DiscordRestBase, IDiscordRestGuild
     {
         /// <summary>
@@ -25,6 +25,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         // All api calls for guilds.
+
         #region Guild
 
         /// <inheritdoc />
@@ -34,7 +35,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.PostAsync<DiscordGuildData, DiscordCreateGuild>(endpoint, createGuild, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordGuild>> GetGuildAsync(ulong guildId, bool withCounts = false, CancellationToken ct = default)
         {
@@ -42,12 +43,12 @@ namespace Color_Chan.Discord.Rest.API.Rest
             {
                 new(Constants.Headers.WithCountsQueryName, withCounts.ToString())
             };
-            
+
             var endpoint = $"guilds/{guildId.ToString()}";
             var result = await HttpClient.GetAsync<DiscordGuildData>(endpoint, queries, ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordGuildPreview>> GetGuildPreviewAsync(ulong guildId, CancellationToken ct = default)
         {
@@ -55,7 +56,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.GetAsync<DiscordGuildPreviewData>(endpoint, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordGuild>> ModifyGuildAsync(ulong guildId, DiscordModifyGuild modifyGuild, string? auditLogReason, CancellationToken ct = default)
         {
@@ -63,14 +64,14 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.PatchAsync<DiscordGuildData, DiscordModifyGuild>(endpoint, modifyGuild, auditLogReason, ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result> DeleteGuildAsync(ulong guildId, CancellationToken ct = default)
         {
             var endpoint = $"guilds/{guildId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
         }
-        
+
         private Result<IDiscordGuild> ConvertResult(Result<DiscordGuildData> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuild>.FromError(null, result.ErrorResult);
@@ -88,6 +89,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         #endregion
 
         // All api calls for guild channels.
+
         #region Guild channels
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.GetAsync<IReadOnlyList<DiscordChannelData>>(endpoint, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         // Todo: Create guild channel: https://discord.com/developers/docs/resources/guild#create-guild-channel
 
         // Todo: Modify Guild Channel Positions: https://discord.com/developers/docs/resources/guild#modify-guild-channel-positions
@@ -128,8 +130,9 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         #endregion
-        
+
         // All api calls for guild roles.
+
         #region Guild role
 
         /// <inheritdoc />
@@ -194,6 +197,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         #endregion
 
         // All api calls for guild members.
+
         #region Guild member
 
         /// <inheritdoc />

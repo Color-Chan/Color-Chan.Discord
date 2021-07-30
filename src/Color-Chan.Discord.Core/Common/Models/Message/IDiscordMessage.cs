@@ -83,7 +83,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ///     Channels specifically mentioned in this message.
         /// </summary>
         IEnumerable<ulong>? MentionsChannel { get; set; }
-        
+
         /// <summary>
         ///     Any attached files.
         /// </summary>
@@ -118,7 +118,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ///     Type of message.
         /// </summary>
         DiscordMessageType Type { get; set; }
-        
+
         /// <summary>
         ///     The activity data, Sent with Rich Presence-related chat embeds.
         /// </summary>
@@ -138,7 +138,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ///     Data showing the source of a cross post, channel follow add, pin, or reply message.
         /// </summary>
         IDiscordMessageReference? ReferenceMessage { get; set; }
-        
+
         /// <summary>
         ///     Message flags combined as a bitfield.
         /// </summary>
@@ -154,7 +154,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ///     If the field exists but is null, the referenced message was deleted.
         /// </remarks>
         IDiscordMessage? ReferencedMessage { get; set; }
-        
+
         /// <summary>
         ///     Sent if the message is a response to an Interaction.
         /// </summary>
@@ -169,7 +169,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Message
         ///     Sent if the message contains components like buttons, action rows, or other interactive components.
         /// </summary>
         IEnumerable<IDiscordComponent>? Components { get; set; }
-        
+
         /// <summary>
         ///     Sent if the message contains stickers.
         /// </summary>

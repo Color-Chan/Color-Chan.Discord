@@ -14,7 +14,7 @@ using Color_Chan.Discord.Rest.Models.Message;
 
 namespace Color_Chan.Discord.Rest.API.Rest
 {
-    /// <inheritdoc cref="IDiscordRestChannel"/>
+    /// <inheritdoc cref="IDiscordRestChannel" />
     public class DiscordRestChannel : DiscordRestBase, IDiscordRestChannel
     {
         /// <summary>
@@ -26,10 +26,11 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         // All api calls for guilds.
+
         #region Channels
 
         /// <inheritdoc />
-        public virtual async Task<Result<IDiscordChannel>> GetChannelAsync(ulong channelId,  CancellationToken ct = default)
+        public virtual async Task<Result<IDiscordChannel>> GetChannelAsync(ulong channelId, CancellationToken ct = default)
         {
             var endpoint = $"channels/{channelId.ToString()}";
             var result = await HttpClient.GetAsync<DiscordChannelData>(endpoint, ct: ct).ConfigureAwait(false);
@@ -37,15 +38,15 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         // Todo: Implement Modify Channel: https://discord.com/developers/docs/resources/channel#modify-channel
-        
+
         /// <inheritdoc />
-        public virtual async Task<Result<IDiscordChannel>> DeleteOrCloseAsync(ulong channelId,  CancellationToken ct = default)
+        public virtual async Task<Result<IDiscordChannel>> DeleteOrCloseAsync(ulong channelId, CancellationToken ct = default)
         {
             var endpoint = $"channels/{channelId.ToString()}";
             var result = await HttpClient.DeleteAsync<DiscordChannelData>(endpoint, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         private Result<IDiscordChannel> ConvertResult(Result<DiscordChannelData> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordChannel>.FromError(null, result.ErrorResult);
@@ -58,10 +59,11 @@ namespace Color_Chan.Discord.Rest.API.Rest
         #region Channel messages
 
         /// <inheritdoc />
-        public virtual async Task<Result<IReadOnlyList<IDiscordMessage>>> GetChannelMessagesAsync(ulong channelId, ulong? around = null, ulong? before = null, ulong? after = null, int limit = 50, CancellationToken ct = default)
+        public virtual async Task<Result<IReadOnlyList<IDiscordMessage>>> GetChannelMessagesAsync(ulong channelId, ulong? around = null, ulong? before = null, ulong? after = null, int limit = 50,
+                                                                                                  CancellationToken ct = default)
         {
             if (limit is < 0 or > 100) throw new ArgumentOutOfRangeException(nameof(limit), "Limit has to be between 1-100");
-            
+
             var queries = new List<KeyValuePair<string, string>>
             {
                 new(Constants.Headers.LimitQueryName, limit.ToString())
@@ -70,12 +72,12 @@ namespace Color_Chan.Discord.Rest.API.Rest
             if (around is not null) queries.Add(new KeyValuePair<string, string>(Constants.Headers.AroundQueryName, around.ToString()!));
             if (before is not null) queries.Add(new KeyValuePair<string, string>(Constants.Headers.BeforeQueryName, before.ToString()!));
             if (after is not null) queries.Add(new KeyValuePair<string, string>(Constants.Headers.AfterQueryName, after.ToString()!));
-            
+
             var endpoint = $"channels/{channelId.ToString()}/messages";
             var result = await HttpClient.GetAsync<IReadOnlyList<DiscordMessageData>>(endpoint, queries, ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordMessage>> GetChannelMessageAsync(ulong channelId, ulong messageId, CancellationToken ct = default)
         {
@@ -83,7 +85,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.GetAsync<DiscordMessageData>(endpoint, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordMessage>> CreateMessageAsync(ulong channelId, DiscordCreateChannelMessage message, CancellationToken ct = default)
         {
@@ -91,7 +93,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.PostAsync<DiscordMessageData, DiscordCreateChannelMessage>(endpoint, message, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordMessage>> CrosspostMessageAsync(ulong channelId, ulong messageId, CancellationToken ct = default)
         {
@@ -99,14 +101,14 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.PostAsync<DiscordMessageData>(endpoint, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         private Result<IDiscordMessage> ConvertResult(Result<DiscordMessageData> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordMessage>.FromError(null, result.ErrorResult);
 
             return Result<IDiscordMessage>.FromSuccess(new DiscordMessage(result.Entity));
         }
-        
+
         private Result<IReadOnlyList<IDiscordMessage>> ConvertResult(Result<IReadOnlyList<DiscordMessageData>> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordMessage>>.FromError(null, result.ErrorResult);

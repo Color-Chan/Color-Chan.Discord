@@ -44,8 +44,8 @@ namespace Color_Chan.Discord.Rest.Models.Message
             ReferenceMessage = data.ReferenceMessage is not null ? new DiscordMessageReference(data.ReferenceMessage) : null;
             Flags = data.Flags;
             ReferencedMessage = data.ReferencedMessage is not null ? new DiscordMessage(data.ReferencedMessage) : null;
-            Interaction = data.Interaction is not null ?  new DiscordInteraction(data.Interaction) : null;
-            Thread = data.Thread is not null ?  new DiscordChannel(data.Thread) : null;
+            Interaction = data.Interaction is not null ? new DiscordInteraction(data.Interaction) : null;
+            Thread = data.Thread is not null ? new DiscordChannel(data.Thread) : null;
             Components = data.Components?.Select(componentData => new DiscordComponent(componentData));
             StickerItems = data.StickerItems?.Select(componentData => new DiscordMessageStickerItem(componentData));
         }
@@ -88,7 +88,7 @@ namespace Color_Chan.Discord.Rest.Models.Message
 
         /// <inheritdoc />
         public IEnumerable<ulong>? MentionsChannel { get; set; } = new List<ulong>();
-        
+
         /// <inheritdoc />
         public IEnumerable<IDiscordAttachment> Attachments { get; set; }
 
@@ -109,7 +109,7 @@ namespace Color_Chan.Discord.Rest.Models.Message
 
         /// <inheritdoc />
         public DiscordMessageType Type { get; set; }
-        
+
         /// <inheritdoc />
         public IDiscordMessageActivity? Activity { get; set; }
 
@@ -124,7 +124,7 @@ namespace Color_Chan.Discord.Rest.Models.Message
 
         /// <inheritdoc />
         public DiscordMessageFlags? Flags { get; set; }
-        
+
         /// <inheritdoc />
         public IDiscordMessage? ReferencedMessage { get; set; }
 

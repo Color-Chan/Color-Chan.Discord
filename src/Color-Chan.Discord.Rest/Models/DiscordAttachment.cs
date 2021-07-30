@@ -26,11 +26,11 @@ namespace Color_Chan.Discord.Rest.Models
         public int Size { get; init; }
 
         /// <inheritdoc />
-        public string Url { get; init; } 
+        public string Url { get; init; }
 
         /// <inheritdoc />
         public string ProxyUrl { get; init; }
-        
+
         /// <inheritdoc />
         public int? Height { get; init; }
 

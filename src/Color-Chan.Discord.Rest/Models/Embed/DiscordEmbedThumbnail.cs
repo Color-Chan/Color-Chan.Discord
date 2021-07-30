@@ -7,8 +7,8 @@ namespace Color_Chan.Discord.Rest.Models.Embed
     {
         public DiscordEmbedThumbnail()
         {
-            
         }
+
         public DiscordEmbedThumbnail(DiscordEmbedThumbnailData data)
         {
             Url = data.Url;

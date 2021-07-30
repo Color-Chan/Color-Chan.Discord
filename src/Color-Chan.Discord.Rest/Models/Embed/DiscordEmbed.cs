@@ -21,7 +21,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
             Url = data.Url;
             Timestamp = data.Timestamp;
             Color = data.Color;
-            Footer =  data.Footer is not null ? new DiscordEmbedFooter(data.Footer) : null;
+            Footer = data.Footer is not null ? new DiscordEmbedFooter(data.Footer) : null;
             Image = data.Image is not null ? new DiscordEmbedImage(data.Image) : null;
             Thumbnail = data.Thumbnail is not null ? new DiscordEmbedThumbnail(data.Thumbnail) : null;
             Video = data.Video is not null ? new DiscordEmbedVideo(data.Video) : null;
