@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.API.Rest.Guild;
+using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
+using Color_Chan.Discord.Rest.Models;
 using Color_Chan.Discord.Rest.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.API.Rest.Guild
@@ -20,6 +23,7 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
         {
         }
 
+        // All api calls for guilds.
         #region Guild
 
         /// <inheritdoc />
@@ -82,6 +86,48 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
 
         #endregion
 
+        // All api calls for guild channels.
+        #region Guild channels
+
+        /// <summary>
+        ///     Get the channels of a guild.
+        /// </summary>
+        /// <param name="guildId">The guild id.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result{T}" /> of <see cref="IDiscordChannel" /> with the request results.
+        /// </returns>
+        public virtual async Task<Result<IReadOnlyList<IDiscordChannel>>> GetGuildChannelsAsync(ulong guildId, CancellationToken ct = default)
+        {
+            var endpoint = $"guilds/{guildId.ToString()}/channels";
+            var result = await HttpClient.GetAsync<IReadOnlyList<DiscordChannelData>>(endpoint, ct: ct).ConfigureAwait(false);
+            return ConvertResult(result);
+        }
+        
+        // Todo: Create guild channel: https://discord.com/developers/docs/resources/guild#create-guild-channel
+
+        // Todo: Modify Guild Channel Positions: https://discord.com/developers/docs/resources/guild#modify-guild-channel-positions
+
+        // ReSharper disable once UnusedMember.Local
+        private Result<IDiscordChannel> ConvertResult(Result<DiscordChannelData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordChannel>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordChannel>.FromSuccess(new DiscordChannel(result.Entity));
+        }
+
+        private Result<IReadOnlyList<IDiscordChannel>> ConvertResult(Result<IReadOnlyList<DiscordChannelData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordChannel>>.FromError(null, result.ErrorResult);
+
+            var roles = new List<IDiscordChannel>();
+            foreach (var data in result.Entity) roles.Add(new DiscordChannel(data));
+
+            return Result<IReadOnlyList<IDiscordChannel>>.FromSuccess(roles);
+        }
+
+        #endregion
+        
         // All api calls for guild roles.
         #region Guild role
 
