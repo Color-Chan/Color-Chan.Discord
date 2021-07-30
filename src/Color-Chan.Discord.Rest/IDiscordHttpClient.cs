@@ -46,6 +46,18 @@ namespace Color_Chan.Discord.Rest
         ///     The <see cref="Result" />.
         /// </returns>
         Task<Result> PostAsync<TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TBody : notnull;
+        
+        /// <summary>
+        ///     Send a <see cref="HttpMethod.Post" /> request to the <paramref name="endpoint" />.
+        /// </summary>
+        /// <param name="endpoint">The endpoint to where the request will be send to.</param>
+        /// <param name="auditLogReason">The reason for this action that will be set in the audit logs.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
+        /// <returns>
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
+        /// </returns>
+        Task<Result<TEntity>> PostAsync<TEntity>(string endpoint, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull;
 
         /// <summary>
         ///     Send a <see cref="HttpMethod.Patch" /> request to the <paramref name="endpoint" />.
