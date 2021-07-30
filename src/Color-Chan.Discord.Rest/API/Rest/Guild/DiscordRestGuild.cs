@@ -20,6 +20,68 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
         {
         }
 
+        #region Guild
+
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuild>> CreateGuildAsync(DiscordCreateGuild createGuild, CancellationToken ct = default)
+        {
+            const string endpoint = "guilds";
+            var result = await HttpClient.PostAsync<DiscordGuildData, DiscordCreateGuild>(endpoint, createGuild, ct: ct).ConfigureAwait(false);
+            return ConvertResult(result);
+        }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuild>> GetGuildAsync(ulong guildId, bool withCounts = false, CancellationToken ct = default)
+        {
+            var queries = new List<KeyValuePair<string, string>>
+            {
+                new(Constants.Headers.WithCountsQueryName, withCounts.ToString())
+            };
+            
+            var endpoint = $"guilds/{guildId.ToString()}";
+            var result = await HttpClient.GetAsync<DiscordGuildData>(endpoint, queries, ct).ConfigureAwait(false);
+            return ConvertResult(result);
+        }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuildPreview>> GetGuildPreviewAsync(ulong guildId, CancellationToken ct = default)
+        {
+            var endpoint = $"guilds/{guildId.ToString()}";
+            var result = await HttpClient.GetAsync<DiscordGuildPreviewData>(endpoint, ct: ct).ConfigureAwait(false);
+            return ConvertResult(result);
+        }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuild>> ModifyGuildAsync(ulong guildId, DiscordModifyGuild modifyGuild, string? auditLogReason, CancellationToken ct = default)
+        {
+            var endpoint = $"guilds/{guildId.ToString()}";
+            var result = await HttpClient.PatchAsync<DiscordGuildData, DiscordModifyGuild>(endpoint, modifyGuild, auditLogReason, ct).ConfigureAwait(false);
+            return ConvertResult(result);
+        }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result> DeleteGuildAsync(ulong guildId, CancellationToken ct = default)
+        {
+            var endpoint = $"guilds/{guildId.ToString()}";
+            return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
+        }
+        
+        private Result<IDiscordGuild> ConvertResult(Result<DiscordGuildData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuild>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordGuild>.FromSuccess(new DiscordGuild(result.Entity));
+        }
+
+        private Result<IDiscordGuildPreview> ConvertResult(Result<DiscordGuildPreviewData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildPreview>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordGuildPreview>.FromSuccess(new DiscordGuildPreview(result.Entity));
+        }
+
+        #endregion
+
         // All api calls for guild roles.
         #region Guild role
 
@@ -100,8 +162,8 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
         {
             var queries = new List<KeyValuePair<string, string>>
             {
-                new(Constants.LimitQueryName, limit.ToString()),
-                new(Constants.AfterQueryName, afterId.ToString())
+                new(Constants.Headers.LimitQueryName, limit.ToString()),
+                new(Constants.Headers.AfterQueryName, afterId.ToString())
             };
 
             string endpoint = $"guilds/{guildId.ToString()}/members";
@@ -114,8 +176,8 @@ namespace Color_Chan.Discord.Rest.API.Rest.Guild
         {
             var queries = new List<KeyValuePair<string, string>>
             {
-                new(Constants.LimitQueryName, limit.ToString()),
-                new(Constants.SearchQueryName, query)
+                new(Constants.Headers.LimitQueryName, limit.ToString()),
+                new(Constants.Headers.SearchQueryName, query)
             };
 
             string endpoint = $"guilds/{guildId.ToString()}/members/search";

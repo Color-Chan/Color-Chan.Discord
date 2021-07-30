@@ -7,7 +7,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
     ///     https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags
     /// </summary>
     [Flags]
-    public enum DiscordGuildSystemChannelFlags
+    public enum DiscordSystemChannelFlags
     {
         /// <summary>
         ///     Suppress member join notifications.

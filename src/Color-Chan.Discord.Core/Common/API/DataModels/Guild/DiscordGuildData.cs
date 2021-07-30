@@ -162,7 +162,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     The system channel flags.
         /// </summary>
         [JsonPropertyName("system_channel_flags")]
-        public DiscordGuildSystemChannelFlags SystemChannelFlags { get; set; }
+        public DiscordSystemChannelFlags SystemChannelFlags { get; set; }
 
         /// <summary>
         ///     The id of the channel where Community guilds can display rules and/or guidelines.
@@ -311,21 +311,18 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     The id of the channel where admins and moderators of Community guilds receive notices from Discord.
         /// </summary>
         [JsonPropertyName("public_updates_channel_id")]
-
         public ulong? PublicUpdatesChannelId { get; set; }
 
         /// <summary>
         ///     The maximum amount of users in a video channel.
         /// </summary>
         [JsonPropertyName("max_video_channel_users")]
-
         public int? MaxVideoChannelUsers { get; set; }
 
         /// <summary>
         ///     Approximate number of members in this guild, returned from the GET /guilds/{id} endpoint when with_counts is true.
         /// </summary>
         [JsonPropertyName("approximate_member_count")]
-
         public int? ApproximateMemberCount { get; set; }
 
         /// <summary>
@@ -333,7 +330,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     with_counts is true.
         /// </summary>
         [JsonPropertyName("approximate_presence_count")]
-
         public int? ApproximatePresenceCount { get; set; }
 
         /// <summary>
