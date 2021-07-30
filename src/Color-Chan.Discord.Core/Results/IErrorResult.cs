@@ -1,5 +1,8 @@
 ﻿namespace Color_Chan.Discord.Core.Results
 {
+    /// <summary>
+    ///     An error result.
+    /// </summary>
     public interface IErrorResult
     {
         /// <summary>

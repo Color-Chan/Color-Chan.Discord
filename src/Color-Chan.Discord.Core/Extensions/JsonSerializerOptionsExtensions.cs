@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.API.Converters;
 
 namespace Color_Chan.Discord.Core.Extensions
 {
-    public static class JsonSerializerOptionsExtensions
+    internal static class JsonSerializerOptionsExtensions
     {
         /// <summary>
         ///     Registers Color-Chan.Discord.Core's json options and converters.

@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Extensions
 {
-    public static class GuildPermissionExtensions
+    internal static class GuildPermissionExtensions
     {
         /// <summary>
         ///     Convert a permission <see cref="ReadOnlySpan{T}" /> of <see cref="char" /> into a
