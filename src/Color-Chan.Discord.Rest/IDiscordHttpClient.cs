@@ -6,6 +6,9 @@ using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Rest
 {
+    /// <summary>
+    ///     The HTTP client for all Discord API calls.
+    /// </summary>
     public interface IDiscordHttpClient
     {
         /// <summary>
