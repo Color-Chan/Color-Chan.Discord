@@ -21,7 +21,7 @@ namespace Color_Chan.Discord.Rest.Extensions
         /// <param name="services">The <see cref="IServiceCollection" />.</param>
         /// <param name="botToken">
         ///     The bot token of your application.
-        ///     This can be found at https://discord.com/developers/applications/{APPLICATION_ID}/bot
+        ///     This can be found at https://discord.com/developers/applications/APPLICATION_ID/bot
         /// </param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
