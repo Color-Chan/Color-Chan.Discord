@@ -35,7 +35,10 @@ public static async Task Main(string[] args)
     var host = CreateHostBuilder(args).Build();
     
     // Configure Color-Chan.Discord.Commands
-    var config = new SlashCommandConfiguration(true); // <----- 
+    var config = new SlashCommandConfiguration
+    {
+        EnableAutoSync = true // <----- 
+    };  
     await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly(), config).ConfigureAwait(false); // <-----
 
     // Run the WebHost, and start accepting requests.
@@ -51,8 +54,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
 
-    services.AddControllers()
-            .AddColorChanJson(); // <---
+    services.AddControllers();
 }
 
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
