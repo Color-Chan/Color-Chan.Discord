@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net.Http;
 using Color_Chan.Discord.Core.Common.API.Rest;
-using Color_Chan.Discord.Core.Common.API.Rest.Guild;
 using Color_Chan.Discord.Rest.Extensions;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,7 +38,7 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
             discordClient2.BaseAddress.Should().Be(Constants.DiscordApiUrl);
             discordClient1.GetHashCode().Should().NotBe(discordClient2.GetHashCode());
         }
-        
+
         [Test]
         public void Should_resolve_IDiscordHttpClient()
         {
@@ -55,20 +54,20 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
             var application = _serviceProvider.GetService<IDiscordRestApplication>();
             application.Should().NotBeNull();
         }
-        
+
         [Test]
-        public void Should_resolve_IDiscordRestGuildRole()
+        public void Should_resolve_IDiscordRestGuild()
         {
             // Arrange
-            var application = _serviceProvider.GetService<IDiscordRestGuildRole>();
+            var application = _serviceProvider.GetService<IDiscordRestGuild>();
             application.Should().NotBeNull();
         }
-        
+
         [Test]
-        public void Should_resolve_IDiscordRestGuildMember()
+        public void Should_resolve_IDiscordRestChannel()
         {
             // Arrange
-            var application = _serviceProvider.GetService<IDiscordRestGuildMember>();
+            var application = _serviceProvider.GetService<IDiscordRestChannel>();
             application.Should().NotBeNull();
         }
     }

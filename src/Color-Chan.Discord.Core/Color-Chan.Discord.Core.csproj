@@ -44,6 +44,15 @@
     <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile></DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DocumentationFile></DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
     <ItemGroup>
         <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
     </ItemGroup>

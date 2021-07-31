@@ -5,6 +5,17 @@ namespace Color_Chan.Discord.Rest.Models.Embed
 {
     public record DiscordEmbedField : IDiscordEmbedField
     {
+        public DiscordEmbedField()
+        {
+        }
+
+        public DiscordEmbedField(DiscordEmbedFieldData data)
+        {
+            Name = data.Name;
+            Value = data.Value;
+            Inline = data.Inline;
+        }
+
         /// <inheritdoc />
         public string Name { get; init; } = null!;
 

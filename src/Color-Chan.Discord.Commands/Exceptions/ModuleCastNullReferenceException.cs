@@ -2,6 +2,9 @@
 
 namespace Color_Chan.Discord.Commands.Exceptions
 {
+    /// <summary>
+    ///     An exception that should be thrown when a module failed to be casted.
+    /// </summary>
     public class ModuleCastNullReferenceException : NullReferenceException
     {
         /// <summary>

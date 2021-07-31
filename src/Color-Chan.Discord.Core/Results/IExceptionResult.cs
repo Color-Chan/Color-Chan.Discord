@@ -2,6 +2,9 @@
 
 namespace Color_Chan.Discord.Core.Results
 {
+    /// <summary>
+    ///     An exception error result.
+    /// </summary>
     public interface IExceptionResult : IErrorResult
     {
         /// <summary>

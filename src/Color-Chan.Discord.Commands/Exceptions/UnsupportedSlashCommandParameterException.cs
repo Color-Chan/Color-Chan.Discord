@@ -2,6 +2,9 @@
 
 namespace Color_Chan.Discord.Commands.Exceptions
 {
+    /// <summary>
+    ///     An exception that should be thrown when a slash command contains an unsupported parameter.
+    /// </summary>
     public class UnsupportedSlashCommandParameterException : ArgumentException
     {
         /// <summary>

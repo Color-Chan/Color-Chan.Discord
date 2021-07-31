@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
     {
         private const int MaxGlobalCommands = 100;

@@ -8,7 +8,7 @@ using Polly;
 
 namespace Color_Chan.Discord.Rest
 {
-    public class HttpRequestMessageBuilder
+    internal class HttpRequestMessageBuilder
     {
         /// <summary>
         ///     The endpoint that the <see cref="HttpRequestMessage" /> will be using.
@@ -40,7 +40,7 @@ namespace Color_Chan.Discord.Rest
         ///     Initializes a new instance of <see cref="HttpRequestMessageBuilder" />.
         /// </summary>
         /// <param name="endpoint">The endpoint of where the <see cref="HttpRequestMessage" /> will be send to.</param>
-        public HttpRequestMessageBuilder(string endpoint)
+        internal HttpRequestMessageBuilder(string endpoint)
         {
             _endpoint = endpoint;
             _method = HttpMethod.Get;
@@ -53,7 +53,7 @@ namespace Color_Chan.Discord.Rest
         /// <returns>
         ///     The updated <see cref="HttpRequestMessageBuilder" />.
         /// </returns>
-        public HttpRequestMessageBuilder WithMethod(HttpMethod method)
+        internal HttpRequestMessageBuilder WithMethod(HttpMethod method)
         {
             _method = method;
             return this;
@@ -67,7 +67,7 @@ namespace Color_Chan.Discord.Rest
         /// <returns>
         ///     The updated <see cref="HttpRequestMessageBuilder" />.
         /// </returns>
-        public HttpRequestMessageBuilder WithQueryParameter(string name, string value)
+        internal HttpRequestMessageBuilder WithQueryParameter(string name, string value)
         {
             _queryParameters.Add(name, value);
             return this;
@@ -81,7 +81,7 @@ namespace Color_Chan.Discord.Rest
         /// <returns>
         ///     The updated <see cref="HttpRequestMessageBuilder" />.
         /// </returns>
-        public HttpRequestMessageBuilder WithHeader(string name, string? value)
+        internal HttpRequestMessageBuilder WithHeader(string name, string? value)
         {
             if (value is null) return this;
 
@@ -96,7 +96,7 @@ namespace Color_Chan.Discord.Rest
         /// <returns>
         ///     The updated <see cref="HttpRequestMessageBuilder" />.
         /// </returns>
-        public HttpRequestMessageBuilder WithHeaders(IEnumerable<KeyValuePair<string, string>>? headers)
+        internal HttpRequestMessageBuilder WithHeaders(IEnumerable<KeyValuePair<string, string>>? headers)
         {
             if (headers is null)
                 return this;
@@ -113,7 +113,7 @@ namespace Color_Chan.Discord.Rest
         /// <returns>
         ///     The updated <see cref="HttpRequestMessageBuilder" />.
         /// </returns>
-        public HttpRequestMessageBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>>? queries)
+        internal HttpRequestMessageBuilder WithQueryParameters(IEnumerable<KeyValuePair<string, string>>? queries)
         {
             if (queries is null)
                 return this;
@@ -132,7 +132,7 @@ namespace Color_Chan.Discord.Rest
         ///     The updated <see cref="HttpRequestMessageBuilder" />.
         /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="_method" /> is <see cref="HttpMethod.Get" />.</exception>
-        public HttpRequestMessageBuilder WithBody<TValue>(TValue value) where TValue : notnull
+        internal HttpRequestMessageBuilder WithBody<TValue>(TValue value) where TValue : notnull
         {
             if (_method == HttpMethod.Get)
                 throw new ArgumentException("Can not add a body to a GET request");
@@ -147,7 +147,7 @@ namespace Color_Chan.Discord.Rest
         /// <returns>
         ///     The <see cref="HttpRequestMessage" />.
         /// </returns>
-        public HttpRequestMessage Build()
+        internal HttpRequestMessage Build()
         {
             var queryParameters = HttpUtility.ParseQueryString(string.Empty);
             foreach (var (queryName, queryValue) in _queryParameters) queryParameters.Add(queryName, queryValue);

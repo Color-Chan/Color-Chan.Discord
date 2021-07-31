@@ -31,7 +31,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var types = buildService.GetSlashCommandModules(ValidAssembly);
 
             // Assert
-            types.Count().Should().Be(5);
+            types.Count().Should().Be(6);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commands = buildService.BuildSlashCommandInfos(ValidAssembly);
 
             // Assert
-            commands.Count.Should().Be(17);
+            commands.Count.Should().Be(18);
         }
 
         [Test]

@@ -2,7 +2,11 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
-    [Flags]
+	/// <summary>
+	///     Represents a discord Bitwise Permission Flags API model.
+	///     https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
+	/// </summary>
+	[Flags]
     public enum DiscordGuildPermission : ulong
     {
 	    /// <summary>
@@ -16,16 +20,28 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// <summary>
 	    ///     Allows kicking members.
 	    /// </summary>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
+	    /// </remarks>
 	    KickMembers = 1 << 1,
 
 	    /// <summary>
 	    ///     Allows banning members.
 	    /// </summary>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
+	    /// </remarks>
 	    BanMembers = 1 << 2,
 
 	    /// <summary>
 	    ///     Allows all permissions and bypasses channel permission overwrites.
 	    /// </summary>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
+	    /// </remarks>
 	    Administrator = 1 << 3,
 
 	    /// <summary>
@@ -34,11 +50,19 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// <remarks>
 	    ///     Channels types: Text, Voice, Stage.
 	    /// </remarks>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
+	    /// </remarks>
 	    ManageChannels = 1 << 4,
 
 	    /// <summary>
 	    ///     Allows management and editing of the guild.
 	    /// </summary>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
+	    /// </remarks>
 	    ManageGuild = 1 << 5,
 
 	    /// <summary>
@@ -99,6 +123,10 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// </summary>
 	    /// <remarks>
 	    ///     Channels types: Text.
+	    /// </remarks>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
 	    /// </remarks>
 	    ManageMessages = 1 << 13,
 
@@ -212,6 +240,10 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// <remarks>
 	    ///     Channels types: Text, Voice, Stage.
 	    /// </remarks>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
+	    /// </remarks>
 	    ManageRoles = 1 << 28,
 
 	    /// <summary>
@@ -220,12 +252,20 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// <remarks>
 	    ///     Channels types: Text.
 	    /// </remarks>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
+	    /// </remarks>
 	    ManageWebhooks = 1 << 29,
 
 	    /// <summary>
 	    ///     Allows management and editing of emojis.
 	    /// </summary>
-	    ManageEmojis = 1 << 30,
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
+	    /// </remarks>
+	    ManageEmojisAndStickers = 1 << 30,
 
 	    /// <summary>
 	    ///     Allows members to use slash commands in text channels.
@@ -249,6 +289,10 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// </summary>
 	    /// <remarks>
 	    ///     Channels types: Text.
+	    /// </remarks>
+	    /// <remarks>
+	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
+	    ///     enabled.
 	    /// </remarks>
 	    ManageThreads = (ulong) 1 << 34,
 

@@ -5,6 +5,16 @@ namespace Color_Chan.Discord.Rest.Models.Embed
 {
     public record DiscordEmbedProvider : IDiscordEmbedProvider
     {
+        public DiscordEmbedProvider()
+        {
+        }
+
+        public DiscordEmbedProvider(DiscordEmbedProviderData data)
+        {
+            Name = data.Name;
+            Url = data.Url;
+        }
+
         /// <inheritdoc />
         public string? Name { get; init; }
 

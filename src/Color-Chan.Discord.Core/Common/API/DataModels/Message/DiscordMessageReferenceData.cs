@@ -31,7 +31,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         ///     message, default true.
         /// </summary>
         [JsonPropertyName("fail_if_not_exists")]
-
         public ulong? FailIfNotExists { get; set; }
     }
 }

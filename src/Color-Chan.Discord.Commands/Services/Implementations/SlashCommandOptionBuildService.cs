@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandOptionBuildService : ISlashCommandOptionBuildService
     {
         private const int MaxCommandOptions = 25;
@@ -51,7 +52,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 }
             }
 
-            _logger.LogDebug("Found {Count} options for command {MethodName}", options.Count, command.Name);
+            _logger.LogDebug("Found {Count} options for command {MethodName}", options.Count.ToString(), command.Name);
             return options;
         }
 

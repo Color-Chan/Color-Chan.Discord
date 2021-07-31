@@ -49,6 +49,15 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         }
 
         /// <inheritdoc />
+        public double GetNumberValue()
+        {
+            if (Type != DiscordApplicationCommandOptionType.Number || Value is null)
+                throw new InvalidCastException("Can not cast Value if the Type is not a Number");
+
+            return (double) Value;
+        }
+
+        /// <inheritdoc />
         public bool GetBoolValue()
         {
             if (Type != DiscordApplicationCommandOptionType.Boolean || Value is null)
@@ -98,6 +107,8 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
                     return jsonValue?.GetInt32();
                 case DiscordApplicationCommandOptionType.Boolean:
                     return jsonValue?.GetBoolean();
+                case DiscordApplicationCommandOptionType.Number:
+                    return jsonValue?.GetDouble();
                 case DiscordApplicationCommandOptionType.User:
                     if (ulong.TryParse(jsonValue?.GetString(), out var userId))
                         return userId;

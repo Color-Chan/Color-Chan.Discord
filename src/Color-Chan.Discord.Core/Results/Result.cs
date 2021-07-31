@@ -2,6 +2,7 @@
 
 namespace Color_Chan.Discord.Core.Results
 {
+    /// <inheritdoc />
     public readonly struct Result : IResult
     {
         /// <summary>
@@ -85,6 +86,7 @@ namespace Color_Chan.Discord.Core.Results
         }
     }
 
+    /// <inheritdoc />
     public readonly struct Result<T> : IResult
     {
         /// <summary>

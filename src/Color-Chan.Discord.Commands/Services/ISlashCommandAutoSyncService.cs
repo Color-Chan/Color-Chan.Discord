@@ -6,6 +6,9 @@ using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Services
 {
+    /// <summary>
+    ///     Hold all the methods to sync the local slash command to Discords api.
+    /// </summary>
     public interface ISlashCommandAutoSyncService
     {
         /// <summary>

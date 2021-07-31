@@ -1,5 +1,8 @@
 ﻿namespace Color_Chan.Discord.Services
 {
+    /// <summary>
+    ///     The service that verifies all interaction request.
+    /// </summary>
     public interface IDiscordInteractionAuthService
     {
         /// <summary>

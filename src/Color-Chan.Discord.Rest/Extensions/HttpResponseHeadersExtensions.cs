@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 
 namespace Color_Chan.Discord.Rest.Extensions
 {
-    public static class HttpResponseHeadersExtensions
+    internal static class HttpResponseHeadersExtensions
     {
         /// <summary>
         ///     Tries to parse the bucket id from the <see cref="HttpResponseHeaders" />.

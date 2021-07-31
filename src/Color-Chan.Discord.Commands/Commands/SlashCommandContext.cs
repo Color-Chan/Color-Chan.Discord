@@ -6,8 +6,15 @@ using Color_Chan.Discord.Core.Common.Models.Message;
 
 namespace Color_Chan.Discord.Commands.Commands
 {
+    /// <inheritdoc />
     public class SlashCommandContext : ISlashCommandContext
     {
+        /// <summary>
+        ///     Initializes a new instance of <see cref="SlashCommandContext" />.
+        /// </summary>
+        /// <param name="user">The <see cref="IDiscordUser" /> that activated the slash command.</param>
+        /// <param name="message">The <see cref="IDiscordMessage" /> containing the message of the slash command request.</param>
+        /// <param name="command">The <see cref="IDiscordInteractionCommand" /> containing the data for the slash command request.</param>
         public SlashCommandContext(IDiscordUser user, IDiscordMessage message, IDiscordInteractionCommand command)
         {
             User = user;

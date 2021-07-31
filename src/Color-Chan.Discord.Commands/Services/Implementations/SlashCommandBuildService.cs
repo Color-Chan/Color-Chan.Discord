@@ -11,9 +11,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandBuildService : ISlashCommandBuildService
     {
-        private static readonly TypeInfo ModuleTypeInfo = typeof(ISlashCommandModuleBase).GetTypeInfo();
+        private static readonly TypeInfo ModuleTypeInfo = typeof(ISlashCommandModule).GetTypeInfo();
         private readonly ISlashCommandGuildBuildService _guildBuildService;
         private readonly ILogger<SlashCommandBuildService> _logger;
         private readonly ISlashCommandOptionBuildService _optionBuildService;
@@ -60,7 +61,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     validCommands.Add(commandInfoKeyValuePair.Value);
                 }
 
-                _logger.LogDebug("Found {CommandCount} valid commands in {ClassName}", validCommands.Count, parentModule.FullName);
+                _logger.LogDebug("Found {CommandCount} valid commands in {ClassName}", validCommands.Count.ToString(), parentModule.FullName);
             }
 
             return validCommands;

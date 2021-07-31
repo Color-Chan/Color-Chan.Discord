@@ -3,6 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a discord Allowed Mentions Structure API model.
+    ///     https://discord.com/developers/docs/resources/channel#allowed-mentions-object-allowed-mentions-structure
+    /// </summary>
     public record DiscordAllowedMentionsData
     {
         /// <summary>

@@ -5,6 +5,9 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild
 {
+    /// <summary>
+    ///     A local representation for <see cref="DiscordGuildData" />.
+    /// </summary>
     public interface IDiscordGuild
     {
         /// <summary>
@@ -99,11 +102,15 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// </summary>
         DiscordGuildExplicitContentFilterLevel ExplicitContentFilter { get; set; }
 
-        // Todo:
-        // Roles { get; set; }
+        /// <summary>
+        ///     Roles in the guild.
+        /// </summary>
+        IEnumerable<IDiscordGuildRole> Roles { get; set; }
 
-        // Todo:
-        // Emojis { get; set; }
+        /// <summary>
+        ///     Custom guild emojis.
+        /// </summary>
+        IEnumerable<IDiscordEmoji> Emojis { get; set; }
 
         /// <summary>
         ///     Enabled guild features.
@@ -128,7 +135,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// <summary>
         ///     The system channel flags.
         /// </summary>
-        DiscordGuildSystemChannelFlags SystemChannelFlags { get; set; }
+        DiscordSystemChannelFlags SystemChannelFlags { get; set; }
 
         /// <summary>
         ///     The id of the channel where Community guilds can display rules and/or guidelines.
@@ -175,14 +182,29 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// </remarks>
         IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
 
-        // Todo:
-        // Members { get; set; }
+        /// <summary>
+        ///     Users in the guild.
+        /// </summary>
+        /// <remarks>
+        ///     Only send on the 'GUILD_CREATE' event.
+        /// </remarks>
+        IEnumerable<IDiscordGuildMember>? Members { get; set; }
 
-        // Todo:
-        // Channels { get; set; }
+        /// <summary>
+        ///     Channels in the guild.
+        /// </summary>
+        /// <remarks>
+        ///     Only send on the 'GUILD_CREATE' event.
+        /// </remarks>
+        IEnumerable<IDiscordChannel>? Channels { get; set; }
 
-        // Todo:
-        // Threads { get; set; }
+        /// <summary>
+        ///     All active threads in the guild that current user has permission to view.
+        /// </summary>
+        /// <remarks>
+        ///     Only send on the 'GUILD_CREATE' event.
+        /// </remarks>
+        IEnumerable<IDiscordChannel>? Threads { get; set; }
 
         /// <summary>
         ///     presences of the members in the guild, will only include non-offline members if the size is greater than large
@@ -260,15 +282,22 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// </summary>
         int? ApproximatePresenceCount { get; set; }
 
-        // Todo:
-        // WelcomeScreen { get; set; }
+        /// <summary>
+        ///     The welcome screen of a Community guild, shown to new members, returned in an Invite's guild object.
+        /// </summary>
+        IDiscordGuildWelcomeScreen? WelcomeScreen { get; set; }
 
         /// <summary>
         ///     Guild NSFW level.
         /// </summary>
         DiscordGuildNsfwLevel NsfwLevel { get; set; }
 
-        // Todo:
-        // StageInstances { get; set; }
+        /// <summary>
+        ///     Stage instances in the guild.
+        /// </summary>
+        /// <remarks>
+        ///     Only send on the 'GUILD_CREATE' event.
+        /// </remarks>
+        IDiscordStageInstance? StageInstances { get; set; }
     }
 }

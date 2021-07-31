@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandRequirementBuildService : ISlashCommandRequirementBuildService
     {
         private readonly ILogger<SlashCommandRequirementBuildService> _logger;
@@ -29,7 +30,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var methodAttributes = command.GetCustomAttributes<SlashCommandRequirementAttribute>();
             attributes.AddRange(methodAttributes);
 
-            _logger.LogDebug("Found {Count} requirements for command {MethodName}", attributes.Count, command.Name);
+            _logger.LogDebug("Found {Count} requirements for command {MethodName}", attributes.Count.ToString(), command.Name);
             return attributes;
         }
     }

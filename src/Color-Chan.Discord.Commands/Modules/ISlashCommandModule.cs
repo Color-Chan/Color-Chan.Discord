@@ -2,7 +2,10 @@
 
 namespace Color_Chan.Discord.Commands.Modules
 {
-    public interface ISlashCommandModuleBase
+    /// <summary>
+    ///     The base that should be used for all slash command modules.
+    /// </summary>
+    public interface ISlashCommandModule
     {
         /// <summary>
         ///     Set the current <see cref="ISlashCommandContext" /> for a command.

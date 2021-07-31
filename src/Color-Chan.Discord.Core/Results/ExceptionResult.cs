@@ -2,8 +2,8 @@
 
 namespace Color_Chan.Discord.Core.Results
 {
+    /// <inheritdoc cref="IExceptionResult" />
     public record ExceptionResult : ErrorResult, IExceptionResult
-
     {
         /// <summary>
         ///     Initializes a new instance of <see cref="ExceptionResult" />.

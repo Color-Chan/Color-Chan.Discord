@@ -5,6 +5,18 @@ namespace Color_Chan.Discord.Rest.Models.Embed
 {
     public record DiscordEmbedImage : IDiscordEmbedImage
     {
+        public DiscordEmbedImage()
+        {
+        }
+
+        public DiscordEmbedImage(DiscordEmbedImageData data)
+        {
+            Url = data.Url;
+            ProxyUrl = data.ProxyUrl;
+            Height = data.Height;
+            Width = data.Width;
+        }
+
         /// <inheritdoc />
         public string? Url { get; init; }
 

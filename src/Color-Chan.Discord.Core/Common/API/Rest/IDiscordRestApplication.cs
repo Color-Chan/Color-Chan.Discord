@@ -7,6 +7,10 @@ using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Core.Common.API.Rest
 {
+    /// <summary>
+    ///     Contains all the API calls mentioned in the Application object documentation.
+    ///     https://discord.com/developers/docs/resources/application
+    /// </summary>
     public interface IDiscordRestApplication
     {
         /// <summary>
@@ -36,9 +40,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <returns>
         ///     The <see cref="Result{T}" /> of <see cref="IDiscordApplicationCommand" /> with the request results.
         /// </returns>
-        Task<Result<IDiscordApplicationCommand>> CreateGlobalApplicationCommandAsync(ulong applicationId,
-                                                                                     DiscordCreateApplicationCommand command, CancellationToken ct = default
-        );
+        Task<Result<IDiscordApplicationCommand>> CreateGlobalApplicationCommandAsync(ulong applicationId, DiscordCreateApplicationCommand command, CancellationToken ct = default);
 
         /// <summary>
         ///     Fetch a global application command for your application..

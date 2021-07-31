@@ -1,5 +1,8 @@
 ﻿namespace Color_Chan.Discord.Core
 {
+    /// <summary>
+    ///     Contains the discord token and IDs.
+    /// </summary>
     public record DiscordTokens
     {
         /// <summary>

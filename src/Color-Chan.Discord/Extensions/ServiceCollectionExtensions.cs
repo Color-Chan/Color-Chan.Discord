@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Color_Chan.Discord.Extensions
 {
+    /// <summary>
+    ///     Contains all the extension methods for <see cref="IServiceCollection" />.
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>

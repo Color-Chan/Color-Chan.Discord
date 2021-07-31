@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
+    /// <inheritdoc />
     public class SlashCommandService : ISlashCommandService
     {
         private readonly ISlashCommandAutoSyncService _commandAutoSyncService;
@@ -32,10 +34,16 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         ///     The <see cref="ISlashCommandBuildService" /> that will get and build the
         ///     commands.
         /// </param>
-        /// <param name="requirementService">The <see cref="requirementService" /> that will used to execute the requirements.</param>
-        /// <param name="commandAutoSyncService"></param>
-        public SlashCommandService(ILogger<SlashCommandService> logger, ISlashCommandBuildService slashCommandBuildService, ISlashCommandRequirementService requirementService,
-                                   ISlashCommandAutoSyncService commandAutoSyncService)
+        /// <param name="requirementService">
+        ///     The <see cref="ISlashCommandRequirementService" /> that will used to execute the
+        ///     requirements.
+        /// </param>
+        /// <param name="commandAutoSyncService">
+        ///     The <see cref="ISlashCommandAutoSyncService" /> that handles all the syncing of
+        ///     the slash commands.
+        /// </param>
+        public SlashCommandService(ILogger<SlashCommandService> logger, ISlashCommandBuildService slashCommandBuildService,
+                                   ISlashCommandRequirementService requirementService, ISlashCommandAutoSyncService commandAutoSyncService)
         {
             _logger = logger;
             _slashCommandBuildService = slashCommandBuildService;
@@ -57,15 +65,16 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             _logger.LogInformation("Finished adding {Count} commands to the command registry", _slashCommands.Count.ToString());
 
             // Default config if no config was set.
-            _configurations ??= SlashCommandConfiguration.Default();
+            _configurations ??= new SlashCommandConfiguration();
 
             var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
 
-            if (!result.IsSuccessful) throw new SlashCommandAutoSyncException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
+            if (!result.IsSuccessful) throw new UpdateSlashCommandException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context,
+                                                                                        List<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
         {
             serviceProvider ??= DefaultServiceProvider.Instance;
 
@@ -75,10 +84,21 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var requirementErrors = await _requirementService.ExecuteSlashCommandRequirementsAsync(commandInfo, context, serviceProvider).ConfigureAwait(false);
             if (requirementErrors.Any()) return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(string.Join(", ", requirementErrors)));
 
+            // Get the arguments from the given options.
+            var args = new List<object?>();
+            if (commandInfo.CommandOptions is not null)
+                foreach (var commandOption in commandInfo.CommandOptions)
+                {
+                    var userOption = options?.FirstOrDefault(x => x.Name == commandOption.Name);
+
+                    // Add the argument value if one was supplied or add null.
+                    args.Add(userOption?.Value);
+                }
+
             // Try to execute the command.
             try
             {
-                if (commandInfo.CommandMethod.Invoke(instance, null) is not Task<IDiscordInteractionResponse> task)
+                if (commandInfo.CommandMethod.Invoke(instance, args.ToArray()) is not Task<IDiscordInteractionResponse> task)
                 {
                     _logger.LogWarning("Failed to cast {MethodName} to Task<IDiscordInteractionResponse>", commandInfo.CommandMethod.Name);
                     return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Failed to cast command to Task<IDiscordInteractionResponse>"));
@@ -95,11 +115,15 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
+                                                                                        IServiceProvider? serviceProvider = null)
         {
             var commandInfo = SearchSlashCommand(name);
-            if (commandInfo is null) return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Failed to find command."));
-            return await ExecuteSlashCommandAsync(commandInfo, context, serviceProvider).ConfigureAwait(false);
+
+            if (commandInfo is not null) return await ExecuteSlashCommandAsync(commandInfo, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
+
+            _logger.LogWarning("Failed to find slash command {Name}", name);
+            return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {name}"));
         }
 
         /// <inheritdoc />
@@ -116,18 +140,18 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <summary>
-        ///     Get a new instance of a <see cref="ISlashCommandModuleBase" /> with its required dependencies.
+        ///     Get a new instance of a <see cref="ISlashCommandModule" /> with its required dependencies.
         /// </summary>
         /// <param name="serviceProvider">The <see cref="IServiceProvider" /> containing the required dependencies.</param>
         /// <param name="command">The command method that will be executed.</param>
         /// <returns>
-        ///     A new instance of the <see cref="ISlashCommandModuleBase" />.
+        ///     A new instance of the <see cref="ISlashCommandModule" />.
         /// </returns>
         /// <exception cref="ModuleCastNullReferenceException"></exception>
-        private ISlashCommandModuleBase GetSlashCommandModuleInstance(IServiceProvider serviceProvider, MemberInfo command)
+        private ISlashCommandModule GetSlashCommandModuleInstance(IServiceProvider serviceProvider, MemberInfo command)
         {
-            if (ActivatorUtilities.CreateInstance(serviceProvider, command.DeclaringType!) is not ISlashCommandModuleBase instance)
-                throw new ModuleCastNullReferenceException("Failed to cast module to IInteractionCommandModuleBase");
+            if (ActivatorUtilities.CreateInstance(serviceProvider, command.DeclaringType!) is not ISlashCommandModule instance)
+                throw new ModuleCastNullReferenceException("Failed to cast command module to IInteractionCommandModuleBase");
 
             return instance;
         }

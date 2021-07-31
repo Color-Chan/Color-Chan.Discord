@@ -10,6 +10,9 @@ using Polly.Contrib.WaitAndRetry;
 
 namespace Color_Chan.Discord.Rest.Extensions
 {
+    /// <summary>
+    ///     Contains all the extensions methods for <see cref="IServiceCollection" />.
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>

@@ -7,6 +7,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace Color_Chan.Discord.Extensions
 {
+    /// <summary>
+    ///     Contains all the extension methods for <see cref="IHost" />.
+    /// </summary>
     public static class HostExtensions
     {
         /// <summary>

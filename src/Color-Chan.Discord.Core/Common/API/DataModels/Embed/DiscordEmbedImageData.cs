@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
 {
+    /// <summary>
+    ///     Represents a discord Embed Image Structure API model.
+    ///     https://discord.com/developers/docs/resources/channel#embed-object-embed-image-structure
+    /// </summary>
     public record DiscordEmbedImageData
     {
         /// <summary>

@@ -11,7 +11,7 @@ using Polly;
 
 namespace Color_Chan.Discord.Rest.Policies
 {
-    public class DiscordRateLimitPolicy : AsyncPolicy<HttpResponseMessage>
+    internal class DiscordRateLimitPolicy : AsyncPolicy<HttpResponseMessage>
     {
         private readonly ConcurrentDictionary<string, DiscordRateLimitBucket> _buckets;
         private readonly ConcurrentDictionary<string, string> _endpointBucketIdDictionary;
@@ -20,7 +20,7 @@ namespace Color_Chan.Discord.Rest.Policies
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordRateLimitPolicy" />.
         /// </summary>
-        public DiscordRateLimitPolicy(int globalLimit, int globalRemaining)
+        internal DiscordRateLimitPolicy(int globalLimit, int globalRemaining)
         {
             _endpointBucketIdDictionary = new ConcurrentDictionary<string, string>();
             _buckets = new ConcurrentDictionary<string, DiscordRateLimitBucket>();

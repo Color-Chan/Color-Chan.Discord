@@ -3,11 +3,24 @@ using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
+using Color_Chan.Discord.Rest.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.Models
 {
     public record DiscordEmoji : IDiscordEmoji
     {
+        public DiscordEmoji(DiscordEmojiData emojiData)
+        {
+            Id = emojiData.Id;
+            Name = emojiData.Name;
+            Roles = emojiData.Roles?.Select(roleData => new DiscordGuildRole(roleData));
+            User = emojiData.User is not null ? new DiscordUser(emojiData.User) : null;
+            IsAnimated = emojiData.IsAnimated;
+            IsAvailable = emojiData.IsAvailable;
+            IsManaged = emojiData.IsManaged;
+            RequireColons = emojiData.RequireColons;
+        }
+
         /// <inheritdoc />
         public ulong Id { get; init; }
 

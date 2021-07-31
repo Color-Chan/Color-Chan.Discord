@@ -7,10 +7,13 @@ using Color_Chan.Discord.Core;
 
 namespace Color_Chan.Discord.Commands.Services
 {
+    /// <summary>
+    ///     Holds all the methods to execute all <see cref="SlashCommandRequirementAttribute" />s for a slash command.
+    /// </summary>
     public interface ISlashCommandRequirementService
     {
         /// <summary>
-        ///     Executes all <see cref="SlashCommandRequirementAttribute" />s for a <see cref="commandInfo" />.
+        ///     Executes all <see cref="SlashCommandRequirementAttribute" />s for a <see cref="ISlashCommandInfo" />.
         /// </summary>
         /// <param name="commandInfo">
         ///     The <see cref="ISlashCommandInfo" /> containing the

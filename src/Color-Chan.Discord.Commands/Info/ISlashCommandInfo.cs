@@ -4,6 +4,9 @@ using Color_Chan.Discord.Commands.Attributes;
 
 namespace Color_Chan.Discord.Commands.Info
 {
+    /// <summary>
+    ///     Contains all the information about a slash command.
+    /// </summary>
     public interface ISlashCommandInfo
     {
         /// <summary>

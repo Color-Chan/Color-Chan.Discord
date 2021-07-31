@@ -1,0 +1,6 @@
+{
+  "nick": "nickname",
+  "mute": true,
+  "deaf": true,
+  "channel_id": "99999999999"
+}

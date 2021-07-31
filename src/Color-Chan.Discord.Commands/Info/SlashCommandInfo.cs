@@ -4,7 +4,8 @@ using Color_Chan.Discord.Commands.Attributes;
 
 namespace Color_Chan.Discord.Commands.Info
 {
-    public record SlashCommandInfo : ISlashCommandInfo
+    /// <inheritdoc />
+    public class SlashCommandInfo : ISlashCommandInfo
     {
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandInfo" />.

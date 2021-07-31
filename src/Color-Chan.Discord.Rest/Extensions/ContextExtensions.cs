@@ -3,7 +3,7 @@ using Polly;
 
 namespace Color_Chan.Discord.Rest.Extensions
 {
-    public static class ContextExtensions
+    internal static class ContextExtensions
     {
         /// <summary>
         ///     Get the endpoint value from the <see cref="Context" />.

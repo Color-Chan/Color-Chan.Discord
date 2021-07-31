@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
+    /// <summary>
+    ///     Represents a discord Welcome Screen Channel Structure API model.
+    ///     https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-channel-structure
+    /// </summary>
     public record DiscordGuildWelcomeChannelData
     {
         /// <summary>

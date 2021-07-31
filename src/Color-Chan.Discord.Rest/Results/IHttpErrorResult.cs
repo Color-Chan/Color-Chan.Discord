@@ -3,6 +3,9 @@ using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Rest.Results
 {
+    /// <summary>
+    ///     A HTTP error result.
+    /// </summary>
     public interface IHttpErrorResult : IErrorResult
     {
         /// <summary>

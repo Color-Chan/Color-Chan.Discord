@@ -1,7 +1,15 @@
 ﻿namespace Color_Chan.Discord.Commands.Models
 {
+    /// <summary>
+    ///     Contains a result for a slash command requirement.
+    /// </summary>
     public class SlashCommandRequirementResult
     {
+        /// <summary>
+        ///     Initializes a new instance of <see cref="SlashCommandRequirementResult" />.
+        /// </summary>
+        /// <param name="passed">Whether or not the requirement was passed.</param>
+        /// <param name="errorMessage">The error message if the requirement failed.</param>
         public SlashCommandRequirementResult(bool passed, string? errorMessage = null)
         {
             Passed = passed;

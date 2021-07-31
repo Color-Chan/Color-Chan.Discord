@@ -5,6 +5,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Commands.Info
 {
+    /// <inheritdoc />
     public class SlashCommandOptionInfo : ISlashCommandOptionInfo
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Color_Chan.Discord.Commands.Info
             {
                 var t when t == typeof(bool) => DiscordApplicationCommandOptionType.Boolean,
                 var t when t == typeof(int) => DiscordApplicationCommandOptionType.Integer,
+                var t when t == typeof(double) => DiscordApplicationCommandOptionType.Number,
                 var t when t == typeof(string) => DiscordApplicationCommandOptionType.String,
                 _ => throw new UnsupportedSlashCommandParameterException($"{type.Name} is currently not supported as a slash command options.")
             };

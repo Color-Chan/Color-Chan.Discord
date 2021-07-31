@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Color_Chan.Discord.Core.Extensions
 {
-    public static class TaskExtensions
+    internal static class TaskExtensions
     {
         /// <summary>
         ///     Tries to run multiple <see cref="Task" />s at once.
