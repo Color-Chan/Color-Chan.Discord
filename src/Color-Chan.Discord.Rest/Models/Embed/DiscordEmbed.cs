@@ -34,7 +34,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
         public string? Title { get; init; }
 
         /// <inheritdoc />
-        public string? Type { get; init; }
+        public DiscordEmbedType? Type { get; init; }
 
         /// <inheritdoc />
         public string? Description { get; init; }
