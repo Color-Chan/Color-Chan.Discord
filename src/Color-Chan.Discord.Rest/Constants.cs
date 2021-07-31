@@ -17,8 +17,16 @@ namespace Color_Chan.Discord.Rest
         /// </summary>
         internal static Uri DiscordApiUrl { get; } = new($"https://discord.com/api/v{DiscordBaseApiVersion.ToString()}/");
 
+        /// <summary>
+        ///     Contains the constants for Discord API headers.
+        /// </summary>
         internal static class Headers
         {
+            /// <summary>
+            ///     The query name for a list of message ids.
+            /// </summary>
+            internal static string MessageQueryName { get; } = "messages";
+            
             /// <summary>
             ///     The query name to limit a request to a certain number of results.
             /// </summary>

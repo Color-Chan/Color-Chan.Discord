@@ -189,7 +189,8 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <returns>
         ///     A <see cref="Result" /> with the request results.
         /// </returns>
-        Task<Result> BulkDeleteMessageAsync(ulong channelId, IEnumerable<ulong> messageIds, string auditLogReason, CancellationToken ct = default);
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="messageIds"/> is not between 2 and 100.</exception>
+        Task<Result> BulkDeleteMessageAsync(ulong channelId, IReadOnlyList<ulong> messageIds, string auditLogReason, CancellationToken ct = default);
         
         /// <summary>
         ///     Add a reaction to a message.

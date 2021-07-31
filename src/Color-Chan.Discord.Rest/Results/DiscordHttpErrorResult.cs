@@ -3,6 +3,9 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Errors;
 
 namespace Color_Chan.Discord.Rest.Results
 {
+    /// <summary>
+    ///     A Discord HTTP error result.
+    /// </summary>
     public record DiscordHttpErrorResult : HttpErrorResult
     {
         /// <summary>
