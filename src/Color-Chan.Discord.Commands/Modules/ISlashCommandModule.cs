@@ -1,4 +1,5 @@
-﻿using Color_Chan.Discord.Core;
+﻿using System;
+using Color_Chan.Discord.Core;
 
 namespace Color_Chan.Discord.Commands.Modules
 {
@@ -11,6 +12,7 @@ namespace Color_Chan.Discord.Commands.Modules
         ///     Set the current <see cref="ISlashCommandContext" /> for a command.
         /// </summary>
         /// <param name="context">The new <see cref="ISlashCommandContext" />.</param>
+        /// <exception cref="ArgumentNullException">When the given context was null.</exception>
         void SetContext(ISlashCommandContext context);
     }
 }
