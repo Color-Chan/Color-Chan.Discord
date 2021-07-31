@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Threading.Tasks;
+using Color_Chan.Discord.Builders;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Modules;
-using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
-using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
-using Color_Chan.Discord.Rest.Models.Embed;
-using Color_Chan.Discord.Rest.Models.Interaction;
 
 namespace Pong.Commands
 {
@@ -17,24 +12,17 @@ namespace Pong.Commands
         [SlashCommand("ping", "Ping Pong!")]
         public Task<IDiscordInteractionResponse> PongAsync()
         {
-            var response = new DiscordInteractionResponse
-            {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource,
-                Data = new DiscordInteractionCommandCallback
-                {
-                    Embeds = new List<IDiscordEmbed>
-                    {
-                        new DiscordEmbed
-                        {
-                            Description = "Pong!",
-                            Timestamp = DateTimeOffset.UtcNow,
-                            Color = Color.Cyan
-                        }
-                    }
-                }
-            };
+            var embedBuilder = new DiscordEmbedBuilder()
+                               .WithTitle("Ping response")
+                               .WithDescription("Pong!")
+                               .WithColor(Color.Aqua)
+                               .WithTimeStamp();
 
-            return Task.FromResult<IDiscordInteractionResponse>(response);
+            var response = new SlashCommandResponseBuilder()
+                           .WithEmbed(embedBuilder.Build())
+                           .Build();
+
+            return Task.FromResult(response);
         }
     }
 }
