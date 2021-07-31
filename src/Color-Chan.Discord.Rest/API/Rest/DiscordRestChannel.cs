@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.DataModels;
@@ -11,22 +12,25 @@ using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models;
 using Color_Chan.Discord.Rest.Models.Message;
+using Microsoft.Extensions.Options;
 
 namespace Color_Chan.Discord.Rest.API.Rest
 {
     /// <inheritdoc cref="IDiscordRestChannel" />
     public class DiscordRestChannel : DiscordRestBase, IDiscordRestChannel
     {
+        private readonly IOptions<JsonSerializerOptions> _serializerOptions;
+
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordRestGuild" />.
         /// </summary>
         /// <inheritdoc />
-        public DiscordRestChannel(IDiscordHttpClient httpClient) : base(httpClient)
+        public DiscordRestChannel(IDiscordHttpClient httpClient,  IOptions<JsonSerializerOptions> serializerOptions) : base(httpClient)
         {
+            _serializerOptions = serializerOptions;
         }
 
-        // All api calls for guilds.
-
+        // All api calls for channels.
         #region Channels
 
         /// <inheritdoc />
@@ -56,6 +60,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         #endregion
 
+        // All api calls for channel messages.
         #region Channel messages
 
         /// <inheritdoc />
@@ -101,6 +106,33 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.PostAsync<DiscordMessageData>(endpoint, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordMessage>> EditMessageAsync(ulong channelId, ulong messageId, DiscordEditChannelMessage editChannelMessage, CancellationToken ct = default)
+        {
+            var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}";
+            var result = await HttpClient.PatchAsync<DiscordMessageData, DiscordEditChannelMessage>(endpoint, editChannelMessage, ct: ct).ConfigureAwait(false);
+            return ConvertResult(result);
+        }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result> DeleteMessageAsync(ulong channelId, ulong messageId, string auditLogReason, CancellationToken ct = default)
+        {
+            var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}";
+            return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
+        }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result> BulkDeleteMessageAsync(ulong channelId, IEnumerable<ulong> messageIds, string auditLogReason, CancellationToken ct = default)
+        {
+            var queries = new List<KeyValuePair<string, string>>
+            {
+                new("messages", JsonSerializer.Serialize(messageIds, _serializerOptions.Value))
+            };
+
+            var endpoint = $"channels/{channelId.ToString()}/messages/bulk-delete";
+            return await HttpClient.DeleteAsync(endpoint, queries, auditLogReason, ct).ConfigureAwait(false);
+        }
 
         private Result<IDiscordMessage> ConvertResult(Result<DiscordMessageData> result)
         {
@@ -119,6 +151,41 @@ namespace Color_Chan.Discord.Rest.API.Rest
             return Result<IReadOnlyList<IDiscordMessage>>.FromSuccess(list);
         }
 
+        #endregion
+        
+        // All api calls for channel messages.
+        #region Channel mesessages
+
+        /// <inheritdoc />
+        public virtual async Task<Result> CreateReactionAsync(ulong channelId, ulong messageId, string emoji, CancellationToken ct = default)
+        {
+            var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}/reactions/{emoji}/@me";
+            return await HttpClient.PutAsync(endpoint, ct: ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public virtual async Task<Result> DeleteOwnReactionAsync(ulong channelId, ulong messageId, string emoji, CancellationToken ct = default)
+        {
+            var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}/reactions/{emoji}/@me";
+            return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
+        }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result> DeleteUserReactionAsync(ulong channelId, ulong messageId, string emoji, ulong userId, CancellationToken ct = default)
+        {
+            var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}/reactions/{emoji}/{userId.ToString()}";
+            return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
+        }
+
+        // Todo: Implement Get Reactions: https://discord.com/developers/docs/resources/channel#get-reactions
+        
+        /// <inheritdoc />
+        public virtual async Task<Result> DeleteAllReactionAsync(ulong channelId, ulong messageId, string emoji, CancellationToken ct = default)
+        {
+            var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}/reactions/{emoji}";
+            return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
+        }
+        
         #endregion
     }
 }

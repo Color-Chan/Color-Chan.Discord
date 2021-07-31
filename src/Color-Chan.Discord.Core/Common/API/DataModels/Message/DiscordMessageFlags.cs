@@ -36,6 +36,21 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         /// <summary>
         ///     Flag given to messages that came from the urgent message system.
         /// </summary>
-        Urgent = 1 << 4
+        Urgent = 1 << 4,
+
+        /// <summary>
+        ///     This message has an associated thread, with the same id as the message.
+        /// </summary>
+        HasThread = 1 << 5,
+
+        /// <summary>
+        ///     This message is only visible to the user who invoked the Interaction.
+        /// </summary>
+        Ephemeral = 1 << 6,
+
+        /// <summary>
+        ///     This message is an Interaction Response and the bot is "thinking".
+        /// </summary>
+        Loading = 1 << 7,
     }
 }

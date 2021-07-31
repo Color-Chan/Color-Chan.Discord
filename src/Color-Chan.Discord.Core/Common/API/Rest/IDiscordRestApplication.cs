@@ -40,9 +40,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <returns>
         ///     The <see cref="Result{T}" /> of <see cref="IDiscordApplicationCommand" /> with the request results.
         /// </returns>
-        Task<Result<IDiscordApplicationCommand>> CreateGlobalApplicationCommandAsync(ulong applicationId,
-                                                                                     DiscordCreateApplicationCommand command, CancellationToken ct = default
-        );
+        Task<Result<IDiscordApplicationCommand>> CreateGlobalApplicationCommandAsync(ulong applicationId, DiscordCreateApplicationCommand command, CancellationToken ct = default);
 
         /// <summary>
         ///     Fetch a global application command for your application..

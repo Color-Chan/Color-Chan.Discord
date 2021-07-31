@@ -62,5 +62,13 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
             var application = _serviceProvider.GetService<IDiscordRestGuild>();
             application.Should().NotBeNull();
         }
+        
+        [Test]
+        public void Should_resolve_IDiscordRestChannel()
+        {
+            // Arrange
+            var application = _serviceProvider.GetService<IDiscordRestChannel>();
+            application.Should().NotBeNull();
+        }
     }
 }

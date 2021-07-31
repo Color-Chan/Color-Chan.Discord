@@ -145,5 +145,99 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     A <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
         /// </returns>
         Task<Result<IDiscordMessage>> CrosspostMessageAsync(ulong channelId, ulong messageId, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Edit a previously sent message.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The fields content, embeds, and flags can be edited by the original message author.
+        /// Other users can only edit flags and only if they have the MANAGE_MESSAGES permission in the corresponding channel.
+        /// </para>
+        /// <para>
+        /// When the content field is edited, the mentions array in the message object will be reconstructed from scratch based on the new content.
+        /// </para>
+        /// </remarks>
+        /// <param name="channelId">The channel id.</param>
+        /// <param name="messageId">The ID of the message that will be edited.</param>
+        /// <param name="editChannelMessage">The <see cref="DiscordEditChannelMessage"/> containing the new content for the message.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordMessage>> EditMessageAsync(ulong channelId, ulong messageId, DiscordEditChannelMessage editChannelMessage, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Deletes a message.
+        /// </summary>
+        /// <param name="channelId">The channel id.</param>
+        /// <param name="messageId">The message ID of the message that will be deleted.</param>
+        /// <param name="auditLogReason">The reason for this action. This will be shown in the audit logs.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> DeleteMessageAsync(ulong channelId, ulong messageId, string auditLogReason, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Bulks delete 2-100 messages.
+        /// </summary>
+        /// <param name="channelId">The channel id.</param>
+        /// <param name="messageIds">The message IDs of the message that will be deleted.</param>
+        /// <param name="auditLogReason">The reason for this action. This will be shown in the audit logs.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> BulkDeleteMessageAsync(ulong channelId, IEnumerable<ulong> messageIds, string auditLogReason, CancellationToken ct = default);
+        
+        /// <summary>
+        ///     Add a reaction to a message.
+        /// </summary>
+        /// <param name="channelId">The channel id.</param>
+        /// <param name="messageId">The message id of the message where the reaction will be added to.</param>
+        /// <param name="emoji">The emoji that will be added to a message, you must encode it in the format name:id with the emoji name and emoji id.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> CreateReactionAsync(ulong channelId, ulong messageId, string emoji, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Delete your own reaction on a message.
+        /// </summary>
+        /// <param name="channelId">The channel id.</param>
+        /// <param name="messageId">The message id of the message where the reaction will be deleted from.</param>
+        /// <param name="emoji">The emoji that will be deleted from the message, you must encode it in the format name:id with the emoji name and emoji id.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> DeleteOwnReactionAsync(ulong channelId, ulong messageId, string emoji, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Delete a users reaction on a message.
+        /// </summary>
+        /// <param name="channelId">The channel id.</param>
+        /// <param name="messageId">The message id of the message where the reaction will be deleted from.</param>
+        /// <param name="emoji">The emoji that will be deleted from the message, you must encode it in the format name:id with the emoji name and emoji id.</param>
+        /// <param name="userId">The user ID of the user that added the reaction.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> DeleteUserReactionAsync(ulong channelId, ulong messageId, string emoji, ulong userId, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Deletes all reactions for a given emoji.
+        /// </summary>
+        /// <param name="channelId">The channel id.</param>
+        /// <param name="messageId">The message id of the message where the reactions will be deleted from.</param>
+        /// <param name="emoji">The emoji that will be deleted from the message, you must encode it in the format name:id with the emoji name and emoji id.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> DeleteAllReactionAsync(ulong channelId, ulong messageId, string emoji, CancellationToken ct = default);
     }
 }
