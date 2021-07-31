@@ -35,7 +35,10 @@ public static async Task Main(string[] args)
     var host = CreateHostBuilder(args).Build();
     
     // Configure Color-Chan.Discord.Commands
-    var config = new SlashCommandConfiguration(true); // <----- 
+    var config = new SlashCommandConfiguration
+    {
+        EnableAutoSync = true // <----- 
+    };  
     await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly(), config).ConfigureAwait(false); // <-----
 
     // Run the WebHost, and start accepting requests.
@@ -51,8 +54,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
 
-    services.AddControllers()
-            .AddColorChanJson(); // <---
+    services.AddControllers();
 }
 
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -63,7 +65,8 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 }
 ```
-The interaction end point will be located at `/api/v1/discord/interaction` you've added everything.
+The interaction end point will be located at `/api/v1/discord/interaction` after you've added everything.
+Check the [samples](https://github.com/Color-Chan/Color-Chan.Discord/tree/main/samples) folder for more examples on how to set everything up.
 
 ## 3. Compiling
 You will need the following to compile Color-Chan.Discord:
@@ -76,7 +79,7 @@ You will need the following to compile Color-Chan.Discord:
 * [.NET sdk](https://dotnet.microsoft.com/download)
 
 ## 4. Versioning
-Color-Chan.Discord uses [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200).
+Color-Chan.Discord uses [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200) for its versioning.
 ### Summary
 The versioning will be using the following format: MAJOR.MINOR.PATCH.
 
