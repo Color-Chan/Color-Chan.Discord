@@ -36,28 +36,12 @@ namespace RoleManager.Commands
         {
             var guildId = SlashContext.GuildId;
 
-            // Check if the guild id is null, since this could be null if it was used in DMs.
-            if (guildId is null)
-            {
-                //  Build the response embed.
-                var errorEmbedBuilder = new DiscordEmbedBuilder()
-                                   .WithTitle("Error")
-                                   .WithDescription("This command can only be used in a server!")
-                                   .WithColor(Color.Red)
-                                   .WithTimeStamp();
-            
-                // Build the response with the embed.
-                var errorResponse = new SlashCommandResponseBuilder()
-                               .WithEmbed(errorEmbedBuilder.Build())
-                               .MakePrivate()
-                               .Build();
-
-                //  Return the response to Discord.
-                return errorResponse;
-            }
+            // Send an error message if the command was used in DMs.
+            var dmErrorResponse = CheckIfGuildIdExists();
+            if (dmErrorResponse is not null) return dmErrorResponse;
             
             // Get the roles from the current guild.
-            var rolesResult = await _restGuild.GetGuildRolesAsync(guildId.Value).ConfigureAwait(false);
+            var rolesResult = await _restGuild.GetGuildRolesAsync(guildId!.Value).ConfigureAwait(false);
 
             // Check if the roles were successfully loaded.
             if (!rolesResult.IsSuccessful)
@@ -89,6 +73,43 @@ namespace RoleManager.Commands
 
             //  Return the response to Discord.
             return response;
+        }
+
+        /// <summary>
+        ///     Checks if the guild id is null, since this could be null if it was used in DMs.
+        /// </summary>
+        /// <returns>
+        ///     True if the commands was used in a guild.
+        /// </returns>
+        private bool RequestIsFromGuild() => SlashContext.GuildId is not null;
+
+        /// <summary>
+        ///     Checks if the command was used in a guild.
+        /// </summary>
+        /// <returns>
+        ///     A <see cref="IDiscordInteractionResponse"/> if the commands was used in DMs.
+        ///     null if the commands was used in a guild.
+        /// </returns>
+        private IDiscordInteractionResponse? CheckIfGuildIdExists()
+        {
+            if (!RequestIsFromGuild()) return null;
+            
+            //  Build the response embed.
+            var errorEmbedBuilder = new DiscordEmbedBuilder()
+                                    .WithTitle("Error")
+                                    .WithDescription("This command can only be used in a server!")
+                                    .WithColor(Color.Red)
+                                    .WithTimeStamp();
+            
+            // Build the response with the embed.
+            var errorResponse = new SlashCommandResponseBuilder()
+                                .WithEmbed(errorEmbedBuilder.Build())
+                                .MakePrivate()
+                                .Build();
+
+            //  Return the response to Discord.
+            return errorResponse;
+
         }
     }
 }
