@@ -86,6 +86,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 _logger.LogInformation("Updated or created global slash command {CommandName} {Id}", result.Entity!.Name, result.Entity!.Id.ToString());
             }
 
+            // Skip deleting old slash commands if none exist.
+            if (!existingCommands.Entity!.Any())
+            {
+                return Result.FromSuccess();
+            }
+
             // Delete old global commands.
             foreach (var existingCommand in existingCommands.Entity!)
                 if (!globalSlashCommands.Select(x => x.Name).Contains(existingCommand.Name))
