@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.Params.Guild;
+using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
 
@@ -76,6 +77,16 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     A <see cref="Result" /> with the request results.
         /// </returns>
         Task<Result> DeleteGuildAsync(ulong guildId, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Get the channels of a guild.
+        /// </summary>
+        /// <param name="guildId">The guild id.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result{T}" /> of <see cref="IDiscordChannel" /> with the request results.
+        /// </returns>
+        Task<Result<IReadOnlyList<IDiscordChannel>>> GetGuildChannelsAsync(ulong guildId, CancellationToken ct = default);
 
         /// <summary>
         ///     Get a list of <see cref="IDiscordGuildRole" />s.

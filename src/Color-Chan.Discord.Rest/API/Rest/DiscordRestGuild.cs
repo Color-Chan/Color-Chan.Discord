@@ -92,14 +92,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         #region Guild channels
 
-        /// <summary>
-        ///     Get the channels of a guild.
-        /// </summary>
-        /// <param name="guildId">The guild id.</param>
-        /// <param name="ct">The <see cref="CancellationToken" />.</param>
-        /// <returns>
-        ///     A <see cref="Result{T}" /> of <see cref="IDiscordChannel" /> with the request results.
-        /// </returns>
+        /// <inheritdoc />
         public virtual async Task<Result<IReadOnlyList<IDiscordChannel>>> GetGuildChannelsAsync(ulong guildId, CancellationToken ct = default)
         {
             var endpoint = $"guilds/{guildId.ToString()}/channels";
