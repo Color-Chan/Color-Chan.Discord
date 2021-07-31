@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -72,7 +73,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, 
+                                                                                        List<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
         {
             serviceProvider ??= DefaultServiceProvider.Instance;
 
@@ -82,10 +84,23 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var requirementErrors = await _requirementService.ExecuteSlashCommandRequirementsAsync(commandInfo, context, serviceProvider).ConfigureAwait(false);
             if (requirementErrors.Any()) return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(string.Join(", ", requirementErrors)));
 
+            // Get the arguments from the given options.
+            var args = new List<object?>();
+            if (commandInfo.CommandOptions is not null)
+            {
+                foreach (var commandOption in commandInfo.CommandOptions)
+                {
+                    var userOption = options?.FirstOrDefault(x => x.Name == commandOption.Name);
+
+                    // Add the argument value if one was supplied or add null.
+                    args.Add(userOption?.Value);
+                }
+            }
+            
             // Try to execute the command.
             try
             {
-                if (commandInfo.CommandMethod.Invoke(instance, null) is not Task<IDiscordInteractionResponse> task)
+                if (commandInfo.CommandMethod.Invoke(instance, args.ToArray()) is not Task<IDiscordInteractionResponse> task)
                 {
                     _logger.LogWarning("Failed to cast {MethodName} to Task<IDiscordInteractionResponse>", commandInfo.CommandMethod.Name);
                     return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Failed to cast command to Task<IDiscordInteractionResponse>"));
@@ -102,13 +117,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
         {
             var commandInfo = SearchSlashCommand(name);
 
             if (commandInfo is not null)
             {
-                return await ExecuteSlashCommandAsync(commandInfo, context, serviceProvider).ConfigureAwait(false);
+                return await ExecuteSlashCommandAsync(commandInfo, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
             }
             
             _logger.LogWarning("Failed to find slash command {Name}", name);

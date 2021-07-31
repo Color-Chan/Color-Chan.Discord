@@ -106,7 +106,7 @@ namespace Color_Chan.Discord.Controllers
                 ApplicationId = interaction.ApplicationId
             };
 
-            var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, _serviceProvider).ConfigureAwait(false);
+            var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options, _serviceProvider).ConfigureAwait(false);
             if (result.IsSuccessful) return result.Entity!.ToDataModel();
             return new DiscordInteractionResponseData();
         }

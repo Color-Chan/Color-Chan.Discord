@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
@@ -29,6 +30,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// </summary>
         /// <param name="commandInfo">The command info.</param>
         /// <param name="context">The current <see cref="ISlashCommandContext" /> that will be passed to the command module.</param>
+        /// <param name="options">The options used with the command.</param>
         /// <param name="serviceProvider">
         ///     The <see cref="IServiceProvider" /> containing the necessary dependencies for the the
         ///     module of the command.
@@ -38,7 +40,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// </returns>
         /// <seealso cref="Result" />
         /// <seealso cref="SlashCommandAttribute" />
-        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, IServiceProvider? serviceProvider = null);
+        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, List<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null);
 
         /// <summary>
         ///     Execute a specific command with their dependencies.
@@ -46,6 +48,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// </summary>
         /// <param name="name">The name of the command.</param>
         /// <param name="context">The current <see cref="ISlashCommandContext" /> that will be passed to the command module.</param>
+        /// <param name="options">The options used with the command.</param>
         /// <param name="serviceProvider">
         ///     The <see cref="IServiceProvider" /> containing the necessary dependencies for the the
         ///     module of the command.
@@ -55,7 +58,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// </returns>
         /// <seealso cref="Result" />
         /// <seealso cref="SlashCommandAttribute" />
-        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IServiceProvider? serviceProvider = null);
+        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null);
 
         /// <summary>
         ///     Search for a command by its <see cref="SlashCommandAttribute.Name" />.

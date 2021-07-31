@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Commands.Tests.Valid;
 using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
+using Color_Chan.Discord.Rest.Models.Interaction;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -26,6 +30,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         private readonly Mock<ILogger<SlashCommandRequirementBuildService>> _requirementBuildServiceLoggerMock = new();
         private readonly Mock<ILogger<SlashCommandService>> _commandServiceLoggerMock = new();
         private readonly Mock<ILogger<SlashCommandRequirementService>> _requirementServiceLoggerMock = new();
+        private readonly Mock<ILogger<SlashCommandOptionBuildService>> _optionBuilderServiceLoggerMock = new();
 
         [TestCase("Command1", "CommandMethod1Async")]
         [TestCase("Command2", "CommandMethod2Async")]
@@ -52,6 +57,27 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Assert
             command.Should().NotBeNull();
             command!.CommandMethod.Name.Should().Be(methodName);
+        }
+        
+        [TestCase("command18")]
+        public void Should_search_interaction_command_with_options(string commandName)
+        {
+            // Arrange
+            var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
+            var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
+            var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
+            var optionBuilder = new SlashCommandOptionBuildService(_optionBuilderServiceLoggerMock.Object);
+            var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, _buildServiceLoggerMock.Object, optionBuilder);
+            var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
+            var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
+
+            // Act
+            commandService.AddInteractionCommandsAsync(ValidAssembly);
+            var command = commandService.SearchSlashCommand(commandName);
+
+            // Assert
+            command.Should().NotBeNull();
+            command!.CommandOptions!.Count().Should().Be(2);
         }
 
         [TestCase("CommandWithError1", "Command error 1")]
@@ -103,13 +129,13 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             // Act
             await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);
-            var result = await commandService.ExecuteSlashCommandAsync(commandName, mockContext.Object, serviceProvider);
+            var result = await commandService.ExecuteSlashCommandAsync(commandName, mockContext.Object, null, serviceProvider);
 
             // Assert
             result.IsSuccessful.Should().BeTrue();
             result.Entity!.Type.Should().Be(DiscordInteractionResponseType.ChannelMessageWithSource);
         }
-
+        
         [TestCase("Command14")]
         [TestCase("Command15")]
         [TestCase("Command16")]
@@ -158,6 +184,53 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             command.Should().NotBeNull();
             command!.CommandMethod.Name.Should().Be(methodName);
             command!.Requirements?.Count().Should().Be(requirementAmount);
+        }
+        
+        [TestCase("Command18")]
+        public async Task Should_execute_interaction_command(string commandName)
+        {
+            // Arrange
+            var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
+            requirementServiceMock.Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                                  .ReturnsAsync(new List<string>());
+            var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
+            var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
+            var optionBuilder = new SlashCommandOptionBuildService(_optionBuilderServiceLoggerMock.Object);
+            var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, _buildServiceLoggerMock.Object, optionBuilder);
+            var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
+            var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
+            var mockContext = new Mock<ISlashCommandContext>();
+            
+            var jsonInput= @"{""stringValue"": ""test json role value"",""intValue"": 12345678}";
+
+            using JsonDocument doc = JsonDocument.Parse(jsonInput);
+            
+            var options = new List<IDiscordInteractionCommandOption>
+            {
+                new DiscordInteractionCommandOption(
+                    new DiscordInteractionCommandOptionData
+                    {
+                        Name = "Role name",
+                        Type = DiscordApplicationCommandOptionType.String,
+                        JsonValue = doc.RootElement.GetProperty("stringValue")
+                    }),
+                new DiscordInteractionCommandOption(
+                    new DiscordInteractionCommandOptionData
+                    {
+                        Name = "Number",
+                        Type = DiscordApplicationCommandOptionType.Integer,
+                        JsonValue = doc.RootElement.GetProperty("intValue")
+                    })
+            };
+
+            // Act
+            await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);
+            var result = await commandService.ExecuteSlashCommandAsync(commandName, mockContext.Object, options);
+
+            // Assert
+            result.IsSuccessful.Should().BeTrue();
+            result.Entity!.Data!.Content.Should().Contain("roleName:test json role value");
+            result.Entity!.Data!.Content.Should().Contain("number:12345678");
         }
     }
 }
