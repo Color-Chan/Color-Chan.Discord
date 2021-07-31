@@ -54,7 +54,7 @@ You will need to add your bot token, public key and application id, these can be
 public void ConfigureServices(IServiceCollection services)
 {
     //  Replace the arguments with the data of your bot.
-    //  Note: It is not secure to hardcode them in, loading them from an environment variable or from a json file is better.
+    //  Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.
     services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
 
     services.AddControllers();
