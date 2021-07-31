@@ -61,7 +61,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     validCommands.Add(commandInfoKeyValuePair.Value);
                 }
 
-                _logger.LogDebug("Found {CommandCount} valid commands in {ClassName}", validCommands.Count, parentModule.FullName);
+                _logger.LogDebug("Found {CommandCount} valid commands in {ClassName}", validCommands.Count.ToString(), parentModule.FullName);
             }
 
             return validCommands;

@@ -105,8 +105,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IServiceProvider? serviceProvider = null)
         {
             var commandInfo = SearchSlashCommand(name);
-            if (commandInfo is null) return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Failed to find command."));
-            return await ExecuteSlashCommandAsync(commandInfo, context, serviceProvider).ConfigureAwait(false);
+
+            if (commandInfo is not null)
+            {
+                return await ExecuteSlashCommandAsync(commandInfo, context, serviceProvider).ConfigureAwait(false);
+            }
+            
+            _logger.LogWarning("Failed to find slash command {Name}", name);
+            return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {name}"));
         }
 
         /// <inheritdoc />
@@ -134,7 +140,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         private ISlashCommandModule GetSlashCommandModuleInstance(IServiceProvider serviceProvider, MemberInfo command)
         {
             if (ActivatorUtilities.CreateInstance(serviceProvider, command.DeclaringType!) is not ISlashCommandModule instance)
-                throw new ModuleCastNullReferenceException("Failed to cast module to IInteractionCommandModuleBase");
+                throw new ModuleCastNullReferenceException("Failed to cast command module to IInteractionCommandModuleBase");
 
             return instance;
         }
