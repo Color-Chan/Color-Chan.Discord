@@ -20,6 +20,7 @@ namespace Pong.Commands
 
             var response = new SlashCommandResponseBuilder()
                            .WithEmbed(embedBuilder.Build())
+                           .MakePrivate()
                            .Build();
 
             return Task.FromResult(response);

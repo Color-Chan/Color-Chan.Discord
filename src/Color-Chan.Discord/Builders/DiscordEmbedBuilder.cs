@@ -5,77 +5,77 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Rest.Models.Embed;
 
-namespace Color_Chan.Discord
+namespace Color_Chan.Discord.Builders
 {
     /// <summary>
-    ///     Represents a builder class for creating <see cref="DiscordEmbed"/>s.
+    ///     Represents a builder class for creating <see cref="IDiscordEmbed"/>s.
     /// </summary>
     public class DiscordEmbedBuilder
     {
         /// <summary>
         ///     The title used for the <see cref="DiscordEmbed.Title"/>.
         /// </summary>
-        public string? Title;
+        private string? _title;
         
         /// <summary>
         ///     The type used for the <see cref="DiscordEmbed.Type"/>.
         /// </summary>
-        public DiscordEmbedType? Type;
+        private DiscordEmbedType? _type;
         
         /// <summary>
         ///     The description used for the <see cref="DiscordEmbed.Description"/>.
         /// </summary>
-        public string? Description;
+        private string? _description;
         
         /// <summary>
         ///     The url used for the <see cref="DiscordEmbed.Url"/>.
         /// </summary>
-        public string? Url;
+        private string? _url;
         
         /// <summary>
         ///     The <see cref="DateTimeOffset"/> used for the <see cref="DiscordEmbed.Timestamp"/>.
         /// </summary>
-        public DateTimeOffset? Timestamp;
+        private DateTimeOffset? _timestamp;
         
         /// <summary>
-        ///     The <see cref="Color"/> used for the <see cref="DiscordEmbed.Color"/>.
+        ///     The <see cref="_color"/> used for the <see cref="DiscordEmbed.Color"/>.
         /// </summary>
-        public Color? Color;
+        private Color? _color;
         
         /// <summary>
         ///     The <see cref="IDiscordEmbedFooter"/> used for the <see cref="DiscordEmbed.Footer"/>.
         /// </summary>
-        public IDiscordEmbedFooter? Footer;
+        private IDiscordEmbedFooter? _footer;
         
         /// <summary>
         ///     The <see cref="IDiscordEmbedImage"/> used for the <see cref="DiscordEmbed.Image"/>.
         /// </summary>
-        public IDiscordEmbedImage? Image;
+        private IDiscordEmbedImage? _image;
         
         /// <summary>
         ///     The <see cref="IDiscordEmbedThumbnail"/> used for the <see cref="DiscordEmbed.Thumbnail"/>.
         /// </summary>
-        public IDiscordEmbedThumbnail? Thumbnail;
+        private IDiscordEmbedThumbnail? _thumbnail;
         
         /// <summary>
         ///     The <see cref="IDiscordEmbedVideo"/> used for the <see cref="DiscordEmbed.Video"/>.
         /// </summary>
-        public IDiscordEmbedVideo? Video;
+        private IDiscordEmbedVideo? _video;
         
         /// <summary>
         ///     The <see cref="IDiscordEmbedProvider"/> used for the <see cref="DiscordEmbed.Provider"/>.
         /// </summary>
-        public IDiscordEmbedProvider? Provider;
+        private IDiscordEmbedProvider? _provider;
         
         /// <summary>
         ///     The <see cref="IDiscordEmbedAuthor"/> used for the <see cref="DiscordEmbed.Author"/>.
         /// </summary>
-        public IDiscordEmbedAuthor? Author;
+        private IDiscordEmbedAuthor? _author;
                 
         /// <summary>
         ///     The <see cref="IDiscordEmbedField"/>s used for the <see cref="DiscordEmbed.Fields"/>.
         /// </summary>
-        public List<IDiscordEmbedField>? Fields;
+        private List<IDiscordEmbedField>? _fields;
 
         /// <summary>
         ///     Sets the <see cref="DiscordEmbed.Title" /> of the <see cref="DiscordEmbed"/>.
@@ -86,7 +86,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithTitle(string title)
         {
-            Title = title;
+            _title = title;
             return this;
         }
         
@@ -99,7 +99,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithType(DiscordEmbedType type)
         {
-            Type = type;
+            _type = type;
             return this;
         }
 
@@ -112,7 +112,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithDescription(string description)
         {
-            Description = description;
+            _description = description;
             return this;
         }
         
@@ -125,7 +125,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithUrl(string url)
         {
-            Url = url;
+            _url = url;
             return this;
         }
         
@@ -138,7 +138,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithTimeStamp(DateTimeOffset timeStamp)
         {
-            Timestamp = timeStamp;
+            _timestamp = timeStamp;
             return this;
         }
         
@@ -151,7 +151,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithTimeStamp()
         {
-            Timestamp = DateTimeOffset.UtcNow;
+            _timestamp = DateTimeOffset.UtcNow;
             return this;
         }
         
@@ -164,7 +164,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithColor(Color color)
         {
-            Color = color;
+            _color = color;
             return this;
         }
         
@@ -179,7 +179,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithFooter(string text, string? iconUrl = null, string? proxyIconUrl = null)
         {
-            Footer = new DiscordEmbedFooter
+            _footer = new DiscordEmbedFooter
             {
                 Text = text,
                 IconUrl = iconUrl,
@@ -197,7 +197,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithFooter(DiscordEmbedFooter footer)
         {
-            Footer = footer;
+            _footer = footer;
             return this;
         }
 
@@ -213,7 +213,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithImage(string imageUrl, string? imageProxyUrl = null, int? width = null, int? height = null)
         {
-            Image = new DiscordEmbedImage
+            _image = new DiscordEmbedImage
             {
                 Url = imageUrl,
                 ProxyUrl = imageProxyUrl,
@@ -232,7 +232,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithImage(DiscordEmbedImage image)
         {
-            Image = image;
+            _image = image;
             return this;
         }
         
@@ -248,7 +248,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithThumbnail(string imageUrl, string? imageProxyUrl = null, int? width = null, int? height = null)
         {
-            Thumbnail = new DiscordEmbedThumbnail
+            _thumbnail = new DiscordEmbedThumbnail
             {
                 Url = imageUrl,
                 ProxyUrl = imageProxyUrl,
@@ -267,7 +267,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithThumbnail(DiscordEmbedThumbnail thumbnail)
         {
-            Thumbnail = thumbnail;
+            _thumbnail = thumbnail;
             return this;
         }
         
@@ -283,7 +283,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithVideo(string imageUrl, string? imageProxyUrl = null, int? width = null, int? height = null)
         {
-            Video = new DiscordEmbedVideo
+            _video = new DiscordEmbedVideo
             {
                 Url = imageUrl,
                 ProxyUrl = imageProxyUrl,
@@ -302,7 +302,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithVideo(DiscordEmbedVideo video)
         {
-            Video = video;
+            _video = video;
             return this;
         }
         
@@ -316,7 +316,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithProvider(string name, string? url = null)
         {
-            Provider = new DiscordEmbedProvider
+            _provider = new DiscordEmbedProvider
             {
                 Name = name,
                 Url = url
@@ -333,7 +333,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithProvider(DiscordEmbedProvider provider)
         {
-            Provider = provider;
+            _provider = provider;
             return this;
         }
         
@@ -349,7 +349,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithAuthor(string name, string? url = null, string? iconUrl = null, string? proxyIconUrl = null)
         {
-            Author = new DiscordEmbedAuthor
+            _author = new DiscordEmbedAuthor
             {
                 Name = name,
                 Url = url,
@@ -368,7 +368,7 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithAuthor(DiscordEmbedAuthor author)
         {
-            Author = author;
+            _author = author;
             return this;
         }
         
@@ -383,9 +383,9 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithField(string name, string value, bool? isInline = null)
         {
-            Fields ??= new List<IDiscordEmbedField>();
+            _fields ??= new List<IDiscordEmbedField>();
             
-            Fields.Add(new DiscordEmbedField
+            _fields.Add(new DiscordEmbedField
             {
                 Name = name,
                 Value = value,
@@ -403,9 +403,9 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithField(DiscordEmbedField field)
         {
-            Fields ??= new List<IDiscordEmbedField>();
+            _fields ??= new List<IDiscordEmbedField>();
             
-            Fields.Add(field);
+            _fields.Add(field);
             return this;
         }
         
@@ -418,9 +418,9 @@ namespace Color_Chan.Discord
         /// </returns>
         public DiscordEmbedBuilder WithFields(IEnumerable<DiscordEmbedField> fields)
         {
-            Fields ??= new List<IDiscordEmbedField>();
+            _fields ??= new List<IDiscordEmbedField>();
             
-            Fields.AddRange(fields);
+            _fields.AddRange(fields);
             return this;
         }
         
@@ -430,23 +430,23 @@ namespace Color_Chan.Discord
         /// <returns>
         ///     The generated <see cref="DiscordEmbed"/>.
         /// </returns>
-        public DiscordEmbed Build()
+        public IDiscordEmbed Build()
         {
-            return new()
+            return new DiscordEmbed
             {
-                Title = Title,
-                Type = Type,
-                Description = Description,
-                Url = Url,
-                Timestamp = Timestamp,
-                Color = Color,
-                Footer = Footer,
-                Image = Image,
-                Thumbnail = Thumbnail,
-                Video = Video,
-                Provider = Provider,
-                Author = Author,
-                Fields = Fields
+                Title = _title,
+                Type = _type,
+                Description = _description,
+                Url = _url,
+                Timestamp = _timestamp,
+                Color = _color,
+                Footer = _footer,
+                Image = _image,
+                Thumbnail = _thumbnail,
+                Video = _video,
+                Provider = _provider,
+                Author = _author,
+                Fields = _fields
             };
         }
     }
