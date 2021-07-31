@@ -35,6 +35,7 @@ public static async Task Main(string[] args)
     var host = CreateHostBuilder(args).Build();
     
     // Configure Color-Chan.Discord.Commands
+    // EnableAutoSync is off by default. Turn this own if you dont want to send the slash command to discord manually.
     var config = new SlashCommandConfiguration
     {
         EnableAutoSync = true // <----- 
@@ -52,6 +53,8 @@ You will need to add your bot token, public key and application id, these can be
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
+    //  Replace the arguments with the data of your bot.
+    //  Note: It is not secure to hardcode them in, loading them from an environment variable or from a json file is better.
     services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
 
     services.AddControllers();
@@ -59,6 +62,7 @@ public void ConfigureServices(IServiceCollection services)
 
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
+    // This is needed to validate incoming interaction requests.
     app.UseColorChanDiscord(); // <---
 
     app.UseRouting();
