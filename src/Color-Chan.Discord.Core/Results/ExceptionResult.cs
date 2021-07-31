@@ -2,7 +2,7 @@
 
 namespace Color_Chan.Discord.Core.Results
 {
-    /// <inheritdoc cref="IExceptionResult"/>
+    /// <inheritdoc cref="IExceptionResult" />
     public record ExceptionResult : ErrorResult, IExceptionResult
     {
         /// <summary>

@@ -43,7 +43,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Channel
         /// </summary>
         [JsonPropertyName("allowed_mentions")]
         public IEnumerable<DiscordAllowedMentionsData>? AllowedMentions { get; set; }
-        
+
         /// <summary>
         ///     Attached files to keep.
         /// </summary>

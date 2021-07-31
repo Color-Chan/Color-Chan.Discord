@@ -3,7 +3,7 @@ using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Rest.Results
 {
-    /// <inheritdoc cref="IHttpErrorResult"/>
+    /// <inheritdoc cref="IHttpErrorResult" />
     public record HttpErrorResult : ErrorResult, IHttpErrorResult
     {
         /// <summary>

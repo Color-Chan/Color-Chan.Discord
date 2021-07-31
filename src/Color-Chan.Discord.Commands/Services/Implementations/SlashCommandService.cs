@@ -73,7 +73,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, 
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context,
                                                                                         List<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
         {
             serviceProvider ??= DefaultServiceProvider.Instance;
@@ -87,7 +87,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Get the arguments from the given options.
             var args = new List<object?>();
             if (commandInfo.CommandOptions is not null)
-            {
                 foreach (var commandOption in commandInfo.CommandOptions)
                 {
                     var userOption = options?.FirstOrDefault(x => x.Name == commandOption.Name);
@@ -95,8 +94,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     // Add the argument value if one was supplied or add null.
                     args.Add(userOption?.Value);
                 }
-            }
-            
+
             // Try to execute the command.
             try
             {
@@ -117,15 +115,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
+                                                                                        IServiceProvider? serviceProvider = null)
         {
             var commandInfo = SearchSlashCommand(name);
 
-            if (commandInfo is not null)
-            {
-                return await ExecuteSlashCommandAsync(commandInfo, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
-            }
-            
+            if (commandInfo is not null) return await ExecuteSlashCommandAsync(commandInfo, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
+
             _logger.LogWarning("Failed to find slash command {Name}", name);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {name}"));
         }

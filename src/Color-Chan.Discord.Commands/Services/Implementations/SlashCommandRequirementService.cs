@@ -27,7 +27,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             List<string> errorMessages = new();
 
             if (commandInfo.Requirements is not null)
-            {
                 foreach (var requirement in commandInfo.Requirements)
                 {
                     var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);
@@ -37,7 +36,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     _logger.LogDebug("Failed to pass requirement {RequirementName}", requirement.GetType().Name);
                     errorMessages.Add(result.ErrorMessage ?? string.Empty);
                 }
-            }
 
             return errorMessages;
         }

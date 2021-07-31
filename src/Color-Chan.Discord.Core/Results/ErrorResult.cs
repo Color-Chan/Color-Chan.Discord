@@ -1,6 +1,6 @@
 ﻿namespace Color_Chan.Discord.Core.Results
 {
-    /// <inheritdoc cref="IErrorResult"/>
+    /// <inheritdoc cref="IErrorResult" />
     public record ErrorResult : IErrorResult
     {
         /// <summary>

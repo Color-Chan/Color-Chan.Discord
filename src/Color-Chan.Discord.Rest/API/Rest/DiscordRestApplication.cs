@@ -10,7 +10,7 @@ using Color_Chan.Discord.Rest.Models.Application;
 
 namespace Color_Chan.Discord.Rest.API.Rest
 {
-    /// <inheritdoc cref="IDiscordRestApplication"/>
+    /// <inheritdoc cref="IDiscordRestApplication" />
     public class DiscordRestApplication : DiscordRestBase, IDiscordRestApplication
     {
         /// <summary>

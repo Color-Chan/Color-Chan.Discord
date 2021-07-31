@@ -150,17 +150,22 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     Edit a previously sent message.
         /// </summary>
         /// <remarks>
-        /// <para>
-        /// The fields content, embeds, and flags can be edited by the original message author.
-        /// Other users can only edit flags and only if they have the MANAGE_MESSAGES permission in the corresponding channel.
-        /// </para>
-        /// <para>
-        /// When the content field is edited, the mentions array in the message object will be reconstructed from scratch based on the new content.
-        /// </para>
+        ///     <para>
+        ///         The fields content, embeds, and flags can be edited by the original message author.
+        ///         Other users can only edit flags and only if they have the MANAGE_MESSAGES permission in the corresponding
+        ///         channel.
+        ///     </para>
+        ///     <para>
+        ///         When the content field is edited, the mentions array in the message object will be reconstructed from scratch
+        ///         based on the new content.
+        ///     </para>
         /// </remarks>
         /// <param name="channelId">The channel id.</param>
         /// <param name="messageId">The ID of the message that will be edited.</param>
-        /// <param name="editChannelMessage">The <see cref="DiscordEditChannelMessage"/> containing the new content for the message.</param>
+        /// <param name="editChannelMessage">
+        ///     The <see cref="DiscordEditChannelMessage" /> containing the new content for the
+        ///     message.
+        /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     A <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
@@ -189,15 +194,18 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <returns>
         ///     A <see cref="Result" /> with the request results.
         /// </returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="messageIds"/> is not between 2 and 100.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="messageIds" /> is not between 2 and 100.</exception>
         Task<Result> BulkDeleteMessageAsync(ulong channelId, IReadOnlyList<ulong> messageIds, string auditLogReason, CancellationToken ct = default);
-        
+
         /// <summary>
         ///     Add a reaction to a message.
         /// </summary>
         /// <param name="channelId">The channel id.</param>
         /// <param name="messageId">The message id of the message where the reaction will be added to.</param>
-        /// <param name="emoji">The emoji that will be added to a message, you must encode it in the format name:id with the emoji name and emoji id.</param>
+        /// <param name="emoji">
+        ///     The emoji that will be added to a message, you must encode it in the format name:id with the emoji
+        ///     name and emoji id.
+        /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     A <see cref="Result" /> with the request results.
@@ -209,7 +217,10 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// </summary>
         /// <param name="channelId">The channel id.</param>
         /// <param name="messageId">The message id of the message where the reaction will be deleted from.</param>
-        /// <param name="emoji">The emoji that will be deleted from the message, you must encode it in the format name:id with the emoji name and emoji id.</param>
+        /// <param name="emoji">
+        ///     The emoji that will be deleted from the message, you must encode it in the format name:id with the
+        ///     emoji name and emoji id.
+        /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     A <see cref="Result" /> with the request results.
@@ -221,7 +232,10 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// </summary>
         /// <param name="channelId">The channel id.</param>
         /// <param name="messageId">The message id of the message where the reaction will be deleted from.</param>
-        /// <param name="emoji">The emoji that will be deleted from the message, you must encode it in the format name:id with the emoji name and emoji id.</param>
+        /// <param name="emoji">
+        ///     The emoji that will be deleted from the message, you must encode it in the format name:id with the
+        ///     emoji name and emoji id.
+        /// </param>
         /// <param name="userId">The user ID of the user that added the reaction.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
@@ -234,7 +248,10 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// </summary>
         /// <param name="channelId">The channel id.</param>
         /// <param name="messageId">The message id of the message where the reactions will be deleted from.</param>
-        /// <param name="emoji">The emoji that will be deleted from the message, you must encode it in the format name:id with the emoji name and emoji id.</param>
+        /// <param name="emoji">
+        ///     The emoji that will be deleted from the message, you must encode it in the format name:id with the
+        ///     emoji name and emoji id.
+        /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     A <see cref="Result" /> with the request results.

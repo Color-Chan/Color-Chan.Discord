@@ -58,7 +58,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             command.Should().NotBeNull();
             command!.CommandMethod.Name.Should().Be(methodName);
         }
-        
+
         [TestCase("command18")]
         public void Should_search_interaction_command_with_options(string commandName)
         {
@@ -135,7 +135,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             result.IsSuccessful.Should().BeTrue();
             result.Entity!.Type.Should().Be(DiscordInteractionResponseType.ChannelMessageWithSource);
         }
-        
+
         [TestCase("Command14")]
         [TestCase("Command15")]
         [TestCase("Command16")]
@@ -185,7 +185,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             command!.CommandMethod.Name.Should().Be(methodName);
             command!.Requirements?.Count().Should().Be(requirementAmount);
         }
-        
+
         [TestCase("Command18")]
         public async Task Should_execute_interaction_command(string commandName)
         {
@@ -200,11 +200,11 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
             var mockContext = new Mock<ISlashCommandContext>();
-            
-            var jsonInput= @"{""stringValue"": ""test json role value"",""intValue"": 12345678}";
+
+            var jsonInput = @"{""stringValue"": ""test json role value"",""intValue"": 12345678}";
 
             using JsonDocument doc = JsonDocument.Parse(jsonInput);
-            
+
             var options = new List<IDiscordInteractionCommandOption>
             {
                 new DiscordInteractionCommandOption(

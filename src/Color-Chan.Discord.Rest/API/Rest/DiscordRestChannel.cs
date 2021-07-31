@@ -25,12 +25,13 @@ namespace Color_Chan.Discord.Rest.API.Rest
         ///     Initializes a new instance of <see cref="DiscordRestGuild" />.
         /// </summary>
         /// <inheritdoc />
-        public DiscordRestChannel(IDiscordHttpClient httpClient,  IOptions<JsonSerializerOptions> serializerOptions) : base(httpClient)
+        public DiscordRestChannel(IDiscordHttpClient httpClient, IOptions<JsonSerializerOptions> serializerOptions) : base(httpClient)
         {
             _serializerOptions = serializerOptions;
         }
 
         // All api calls for channels.
+
         #region Channels
 
         /// <inheritdoc />
@@ -61,6 +62,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         #endregion
 
         // All api calls for channel messages.
+
         #region Channel messages
 
         /// <inheritdoc />
@@ -106,7 +108,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.PostAsync<DiscordMessageData>(endpoint, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordMessage>> EditMessageAsync(ulong channelId, ulong messageId, DiscordEditChannelMessage editChannelMessage, CancellationToken ct = default)
         {
@@ -114,22 +116,19 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.PatchAsync<DiscordMessageData, DiscordEditChannelMessage>(endpoint, editChannelMessage, ct: ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result> DeleteMessageAsync(ulong channelId, ulong messageId, string auditLogReason, CancellationToken ct = default)
         {
             var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result> BulkDeleteMessageAsync(ulong channelId, IReadOnlyList<ulong> messageIds, string auditLogReason, CancellationToken ct = default)
         {
-            if (messageIds.Count is < 2 or > 100)
-            {
-                throw new ArgumentOutOfRangeException(nameof(messageIds), "The amount of message IDs has to be between 2 and 100.");
-            }
-            
+            if (messageIds.Count is < 2 or > 100) throw new ArgumentOutOfRangeException(nameof(messageIds), "The amount of message IDs has to be between 2 and 100.");
+
             var queries = new List<KeyValuePair<string, string>>
             {
                 new(Constants.Headers.MessageQueryName, JsonSerializer.Serialize(messageIds, _serializerOptions.Value))
@@ -157,8 +156,9 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         #endregion
-        
+
         // All api calls for channel messages.
+
         #region Channel mesessages
 
         /// <inheritdoc />
@@ -174,7 +174,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}/reactions/{emoji}/@me";
             return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
         }
-        
+
         /// <inheritdoc />
         public virtual async Task<Result> DeleteUserReactionAsync(ulong channelId, ulong messageId, string emoji, ulong userId, CancellationToken ct = default)
         {
@@ -183,14 +183,14 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         // Todo: Implement Get Reactions: https://discord.com/developers/docs/resources/channel#get-reactions
-        
+
         /// <inheritdoc />
         public virtual async Task<Result> DeleteAllReactionAsync(ulong channelId, ulong messageId, string emoji, CancellationToken ct = default)
         {
             var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}/reactions/{emoji}";
             return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
         }
-        
+
         #endregion
     }
 }
