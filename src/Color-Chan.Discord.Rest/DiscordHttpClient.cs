@@ -238,7 +238,7 @@ namespace Color_Chan.Discord.Rest
         /// </returns>
         private async Task<Result> GetResponseAsync(HttpResponseMessage response, CancellationToken ct = default)
         {
-            if (response.IsSuccessStatusCode) Result.FromSuccess();
+            if (response.IsSuccessStatusCode) return Result.FromSuccess();
 
             if (response.Content.Headers.ContentLength is not > 0) return new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A HTTP error occured");
 
