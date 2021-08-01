@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commandInfo = new SlashCommandInfo("test", "desc", method, module, attributes);
 
             // Act
-            var result = await requirementService.ExecuteSlashCommandRequirementsAsync(commandInfo, contextMock.Object, serviceProviderMock.Object).ConfigureAwait(false);
+            var result = await requirementService.ExecuteSlashCommandRequirementsAsync(commandInfo.Requirements, contextMock.Object, serviceProviderMock.Object).ConfigureAwait(false);
 
             // Assert
             result.Count.Should().Be(expectedErrors);

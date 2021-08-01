@@ -15,9 +15,8 @@ namespace Color_Chan.Discord.Commands.Services
         /// <summary>
         ///     Executes all <see cref="SlashCommandRequirementAttribute" />s for a <see cref="ISlashCommandInfo" />.
         /// </summary>
-        /// <param name="commandInfo">
-        ///     The <see cref="ISlashCommandInfo" /> containing the
-        ///     <see cref="SlashCommandRequirementAttribute" />s.
+        /// <param name="requirements">
+        ///     The requirements that will be executed.
         /// </param>
         /// <param name="context">The <see cref="ISlashCommandContext" /> containing the current data for the command.</param>
         /// <param name="serviceProvider">
@@ -27,6 +26,6 @@ namespace Color_Chan.Discord.Commands.Services
         /// <returns>
         ///     todo:
         /// </returns>
-        Task<List<string>> ExecuteSlashCommandRequirementsAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, IServiceProvider serviceProvider);
+        Task<List<string>> ExecuteSlashCommandRequirementsAsync(IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context, IServiceProvider serviceProvider);
     }
 }

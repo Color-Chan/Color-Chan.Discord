@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Params;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Microsoft.Extensions.Logging;
@@ -53,6 +55,21 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             foreach (var parentModule in GetSlashCommandModules(assembly))
             {
+                if (IsValidCommandGroupModuleDefinition(parentModule))
+                {
+                    var groupAttribute = parentModule.GetCustomAttribute<SlashCommandGroupAttribute>();
+                    if (groupAttribute is null)
+                    {
+                        _logger.LogWarning("Can not load command group {ModuleName} since it doesn't have the SlashCommandGroupAttribute attribute", parentModule.Name);
+                        continue;
+                    }
+                    
+                    var commandInfoKeyValuePair = BuildCommandGroupInfoKeyValuePair(groupAttribute, parentModule);
+                    validCommands.Add(commandInfoKeyValuePair);
+                }
+
+                // The command is not a sub command / group.
+
                 foreach (var validMethod in GetValidSlashCommandsMethods(parentModule))
                 {
                     var commandInfoKeyValuePair = BuildCommandInfoKeyValuePair(validMethod, parentModule);
@@ -113,30 +130,122 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         private KeyValuePair<string, ISlashCommandInfo>? BuildCommandInfoKeyValuePair(MethodInfo validMethod, TypeInfo parentModule)
         {
             var commandAttribute = validMethod.GetCustomAttribute<SlashCommandAttribute>();
-            if (commandAttribute != null)
+            if (commandAttribute is not null)
             {
                 var commandRequirements = _requirementBuildService.GetCommandRequirements(validMethod);
                 var guildAttributes = _guildBuildService.GetCommandGuilds(validMethod);
                 var options = _optionBuildService.GetCommandOptions(validMethod);
 
-                var commandInfo = new SlashCommandInfo(commandAttribute.Name, commandAttribute.Description, validMethod, parentModule, commandRequirements, options, guildAttributes);
+                var commandInfo = new SlashCommandInfo(commandAttribute.Name, commandAttribute.Description, validMethod, parentModule, commandRequirements, options.ToList(), guildAttributes);
                 return new KeyValuePair<string, ISlashCommandInfo>(commandAttribute.Name, commandInfo);
             }
 
-            _logger.LogWarning("Can not load command {CommandName} since it doesn't have the InteractionCommandAttribute attribute", validMethod.Name);
+            _logger.LogWarning("Can not load command {CommandName} since it doesn't have the SlashCommandAttribute attribute", validMethod.Name);
             return null;
+        }
+
+        private KeyValuePair<string, ISlashCommandInfo> BuildCommandGroupInfoKeyValuePair(SlashCommandGroupAttribute groupAttribute, TypeInfo parentModule)
+        {
+            // Build the command group.
+            var commandGroup = new SlashCommandInfo(groupAttribute.Name, groupAttribute.Description, parentModule)
+            {
+                CommandOptions = new List<ISlashCommandOptionInfo>()
+            };
+            var rawValidCommands = GetValidSubSlashCommandsMethods(parentModule);
+
+            // Get all the sub commands.
+            foreach (var rawValidCommand in rawValidCommands)
+            {
+                var subCommandGroupAttribute = rawValidCommand.GetCustomAttribute<SlashCommandGroupAttribute>();
+                var subCommandAttribute = rawValidCommand.GetCustomAttribute<SlashCommandAttribute>();
+
+                if (subCommandAttribute is null)
+                {
+                    _logger.LogWarning("Can not load command {CommandName} since it doesn't have the SlashCommandAttribute attribute", rawValidCommand.Name);
+                    continue;
+                }
+                
+                // Build the sub command.
+                var commandRequirements = _requirementBuildService.GetCommandRequirements(rawValidCommand);
+                var guildAttributes = _guildBuildService.GetCommandGuilds(rawValidCommand);
+                var options = _optionBuildService.GetCommandOptions(rawValidCommand);
+                var subCommand = new SlashCommandOptionInfo(subCommandAttribute.Name,
+                                                            subCommandAttribute.Description,
+                                                            rawValidCommand,
+                                                            parentModule,
+                                                            commandRequirements,
+                                                            options.ToList(),
+                                                            guildAttributes);
+
+                // Check if the command doesn't belong to a sub command group.
+                if (subCommandGroupAttribute is null)
+                {
+                    commandGroup.CommandOptions.Add(subCommand);
+                    continue;
+                }
+
+                // The command belongs to a sub command group.
+                // Check if the sub command group already exists.
+                var existingGroup = commandGroup.CommandOptions.FirstOrDefault(x => x.Name.Equals(subCommandGroupAttribute.Name));
+                if (existingGroup is not null)
+                {
+                    // Command group does exist.
+                    existingGroup.CommandOptions ??= new List<ISlashCommandOptionInfo>();
+                    existingGroup.CommandOptions.Add(subCommand);
+                    continue;
+                }
+
+                // Command group does not exist.
+                var subGroup = new SlashCommandOptionInfo(subCommandGroupAttribute.Name, subCommandGroupAttribute.Description, DiscordApplicationCommandOptionType.SubCommandGroup)
+                {
+                    CommandOptions = new List<ISlashCommandOptionInfo>
+                    {
+                        subCommand
+                    }
+                };
+
+                commandGroup.CommandOptions.Add(subGroup);
+            }
+
+            return new KeyValuePair<string, ISlashCommandInfo>(commandGroup.CommandName, commandGroup);
         }
 
         /// <summary>
         ///     Get a <see cref="IEnumerable{T}" /> of <see cref="MethodInfo" />s containing only valid commands methods.
         /// </summary>
-        /// <param name="parentModule"></param>
+        /// <param name="parentModule">The class that contains the slash commands.</param>
         /// <returns>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="MethodInfo" />s containing only valid commands methods.
         /// </returns>
-        private IEnumerable<MethodInfo> GetValidSlashCommandsMethods(IReflect parentModule)
+        private IEnumerable<MethodInfo> GetValidSlashCommandsMethods(Type parentModule)
         {
-            return parentModule.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Where(IsValidCommandDefinition);
+            if (IsValidCommandGroupModuleDefinition(parentModule))
+            {
+                return new List<MethodInfo>();
+            }
+
+            return parentModule
+                   .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                   .Where(IsValidCommandDefinition);
+        }
+        
+        /// <summary>
+        ///     Get a <see cref="IEnumerable{T}" /> of <see cref="MethodInfo" />s containing only valid sub commands methods.
+        /// </summary>
+        /// <param name="parentModule">The class that contains the sub slash commands.</param>
+        /// <returns>
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="MethodInfo" />s containing only sub valid commands methods.
+        /// </returns>
+        private IEnumerable<MethodInfo> GetValidSubSlashCommandsMethods(Type parentModule)
+        {
+            if (!IsValidCommandGroupModuleDefinition(parentModule))
+            {
+                return new List<MethodInfo>();
+            }
+
+            return parentModule
+                   .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                   .Where(IsValidCommandDefinition);
         }
 
         /// <summary>
@@ -160,8 +269,23 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// </returns>
         private static bool IsValidCommandDefinition(MethodInfo methodInfo)
         {
-            return methodInfo.IsDefined(typeof(SlashCommandAttribute)) && methodInfo.ReturnType == typeof(Task<IDiscordInteractionResponse>) && !methodInfo.IsStatic &&
-                   !methodInfo.IsGenericMethod;
+            return methodInfo.IsDefined(typeof(SlashCommandAttribute))
+                   && methodInfo.ReturnType == typeof(Task<IDiscordInteractionResponse>)
+                   && !methodInfo.IsStatic
+                   && !methodInfo.IsGenericMethod;
+        }
+
+        /// <summary>
+        ///     Checks whether or not a command group is valid.
+        /// </summary>
+        /// <param name="parentModule">The class that contains the slash commands.</param>
+        /// <returns>
+        ///     Whether or not a command group is valid.
+        /// </returns>
+        private static bool IsValidCommandGroupModuleDefinition(Type parentModule)
+        {
+            return parentModule.IsDefined(typeof(SlashCommandGroupAttribute))
+                   && !parentModule.IsGenericType;
         }
     }
 }

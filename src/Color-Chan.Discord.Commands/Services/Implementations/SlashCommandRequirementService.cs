@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Core;
 using Microsoft.Extensions.Logging;
 
@@ -22,12 +22,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<List<string>> ExecuteSlashCommandRequirementsAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, IServiceProvider serviceProvider)
+        public async Task<List<string>> ExecuteSlashCommandRequirementsAsync(IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context, IServiceProvider serviceProvider)
         {
             List<string> errorMessages = new();
 
-            if (commandInfo.Requirements is not null)
-                foreach (var requirement in commandInfo.Requirements)
+            if (requirements is not null)
+                foreach (var requirement in requirements)
                 {
                     var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);
 

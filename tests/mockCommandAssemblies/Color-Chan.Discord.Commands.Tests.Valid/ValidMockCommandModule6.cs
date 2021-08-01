@@ -8,8 +8,10 @@ using Color_Chan.Discord.Rest.Models.Interaction;
 
 namespace Color_Chan.Discord.Commands.Tests.Valid
 {
+    [SlashCommandGroupAttribute("add", "Adds something to a thing.")]
     public class ValidMockCommandModule6 : SlashCommandModule
     {
+        [SlashCommandGroupAttribute("role", "Adds a role to the server.")]
         [SlashCommand("Command18", "a unit test command.")]
         public async Task<IDiscordInteractionResponse> CommandMethod1Async
         (
