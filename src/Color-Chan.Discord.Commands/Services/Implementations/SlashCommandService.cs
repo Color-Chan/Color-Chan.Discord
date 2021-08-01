@@ -120,6 +120,30 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+        {
+            if (commandInfo.CommandMethod is not null)
+            {
+                return await ExecuteSlashCommandAsync(commandInfo.CommandMethod, commandInfo.CommandOptions, commandInfo.Requirements, context, suppliedOptions, serviceProvider).ConfigureAwait(false);
+            }
+            
+            _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
+            return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
+        }
+
+        /// <inheritdoc />
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandOptionInfo commandOptionInfo, ISlashCommandContext context, List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+        {
+            if (commandOptionInfo.CommandMethod is not null)
+            {
+                return await ExecuteSlashCommandAsync(commandOptionInfo.CommandMethod, commandOptionInfo.CommandOptions, commandOptionInfo.Requirements, context, suppliedOptions, serviceProvider).ConfigureAwait(false);
+            }
+            
+            _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandOptionInfo.Name);
+            return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
+        }
+
+        /// <inheritdoc />
         public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
                                                                                         IServiceProvider? serviceProvider = null)
         {

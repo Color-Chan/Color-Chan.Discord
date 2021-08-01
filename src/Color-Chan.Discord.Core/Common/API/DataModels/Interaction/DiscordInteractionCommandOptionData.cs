@@ -29,6 +29,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     Present if this option is a group or subcommand.
         /// </summary>
         [JsonPropertyName("options")]
-        public IEnumerable<DiscordInteractionData>? SubOptions { get; set; }
+        public IEnumerable<DiscordInteractionCommandOptionData>? SubOptions { get; set; }
     }
 }

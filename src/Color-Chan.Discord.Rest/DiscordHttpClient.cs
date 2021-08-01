@@ -16,7 +16,7 @@ namespace Color_Chan.Discord.Rest
     {
         private const string AuditLogHeaderKey = "X-Audit-Log-Reason";
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IOptions<JsonSerializerOptions> _serializerOptions;
+        private readonly JsonSerializerOptions _serializerOptions;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordHttpClient" />.
@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Rest
         public DiscordHttpClient(IHttpClientFactory httpClientFactory, IOptions<JsonSerializerOptions> serializerOptions)
         {
             _httpClientFactory = httpClientFactory;
-            _serializerOptions = serializerOptions;
+            _serializerOptions = serializerOptions.Value;
         }
 
         /// <inheritdoc />
@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Rest
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
                                  .WithMethod(HttpMethod.Post)
-                                 .WithBody(body);
+                                 .WithBody(body, _serializerOptions);
 
             return await SendRequestAsync<TEntity>(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -57,7 +57,7 @@ namespace Color_Chan.Discord.Rest
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
                                  .WithMethod(HttpMethod.Post)
-                                 .WithBody(body);
+                                 .WithBody(body, _serializerOptions);
 
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -79,7 +79,7 @@ namespace Color_Chan.Discord.Rest
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
                                  .WithMethod(HttpMethod.Patch)
-                                 .WithBody(body);
+                                 .WithBody(body, _serializerOptions);
 
             return await SendRequestAsync<TEntity>(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -90,7 +90,7 @@ namespace Color_Chan.Discord.Rest
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
                                  .WithMethod(HttpMethod.Patch)
-                                 .WithBody(body);
+                                 .WithBody(body, _serializerOptions);
 
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -125,7 +125,7 @@ namespace Color_Chan.Discord.Rest
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
                                  .WithMethod(HttpMethod.Put)
-                                 .WithBody(body);
+                                 .WithBody(body, _serializerOptions);
 
             return await SendRequestAsync<TEntity>(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -136,7 +136,7 @@ namespace Color_Chan.Discord.Rest
             var requestBuilder = new HttpRequestMessageBuilder(endpoint)
                                  .WithHeader(AuditLogHeaderKey, auditLogReason)
                                  .WithMethod(HttpMethod.Put)
-                                 .WithBody(body);
+                                 .WithBody(body, _serializerOptions);
 
             return await SendRequestAsync(requestBuilder, ct).ConfigureAwait(false);
         }
@@ -214,13 +214,13 @@ namespace Color_Chan.Discord.Rest
         {
             if (response.IsSuccessStatusCode)
             {
-                var entity = await JsonSerializer.DeserializeAsync<TEntity>(await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false), _serializerOptions.Value, ct).ConfigureAwait(false);
+                var entity = await JsonSerializer.DeserializeAsync<TEntity>(await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false), _serializerOptions, ct).ConfigureAwait(false);
                 return entity is not null ? Result<TEntity>.FromSuccess(entity) : throw new NoNullAllowedException("TEntity can not be null");
             }
 
             if (response.Content.Headers.ContentLength is not > 0) return new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A HTTP error occured");
 
-            var jsonError = await JsonSerializer.DeserializeAsync<DiscordJsonErrorData>(await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false), _serializerOptions.Value, ct)
+            var jsonError = await JsonSerializer.DeserializeAsync<DiscordJsonErrorData>(await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false), _serializerOptions, ct)
                                                 .ConfigureAwait(false);
 
             return jsonError is null
@@ -242,7 +242,7 @@ namespace Color_Chan.Discord.Rest
 
             if (response.Content.Headers.ContentLength is not > 0) return new HttpErrorResult(response.StatusCode, response.ReasonPhrase ?? "A HTTP error occured");
 
-            var jsonError = await JsonSerializer.DeserializeAsync<DiscordJsonErrorData>(await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false), _serializerOptions.Value, ct)
+            var jsonError = await JsonSerializer.DeserializeAsync<DiscordJsonErrorData>(await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false), _serializerOptions, ct)
                                                 .ConfigureAwait(false);
 
             return jsonError is null

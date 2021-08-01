@@ -42,12 +42,42 @@ namespace Color_Chan.Discord.Commands.Services
         /// </returns>
         /// <seealso cref="Result" />
         /// <seealso cref="SlashCommandAttribute" />
-        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(MethodInfo commandMethod,
-                                                                           IEnumerable<ISlashCommandOptionInfo>? options,
-                                                                           IEnumerable<SlashCommandRequirementAttribute>? requirements,
-                                                                           ISlashCommandContext context,
-                                                                           List<IDiscordInteractionCommandOption>? suppliedOptions = null,
-                                                                           IServiceProvider? serviceProvider = null);
+        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(MethodInfo commandMethod, IEnumerable<ISlashCommandOptionInfo>? options, IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context, List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null);
+        /// <summary>
+        ///     Execute a specific command with their dependencies.
+        ///     The command will be searched for with its <see cref="SlashCommandAttribute.Name" />.
+        /// </summary>
+        /// <param name="commandInfo">The command that will be executed.</param>
+        /// <param name="context">The current <see cref="ISlashCommandContext" /> that will be passed to the command module.</param>
+        /// <param name="suppliedOptions">The options used by the user.</param>
+        /// <param name="serviceProvider">
+        ///     The <see cref="IServiceProvider" /> containing the necessary dependencies for the the
+        ///     module of the command.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="Result" /> containing the result of the command execution.
+        /// </returns>
+        /// <seealso cref="Result" />
+        /// <seealso cref="SlashCommandAttribute" />
+        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null);
+        
+        /// <summary>
+        ///     Execute a specific command with their dependencies.
+        ///     The command will be searched for with its <see cref="SlashCommandAttribute.Name" />.
+        /// </summary>
+        /// <param name="commandOptionInfo">The sub command that will be executed.</param>
+        /// <param name="context">The current <see cref="ISlashCommandContext" /> that will be passed to the command module.</param>
+        /// <param name="suppliedOptions">The options used by the user.</param>
+        /// <param name="serviceProvider">
+        ///     The <see cref="IServiceProvider" /> containing the necessary dependencies for the the
+        ///     module of the command.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="Result" /> containing the result of the command execution.
+        /// </returns>
+        /// <seealso cref="Result" />
+        /// <seealso cref="SlashCommandAttribute" />
+        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandOptionInfo commandOptionInfo, ISlashCommandContext context, List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null);
 
         /// <summary>
         ///     Execute a specific command with their dependencies.

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Builders;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 
@@ -12,6 +13,7 @@ namespace RoleManager.Commands
     /// <summary>
     ///     The command module for all role related commands.
     /// </summary>
+    [SlashCommandGroup("roles", "Gets, creates or updates roles.")]
     public class RoleCommands : SlashCommandModule
     {
         private readonly IDiscordRestGuild _restGuild;
@@ -26,12 +28,63 @@ namespace RoleManager.Commands
         }
         
         /// <summary>
+        ///     Create a new empty role with a role name.
+        /// </summary>
+        /// <param name="roleName">The name of the new role.</param>
+        /// <returns>
+        ///     A <see cref="IDiscordInteractionResponse"/> with an embed containing the new role name.
+        /// </returns>
+        [SlashCommandGroup("add", "Adds a role.")]
+        [SlashCommand("empty", "Adds an empty role.")]
+        public async Task<IDiscordInteractionResponse> AddEmptyRoleAsync([SlashCommandOption("name", "The name of the new role.", true)] string roleName)
+        {
+            var guildId = SlashContext.GuildId;
+
+            // Send an error message if the command was used in DMs.
+            var dmErrorResponse = CheckIfGuildIdExists();
+            if (dmErrorResponse is not null) return dmErrorResponse;
+
+            // Create the new role.
+            var roleConfig = new DiscordCreateGuildRole
+            {
+                Name = roleName
+            };
+            var newRoleResponse = await _restGuild.CreateGuildRoleAsync(guildId!.Value, roleConfig).ConfigureAwait(false);
+
+            // Check if the role was successfully created.
+            if (!newRoleResponse.IsSuccessful)
+            {
+                var errorResponse = new SlashCommandResponseBuilder()
+                                    .WithContent("Failed to create the role.")
+                                    .MakePrivate()
+                                    .Build();
+
+                return errorResponse;
+            }
+            
+            //  Build the response embed.
+            var embedBuilder = new DiscordEmbedBuilder()
+                               .WithTitle("New role created!")
+                               .WithDescription($"Role: {roleName} has been created.")
+                               .WithColor(newRoleResponse.Entity!.Color)
+                               .WithTimeStamp();
+            
+            // Build the response with the embed.
+            var response = new SlashCommandResponseBuilder()
+                           .WithEmbed(embedBuilder.Build())
+                           .Build();
+
+            //  Return the response to Discord.
+            return response;
+        }
+
+        /// <summary>
         ///     Get a list of roles and send them back to the user.
         /// </summary>
         /// <returns>
         ///     A <see cref="IDiscordInteractionResponse"/> with an embed containing the role names.
         /// </returns>
-        [SlashCommand("roles", "Get a neat little list with all the roles!")]
+        [SlashCommand("lists", "Get a neat little list with all the roles!")]
         public async Task<IDiscordInteractionResponse> ListRolesAsync()
         {
             var guildId = SlashContext.GuildId;
@@ -68,7 +121,6 @@ namespace RoleManager.Commands
             // Build the response with the embed.
             var response = new SlashCommandResponseBuilder()
                            .WithEmbed(embedBuilder.Build())
-                           .MakePrivate()
                            .Build();
 
             //  Return the response to Discord.
@@ -92,7 +144,7 @@ namespace RoleManager.Commands
         /// </returns>
         private IDiscordInteractionResponse? CheckIfGuildIdExists()
         {
-            if (!RequestIsFromGuild()) return null;
+            if (RequestIsFromGuild()) return null;
             
             //  Build the response embed.
             var errorEmbedBuilder = new DiscordEmbedBuilder()
