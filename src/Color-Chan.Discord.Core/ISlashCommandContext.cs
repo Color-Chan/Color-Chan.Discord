@@ -21,7 +21,7 @@ namespace Color_Chan.Discord.Core
         /// <summary>
         ///     The user that has made the interaction request.
         /// </summary>
-        IDiscordUser User { get; init; }
+        IDiscordUser? User { get; init; }
 
         /// <summary>
         ///     The interaction command that the user has requested.
@@ -31,7 +31,7 @@ namespace Color_Chan.Discord.Core
         /// <summary>
         ///     The message of the interaction request.
         /// </summary>
-        IDiscordMessage Message { get; init; }
+        IDiscordMessage? Message { get; init; }
 
         /// <summary>
         ///     The Guild id of the current guild.

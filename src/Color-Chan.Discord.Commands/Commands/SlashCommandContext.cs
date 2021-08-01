@@ -12,13 +12,9 @@ namespace Color_Chan.Discord.Commands.Commands
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandContext" />.
         /// </summary>
-        /// <param name="user">The <see cref="IDiscordUser" /> that activated the slash command.</param>
-        /// <param name="message">The <see cref="IDiscordMessage" /> containing the message of the slash command request.</param>
         /// <param name="command">The <see cref="IDiscordInteractionCommand" /> containing the data for the slash command request.</param>
-        public SlashCommandContext(IDiscordUser user, IDiscordMessage message, IDiscordInteractionCommand command)
+        public SlashCommandContext(IDiscordInteractionCommand command)
         {
-            User = user;
-            Message = message;
             Command = command;
         }
 
@@ -26,10 +22,10 @@ namespace Color_Chan.Discord.Commands.Commands
         public IDiscordGuildMember? Member { get; init; }
 
         /// <inheritdoc />
-        public IDiscordUser User { get; init; }
+        public IDiscordUser? User { get; init; }
 
         /// <inheritdoc />
-        public IDiscordMessage Message { get; init; }
+        public IDiscordMessage? Message { get; init; }
 
         /// <inheritdoc />
         public IDiscordInteractionCommand Command { get; init; }

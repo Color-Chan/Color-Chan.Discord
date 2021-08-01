@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Commands;
 using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -83,6 +84,7 @@ namespace Color_Chan.Discord.Controllers
 
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
 
+            // Execute the correct interaction type.
             var result = interactionData.Type switch
             {
                 DiscordInteractionType.Ping => DiscordInteractionResponse.PingResponse().ToDataModel(),
@@ -98,58 +100,94 @@ namespace Color_Chan.Discord.Controllers
         {
             // Todo: make a dedicated interaction slash command handler.
 
-            if (interaction.Data is null) throw new NullReferenceException("Interaction data can not be null for a slash command!");
+            if (interaction.Data is null) throw new ArgumentNullException(nameof(interaction.Data), "Interaction data can not be null for a slash command!");
 
-            var context = new SlashCommandContext(interaction.User!, interaction.Message!, interaction.Data)
+            var context = new SlashCommandContext(interaction.Data)
             {
+                User = interaction.User,
+                Message = interaction.Message,
                 Member = interaction.GuildMember,
                 GuildId = interaction.GuildId,
                 ChannelId = interaction.ChannelId!.Value,
-                ApplicationId = interaction.ApplicationId
+                ApplicationId = interaction.ApplicationId,
+                Command = interaction.Data
             };
 
+            // Todo: improve this mess.
+
             if (interaction.Data.Options is not null)
+            {
+                // Check if any of the used options was a sub command (group) and execute it.
                 foreach (var option in interaction.Data.Options)
+                {
                     switch (option.Type)
                     {
                         case DiscordApplicationCommandOptionType.SubCommand:
-                        {
-                            var searchResult = _slashCommandService.SearchSlashCommand(interaction.Data.Name, option.Name);
-
-                            if (searchResult is null)
-                            {
-                                _logger.LogWarning("Failed to get sub command {GroupName} {CommandName}", interaction.Data.Options, option.Name);
-                                return new DiscordInteractionResponseData();
-                            }
-
-                            var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, interaction.Data.Options.ToList(), _serviceProvider).ConfigureAwait(false);
-                            if (result.IsSuccessful) return result.Entity!.ToDataModel();
-                            break;
-                        }
+                            return await ExecuteSubCommand(interaction.Data.Name, option, context).ConfigureAwait(false);
                         case DiscordApplicationCommandOptionType.SubCommandGroup:
-                            if (option.SubOptions is null) continue;
-                            foreach (var subOption in option.SubOptions)
-                                if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
-                                {
-                                    var searchResult = _slashCommandService.SearchSlashCommand(interaction.Data.Name, option.Name, subOption.Name);
+                            return await ExecuteSubCommandGroup(interaction.Data.Name, option, context).ConfigureAwait(false);
+                    }
+                }
+            }
 
-                                    if (searchResult is null)
-                                    {
-                                        _logger.LogWarning("Failed to get sub command {GroupName} {SubGroupName} {CommandName}", interaction.Data.Options, option.Name, subOption.Name);
-                                        return new DiscordInteractionResponseData();
-                                    }
+            var searchResult = _slashCommandService.SearchSlashCommand(interaction.Data.Name);
+            if (searchResult is null)
+            {
+                _logger.LogWarning("Command {CommandName} is not registered", interaction.Data.Name);
+                return new DiscordInteractionResponseData(); // todo:
+            }
 
-                                    var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, interaction.Data.Options.ToList(), _serviceProvider).ConfigureAwait(false);
-                                    if (result.IsSuccessful) return result.Entity!.ToDataModel();
-                                    break;
-                                }
+            // Execute normal slash command.
+            var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
+            if (result.IsSuccessful) return result.Entity!.ToDataModel();
 
-                            break;
-                        default:
-                            continue;
+            // Todo: error handling.
+            throw new NotImplementedException();
+        }
+
+        private async Task<DiscordInteractionResponseData> ExecuteSubCommand(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
+        {
+            var searchResult = _slashCommandService.SearchSlashCommand(commandGroupName, option.Name);
+
+            if (searchResult is null)
+            {
+                _logger.LogWarning("Command {GroupName} {CommandName} is not registered", commandGroupName, option.Name);
+                return new DiscordInteractionResponseData();
+            }
+
+            var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, option.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
+            if (result.IsSuccessful) return result.Entity!.ToDataModel();
+
+            // Todo: error handling.
+            throw new NotImplementedException();
+        }
+
+        private async Task<DiscordInteractionResponseData> ExecuteSubCommandGroup(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
+        {
+            if (option.SubOptions is null)
+            {
+                throw new NullReferenceException("A sub command group needs to sub commands");
+            }
+
+            foreach (var subOption in option.SubOptions)
+            {
+                if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
+                {
+                    var searchResult = _slashCommandService.SearchSlashCommand(commandGroupName, option.Name, subOption.Name);
+
+                    if (searchResult is null)
+                    {
+                        _logger.LogWarning("Command {GroupName} {SubGroupName} {CommandName}  is not registered", commandGroupName, option.Name, subOption.Name);
+                        return new DiscordInteractionResponseData();
                     }
 
-            return new DiscordInteractionResponseData();
+                    var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, subOption.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
+                    if (result.IsSuccessful) return result.Entity!.ToDataModel();
+                }
+            }
+
+            // Todo: error handling.
+            throw new NotImplementedException();
         }
     }
 }
