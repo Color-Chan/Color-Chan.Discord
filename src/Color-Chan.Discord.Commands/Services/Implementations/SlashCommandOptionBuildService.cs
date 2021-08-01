@@ -64,14 +64,20 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var options = new List<DiscordApplicationCommandOptionData>();
 
             foreach (var optionInfo in commandOptionInfos)
+            {
+                var subOptions = BuildSlashCommandsOptions(optionInfo.CommandOptions);
+                
                 options.Add(new DiscordApplicationCommandOptionData
                 {
                     Name = optionInfo.Name,
                     Description = optionInfo.Description,
                     Type = optionInfo.Type,
                     IsRequired = optionInfo.IsRequired,
-                    Choices = BuildChoiceData(optionInfo.Choices)
+                    Choices = BuildChoiceData(optionInfo.Choices),
+                    SubOptions = subOptions
                 });
+            }
+
 
             if (options.Count > MaxCommandOptions) throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
 

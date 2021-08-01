@@ -73,7 +73,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var existingCommands = await _restApplication.GetGlobalApplicationCommandsAsync(_discordTokens.ApplicationId).ConfigureAwait(false);
             if (!existingCommands.IsSuccessful) return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to get existing global slash commands."));
 
-
             // Create or update the slash commands.
             var newGlobalSlashCommands = globalSlashCommands.GetUpdatedOrNewCommands(existingCommands.Entity!);
             _logger.LogInformation("Found {Count} new or updated slash commands", newGlobalSlashCommands.Count.ToString());
