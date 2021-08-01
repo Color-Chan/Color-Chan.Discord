@@ -1,20 +1,32 @@
 {
-  "id": "9999999999999999",
-  "application_id": "9999999999999999",
-  "type": 3,
+  "id": "999999999999",
+  "application_id": "999999999999",
+  "type": 2,
   "data": {
-    "id": "9999999999999999",
-    "name": "test",
+    "id": "999999999999",
+    "name": "roles",
     "options": [
       {
-        "name": "test",
-        "type": 3,
-        "value": "test_test"
+        "name": "add",
+        "type": 2,
+        "options": [
+          {
+            "name": "empty",
+            "type": 1,
+            "options": [
+              {
+                "name": "name",
+                "type": 3,
+                "value": "test role name"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
-  "guild_id": "9999999999999999",
-  "channel_id": "9999999999999999",
+  "guild_id": "999999999999",
+  "channel_id": "999999999999",
   "member": {
     "user": {
       "id": "9999999999999999",
@@ -42,6 +54,6 @@
     "mute": true,
     "permissions": "274877906943"
   },
-  "token": "token",
+  "token": "TOKEN",
   "version": 1
 }
