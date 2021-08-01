@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
+using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
@@ -149,7 +150,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Build the command group.
             var commandGroup = new SlashCommandInfo(groupAttribute.Name, groupAttribute.Description, parentModule)
             {
-                CommandOptions = new List<ISlashCommandOptionInfo>()
+                CommandOptions = new List<ISlashCommandOptionInfo>(),
+                Guilds = _guildBuildService.GetCommandGuilds(parentModule)
             };
             var rawValidCommands = GetValidSubSlashCommandsMethods(parentModule);
 
@@ -165,17 +167,18 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     continue;
                 }
                 
+                if (_guildBuildService.GetCommandGuilds(rawValidCommand, false).Any()) 
+                    throw new InvalidGuildSlashCommandException("A sub command can not be set to a specific guild. Add the attribute to the command module instead.");
+                
                 // Build the sub command.
                 var commandRequirements = _requirementBuildService.GetCommandRequirements(rawValidCommand);
-                var guildAttributes = _guildBuildService.GetCommandGuilds(rawValidCommand);
                 var options = _optionBuildService.GetCommandOptions(rawValidCommand);
                 var subCommand = new SlashCommandOptionInfo(subCommandAttribute.Name,
                                                             subCommandAttribute.Description,
                                                             rawValidCommand,
                                                             parentModule,
                                                             commandRequirements,
-                                                            options.ToList(),
-                                                            guildAttributes);
+                                                            options.ToList());
 
                 // Check if the command doesn't belong to a sub command group.
                 if (subCommandGroupAttribute is null)
