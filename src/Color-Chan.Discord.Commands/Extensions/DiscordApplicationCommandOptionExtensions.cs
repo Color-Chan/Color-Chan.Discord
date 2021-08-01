@@ -63,22 +63,16 @@ namespace Color_Chan.Discord.Commands.Extensions
                 }
 
                 if (commandOption.SubOptions is null != existingOption.SubOptions is null)
-                {
                     // command sub options has been updated.
                     return true;
-                }
-                
+
                 if (commandOption.SubOptions is null && existingOption.SubOptions is null)
-                {
                     // command sub options has been updated.
                     continue;
-                }
 
                 if (HasNewOrUpdatedOptions(commandOption.SubOptions!.ToList(), existingOption.SubOptions!.ToList()))
-                {
                     // command sub options has been updated.
                     return true;
-                }
             }
 
             // No new or updated options found.

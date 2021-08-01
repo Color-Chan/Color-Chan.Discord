@@ -78,7 +78,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                                                         IEnumerable<ISlashCommandOptionInfo>? options,
                                                                                         IEnumerable<SlashCommandRequirementAttribute>? requirements,
                                                                                         ISlashCommandContext context,
-                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null, 
+                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null,
                                                                                         IServiceProvider? serviceProvider = null)
         {
             serviceProvider ??= DefaultServiceProvider.Instance;
@@ -120,25 +120,24 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context,
+                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
         {
             if (commandInfo.CommandMethod is not null)
-            {
                 return await ExecuteSlashCommandAsync(commandInfo.CommandMethod, commandInfo.CommandOptions, commandInfo.Requirements, context, suppliedOptions, serviceProvider).ConfigureAwait(false);
-            }
-            
+
             _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandOptionInfo commandOptionInfo, ISlashCommandContext context, List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandOptionInfo commandOptionInfo, ISlashCommandContext context,
+                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
         {
             if (commandOptionInfo.CommandMethod is not null)
-            {
-                return await ExecuteSlashCommandAsync(commandOptionInfo.CommandMethod, commandOptionInfo.CommandOptions, commandOptionInfo.Requirements, context, suppliedOptions, serviceProvider).ConfigureAwait(false);
-            }
-            
+                return await ExecuteSlashCommandAsync(commandOptionInfo.CommandMethod, commandOptionInfo.CommandOptions, commandOptionInfo.Requirements, context, suppliedOptions, serviceProvider)
+                    .ConfigureAwait(false);
+
             _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandOptionInfo.Name);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
         }
@@ -148,7 +147,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                                                         IServiceProvider? serviceProvider = null)
         {
             var commandInfo = SearchSlashCommand(name);
-            
+
             if (commandInfo is not null)
             {
                 if (commandInfo.CommandMethod is null)
@@ -156,12 +155,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
                     return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
                 }
-                
-                return await ExecuteSlashCommandAsync(commandInfo.CommandMethod, 
-                                                      commandInfo.CommandOptions, 
-                                                      commandInfo.Requirements, 
-                                                      context, 
-                                                      options?.ToList(), 
+
+                return await ExecuteSlashCommandAsync(commandInfo.CommandMethod,
+                                                      commandInfo.CommandOptions,
+                                                      commandInfo.Requirements,
+                                                      context,
+                                                      options?.ToList(),
                                                       serviceProvider).ConfigureAwait(false);
             }
 
@@ -169,7 +168,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             _logger.LogWarning("Failed to find slash command {Name}", name);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {name}"));
         }
-        
+
         /// <inheritdoc />
         public ISlashCommandInfo? SearchSlashCommand(string name)
         {
@@ -183,7 +182,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var subCommand = commandGroupInfo?.CommandOptions?.FirstOrDefault(x => x.Name == subCommandName);
             return subCommand;
         }
-        
+
         /// <inheritdoc />
         public ISlashCommandOptionInfo? SearchSlashCommand(string groupName, string subCommandGroupName, string subCommandName)
         {

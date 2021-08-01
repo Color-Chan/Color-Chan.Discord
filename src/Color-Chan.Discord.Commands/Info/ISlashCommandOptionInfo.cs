@@ -35,7 +35,7 @@ namespace Color_Chan.Discord.Commands.Info
         ///     of the choice.
         /// </summary>
         IEnumerable<KeyValuePair<string, string>>? Choices { get; init; }
-        
+
         /// <summary>
         ///     The <see cref="MethodInfo" /> containing the method of the sub command.
         /// </summary>

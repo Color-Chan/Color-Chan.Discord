@@ -23,15 +23,18 @@ namespace Color_Chan.Discord.Commands.Services
         ///     <paramref name="command" />.
         /// </returns>
         IEnumerable<SlashCommandGuildAttribute> GetCommandGuilds(MethodInfo command, bool includeParentAttributes = true);
-        
+
         /// <summary>
         ///     Get a <see cref="IEnumerable{T}" /> of <see cref="SlashCommandGuildAttribute" /> for a specific
-        ///     <see cref="SlashCommandModule"/>
+        ///     <see cref="SlashCommandModule" />
         /// </summary>
-        /// <param name="commandModule">The command module that will be used to find the <see cref="SlashCommandGuildAttribute" />s.</param>
+        /// <param name="commandModule">
+        ///     The command module that will be used to find the <see cref="SlashCommandGuildAttribute" />
+        ///     s.
+        /// </param>
         /// <returns>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandGuildAttribute" /> for the given
-        ///     <see cref="SlashCommandModule"/>
+        ///     <see cref="SlashCommandModule" />
         /// </returns>
         IEnumerable<SlashCommandGuildAttribute> GetCommandGuilds(Type commandModule);
     }

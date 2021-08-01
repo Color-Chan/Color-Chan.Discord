@@ -4,7 +4,7 @@ using Color_Chan.Discord.Commands.Attributes;
 namespace Color_Chan.Discord.Commands.Exceptions
 {
     /// <summary>
-    ///     An exception that should be thrown when a <see cref="SlashCommandGuildAttribute"/> is incorrectly used.
+    ///     An exception that should be thrown when a <see cref="SlashCommandGuildAttribute" /> is incorrectly used.
     /// </summary>
     public class InvalidGuildSlashCommandException : Exception
     {

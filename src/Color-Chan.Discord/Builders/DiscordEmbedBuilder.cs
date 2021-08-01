@@ -8,77 +8,77 @@ using Color_Chan.Discord.Rest.Models.Embed;
 namespace Color_Chan.Discord.Builders
 {
     /// <summary>
-    ///     Represents a builder class for creating <see cref="IDiscordEmbed"/>s.
+    ///     Represents a builder class for creating <see cref="IDiscordEmbed" />s.
     /// </summary>
     public class DiscordEmbedBuilder
     {
         /// <summary>
-        ///     The title used for the <see cref="DiscordEmbed.Title"/>.
-        /// </summary>
-        private string? _title;
-        
-        /// <summary>
-        ///     The type used for the <see cref="DiscordEmbed.Type"/>.
-        /// </summary>
-        private DiscordEmbedType? _type;
-        
-        /// <summary>
-        ///     The description used for the <see cref="DiscordEmbed.Description"/>.
-        /// </summary>
-        private string? _description;
-        
-        /// <summary>
-        ///     The url used for the <see cref="DiscordEmbed.Url"/>.
-        /// </summary>
-        private string? _url;
-        
-        /// <summary>
-        ///     The <see cref="DateTimeOffset"/> used for the <see cref="DiscordEmbed.Timestamp"/>.
-        /// </summary>
-        private DateTimeOffset? _timestamp;
-        
-        /// <summary>
-        ///     The <see cref="_color"/> used for the <see cref="DiscordEmbed.Color"/>.
-        /// </summary>
-        private Color? _color;
-        
-        /// <summary>
-        ///     The <see cref="IDiscordEmbedFooter"/> used for the <see cref="DiscordEmbed.Footer"/>.
-        /// </summary>
-        private IDiscordEmbedFooter? _footer;
-        
-        /// <summary>
-        ///     The <see cref="IDiscordEmbedImage"/> used for the <see cref="DiscordEmbed.Image"/>.
-        /// </summary>
-        private IDiscordEmbedImage? _image;
-        
-        /// <summary>
-        ///     The <see cref="IDiscordEmbedThumbnail"/> used for the <see cref="DiscordEmbed.Thumbnail"/>.
-        /// </summary>
-        private IDiscordEmbedThumbnail? _thumbnail;
-        
-        /// <summary>
-        ///     The <see cref="IDiscordEmbedVideo"/> used for the <see cref="DiscordEmbed.Video"/>.
-        /// </summary>
-        private IDiscordEmbedVideo? _video;
-        
-        /// <summary>
-        ///     The <see cref="IDiscordEmbedProvider"/> used for the <see cref="DiscordEmbed.Provider"/>.
-        /// </summary>
-        private IDiscordEmbedProvider? _provider;
-        
-        /// <summary>
-        ///     The <see cref="IDiscordEmbedAuthor"/> used for the <see cref="DiscordEmbed.Author"/>.
+        ///     The <see cref="IDiscordEmbedAuthor" /> used for the <see cref="DiscordEmbed.Author" />.
         /// </summary>
         private IDiscordEmbedAuthor? _author;
-                
+
         /// <summary>
-        ///     The <see cref="IDiscordEmbedField"/>s used for the <see cref="DiscordEmbed.Fields"/>.
+        ///     The <see cref="_color" /> used for the <see cref="DiscordEmbed.Color" />.
+        /// </summary>
+        private Color? _color;
+
+        /// <summary>
+        ///     The description used for the <see cref="DiscordEmbed.Description" />.
+        /// </summary>
+        private string? _description;
+
+        /// <summary>
+        ///     The <see cref="IDiscordEmbedField" />s used for the <see cref="DiscordEmbed.Fields" />.
         /// </summary>
         private List<IDiscordEmbedField>? _fields;
 
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Title" /> of the <see cref="DiscordEmbed"/>.
+        ///     The <see cref="IDiscordEmbedFooter" /> used for the <see cref="DiscordEmbed.Footer" />.
+        /// </summary>
+        private IDiscordEmbedFooter? _footer;
+
+        /// <summary>
+        ///     The <see cref="IDiscordEmbedImage" /> used for the <see cref="DiscordEmbed.Image" />.
+        /// </summary>
+        private IDiscordEmbedImage? _image;
+
+        /// <summary>
+        ///     The <see cref="IDiscordEmbedProvider" /> used for the <see cref="DiscordEmbed.Provider" />.
+        /// </summary>
+        private IDiscordEmbedProvider? _provider;
+
+        /// <summary>
+        ///     The <see cref="IDiscordEmbedThumbnail" /> used for the <see cref="DiscordEmbed.Thumbnail" />.
+        /// </summary>
+        private IDiscordEmbedThumbnail? _thumbnail;
+
+        /// <summary>
+        ///     The <see cref="DateTimeOffset" /> used for the <see cref="DiscordEmbed.Timestamp" />.
+        /// </summary>
+        private DateTimeOffset? _timestamp;
+
+        /// <summary>
+        ///     The title used for the <see cref="DiscordEmbed.Title" />.
+        /// </summary>
+        private string? _title;
+
+        /// <summary>
+        ///     The type used for the <see cref="DiscordEmbed.Type" />.
+        /// </summary>
+        private DiscordEmbedType? _type;
+
+        /// <summary>
+        ///     The url used for the <see cref="DiscordEmbed.Url" />.
+        /// </summary>
+        private string? _url;
+
+        /// <summary>
+        ///     The <see cref="IDiscordEmbedVideo" /> used for the <see cref="DiscordEmbed.Video" />.
+        /// </summary>
+        private IDiscordEmbedVideo? _video;
+
+        /// <summary>
+        ///     Sets the <see cref="DiscordEmbed.Title" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="title">The embed title.</param>
         /// <returns>
@@ -89,9 +89,9 @@ namespace Color_Chan.Discord.Builders
             _title = title;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Type" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Type" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="type">The embed type.</param>
         /// <returns>
@@ -104,7 +104,7 @@ namespace Color_Chan.Discord.Builders
         }
 
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Description" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Description" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="description">The embed description.</param>
         /// <returns>
@@ -115,9 +115,9 @@ namespace Color_Chan.Discord.Builders
             _description = description;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Url" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Url" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="url">The embed url.</param>
         /// <returns>
@@ -128,9 +128,9 @@ namespace Color_Chan.Discord.Builders
             _url = url;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Url" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Url" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="timeStamp">The embed timestamp.</param>
         /// <returns>
@@ -141,9 +141,9 @@ namespace Color_Chan.Discord.Builders
             _timestamp = timeStamp;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Url" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Url" /> of the <see cref="DiscordEmbed" />.
         ///     With the current UTC time.
         /// </summary>
         /// <returns>
@@ -154,9 +154,9 @@ namespace Color_Chan.Discord.Builders
             _timestamp = DateTimeOffset.UtcNow;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Color" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Color" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="color">The embed color.</param>
         /// <returns>
@@ -167,9 +167,9 @@ namespace Color_Chan.Discord.Builders
             _color = color;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Footer" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Footer" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="text">The text of the footer</param>
         /// <param name="iconUrl">The icon url of the footer.</param>
@@ -187,9 +187,9 @@ namespace Color_Chan.Discord.Builders
             };
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Footer" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Footer" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="footer">The footer of the embed.</param>
         /// <returns>
@@ -202,7 +202,7 @@ namespace Color_Chan.Discord.Builders
         }
 
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Image" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Image" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="imageUrl">The image URL.</param>
         /// <param name="imageProxyUrl">The proxy image URL. Default is null.</param>
@@ -222,9 +222,9 @@ namespace Color_Chan.Discord.Builders
             };
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Image" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Image" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="image">The image of the embed.</param>
         /// <returns>
@@ -235,9 +235,9 @@ namespace Color_Chan.Discord.Builders
             _image = image;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Thumbnail" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Thumbnail" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="imageUrl">The image URL.</param>
         /// <param name="imageProxyUrl">The proxy image URL. Default is null.</param>
@@ -257,9 +257,9 @@ namespace Color_Chan.Discord.Builders
             };
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Thumbnail" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Thumbnail" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="thumbnail">The thumbnail of the embed.</param>
         /// <returns>
@@ -270,9 +270,9 @@ namespace Color_Chan.Discord.Builders
             _thumbnail = thumbnail;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Video" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Video" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="imageUrl">The image URL.</param>
         /// <param name="imageProxyUrl">The proxy image URL. Default is null.</param>
@@ -292,9 +292,9 @@ namespace Color_Chan.Discord.Builders
             };
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Video" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Video" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="video">The video of the embed.</param>
         /// <returns>
@@ -305,9 +305,9 @@ namespace Color_Chan.Discord.Builders
             _video = video;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Provider" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Provider" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="name">The provider name.</param>
         /// <param name="url">The provider url. Default is null.</param>
@@ -323,9 +323,9 @@ namespace Color_Chan.Discord.Builders
             };
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Provider" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Provider" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="provider">The provider of the embed.</param>
         /// <returns>
@@ -336,9 +336,9 @@ namespace Color_Chan.Discord.Builders
             _provider = provider;
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Author" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Author" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="name">The name of the author.</param>
         /// <param name="url">The url of the author. Default is null.</param>
@@ -360,7 +360,7 @@ namespace Color_Chan.Discord.Builders
         }
 
         /// <summary>
-        ///     Sets the <see cref="DiscordEmbed.Author" /> of the <see cref="DiscordEmbed"/>.
+        ///     Sets the <see cref="DiscordEmbed.Author" /> of the <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="author">The author of the embed.</param>
         /// <returns>
@@ -371,9 +371,10 @@ namespace Color_Chan.Discord.Builders
             _author = author;
             return this;
         }
-        
+
         /// <summary>
-        ///     Adds a <see cref="DiscordEmbedField"/> to the <see cref="DiscordEmbed.Fields" /> of the <see cref="DiscordEmbed"/>.
+        ///     Adds a <see cref="DiscordEmbedField" /> to the <see cref="DiscordEmbed.Fields" /> of the
+        ///     <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="name">The name of the field.</param>
         /// <param name="value">The value of the field.</param>
@@ -384,7 +385,7 @@ namespace Color_Chan.Discord.Builders
         public DiscordEmbedBuilder WithField(string name, string value, bool? isInline = null)
         {
             _fields ??= new List<IDiscordEmbedField>();
-            
+
             _fields.Add(new DiscordEmbedField
             {
                 Name = name,
@@ -393,9 +394,10 @@ namespace Color_Chan.Discord.Builders
             });
             return this;
         }
-        
+
         /// <summary>
-        ///     Adds a <see cref="DiscordEmbedField"/> to the <see cref="DiscordEmbed.Fields" /> of the <see cref="DiscordEmbed"/>.
+        ///     Adds a <see cref="DiscordEmbedField" /> to the <see cref="DiscordEmbed.Fields" /> of the
+        ///     <see cref="DiscordEmbed" />.
         /// </summary>
         /// <param name="field">The new field.</param>
         /// <returns>
@@ -404,13 +406,14 @@ namespace Color_Chan.Discord.Builders
         public DiscordEmbedBuilder WithField(DiscordEmbedField field)
         {
             _fields ??= new List<IDiscordEmbedField>();
-            
+
             _fields.Add(field);
             return this;
         }
-        
+
         /// <summary>
-        ///     Adds <see cref="DiscordEmbedField"/>s to the <see cref="DiscordEmbed.Fields" /> of the <see cref="DiscordEmbed"/>.
+        ///     Adds <see cref="DiscordEmbedField" />s to the <see cref="DiscordEmbed.Fields" /> of the <see cref="DiscordEmbed" />
+        ///     .
         /// </summary>
         /// <param name="fields">The new fields.</param>
         /// <returns>
@@ -419,16 +422,16 @@ namespace Color_Chan.Discord.Builders
         public DiscordEmbedBuilder WithFields(IEnumerable<DiscordEmbedField> fields)
         {
             _fields ??= new List<IDiscordEmbedField>();
-            
+
             _fields.AddRange(fields);
             return this;
         }
-        
+
         /// <summary>
-        ///     Builds the <see cref="DiscordEmbed"/> with the current set values.
+        ///     Builds the <see cref="DiscordEmbed" /> with the current set values.
         /// </summary>
         /// <returns>
-        ///     The generated <see cref="DiscordEmbed"/>.
+        ///     The generated <see cref="DiscordEmbed" />.
         /// </returns>
         public IDiscordEmbed Build()
         {

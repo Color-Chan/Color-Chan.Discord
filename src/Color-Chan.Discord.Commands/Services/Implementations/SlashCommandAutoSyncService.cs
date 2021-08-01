@@ -86,10 +86,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
 
             // Skip deleting old slash commands if none exist.
-            if (!existingCommands.Entity!.Any())
-            {
-                return Result.FromSuccess();
-            }
+            if (!existingCommands.Entity!.Any()) return Result.FromSuccess();
 
             // Delete old global commands.
             foreach (var existingCommand in existingCommands.Entity!)

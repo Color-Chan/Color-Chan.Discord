@@ -27,7 +27,7 @@ namespace Pong.Commands
                                .WithDescription("Pong!")
                                .WithColor(Color.Aqua)
                                .WithTimeStamp();
-            
+
             // Build the response with the embed.
             var response = new SlashCommandResponseBuilder()
                            .WithEmbed(embedBuilder.Build())

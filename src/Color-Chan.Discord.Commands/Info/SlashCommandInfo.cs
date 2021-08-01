@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Commands.Info
             Guilds = guilds;
             ParentModule = module;
         }
-        
+
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandInfo" />.
         /// </summary>

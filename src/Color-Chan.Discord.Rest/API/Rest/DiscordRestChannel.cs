@@ -158,7 +158,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         #endregion
 
         // All api calls for channel messages.
-        
+
         #region Channel reactions
 
         /// <inheritdoc />

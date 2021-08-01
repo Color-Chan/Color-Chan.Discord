@@ -25,10 +25,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         {
             var attributes = new List<SlashCommandGuildAttribute>();
 
-            if (includeParentAttributes && command.DeclaringType is not null)
-            {
-                attributes.AddRange(GetCommandGuilds(command.DeclaringType));
-            }
+            if (includeParentAttributes && command.DeclaringType is not null) attributes.AddRange(GetCommandGuilds(command.DeclaringType));
 
             var methodAttributes = command.GetCustomAttributes<SlashCommandGuildAttribute>();
             attributes.AddRange(methodAttributes);

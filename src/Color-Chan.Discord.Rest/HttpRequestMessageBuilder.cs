@@ -127,7 +127,7 @@ namespace Color_Chan.Discord.Rest
         ///     Adds a JSON body to the <see cref="HttpRequestMessageBuilder" />.
         /// </summary>
         /// <param name="value">The value that will be added as JSON.</param>
-        /// <param name="options">The <see cref="JsonSerializerOptions"/> that will be used to serialize the body.</param>
+        /// <param name="options">The <see cref="JsonSerializerOptions" /> that will be used to serialize the body.</param>
         /// <typeparam name="TValue">The type of <paramref name="value" />.</typeparam>
         /// <returns>
         ///     The updated <see cref="HttpRequestMessageBuilder" />.

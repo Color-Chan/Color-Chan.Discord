@@ -109,9 +109,7 @@ namespace Color_Chan.Discord.Controllers
             };
 
             if (interaction.Data.Options is not null)
-            {
                 foreach (var option in interaction.Data.Options)
-                {
                     switch (option.Type)
                     {
                         case DiscordApplicationCommandOptionType.SubCommand:
@@ -123,15 +121,14 @@ namespace Color_Chan.Discord.Controllers
                                 _logger.LogWarning("Failed to get sub command {GroupName} {CommandName}", interaction.Data.Options, option.Name);
                                 return new DiscordInteractionResponseData();
                             }
-                        
+
                             var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, interaction.Data.Options.ToList(), _serviceProvider).ConfigureAwait(false);
                             if (result.IsSuccessful) return result.Entity!.ToDataModel();
                             break;
                         }
                         case DiscordApplicationCommandOptionType.SubCommandGroup:
-                            if(option.SubOptions is null) continue;
+                            if (option.SubOptions is null) continue;
                             foreach (var subOption in option.SubOptions)
-                            {
                                 if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
                                 {
                                     var searchResult = _slashCommandService.SearchSlashCommand(interaction.Data.Name, option.Name, subOption.Name);
@@ -141,19 +138,17 @@ namespace Color_Chan.Discord.Controllers
                                         _logger.LogWarning("Failed to get sub command {GroupName} {SubGroupName} {CommandName}", interaction.Data.Options, option.Name, subOption.Name);
                                         return new DiscordInteractionResponseData();
                                     }
-                        
+
                                     var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, interaction.Data.Options.ToList(), _serviceProvider).ConfigureAwait(false);
                                     if (result.IsSuccessful) return result.Entity!.ToDataModel();
                                     break;
                                 }
-                            }
+
                             break;
                         default:
                             continue;
                     }
-                }
-            }
-            
+
             return new DiscordInteractionResponseData();
         }
     }

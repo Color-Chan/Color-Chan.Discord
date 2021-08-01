@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Commands.Info
                 _ => throw new UnsupportedSlashCommandParameterException($"{type.Name} is currently not supported as a slash command options.")
             };
         }
-        
+
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" />.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Color_Chan.Discord.Commands.Info
             Description = description ?? throw new ArgumentNullException(nameof(description));
             Type = type;
         }
-        
+
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" />.
         /// </summary>

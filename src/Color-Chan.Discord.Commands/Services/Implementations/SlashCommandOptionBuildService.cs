@@ -66,7 +66,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             foreach (var optionInfo in commandOptionInfos)
             {
                 var subOptions = BuildSlashCommandsOptions(optionInfo.CommandOptions);
-                
+
                 options.Add(new DiscordApplicationCommandOptionData
                 {
                     Name = optionInfo.Name,

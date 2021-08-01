@@ -9,16 +9,21 @@ using Color_Chan.Discord.Rest.Models.Interaction;
 namespace Color_Chan.Discord.Builders
 {
     /// <summary>
-    ///     Represents a builder class for creating <see cref="IDiscordInteractionResponse"/>s.
+    ///     Represents a builder class for creating <see cref="IDiscordInteractionResponse" />s.
     /// </summary>
     public class SlashCommandResponseBuilder
     {
         private const int MaxEmbeds = 10;
 
         /// <summary>
-        ///     Whether or not the response is TTS.
+        ///     Allowed mentions object.
         /// </summary>
-        private bool? _isTts;
+        private IDiscordAllowedMentions? _allowedMentions;
+
+        /// <summary>
+        ///     Message components.
+        /// </summary>
+        private List<IDiscordComponent>? _components;
 
         /// <summary>
         ///     The message content.
@@ -31,19 +36,14 @@ namespace Color_Chan.Discord.Builders
         private List<IDiscordEmbed>? _embeds;
 
         /// <summary>
-        ///     Allowed mentions object.
-        /// </summary>
-        private IDiscordAllowedMentions? _allowedMentions;
-
-        /// <summary>
         ///     Interaction application command callback data flags
         /// </summary>
         private DiscordInteractionCommandCallbackFlags? _flags;
 
         /// <summary>
-        ///     Message components.
+        ///     Whether or not the response is TTS.
         /// </summary>
-        private List<IDiscordComponent>? _components;
+        private bool? _isTts;
 
         /// <summary>
         ///     Enables Text To Speech for the response.
@@ -56,7 +56,7 @@ namespace Color_Chan.Discord.Builders
             _isTts = true;
             return this;
         }
-        
+
         /// <summary>
         ///     Makes the response only visible to the person that has used the slash command.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Color_Chan.Discord.Builders
             _flags = DiscordInteractionCommandCallbackFlags.Ephemeral;
             return this;
         }
-        
+
         /// <summary>
         ///     Adds content to the response.
         /// </summary>
@@ -79,9 +79,9 @@ namespace Color_Chan.Discord.Builders
             _content = content;
             return this;
         }
-        
+
         /// <summary>
-        ///     Adds an embed to the response. 
+        ///     Adds an embed to the response.
         /// </summary>
         /// <param name="embed">The embed that will be added.</param>
         /// <returns>
@@ -91,15 +91,12 @@ namespace Color_Chan.Discord.Builders
         {
             _embeds ??= new List<IDiscordEmbed>();
 
-            if (_embeds.Count > 10)
-            {
-                throw new ArgumentOutOfRangeException(nameof(embed), $"Can not add more then {MaxEmbeds.ToString()} embed to a response.");
-            }
-            
+            if (_embeds.Count > 10) throw new ArgumentOutOfRangeException(nameof(embed), $"Can not add more then {MaxEmbeds.ToString()} embed to a response.");
+
             _embeds.Add(embed);
             return this;
         }
-        
+
         /// <summary>
         ///     Sets the allowed mentions for the response.
         /// </summary>
@@ -112,7 +109,7 @@ namespace Color_Chan.Discord.Builders
             _allowedMentions = allowedMentions;
             return this;
         }
-        
+
         /// <summary>
         ///     Adds an component to the response.
         /// </summary>
@@ -129,10 +126,10 @@ namespace Color_Chan.Discord.Builders
         }
 
         /// <summary>
-        ///     Builds a <see cref="IDiscordInteractionResponse"/> with all the set values.
+        ///     Builds a <see cref="IDiscordInteractionResponse" /> with all the set values.
         /// </summary>
         /// <returns>
-        ///     The build <see cref="IDiscordInteractionResponse"/>.
+        ///     The build <see cref="IDiscordInteractionResponse" />.
         /// </returns>
         public IDiscordInteractionResponse Build()
         {

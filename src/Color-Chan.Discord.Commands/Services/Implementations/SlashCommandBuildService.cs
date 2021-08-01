@@ -64,7 +64,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                         _logger.LogWarning("Can not load command group {ModuleName} since it doesn't have the SlashCommandGroupAttribute attribute", parentModule.Name);
                         continue;
                     }
-                    
+
                     var commandInfoKeyValuePair = BuildCommandGroupInfoKeyValuePair(groupAttribute, parentModule);
                     validCommands.Add(commandInfoKeyValuePair);
                 }
@@ -166,10 +166,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     _logger.LogWarning("Can not load command {CommandName} since it doesn't have the SlashCommandAttribute attribute", rawValidCommand.Name);
                     continue;
                 }
-                
-                if (_guildBuildService.GetCommandGuilds(rawValidCommand, false).Any()) 
+
+                if (_guildBuildService.GetCommandGuilds(rawValidCommand, false).Any())
                     throw new InvalidGuildSlashCommandException("A sub command can not be set to a specific guild. Add the attribute to the command module instead.");
-                
+
                 // Build the sub command.
                 var commandRequirements = _requirementBuildService.GetCommandRequirements(rawValidCommand);
                 var options = _optionBuildService.GetCommandOptions(rawValidCommand);
@@ -222,16 +222,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// </returns>
         private IEnumerable<MethodInfo> GetValidSlashCommandsMethods(Type parentModule)
         {
-            if (IsValidCommandGroupModuleDefinition(parentModule))
-            {
-                return new List<MethodInfo>();
-            }
+            if (IsValidCommandGroupModuleDefinition(parentModule)) return new List<MethodInfo>();
 
             return parentModule
                    .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                    .Where(IsValidCommandDefinition);
         }
-        
+
         /// <summary>
         ///     Get a <see cref="IEnumerable{T}" /> of <see cref="MethodInfo" />s containing only valid sub commands methods.
         /// </summary>
@@ -241,10 +238,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// </returns>
         private IEnumerable<MethodInfo> GetValidSubSlashCommandsMethods(Type parentModule)
         {
-            if (!IsValidCommandGroupModuleDefinition(parentModule))
-            {
-                return new List<MethodInfo>();
-            }
+            if (!IsValidCommandGroupModuleDefinition(parentModule)) return new List<MethodInfo>();
 
             return parentModule
                    .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
