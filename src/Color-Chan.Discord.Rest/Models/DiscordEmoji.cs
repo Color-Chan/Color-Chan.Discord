@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
-using Color_Chan.Discord.Core.Common.Models.Guild;
-using Color_Chan.Discord.Rest.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.Models
 {
@@ -13,7 +10,7 @@ namespace Color_Chan.Discord.Rest.Models
         {
             Id = emojiData.Id;
             Name = emojiData.Name;
-            Roles = emojiData.Roles?.Select(roleData => new DiscordGuildRole(roleData));
+            RoleIds = emojiData.RoleIds;
             User = emojiData.User is not null ? new DiscordUser(emojiData.User) : null;
             IsAnimated = emojiData.IsAnimated;
             IsAvailable = emojiData.IsAvailable;
@@ -28,7 +25,7 @@ namespace Color_Chan.Discord.Rest.Models
         public string Name { get; init; } = null!;
 
         /// <inheritdoc />
-        public IEnumerable<IDiscordGuildRole>? Roles { get; init; }
+        public IEnumerable<ulong>? RoleIds { get; init; }
 
         /// <inheritdoc />
         public IDiscordUser? User { get; init; }
@@ -51,7 +48,7 @@ namespace Color_Chan.Discord.Rest.Models
             {
                 Id = Id,
                 Name = Name,
-                Roles = Roles?.Select(x => x.ToDataModel()),
+                RoleIds = RoleIds,
                 User = User?.ToDataModel(),
                 IsAnimated = IsAnimated,
                 IsAvailable = IsAvailable,

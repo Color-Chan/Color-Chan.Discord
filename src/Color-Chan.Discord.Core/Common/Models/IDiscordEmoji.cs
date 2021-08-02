@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Color_Chan.Discord.Core.Common.API.DataModels;
-using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Core.Common.Models
 {
@@ -19,7 +18,7 @@ namespace Color_Chan.Discord.Core.Common.Models
         /// <summary>
         ///     Roles allowed to use this emoji
         /// </summary>
-        IEnumerable<IDiscordGuildRole>? Roles { get; init; }
+        IEnumerable<ulong>? RoleIds { get; init; }
 
         /// <summary>
         ///     User that created this emoji
