@@ -3,7 +3,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/color-chan/color-chan.discord/badge?style=for-the-badge)](https://www.codefactor.io/repository/github/color-chan/color-chan.discord)
 [![NuGet](https://img.shields.io/nuget/vpre/Color-Chan.Discord.svg?maxAge=600&style=for-the-badge)](https://www.nuget.org/packages/Color-Chan.Discord)
 [![NuGet](https://img.shields.io/nuget/dt/Color-Chan.Discord.svg?maxAge=600&style=for-the-badge)](https://www.nuget.org/packages/Color-Chan.Discord)
-
+[![License](https://img.shields.io/github/license/Color-Chan/Color-Chan.Discord?style=for-the-badge)](https://github.com/Color-Chan/Color-Chan.Discord/blob/main/LICENSE)
 
 Color-Chan.Discord is a C# Discord library made for slash commands. Using Discord webhooks and .NET 5.
 The library is still in development so it should not be used yet, it should oonly be used for testing purposes.
