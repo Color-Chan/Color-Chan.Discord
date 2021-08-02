@@ -5,7 +5,7 @@ using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
 
-namespace Color_Chan.Discord.Commands.Services
+namespace Color_Chan.Discord.Commands.Services.Builders
 {
     /// <summary>
     ///     Holds all the methods to build <see cref="ISlashCommandInfo" /> for guilds only.

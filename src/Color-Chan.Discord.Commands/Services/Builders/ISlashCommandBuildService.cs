@@ -4,7 +4,7 @@ using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.Params;
 
-namespace Color_Chan.Discord.Commands.Services
+namespace Color_Chan.Discord.Commands.Services.Builders
 {
     /// <summary>
     ///     Holds all the methods to build the <see cref="ISlashCommandInfo" />.

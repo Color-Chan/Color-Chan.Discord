@@ -1,5 +1,7 @@
 ﻿using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Commands.Services.Implementations;
+using Color_Chan.Discord.Commands.Services.Implementations.Builders;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 

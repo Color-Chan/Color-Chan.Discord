@@ -5,6 +5,7 @@ using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Results;

@@ -5,7 +5,7 @@ using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
-namespace Color_Chan.Discord.Commands.Services
+namespace Color_Chan.Discord.Commands.Services.Builders
 {
     /// <summary>
     ///     Holds all methods to build <see cref="ISlashCommandOptionInfo" />s for <see cref="ISlashCommandInfo" />s.

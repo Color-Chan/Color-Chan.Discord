@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
+using Color_Chan.Discord.Commands.Services.Builders;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations
+namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 {
     /// <inheritdoc />
     public class SlashCommandGuildBuildService : ISlashCommandGuildBuildService

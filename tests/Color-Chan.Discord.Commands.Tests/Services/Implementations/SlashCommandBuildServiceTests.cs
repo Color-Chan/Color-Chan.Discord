@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Commands.Services.Implementations;
+using Color_Chan.Discord.Commands.Services.Implementations.Builders;
 using Color_Chan.Discord.Commands.Tests.Invalid;
 using Color_Chan.Discord.Commands.Tests.Valid;
 using FluentAssertions;
