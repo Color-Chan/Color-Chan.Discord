@@ -110,7 +110,7 @@ namespace Color_Chan.Discord.Controllers
                 GuildId = interaction.GuildId,
                 ChannelId = interaction.ChannelId!.Value,
                 ApplicationId = interaction.ApplicationId,
-                Command = interaction.Data
+                CommandRequest = interaction.Data
             };
 
             // Todo: improve this mess.

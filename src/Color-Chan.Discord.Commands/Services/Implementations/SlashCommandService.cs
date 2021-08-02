@@ -92,6 +92,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Get the arguments from the given options.
             var args = new List<object?>();
             if (options is not null)
+            {
                 foreach (var commandOption in options)
                 {
                     var userOption = suppliedOptions?.FirstOrDefault(x => x.Name == commandOption.Name);
@@ -99,7 +100,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     // Add the argument value if one was supplied or add null.
                     args.Add(userOption?.Value);
                 }
-
+            }
+            
             // Try to execute the command.
             try
             {

@@ -122,6 +122,8 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
                         return roleId;
                     break;
                 case DiscordApplicationCommandOptionType.Mentionable:
+                    if (ulong.TryParse(jsonValue?.GetString(), out var mentionableId))
+                        return mentionableId;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

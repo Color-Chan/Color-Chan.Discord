@@ -24,9 +24,9 @@ namespace Color_Chan.Discord.Core
         IDiscordUser? User { get; init; }
 
         /// <summary>
-        ///     The interaction command that the user has requested.
+        ///     The interaction command that the user has requested. Including the request data.
         /// </summary>
-        IDiscordInteractionCommand Command { get; init; }
+        IDiscordInteractionCommand CommandRequest { get; init; }
 
         /// <summary>
         ///     The message of the interaction request.

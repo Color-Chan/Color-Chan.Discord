@@ -15,7 +15,7 @@ namespace Color_Chan.Discord.Commands.Commands
         /// <param name="command">The <see cref="IDiscordInteractionCommand" /> containing the data for the slash command request.</param>
         public SlashCommandContext(IDiscordInteractionCommand command)
         {
-            Command = command;
+            CommandRequest = command;
         }
 
         /// <inheritdoc />
@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Commands.Commands
         public IDiscordMessage? Message { get; init; }
 
         /// <inheritdoc />
-        public IDiscordInteractionCommand Command { get; init; }
+        public IDiscordInteractionCommand CommandRequest { get; init; }
 
         /// <inheritdoc />
         public ulong? GuildId { get; set; }

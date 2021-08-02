@@ -18,22 +18,32 @@ namespace Color_Chan.Discord.Commands.Info
         /// <param name="type">The type of the parameter.</param>
         /// <param name="isRequired">Whether or not the option is required.</param>
         /// <param name="choices"></param>
+        /// <param name="optionType">The type of the option. Will be automatically set to the correct type when set to null, using <paramref name="type"/>.</param>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when <paramref name="name" />, <paramref name="description" /> or
         ///     <paramref name="type" /> is null.
         /// </exception>
-        public SlashCommandOptionInfo(string name, string description, Type type, bool? isRequired, IEnumerable<KeyValuePair<string, string>>? choices = null)
+        public SlashCommandOptionInfo(string name, string description, Type type, bool? isRequired, IEnumerable<KeyValuePair<string, string>>? choices = null, 
+                                      DiscordApplicationCommandOptionType? optionType = null)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Description = description ?? throw new ArgumentNullException(nameof(description));
             IsRequired = isRequired;
             Choices = choices;
+
+            if (optionType.HasValue)
+            {
+                Type = optionType.Value;
+                return;
+            }
+            
             Type = type switch
             {
                 var t when t == typeof(bool) => DiscordApplicationCommandOptionType.Boolean,
                 var t when t == typeof(int) => DiscordApplicationCommandOptionType.Integer,
                 var t when t == typeof(double) => DiscordApplicationCommandOptionType.Number,
                 var t when t == typeof(string) => DiscordApplicationCommandOptionType.String,
+                var t when t == typeof(ulong) => DiscordApplicationCommandOptionType.Mentionable,
                 _ => throw new UnsupportedSlashCommandParameterException($"{type.Name} is not supported as a slash command options.")
             };
         }
