@@ -1,0 +1,35 @@
+{
+  "description": "desc",
+  "welcome_channels": [
+    {
+      "channel_id": "999999999999999",
+      "description": "desc",
+      "emoji_id": "999999999999999",
+      "emoji_name": "aaaaaaaa"
+    },
+    {
+      "channel_id": "999999999999999",
+      "description": "desc",
+      "emoji_id": "999999999999999",
+      "emoji_name": "aaaaaaaa"
+    },
+    {
+      "channel_id": "999999999999999",
+      "description": "desc",
+      "emoji_id": "999999999999999",
+      "emoji_name": "aaaaaaaa"
+    },
+    {
+      "channel_id": "999999999999999",
+      "description": "desc",
+      "emoji_id": "999999999999999",
+      "emoji_name": "aaaaaaaa"
+    },
+    {
+      "channel_id": "999999999999999",
+      "description": "desc",
+      "emoji_id": "999999999999999",
+      "emoji_name": "aaaaaaaa"
+    }
+  ]
+}

@@ -11,9 +11,9 @@
         None = 0,
 
         /// <summary>
-        ///     Nitro recordic.
+        ///     Nitro classic.
         /// </summary>
-        Nitrorecordic = 1,
+        NitroClassic = 1,
 
         /// <summary>
         ///     Nitro.

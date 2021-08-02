@@ -1,0 +1,25 @@
+{
+  "user": {
+    "id": "999999999999999999",
+    "username": "none",
+    "discriminator": "9999",
+    "avatar": "aaaaaaaaaaaaa",
+    "bot": true,
+    "system": true,
+    "mfa_enabled": true,
+    "locale": "en-US",
+    "verified": true,
+    "email": "color-chan@discord.com",
+    "flags": 0,
+    "premium_type": 2,
+    "public_flags": 0
+  },
+  "nick": "none",
+  "roles": [],
+  "joined_at": "2020-01-21T23:01:24.057+00:00",
+  "premium_since": "2020-01-21T23:01:24.057+00:00",
+  "deaf": true,
+  "mute": true,
+  "pending": true,
+  "permissions": "274877906943"
+}
