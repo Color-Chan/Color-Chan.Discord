@@ -61,8 +61,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Build all commands in a specific assembly.
             var commandInfos = _slashCommandBuildService.BuildSlashCommandInfos(assembly);
             foreach (var (key, commandInfo) in commandInfos)
+            {
                 if (!_slashCommands.TryAdd(key, commandInfo))
                     throw new Exception($"Failed to register {commandInfo.CommandName}");
+            }
 
             _logger.LogInformation("Finished adding {Count} commands to the command registry", _slashCommands.Count.ToString());
 
@@ -102,7 +104,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     args.Add(userOption?.Value);
                 }
             }
-            
+
             // Try to execute the command.
             try
             {
@@ -127,7 +129,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                                                         List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
         {
             if (commandInfo.CommandMethod is not null)
+            {
                 return await ExecuteSlashCommandAsync(commandInfo.CommandMethod, commandInfo.CommandOptions, commandInfo.Requirements, context, suppliedOptions, serviceProvider).ConfigureAwait(false);
+            }
 
             _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
@@ -138,8 +142,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                                                         List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
         {
             if (commandOptionInfo.CommandMethod is not null)
-                return await ExecuteSlashCommandAsync(commandOptionInfo.CommandMethod, commandOptionInfo.CommandOptions, commandOptionInfo.Requirements, context, suppliedOptions, serviceProvider)
-                    .ConfigureAwait(false);
+            {
+                return await ExecuteSlashCommandAsync(commandOptionInfo.CommandMethod,
+                                                      commandOptionInfo.CommandOptions,
+                                                      commandOptionInfo.Requirements,
+                                                      context,
+                                                      suppliedOptions,
+                                                      serviceProvider).ConfigureAwait(false);
+            }
 
             _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandOptionInfo.Name);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
@@ -156,7 +166,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 _logger.LogWarning("Failed to find slash command {Name}", name);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {name}"));
             }
-            
+
             if (commandInfo.CommandMethod is null)
             {
                 _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
@@ -167,7 +177,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string commandName, ISlashCommandContext context, 
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string commandName, ISlashCommandContext context,
                                                                                         IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
         {
             var searchResult = SearchSlashCommand(commandGroupName, commandName);
@@ -182,7 +192,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string subCommandGroupName, string commandName, ISlashCommandContext context, 
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string subCommandGroupName, string commandName, ISlashCommandContext context,
                                                                                         IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
         {
             var searchResult = SearchSlashCommand(commandGroupName, subCommandGroupName, commandName);
