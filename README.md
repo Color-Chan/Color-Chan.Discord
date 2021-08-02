@@ -1,8 +1,8 @@
 # Color-Chan.Discord
-[![Color-Chan.Discord](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml)
-[![CodeFactor](https://www.codefactor.io/repository/github/color-chan/color-chan.discord/badge)](https://www.codefactor.io/repository/github/color-chan/color-chan.discord)
-[![NuGet](https://img.shields.io/nuget/vpre/Color-Chan.Discord.svg?maxAge=600?style=plastic)](https://www.nuget.org/packages/Color-Chan.Discord)
-[![NuGet](https://img.shields.io/nuget/dt/Color-Chan.Discord.svg?maxAge=600?style=plastic)](https://www.nuget.org/packages/Color-Chan.Discord)
+[![Color-Chan.Discord](https://img.shields.io/github/workflow/status/Color-Chan/Color-Chan.Discord/.NET%20Build%20Color-Chan.Discord?style=for-the-badge)](https://github.com/Color-Chan/Color-Chan.Discord/actions/workflows/dotnet.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/color-chan/color-chan.discord/badge?style=for-the-badge)](https://www.codefactor.io/repository/github/color-chan/color-chan.discord)
+[![NuGet](https://img.shields.io/nuget/vpre/Color-Chan.Discord.svg?maxAge=600&style=for-the-badge)](https://www.nuget.org/packages/Color-Chan.Discord)
+[![NuGet](https://img.shields.io/nuget/dt/Color-Chan.Discord.svg?maxAge=600&style=for-the-badge)](https://www.nuget.org/packages/Color-Chan.Discord)
 
 
 Color-Chan.Discord is a C# Discord library made for slash commands. Using Discord webhooks and .NET 5.
