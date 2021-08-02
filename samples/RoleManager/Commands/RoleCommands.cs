@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Builders;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -28,15 +30,15 @@ namespace RoleManager.Commands
         }
 
         /// <summary>
-        ///     Create a new empty role with a role name.
+        ///     Create a new role with a role name and with the default permissions.
         /// </summary>
         /// <param name="roleName">The name of the new role.</param>
         /// <returns>
         ///     A <see cref="IDiscordInteractionResponse" /> with an embed containing the new role name.
         /// </returns>
         [SlashCommandGroup("add", "Adds a role.")]
-        [SlashCommand("empty", "Adds an empty role.")]
-        public async Task<IDiscordInteractionResponse> AddEmptyRoleAsync
+        [SlashCommand("default", "Adds a role with the default permissions.")]
+        public async Task<IDiscordInteractionResponse> AddDefaultRoleAsync
         (
             [SlashCommandOption("name", "The name of the new role.", true)]
             string roleName
@@ -51,7 +53,8 @@ namespace RoleManager.Commands
             // Create the new role.
             var roleConfig = new DiscordCreateGuildRole
             {
-                Name = roleName
+                Name = roleName,
+                Permissions = DiscordGuildPermission.None
             };
             var newRoleResponse = await _restGuild.CreateGuildRoleAsync(guildId!.Value, roleConfig).ConfigureAwait(false);
 
@@ -71,6 +74,59 @@ namespace RoleManager.Commands
                                .WithTitle("New role created!")
                                .WithDescription($"Role: {roleName} has been created.")
                                .WithColor(newRoleResponse.Entity!.Color)
+                               .WithTimeStamp();
+
+            // Build the response with the embed.
+            var response = new SlashCommandResponseBuilder()
+                           .WithEmbed(embedBuilder.Build())
+                           .Build();
+
+            //  Return the response to Discord.
+            return response;
+        }
+
+        /// <summary>
+        ///     Deletes a role.
+        /// </summary>
+        /// <returns>
+        ///     A <see cref="IDiscordInteractionResponse" /> with an embed containing whether or not the role has been deleted.
+        /// </returns>
+        [SlashCommand("delete", "Deletes a role!")]
+        public async Task<IDiscordInteractionResponse> DeleteRoleAsync
+        (
+            [SlashCommandOption("role", "The role that will be deleted.", true, DiscordApplicationCommandOptionType.Role)]
+            ulong roleId
+        )
+        {
+            var guildId = SlashContext.GuildId;
+
+            // Send an error message if the command was used in DMs.
+            var dmErrorResponse = CheckIfGuildIdExists();
+            if (dmErrorResponse is not null) return dmErrorResponse;
+
+            // Get the role object.
+            var role = SlashContext.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
+            
+            // Delete the role.
+            var auditLog = $"User: {SlashContext.Member?.User?.Username} requested this action";
+            var deleteResponse = await _restGuild.DeleteGuildRoleAsync(guildId!.Value, roleId, auditLog).ConfigureAwait(false);
+            
+            // Check if the role were successfully deleted.
+            if (!deleteResponse.IsSuccessful)
+            {
+                var errorResponse = new SlashCommandResponseBuilder()
+                                    .WithContent("Failed to delete the role.")
+                                    .MakePrivate()
+                                    .Build();
+
+                return errorResponse;
+            }
+
+            //  Build the response embed.
+            var embedBuilder = new DiscordEmbedBuilder()
+                               .WithTitle($"Role {role?.Name} deleted")
+                               .WithDescription("The role has been successfully deleted!")
+                               .WithColor(role?.Color ?? Color.FromArgb(0))
                                .WithTimeStamp();
 
             // Build the response with the embed.
