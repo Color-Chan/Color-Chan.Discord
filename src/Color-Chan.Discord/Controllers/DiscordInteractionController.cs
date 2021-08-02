@@ -62,16 +62,11 @@ namespace Color_Chan.Discord.Controllers
         public async Task<ActionResult> HandleInteractionRequestAsync()
         {
             // Todo: Benchmark
-
-            // Get the raw body data.
-            using var bodyReader = new StreamReader(Request.Body);
-            if (bodyReader.BaseStream.CanSeek) bodyReader.BaseStream.Seek(0, SeekOrigin.Begin);
-            string rawBody = await bodyReader.ReadToEndAsync().ConfigureAwait(false);
-
+            
             // Verify the interaction request.
             var signature = Request.Headers["X-Signature-Ed25519"].ToString();
             var timeStamp = Request.Headers["X-Signature-Timestamp"].ToString();
-            if (!_authService.VerifySignature(signature, timeStamp, rawBody))
+            if (!await _authService.VerifySignatureAsync(signature, timeStamp, Request.Body).ConfigureAwait(false))
             {
                 _logger.LogWarning("Failed to verify interaction command");
                 return Unauthorized("Failed to verify signatures");
