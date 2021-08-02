@@ -164,7 +164,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result> ModifyGuildRoleAsync(ulong guildId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
+        public virtual async Task<Result> DeleteGuildRoleAsync(ulong guildId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
         {
             string endpoint = $"guilds/{guildId.ToString()}/roles/{roleId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
