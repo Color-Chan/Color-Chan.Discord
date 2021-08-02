@@ -129,16 +129,9 @@ namespace Color_Chan.Discord.Controllers
                     }
                 }
             }
-
-            var searchResult = _slashCommandService.SearchSlashCommand(interaction.Data.Name);
-            if (searchResult is null)
-            {
-                _logger.LogWarning("Command {CommandName} is not registered", interaction.Data.Name);
-                return new DiscordInteractionResponseData(); // todo:
-            }
-
+            
             // Execute normal slash command.
-            var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
+            var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
             if (result.IsSuccessful) return result.Entity!.ToDataModel();
 
             // Todo: error handling.
@@ -147,15 +140,7 @@ namespace Color_Chan.Discord.Controllers
 
         private async Task<DiscordInteractionResponseData> ExecuteSubCommand(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
         {
-            var searchResult = _slashCommandService.SearchSlashCommand(commandGroupName, option.Name);
-
-            if (searchResult is null)
-            {
-                _logger.LogWarning("Command {GroupName} {CommandName} is not registered", commandGroupName, option.Name);
-                return new DiscordInteractionResponseData();
-            }
-
-            var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, option.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
+            var result = await _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, context, option.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
             if (result.IsSuccessful) return result.Entity!.ToDataModel();
 
             // Todo: error handling.
@@ -173,21 +158,16 @@ namespace Color_Chan.Discord.Controllers
             {
                 if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
                 {
-                    var searchResult = _slashCommandService.SearchSlashCommand(commandGroupName, option.Name, subOption.Name);
-
-                    if (searchResult is null)
-                    {
-                        _logger.LogWarning("Command {GroupName} {SubGroupName} {CommandName}  is not registered", commandGroupName, option.Name, subOption.Name);
-                        return new DiscordInteractionResponseData();
-                    }
-
-                    var result = await _slashCommandService.ExecuteSlashCommandAsync(searchResult, context, subOption.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
+                    var result = await _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, subOption.Name, context, subOption.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
                     if (result.IsSuccessful) return result.Entity!.ToDataModel();
+
+                    // Todo: error handling.
+                    throw new NotImplementedException();
                 }
             }
 
-            // Todo: error handling.
-            throw new NotImplementedException();
+            _logger.LogWarning("Command group {Name} had no sub command", commandGroupName);
+            return new DiscordInteractionResponseData();
         }
     }
 }

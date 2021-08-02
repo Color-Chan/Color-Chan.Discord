@@ -148,25 +148,49 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         {
             var commandInfo = SearchSlashCommand(name);
 
-            if (commandInfo is not null)
+            if (commandInfo is null)
             {
-                if (commandInfo.CommandMethod is null)
-                {
-                    _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
-                    return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
-                }
-
-                return await ExecuteSlashCommandAsync(commandInfo.CommandMethod,
-                                                      commandInfo.CommandOptions,
-                                                      commandInfo.Requirements,
-                                                      context,
-                                                      options?.ToList(),
-                                                      serviceProvider).ConfigureAwait(false);
+                _logger.LogWarning("Failed to find slash command {Name}", name);
+                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {name}"));
+            }
+            
+            if (commandInfo.CommandMethod is null)
+            {
+                _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
+                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
             }
 
+            return await ExecuteSlashCommandAsync(commandInfo, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
+        }
 
-            _logger.LogWarning("Failed to find slash command {Name}", name);
-            return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {name}"));
+        /// <inheritdoc />
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string commandName, ISlashCommandContext context, 
+                                                                                        IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
+        {
+            var searchResult = SearchSlashCommand(commandGroupName, commandName);
+
+            if (searchResult is null)
+            {
+                _logger.LogWarning("Command {GroupName} {CommandName} is not registered", commandGroupName, commandName);
+                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {commandGroupName} {commandName}"));
+            }
+
+            return await ExecuteSlashCommandAsync(searchResult, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string subCommandGroupName, string commandName, ISlashCommandContext context, 
+                                                                                        IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
+        {
+            var searchResult = SearchSlashCommand(commandGroupName, subCommandGroupName, commandName);
+
+            if (searchResult is null)
+            {
+                _logger.LogWarning("Command {GroupName} {SubCommandGroupName} {CommandName}} is not registered", commandGroupName, subCommandGroupName, commandName);
+                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {commandGroupName} {subCommandGroupName} {commandName}"));
+            }
+
+            return await ExecuteSlashCommandAsync(searchResult, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
