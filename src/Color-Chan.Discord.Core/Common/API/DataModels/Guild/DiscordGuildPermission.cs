@@ -10,6 +10,11 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
     public enum DiscordGuildPermission : ulong
     {
 	    /// <summary>
+	    ///     A <see cref="DiscordGuildPermission"/> with no permissions.
+	    /// </summary>
+	    None = 0,
+	    
+	    /// <summary>
 	    ///     Allows creation of instant invites.
 	    /// </summary>
 	    /// <remarks>

@@ -1,0 +1,32 @@
+{
+  "users": {
+    "999999999999": {
+      "id": "999999999999",
+      "username": "name",
+      "discriminator": "9999",
+      "avatar": "aaaaaaaaaaaaa",
+      "bot": true,
+      "public_flags": 0
+    }
+  },
+  "members": {
+    "999999999999": {
+      "roles": [
+        "999999999999",
+        "999999999999"
+      ],
+      "joined_at": "2020-01-21T23:01:24.057+00:00",
+      "deaf": false,
+      "mute": false,
+      "pending": false,
+      "permissions": "248407129665"
+    }
+  },
+  "channels": {
+    "999999999999": {
+      "id": "999999999999",
+      "type": 0,
+      "name": "all"
+    }
+  }
+}
