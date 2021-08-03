@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/github/license/Color-Chan/Color-Chan.Discord?style=for-the-badge)](https://github.com/Color-Chan/Color-Chan.Discord/blob/main/LICENSE)
 
 Color-Chan.Discord is a C# Discord library made for slash commands. Using Discord webhooks and .NET 5.
-The library is still in development so it should not be used yet, it should oonly be used for testing purposes.
+The library is still in development so there expect some bug here and there, but please report it if you find one!
 
 ## 1. Installation
 Color-Chan.Discord is available on [NuGet](https://www.nuget.org/packages/Color-Chan.Discord).
