@@ -218,6 +218,7 @@ public class PongCommands : SlashCommandModule
 }
 ```
 
+_For more examples, please refer to the [Samples folder](https://github.com/Color-Chan/Color-Chan.Discord/tree/main/samples)_
 
 ### URL
 
@@ -225,9 +226,6 @@ The interaction end point is located at `https://YOUR_DOMAIN.COM/api/v1/discord/
 You will need to add this URL to you [application](https://discord.com/developers/applications/).
 &nbsp;  
 [![interactionUrlSetup](https://cdn.colorchan.com/examples/interactionUrlExample.png)](https://discord.com/developers/applications/)
-
-_For more examples, please refer to the [Samples folder](https://github.com/Color-Chan/Color-Chan.Discord/tree/main/samples)_
-
 
 
 <!-- ROADMAP -->
