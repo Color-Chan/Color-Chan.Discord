@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Tests.Valid.Requirements
 {
@@ -17,9 +17,9 @@ namespace Color_Chan.Discord.Commands.Tests.Valid.Requirements
         }
 
         /// <inheritdoc />
-        public override Task<SlashCommandRequirementResult> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
+        public override Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
         {
-            return Task.FromResult(_value ? new SlashCommandRequirementResult(_value) : new SlashCommandRequirementResult(_value, "value was false."));
+            return Task.FromResult(_value ? Result.FromSuccess() : Result.FromError(new ErrorResult("Input was false")));
         }
     }
 }

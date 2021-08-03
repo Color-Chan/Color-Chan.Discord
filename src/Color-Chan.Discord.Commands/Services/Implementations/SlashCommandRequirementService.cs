@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
@@ -22,23 +23,24 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<List<string>> ExecuteSlashCommandRequirementsAsync(IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context,
-                                                                             IServiceProvider serviceProvider)
+        public async Task<Result> ExecuteSlashCommandRequirementsAsync(IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context, IServiceProvider serviceProvider)
         {
-            List<string> errorMessages = new();
+            if (requirements is null)
+            {
+                return Result.FromSuccess();
+            }
+            
+            foreach (var requirement in requirements)
+            {
+                var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);
 
-            if (requirements is not null)
-                foreach (var requirement in requirements)
-                {
-                    var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);
+                if (result.IsSuccessful) continue;
 
-                    if (result.Passed) continue;
+                _logger.LogDebug("Failed to pass requirement {RequirementName}", requirement.GetType().Name);
+                return Result.FromError(result.ErrorResult!);
+            }
 
-                    _logger.LogDebug("Failed to pass requirement {RequirementName}", requirement.GetType().Name);
-                    errorMessages.Add(result.ErrorMessage ?? string.Empty);
-                }
-
-            return errorMessages;
+            return Result.FromSuccess();
         }
     }
 }

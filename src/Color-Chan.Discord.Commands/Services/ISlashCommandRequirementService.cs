@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Services
 {
@@ -26,6 +27,6 @@ namespace Color_Chan.Discord.Commands.Services
         /// <returns>
         ///     todo:
         /// </returns>
-        Task<List<string>> ExecuteSlashCommandRequirementsAsync(IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context, IServiceProvider serviceProvider);
+        Task<Result> ExecuteSlashCommandRequirementsAsync(IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context, IServiceProvider serviceProvider);
     }
 }

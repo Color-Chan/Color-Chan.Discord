@@ -89,8 +89,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var instance = GetSlashCommandModuleInstance(serviceProvider, commandMethod);
             instance.SetContext(context);
 
-            var requirementErrors = await _requirementService.ExecuteSlashCommandRequirementsAsync(requirements, context, serviceProvider).ConfigureAwait(false);
-            if (requirementErrors.Any()) return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(string.Join(", ", requirementErrors)));
+            // Run the requirements for the slash command.
+            var requirementsResult = await _requirementService.ExecuteSlashCommandRequirementsAsync(requirements, context, serviceProvider).ConfigureAwait(false);
+            if (!requirementsResult.IsSuccessful)
+            {
+                return Result<IDiscordInteractionResponse>.FromError(null, requirementsResult.ErrorResult);
+            }
 
             // Get the arguments from the given options.
             var args = new List<object?>();

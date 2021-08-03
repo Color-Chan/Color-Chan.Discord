@@ -27,14 +27,13 @@ namespace Color_Chan.Discord.Services.Implementations
         ///     Initializes a new instance of <see cref="DiscordSlashCommandHandler" />.
         /// </summary>
         /// <param name="slashCommandService">The <see cref="ISlashCommandService" /> that will execute the slash command.</param>
-        /// <param name="logger">The logger.</param>
         /// <param name="serviceProvider">The service provider.</param>
-        public DiscordSlashCommandHandler(ISlashCommandService slashCommandService, ILogger<DiscordSlashCommandHandler> logger, IServiceProvider serviceProvider)
+        /// <param name="logger">The logger.</param>
+        public DiscordSlashCommandHandler(ISlashCommandService slashCommandService, IServiceProvider serviceProvider, ILogger<DiscordSlashCommandHandler> logger)
         {
             _slashCommandService = slashCommandService;
-            _logger = logger;
             _serviceProvider = serviceProvider;
-            
+            _logger = logger;
         }
         
         /// <inheritdoc />
