@@ -41,6 +41,7 @@ namespace Color_Chan.Discord.Extensions
             services.AddColorChanDiscordCommand();
 
             services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
+            services.AddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
             services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
 
             return services;
