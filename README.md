@@ -154,12 +154,10 @@ public static async Task Main(string[] args)
     };  
     await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly(), config).ConfigureAwait(false); // <-----
 
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-  <a href="https://github.com/Color-Chan/Color-Chan.Discord">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+    // Run the WebHost, and start accepting requests.
+    await host.RunAsync().ConfigureAwait(false);
+}
+```
 
 
 ### Startup.cs
@@ -173,7 +171,13 @@ public void ConfigureServices(IServiceCollection services)
     //  Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.
     services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999); // <---
 
+    services.AddControllers();
+}
 
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    // This is needed to validate incoming interaction requests.
+    app.UseColorChanDiscord(); // <---
 
     app.UseRouting();
     app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
@@ -261,7 +265,10 @@ Color-Chan.Discord uses [Semantic Versioning 2.0.0](https://semver.org/#semantic
 
 The versioning will be using the following format: MAJOR.MINOR.PATCH.
 
-Color-Chan.Discord is a C# Discord library made for slash commands. Using Discord webhooks and .NET 5. The library is still in development so there expect some bug here and there, but please report it if you find one!
+* MAJOR version when you make incompatible API changes,
+* MINOR version when you add functionality in a backwards compatible manner, and
+* PATCH version when you make backwards compatible bug fixes.
+* Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 
 
 
