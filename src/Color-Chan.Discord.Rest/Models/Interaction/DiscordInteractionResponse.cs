@@ -20,14 +20,5 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
                 Data = Data?.ToDataModel()
             };
         }
-
-        public static IDiscordInteractionResponse PingResponse()
-        {
-            return new DiscordInteractionResponse
-            {
-                Type = DiscordInteractionResponseType.Pong,
-                Data = null
-            };
-        }
     }
 }
