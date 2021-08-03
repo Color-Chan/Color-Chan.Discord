@@ -29,7 +29,7 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
 
             // Act
             var discordClient1 = httpClientFactory!.CreateClient("Discord");
-            var discordClient2 = httpClientFactory!.CreateClient("Discord");
+            var discordClient2 = httpClientFactory.CreateClient("Discord");
 
             // Assert.
             discordClient1.Should().NotBeNull();

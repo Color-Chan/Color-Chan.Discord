@@ -238,7 +238,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
             if (result.IsSuccessful && result.Entity is null) return Result<IDiscordGuildMember?>.FromSuccess(null);
 
-            return ConvertResult(result!)!;
+            return ConvertResult(result)!;
         }
 
         /// <inheritdoc />

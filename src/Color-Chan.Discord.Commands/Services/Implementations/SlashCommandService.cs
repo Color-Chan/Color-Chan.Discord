@@ -211,7 +211,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             if (searchResult is null)
             {
-                _logger.LogWarning("Command {GroupName} {SubCommandGroupName} {CommandName}} is not registered", commandGroupName, subCommandGroupName, commandName);
+                _logger.LogWarning("Command {GroupName} {SubCommandGroupName} {CommandName} is not registered", commandGroupName, subCommandGroupName, commandName);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {commandGroupName} {subCommandGroupName} {commandName}"));
             }
 
