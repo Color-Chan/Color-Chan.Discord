@@ -248,7 +248,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
         public void Should_detect_new_choices()
         {
             // Arrange
-            NewCommands[0]!.Options!.FirstOrDefault()!.Choices = NewCommands[0]!.Options!.FirstOrDefault()!.Choices!.Append(new DiscordApplicationCommandOptionChoiceData
+            NewCommands[0].Options!.FirstOrDefault()!.Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices!.Append(new DiscordApplicationCommandOptionChoiceData
             {
                 Name = "choice5",
                 Value = "choiceValue5"

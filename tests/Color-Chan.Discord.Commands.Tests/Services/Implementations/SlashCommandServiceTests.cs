@@ -106,7 +106,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Assert
             result.IsSuccessful.Should().BeFalse();
             result.ErrorResult!.ErrorMessage.Should().Be(errorReason);
-            (result.ErrorResult as ExceptionResult)!.Exception!.GetType().Should().Be(typeof(Exception));
+            (result.ErrorResult as ExceptionResult)!.Exception.GetType().Should().Be(typeof(Exception));
         }
 
         [TestCase("Command10")]
@@ -187,7 +187,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Assert
             command.Should().NotBeNull();
             command!.CommandMethod!.Name.Should().Be(methodName);
-            command!.Requirements?.Count().Should().Be(requirementAmount);
+            command.Requirements?.Count().Should().Be(requirementAmount);
         }
 
         [TestCase("add", "role", "Command18")]

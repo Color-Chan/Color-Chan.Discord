@@ -32,10 +32,10 @@ namespace Color_Chan.Discord.Rest.Tests.API
             // Assert
             bucket.Should().NotBeNull();
             bucket!.Limit.Should().Be(int.Parse(limit));
-            bucket!.Remaining.Should().Be(int.Parse(remaining));
-            bucket!.ResetsAt.Should().Be(DateTimeOffset.UnixEpoch + TimeSpan.FromSeconds(double.Parse(resetAt, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture)));
-            bucket!.ResetsAfter.Should().Be(TimeSpan.FromMilliseconds(double.Parse(resetAfter, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture) * 1000));
-            bucket!.Id.Should().Be(id);
+            bucket.Remaining.Should().Be(int.Parse(remaining));
+            bucket.ResetsAt.Should().Be(DateTimeOffset.UnixEpoch + TimeSpan.FromSeconds(double.Parse(resetAt, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture)));
+            bucket.ResetsAfter.Should().Be(TimeSpan.FromMilliseconds(double.Parse(resetAfter, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture) * 1000));
+            bucket.Id.Should().Be(id);
         }
 
         [Test]
@@ -71,21 +71,21 @@ namespace Color_Chan.Discord.Rest.Tests.API
             // Assert
             bucket.Should().NotBeNull();
             bucket!.Limit.Should().Be(0);
-            bucket!.Remaining.Should().Be(0);
-            bucket!.ResetsAfter.Should().Be(TimeSpan.FromMilliseconds(double.Parse(resetAtString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture) * 1000));
-            bucket!.Id.Should().Be("global");
+            bucket.Remaining.Should().Be(0);
+            bucket.ResetsAfter.Should().Be(TimeSpan.FromMilliseconds(double.Parse(resetAtString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture) * 1000));
+            bucket.Id.Should().Be("global");
 
             var resetAt = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(int.Parse(resetAtString));
-            bucket!.ResetsAt.Year.Should().Be(resetAt.Year);
-            bucket!.ResetsAt.Month.Should().Be(resetAt.Month);
-            bucket!.ResetsAt.Day.Should().Be(resetAt.Day);
-            bucket!.ResetsAt.Hour.Should().Be(resetAt.Hour);
-            bucket!.ResetsAt.Minute.Should().Be(resetAt.Minute);
+            bucket.ResetsAt.Year.Should().Be(resetAt.Year);
+            bucket.ResetsAt.Month.Should().Be(resetAt.Month);
+            bucket.ResetsAt.Day.Should().Be(resetAt.Day);
+            bucket.ResetsAt.Hour.Should().Be(resetAt.Hour);
+            bucket.ResetsAt.Minute.Should().Be(resetAt.Minute);
 
             // prevent unit test from failing when the test ran slow.
             // This is still accurate enough because it's using epoch time.
-            bucket!.ResetsAt.Second.Should().BeGreaterOrEqualTo(resetAt.Second - 3);
-            bucket!.ResetsAt.Second.Should().BeLessOrEqualTo(resetAt.Second + 3);
+            bucket.ResetsAt.Second.Should().BeGreaterOrEqualTo(resetAt.Second - 3);
+            bucket.ResetsAt.Second.Should().BeLessOrEqualTo(resetAt.Second + 3);
         }
     }
 }

@@ -14,13 +14,13 @@ namespace Color_Chan.Discord.Commands.Extensions
 
         internal static bool HasNewOrUpdatedOptions(this IReadOnlyCollection<DiscordApplicationCommandOptionData> newOptions, IReadOnlyCollection<IDiscordApplicationCommandOption> existingCommand)
         {
-            if (newOptions!.Count != existingCommand!.Count)
+            if (newOptions.Count != existingCommand.Count)
                 // Amount of choices has been updated.
                 return true;
 
-            foreach (var commandOption in newOptions!)
+            foreach (var commandOption in newOptions)
             {
-                var existingOption = existingCommand!.FirstOrDefault(x => x.Name.Equals(commandOption.Name));
+                var existingOption = existingCommand.FirstOrDefault(x => x.Name.Equals(commandOption.Name));
 
                 if (existingOption is null)
                     // New option found.
