@@ -144,6 +144,16 @@
         ///     Unknown gift code.
         /// </summary>
         UnknownGiftCode = 10038,
+        
+        /// <summary>
+        ///     Unknown stream.
+        /// </summary>
+        UnknownStream = 10049,
+        
+        /// <summary>
+        ///     Unknown premium server subscribe cooldown.
+        /// </summary>
+        UnknownPremiumServerSubscribeCooldown = 10050,
 
         /// <summary>
         ///     Unknown guild template.
@@ -189,6 +199,16 @@
         ///     Unknown guild welcome screen.
         /// </summary>
         UnknownGuildWelcomeScreen = 10069,
+        
+        /// <summary>
+        ///     Unknown guild scheduled event.
+        /// </summary>
+        UnknownGuildScheduledEvent = 10070,
+        
+        /// <summary>
+        ///     Unknown guild scheduled event user.
+        /// </summary>
+        UnknownGuildScheduledEventUser = 10071,
 
         /// <summary>
         ///     Bots cannot use this endpoint.
@@ -556,6 +576,16 @@
         ///     The "before" value provided was earlier than the thread creation date.
         /// </summary>
         BeforeIsEarlierThanThreadCreation = 50085,
+        
+        /// <summary>
+        ///     This server is not available in your location.
+        /// </summary>
+        ServerNotAvailableInYourLocation = 50095,
+        
+        /// <summary>
+        ///     This server needs monetization enabled in order to perform this action.
+        /// </summary>
+        ServerNeedsMonetizationEnabledToPerformThisAction = 50097,
 
         /// <summary>
         ///     Two factor is required for this operation.
