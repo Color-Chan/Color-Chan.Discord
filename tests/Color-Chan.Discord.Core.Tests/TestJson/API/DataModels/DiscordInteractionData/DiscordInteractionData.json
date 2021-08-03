@@ -18,9 +18,9 @@
   "member": {
     "user": {
       "id": "9999999999999999",
-      "username": "BrammyS",
+      "username": "user",
       "discriminator": "0001",
-      "avatar": "b0395c717fcff9acbb827fed08da5790",
+      "avatar": "aaaaaaa",
       "bot": true,
       "system": true,
       "mfa_enabled": true,

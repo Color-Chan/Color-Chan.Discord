@@ -1,40 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Threading.Tasks;
+using Color_Chan.Discord.Builders;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Modules;
-using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
-using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
-using Color_Chan.Discord.Rest.Models.Embed;
-using Color_Chan.Discord.Rest.Models.Interaction;
 
 namespace Pong.Commands
 {
+    /// <summary>
+    ///     The command module for all pong commands.
+    /// </summary>
     public class PongCommands : SlashCommandModule
     {
+        /// <summary>
+        ///     A simple Ping Pong command.
+        /// </summary>
+        /// <returns>
+        ///     An embedded response with "Pong!".
+        /// </returns>
         [SlashCommand("ping", "Ping Pong!")]
         public Task<IDiscordInteractionResponse> PongAsync()
         {
-            var response = new DiscordInteractionResponse
-            {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource,
-                Data = new DiscordInteractionCommandCallback
-                {
-                    Embeds = new List<IDiscordEmbed>
-                    {
-                        new DiscordEmbed
-                        {
-                            Description = "Pong!",
-                            Timestamp = DateTimeOffset.UtcNow,
-                            Color = Color.Cyan
-                        }
-                    }
-                }
-            };
+            //  Build the response embed.
+            var embedBuilder = new DiscordEmbedBuilder()
+                               .WithTitle("Ping response")
+                               .WithDescription("Pong!")
+                               .WithColor(Color.Aqua)
+                               .WithTimeStamp();
 
-            return Task.FromResult<IDiscordInteractionResponse>(response);
+            // Build the response with the embed.
+            var response = new SlashCommandResponseBuilder()
+                           .WithEmbed(embedBuilder.Build())
+                           .MakePrivate()
+                           .Build();
+
+            //  Return the response to Discord.
+            return Task.FromResult(response);
         }
     }
 }

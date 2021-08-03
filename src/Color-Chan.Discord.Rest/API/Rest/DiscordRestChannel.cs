@@ -159,7 +159,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
         // All api calls for channel messages.
 
-        #region Channel mesessages
+        #region Channel reactions
 
         /// <inheritdoc />
         public virtual async Task<Result> CreateReactionAsync(ulong channelId, ulong messageId, string emoji, CancellationToken ct = default)

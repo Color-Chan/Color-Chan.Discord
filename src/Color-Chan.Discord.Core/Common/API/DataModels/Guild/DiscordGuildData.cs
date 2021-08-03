@@ -137,7 +137,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Enabled guild features.
         /// </summary>
         [JsonPropertyName("features")]
-        public IEnumerable<string> Features { get; set; } = new List<string>();
+        public IEnumerable<DiscordGuildFeature> Features { get; set; } = new List<DiscordGuildFeature>();
 
         /// <summary>
         ///     Required MFA level for the guild.

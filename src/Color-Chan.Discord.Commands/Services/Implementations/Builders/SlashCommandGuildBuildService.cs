@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
+using Color_Chan.Discord.Commands.Services.Builders;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations
+namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 {
     /// <inheritdoc />
     public class SlashCommandGuildBuildService : ISlashCommandGuildBuildService
@@ -20,17 +22,26 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public IEnumerable<SlashCommandGuildAttribute> GetCommandGuilds(MethodInfo command)
+        public IEnumerable<SlashCommandGuildAttribute> GetCommandGuilds(MethodInfo command, bool includeParentAttributes = true)
         {
             var attributes = new List<SlashCommandGuildAttribute>();
 
-            var parentAttributes = command.DeclaringType?.GetCustomAttributes<SlashCommandGuildAttribute>();
-            if (parentAttributes != null) attributes.AddRange(parentAttributes);
+            if (includeParentAttributes && command.DeclaringType is not null) attributes.AddRange(GetCommandGuilds(command.DeclaringType));
 
             var methodAttributes = command.GetCustomAttributes<SlashCommandGuildAttribute>();
             attributes.AddRange(methodAttributes);
 
             _logger.LogDebug("Found {Count} guild attributes for command {MethodName}", attributes.Count.ToString(), command.Name);
+            return attributes;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<SlashCommandGuildAttribute> GetCommandGuilds(Type commandModule)
+        {
+            var attributes = new List<SlashCommandGuildAttribute>();
+
+            var parentAttributes = commandModule.GetCustomAttributes<SlashCommandGuildAttribute>();
+            attributes.AddRange(parentAttributes);
             return attributes;
         }
     }

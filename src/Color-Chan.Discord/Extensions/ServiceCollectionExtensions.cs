@@ -20,15 +20,15 @@ namespace Color_Chan.Discord.Extensions
         /// <param name="services">The <see cref="IServiceCollection" />.</param>
         /// <param name="botToken">
         ///     The bot token of your application.
-        ///     This can be found at https://discord.com/developers/applications/{APPLICATION_ID}/bot
+        ///     This can be found at https://discord.com/developers/applications/APPLICATION_ID/bot
         /// </param>
         /// <param name="publicBotToken">
         ///     The public token of your application.
-        ///     This can be found at https://discord.com/developers/applications/{APPLICATION_ID}/information
+        ///     This can be found at https://discord.com/developers/applications/APPLICATION_ID/information
         /// </param>
         /// <param name="applicationId">
         ///     The ID of your application.
-        ///     This can be found at https://discord.com/developers/applications/{APPLICATION_ID}/information
+        ///     This can be found at https://discord.com/developers/applications/APPLICATION_ID/information
         /// </param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
@@ -41,6 +41,7 @@ namespace Color_Chan.Discord.Extensions
             services.AddColorChanDiscordCommand();
 
             services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
+            services.AddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
             services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
 
             return services;

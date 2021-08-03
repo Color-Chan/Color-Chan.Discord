@@ -5,6 +5,7 @@ using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Results;
@@ -73,7 +74,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var existingCommands = await _restApplication.GetGlobalApplicationCommandsAsync(_discordTokens.ApplicationId).ConfigureAwait(false);
             if (!existingCommands.IsSuccessful) return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to get existing global slash commands."));
 
-
             // Create or update the slash commands.
             var newGlobalSlashCommands = globalSlashCommands.GetUpdatedOrNewCommands(existingCommands.Entity!);
             _logger.LogInformation("Found {Count} new or updated slash commands", newGlobalSlashCommands.Count.ToString());
@@ -86,8 +86,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 _logger.LogInformation("Updated or created global slash command {CommandName} {Id}", result.Entity!.Name, result.Entity!.Id.ToString());
             }
 
+            // Skip deleting old slash commands if none exist.
+            if (!existingCommands.Entity!.Any()) return Result.FromSuccess();
+
             // Delete old global commands.
             foreach (var existingCommand in existingCommands.Entity!)
+            {
                 if (!globalSlashCommands.Select(x => x.Name).Contains(existingCommand.Name))
                 {
                     // Delete old global slash command.
@@ -95,6 +99,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     if (!result.IsSuccessful) return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to delete existing global slash commands."));
                     _logger.LogInformation("Deleted old global slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
                 }
+            }
 
             _logger.LogInformation("Finished syncing global slash commands");
             return Result.FromSuccess();
@@ -134,6 +139,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
                 // Delete old guild guild commands.
                 foreach (var existingCommand in existingCommands.Entity!)
+                {
                     if (!guildCommands.Select(x => x.Name).Contains(existingCommand.Name))
                     {
                         // Delete old guild slash command.
@@ -142,6 +148,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
                         _logger.LogInformation("Deleted old guild slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
                     }
+                }
 
                 _logger.LogInformation("Finished syncing guild slash commands for guild {Id}", guildId.ToString());
             }

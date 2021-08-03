@@ -1,0 +1,17 @@
+{
+  "name": "add",
+  "type": 2,
+  "options": [
+    {
+      "name": "empty",
+      "type": 1,
+      "options": [
+        {
+          "name": "name",
+          "type": 3,
+          "value": "test role name"
+        }
+      ]
+    }
+  ]
+}

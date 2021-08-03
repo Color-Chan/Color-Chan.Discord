@@ -148,7 +148,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <returns>
         ///     The <see cref="Result" /> with the request results.
         /// </returns>
-        Task<Result> ModifyGuildRoleAsync(ulong guildId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default);
+        Task<Result> DeleteGuildRoleAsync(ulong guildId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default);
 
         /// <summary>
         ///     Get a guild member.

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
@@ -22,22 +23,24 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<List<string>> ExecuteSlashCommandRequirementsAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, IServiceProvider serviceProvider)
+        public async Task<Result> ExecuteSlashCommandRequirementsAsync(IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context, IServiceProvider serviceProvider)
         {
-            List<string> errorMessages = new();
+            if (requirements is null)
+            {
+                return Result.FromSuccess();
+            }
 
-            if (commandInfo.Requirements is not null)
-                foreach (var requirement in commandInfo.Requirements)
-                {
-                    var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);
+            foreach (var requirement in requirements)
+            {
+                var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);
 
-                    if (result.Passed) continue;
+                if (result.IsSuccessful) continue;
 
-                    _logger.LogDebug("Failed to pass requirement {RequirementName}", requirement.GetType().Name);
-                    errorMessages.Add(result.ErrorMessage ?? string.Empty);
-                }
+                _logger.LogDebug("Failed to pass requirement {RequirementName}", requirement.GetType().Name);
+                return Result.FromError(result.ErrorResult!);
+            }
 
-            return errorMessages;
+            return Result.FromSuccess();
         }
     }
 }

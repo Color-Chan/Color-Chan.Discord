@@ -1,5 +1,6 @@
 {
   "title": "Hello, Embed!",
+  "type": "rich",
   "description": "This is an embedded message.",
   "url": "discord-library.colorchan.com",
   "timestamp": "1970-01-01T00:00:00+00:00",

@@ -22,7 +22,10 @@ namespace Color_Chan.Discord.Commands.Info
         /// <summary>
         ///     The <see cref="MethodInfo" /> containing the method of the command.
         /// </summary>
-        public MethodInfo CommandMethod { get; set; }
+        /// <remarks>
+        ///     null when the command is a command group.
+        /// </remarks>
+        public MethodInfo? CommandMethod { get; set; }
 
         /// <summary>
         ///     The command module containing the <see cref="CommandMethod" />.
@@ -45,6 +48,6 @@ namespace Color_Chan.Discord.Commands.Info
         /// <summary>
         ///     The options for the slash command.
         /// </summary>
-        public IEnumerable<ISlashCommandOptionInfo>? CommandOptions { get; set; }
+        public List<ISlashCommandOptionInfo>? CommandOptions { get; set; }
     }
 }

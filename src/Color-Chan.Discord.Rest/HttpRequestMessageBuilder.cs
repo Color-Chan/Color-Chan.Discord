@@ -127,17 +127,18 @@ namespace Color_Chan.Discord.Rest
         ///     Adds a JSON body to the <see cref="HttpRequestMessageBuilder" />.
         /// </summary>
         /// <param name="value">The value that will be added as JSON.</param>
+        /// <param name="options">The <see cref="JsonSerializerOptions" /> that will be used to serialize the body.</param>
         /// <typeparam name="TValue">The type of <paramref name="value" />.</typeparam>
         /// <returns>
         ///     The updated <see cref="HttpRequestMessageBuilder" />.
         /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="_method" /> is <see cref="HttpMethod.Get" />.</exception>
-        internal HttpRequestMessageBuilder WithBody<TValue>(TValue value) where TValue : notnull
+        internal HttpRequestMessageBuilder WithBody<TValue>(TValue value, JsonSerializerOptions? options = null) where TValue : notnull
         {
             if (_method == HttpMethod.Get)
                 throw new ArgumentException("Can not add a body to a GET request");
 
-            _content = new StringContent(JsonSerializer.Serialize(value), Encoding.UTF8, "application/json");
+            _content = new StringContent(JsonSerializer.Serialize(value, options), Encoding.UTF8, "application/json");
             return this;
         }
 

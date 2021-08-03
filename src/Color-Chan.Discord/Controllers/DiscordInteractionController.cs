@@ -3,8 +3,6 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Commands;
-using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Rest.Models.Interaction;
@@ -25,26 +23,23 @@ namespace Color_Chan.Discord.Controllers
     {
         private const string ReturnContentType = "application/json";
         private readonly IDiscordInteractionAuthService _authService;
+        private readonly IDiscordSlashCommandHandler _commandHandler;
         private readonly ILogger<DiscordInteractionController> _logger;
         private readonly JsonSerializerOptions _serializerOptions;
-        private readonly IServiceProvider _serviceProvider;
-        private readonly ISlashCommandService _slashCommandService;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordInteractionController" />.
         /// </summary>
         /// <param name="authService">The <see cref="IDiscordInteractionAuthService" /> that will verify the request.</param>
-        /// <param name="slashCommandService">The <see cref="ISlashCommandService" /> that will handle slash command interactions.</param>
         /// <param name="logger">The logger.</param>
-        /// <param name="serviceProvider">The service provider.</param>
         /// <param name="serializerOptions">The JSON options used for serialization.</param>
-        public DiscordInteractionController(IDiscordInteractionAuthService authService, ISlashCommandService slashCommandService, ILogger<DiscordInteractionController> logger,
-                                            IServiceProvider serviceProvider, IOptions<JsonSerializerOptions> serializerOptions)
+        /// <param name="commandHandler">The command handler for all the slash commands.</param>
+        public DiscordInteractionController(IDiscordInteractionAuthService authService, ILogger<DiscordInteractionController> logger, IOptions<JsonSerializerOptions> serializerOptions,
+                                            IDiscordSlashCommandHandler commandHandler)
         {
             _authService = authService;
-            _slashCommandService = slashCommandService;
             _logger = logger;
-            _serviceProvider = serviceProvider;
+            _commandHandler = commandHandler;
             _serializerOptions = serializerOptions.Value;
         }
 
@@ -58,17 +53,10 @@ namespace Color_Chan.Discord.Controllers
         [HttpPost("interaction")]
         public async Task<ActionResult> HandleInteractionRequestAsync()
         {
-            // Todo: Benchmark
-
-            // Get the raw body data.
-            using var bodyReader = new StreamReader(Request.Body);
-            if (bodyReader.BaseStream.CanSeek) bodyReader.BaseStream.Seek(0, SeekOrigin.Begin);
-            string rawBody = await bodyReader.ReadToEndAsync().ConfigureAwait(false);
-
             // Verify the interaction request.
             var signature = Request.Headers["X-Signature-Ed25519"].ToString();
             var timeStamp = Request.Headers["X-Signature-Timestamp"].ToString();
-            if (!_authService.VerifySignature(signature, timeStamp, rawBody))
+            if (!await _authService.VerifySignatureAsync(signature, timeStamp, Request.Body).ConfigureAwait(false))
             {
                 _logger.LogWarning("Failed to verify interaction command");
                 return Unauthorized("Failed to verify signatures");
@@ -81,34 +69,47 @@ namespace Color_Chan.Discord.Controllers
 
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
 
-            var result = interactionData.Type switch
+            // Execute the correct interaction type.
+            switch (interactionData.Type)
             {
-                DiscordInteractionType.Ping => DiscordInteractionResponse.PingResponse().ToDataModel(),
-                DiscordInteractionType.MessageComponent => throw new NotSupportedException("MessageComponent interactions are currently not supported yet!"),
-                DiscordInteractionType.ApplicationCommand => await HandleSlashCommandAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
-                _ => throw new NotSupportedException("This interaction type is currently not supported!")
-            };
-
-            return Content(JsonSerializer.Serialize(result, result.GetType(), _serializerOptions), ReturnContentType, Encoding.UTF8);
+                case DiscordInteractionType.Ping:
+                    return SerializeResult(PingResponse());
+                case DiscordInteractionType.ApplicationCommand:
+                    var slashResult = await _commandHandler.HandleSlashCommandAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false);
+                    return SerializeResult(slashResult);
+                case DiscordInteractionType.MessageComponent:
+                    throw new NotSupportedException("MessageComponent interactions are currently not supported yet!");
+                default:
+                    throw new NotSupportedException("This interaction type is currently not supported!");
+            }
         }
 
-        private async Task<DiscordInteractionResponseData> HandleSlashCommandAsync(IDiscordInteraction interaction)
+        /// <summary>
+        ///     Get a ping response.
+        /// </summary>
+        /// <returns>
+        ///     A <see cref="IDiscordInteractionResponse" /> containing a ping response.
+        /// </returns>
+        private static IDiscordInteractionResponse PingResponse()
         {
-            // Todo: make a dedicated interaction slash command handler.
-
-            if (interaction.Data is null) throw new NullReferenceException("Interaction data can not be null for a slash command!");
-
-            var context = new SlashCommandContext(interaction.User!, interaction.Message!, interaction.Data)
+            return new DiscordInteractionResponse
             {
-                Member = interaction.GuildMember,
-                GuildId = interaction.GuildId,
-                ChannelId = interaction.ChannelId!.Value,
-                ApplicationId = interaction.ApplicationId
+                Type = DiscordInteractionResponseType.Pong,
+                Data = null
             };
+        }
 
-            var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options, _serviceProvider).ConfigureAwait(false);
-            if (result.IsSuccessful) return result.Entity!.ToDataModel();
-            return new DiscordInteractionResponseData();
+        /// <summary>
+        ///     Serializes a <see cref="IDiscordInteractionResponse" /> to a <see cref="DiscordInteractionResponseData" />.
+        /// </summary>
+        /// <param name="result">The <see cref="IDiscordInteractionResponse" /> that will be serialized.</param>
+        /// <returns>
+        ///     The serialized <see cref="IDiscordInteractionResponse" />.
+        /// </returns>
+        private ContentResult SerializeResult(IDiscordInteractionResponse result)
+        {
+            var data = result.ToDataModel();
+            return Content(JsonSerializer.Serialize(data, data.GetType(), _serializerOptions), ReturnContentType, Encoding.UTF8);
         }
     }
 }

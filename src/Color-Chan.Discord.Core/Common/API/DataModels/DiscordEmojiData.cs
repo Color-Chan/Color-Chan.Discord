@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
@@ -22,7 +21,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
         ///     Roles allowed to use this emoji
         /// </summary>
         [JsonPropertyName("roles")]
-        public IEnumerable<DiscordGuildRoleData>? Roles { get; init; }
+        public IEnumerable<ulong>? RoleIds { get; init; }
 
         /// <summary>
         ///     User that created this emoji

@@ -4,10 +4,11 @@ using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations
+namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 {
     /// <inheritdoc />
     public class SlashCommandOptionBuildService : ISlashCommandOptionBuildService
@@ -64,14 +65,20 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var options = new List<DiscordApplicationCommandOptionData>();
 
             foreach (var optionInfo in commandOptionInfos)
+            {
+                var subOptions = BuildSlashCommandsOptions(optionInfo.CommandOptions);
+
                 options.Add(new DiscordApplicationCommandOptionData
                 {
                     Name = optionInfo.Name,
                     Description = optionInfo.Description,
                     Type = optionInfo.Type,
                     IsRequired = optionInfo.IsRequired,
-                    Choices = BuildChoiceData(optionInfo.Choices)
+                    Choices = BuildChoiceData(optionInfo.Choices),
+                    SubOptions = subOptions
                 });
+            }
+
 
             if (options.Count > MaxCommandOptions) throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
 
@@ -86,11 +93,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var choices = new List<DiscordApplicationCommandOptionChoiceData>();
 
             foreach (var choicePair in choicePairs)
+            {
                 choices.Add(new DiscordApplicationCommandOptionChoiceData
                 {
                     Name = choicePair.Key,
                     Value = choicePair.Value
                 });
+            }
 
             if (choices.Count > MaxCommandOptionChoices) throw new UpdateSlashCommandException($"A slash command option can not have more then {MaxCommandOptionChoices} choices.");
 

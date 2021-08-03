@@ -21,7 +21,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
         ///     Type of embed (always "rich" for webhook embeds).
         /// </summary>
         [JsonPropertyName("type")]
-        public string? Type { get; init; }
+        public DiscordEmbedType? Type { get; init; }
 
         /// <summary>
         ///     Description of embed.

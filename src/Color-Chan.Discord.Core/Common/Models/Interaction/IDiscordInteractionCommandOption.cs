@@ -24,7 +24,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         /// <summary>
         ///     Present if this option is a group or subcommand.
         /// </summary>
-        IEnumerable<IDiscordInteraction>? SubOptions { get; set; }
+        IEnumerable<IDiscordInteractionCommandOption>? SubOptions { get; set; }
 
         /// <summary>
         ///     The <see cref="string" /> value of <see cref="Value" />.

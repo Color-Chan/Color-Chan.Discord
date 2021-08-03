@@ -27,7 +27,7 @@ namespace Color_Chan.Discord.Rest.Tests.API
             headers.Add("X-RateLimit-Bucket", id);
 
             // Act
-            if (!DiscordRateLimitBucket.TryParse(headers, out var bucket)) bucket = null;
+            DiscordRateLimitBucket.TryParse(headers, out var bucket);
 
             // Assert
             bucket.Should().NotBeNull();
@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Rest.Tests.API
             var headers = message.Headers;
 
             // Act
-            if (!DiscordRateLimitBucket.TryParse(headers, out var bucket)) bucket = null;
+            DiscordRateLimitBucket.TryParse(headers, out var bucket);
 
             // Assert
             bucket.Should().BeNull();
@@ -66,7 +66,7 @@ namespace Color_Chan.Discord.Rest.Tests.API
             headers.Add("X-RateLimit-Global", "true");
 
             // Act
-            if (!DiscordRateLimitBucket.TryParse(headers, out var bucket)) bucket = null;
+            DiscordRateLimitBucket.TryParse(headers, out var bucket);
 
             // Assert
             bucket.Should().NotBeNull();

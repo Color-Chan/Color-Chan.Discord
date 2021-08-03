@@ -1,0 +1,23 @@
+{
+  "id": "871460926161838081",
+  "name": "roles",
+  "options": [
+    {
+      "name": "add",
+      "type": 2,
+      "options": [
+        {
+          "name": "empty",
+          "type": 1,
+          "options": [
+            {
+              "name": "name",
+              "type": 3,
+              "value": "test role name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

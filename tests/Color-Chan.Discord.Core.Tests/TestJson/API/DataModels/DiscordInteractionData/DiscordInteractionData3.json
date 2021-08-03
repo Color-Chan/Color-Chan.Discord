@@ -1,0 +1,59 @@
+{
+  "id": "999999999999",
+  "application_id": "999999999999",
+  "type": 2,
+  "data": {
+    "id": "999999999999",
+    "name": "roles",
+    "options": [
+      {
+        "name": "add",
+        "type": 2,
+        "options": [
+          {
+            "name": "empty",
+            "type": 1,
+            "options": [
+              {
+                "name": "name",
+                "type": 3,
+                "value": "test role name"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "guild_id": "999999999999",
+  "channel_id": "999999999999",
+  "member": {
+    "user": {
+      "id": "9999999999999999",
+      "username": "user",
+      "discriminator": "0001",
+      "avatar": "aaaaaaa",
+      "bot": true,
+      "system": true,
+      "mfa_enabled": true,
+      "locale": "en-US",
+      "verified": true,
+      "email": "color-chan@discord.com",
+      "flags": 0,
+      "premium_type": 0,
+      "public_flags": 0
+    },
+    "nick": "testNick",
+    "roles": [
+      "9999999999999999",
+      "9999999999999999",
+      "9999999999999999"
+    ],
+    "joined_at": "1970-01-01T00:00:00+00:00",
+    "deaf": true,
+    "mute": true,
+    "permissions": "274877906943"
+  },
+  "token": "TOKEN",
+  "version": 1
+}

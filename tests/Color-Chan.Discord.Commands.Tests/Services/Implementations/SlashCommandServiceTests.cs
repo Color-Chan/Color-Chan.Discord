@@ -4,9 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Commands.Services.Implementations;
+using Color_Chan.Discord.Commands.Services.Implementations.Builders;
 using Color_Chan.Discord.Commands.Tests.Valid;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
@@ -36,9 +38,9 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         [TestCase("Command2", "CommandMethod2Async")]
         [TestCase("Command3", "CommandMethod3Async")]
         [TestCase("Command4", "CommandMethod4Async")]
-        [TestCase("COMMAND5", "CommandMethod5Async")]
+        [TestCase("Command5", "CommandMethod5Async")]
         [TestCase("Command6", "CommandMethod6Async")]
-        [TestCase("CoMmaNd7", "CommandMethod7Async")]
+        [TestCase("Command7", "CommandMethod7Async")]
         public void Should_search_interaction_command(string commandName, string methodName)
         {
             // Arrange
@@ -56,11 +58,11 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             // Assert
             command.Should().NotBeNull();
-            command!.CommandMethod.Name.Should().Be(methodName);
+            command!.CommandMethod!.Name.Should().Be(methodName);
         }
 
-        [TestCase("command18")]
-        public void Should_search_interaction_command_with_options(string commandName)
+        [TestCase("add", "role", "Command18")]
+        public void Should_search_interaction_command_with_options(string commandGroupName, string subCommandGroupName, string commandName)
         {
             // Arrange
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
@@ -73,11 +75,11 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             // Act
             commandService.AddInteractionCommandsAsync(ValidAssembly);
-            var command = commandService.SearchSlashCommand(commandName);
+            var command = commandService.SearchSlashCommand(commandGroupName, subCommandGroupName, commandName);
 
             // Assert
             command.Should().NotBeNull();
-            command!.CommandOptions!.Count().Should().Be(2);
+            command!.CommandOptions!.Count.Should().Be(2);
         }
 
         [TestCase("CommandWithError1", "Command error 1")]
@@ -86,8 +88,9 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
-            requirementServiceMock.Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
-                                  .ReturnsAsync(new List<string>());
+            requirementServiceMock
+                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
             var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
@@ -114,8 +117,9 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
-            requirementServiceMock.Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
-                                  .ReturnsAsync(new List<string>());
+            requirementServiceMock
+                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
             var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
@@ -182,17 +186,18 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             // Assert
             command.Should().NotBeNull();
-            command!.CommandMethod.Name.Should().Be(methodName);
+            command!.CommandMethod!.Name.Should().Be(methodName);
             command!.Requirements?.Count().Should().Be(requirementAmount);
         }
 
-        [TestCase("Command18")]
-        public async Task Should_execute_interaction_command(string commandName)
+        [TestCase("add", "role", "Command18")]
+        public async Task Should_execute_interaction_command(string commandGroupName, string subCommandGroupName, string commandName)
         {
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
-            requirementServiceMock.Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
-                                  .ReturnsAsync(new List<string>());
+            requirementServiceMock
+                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
             var optionBuilder = new SlashCommandOptionBuildService(_optionBuilderServiceLoggerMock.Object);
@@ -225,7 +230,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             // Act
             await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);
-            var result = await commandService.ExecuteSlashCommandAsync(commandName, mockContext.Object, options);
+            var command = commandService.SearchSlashCommand(commandGroupName, subCommandGroupName, commandName);
+            var result = await commandService.ExecuteSlashCommandAsync(command!.CommandMethod!, command.CommandOptions, command.Requirements, mockContext.Object, options);
 
             // Assert
             result.IsSuccessful.Should().BeTrue();

@@ -1,0 +1,19 @@
+{
+  "id": "41771983429993937",
+  "name": "LUL",
+  "roles": [
+    "41771983429993000",
+    "41771983429993111"
+  ],
+  "user": {
+    "id": "96008815106887111",
+    "username": "Luigi",
+    "discriminator": "0002",
+    "avatar": "5500909a3274e1812beb4e8de6631111",
+    "public_flags": 131328
+  },
+  "require_colons": true,
+  "managed": true,
+  "animated": true,
+  "available": true
+}

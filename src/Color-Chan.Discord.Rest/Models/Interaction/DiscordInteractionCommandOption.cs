@@ -15,7 +15,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             Name = data.Name;
             Type = data.Type;
             Value = ConvertValueToCorrectType(data.JsonValue);
-            SubOptions = data.SubOptions?.Select(interactionData => new DiscordInteraction(interactionData));
+            SubOptions = data.SubOptions?.Select(interactionData => new DiscordInteractionCommandOption(interactionData));
         }
 
         /// <inheritdoc />
@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public object? Value { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<IDiscordInteraction>? SubOptions { get; set; }
+        public IEnumerable<IDiscordInteractionCommandOption>? SubOptions { get; set; }
 
         /// <inheritdoc />
         public string? GetStringValue()
@@ -98,9 +98,9 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             switch (Type)
             {
                 case DiscordApplicationCommandOptionType.SubCommand:
-                    break;
+                    return null;
                 case DiscordApplicationCommandOptionType.SubCommandGroup:
-                    break;
+                    return null;
                 case DiscordApplicationCommandOptionType.String:
                     return jsonValue?.ToString();
                 case DiscordApplicationCommandOptionType.Integer:
@@ -122,6 +122,8 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
                         return roleId;
                     break;
                 case DiscordApplicationCommandOptionType.Mentionable:
+                    if (ulong.TryParse(jsonValue?.GetString(), out var mentionableId))
+                        return mentionableId;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

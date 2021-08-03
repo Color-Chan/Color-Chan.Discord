@@ -83,6 +83,40 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                     Value = "value4"
                                 }
                             }
+                        },
+                        new()
+                        {
+                            Name = "group",
+                            Description = "sub command group",
+                            Type = DiscordApplicationCommandOptionType.SubCommandGroup,
+                            SubOptions = new List<DiscordApplicationCommandOptionData>
+                            {
+                                new()
+                                {
+                                    Name = "subCommand",
+                                    Description = "sub command description test",
+                                    Type = DiscordApplicationCommandOptionType.SubCommand,
+                                    IsRequired = true,
+                                    SubOptions = new List<DiscordApplicationCommandOptionData>
+                                    {
+                                        new()
+                                        {
+                                            Name = "role",
+                                            Description = "The role name",
+                                            IsRequired = true,
+                                            Type = DiscordApplicationCommandOptionType.String,
+                                            Choices = new List<DiscordApplicationCommandOptionChoiceData>
+                                            {
+                                                new()
+                                                {
+                                                    Name = "name1",
+                                                    Value = "value1"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -154,6 +188,40 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                 {
                                     Name = "name4",
                                     Value = "value4"
+                                }
+                            }
+                        },
+                        new()
+                        {
+                            Name = "group",
+                            Description = "sub command group",
+                            Type = DiscordApplicationCommandOptionType.SubCommandGroup,
+                            SubOptions = new List<DiscordApplicationCommandOptionData>
+                            {
+                                new()
+                                {
+                                    Name = "subCommand",
+                                    Description = "sub command description test",
+                                    Type = DiscordApplicationCommandOptionType.SubCommand,
+                                    IsRequired = true,
+                                    SubOptions = new List<DiscordApplicationCommandOptionData>
+                                    {
+                                        new()
+                                        {
+                                            Name = "role",
+                                            Description = "The role name",
+                                            IsRequired = true,
+                                            Type = DiscordApplicationCommandOptionType.String,
+                                            Choices = new List<DiscordApplicationCommandOptionChoiceData>
+                                            {
+                                                new()
+                                                {
+                                                    Name = "name1",
+                                                    Value = "value1"
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

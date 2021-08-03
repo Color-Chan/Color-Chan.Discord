@@ -115,7 +115,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// <summary>
         ///     Enabled guild features.
         /// </summary>
-        IEnumerable<string> Features { get; set; }
+        IEnumerable<DiscordGuildFeature> Features { get; set; }
 
         /// <summary>
         ///     Required MFA level for the guild.

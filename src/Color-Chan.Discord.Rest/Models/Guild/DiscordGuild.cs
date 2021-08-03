@@ -122,7 +122,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public IEnumerable<IDiscordEmoji> Emojis { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<string> Features { get; set; }
+        public IEnumerable<DiscordGuildFeature> Features { get; set; }
 
         /// <inheritdoc />
         public DiscordGuildMfaLevel MfaLevel { get; set; }

@@ -15,7 +15,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Embed
         /// <summary>
         ///     Type of embed (always "rich" for webhook embeds).
         /// </summary>
-        string? Type { get; init; }
+        DiscordEmbedType? Type { get; init; }
 
         /// <summary>
         ///     Description of embed.
