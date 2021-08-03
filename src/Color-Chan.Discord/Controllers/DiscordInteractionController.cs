@@ -23,8 +23,8 @@ namespace Color_Chan.Discord.Controllers
     {
         private const string ReturnContentType = "application/json";
         private readonly IDiscordInteractionAuthService _authService;
-        private readonly ILogger<DiscordInteractionController> _logger;
         private readonly IDiscordSlashCommandHandler _commandHandler;
+        private readonly ILogger<DiscordInteractionController> _logger;
         private readonly JsonSerializerOptions _serializerOptions;
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Color_Chan.Discord.Controllers
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
 
             // Execute the correct interaction type.
-            switch (interactionData.Type )
+            switch (interactionData.Type)
             {
                 case DiscordInteractionType.Ping:
                     return SerializeResult(PingResponse());
@@ -83,12 +83,12 @@ namespace Color_Chan.Discord.Controllers
                     throw new NotSupportedException("This interaction type is currently not supported!");
             }
         }
-        
+
         /// <summary>
         ///     Get a ping response.
         /// </summary>
         /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse"/> containing a ping response.
+        ///     A <see cref="IDiscordInteractionResponse" /> containing a ping response.
         /// </returns>
         private static IDiscordInteractionResponse PingResponse()
         {
@@ -100,11 +100,11 @@ namespace Color_Chan.Discord.Controllers
         }
 
         /// <summary>
-        ///     Serializes a <see cref="IDiscordInteractionResponse"/> to a <see cref="DiscordInteractionResponseData"/>.
+        ///     Serializes a <see cref="IDiscordInteractionResponse" /> to a <see cref="DiscordInteractionResponseData" />.
         /// </summary>
-        /// <param name="result">The <see cref="IDiscordInteractionResponse"/> that will be serialized.</param>
+        /// <param name="result">The <see cref="IDiscordInteractionResponse" /> that will be serialized.</param>
         /// <returns>
-        ///     The serialized <see cref="IDiscordInteractionResponse"/>.
+        ///     The serialized <see cref="IDiscordInteractionResponse" />.
         /// </returns>
         private ContentResult SerializeResult(IDiscordInteractionResponse result)
         {

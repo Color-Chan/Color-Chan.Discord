@@ -84,14 +84,14 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                 }
                             }
                         },
-                        new ()
+                        new()
                         {
                             Name = "group",
                             Description = "sub command group",
                             Type = DiscordApplicationCommandOptionType.SubCommandGroup,
                             SubOptions = new List<DiscordApplicationCommandOptionData>
                             {
-                                new ()
+                                new()
                                 {
                                     Name = "subCommand",
                                     Description = "sub command description test",
@@ -99,7 +99,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                     IsRequired = true,
                                     SubOptions = new List<DiscordApplicationCommandOptionData>
                                     {
-                                        new ()
+                                        new()
                                         {
                                             Name = "role",
                                             Description = "The role name",
@@ -191,14 +191,14 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                 }
                             }
                         },
-                        new ()
+                        new()
                         {
                             Name = "group",
                             Description = "sub command group",
                             Type = DiscordApplicationCommandOptionType.SubCommandGroup,
                             SubOptions = new List<DiscordApplicationCommandOptionData>
                             {
-                                new ()
+                                new()
                                 {
                                     Name = "subCommand",
                                     Description = "sub command description test",
@@ -206,7 +206,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                     IsRequired = true,
                                     SubOptions = new List<DiscordApplicationCommandOptionData>
                                     {
-                                        new ()
+                                        new()
                                         {
                                             Name = "role",
                                             Description = "The role name",

@@ -40,18 +40,18 @@ namespace Color_Chan.Discord.Tests.Services.Implementations
             var timeStamp = (int) DateTimeOffset.UnixEpoch.Offset.TotalSeconds;
             var signed = PublicKeyAuth.SignDetached($"{timeStamp.ToString()}{bodyString}", key.PrivateKey);
             var hexEd25519String = Convert.ToHexString(signed);
-            
-            if(!expected) bodyString = bodyString.Replace("version", "fake_version");
-            
+
+            if (!expected) bodyString = bodyString.Replace("version", "fake_version");
+
             var byteArray = Encoding.UTF8.GetBytes(bodyString);
             var stream = new MemoryStream(byteArray);
-            
+
             var service = new DiscordInteractionAuthService(new DiscordTokens("TOKEN", Convert.ToHexString(key.PublicKey), 0));
-            
+
             // Act
             var syncResult = service.VerifySignature(hexEd25519String, timeStamp.ToString(), bodyString);
             var asyncResult = await service.VerifySignatureAsync(hexEd25519String, timeStamp.ToString(), stream).ConfigureAwait(false);
-            
+
             // Assert
             syncResult.Should().Be(expected);
             asyncResult.Should().Be(expected);

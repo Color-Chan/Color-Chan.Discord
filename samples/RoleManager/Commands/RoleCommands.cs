@@ -106,11 +106,11 @@ namespace RoleManager.Commands
 
             // Get the role object.
             var role = SlashContext.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
-            
+
             // Delete the role.
             var auditLog = $"User: {SlashContext.Member?.User?.Username} requested this action";
             var deleteResponse = await _restGuild.DeleteGuildRoleAsync(guildId!.Value, roleId, auditLog).ConfigureAwait(false);
-            
+
             // Check if the role were successfully deleted.
             if (!deleteResponse.IsSuccessful)
             {

@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Services.Implementations
             var memStream = new MemoryStream();
             await bodyStream.CopyToAsync(memStream).ConfigureAwait(false);
             var bodyBytes = memStream.ToArray();
-            
+
             // Get convert the headers into byte arrays.
             var timeStampBytes = Encoding.Default.GetBytes(timestamp);
             var byteSig = Convert.FromHexString(signature.AsSpan());
@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Services.Implementations
             var timeStampLength = timeStampBytes.Length;
             Array.Resize(ref timeStampBytes, timeStampLength + bodyBytes.Length);
             Array.Copy(bodyBytes, 0, timeStampBytes, timeStampLength, bodyBytes.Length);
-            
+
             return PublicKeyAuth.VerifyDetached(byteSig, timeStampBytes, _publicKeyBytes);
         }
     }

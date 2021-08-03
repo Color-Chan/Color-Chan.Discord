@@ -91,6 +91,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             // Delete old global commands.
             foreach (var existingCommand in existingCommands.Entity!)
+            {
                 if (!globalSlashCommands.Select(x => x.Name).Contains(existingCommand.Name))
                 {
                     // Delete old global slash command.
@@ -98,6 +99,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     if (!result.IsSuccessful) return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to delete existing global slash commands."));
                     _logger.LogInformation("Deleted old global slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
                 }
+            }
 
             _logger.LogInformation("Finished syncing global slash commands");
             return Result.FromSuccess();
@@ -137,6 +139,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
                 // Delete old guild guild commands.
                 foreach (var existingCommand in existingCommands.Entity!)
+                {
                     if (!guildCommands.Select(x => x.Name).Contains(existingCommand.Name))
                     {
                         // Delete old guild slash command.
@@ -145,6 +148,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
                         _logger.LogInformation("Deleted old guild slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
                     }
+                }
 
                 _logger.LogInformation("Finished syncing guild slash commands for guild {Id}", guildId.ToString());
             }

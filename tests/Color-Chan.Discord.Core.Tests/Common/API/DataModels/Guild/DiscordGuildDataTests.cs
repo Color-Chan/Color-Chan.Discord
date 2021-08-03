@@ -6,6 +6,5 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Guild
     [TestFixture]
     public class DiscordGuildDataTests : JsonTestBase<DiscordGuildData>
     {
-        
     }
 }

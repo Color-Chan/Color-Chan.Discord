@@ -4,8 +4,7 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Guild
 {
     [TestFixture]
-    public class DiscordGuildExplicitContentFilterLevelTests :JsonTestBase<DiscordGuildExplicitContentFilterLevel>
+    public class DiscordGuildExplicitContentFilterLevelTests : JsonTestBase<DiscordGuildExplicitContentFilterLevel>
     {
-        
     }
 }

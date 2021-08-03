@@ -21,9 +21,9 @@ namespace Color_Chan.Discord.Services
         /// </summary>
         /// <param name="interaction">The interaction that was used.</param>
         /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse"/> containing the result of the slash command.
+        ///     A <see cref="IDiscordInteractionResponse" /> containing the result of the slash command.
         /// </returns>
-        /// <exception cref="ArgumentNullException">Thrown when <see cref="IDiscordInteraction.Data"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <see cref="IDiscordInteraction.Data" /> is null.</exception>
         Task<IDiscordInteractionResponse> HandleSlashCommandAsync(IDiscordInteraction interaction);
     }
 }

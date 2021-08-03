@@ -29,7 +29,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 return Result.FromSuccess();
             }
-            
+
             foreach (var requirement in requirements)
             {
                 var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);

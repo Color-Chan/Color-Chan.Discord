@@ -13,7 +13,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     No system flags.
         /// </summary>
         None = 0,
-        
+
         /// <summary>
         ///     Suppress member join notifications.
         /// </summary>

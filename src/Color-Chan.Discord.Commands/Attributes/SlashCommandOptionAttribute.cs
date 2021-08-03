@@ -59,8 +59,8 @@ namespace Color_Chan.Discord.Commands.Attributes
             Description = description ?? throw new ArgumentNullException(nameof(description));
             Type = type;
         }
-        
-                /// <summary>
+
+        /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandOptionAttribute" />.
         /// </summary>
         /// <param name="name">The name of the option.</param>

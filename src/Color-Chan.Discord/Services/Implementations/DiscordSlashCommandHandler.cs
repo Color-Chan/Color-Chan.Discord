@@ -19,9 +19,9 @@ namespace Color_Chan.Discord.Services.Implementations
     public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
     {
         private readonly List<Func<IErrorResult, Task<Result<IDiscordInteractionResponse>>>> _errorHandlerMiddlewares = new();
-        private readonly ISlashCommandService _slashCommandService;
         private readonly ILogger<DiscordSlashCommandHandler> _logger;
         private readonly IServiceProvider _serviceProvider;
+        private readonly ISlashCommandService _slashCommandService;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordSlashCommandHandler" />.
@@ -35,13 +35,13 @@ namespace Color_Chan.Discord.Services.Implementations
             _serviceProvider = serviceProvider;
             _logger = logger;
         }
-        
+
         /// <inheritdoc />
         public void RegisterErrorHandler(Func<IErrorResult, Task<Result<IDiscordInteractionResponse>>> errorHandler)
         {
             _errorHandlerMiddlewares.Add(errorHandler);
         }
-        
+
         /// <inheritdoc />
         public async Task<IDiscordInteractionResponse> HandleSlashCommandAsync(IDiscordInteraction interaction)
         {
@@ -49,7 +49,7 @@ namespace Color_Chan.Discord.Services.Implementations
             {
                 throw new ArgumentNullException(nameof(interaction.Data), "Interaction data can not be null for a slash command!");
             }
-            
+
             ISlashCommandContext context = new SlashCommandContext(interaction.Data)
             {
                 User = interaction.User,
@@ -60,7 +60,7 @@ namespace Color_Chan.Discord.Services.Implementations
                 ApplicationId = interaction.ApplicationId,
                 CommandRequest = interaction.Data
             };
-            
+
             if (interaction.Data.Options is not null)
             {
                 // Check if any of the used options was a sub command (group) and execute it.
@@ -75,7 +75,7 @@ namespace Color_Chan.Discord.Services.Implementations
                     }
                 }
             }
-            
+
             // Execute normal slash command.
             var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
 
@@ -87,9 +87,9 @@ namespace Color_Chan.Discord.Services.Implementations
         /// <summary>
         ///     Handles an error that occured when a slash command executed.
         /// </summary>
-        /// <param name="errorResult">The <see cref="IErrorResult"/> containing the error details.</param>
+        /// <param name="errorResult">The <see cref="IErrorResult" /> containing the error details.</param>
         /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse"/> with the error response.
+        ///     A <see cref="IDiscordInteractionResponse" /> with the error response.
         /// </returns>
         private async Task<IDiscordInteractionResponse> HandleSlashCommandErrorResultAsync(IErrorResult errorResult)
         {
@@ -124,13 +124,13 @@ namespace Color_Chan.Discord.Services.Implementations
         }
 
         /// <summary>
-        ///     Executes a sub slash command. 
+        ///     Executes a sub slash command.
         /// </summary>
         /// <param name="commandGroupName">The command group the sub command belongs to.</param>
         /// <param name="option">The options used with the command request.</param>
         /// <param name="context">The current context of the command request.</param>
         /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse"/> with the the slash command response.
+        ///     A <see cref="IDiscordInteractionResponse" /> with the the slash command response.
         /// </returns>
         private async Task<IDiscordInteractionResponse> ExecuteSubCommandAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
         {
@@ -148,7 +148,7 @@ namespace Color_Chan.Discord.Services.Implementations
         /// <param name="option">The options used with the command request.</param>
         /// <param name="context">The current context of the command request.</param>
         /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse"/> with the the slash command response.
+        ///     A <see cref="IDiscordInteractionResponse" /> with the the slash command response.
         /// </returns>
         /// <exception cref="NullReferenceException"></exception>
         /// <exception cref="InvalidSlashCommandGroupException"></exception>
@@ -164,7 +164,8 @@ namespace Color_Chan.Discord.Services.Implementations
             {
                 if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
                 {
-                    var result = await _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, subOption.Name, context, subOption.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
+                    var result = await _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, subOption.Name, context, subOption.SubOptions?.ToList(), _serviceProvider)
+                                                           .ConfigureAwait(false);
                     if (result.IsSuccessful) return result.Entity!;
 
                     // Return the response.

@@ -18,12 +18,15 @@ namespace Color_Chan.Discord.Commands.Info
         /// <param name="type">The type of the parameter.</param>
         /// <param name="isRequired">Whether or not the option is required.</param>
         /// <param name="choices"></param>
-        /// <param name="optionType">The type of the option. Will be automatically set to the correct type when set to null, using <paramref name="type"/>.</param>
+        /// <param name="optionType">
+        ///     The type of the option. Will be automatically set to the correct type when set to null, using
+        ///     <paramref name="type" />.
+        /// </param>
         /// <exception cref="ArgumentNullException">
         ///     Thrown when <paramref name="name" />, <paramref name="description" /> or
         ///     <paramref name="type" /> is null.
         /// </exception>
-        public SlashCommandOptionInfo(string name, string description, Type type, bool? isRequired, IEnumerable<KeyValuePair<string, string>>? choices = null, 
+        public SlashCommandOptionInfo(string name, string description, Type type, bool? isRequired, IEnumerable<KeyValuePair<string, string>>? choices = null,
                                       DiscordApplicationCommandOptionType? optionType = null)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
@@ -36,7 +39,7 @@ namespace Color_Chan.Discord.Commands.Info
                 Type = optionType.Value;
                 return;
             }
-            
+
             Type = type switch
             {
                 var t when t == typeof(bool) => DiscordApplicationCommandOptionType.Boolean,
