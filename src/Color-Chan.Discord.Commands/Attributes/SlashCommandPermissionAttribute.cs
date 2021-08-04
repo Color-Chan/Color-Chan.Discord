@@ -7,7 +7,7 @@ namespace Color_Chan.Discord.Commands.Attributes
     ///     Makes the command available to a specific role or user.
     /// </summary>
     /// <remarks>
-    ///     not compatible with global slash command!
+    ///     Not compatible with global slash command!
     /// </remarks>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
     public class SlashCommandPermissionAttribute : Attribute
