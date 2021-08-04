@@ -2,7 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.Params;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.Models.Application;
+using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Core.Common.API.Rest
@@ -188,5 +190,49 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         Task<Result<IReadOnlyList<IDiscordApplicationCommand>>> BulkOverwriteGuildApplicationCommandsAsync(ulong applicationId, ulong guildId,
                                                                                                            IEnumerable<DiscordCreateApplicationCommand> commandParams,
                                                                                                            CancellationToken ct = default);
+
+        /// <summary>
+        ///     Fetches command permissions for all commands for your application in a guild.
+        /// </summary>
+        /// <param name="applicationId">The id of the application.</param>
+        /// <param name="guildId">The id of the guild.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
+        ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
+        /// </returns>
+        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissions(
+            ulong applicationId, ulong guildId, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Fetches command permissions for a command for your application in a guild.
+        /// </summary>
+        /// <param name="applicationId">The id of the application.</param>
+        /// <param name="guildId">The id of the guild.</param>
+        /// <param name="commandId">The id of the command.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
+        ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
+        /// </returns>
+        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetApplicationCommandPermissions(
+            ulong applicationId, ulong guildId, ulong commandId, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Edits command permissions for a specific command for your application in a guild.
+        /// </summary>
+        /// <remarks>
+        ///     You can only add up to 10 permission overwrites for a command.
+        /// </remarks>
+        /// <param name="applicationId">The id of the application.</param>
+        /// <param name="guildId">The id of the guild.</param>
+        /// <param name="commandId">The id of the command.</param>
+        /// <param name="body">The <see cref="EditApplicationCommandPermissions" /> containing the new permission data.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordGuildApplicationCommandPermissions>> EditApplicationCommandPermissions(
+            ulong applicationId, ulong guildId, ulong commandId, DiscordEditApplicationCommandPermissions body, CancellationToken ct = default);
     }
 }

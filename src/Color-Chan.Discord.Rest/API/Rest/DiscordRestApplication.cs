@@ -127,16 +127,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             return ConvertResult(result);
         }
 
-        /// <summary>
-        ///     Fetches command permissions for all commands for your application in a guild.
-        /// </summary>
-        /// <param name="applicationId">The id of the application.</param>
-        /// <param name="guildId">The id of the guild.</param>
-        /// <param name="ct">The <see cref="CancellationToken" />.</param>
-        /// <returns>
-        ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
-        ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
-        /// </returns>
+        /// <inheritdoc />
         public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissions(
             ulong applicationId, ulong guildId, CancellationToken ct = default)
         {
@@ -145,17 +136,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
             return ConvertResult(result);
         }
 
-        /// <summary>
-        ///     Fetches command permissions for a command for your application in a guild.
-        /// </summary>
-        /// <param name="applicationId">The id of the application.</param>
-        /// <param name="guildId">The id of the guild.</param>
-        /// <param name="commandId">The id of the command.</param>
-        /// <param name="ct">The <see cref="CancellationToken" />.</param>
-        /// <returns>
-        ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
-        ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
-        /// </returns>
+        /// <inheritdoc />
         public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetApplicationCommandPermissions(
             ulong applicationId, ulong guildId, ulong commandId, CancellationToken ct = default)
         {
@@ -164,22 +145,9 @@ namespace Color_Chan.Discord.Rest.API.Rest
             return ConvertResult(result);
         }
 
-        /// <summary>
-        ///     Edits command permissions for a specific command for your application in a guild.
-        /// </summary>
-        /// <remarks>
-        ///     You can only add up to 10 permission overwrites for a command.
-        /// </remarks>
-        /// <param name="applicationId">The id of the application.</param>
-        /// <param name="guildId">The id of the guild.</param>
-        /// <param name="commandId">The id of the command.</param>
-        /// <param name="body">The <see cref="EditApplicationCommandPermissions" /> containing the new permission data.</param>
-        /// <param name="ct">The <see cref="CancellationToken" />.</param>
-        /// <returns>
-        ///     The <see cref="Result{T}" /> of <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
-        /// </returns>
-        public virtual async Task<Result<IDiscordGuildApplicationCommandPermissions>> EditApplicationCommandPermissions(ulong applicationId, ulong guildId, ulong commandId,
-                                                                                                                        DiscordEditApplicationCommandPermissions body, CancellationToken ct = default)
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuildApplicationCommandPermissions>> EditApplicationCommandPermissions(
+            ulong applicationId, ulong guildId, ulong commandId, DiscordEditApplicationCommandPermissions body, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/{commandId.ToString()}/permissions";
             var result = await HttpClient.PutAsync<DiscordGuildApplicationCommandPermissionsData, DiscordEditApplicationCommandPermissions>(endpoint, body, ct: ct).ConfigureAwait(false);
@@ -200,8 +168,8 @@ namespace Color_Chan.Discord.Rest.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
         ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
         /// </returns>
-        public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissions(ulong applicationId, ulong guildId,
-            IEnumerable<DiscordBatchEditApplicationCommandPermissions> body, CancellationToken ct = default)
+        public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissions(
+            ulong applicationId, ulong guildId, IEnumerable<DiscordBatchEditApplicationCommandPermissions> body, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/permissions";
             var result = await HttpClient.PutAsync<IReadOnlyList<DiscordGuildApplicationCommandPermissionsData>, IEnumerable<DiscordBatchEditApplicationCommandPermissions>>(endpoint, body, ct: ct)
