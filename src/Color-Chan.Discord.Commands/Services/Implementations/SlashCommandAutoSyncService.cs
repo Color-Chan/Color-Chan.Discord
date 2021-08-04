@@ -77,7 +77,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             // Create or update the slash commands.
             var newGlobalSlashCommands = globalSlashCommands.GetUpdatedOrNewCommands(existingCommands.Entity!);
-            _logger.LogInformation("Found {Count} new or updated slash commands", newGlobalSlashCommands.Count.ToString());
+            _logger.LogInformation("Found {Count} new/updated global slash commands", newGlobalSlashCommands.Count.ToString());
 
             // Sync all the global commands with discord.
             foreach (var (command, isNew, commandId) in newGlobalSlashCommands)
@@ -143,7 +143,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
                 // Create or update the slash commands.
                 var newGuildSlashCommandInfos = guildCommands.GetUpdatedOrNewCommands(existingCommands.Entity!);
-                _logger.LogInformation("Found {Count} new or updated slash commands", newGuildSlashCommandInfos.Count.ToString());
+                _logger.LogInformation("Found {Count} new/updated guild slash commands for guildId {GuildId}", newGuildSlashCommandInfos.Count.ToString(), guildId.ToString());
 
                 // Sync all the guild commands with discord.
                 foreach (var (newCommand, isNew, commandId) in newGuildSlashCommandInfos)
