@@ -149,16 +149,22 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                         _logger.LogInformation("Deleted old guild slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
                     }
                 }
-
+                
+                // Update the guild command permissions.
+                var existingPerms = await _restApplication.GetGuildApplicationCommandPermissions(_discordTokens.ApplicationId, guildId).ConfigureAwait(false);
+                var guildCommandInfosWithPerms = guildCommandInfos.Where(x => x.Permissions is not null && x.Permissions.Any());
+                
+                
+                
                 _logger.LogInformation("Finished syncing guild slash commands for guild {Id}", guildId.ToString());
             }
 
             return Result.FromSuccess();
         }
 
-        private IEnumerable<ISlashCommandInfo> GetGuildCommandInfos(IEnumerable<ISlashCommandInfo> commandInfos, ulong guildId)
+        private List<ISlashCommandInfo> GetGuildCommandInfos(IEnumerable<ISlashCommandInfo> commandInfos, ulong guildId)
         {
-            return commandInfos.Where(x => x.Guilds is not null && x.Guilds.Select(z => z.GuildId).Contains(guildId));
+            return commandInfos.Where(x => x.Guilds is not null && x.Guilds.Select(z => z.GuildId).Contains(guildId)).ToList();
         }
     }
 }

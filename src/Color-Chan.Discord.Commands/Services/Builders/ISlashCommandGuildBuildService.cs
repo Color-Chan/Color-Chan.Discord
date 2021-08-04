@@ -4,6 +4,7 @@ using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 
 namespace Color_Chan.Discord.Commands.Services.Builders
 {
@@ -63,5 +64,14 @@ namespace Color_Chan.Discord.Commands.Services.Builders
         ///     <see cref="SlashCommandModule" />
         /// </returns>
         IEnumerable<SlashCommandPermissionAttribute> GetCommandGuildPermissions(Type commandModule);
+
+        /// <summary>
+        ///     Builds the <see cref="DiscordBatchEditApplicationCommandPermissions"/> from the <see cref="SlashCommandPermissionAttribute"/> data.
+        /// </summary>
+        /// <param name="commandInfos">The <see cref="ISlashCommandInfo"/>s containing the information needed for the <see cref="DiscordBatchEditApplicationCommandPermissions"/>.</param>
+        /// <returns>
+        ///     The converted <see cref="DiscordBatchEditApplicationCommandPermissions"/>.
+        /// </returns>
+        IEnumerable<DiscordBatchEditApplicationCommandPermissions> BuildGuildPermissions(IEnumerable<ISlashCommandInfo> commandInfos);
     }
 }

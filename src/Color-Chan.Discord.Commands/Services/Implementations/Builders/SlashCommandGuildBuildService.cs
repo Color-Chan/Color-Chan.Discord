@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
+using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Services.Builders;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
@@ -81,6 +83,19 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
             }
             
             return attributes;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<DiscordBatchEditApplicationCommandPermissions> BuildGuildPermissions(IEnumerable<ISlashCommandInfo> commandInfos)
+        {
+            var perms = new List<DiscordBatchEditApplicationCommandPermissions>();
+
+            // foreach (var commandInfo in commandInfos)
+            // {
+            //     var data = new DiscordBatchEditApplicationCommandPermissions();
+            // }
+
+            return perms;
         }
     }
 }
