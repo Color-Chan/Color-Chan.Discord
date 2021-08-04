@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
-using Color_Chan.Discord.Core.Common.API.Params;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Rest.Models.Application;
 using FluentAssertions;
 using NUnit.Framework;

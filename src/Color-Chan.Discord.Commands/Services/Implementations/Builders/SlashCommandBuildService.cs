@@ -9,7 +9,7 @@ using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
-using Color_Chan.Discord.Core.Common.API.Params;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Microsoft.Extensions.Logging;
 
