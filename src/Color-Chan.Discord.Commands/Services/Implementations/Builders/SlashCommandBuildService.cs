@@ -136,11 +136,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
             var commandAttribute = validMethod.GetCustomAttribute<SlashCommandAttribute>();
             if (commandAttribute is not null)
             {
-                var commandRequirements = _requirementBuildService.GetCommandRequirements(validMethod);
-                var guildAttributes = _guildBuildService.GetCommandGuilds(validMethod);
-                var options = _optionBuildService.GetCommandOptions(validMethod);
-
-                var commandInfo = new SlashCommandInfo(commandAttribute.Name, commandAttribute.Description, validMethod, parentModule, commandRequirements, options.ToList(), guildAttributes);
+                var commandInfo = new SlashCommandInfo(commandAttribute.Name, commandAttribute.Description, validMethod, parentModule)
+                {
+                    Guilds = _guildBuildService.GetCommandGuilds(validMethod),
+                    CommandOptions = _optionBuildService.GetCommandOptions(validMethod).ToList(),
+                    Requirements = _requirementBuildService.GetCommandRequirements(validMethod),
+                    Permissions = _guildBuildService.GetCommandGuildPermissions(validMethod)
+                };
                 return new KeyValuePair<string, ISlashCommandInfo>(commandAttribute.Name, commandInfo);
             }
 
@@ -154,7 +156,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
             var commandGroup = new SlashCommandInfo(groupAttribute.Name, groupAttribute.Description, parentModule)
             {
                 CommandOptions = new List<ISlashCommandOptionInfo>(),
-                Guilds = _guildBuildService.GetCommandGuilds(parentModule)
+                Guilds = _guildBuildService.GetCommandGuilds(parentModule),
+                Permissions = _guildBuildService.GetCommandGuildPermissions(parentModule)
             };
             var rawValidCommands = GetValidSubSlashCommandsMethods(parentModule);
 
