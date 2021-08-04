@@ -37,5 +37,31 @@ namespace Color_Chan.Discord.Commands.Services.Builders
         ///     <see cref="SlashCommandModule" />
         /// </returns>
         IEnumerable<SlashCommandGuildAttribute> GetCommandGuilds(Type commandModule);
+
+        /// <summary>
+        ///     Get a <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" /> for a specific
+        ///     <paramref name="command" />.
+        /// </summary>
+        /// <param name="command">The command method that will be used to find the <see cref="SlashCommandPermissionAttribute" />s.</param>
+        /// <param name="includeParentAttributes">Whether or not to include the parents attributes.</param>
+        /// <returns>
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" /> for the given
+        ///     <paramref name="command" />.
+        /// </returns>
+        IEnumerable<SlashCommandPermissionAttribute> GetCommandGuildPermissions(MethodInfo command, bool includeParentAttributes = true);
+
+        /// <summary>
+        ///     Get a <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" /> for a specific
+        ///     <see cref="SlashCommandModule" />
+        /// </summary>
+        /// <param name="commandModule">
+        ///     The command module that will be used to find the <see cref="SlashCommandPermissionAttribute" />
+        ///     s.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" /> for the given
+        ///     <see cref="SlashCommandModule" />
+        /// </returns>
+        IEnumerable<SlashCommandPermissionAttribute> GetCommandGuildPermissions(Type commandModule);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Services.Builders;
@@ -42,6 +43,43 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
             var parentAttributes = commandModule.GetCustomAttributes<SlashCommandGuildAttribute>();
             attributes.AddRange(parentAttributes);
+            return attributes;
+        }
+        
+        /// <inheritdoc />
+        public IEnumerable<SlashCommandPermissionAttribute> GetCommandGuildPermissions(MethodInfo command, bool includeParentAttributes = true)
+        {
+            var attributes = new List<SlashCommandPermissionAttribute>();
+
+            if (includeParentAttributes && command.DeclaringType is not null) attributes.AddRange(GetCommandGuildPermissions(command.DeclaringType));
+
+            var methodAttributes = command.GetCustomAttributes<SlashCommandPermissionAttribute>();
+            attributes.AddRange(methodAttributes);
+
+            if (!GetCommandGuilds(command).Any() && attributes.Any())
+            {
+                _logger.LogWarning("Skipping slash permission for {CommandName}, they can not be used with global commands", command.Name);
+                return new List<SlashCommandPermissionAttribute>();
+            }
+            
+            _logger.LogDebug("Found {Count} guild permissions attributes for command {MethodName}", attributes.Count.ToString(), command.Name);
+            return attributes;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<SlashCommandPermissionAttribute> GetCommandGuildPermissions(Type commandModule)
+        {
+            var attributes = new List<SlashCommandPermissionAttribute>();
+            
+            var parentAttributes = commandModule.GetCustomAttributes<SlashCommandPermissionAttribute>();
+            attributes.AddRange(parentAttributes);
+
+            if (!GetCommandGuilds(commandModule).Any() && attributes.Any())
+            {
+                _logger.LogWarning("Skipping slash permission for {ModuleName}, they can not be used with global commands", commandModule.Name);
+                return new List<SlashCommandPermissionAttribute>();
+            }
+            
             return attributes;
         }
     }
