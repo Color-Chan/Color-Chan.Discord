@@ -88,14 +88,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         /// <inheritdoc />
         public IEnumerable<DiscordBatchEditApplicationCommandPermissions> BuildGuildPermissions(IEnumerable<ISlashCommandInfo> commandInfos)
         {
-            var perms = new List<DiscordBatchEditApplicationCommandPermissions>();
-
-            // foreach (var commandInfo in commandInfos)
-            // {
-            //     var data = new DiscordBatchEditApplicationCommandPermissions();
-            // }
-
-            return perms;
+            throw new NotImplementedException();
         }
     }
 }

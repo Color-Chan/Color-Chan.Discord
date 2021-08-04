@@ -8,6 +8,6 @@
         /// <summary>
         ///     Whether or not the slash commands auto sync feature is enabled. Default: false.
         /// </summary>
-        public bool EnableAutoSync { get; set; } = false;
+        public bool EnableAutoSync { get; set; }
     }
 }
