@@ -214,7 +214,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
         ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
         /// </returns>
-        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetApplicationCommandPermissions(
+        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissions(
             ulong applicationId, ulong guildId, ulong commandId, CancellationToken ct = default);
 
         /// <summary>
@@ -226,12 +226,29 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <param name="applicationId">The id of the application.</param>
         /// <param name="guildId">The id of the guild.</param>
         /// <param name="commandId">The id of the command.</param>
-        /// <param name="body">The <see cref="EditApplicationCommandPermissions" /> containing the new permission data.</param>
+        /// <param name="body">The <see cref="EditGuildApplicationCommandPermissions" /> containing the new permission data.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     The <see cref="Result{T}" /> of <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
         /// </returns>
-        Task<Result<IDiscordGuildApplicationCommandPermissions>> EditApplicationCommandPermissions(
+        Task<Result<IDiscordGuildApplicationCommandPermissions>> EditGuildApplicationCommandPermissions(
             ulong applicationId, ulong guildId, ulong commandId, DiscordEditApplicationCommandPermissions body, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Batch edits permissions for all commands in a guild.
+        /// </summary>
+        /// <remarks>
+        ///     You can only add up to 10 permission overwrites for a command.
+        /// </remarks>
+        /// <param name="applicationId">The id of the application.</param>
+        /// <param name="guildId">The id of the guild.</param>
+        /// <param name="body">The <see cref="DiscordBatchEditApplicationCommandPermissions" />s containing the new permission data for all the commands.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
+        ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
+        /// </returns>
+        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissions(
+            ulong applicationId, ulong guildId, IEnumerable<DiscordBatchEditApplicationCommandPermissions> body, CancellationToken ct = default);
     }
 }
