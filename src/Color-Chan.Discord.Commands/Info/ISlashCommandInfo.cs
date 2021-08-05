@@ -20,6 +20,11 @@ namespace Color_Chan.Discord.Commands.Info
         public string Description { get; set; }
 
         /// <summary>
+        ///     Whether the command is enabled by default when the app is added to a guild.
+        /// </summary>
+        public bool DefaultPermission { get; set; }
+        
+        /// <summary>
         ///     The <see cref="MethodInfo" /> containing the method of the command.
         /// </summary>
         /// <remarks>

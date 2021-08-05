@@ -12,12 +12,14 @@ namespace Color_Chan.Discord.Commands.Info
         /// </summary>
         /// <param name="name">The name of the command.</param>
         /// <param name="description">The description of the command.</param>
+        /// <param name="defaultPermission">Whether the command is enabled by default when the app is added to a guild.</param>
         /// <param name="command">The <see cref="MethodInfo" /> containing the method of the command.</param>
         /// <param name="module">The command module containing the <see cref="CommandMethod" />.</param>
-        public SlashCommandInfo(string name, string description, MethodInfo command, TypeInfo module)
+        public SlashCommandInfo(string name, string description, bool defaultPermission, MethodInfo command, TypeInfo module)
         {
             CommandName = name;
             Description = description;
+            DefaultPermission = defaultPermission;
             CommandMethod = command;
             ParentModule = module;
         }
@@ -27,11 +29,13 @@ namespace Color_Chan.Discord.Commands.Info
         /// </summary>
         /// <param name="name">The name of the command.</param>
         /// <param name="description">The description of the command.</param>
+        /// <param name="defaultPermission">Whether the command is enabled by default when the app is added to a guild.</param>
         /// <param name="module">The command module containing the <see cref="CommandMethod" />.</param>
-        public SlashCommandInfo(string name, string description, TypeInfo module)
+        public SlashCommandInfo(string name, string description, bool defaultPermission, TypeInfo module)
         {
             CommandName = name;
             Description = description;
+            DefaultPermission = defaultPermission;
             ParentModule = module;
         }
 
@@ -40,6 +44,9 @@ namespace Color_Chan.Discord.Commands.Info
 
         /// <inheritdoc />
         public string Description { get; set; }
+
+        /// <inheritdoc />
+        public bool DefaultPermission { get; set; }
 
         /// <inheritdoc />
         public MethodInfo? CommandMethod { get; set; }
