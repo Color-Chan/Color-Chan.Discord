@@ -100,15 +100,15 @@ Color-Chan.Discord is available on [NuGet](https://www.nuget.org/packages/Color-
 * [Color-Chan.Discord](https://www.nuget.org/packages/Color-Chan.Discord)
 
 
-```powershell
-Install-Package Color-Chan.Discord
-```
+  ```powershell
+  Install-Package Color-Chan.Discord
+  ```
 
-OR
+  OR
 
-```powershell
-dotnet add package Color-Chan.Discord
-```
+  ```powershell
+  dotnet add package Color-Chan.Discord
+  ```
 
 The induvidial components are also available on NuGet:
 * [Color-Chan.Discord.Rest](https://www.nuget.org/packages/Color-Chan.Discord.Rest)
