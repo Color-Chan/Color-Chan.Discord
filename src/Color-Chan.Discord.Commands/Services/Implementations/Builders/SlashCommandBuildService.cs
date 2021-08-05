@@ -9,7 +9,7 @@ using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
-using Color_Chan.Discord.Core.Common.API.Params;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Microsoft.Extensions.Logging;
 
@@ -113,7 +113,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                 {
                     Name = commandInfo.CommandName,
                     Description = commandInfo.Description,
-                    Options = options
+                    Options = options,
+                    DefaultPermission = commandInfo.DefaultPermission
                 });
             }
 
@@ -136,11 +137,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
             var commandAttribute = validMethod.GetCustomAttribute<SlashCommandAttribute>();
             if (commandAttribute is not null)
             {
-                var commandRequirements = _requirementBuildService.GetCommandRequirements(validMethod);
-                var guildAttributes = _guildBuildService.GetCommandGuilds(validMethod);
-                var options = _optionBuildService.GetCommandOptions(validMethod);
-
-                var commandInfo = new SlashCommandInfo(commandAttribute.Name, commandAttribute.Description, validMethod, parentModule, commandRequirements, options.ToList(), guildAttributes);
+                var commandInfo = new SlashCommandInfo(commandAttribute.Name, commandAttribute.Description, commandAttribute.DefaultPermission, validMethod, parentModule)
+                {
+                    Guilds = _guildBuildService.GetCommandGuilds(validMethod),
+                    CommandOptions = _optionBuildService.GetCommandOptions(validMethod).ToList(),
+                    Requirements = _requirementBuildService.GetCommandRequirements(validMethod),
+                    Permissions = _guildBuildService.GetCommandGuildPermissions(validMethod)
+                };
                 return new KeyValuePair<string, ISlashCommandInfo>(commandAttribute.Name, commandInfo);
             }
 
@@ -151,10 +154,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         private KeyValuePair<string, ISlashCommandInfo> BuildCommandGroupInfoKeyValuePair(SlashCommandGroupAttribute groupAttribute, TypeInfo parentModule)
         {
             // Build the command group.
-            var commandGroup = new SlashCommandInfo(groupAttribute.Name, groupAttribute.Description, parentModule)
+            var commandGroup = new SlashCommandInfo(groupAttribute.Name, groupAttribute.Description, groupAttribute.DefaultPermission, parentModule)
             {
                 CommandOptions = new List<ISlashCommandOptionInfo>(),
-                Guilds = _guildBuildService.GetCommandGuilds(parentModule)
+                Guilds = _guildBuildService.GetCommandGuilds(parentModule),
+                Permissions = _guildBuildService.GetCommandGuildPermissions(parentModule)
             };
             var rawValidCommands = GetValidSubSlashCommandsMethods(parentModule);
 

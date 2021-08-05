@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
-namespace Color_Chan.Discord.Core.Common.API.Params
+namespace Color_Chan.Discord.Core.Common.API.Params.Application
 {
     public record DiscordCreateApplicationCommand
     {

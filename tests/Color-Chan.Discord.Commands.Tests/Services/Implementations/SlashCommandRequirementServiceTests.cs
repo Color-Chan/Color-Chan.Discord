@@ -29,8 +29,11 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             var module = typeof(ValidMockCommandModule1).GetTypeInfo();
             var method = module.GetMethods()[methodIndex];
-            var attributes = method.GetCustomAttributes<BoolRequirement>();
-            var commandInfo = new SlashCommandInfo("test", "desc", method, module, attributes);
+            var requirementsAttributes = method.GetCustomAttributes<BoolRequirement>();
+            var commandInfo = new SlashCommandInfo("test", "desc", false, method, module)
+            {
+                Requirements = requirementsAttributes
+            };
 
             // Act
             var result = await requirementService.ExecuteSlashCommandRequirementsAsync(commandInfo.Requirements, contextMock.Object, serviceProviderMock.Object).ConfigureAwait(false);

@@ -16,6 +16,7 @@ namespace Color_Chan.Discord.Commands.Attributes
         /// </summary>
         /// <param name="name">The name of the command.</param>
         /// <param name="description">The description of what the command does.</param>
+        /// <param name="defaultPermission">Whether the command is enabled by default when the app is added to a guild. Default: true.</param>
         /// <exception cref="ArgumentException">
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> doesn't
         ///     match the command name requirements.
@@ -24,7 +25,7 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> is
         ///     null.
         /// </exception>
-        public SlashCommandAttribute(string name, string description)
+        public SlashCommandAttribute(string name, string description, bool defaultPermission = true)
         {
             if (name.Length is < 1 or > 32) throw new ArgumentException("Command names must be between 1 and 32 characters.");
 
@@ -36,6 +37,7 @@ namespace Color_Chan.Discord.Commands.Attributes
 
             Name = name ?? throw new ArgumentNullException(nameof(name), "Command name can not be null");
             Description = description ?? throw new ArgumentNullException(nameof(description), "Command description can not be null");
+            DefaultPermission = defaultPermission;
         }
 
         /// <summary>
@@ -47,5 +49,10 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     The description of what the command does.
         /// </summary>
         public string Description { get; }
+
+        /// <summary>
+        ///     Whether the command is enabled by default when the app is added to a guild.
+        /// </summary>
+        public bool DefaultPermission { get; }
     }
 }

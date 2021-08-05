@@ -1,4 +1,4 @@
-using Color_Chan.Discord.Core.Common.API.Params;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 using NUnit.Framework;
 
 namespace Color_Chan.Discord.Core.Tests.Common.API.Params

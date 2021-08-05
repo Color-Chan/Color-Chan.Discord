@@ -56,17 +56,21 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <inheritdoc />
         public async Task AddInteractionCommandsAsync(Assembly assembly)
         {
-            _logger.LogDebug("Loading interaction commands");
+            _logger.LogDebug("Registering slash commands...");
 
             // Build all commands in a specific assembly.
             var commandInfos = _slashCommandBuildService.BuildSlashCommandInfos(assembly);
             foreach (var (key, commandInfo) in commandInfos)
             {
-                if (!_slashCommands.TryAdd(key, commandInfo))
-                    throw new Exception($"Failed to register {commandInfo.CommandName}");
+                if (_slashCommands.TryAdd(key, commandInfo)) continue;
+
+                // The command already existed.
+                var registeringException = new Exception($"Failed to register {commandInfo.CommandName}");
+                _logger.LogError(registeringException, "Can not register multiple commands with the same name");
+                throw registeringException;
             }
 
-            _logger.LogInformation("Finished adding {Count} commands to the command registry", _slashCommands.Count.ToString());
+            _logger.LogInformation("Registered {Count} slash commands to the command registry", _slashCommands.Count.ToString());
 
             // Default config if no config was set.
             _configurations ??= new SlashCommandConfiguration();

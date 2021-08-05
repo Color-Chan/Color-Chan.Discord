@@ -17,13 +17,12 @@ namespace Color_Chan.Discord.Core.Extensions
         {
             options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 
-            options
-                .AddJsonConverter<Uint64Converter>()
-                .AddJsonConverter<ColorConverter>()
-                .AddJsonConverter<PropertyErrorDataConverter>()
-                .AddJsonConverter<DiscordGuildPermissionJsonConverter>()
-                .AddJsonConverter<DiscordGuildFeatureConverter>()
-                .AddJsonConverter<DiscordEmbedTypeConverter>();
+            options.AddJsonConverter<Uint64Converter>()
+                   .AddJsonConverter<ColorConverter>()
+                   .AddJsonConverter<PropertyErrorDataConverter>()
+                   .AddJsonConverter<DiscordGuildPermissionJsonConverter>()
+                   .AddJsonConverter<DiscordGuildFeatureConverter>()
+                   .AddJsonConverter<DiscordEmbedTypeConverter>();
 
             return options;
         }

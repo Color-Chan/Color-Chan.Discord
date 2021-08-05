@@ -2,7 +2,7 @@
 using System.Reflection;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
-using Color_Chan.Discord.Core.Common.API.Params;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 
 namespace Color_Chan.Discord.Commands.Services.Builders
 {
