@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Application;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Application
 {
@@ -16,6 +16,6 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Application
         ///     The permissions for the command in the guild.
         /// </summary>
         [JsonPropertyName("permissions")]
-        public IEnumerable<IDiscordApplicationCommandPermissions> Permissions { get; set; } = new List<IDiscordApplicationCommandPermissions>();
+        public IEnumerable<DiscordApplicationCommandPermissionsData> Permissions { get; set; } = new List<DiscordApplicationCommandPermissionsData>();
     }
 }

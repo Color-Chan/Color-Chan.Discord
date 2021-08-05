@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Services.Builders;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Microsoft.Extensions.Logging;
 
@@ -60,7 +60,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
             if (!GetCommandGuilds(command).Any() && attributes.Any())
             {
-                _logger.LogWarning("Skipping slash permission for {CommandName}, they can not be used with global commands", command.Name);
+                _logger.LogWarning("Skipping slash command permission for {CommandName}, they can not be used with global commands", command.Name);
                 return new List<SlashCommandPermissionAttribute>();
             }
             
@@ -78,7 +78,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
             if (!GetCommandGuilds(commandModule).Any() && attributes.Any())
             {
-                _logger.LogWarning("Skipping slash permission for {ModuleName}, they can not be used with global commands", commandModule.Name);
+                _logger.LogWarning("Skipping slash command permission for {ModuleName}, they can not be used with global commands", commandModule.Name);
                 return new List<SlashCommandPermissionAttribute>();
             }
             
@@ -86,9 +86,31 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         }
 
         /// <inheritdoc />
-        public IEnumerable<DiscordBatchEditApplicationCommandPermissions> BuildGuildPermissions(IEnumerable<ISlashCommandInfo> commandInfos)
+        public IEnumerable<DiscordBatchEditApplicationCommandPermissions> BuildGuildPermissions(Dictionary<ulong, IEnumerable<SlashCommandPermissionAttribute>> attributePairs)
         {
-            throw new NotImplementedException();
+            var permBatch = new List<DiscordBatchEditApplicationCommandPermissions>();
+
+            foreach (var (commandId, attributes) in attributePairs)
+            {
+                var perms = new List<DiscordApplicationCommandPermissionsData>();
+                foreach (var attribute in attributes)
+                {
+                    perms.Add(new DiscordApplicationCommandPermissionsData
+                    {
+                        Allow = true,
+                        Id = attribute.Id,
+                        Type = attribute.Type
+                    });
+                }
+                
+                permBatch.Add(new DiscordBatchEditApplicationCommandPermissions
+                {
+                    CommandId = commandId,
+                    Permissions = perms
+                });
+            }
+
+            return permBatch;
         }
     }
 }

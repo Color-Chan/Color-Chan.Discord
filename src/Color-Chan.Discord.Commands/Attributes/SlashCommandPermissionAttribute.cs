@@ -17,12 +17,14 @@ namespace Color_Chan.Discord.Commands.Attributes
         /// </summary>
         /// <param name="id">The id of the role or user.</param>
         /// <param name="type">Specifies the type that the ID belongs to.</param>
-        public SlashCommandPermissionAttribute(ulong id, DiscordApplicationCommandPermissionsType type)
+        /// <param name="allow">Whether to allow the user/role to use the command.</param>
+        public SlashCommandPermissionAttribute(ulong id, DiscordApplicationCommandPermissionsType type, bool allow = true)
         {
             Id = id;
             Type = type;
+            Allow = allow;
         }
-        
+
         /// <summary>
         ///     The id of the role or user..
         /// </summary>
@@ -32,5 +34,10 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     Specifies the type that the ID belongs to.
         /// </summary>
         public DiscordApplicationCommandPermissionsType Type { get; init; }
+
+        /// <summary>
+        ///     The id of the role or user..
+        /// </summary>
+        public bool Allow { get; init; } = true;
     }
 }
