@@ -19,15 +19,9 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         {
             IsTts = data.IsTts;
             Content = data.Content;
-            Embeds = data.Embeds.Select(x=>new DiscordEmbed(x));
-            AllowedMentions = new DiscordAllowedMentions(data.AllowedMentions);
-            Components = data.Components.Select(x=>new DiscordComponent(x));
-            IsTts = data.IsTts;
-            IsTts = data.IsTts;
-            IsTts = data.IsTts;
-            IsTts = data.IsTts;
-            IsTts = data.IsTts;
-            IsTts = data.IsTts;
+            Embeds = data.Embeds?.Select(x=>new DiscordEmbed(x));
+            AllowedMentions = data.AllowedMentions is not null ? new DiscordAllowedMentions(data.AllowedMentions) : null;
+            Components = data.Components?.Select(x=>new DiscordComponent(x));
         }
         
         /// <inheritdoc />

@@ -10,8 +10,6 @@ using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
-using Color_Chan.Discord.Rest.Models.Application;
-using Color_Chan.Discord.Rest.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.API.Rest
 {
