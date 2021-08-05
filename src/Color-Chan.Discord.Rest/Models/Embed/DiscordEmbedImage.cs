@@ -32,7 +32,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
         /// <inheritdoc />
         public DiscordEmbedImageData ToDataModel()
         {
-            return new()
+            return new DiscordEmbedImageData
             {
                 Height = Height,
                 Url = Url,

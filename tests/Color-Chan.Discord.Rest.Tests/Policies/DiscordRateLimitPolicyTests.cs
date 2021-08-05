@@ -23,7 +23,7 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
         {
             // Arrange
             var policy = new DiscordRateLimitPolicy(int.Parse(limit), int.Parse(remaining));
-            var context = new Context {{"endpoint", endpoint}};
+            var context = new Context { { "endpoint", endpoint } };
             var message = new HttpResponseMessage();
 
             var headers = message.Headers;
@@ -49,7 +49,7 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
         {
             // Arrange
             var policy = new DiscordRateLimitPolicy(int.MaxValue, int.MaxValue);
-            var context = new Context {{"endpoint", endpoint}};
+            var context = new Context { { "endpoint", endpoint } };
             var message = new HttpResponseMessage();
             message.StatusCode = HttpStatusCode.TooManyRequests;
 
@@ -74,7 +74,7 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
         {
             // Arrange
             var policy = new DiscordRateLimitPolicy(int.Parse(limit), int.Parse(remaining));
-            var context = new Context {{"endpoint", endpoint}};
+            var context = new Context { { "endpoint", endpoint } };
             var message = new HttpResponseMessage();
             message.StatusCode = HttpStatusCode.OK;
 

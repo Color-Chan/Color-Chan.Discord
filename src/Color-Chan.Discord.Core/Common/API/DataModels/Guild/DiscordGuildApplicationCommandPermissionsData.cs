@@ -15,13 +15,13 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         /// </summary>
         [JsonPropertyName("id")]
         public ulong CommandId { get; set; }
-        
+
         /// <summary>
         ///     The id of the application the command belongs to.
         /// </summary>
         [JsonPropertyName("application_id")]
         public ulong ApplicationId { get; set; }
-        
+
         /// <summary>
         ///     The id of the guild.
         /// </summary>

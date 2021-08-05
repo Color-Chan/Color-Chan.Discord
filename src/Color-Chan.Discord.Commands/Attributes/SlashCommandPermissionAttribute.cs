@@ -29,7 +29,7 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     The id of the role or user..
         /// </summary>
         public ulong Id { get; init; }
-        
+
         /// <summary>
         ///     Specifies the type that the ID belongs to.
         /// </summary>

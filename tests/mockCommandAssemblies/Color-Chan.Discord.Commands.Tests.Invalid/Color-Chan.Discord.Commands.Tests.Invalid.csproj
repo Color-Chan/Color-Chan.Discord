@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\Color-Chan.Discord.Commands\Color-Chan.Discord.Commands.csproj" />
+        <ProjectReference Include="..\..\..\src\Color-Chan.Discord.Commands\Color-Chan.Discord.Commands.csproj"/>
     </ItemGroup>
 
 </Project>

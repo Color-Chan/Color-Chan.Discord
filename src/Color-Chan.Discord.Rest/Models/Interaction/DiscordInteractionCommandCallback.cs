@@ -30,7 +30,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         /// <inheritdoc />
         public DiscordInteractionCommandCallbackData ToDataModel()
         {
-            return new()
+            return new DiscordInteractionCommandCallbackData
             {
                 Content = Content,
                 Embeds = Embeds?.Select(x => x.ToDataModel()),

@@ -242,7 +242,10 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// </remarks>
         /// <param name="applicationId">The id of the application.</param>
         /// <param name="guildId">The id of the guild.</param>
-        /// <param name="body">The <see cref="DiscordBatchEditApplicationCommandPermissions" />s containing the new permission data for all the commands.</param>
+        /// <param name="body">
+        ///     The <see cref="DiscordBatchEditApplicationCommandPermissions" />s containing the new permission data
+        ///     for all the commands.
+        /// </param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of

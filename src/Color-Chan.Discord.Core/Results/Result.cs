@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static Result FromSuccess()
         {
-            return new(null, null);
+            return new Result(null, null);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static Result FromError(IErrorResult errorResult)
         {
-            return new(errorResult, null);
+            return new Result(errorResult, null);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static Result FromError(IErrorResult errorResult, IResult innerResult)
         {
-            return new(errorResult, innerResult);
+            return new Result(errorResult, innerResult);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static implicit operator Result(Exception exception)
         {
-            return new(new ExceptionResult(exception), default);
+            return new Result(new ExceptionResult(exception), default);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static implicit operator Result(ErrorResult error)
         {
-            return new(error, default);
+            return new Result(error, default);
         }
     }
 
@@ -125,7 +125,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static Result<T> FromSuccess(T entity)
         {
-            return new(entity, null, null);
+            return new Result<T>(entity, null, null);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static Result<T> FromError(T? entity, IErrorResult? errorResult)
         {
-            return new(entity, errorResult, null);
+            return new Result<T>(entity, errorResult, null);
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static Result<T> FromError(T? entity, IErrorResult? errorResult, IResult innerResult)
         {
-            return new(entity, errorResult, innerResult);
+            return new Result<T>(entity, errorResult, innerResult);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static implicit operator Result<T>(Exception exception)
         {
-            return new(default, new ExceptionResult(exception), default);
+            return new Result<T>(default, new ExceptionResult(exception), default);
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Color_Chan.Discord.Core.Results
         /// </returns>
         public static implicit operator Result<T>(ErrorResult error)
         {
-            return new(default, error, default);
+            return new Result<T>(default, error, default);
         }
     }
 }

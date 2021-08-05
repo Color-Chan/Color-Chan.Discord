@@ -20,7 +20,7 @@ namespace Color_Chan.Discord.Core.Extensions
         public static DiscordGuildPermission ConvertToGuildPermission(this ReadOnlySpan<char> permissions)
         {
             var number = ulong.Parse(permissions);
-            return (DiscordGuildPermission) Enum.ToObject(typeof(DiscordGuildPermission), number);
+            return (DiscordGuildPermission)Enum.ToObject(typeof(DiscordGuildPermission), number);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Color_Chan.Discord.Core.Extensions
         public static DiscordGuildPermission ConvertToGuildPermission(this string permissions)
         {
             var number = ulong.Parse(permissions);
-            return (DiscordGuildPermission) Enum.ToObject(typeof(DiscordGuildPermission), number);
+            return (DiscordGuildPermission)Enum.ToObject(typeof(DiscordGuildPermission), number);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Color_Chan.Discord.Core.Extensions
 
             if (ulong.TryParse(permissionString, out var permissionTemp))
             {
-                permission = (DiscordGuildPermission) Enum.ToObject(typeof(DiscordGuildPermission), permissionTemp);
+                permission = (DiscordGuildPermission)Enum.ToObject(typeof(DiscordGuildPermission), permissionTemp);
                 return true;
             }
 
@@ -74,7 +74,7 @@ namespace Color_Chan.Discord.Core.Extensions
         /// </returns>
         public static string ConvertToString(this DiscordGuildPermission permissions)
         {
-            return ((ulong) permissions).ToString();
+            return ((ulong)permissions).ToString();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Rest.Models
         /// <inheritdoc />
         public DiscordComponentData ToDataModel()
         {
-            return new()
+            return new DiscordComponentData
             {
                 Disabled = Disabled,
                 Emoji = Emoji?.ToDataModel(),

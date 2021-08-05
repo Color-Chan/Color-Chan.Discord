@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Tests.Services.Implementations
         {
             // Arrange
             var key = PublicKeyAuth.GenerateKeyPair();
-            var timeStamp = (int) DateTimeOffset.UnixEpoch.Offset.TotalSeconds;
+            var timeStamp = (int)DateTimeOffset.UnixEpoch.Offset.TotalSeconds;
             var signed = PublicKeyAuth.SignDetached($"{timeStamp.ToString()}{bodyString}", key.PrivateKey);
             var hexEd25519String = Convert.ToHexString(signed);
 

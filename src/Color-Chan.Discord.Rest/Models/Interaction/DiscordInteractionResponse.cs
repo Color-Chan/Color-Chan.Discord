@@ -14,7 +14,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         /// <inheritdoc />
         public DiscordInteractionResponseData ToDataModel()
         {
-            return new()
+            return new DiscordInteractionResponseData
             {
                 Type = Type,
                 Data = Data?.ToDataModel()

@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
         /// <inheritdoc />
         public DiscordEmbedFooterData ToDataModel()
         {
-            return new()
+            return new DiscordEmbedFooterData
             {
                 Text = Text,
                 IconUrl = IconUrl,

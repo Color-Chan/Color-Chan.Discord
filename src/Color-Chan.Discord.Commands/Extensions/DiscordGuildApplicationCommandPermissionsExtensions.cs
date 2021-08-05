@@ -7,7 +7,7 @@ namespace Color_Chan.Discord.Commands.Extensions
 {
     internal static class DiscordGuildApplicationCommandPermissionsExtensions
     {
-        internal static bool ShouldUpdatePermissions(this List<DiscordBatchEditApplicationCommandPermissions> localCommandPerms, 
+        internal static bool ShouldUpdatePermissions(this List<DiscordBatchEditApplicationCommandPermissions> localCommandPerms,
                                                      IReadOnlyList<IDiscordGuildApplicationCommandPermissions> existingPerms)
         {
             foreach (var localCommandPerm in localCommandPerms)
@@ -48,7 +48,7 @@ namespace Color_Chan.Discord.Commands.Extensions
             {
                 return true;
             }
-            
+
             foreach (var localPerm in localCommandPerm.Permissions)
             {
                 var existingPerm = existingCommandPerm.Permissions.FirstOrDefault(x => x.Id == localPerm.Id);
@@ -57,18 +57,18 @@ namespace Color_Chan.Discord.Commands.Extensions
                 {
                     return true;
                 }
-                
+
                 if (localPerm.Type != existingPerm.Type)
                 {
                     return true;
                 }
-                
+
                 if (localPerm.Allow != existingPerm.Allow)
                 {
                     return true;
                 }
             }
-            
+
             foreach (var existingPerm in existingCommandPerm.Permissions)
             {
                 var localPerm = localCommandPerm.Permissions.FirstOrDefault(x => x.Id == existingPerm.Id);
@@ -77,12 +77,12 @@ namespace Color_Chan.Discord.Commands.Extensions
                 {
                     return true;
                 }
-                
+
                 if (existingPerm.Type != localPerm.Type)
                 {
                     return true;
                 }
-                
+
                 if (existingPerm.Allow != localPerm.Allow)
                 {
                     return true;

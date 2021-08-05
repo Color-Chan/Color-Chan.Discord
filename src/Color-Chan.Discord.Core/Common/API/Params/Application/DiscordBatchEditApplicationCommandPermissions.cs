@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Application
         /// </summary>
         [JsonPropertyName("id")]
         public ulong CommandId { get; set; }
-        
+
         /// <summary>
         ///     The permissions for the command in the guild.
         /// </summary>

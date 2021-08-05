@@ -44,7 +44,7 @@ namespace Color_Chan.Discord.Rest.Models
 
         public DiscordEmojiData ToDataModel()
         {
-            return new()
+            return new DiscordEmojiData
             {
                 Id = Id,
                 Name = Name,

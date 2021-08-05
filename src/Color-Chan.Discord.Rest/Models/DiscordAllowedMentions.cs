@@ -21,7 +21,7 @@ namespace Color_Chan.Discord.Rest.Models
         /// <inheritdoc />
         public DiscordAllowedMentionsData ToDataModel()
         {
-            return new()
+            return new DiscordAllowedMentionsData
             {
                 Allowed = Allowed,
                 AllowedRoles = AllowedRoles,
