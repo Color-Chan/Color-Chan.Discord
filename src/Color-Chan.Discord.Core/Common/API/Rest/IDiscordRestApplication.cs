@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Common.Models.Guild;
+using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Core.Common.API.Rest
@@ -253,5 +255,28 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// </returns>
         Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissions(
             ulong applicationId, ulong guildId, IEnumerable<DiscordBatchEditApplicationCommandPermissions> body, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Create a response to an Interaction from the gateway.
+        /// </summary>
+        /// <param name="interactionId">The interaction id.</param>
+        /// <param name="token">The token of the interaction.</param>
+        /// <param name="response">The new response.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> CreateInteractionResponse(ulong interactionId, string token, DiscordInteractionResponseData response, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Returns the initial Interaction response.
+        /// </summary>
+        /// <param name="interactionId">The interaction id.</param>
+        /// <param name="token">The token of the interaction.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IDiscordInteractionResponse" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordInteractionResponse>> GetOriginalInteractionResponse(ulong interactionId, string token, CancellationToken ct = default);
     }
 }
