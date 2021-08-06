@@ -150,8 +150,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <returns>
         ///     A <see cref="IDiscordInteractionResponse" /> with the the slash command response.
         /// </returns>
-        /// <exception cref="NullReferenceException"></exception>
-        /// <exception cref="InvalidSlashCommandGroupException"></exception>
+        /// <exception cref="NullReferenceException">Thrown when the sub options are null.</exception>
+        /// <exception cref="InvalidSlashCommandGroupException">Thrown when no sub command has been found.</exception>
         private async Task<IDiscordInteractionResponse> ExecuteSubCommandGroupAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
         {
             if (option.SubOptions is null)
