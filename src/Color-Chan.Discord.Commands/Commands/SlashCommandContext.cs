@@ -9,26 +9,17 @@ namespace Color_Chan.Discord.Commands.Commands
     /// <inheritdoc />
     public class SlashCommandContext : ISlashCommandContext
     {
-        /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandContext" />.
-        /// </summary>
-        /// <param name="command">The <see cref="IDiscordInteractionCommand" /> containing the data for the slash command request.</param>
-        public SlashCommandContext(IDiscordInteractionCommand command)
-        {
-            CommandRequest = command;
-        }
-
         /// <inheritdoc />
         public IDiscordGuildMember? Member { get; init; }
 
         /// <inheritdoc />
-        public IDiscordUser? User { get; init; }
+        public IDiscordUser User { get; init; } = null!;
 
         /// <inheritdoc />
         public IDiscordMessage? Message { get; init; }
 
         /// <inheritdoc />
-        public IDiscordInteractionCommand CommandRequest { get; init; }
+        public IDiscordInteractionCommand CommandRequest { get; init; } = null!;
 
         /// <inheritdoc />
         public ulong? GuildId { get; set; }
@@ -38,5 +29,11 @@ namespace Color_Chan.Discord.Commands.Commands
 
         /// <inheritdoc />
         public ulong ApplicationId { get; init; }
+        
+        /// <inheritdoc />
+        public string Token { get; init; } = null!;
+        
+        /// <inheritdoc />
+        public ulong InteractionId { get; init; }
     }
 }

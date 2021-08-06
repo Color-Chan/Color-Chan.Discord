@@ -21,7 +21,7 @@ namespace Color_Chan.Discord.Core
         /// <summary>
         ///     The user that has made the interaction request.
         /// </summary>
-        IDiscordUser? User { get; init; }
+        IDiscordUser User { get; init; }
 
         /// <summary>
         ///     The interaction command that the user has requested. Including the request data.
@@ -50,5 +50,15 @@ namespace Color_Chan.Discord.Core
         ///     Id of the application this interaction is for.
         /// </summary>
         ulong ApplicationId { get; init; }
+        
+        /// <summary>
+        ///     The token of the interaction.
+        /// </summary>
+        string Token { get; init; } 
+        
+        /// <summary>
+        ///     The interaction id.
+        /// </summary>
+        ulong InteractionId { get; init; }
     }
 }
