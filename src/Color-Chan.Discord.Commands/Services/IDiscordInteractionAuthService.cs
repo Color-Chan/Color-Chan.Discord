@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace Color_Chan.Discord.Services
+namespace Color_Chan.Discord.Commands.Services
 {
     /// <summary>
     ///     The service that verifies all interaction request.

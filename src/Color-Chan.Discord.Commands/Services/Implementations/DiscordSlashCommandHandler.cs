@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Builders;
 using Color_Chan.Discord.Commands.Commands;
-using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
-using Color_Chan.Discord.Exceptions;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Services.Implementations
+namespace Color_Chan.Discord.Commands.Services.Implementations
 {
     /// <inheritdoc />
     public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler

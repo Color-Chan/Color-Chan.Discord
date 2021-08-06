@@ -1,9 +1,9 @@
 ﻿using System;
 using Color_Chan.Discord.Commands.Extensions;
+using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Rest.Extensions;
-using Color_Chan.Discord.Services;
-using Color_Chan.Discord.Services.Implementations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 

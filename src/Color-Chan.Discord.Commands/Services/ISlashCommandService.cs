@@ -184,6 +184,6 @@ namespace Color_Chan.Discord.Commands.Services
         /// <returns>
         ///     The <see cref="ISlashCommandService" /> containing the config settings.
         /// </returns>
-        SlashCommandConfiguration Configure(SlashCommandConfiguration options);
+        InteractionsConfiguration Configure(InteractionsConfiguration options);
     }
 }

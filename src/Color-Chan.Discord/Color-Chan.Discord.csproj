@@ -8,18 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5"/>
-        <PackageReference Include="Sodium.Core" Version="1.2.3"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Color-Chan.Discord.Commands\Color-Chan.Discord.Commands.csproj"/>
-        <ProjectReference Include="..\Color-Chan.Discord.Rest\Color-Chan.Discord.Rest.csproj"/>
+        <ProjectReference Include="..\Color-Chan.Discord.Commands\Color-Chan.Discord.Commands.csproj" />
+        <ProjectReference Include="..\Color-Chan.Discord.Rest\Color-Chan.Discord.Rest.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -57,7 +56,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+        <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
     </ItemGroup>
 
 </Project>

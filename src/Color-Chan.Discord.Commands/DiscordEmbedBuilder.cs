@@ -5,7 +5,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Rest.Models.Embed;
 
-namespace Color_Chan.Discord.Builders
+namespace Color_Chan.Discord.Commands
 {
     /// <summary>
     ///     Represents a builder class for creating <see cref="IDiscordEmbed" />s.

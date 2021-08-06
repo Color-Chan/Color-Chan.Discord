@@ -19,6 +19,6 @@ namespace Color_Chan.Discord.Commands.Services
         /// <returns>
         ///     The <see cref="Result" /> with the results of the update process.
         /// </returns>
-        Task<Result> UpdateApplicationCommandsAsync(IEnumerable<ISlashCommandInfo> commandInfos, SlashCommandConfiguration configurations);
+        Task<Result> UpdateApplicationCommandsAsync(IEnumerable<ISlashCommandInfo> commandInfos, InteractionsConfiguration configurations);
     }
 }

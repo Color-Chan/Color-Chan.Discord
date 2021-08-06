@@ -7,11 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj"/>
+        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj" />
+        <ProjectReference Include="..\Color-Chan.Discord.Rest\Color-Chan.Discord.Rest.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+        <PackageReference Include="Sodium.Core" Version="1.2.3" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -50,7 +52,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+        <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
     </ItemGroup>
 
 </Project>
