@@ -98,8 +98,6 @@ namespace Color_Chan.Discord.Controllers
                 }
             }
 
-            await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
-            
             // Execute the correct interaction type.
             var response = interactionData.Type switch
             {
