@@ -38,13 +38,14 @@ namespace Color_Chan.Discord.Caching.Extensions
             
             services.Configure(defaultCacheConfig);
             
-            if (redisCacheOptions is null)
+            if (redisCacheOptions is not null)
             {
                 services.AddStackExchangeRedisCache(redisCacheOptions);
                 services.AddSingleton<ICacheService, DistributedCacheService>();
             }
             else
             {
+                services.AddMemoryCache();
                 services.AddSingleton<ICacheService, LocalCacheService>();
             }
 
