@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
         
         /// <inheritdoc />
-        public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Task<TValue> getValue) where TValue : class
+        public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Task<TValue> getValue) where TValue : notnull
         {
             var result = await _distributedCache.GetAsync(key);
 
@@ -54,7 +55,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<TValue>> GetValueAsync<TValue>(string key) where TValue : class
+        public async Task<Result<TValue>> GetValueAsync<TValue>(string key) where TValue : notnull
         {
             var result = await _distributedCache.GetAsync(key);
 
@@ -78,7 +79,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : class
+        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : notnull
         {
             // Set the cached value.
             var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
@@ -86,14 +87,42 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public void CacheValue<TValue>(string key, TValue cachedValue) where TValue : class
+        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan slidingExpirationOverwrite, TimeSpan absoluteExpirationOverwrite) where TValue : notnull
+        {
+            var redisCacheConfig = new DistributedCacheEntryOptions
+            {
+                SlidingExpiration = slidingExpirationOverwrite,
+                AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
+            };
+            
+            // Set the cached value.
+            var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
+            await _distributedCache.SetAsync(key, bytes, redisCacheConfig);
+        }
+
+        /// <inheritdoc />
+        public void CacheValue<TValue>(string key, TValue cachedValue) where TValue : notnull
         {
             // Set the cached value.
             var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
             _distributedCache.Set(key, bytes, GetCacheConfig<TValue>());
         }
-        
-        private DistributedCacheEntryOptions GetCacheConfig<TValue>() where TValue : class
+
+        /// <inheritdoc />
+        public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan slidingExpirationOverwrite, TimeSpan absoluteExpirationOverwrite) where TValue : notnull
+        {
+            var redisCacheConfig = new DistributedCacheEntryOptions
+            {
+                SlidingExpiration = slidingExpirationOverwrite,
+                AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
+            };
+            
+            // Set the cached value.
+            var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
+            _distributedCache.Set(key, bytes, redisCacheConfig);
+        }
+
+        private DistributedCacheEntryOptions GetCacheConfig<TValue>() where TValue : notnull
         {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
             var redisCacheConfig = new DistributedCacheEntryOptions

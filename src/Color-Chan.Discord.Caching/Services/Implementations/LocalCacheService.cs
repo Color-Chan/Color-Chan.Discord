@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Task<TValue> getValue) where TValue : class
+        public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Task<TValue> getValue) where TValue : notnull
         {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
 
@@ -47,7 +48,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public Task<Result<TValue>> GetValueAsync<TValue>(string key) where TValue : class
+        public Task<Result<TValue>> GetValueAsync<TValue>(string key) where TValue : notnull
         {
             if (_memoryCache.TryGetValue(key, out TValue cachedValue))
             {
@@ -68,7 +69,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
         
         /// <inheritdoc />
-        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : class
+        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : notnull
         {
             // Set the cached value.
             SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
@@ -76,15 +77,44 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             _memoryCache.Set(key, cachedValue, GetCacheConfig<TValue>());
             cacheLock.Release();
         }
+        
+        /// <inheritdoc />
+        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan slidingExpirationOverwrite, TimeSpan absoluteExpirationOverwrite) where TValue : notnull
+        {
+            var redisCacheConfig = new MemoryCacheEntryOptions
+            {
+                SlidingExpiration = slidingExpirationOverwrite,
+                AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
+            };
+            
+            // Set the cached value.
+            SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+            await cacheLock.WaitAsync();
+            _memoryCache.Set(key, cachedValue, redisCacheConfig);
+            cacheLock.Release();
+        }
 
         /// <inheritdoc />
-        public void CacheValue<TValue>(string key, TValue cachedValue) where TValue : class
+        public void CacheValue<TValue>(string key, TValue cachedValue) where TValue : notnull
         {
             // Set the cached value.
             _memoryCache.Set(key, cachedValue, GetCacheConfig<TValue>());
         }
         
-        private MemoryCacheEntryOptions GetCacheConfig<TValue>() where TValue : class
+        /// <inheritdoc />
+        public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan slidingExpirationOverwrite, TimeSpan absoluteExpirationOverwrite) where TValue : notnull
+        {
+            var redisCacheConfig = new MemoryCacheEntryOptions
+            {
+                SlidingExpiration = slidingExpirationOverwrite,
+                AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
+            };
+            
+            // Set the cached value.
+            _memoryCache.Set(key, cachedValue, redisCacheConfig);
+        }
+        
+        private MemoryCacheEntryOptions GetCacheConfig<TValue>() where TValue : notnull
         {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
             var redisCacheConfig = new MemoryCacheEntryOptions
