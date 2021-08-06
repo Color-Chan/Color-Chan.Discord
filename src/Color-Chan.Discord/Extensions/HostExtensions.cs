@@ -24,7 +24,7 @@ namespace Color_Chan.Discord.Extensions
         /// <returns>
         ///     The used <see cref="IHost" />.
         /// </returns>
-        public static async Task<IHost> RegisterSlashCommandsAsync(this IHost host, Assembly assembly, InteractionsConfiguration config)
+        public static async Task<IHost> RegisterSlashCommandsAsync(this IHost host, Assembly assembly, SlashCommandConfiguration config)
         {
             // Create a new scope.
             using var scope = host.Services.CreateScope();

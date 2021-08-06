@@ -4,7 +4,9 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Configurations;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Rest.Models.Interaction;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +26,8 @@ namespace Color_Chan.Discord.Controllers
         private const string ReturnContentType = "application/json";
         private readonly IDiscordInteractionAuthService _authService;
         private readonly IDiscordSlashCommandHandler _commandHandler;
+        private readonly InteractionsConfiguration _configuration;
+        private readonly IDiscordRestApplication _restApplication;
         private readonly ILogger<DiscordInteractionController> _logger;
         private readonly JsonSerializerOptions _serializerOptions;
 
@@ -34,12 +38,16 @@ namespace Color_Chan.Discord.Controllers
         /// <param name="logger">The logger.</param>
         /// <param name="serializerOptions">The JSON options used for serialization.</param>
         /// <param name="commandHandler">The command handler for all the slash commands.</param>
+        /// <param name="configuration">The configurations for interactions.</param>
+        /// <param name="restApplication">The REST class for application api calls.</param>
         public DiscordInteractionController(IDiscordInteractionAuthService authService, ILogger<DiscordInteractionController> logger, IOptions<JsonSerializerOptions> serializerOptions,
-                                            IDiscordSlashCommandHandler commandHandler)
+                                            IDiscordSlashCommandHandler commandHandler, InteractionsConfiguration configuration, IDiscordRestApplication restApplication)
         {
             _authService = authService;
             _logger = logger;
             _commandHandler = commandHandler;
+            _configuration = configuration;
+            _restApplication = restApplication;
             _serializerOptions = serializerOptions.Value;
         }
 
@@ -69,6 +77,16 @@ namespace Color_Chan.Discord.Controllers
 
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
 
+            // Acknowledge the interaction.
+            if (_configuration.AcknowledgeInteractions)
+            {
+                var response = new DiscordInteractionResponseData
+                {
+                    Type = DiscordInteractionResponseType.DeferredChannelMessageWithSource
+                };
+                await _restApplication.CreateInteractionResponse(interactionData.Id, interactionData.Token, response).ConfigureAwait(false);
+            }
+            
             // Execute the correct interaction type.
             switch (interactionData.Type)
             {

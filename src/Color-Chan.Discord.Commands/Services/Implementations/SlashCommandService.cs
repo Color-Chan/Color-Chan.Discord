@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         private readonly ISlashCommandRequirementService _requirementService;
         private readonly ISlashCommandBuildService _slashCommandBuildService;
         private readonly ConcurrentDictionary<string, ISlashCommandInfo> _slashCommands = new();
-        private InteractionsConfiguration? _configurations;
+        private SlashCommandConfiguration? _configurations;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandService" />.
@@ -73,7 +73,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             _logger.LogInformation("Registered {Count} slash commands to the command registry", _slashCommands.Count.ToString());
 
             // Default config if no config was set.
-            _configurations ??= new InteractionsConfiguration();
+            _configurations ??= new SlashCommandConfiguration();
 
             var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
 
@@ -246,7 +246,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public InteractionsConfiguration Configure(InteractionsConfiguration options)
+        public SlashCommandConfiguration Configure(SlashCommandConfiguration options)
         {
             _configurations = options;
             return options;

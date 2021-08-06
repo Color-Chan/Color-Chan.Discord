@@ -15,7 +15,7 @@ namespace RoleManager
 
             // Configure Color-Chan.Discord.Commands
             // EnableAutoSync is off by default. Turn this own if you dont want to send the slash command to discord manually.
-            var config = new InteractionsConfiguration
+            var config = new SlashCommandConfiguration
             {
                 EnableAutoSync = true // <----- 
             };
