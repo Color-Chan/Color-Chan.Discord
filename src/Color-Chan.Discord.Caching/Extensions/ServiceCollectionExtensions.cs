@@ -13,7 +13,7 @@ namespace Color_Chan.Discord.Caching.Extensions
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        ///     Add the dependencies for Color-Chan.Discord to the <see cref="IServiceCollection" />.
+        ///     Add the dependencies for Color-Chan.Discord.Caching to the <see cref="IServiceCollection" />.
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection" />.</param>
         /// <param name="defaultCacheConfig">
