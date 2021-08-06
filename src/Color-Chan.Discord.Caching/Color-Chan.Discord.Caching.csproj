@@ -52,7 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Color-Chan.Discord.Rest\Color-Chan.Discord.Rest.csproj" />
+      <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj" />
     </ItemGroup>
     
 </Project>
