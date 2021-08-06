@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Caching.Extensions
             defaultCacheConfig ??= configuration =>
             {
                 configuration.AbsoluteExpiration = TimeSpan.FromSeconds(30);
-                configuration.SlidingExpiration = TimeSpan.FromSeconds(30);
+                configuration.SlidingExpiration = TimeSpan.FromSeconds(15);
             };
             
             services.Configure(defaultCacheConfig);
