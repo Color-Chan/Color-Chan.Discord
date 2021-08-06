@@ -2,13 +2,16 @@ using System.Collections.Generic;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
+using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models.Application;
 using Color_Chan.Discord.Rest.Models.Guild;
 using Color_Chan.Discord.Rest.Models.Interaction;
+using Color_Chan.Discord.Rest.Models.Message;
 
 namespace Color_Chan.Discord.Rest.API
 {
@@ -53,6 +56,23 @@ namespace Color_Chan.Discord.Rest.API
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordInteractionResponse>.FromError(null, result.ErrorResult);
 
             return Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse(result.Entity));
+        }
+        
+        public static Result<IDiscordMessage> ConvertResult(Result<DiscordMessageData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordMessage>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordMessage>.FromSuccess(new DiscordMessage(result.Entity));
+        }
+
+        public static Result<IReadOnlyList<IDiscordMessage>> ConvertResult(Result<IReadOnlyList<DiscordMessageData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordMessage>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordMessage>();
+            foreach (var data in result.Entity) list.Add(new DiscordMessage(data));
+
+            return Result<IReadOnlyList<IDiscordMessage>>.FromSuccess(list);
         }
     }
 }
