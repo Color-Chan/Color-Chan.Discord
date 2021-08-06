@@ -35,5 +35,8 @@ namespace Color_Chan.Discord.Commands.Commands
         
         /// <inheritdoc />
         public ulong InteractionId { get; init; }
+
+        /// <inheritdoc />
+        public string MethodName { get; set; } = null!;
     }
 }

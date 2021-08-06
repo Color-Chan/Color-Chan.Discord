@@ -1,4 +1,5 @@
-﻿using Color_Chan.Discord.Commands.Services;
+﻿using Color_Chan.Discord.Caching.Extensions;
+using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Commands.Services.Implementations.Builders;
@@ -29,6 +30,9 @@ namespace Color_Chan.Discord.Commands.Extensions
             services.TryAddTransient<ISlashCommandBuildService, SlashCommandBuildService>();
             services.TryAddSingleton<ISlashCommandService, SlashCommandService>();
 
+            // Call this on your own if you want to supply configurations.
+            services.AddColorChanCache();
+            
             return services;
         }
     }

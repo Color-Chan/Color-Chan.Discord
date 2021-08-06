@@ -60,5 +60,13 @@ namespace Color_Chan.Discord.Core
         ///     The interaction id.
         /// </summary>
         ulong InteractionId { get; init; }
+        
+        /// <summary>
+        ///     The method name of the slash command.
+        /// </summary>
+        /// <remarks>
+        ///     Used to create a unique string for rate limiting.
+        /// </remarks>
+        string MethodName { get; set; } 
     }
 }

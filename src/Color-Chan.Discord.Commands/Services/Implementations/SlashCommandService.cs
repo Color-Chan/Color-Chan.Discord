@@ -91,6 +91,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             serviceProvider ??= DefaultServiceProvider.Instance;
 
             var instance = GetSlashCommandModuleInstance(serviceProvider, commandMethod);
+            
+            context.MethodName = commandMethod.Name;
             instance.SetContext(context);
 
             // Try to run the requirements for the slash command.
