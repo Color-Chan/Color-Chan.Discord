@@ -97,7 +97,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                 {
                     perms.Add(new DiscordApplicationCommandPermissionsData
                     {
-                        Allow = true,
+                        Allow = attribute.Allow,
                         Id = attribute.Id,
                         Type = attribute.Type
                     });

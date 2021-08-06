@@ -36,8 +36,8 @@ namespace Color_Chan.Discord.Commands.Attributes
         public DiscordApplicationCommandPermissionsType Type { get; init; }
 
         /// <summary>
-        ///     The id of the role or user..
+        ///     The id of the role or user.
         /// </summary>
-        public bool Allow { get; init; } = true;
+        public bool Allow { get; init; }
     }
 }
