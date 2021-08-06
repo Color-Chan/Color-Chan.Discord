@@ -111,7 +111,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         /// <summary>
         ///     Reactions to the message.
         /// </summary>
-        [JsonPropertyName("embeds")]
+        [JsonPropertyName("reactions")]
         public IEnumerable<DiscordReactionData>? Reactions { get; set; }
 
         /// <summary>
