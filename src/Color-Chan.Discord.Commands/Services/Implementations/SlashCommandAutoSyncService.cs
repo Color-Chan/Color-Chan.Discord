@@ -211,7 +211,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 }
 
                 // Get the existing command perms.
-                var existingCommandPerms = await _restApplication.GetGuildApplicationCommandPermissions(_discordTokens.ApplicationId, guildId).ConfigureAwait(false);
+                var existingCommandPerms = await _restApplication.GetGuildApplicationCommandPermissionsAsync(_discordTokens.ApplicationId, guildId).ConfigureAwait(false);
                 if (!existingCommandPerms.IsSuccessful)
                 {
                     return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult($"Failed to get existing guild command permissions for guild {guildId.ToString()}"));
@@ -221,7 +221,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 var batchPerms = _guildBuildService.BuildGuildPermissions(localCommandPerms).ToList();
                 if (batchPerms.ShouldUpdatePermissions(existingCommandPerms.Entity!))
                 {
-                    var batchPermResult = await _restApplication.BatchEditApplicationCommandPermissions(_discordTokens.ApplicationId, guildId, batchPerms).ConfigureAwait(false);
+                    var batchPermResult = await _restApplication.BatchEditApplicationCommandPermissionsAsync(_discordTokens.ApplicationId, guildId, batchPerms).ConfigureAwait(false);
 
                     if (!batchPermResult.IsSuccessful)
                     {

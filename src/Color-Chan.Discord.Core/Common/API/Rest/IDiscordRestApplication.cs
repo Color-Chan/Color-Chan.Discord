@@ -3,9 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
+using Color_Chan.Discord.Core.Common.API.Params.Webhook;
 using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Common.Models.Guild;
-using Color_Chan.Discord.Core.Common.Models.Interaction;
+using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Core.Common.API.Rest
@@ -202,7 +203,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
         ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
         /// </returns>
-        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissions(
+        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissionsAsync(
             ulong applicationId, ulong guildId, CancellationToken ct = default);
 
         /// <summary>
@@ -216,7 +217,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
         ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
         /// </returns>
-        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissions(
+        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissionsAsync(
             ulong applicationId, ulong guildId, ulong commandId, CancellationToken ct = default);
 
         /// <summary>
@@ -228,12 +229,12 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <param name="applicationId">The id of the application.</param>
         /// <param name="guildId">The id of the guild.</param>
         /// <param name="commandId">The id of the command.</param>
-        /// <param name="body">The <see cref="EditGuildApplicationCommandPermissions" /> containing the new permission data.</param>
+        /// <param name="body">The <see cref="EditGuildApplicationCommandPermissionsAsync" /> containing the new permission data.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
         ///     The <see cref="Result{T}" /> of <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
         /// </returns>
-        Task<Result<IDiscordGuildApplicationCommandPermissions>> EditGuildApplicationCommandPermissions(
+        Task<Result<IDiscordGuildApplicationCommandPermissions>> EditGuildApplicationCommandPermissionsAsync(
             ulong applicationId, ulong guildId, ulong commandId, DiscordEditApplicationCommandPermissions body, CancellationToken ct = default);
 
         /// <summary>
@@ -253,7 +254,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of
         ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
         /// </returns>
-        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissions(
+        Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissionsAsync(
             ulong applicationId, ulong guildId, IEnumerable<DiscordBatchEditApplicationCommandPermissions> body, CancellationToken ct = default);
 
         /// <summary>
@@ -266,17 +267,29 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <returns>
         ///     The <see cref="Result" /> with the request results.
         /// </returns>
-        Task<Result> CreateInteractionResponse(ulong interactionId, string token, DiscordInteractionResponseData response, CancellationToken ct = default);
+        Task<Result> CreateInteractionResponseAsync(ulong interactionId, string token, DiscordInteractionResponseData response, CancellationToken ct = default);
 
         /// <summary>
         ///     Returns the initial Interaction response.
         /// </summary>
-        /// <param name="interactionId">The interaction id.</param>
+        /// <param name="applicationId">The ID of the application.</param>
         /// <param name="token">The token of the interaction.</param>
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <returns>
-        ///     The <see cref="Result{T}" /> of <see cref="IDiscordInteractionResponse" /> with the request results.
+        ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
         /// </returns>
-        Task<Result<IDiscordInteractionResponse>> GetOriginalInteractionResponse(ulong interactionId, string token, CancellationToken ct = default);
+        Task<Result<IDiscordMessage>> GetOriginalInteractionResponseAsync(ulong applicationId, string token, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Edits the initial Interaction response.
+        /// </summary>
+        /// <param name="applicationId">The ID of the application.</param>
+        /// <param name="token">The token of the interaction.</param>
+        /// <param name="webhookMessage">The new message.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordMessage>> EditOriginalInteractionResponse(ulong applicationId, string token, DiscordEditWebhookMessage webhookMessage, CancellationToken ct = default);
     }
 }

@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
+using Color_Chan.Discord.Core.Common.API.Params.Webhook;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Common.Models.Guild;
-using Color_Chan.Discord.Core.Common.Models.Interaction;
+using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Rest.API.Rest
@@ -133,7 +135,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         #region Application command permissions
 
         /// <inheritdoc />
-        public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissions(
+        public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissionsAsync(
             ulong applicationId, ulong guildId, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/permissions";
@@ -142,7 +144,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissions(
+        public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissionsAsync(
             ulong applicationId, ulong guildId, ulong commandId, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/{commandId.ToString()}/permissions";
@@ -151,7 +153,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result<IDiscordGuildApplicationCommandPermissions>> EditGuildApplicationCommandPermissions(
+        public virtual async Task<Result<IDiscordGuildApplicationCommandPermissions>> EditGuildApplicationCommandPermissionsAsync(
             ulong applicationId, ulong guildId, ulong commandId, DiscordEditApplicationCommandPermissions body, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/{commandId.ToString()}/permissions";
@@ -160,7 +162,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissions(
+        public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissionsAsync(
             ulong applicationId, ulong guildId, IEnumerable<DiscordBatchEditApplicationCommandPermissions> body, CancellationToken ct = default)
         {
             string endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/permissions";
@@ -170,17 +172,25 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result> CreateInteractionResponse(ulong interactionId, string token, DiscordInteractionResponseData response, CancellationToken ct = default)
+        public virtual async Task<Result> CreateInteractionResponseAsync(ulong interactionId, string token, DiscordInteractionResponseData response, CancellationToken ct = default)
         {
-            string endpoint = $"/interactions/{interactionId.ToString()}/{token}/callback";
+            string endpoint = $"interactions/{interactionId.ToString()}/{token}/callback";
             return await HttpClient.PostAsync(endpoint, response, ct: ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result<IDiscordInteractionResponse>> GetOriginalInteractionResponse(ulong interactionId, string token, CancellationToken ct = default)
+        public virtual async Task<Result<IDiscordMessage>> GetOriginalInteractionResponseAsync(ulong applicationId, string token, CancellationToken ct = default)
         {
-            string endpoint = $"/interactions/{interactionId.ToString()}/{token}/callback";
-            var result = await HttpClient.GetAsync<DiscordInteractionResponseData>(endpoint, ct: ct).ConfigureAwait(false);
+            string endpoint = $"webhooks/{applicationId.ToString()}/{token}/messages/@original";
+            var result = await HttpClient.GetAsync<DiscordMessageData>(endpoint, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
+
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordMessage>> EditOriginalInteractionResponse(ulong applicationId, string token, DiscordEditWebhookMessage webhookMessage, CancellationToken ct = default)
+        {
+            string endpoint = $"webhooks/{applicationId.ToString()}/{token}/messages/@original";
+            var result = await HttpClient.PatchAsync<DiscordMessageData, DiscordEditWebhookMessage>(endpoint, webhookMessage, ct: ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
 
