@@ -51,7 +51,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         {
             if (_memoryCache.TryGetValue(key, out TValue cachedValue))
             {
-                Result<TValue>.FromSuccess(cachedValue);
+                return Task.FromResult(Result<TValue>.FromSuccess(cachedValue));
             }
 
             return Task.FromResult(Result<TValue>.FromError(default, new CacheErrorResult(key)));
@@ -70,19 +70,30 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         /// <inheritdoc />
         public async Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : class
         {
-            // create the cache config.
+            // Set the cached value.
+            SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+            await cacheLock.WaitAsync();
+            _memoryCache.Set(key, cachedValue, GetCacheConfig<TValue>());
+            cacheLock.Release();
+        }
+
+        /// <inheritdoc />
+        public void CacheValue<TValue>(string key, TValue cachedValue) where TValue : class
+        {
+            // Set the cached value.
+            _memoryCache.Set(key, cachedValue, GetCacheConfig<TValue>());
+        }
+        
+        private MemoryCacheEntryOptions GetCacheConfig<TValue>() where TValue : class
+        {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
             var redisCacheConfig = new MemoryCacheEntryOptions
             {
                 SlidingExpiration = cacheConfig.SlidingExpiration,
                 AbsoluteExpirationRelativeToNow = cacheConfig.AbsoluteExpiration
             };
-            
-            // Set the cached value.
-            SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
-            await cacheLock.WaitAsync();
-            _memoryCache.Set(key, cachedValue, redisCacheConfig);
-            cacheLock.Release();
+
+            return redisCacheConfig;
         }
     }
 }

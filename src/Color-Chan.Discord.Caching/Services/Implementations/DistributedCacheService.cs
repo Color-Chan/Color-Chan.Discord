@@ -80,17 +80,29 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         /// <inheritdoc />
         public async Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : class
         {
-            // Get the cache config.
+            // Set the cached value.
+            var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
+            await _distributedCache.SetAsync(key, bytes, GetCacheConfig<TValue>());
+        }
+
+        /// <inheritdoc />
+        public void CacheValue<TValue>(string key, TValue cachedValue) where TValue : class
+        {
+            // Set the cached value.
+            var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
+            _distributedCache.Set(key, bytes, GetCacheConfig<TValue>());
+        }
+        
+        private DistributedCacheEntryOptions GetCacheConfig<TValue>() where TValue : class
+        {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
             var redisCacheConfig = new DistributedCacheEntryOptions
             {
                 SlidingExpiration = cacheConfig.SlidingExpiration,
                 AbsoluteExpirationRelativeToNow = cacheConfig.AbsoluteExpiration
             };
-            
-            // Set the cached value.
-            var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
-            await _distributedCache.SetAsync(key, bytes, redisCacheConfig);
+
+            return redisCacheConfig;
         }
     }
 }

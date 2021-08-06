@@ -44,5 +44,13 @@ namespace Color_Chan.Discord.Caching.Services
         /// <param name="cachedValue">The value that will be cached.</param>
         /// <typeparam name="TValue">The type of the cached value.</typeparam>
         Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : class;
+        
+        /// <summary>
+        ///     Caches a value.
+        /// </summary>
+        /// <param name="key">The key of the value that will be cached.</param>
+        /// <param name="cachedValue">The value that will be cached.</param>
+        /// <typeparam name="TValue">The type of the cached value.</typeparam>
+        void CacheValue<TValue>(string key, TValue cachedValue) where TValue : class;
     }
 }
