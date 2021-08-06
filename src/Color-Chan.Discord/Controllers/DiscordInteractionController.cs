@@ -84,7 +84,7 @@ namespace Color_Chan.Discord.Controllers
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
 
             // Acknowledge the interaction.
-            if (_configuration.AcknowledgeInteractions)
+            if (_configuration.AcknowledgeInteractions && interactionData.Type != DiscordInteractionType.Ping)
             {
                 var acknowledgeResponse = new DiscordInteractionResponseData
                 {
@@ -108,7 +108,7 @@ namespace Color_Chan.Discord.Controllers
             };
             
             // Send the response back to discord.
-            if (!_configuration.AcknowledgeInteractions)
+            if (!_configuration.AcknowledgeInteractions || interactionData.Type == DiscordInteractionType.Ping)
             {
                 return SerializeResult(response);
             }
