@@ -23,6 +23,11 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         /// <inheritdoc />
         public TypeCacheConfigurationService AddCacheConfig<TValueType>(TimeSpan slidingExpiration, TimeSpan absoluteExpiration)
         {
+            if (slidingExpiration > absoluteExpiration)
+            {
+                throw new ArgumentOutOfRangeException(nameof(slidingExpiration), "The sliding expiration time can not be higher then the absolute expiration time.");
+            }
+            
             var config = new CacheConfiguration
             {
                 AbsoluteExpiration = absoluteExpiration,
