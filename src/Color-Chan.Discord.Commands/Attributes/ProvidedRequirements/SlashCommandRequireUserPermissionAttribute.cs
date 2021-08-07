@@ -58,7 +58,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 throw new ArgumentNullException(nameof(context.Member.Permissions), "No permission found");
             }
 
-            if (_requiredGuildPermission.HasFlag(context.Member.Permissions))
+            if (context.Member.Permissions.Value.HasFlag(_requiredGuildPermission))
             {
                 return Task.FromResult(Result.FromSuccess());
             }

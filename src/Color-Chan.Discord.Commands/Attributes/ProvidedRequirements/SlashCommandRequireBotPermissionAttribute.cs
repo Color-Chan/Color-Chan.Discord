@@ -49,19 +49,9 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         /// <inheritdoc />
         public override async Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
         {
-            if (context.Member is null || context.GuildId is null)
+            if (context.GuildId is null)
             {
                 return Result.FromError(new SlashCommandRequireBotPermissionErrorResult("Command can not be executed in DMs", default));
-            }
-
-            if (context.Member.Permissions is null)
-            {
-                throw new ArgumentNullException(nameof(context.Member.Permissions), "No permission found");
-            }
-
-            if (_requiredGuildPermission.HasFlag(context.Member.Permissions))
-            {
-                return Result.FromSuccess();
             }
 
             var restGuild = services.GetRequiredService<IDiscordRestGuild>();
@@ -73,6 +63,16 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Result.FromError(new SlashCommandRequireBotPermissionErrorResult("Guild member does not exist", default));
             }
             
+            if (botMember.Entity!.Permissions is null)
+            {
+                throw new ArgumentNullException(nameof(botMember.Entity.Permissions), "No permission found");
+            }
+
+            if (botMember.Entity.Permissions.Value.HasFlag(_requiredGuildPermission))
+            {
+                return Result.FromSuccess();
+            }
+
             var botPerms = botMember.Entity!.Permissions.ToList();
             var requiredPerms = _requiredGuildPermission.ToList();
             var missingPerms = new List<DiscordGuildPermission>();
