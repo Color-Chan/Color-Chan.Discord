@@ -13,7 +13,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     This example limits all the slash commands in the PongCommands slash command module so they can only be used in
     ///     guilds. You can also put the <see cref="SlashCommandRequireGuildAttribute" /> on a method if you only want to have it on a specific command.
     ///     <code language="cs">
-    ///     [SlashCommandRequire]
+    ///     [SlashCommandRequireGuild]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
