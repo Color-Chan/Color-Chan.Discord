@@ -5,6 +5,16 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
 {
     public record DiscordInteractionResponse : IDiscordInteractionResponse
     {
+        public DiscordInteractionResponse()
+        {
+        }
+
+        public DiscordInteractionResponse(DiscordInteractionResponseData data)
+        {
+            Type = data.Type;
+            Data = data.Data is not null ? new DiscordInteractionCommandCallback(data.Data) : null;
+        }
+
         /// <inheritdoc />
         public DiscordInteractionResponseType Type { get; init; }
 
@@ -14,7 +24,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         /// <inheritdoc />
         public DiscordInteractionResponseData ToDataModel()
         {
-            return new()
+            return new DiscordInteractionResponseData
             {
                 Type = Type,
                 Data = Data?.ToDataModel()

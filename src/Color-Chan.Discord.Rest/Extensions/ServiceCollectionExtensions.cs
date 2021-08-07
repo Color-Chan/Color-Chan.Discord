@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Rest.API.Rest;
 using Color_Chan.Discord.Rest.Policies;
@@ -42,7 +45,8 @@ namespace Color_Chan.Discord.Rest.Extensions
             }).AddTransientHttpErrorPolicy(policyBuilder => policyBuilder
                                                             .WaitAndRetryAsync(retryDelay)
                                                             .WrapAsync(customPolicy)
-            );
+            ).AddPolicyHandler(Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.TooManyRequests)
+                                     .WaitAndRetryAsync(1, SleepDurationProvider, (_, _, _, _) => Task.CompletedTask));
 
             // Add all rest classes with Transient live cycle that inherit DiscordRestBase.
             services.Scan(scan =>
@@ -57,6 +61,11 @@ namespace Color_Chan.Discord.Rest.Extensions
             services.AddColorChanDiscordCore();
 
             return services;
+        }
+
+        private static TimeSpan SleepDurationProvider(int retryCount, DelegateResult<HttpResponseMessage> response, Context context)
+        {
+            return response.Result?.Headers.RetryAfter?.Delta ?? TimeSpan.FromSeconds(1);
         }
     }
 }

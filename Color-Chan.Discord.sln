@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleManager", "samples\Role
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Tests", "tests\Color-Chan.Discord.Tests\Color-Chan.Discord.Tests.csproj", "{F2CDB742-F853-404A-BE68-C54BCB080405}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Caching", "src\Color-Chan.Discord.Caching\Color-Chan.Discord.Caching.csproj", "{6409B606-0EE1-4462-BDFF-CCE69BBB78ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Caching.Tests", "tests\Color-Chan.Discord.Caching.Tests\Color-Chan.Discord.Caching.Tests.csproj", "{A0B1D8ED-FA1F-4706-BC82-B98EA47C077D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +107,14 @@ Global
 		{F2CDB742-F853-404A-BE68-C54BCB080405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2CDB742-F853-404A-BE68-C54BCB080405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2CDB742-F853-404A-BE68-C54BCB080405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6409B606-0EE1-4462-BDFF-CCE69BBB78ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6409B606-0EE1-4462-BDFF-CCE69BBB78ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6409B606-0EE1-4462-BDFF-CCE69BBB78ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6409B606-0EE1-4462-BDFF-CCE69BBB78ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B1D8ED-FA1F-4706-BC82-B98EA47C077D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B1D8ED-FA1F-4706-BC82-B98EA47C077D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B1D8ED-FA1F-4706-BC82-B98EA47C077D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B1D8ED-FA1F-4706-BC82-B98EA47C077D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +136,8 @@ Global
 		{D7877668-436C-4017-8282-AC23AF441F36} = {BE3999FC-A454-4BB3-9F5B-FF0A6DBF9A1D}
 		{697DDCAB-0DDD-486F-B70B-64ECF0C01CDC} = {B2D862F3-8ED1-4D09-8248-8D4B5EB2737A}
 		{F2CDB742-F853-404A-BE68-C54BCB080405} = {1BA385BC-A756-40AE-9892-D9C172455B76}
+		{6409B606-0EE1-4462-BDFF-CCE69BBB78ED} = {3355E69A-02D6-49CA-877E-4D9594222CE4}
+		{A0B1D8ED-FA1F-4706-BC82-B98EA47C077D} = {1BA385BC-A756-40AE-9892-D9C172455B76}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC84D902-ABC1-47C3-9993-F769F483E5CE}

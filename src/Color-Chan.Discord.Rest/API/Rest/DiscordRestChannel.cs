@@ -11,7 +11,6 @@ using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models;
-using Color_Chan.Discord.Rest.Models.Message;
 using Microsoft.Extensions.Options;
 
 namespace Color_Chan.Discord.Rest.API.Rest
@@ -82,7 +81,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
             var endpoint = $"channels/{channelId.ToString()}/messages";
             var result = await HttpClient.GetAsync<IReadOnlyList<DiscordMessageData>>(endpoint, queries, ct).ConfigureAwait(false);
-            return ConvertResult(result);
+            return ApiResultConverters.ConvertResult(result);
         }
 
         /// <inheritdoc />
@@ -90,7 +89,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         {
             var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}";
             var result = await HttpClient.GetAsync<DiscordMessageData>(endpoint, ct: ct).ConfigureAwait(false);
-            return ConvertResult(result);
+            return ApiResultConverters.ConvertResult(result);
         }
 
         /// <inheritdoc />
@@ -98,7 +97,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         {
             var endpoint = $"channels/{channelId.ToString()}/messages";
             var result = await HttpClient.PostAsync<DiscordMessageData, DiscordCreateChannelMessage>(endpoint, message, ct: ct).ConfigureAwait(false);
-            return ConvertResult(result);
+            return ApiResultConverters.ConvertResult(result);
         }
 
         /// <inheritdoc />
@@ -106,7 +105,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         {
             var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}/crosspost";
             var result = await HttpClient.PostAsync<DiscordMessageData>(endpoint, ct: ct).ConfigureAwait(false);
-            return ConvertResult(result);
+            return ApiResultConverters.ConvertResult(result);
         }
 
         /// <inheritdoc />
@@ -114,7 +113,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         {
             var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}";
             var result = await HttpClient.PatchAsync<DiscordMessageData, DiscordEditChannelMessage>(endpoint, editChannelMessage, ct: ct).ConfigureAwait(false);
-            return ConvertResult(result);
+            return ApiResultConverters.ConvertResult(result);
         }
 
         /// <inheritdoc />
@@ -136,23 +135,6 @@ namespace Color_Chan.Discord.Rest.API.Rest
 
             var endpoint = $"channels/{channelId.ToString()}/messages/bulk-delete";
             return await HttpClient.DeleteAsync(endpoint, queries, auditLogReason, ct).ConfigureAwait(false);
-        }
-
-        private Result<IDiscordMessage> ConvertResult(Result<DiscordMessageData> result)
-        {
-            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordMessage>.FromError(null, result.ErrorResult);
-
-            return Result<IDiscordMessage>.FromSuccess(new DiscordMessage(result.Entity));
-        }
-
-        private Result<IReadOnlyList<IDiscordMessage>> ConvertResult(Result<IReadOnlyList<DiscordMessageData>> result)
-        {
-            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordMessage>>.FromError(null, result.ErrorResult);
-
-            var list = new List<IDiscordMessage>();
-            foreach (var data in result.Entity) list.Add(new DiscordMessage(data));
-
-            return Result<IReadOnlyList<IDiscordMessage>>.FromSuccess(list);
         }
 
         #endregion

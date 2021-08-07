@@ -278,7 +278,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// <remarks>
 	    ///     Channels types: Text.
 	    /// </remarks>
-	    UseSlashCommands = (ulong) 1 << 31,
+	    UseSlashCommands = (ulong)1 << 31,
 
 	    /// <summary>
 	    ///     Allows for requesting to speak in stage channels. (This permission is under active development and may be changed
@@ -287,7 +287,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// <remarks>
 	    ///     Channels types: Stage.
 	    /// </remarks>
-	    RequestToSpeak = (ulong) 1 << 32,
+	    RequestToSpeak = (ulong)1 << 32,
 
 	    /// <summary>
 	    ///     Allows for deleting and archiving threads, and viewing all private threads.
@@ -299,7 +299,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    ///     Requires the owner of the account to use two-factor authentication when used on a guild that has server-wide 2FA
 	    ///     enabled.
 	    /// </remarks>
-	    ManageThreads = (ulong) 1 << 34,
+	    ManageThreads = (ulong)1 << 34,
 
 	    /// <summary>
 	    ///     Allows for creating and participating in threads.
@@ -307,7 +307,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// <remarks>
 	    ///     Channels types: Text.
 	    /// </remarks>
-	    UsePublicThreads = (ulong) 1 << 35,
+	    UsePublicThreads = (ulong)1 << 35,
 
 	    /// <summary>
 	    ///     Allows for creating and participating in private threads.
@@ -315,6 +315,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 	    /// <remarks>
 	    ///     Channels types: Text.
 	    /// </remarks>
-	    UsePrivateThreads = (ulong) 1 << 36
+	    UsePrivateThreads = (ulong)1 << 36
     }
 }

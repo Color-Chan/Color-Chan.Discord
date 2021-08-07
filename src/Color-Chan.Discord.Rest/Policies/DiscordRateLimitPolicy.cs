@@ -11,6 +11,7 @@ using Polly;
 
 namespace Color_Chan.Discord.Rest.Policies
 {
+    // Todo: Find a way to inject the ICacheService so the rate limiting can be stateless when a distributed cache is used.
     internal class DiscordRateLimitPolicy : AsyncPolicy<HttpResponseMessage>
     {
         private readonly ConcurrentDictionary<string, DiscordRateLimitBucket> _buckets;

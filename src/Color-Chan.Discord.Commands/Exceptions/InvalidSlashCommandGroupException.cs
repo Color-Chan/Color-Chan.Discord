@@ -1,6 +1,6 @@
 using System;
 
-namespace Color_Chan.Discord.Exceptions
+namespace Color_Chan.Discord.Commands.Exceptions
 {
     /// <summary>
     ///     An exception that should be thrown when a command group as no sub command.

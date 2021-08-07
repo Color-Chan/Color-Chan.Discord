@@ -23,7 +23,7 @@ namespace Color_Chan.Discord.Commands.Info
         ///     Whether the command is enabled by default when the app is added to a guild.
         /// </summary>
         public bool DefaultPermission { get; set; }
-        
+
         /// <summary>
         ///     The <see cref="MethodInfo" /> containing the method of the command.
         /// </summary>
@@ -48,9 +48,10 @@ namespace Color_Chan.Discord.Commands.Info
         ///     to execute the command.
         /// </summary>
         public IEnumerable<SlashCommandRequirementAttribute>? Requirements { get; set; }
-        
+
         /// <summary>
-        ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" />s containing the permission data for this command.
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" />s containing the permission data
+        ///     for this command.
         /// </summary>
         /// <remarks>
         ///     Always null on global slash command.

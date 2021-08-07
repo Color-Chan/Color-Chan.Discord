@@ -47,7 +47,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
             attributes.AddRange(parentAttributes);
             return attributes;
         }
-        
+
         /// <inheritdoc />
         public IEnumerable<SlashCommandPermissionAttribute> GetCommandGuildPermissions(MethodInfo command, bool includeParentAttributes = true)
         {
@@ -63,7 +63,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                 _logger.LogWarning("Skipping slash command permission for {CommandName}, they can not be used with global commands", command.Name);
                 return new List<SlashCommandPermissionAttribute>();
             }
-            
+
             _logger.LogDebug("Found {Count} guild permissions attributes for command {MethodName}", attributes.Count.ToString(), command.Name);
             return attributes;
         }
@@ -72,7 +72,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         public IEnumerable<SlashCommandPermissionAttribute> GetCommandGuildPermissions(Type commandModule)
         {
             var attributes = new List<SlashCommandPermissionAttribute>();
-            
+
             var parentAttributes = commandModule.GetCustomAttributes<SlashCommandPermissionAttribute>();
             attributes.AddRange(parentAttributes);
 
@@ -81,7 +81,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                 _logger.LogWarning("Skipping slash command permission for {ModuleName}, they can not be used with global commands", commandModule.Name);
                 return new List<SlashCommandPermissionAttribute>();
             }
-            
+
             return attributes;
         }
 
@@ -97,12 +97,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                 {
                     perms.Add(new DiscordApplicationCommandPermissionsData
                     {
-                        Allow = true,
+                        Allow = attribute.Allow,
                         Id = attribute.Id,
                         Type = attribute.Type
                     });
                 }
-                
+
                 permBatch.Add(new DiscordBatchEditApplicationCommandPermissions
                 {
                     CommandId = commandId,

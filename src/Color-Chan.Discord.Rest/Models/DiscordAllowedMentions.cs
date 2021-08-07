@@ -6,6 +6,14 @@ namespace Color_Chan.Discord.Rest.Models
 {
     public record DiscordAllowedMentions : IDiscordAllowedMentions
     {
+        public DiscordAllowedMentions(DiscordAllowedMentionsData data)
+        {
+            Allowed = data.Allowed;
+            AllowedRoles = data.AllowedRoles;
+            AllowedUsers = data.AllowedUsers;
+            ShouldReplyMentionsAuthor = data.ShouldReplyMentionsAuthor;
+        }
+
         /// <inheritdoc />
         public IEnumerable<DiscordAllowedMentionsType> Allowed { get; init; } = new List<DiscordAllowedMentionsType>();
 
@@ -21,7 +29,7 @@ namespace Color_Chan.Discord.Rest.Models
         /// <inheritdoc />
         public DiscordAllowedMentionsData ToDataModel()
         {
-            return new()
+            return new DiscordAllowedMentionsData
             {
                 Allowed = Allowed,
                 AllowedRoles = AllowedRoles,

@@ -45,7 +45,7 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.Extensions
         [TestCase("44040192", DiscordGuildPermission.Speak |
                               DiscordGuildPermission.DeafenMembers |
                               DiscordGuildPermission.UseVoiceActivity)]
-        [TestCase("0", (DiscordGuildPermission) 0)]
+        [TestCase("0", (DiscordGuildPermission)0)]
         public void Should_parse_permissions_string(string permissionString, DiscordGuildPermission expectedPermission)
         {
             // Act
@@ -91,7 +91,7 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.Extensions
         [TestCase("44040192", DiscordGuildPermission.Speak |
                               DiscordGuildPermission.DeafenMembers |
                               DiscordGuildPermission.UseVoiceActivity)]
-        [TestCase("0", (DiscordGuildPermission) 0)]
+        [TestCase("0", (DiscordGuildPermission)0)]
         public void Should_parse_permissions_span(string permissionString, DiscordGuildPermission expectedPermission)
         {
             // Arrange

@@ -14,7 +14,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             CommandId = data.CommandId;
             ApplicationId = data.ApplicationId;
             GuildId = data.GuildId;
-            Permissions = data.Permissions.Select(x=>new DiscordApplicationCommandPermissions(x));
+            Permissions = data.Permissions.Select(x => new DiscordApplicationCommandPermissions(x));
         }
 
         /// <inheritdoc />

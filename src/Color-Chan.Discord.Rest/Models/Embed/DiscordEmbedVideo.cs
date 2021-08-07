@@ -31,7 +31,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
 
         public DiscordEmbedVideoData ToDataModel()
         {
-            return new()
+            return new DiscordEmbedVideoData
             {
                 Height = Height,
                 Url = Url,

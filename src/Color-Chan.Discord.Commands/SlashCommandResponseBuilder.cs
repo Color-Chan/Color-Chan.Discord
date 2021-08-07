@@ -6,7 +6,7 @@ using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Rest.Models.Interaction;
 
-namespace Color_Chan.Discord.Builders
+namespace Color_Chan.Discord.Commands
 {
     /// <summary>
     ///     Represents a builder class for creating <see cref="IDiscordInteractionResponse" />s.

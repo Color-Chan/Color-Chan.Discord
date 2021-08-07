@@ -45,7 +45,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         /// <inheritdoc />
         public DiscordGuildRoleData ToDataModel()
         {
-            return new()
+            return new DiscordGuildRoleData
             {
                 Color = Color,
                 Id = Id,

@@ -66,11 +66,15 @@ namespace Color_Chan.Discord.Commands.Services.Builders
         IEnumerable<SlashCommandPermissionAttribute> GetCommandGuildPermissions(Type commandModule);
 
         /// <summary>
-        ///     Builds the <see cref="DiscordBatchEditApplicationCommandPermissions"/> from the <see cref="SlashCommandPermissionAttribute"/> data.
+        ///     Builds the <see cref="DiscordBatchEditApplicationCommandPermissions" /> from the
+        ///     <see cref="SlashCommandPermissionAttribute" /> data.
         /// </summary>
-        /// <param name="attributePairs">A dictionary where the <see cref="SlashCommandPermissionAttribute" /> are ordered by the command ID.</param>
+        /// <param name="attributePairs">
+        ///     A dictionary where the <see cref="SlashCommandPermissionAttribute" /> are ordered by the
+        ///     command ID.
+        /// </param>
         /// <returns>
-        ///     The converted <see cref="DiscordBatchEditApplicationCommandPermissions"/>.
+        ///     The converted <see cref="DiscordBatchEditApplicationCommandPermissions" />.
         /// </returns>
         IEnumerable<DiscordBatchEditApplicationCommandPermissions> BuildGuildPermissions(Dictionary<ulong, IEnumerable<SlashCommandPermissionAttribute>> attributePairs);
     }

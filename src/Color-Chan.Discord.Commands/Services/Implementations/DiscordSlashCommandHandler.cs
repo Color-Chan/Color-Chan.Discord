@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Builders;
 using Color_Chan.Discord.Commands.Commands;
-using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
-using Color_Chan.Discord.Exceptions;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Services.Implementations
+namespace Color_Chan.Discord.Commands.Services.Implementations
 {
     /// <inheritdoc />
     public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
@@ -50,15 +48,17 @@ namespace Color_Chan.Discord.Services.Implementations
                 throw new ArgumentNullException(nameof(interaction.Data), "Interaction data can not be null for a slash command!");
             }
 
-            ISlashCommandContext context = new SlashCommandContext(interaction.Data)
+            ISlashCommandContext context = new SlashCommandContext
             {
-                User = interaction.User,
+                User = interaction.User ?? interaction.GuildMember?.User ?? throw new NullReferenceException(nameof(context.User)),
                 Message = interaction.Message,
                 Member = interaction.GuildMember,
                 GuildId = interaction.GuildId,
                 ChannelId = interaction.ChannelId!.Value,
                 ApplicationId = interaction.ApplicationId,
-                CommandRequest = interaction.Data
+                CommandRequest = interaction.Data,
+                InteractionId = interaction.Id,
+                Token = interaction.Token
             };
 
             if (interaction.Data.Options is not null)
@@ -150,8 +150,8 @@ namespace Color_Chan.Discord.Services.Implementations
         /// <returns>
         ///     A <see cref="IDiscordInteractionResponse" /> with the the slash command response.
         /// </returns>
-        /// <exception cref="NullReferenceException"></exception>
-        /// <exception cref="InvalidSlashCommandGroupException"></exception>
+        /// <exception cref="NullReferenceException">Thrown when the sub options are null.</exception>
+        /// <exception cref="InvalidSlashCommandGroupException">Thrown when no sub command has been found.</exception>
         private async Task<IDiscordInteractionResponse> ExecuteSubCommandGroupAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
         {
             if (option.SubOptions is null)

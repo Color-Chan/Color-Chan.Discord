@@ -16,13 +16,13 @@ namespace Color_Chan.Discord.Core.Common.API.Converters
             if (reader.TokenType != JsonTokenType.Number)
                 throw new JsonException();
 
-            return Color.FromArgb((int) (reader.GetInt32() ^ 0xFF000000));
+            return Color.FromArgb((int)(reader.GetInt32() ^ 0xFF000000));
         }
 
         /// <inheritdoc />
         public override void Write(Utf8JsonWriter writer, Color value, JsonSerializerOptions options)
         {
-            writer.WriteNumberValue((uint) value.ToArgb() & 0x00FFFFFF);
+            writer.WriteNumberValue((uint)value.ToArgb() & 0x00FFFFFF);
         }
     }
 }

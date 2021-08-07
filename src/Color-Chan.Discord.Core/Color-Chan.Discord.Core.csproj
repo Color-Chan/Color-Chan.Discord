@@ -14,44 +14,44 @@
         <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="5.0.1" />
     </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    </ItemGroup>
 
-  <PropertyGroup>
-    <Title>Color-Chan.Discord.Core</Title>
-    <Authors>BrammyS</Authors>
-    <Copyright>BrammyS 2021</Copyright>
-    <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 5.</Description>
+    <PropertyGroup>
+        <Title>Color-Chan.Discord.Core</Title>
+        <Authors>BrammyS</Authors>
+        <Copyright>BrammyS 2021</Copyright>
+        <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 5.</Description>
 
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 
-    <IncludeSymbols>true</IncludeSymbols>
-    <IncludeSource>true</IncludeSource>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <EmbedAllSources>true</EmbedAllSources>
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IncludeSymbols>true</IncludeSymbols>
+        <IncludeSource>true</IncludeSource>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <EmbedAllSources>true</EmbedAllSources>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-    <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://www.nuget.org/packages/Color-Chan.Discord.Core</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
-    <RepositoryBranch>main</RepositoryBranch>
-    <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
-    <PackageTags>slashcommands;discord;library;api</PackageTags>
-    <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
-  </PropertyGroup>
+        <RepositoryType>git</RepositoryType>
+        <PackageProjectUrl>https://www.nuget.org/packages/Color-Chan.Discord.Core</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
+        <RepositoryBranch>main</RepositoryBranch>
+        <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
+        <PackageTags>slashcommands;discord;library;api</PackageTags>
+        <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
+    </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DocumentationFile></DocumentationFile>
+    </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DocumentationFile></DocumentationFile>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DocumentationFile></DocumentationFile>
+        <DebugSymbols>false</DebugSymbols>
+    </PropertyGroup>
 
     <ItemGroup>
         <SourceRoot Include="$(MSBuildThisFileDirectory)/" />

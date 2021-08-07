@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Core;
-using Color_Chan.Discord.Services.Implementations;
 using FluentAssertions;
 using NUnit.Framework;
 using Sodium;
@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Tests.Services.Implementations
         {
             // Arrange
             var key = PublicKeyAuth.GenerateKeyPair();
-            var timeStamp = (int) DateTimeOffset.UnixEpoch.Offset.TotalSeconds;
+            var timeStamp = (int)DateTimeOffset.UnixEpoch.Offset.TotalSeconds;
             var signed = PublicKeyAuth.SignDetached($"{timeStamp.ToString()}{bodyString}", key.PrivateKey);
             var hexEd25519String = Convert.ToHexString(signed);
 

@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
         /// <inheritdoc />
         public DiscordEmbedFieldData ToDataModel()
         {
-            return new()
+            return new DiscordEmbedFieldData
             {
                 Inline = Inline,
                 Name = Name,

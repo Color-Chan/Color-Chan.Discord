@@ -14,12 +14,13 @@ namespace Color_Chan.Discord.Commands.Extensions
         /// <param name="newCommands">The local commands.</param>
         /// <param name="existingCommands">The commands pulled from discords api.</param>
         /// <returns>
-        ///     A <see cref="Tuple"/> of <see cref="DiscordCreateApplicationCommand"/> and <see cref="bool"/> and <see cref="ulong"/>
+        ///     A <see cref="Tuple" /> of <see cref="DiscordCreateApplicationCommand" /> and <see cref="bool" /> and
+        ///     <see cref="ulong" />
         ///     False means that the command is not new but is updated, and True means that the command is new.
-        ///     The <see cref="ulong"/> contains the command ID if the command was not new.
+        ///     The <see cref="ulong" /> contains the command ID if the command was not new.
         /// </returns>
         internal static List<Tuple<DiscordCreateApplicationCommand, bool, ulong?>> GetUpdatedOrNewCommands(this IEnumerable<DiscordCreateApplicationCommand> newCommands,
-                                                                                             IReadOnlyCollection<IDiscordApplicationCommand> existingCommands)
+                                                                                                           IReadOnlyCollection<IDiscordApplicationCommand> existingCommands)
         {
             var updatedCommands = new List<Tuple<DiscordCreateApplicationCommand, bool, ulong?>>();
 

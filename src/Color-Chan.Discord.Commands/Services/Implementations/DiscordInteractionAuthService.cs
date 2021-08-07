@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Core;
 using Sodium;
 
-namespace Color_Chan.Discord.Services.Implementations
+namespace Color_Chan.Discord.Commands.Services.Implementations
 {
     /// <inheritdoc />
     public class DiscordInteractionAuthService : IDiscordInteractionAuthService

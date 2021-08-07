@@ -13,13 +13,13 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
         /// </summary>
         [JsonPropertyName("id")]
         public ulong Id { get; set; }
-        
+
         /// <summary>
-        ///     The type of the <see cref="DiscordApplicationCommandPermissionsData"/>.
+        ///     The type of the <see cref="DiscordApplicationCommandPermissionsData" />.
         /// </summary>
         [JsonPropertyName("type")]
         public DiscordApplicationCommandPermissionsType Type { get; set; }
-        
+
         /// <summary>
         ///     true to allow, false, to disallow.
         /// </summary>

@@ -45,7 +45,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             if (Type != DiscordApplicationCommandOptionType.Integer || Value is null)
                 throw new InvalidCastException("Can not cast Value if the Type is not a Integer");
 
-            return (int) Value;
+            return (int)Value;
         }
 
         /// <inheritdoc />
@@ -54,7 +54,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             if (Type != DiscordApplicationCommandOptionType.Number || Value is null)
                 throw new InvalidCastException("Can not cast Value if the Type is not a Number");
 
-            return (double) Value;
+            return (double)Value;
         }
 
         /// <inheritdoc />
@@ -63,7 +63,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             if (Type != DiscordApplicationCommandOptionType.Boolean || Value is null)
                 throw new InvalidCastException("Can not cast Value if the Type is not a Boolean");
 
-            return (bool) Value;
+            return (bool)Value;
         }
 
         /// <inheritdoc />
@@ -72,7 +72,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             if (Type != DiscordApplicationCommandOptionType.User || Value is null)
                 throw new InvalidCastException("Can not cast Value if the Type is not a User");
 
-            return (ulong) Value;
+            return (ulong)Value;
         }
 
         /// <inheritdoc />
@@ -81,7 +81,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             if (Type != DiscordApplicationCommandOptionType.Channel || Value is null)
                 throw new InvalidCastException("Can not cast Value if the Type is not a Channel");
 
-            return (ulong) Value;
+            return (ulong)Value;
         }
 
         /// <inheritdoc />
@@ -90,7 +90,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             if (Type != DiscordApplicationCommandOptionType.Role || Value is null)
                 throw new InvalidCastException("Can not cast Value if the Type is not a Role");
 
-            return (ulong) Value;
+            return (ulong)Value;
         }
 
         private object? ConvertValueToCorrectType(JsonElement? jsonValue)

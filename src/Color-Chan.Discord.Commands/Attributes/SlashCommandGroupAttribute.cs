@@ -16,7 +16,10 @@ namespace Color_Chan.Discord.Commands.Attributes
         /// </summary>
         /// <param name="name">The name of the command group.</param>
         /// <param name="description">The description of what the command group does.</param>
-        /// <param name="defaultPermission">Whether the command is enabled by default when the app is added to a guild. Default: true.</param>
+        /// <param name="defaultPermission">
+        ///     Whether the command is enabled by default when the app is added to a guild. Default:
+        ///     true.
+        /// </param>
         /// <exception cref="ArgumentException">
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> doesn't
         ///     match the command group name requirements.
@@ -49,7 +52,7 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     The description of what the command group is.
         /// </summary>
         public string Description { get; }
-        
+
         /// <summary>
         ///     Whether the command is enabled by default when the app is added to a guild.
         /// </summary>

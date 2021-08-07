@@ -7,46 +7,46 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj" />
+        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" />
-        <PackageReference Include="Scrutor" Version="3.3.0" />
+        <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1"/>
+        <PackageReference Include="Scrutor" Version="3.3.0"/>
     </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    </ItemGroup>
 
-  <PropertyGroup>
-    <Title>Color-Chan.Discord.Rest</Title>
-    <Authors>BrammyS</Authors>
-    <Copyright>BrammyS 2021</Copyright>
-    <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 5.</Description>
+    <PropertyGroup>
+        <Title>Color-Chan.Discord.Rest</Title>
+        <Authors>BrammyS</Authors>
+        <Copyright>BrammyS 2021</Copyright>
+        <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 5.</Description>
 
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 
-    <IncludeSymbols>true</IncludeSymbols>
-    <IncludeSource>true</IncludeSource>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <EmbedAllSources>true</EmbedAllSources>
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IncludeSymbols>true</IncludeSymbols>
+        <IncludeSource>true</IncludeSource>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <EmbedAllSources>true</EmbedAllSources>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
-    <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://www.nuget.org/packages/Color-Chan.Discord.Rest</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
-    <RepositoryBranch>main</RepositoryBranch>
-    <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
-    <PackageTags>slashcommands;discord;library;api</PackageTags>
-    <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
-  </PropertyGroup>
+        <RepositoryType>git</RepositoryType>
+        <PackageProjectUrl>https://www.nuget.org/packages/Color-Chan.Discord.Rest</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
+        <RepositoryBranch>main</RepositoryBranch>
+        <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
+        <PackageTags>slashcommands;discord;library;api</PackageTags>
+        <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
+    </PropertyGroup>
 
     <ItemGroup>
-        <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
+        <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
     </ItemGroup>
 
 </Project>

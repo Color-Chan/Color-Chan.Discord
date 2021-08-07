@@ -16,7 +16,10 @@ namespace Color_Chan.Discord.Commands.Attributes
         /// </summary>
         /// <param name="name">The name of the command.</param>
         /// <param name="description">The description of what the command does.</param>
-        /// <param name="defaultPermission">Whether the command is enabled by default when the app is added to a guild. Default: true.</param>
+        /// <param name="defaultPermission">
+        ///     Whether the command is enabled by default when the app is added to a guild. Default:
+        ///     true.
+        /// </param>
         /// <exception cref="ArgumentException">
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> doesn't
         ///     match the command name requirements.

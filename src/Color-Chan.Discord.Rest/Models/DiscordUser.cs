@@ -64,7 +64,7 @@ namespace Color_Chan.Discord.Rest.Models
         /// <inheritdoc />
         public DiscordUserData ToDataModel()
         {
-            return new()
+            return new DiscordUserData
             {
                 Avatar = Avatar,
                 Discriminator = Discriminator,

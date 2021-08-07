@@ -59,7 +59,7 @@ namespace Color_Chan.Discord.Commands.Info
 
         /// <inheritdoc />
         public IEnumerable<SlashCommandRequirementAttribute>? Requirements { get; set; }
-        
+
         /// <inheritdoc />
         public IEnumerable<SlashCommandPermissionAttribute>? Permissions { get; set; }
 

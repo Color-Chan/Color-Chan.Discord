@@ -1,0 +1,7 @@
+{
+  "type": 5,
+  "data": {
+    "tts": true,
+    "content": "content string"
+  }
+}

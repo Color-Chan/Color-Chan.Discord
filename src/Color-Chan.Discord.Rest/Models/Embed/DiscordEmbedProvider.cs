@@ -24,7 +24,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
         /// <inheritdoc />
         public DiscordEmbedProviderData ToDataModel()
         {
-            return new()
+            return new DiscordEmbedProviderData
             {
                 Name = Name,
                 Url = Url

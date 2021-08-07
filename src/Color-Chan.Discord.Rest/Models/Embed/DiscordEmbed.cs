@@ -71,7 +71,7 @@ namespace Color_Chan.Discord.Rest.Models.Embed
 
         public DiscordEmbedData ToDataModel()
         {
-            return new()
+            return new DiscordEmbedData
             {
                 Footer = Footer?.ToDataModel(),
                 Image = Image?.ToDataModel(),
