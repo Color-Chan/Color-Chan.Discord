@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Results;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
@@ -49,7 +51,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         {
             if (context.Member is null)
             {
-                return Task.FromResult(Result.FromError(new SlashCommandRequireUserPermissionErrorResult("Command can not be executed in DMs", _requiredGuildPermission)));
+                return Task.FromResult(Result.FromError(new SlashCommandRequireUserPermissionErrorResult("Command can not be executed in DMs", default)));
             }
 
             if (context.Member.Permissions is null)
@@ -62,7 +64,19 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Task.FromResult(Result.FromSuccess());
             }
 
-            return Task.FromResult(Result.FromError(new SlashCommandRequireUserPermissionErrorResult("User did not need permission requirements", _requiredGuildPermission)));
+            var userPerms = context.Member.Permissions.ToList();
+            var requiredPerms = _requiredGuildPermission.ToList();
+            var missingPerms = new List<DiscordGuildPermission>();
+
+            foreach (var requiredPerm in requiredPerms)
+            {
+                if (!userPerms.Contains(requiredPerm))
+                {
+                    missingPerms.Add(requiredPerm);
+                }
+            }
+            
+            return Task.FromResult(Result.FromError(new SlashCommandRequireUserPermissionErrorResult("User did not need permission requirements", missingPerms)));
         }
     }
 }

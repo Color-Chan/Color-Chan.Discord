@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
@@ -12,15 +13,18 @@ namespace Color_Chan.Discord.Commands.Results
         ///     Initializes a new instance of <see cref="SlashCommandRequireUserPermissionErrorResult" />.
         /// </summary>
         /// <param name="errorMessage">The message of the error.</param>
-        /// <param name="requiredPermissions">The <see cref="DiscordGuildPermission"/> the user was required to have for this command/command group.</param>
-        public SlashCommandRequireUserPermissionErrorResult(string errorMessage, DiscordGuildPermission requiredPermissions) : base(errorMessage)
+        /// <param name="missingPermissions">The missing <see cref="DiscordGuildPermission"/>s the user was required to have for this command/command group.</param>
+        public SlashCommandRequireUserPermissionErrorResult(string errorMessage, List<DiscordGuildPermission>? missingPermissions) : base(errorMessage)
         {
-            RequiredPermissions = requiredPermissions;
+            MissingPermissions = missingPermissions;
         }
         
         /// <summary>
-        ///     The <see cref="DiscordGuildPermission"/> the user was required to have for this command/command group.
+        ///     The missing <see cref="DiscordGuildPermission"/>s the user was required to have for this command/command group.
         /// </summary>
-        public DiscordGuildPermission RequiredPermissions { get; }
+        /// <remarks>
+        ///     Null when the command was used in DMs.
+        /// </remarks>
+        public List<DiscordGuildPermission>? MissingPermissions { get; }
     }
 }
