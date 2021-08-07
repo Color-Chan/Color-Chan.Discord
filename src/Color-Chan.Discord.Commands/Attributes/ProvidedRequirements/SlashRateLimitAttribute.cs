@@ -6,11 +6,30 @@ using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Color_Chan.Discord.Commands.Attributes
+namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
 {
     /// <summary>
     ///     Specifies a rate limit for a command or command group.
     /// </summary>
+    /// <remarks>
+    ///     This requirement will limit the amount of time a user can request a slash command during a time period.
+    /// </remarks>
+    /// <example>
+    ///     This example limits all the slash commands in the PongCommands slash command module to 2 requests every 10 seconds.
+    ///     You can also put the <see cref="SlashRateLimitAttribute" /> on a method if you only want to rate limit a specific
+    ///     slash command.
+    ///     <code language="cs">
+    ///     [SlashRateLimit(2, 10)]
+    ///     public class PongCommands : SlashCommandModule
+    ///     {
+    ///         [SlashCommand("ping", "Ping Pong!")]
+    ///         public Task&lt;IDiscordInteractionResponse&gt; PongAsync()
+    ///         {
+    ///             // Command code...
+    ///         }
+    ///     }
+    ///     </code>
+    /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
     public class SlashRateLimitAttribute : SlashCommandRequirementAttribute
     {
