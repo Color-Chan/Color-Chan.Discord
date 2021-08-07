@@ -19,9 +19,9 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
     {
         /// <param name="remaining">remaining calls.</param>
         /// <param name="expected">whether or not it should have been rate limited.</param>
-        [TestCase(2, false)] 
-        [TestCase(1, false)] 
-        [TestCase(0, true)] 
+        [TestCase(2, false)]
+        [TestCase(1, false)]
+        [TestCase(0, true)]
         public async Task Should_detect_rate_limit(int remaining, bool expected)
         {
             // Arrange
@@ -47,11 +47,11 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
 
             // Act
             var result = await rateLimitAttribute.CheckRequirementAsync(context, serviceProvider);
-            
+
             // Assert
             result.IsSuccessful.Should().Be(!expected);
         }
-        
+
         [Test]
         public async Task Should_detect_new_rate_limit()
         {
@@ -78,7 +78,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
 
             // Act
             var result = await rateLimitAttribute.CheckRequirementAsync(context, serviceProvider);
-            
+
             // Assert
             result.IsSuccessful.Should().BeTrue();
         }

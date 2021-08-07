@@ -16,7 +16,8 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     /// </remarks>
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module to 2 requests every 10 seconds
-    ///     and 4 requests every 30 seconds. You can also put the <see cref="SlashCommandRateLimitAttribute" /> on a method if you
+    ///     and 4 requests every 30 seconds. You can also put the <see cref="SlashCommandRateLimitAttribute" /> on a method if
+    ///     you
     ///     only want to rate limit a specific slash command.
     ///     <code language="cs">
     ///     [SlashCommandRateLimit(2, 10)]

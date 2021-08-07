@@ -15,8 +15,10 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     Requires the bot that requested the slash command to have a certain permissions.
     /// </summary>
     /// <example>
-    ///     This example requires the bot to have the <see cref="DiscordGuildPermission.BanMembers" /> and <see cref="DiscordGuildPermission.KickMembers" /> permission.
-    ///     You can also put the <see cref="SlashCommandRequireBotPermissionAttribute" /> on a method if you only want to have it on a specific command.
+    ///     This example requires the bot to have the <see cref="DiscordGuildPermission.BanMembers" /> and
+    ///     <see cref="DiscordGuildPermission.KickMembers" /> permission.
+    ///     You can also put the <see cref="SlashCommandRequireBotPermissionAttribute" /> on a method if you only want to have
+    ///     it on a specific command.
     ///     <code language="cs">
     ///     [SlashCommandRequireBotPermission(DiscordGuildPermission.BanMembers | DiscordGuildPermission.KickMembers)]
     ///     public class PongCommands : SlashCommandModule
@@ -56,13 +58,13 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
 
             var restGuild = services.GetRequiredService<IDiscordRestGuild>();
             var discordTokens = services.GetRequiredService<DiscordTokens>();
-            
+
             var botMember = await restGuild.GetGuildMemberAsync(context.GuildId.Value, discordTokens.ApplicationId);
             if (!botMember.IsSuccessful)
             {
                 return Result.FromError(new SlashCommandRequireBotPermissionErrorResult("Guild member does not exist", default));
             }
-            
+
             if (botMember.Entity!.Permissions is null)
             {
                 throw new ArgumentNullException(nameof(botMember.Entity.Permissions), "No permission found");

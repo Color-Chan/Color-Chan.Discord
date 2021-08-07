@@ -22,11 +22,11 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
-            
+
             // Assert
             result.IsSuccessful.Should().BeTrue();
         }
-        
+
         [Test]
         public async Task Should_not_pass_dm_requirement()
         {
@@ -41,7 +41,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
-            
+
             // Assert
             result.IsSuccessful.Should().BeFalse();
         }
