@@ -15,11 +15,12 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     This requirement will limit the amount of time a user can request a slash command during a time period.
     /// </remarks>
     /// <example>
-    ///     This example limits all the slash commands in the PongCommands slash command module to 2 requests every 10 seconds.
-    ///     You can also put the <see cref="SlashRateLimitAttribute" /> on a method if you only want to rate limit a specific
-    ///     slash command.
+    ///     This example limits all the slash commands in the PongCommands slash command module to 2 requests every 10 seconds
+    ///     and 4 requests every 30 seconds. You can also put the <see cref="SlashRateLimitAttribute" /> on a method if you
+    ///     only want to rate limit a specific slash command.
     ///     <code language="cs">
     ///     [SlashRateLimit(2, 10)]
+    ///     [SlashRateLimit(4, 30)]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
@@ -59,8 +60,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
 
             if (!userRateLimitResult.IsSuccessful)
             {
-                var slidingTimeSpan = TimeSpan.FromMilliseconds(_absoluteTimeSpan.TotalMilliseconds / _max);
-                await cacheService.CacheValueAsync(key, _max - 1, slidingTimeSpan, _absoluteTimeSpan);
+                await cacheService.CacheValueAsync(key, _max - 1, _absoluteTimeSpan, _absoluteTimeSpan);
                 return Result.FromSuccess();
             }
 
