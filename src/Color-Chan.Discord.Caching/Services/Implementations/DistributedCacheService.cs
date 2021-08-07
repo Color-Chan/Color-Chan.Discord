@@ -30,15 +30,13 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
         
         /// <inheritdoc />
-        public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Task<TValue> getValue) where TValue : notnull
+        public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Func<Task<TValue>> getValue) where TValue : notnull
         {
             var result = await _distributedCache.GetAsync(key);
 
             if (result is null)
             {
-                var uncachedValue = await getValue;
-                await CacheValueAsync(key, uncachedValue);
-                return Result<TValue>.FromSuccess(uncachedValue);
+                return await GetUncachedValueAsync();
             }
             
             var stream = new MemoryStream(result);
@@ -46,12 +44,17 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
 
             if (cachedValue is null)
             {
-                var uncachedValue = await getValue;
-                await CacheValueAsync(key, uncachedValue);
-                return Result<TValue>.FromSuccess(uncachedValue);
+                return await GetUncachedValueAsync();
             }
 
             return Result<TValue>.FromSuccess(cachedValue);
+            
+            async Task<Result<TValue>> GetUncachedValueAsync()
+            {
+                var uncachedValue = await getValue();
+                await CacheValueAsync(key, uncachedValue);
+                return Result<TValue>.FromSuccess(uncachedValue);
+            }
         }
 
         /// <inheritdoc />

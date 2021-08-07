@@ -27,7 +27,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Task<TValue> getValue) where TValue : notnull
+        public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Func<Task<TValue>> getValue) where TValue : notnull
         {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
 
@@ -38,7 +38,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             {
                 test.SetSlidingExpiration(cacheConfig.SlidingExpiration);
                 test.SetAbsoluteExpiration(cacheConfig.AbsoluteExpiration);
-                return getValue;
+                return getValue();
             }).ConfigureAwait(false);
             cacheLock.Release();
 

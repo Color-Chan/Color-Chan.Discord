@@ -20,7 +20,7 @@ namespace Color_Chan.Discord.Caching.Services
         /// <returns>
         ///     Return a <see cref="Result{T}"/> with the <see cref="TValue"/> that was cached.
         /// </returns>
-        Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Task<TValue> getValue) where TValue : notnull;
+        Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Func<Task<TValue>> getValue) where TValue : notnull;
 
         /// <summary>
         ///     Tries to get a value from the cache.
