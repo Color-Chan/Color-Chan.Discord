@@ -4,9 +4,9 @@ using Color_Chan.Discord.Core.Results;
 namespace Color_Chan.Discord.Commands.Results
 {
     /// <summary>
-    ///     An error result describing an error thrown by a <see cref="SlashCommandRequirementAttribute"/>.
+    ///     An error result describing an error thrown by a <see cref="SlashCommandRequirementAttribute" />.
     /// </summary>
-    public record SlashCommandRequirementErrorResult: ErrorResult
+    public record SlashCommandRequirementErrorResult : ErrorResult
     {
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandRequirementErrorResult" />.

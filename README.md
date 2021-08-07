@@ -114,6 +114,7 @@ The induvidial components are also available on NuGet:
 * [Color-Chan.Discord.Rest](https://www.nuget.org/packages/Color-Chan.Discord.Rest)
 * [Color-Chan.Discord.Commands](https://www.nuget.org/packages/Color-Chan.Discord.Commands)
 * [Color-Chan.Discord.Core](https://www.nuget.org/packages/Color-Chan.Discord.Core)
+* [Color-Chan.Discord.Caching ](https://www.nuget.org/packages/Color-Chan.Discord.Caching)
 
 
 #### Cloning

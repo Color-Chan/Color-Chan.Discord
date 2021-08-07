@@ -11,11 +11,11 @@ namespace Color_Chan.Discord.Core.Extensions
     public static class DiscordGuildPermissionExtensions
     {
         /// <summary>
-        ///     Get all the flags of <see cref="DiscordGuildPermission"/> separately in a list.
+        ///     Get all the flags of <see cref="DiscordGuildPermission" /> separately in a list.
         /// </summary>
         /// <param name="permission">The permission flags.</param>
         /// <returns>
-        ///     A list of <see cref="DiscordGuildPermission"/> flags.
+        ///     A list of <see cref="DiscordGuildPermission" /> flags.
         /// </returns>
         public static List<DiscordGuildPermission> ToList(this DiscordGuildPermission? permission)
         {
@@ -26,13 +26,13 @@ namespace Color_Chan.Discord.Core.Extensions
 
             return ToList(permission.Value);
         }
-        
+
         /// <summary>
-        ///     Get all the flags of <see cref="DiscordGuildPermission"/> separately in a list.
+        ///     Get all the flags of <see cref="DiscordGuildPermission" /> separately in a list.
         /// </summary>
         /// <param name="permission">The permission flags.</param>
         /// <returns>
-        ///     A list of <see cref="DiscordGuildPermission"/> flags.
+        ///     A list of <see cref="DiscordGuildPermission" /> flags.
         /// </returns>
         public static List<DiscordGuildPermission> ToList(this DiscordGuildPermission permission)
         {

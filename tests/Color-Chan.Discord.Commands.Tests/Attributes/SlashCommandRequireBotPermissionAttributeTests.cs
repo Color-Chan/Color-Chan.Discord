@@ -32,7 +32,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             });
             restGuildMock.Setup(x => x.GetGuildMemberAsync(It.IsAny<ulong>(), It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
                          .ReturnsAsync(Result<IDiscordGuildMember>.FromSuccess(botMember));
-            
+
             var context = new SlashCommandContext
             {
                 GuildId = 456
@@ -42,14 +42,14 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                                      .AddSingleton(restGuildMock.Object)
                                      .AddSingleton(discordToken)
                                      .BuildServiceProvider();
-            
+
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
-            
+
             // Assert
             result.IsSuccessful.Should().BeTrue();
         }
-        
+
         [Test]
         public async Task Should_not_pass_user_permission_requirement_dm()
         {
@@ -63,7 +63,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             });
             restGuildMock.Setup(x => x.GetGuildMemberAsync(It.IsAny<ulong>(), It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
                          .ReturnsAsync(Result<IDiscordGuildMember>.FromSuccess(botMember));
-            
+
             var context = new SlashCommandContext
             {
                 GuildId = 456
@@ -76,18 +76,18 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
-            
+
             // Assert
             result.IsSuccessful.Should().BeFalse();
         }
-        
+
         [Test]
         public async Task Should_not_pass_user_permission_requirement()
         {
             // Arrange
             var discordToken = new DiscordTokens("TOKEN", "PUBLIC_KEY", 123);
             var restGuildMock = new Mock<IDiscordRestGuild>();
-            var attribute = new SlashCommandRequireBotPermissionAttribute(DiscordGuildPermission.Administrator 
+            var attribute = new SlashCommandRequireBotPermissionAttribute(DiscordGuildPermission.Administrator
                                                                           | DiscordGuildPermission.Speak
                                                                           | DiscordGuildPermission.AddReactions);
             var botMember = new DiscordGuildMember(new DiscordGuildMemberData
@@ -96,7 +96,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             });
             restGuildMock.Setup(x => x.GetGuildMemberAsync(It.IsAny<ulong>(), It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
                          .ReturnsAsync(Result<IDiscordGuildMember>.FromSuccess(botMember));
-            
+
             var context = new SlashCommandContext
             {
                 GuildId = 456
@@ -109,7 +109,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
-            
+
             // Assert
             result.IsSuccessful.Should().BeFalse();
             result.ErrorResult.Should().NotBeNull();
