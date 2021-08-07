@@ -18,7 +18,7 @@ namespace Color_Chan.Discord.Caching.Services
         /// <param name="getValue">The task that will be executed if the cached value does not exist.</param>
         /// <typeparam name="TValue">The type of the cached value.</typeparam>
         /// <returns>
-        ///     Return a <see cref="Result{T}" /> with the <see cref="TValue" /> that was cached.
+        ///     Return a <see cref="Result{T}" /> with the <typeparamref name="TValue"/>that was cached.
         /// </returns>
         Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Func<Task<TValue>> getValue) where TValue : notnull;
 
@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Caching.Services
         /// <param name="key">The key of the cached value.</param>
         /// <typeparam name="TValue">The type of the cached value.</typeparam>
         /// <returns>
-        ///     Return a <see cref="Result{T}" /> with the <see cref="TValue" /> if the value was cached.
+        ///     Return a <see cref="Result{T}" /> with the <typeparamref name="TValue"/> if the value was cached.
         /// </returns>
         Task<Result<TValue>> GetValueAsync<TValue>(string key) where TValue : notnull;
 
