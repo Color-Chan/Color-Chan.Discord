@@ -15,7 +15,7 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Attributes
 {
     [TestFixture]
-    public class SlashRateLimitAttributeTests
+    public class SlashCommandRateLimitAttributeTests
     {
         /// <param name="remaining">remaining calls.</param>
         /// <param name="expected">whether or not it should have been rate limited.</param>
@@ -25,7 +25,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_detect_rate_limit(int remaining, bool expected)
         {
             // Arrange
-            var rateLimitAttribute = new SlashRateLimitAttribute(remaining, 60);
+            var rateLimitAttribute = new SlashCommandRateLimitAttribute(remaining, 60);
             var context = new SlashCommandContext
             {
                 User = new DiscordUser(new DiscordUserData
@@ -56,7 +56,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_detect_new_rate_limit()
         {
             // Arrange
-            var rateLimitAttribute = new SlashRateLimitAttribute(2, 60);
+            var rateLimitAttribute = new SlashCommandRateLimitAttribute(2, 60);
             var context = new SlashCommandContext
             {
                 User = new DiscordUser(new DiscordUserData

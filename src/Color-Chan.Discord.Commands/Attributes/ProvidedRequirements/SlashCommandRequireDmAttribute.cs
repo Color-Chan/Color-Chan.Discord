@@ -11,9 +11,9 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     /// </summary>
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module so they can only be used in
-    ///     DMs. You can also put the <see cref="SlashRequireDirectMessagesAttribute" /> on a method if you only want to have it ona specific command.
+    ///     DMs. You can also put the <see cref="SlashCommandRequireDmAttribute" /> on a method if you only want to have it ona specific command.
     ///     <code language="cs">
-    ///     [SlashRequireDirectMessages]
+    ///     [SlashCommandRequireDm]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
@@ -25,7 +25,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class SlashRequireDirectMessagesAttribute : SlashCommandRequirementAttribute
+    public class SlashCommandRequireDmAttribute : SlashCommandRequirementAttribute
     {
         /// <inheritdoc />
         public override Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)

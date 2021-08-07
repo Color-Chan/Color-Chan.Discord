@@ -13,10 +13,10 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module to users that have the
     ///     <see cref="DiscordGuildPermission.BanMembers" /> and <see cref="DiscordGuildPermission.KickMembers" /> permission.
-    ///     You can also put the <see cref="SlashRequireUserPermissionAttribute" /> on a method if you only want to have it ona
+    ///     You can also put the <see cref="SlashCommandRequireUserPermissionAttribute" /> on a method if you only want to have it ona
     ///     specific command.
     ///     <code language="cs">
-    ///     [SlashRequireUserPermission(DiscordGuildPermission.BanMembers | DiscordGuildPermission.KickMembers)]
+    ///     [SlashCommandRequireUserPermission(DiscordGuildPermission.BanMembers | DiscordGuildPermission.KickMembers)]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
@@ -28,18 +28,18 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class SlashRequireUserPermissionAttribute : SlashCommandRequirementAttribute
+    public class SlashCommandRequireUserPermissionAttribute : SlashCommandRequirementAttribute
     {
         private readonly DiscordGuildPermission _requiredGuildPermission;
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashRateLimitAttribute" />.
+        ///     Initializes a new instance of <see cref="SlashCommandRateLimitAttribute" />.
         /// </summary>
         /// <param name="requiredGuildPermission">
         ///     The <see cref="DiscordGuildPermission" /> the user is required to have for this
         ///     command/command group.
         /// </param>
-        public SlashRequireUserPermissionAttribute(DiscordGuildPermission requiredGuildPermission)
+        public SlashCommandRequireUserPermissionAttribute(DiscordGuildPermission requiredGuildPermission)
         {
             _requiredGuildPermission = requiredGuildPermission;
         }
@@ -49,7 +49,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         {
             if (context.Member is null)
             {
-                return Task.FromResult(Result.FromError(new SlashRequireUserPermissionResult("Command can not be executed in DMs", _requiredGuildPermission)));
+                return Task.FromResult(Result.FromError(new SlashCommandRequireUserPermissionErrorResult("Command can not be executed in DMs", _requiredGuildPermission)));
             }
 
             if (context.Member.Permissions is null)
@@ -62,7 +62,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Task.FromResult(Result.FromSuccess());
             }
 
-            return Task.FromResult(Result.FromError(new SlashRequireUserPermissionResult("User did not need permission requirements", _requiredGuildPermission)));
+            return Task.FromResult(Result.FromError(new SlashCommandRequireUserPermissionErrorResult("User did not need permission requirements", _requiredGuildPermission)));
         }
     }
 }
