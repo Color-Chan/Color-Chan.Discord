@@ -5,7 +5,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 namespace Color_Chan.Discord.Commands.Results
 {
     /// <summary>
-    ///     An error result describing an error for <see cref="SlashCommandRequireUserPermissionAttribute"/> when the user did not meed the permission requirements.
+    ///     An error result describing an error for <see cref="SlashCommandRequireUserPermissionAttribute"/> when the user did not meet the permission requirements.
     /// </summary>
     public record SlashCommandRequireUserPermissionErrorResult : SlashCommandRequirementErrorResult
     {

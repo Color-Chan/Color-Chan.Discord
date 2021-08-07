@@ -16,8 +16,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     /// </summary>
     /// <example>
     ///     This example requires the bot to have the <see cref="DiscordGuildPermission.BanMembers" /> and <see cref="DiscordGuildPermission.KickMembers" /> permission.
-    ///     You can also put the <see cref="SlashCommandRequireBotPermissionAttribute" /> on a method if you only want to have it ona
-    ///     specific command.
+    ///     You can also put the <see cref="SlashCommandRequireBotPermissionAttribute" /> on a method if you only want to have it on a specific command.
     ///     <code language="cs">
     ///     [SlashCommandRequireBotPermission(DiscordGuildPermission.BanMembers | DiscordGuildPermission.KickMembers)]
     ///     public class PongCommands : SlashCommandModule
