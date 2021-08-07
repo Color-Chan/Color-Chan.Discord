@@ -32,7 +32,7 @@ namespace Color_Chan.Discord.Commands.Extensions
 
             // Call this on your own if you want to supply configurations.
             services.AddColorChanCache();
-            
+
             return services;
         }
     }

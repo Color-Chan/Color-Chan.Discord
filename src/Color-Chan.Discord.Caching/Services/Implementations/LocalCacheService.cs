@@ -11,15 +11,18 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
     /// <inheritdoc />
     public class LocalCacheService : ICacheService
     {
-        private readonly IMemoryCache _memoryCache;
         private readonly ITypeCacheConfigurationService _configurationService;
         private readonly ConcurrentDictionary<object, SemaphoreSlim> _locks = new();
+        private readonly IMemoryCache _memoryCache;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="LocalCacheService" />.
         /// </summary>
-        /// <param name="memoryCache">The <see cref="IMemoryCache"/> that will contain all the cached values.</param>
-        /// <param name="configurationService">The <see cref="ITypeCacheConfigurationService"/> that contains all the cache config for the value types.</param>
+        /// <param name="memoryCache">The <see cref="IMemoryCache" /> that will contain all the cached values.</param>
+        /// <param name="configurationService">
+        ///     The <see cref="ITypeCacheConfigurationService" /> that contains all the cache config
+        ///     for the value types.
+        /// </param>
         public LocalCacheService(IMemoryCache memoryCache, ITypeCacheConfigurationService configurationService)
         {
             _memoryCache = memoryCache;
@@ -32,7 +35,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
 
             SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
-            
+
             await cacheLock.WaitAsync();
             var data = await _memoryCache.GetOrCreateAsync(key, test =>
             {
@@ -42,8 +45,8 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             }).ConfigureAwait(false);
             cacheLock.Release();
 
-            return data is null 
-                ? Result<TValue>.FromError(default, new CacheErrorResult(key)) 
+            return data is null
+                ? Result<TValue>.FromError(default, new CacheErrorResult(key))
                 : Result<TValue>.FromSuccess(data);
         }
 
@@ -57,17 +60,17 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
 
             return Task.FromResult(Result<TValue>.FromError(default, new CacheErrorResult(key)));
         }
-        
+
         /// <inheritdoc />
         public async Task RemoveValueAsync(string key)
         {
             SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
-            
+
             await cacheLock.WaitAsync();
             _memoryCache.Remove(key);
             cacheLock.Release();
         }
-        
+
         /// <inheritdoc />
         public async Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : notnull
         {
@@ -77,7 +80,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             _memoryCache.Set(key, cachedValue, GetCacheConfig<TValue>());
             cacheLock.Release();
         }
-        
+
         /// <inheritdoc />
         public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan slidingExpirationOverwrite, TimeSpan absoluteExpirationOverwrite) where TValue : notnull
         {
@@ -86,7 +89,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
             };
-            
+
             // Set the cached value.
             SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
             await cacheLock.WaitAsync();
@@ -100,7 +103,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             // Set the cached value.
             _memoryCache.Set(key, cachedValue, GetCacheConfig<TValue>());
         }
-        
+
         /// <inheritdoc />
         public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan slidingExpirationOverwrite, TimeSpan absoluteExpirationOverwrite) where TValue : notnull
         {
@@ -109,11 +112,11 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
             };
-            
+
             // Set the cached value.
             _memoryCache.Set(key, cachedValue, redisCacheConfig);
         }
-        
+
         private MemoryCacheEntryOptions GetCacheConfig<TValue>() where TValue : notnull
         {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();

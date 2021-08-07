@@ -14,8 +14,8 @@ namespace Color_Chan.Discord.Commands.Attributes
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
     public class SlashRateLimitAttribute : SlashCommandRequirementAttribute
     {
-        private readonly int _max;
         private readonly TimeSpan _absoluteTimeSpan;
+        private readonly int _max;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashRateLimitAttribute" />.
@@ -27,7 +27,7 @@ namespace Color_Chan.Discord.Commands.Attributes
             _max = max;
             _absoluteTimeSpan = TimeSpan.FromSeconds(resetAfterSeconds);
         }
-        
+
         /// <inheritdoc />
         public override async Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
         {
@@ -42,17 +42,17 @@ namespace Color_Chan.Discord.Commands.Attributes
                 await cacheService.CacheValueAsync(key, _max - 1, slidingTimeSpan, _absoluteTimeSpan);
                 return Result.FromSuccess();
             }
-            
+
             var remaining = userRateLimitResult.Entity;
 
             if (remaining > 0)
             {
                 remaining--;
-                
+
                 await cacheService.CacheValueAsync(key, remaining);
                 return Result.FromSuccess();
             }
-            
+
             return Result.FromError(new SlashRateLimitErrorResult("Rate limit hit!", context.User, _max, _absoluteTimeSpan));
         }
     }

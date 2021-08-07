@@ -12,18 +12,17 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
     {
         public DiscordInteractionCommandCallback()
         {
-            
         }
 
         public DiscordInteractionCommandCallback(DiscordInteractionCommandCallbackData data)
         {
             IsTts = data.IsTts;
             Content = data.Content;
-            Embeds = data.Embeds?.Select(x=>new DiscordEmbed(x));
+            Embeds = data.Embeds?.Select(x => new DiscordEmbed(x));
             AllowedMentions = data.AllowedMentions is not null ? new DiscordAllowedMentions(data.AllowedMentions) : null;
-            Components = data.Components?.Select(x=>new DiscordComponent(x));
+            Components = data.Components?.Select(x => new DiscordComponent(x));
         }
-        
+
         /// <inheritdoc />
         public bool? IsTts { get; init; }
 

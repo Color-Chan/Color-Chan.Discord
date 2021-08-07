@@ -5,18 +5,18 @@ using Color_Chan.Discord.Caching.Services.Implementations;
 namespace Color_Chan.Discord.Caching.Services
 {
     /// <summary>
-    ///     Manages and contains all the <see cref="CacheConfiguration"/> for all kind of value types.
+    ///     Manages and contains all the <see cref="CacheConfiguration" /> for all kind of value types.
     /// </summary>
     public interface ITypeCacheConfigurationService
     {
         /// <summary>
-        ///     Adds a <see cref="CacheConfiguration"/> for a specific type.
+        ///     Adds a <see cref="CacheConfiguration" /> for a specific type.
         /// </summary>
         /// <param name="slidingExpiration">The absolute expiration time, relative to now.</param>
         /// <param name="absoluteExpiration">How long a cache entry can be inactive (e.g. not accessed) before it will be removed.</param>
         /// <typeparam name="TValueType">The type of the value.</typeparam>
         /// <returns>
-        ///     The <see cref="TypeCacheConfigurationService"/> containing the added type cache config.
+        ///     The <see cref="TypeCacheConfigurationService" /> containing the added type cache config.
         /// </returns>
         TypeCacheConfigurationService AddCacheConfig<TValueType>(TimeSpan slidingExpiration, TimeSpan absoluteExpiration);
 
@@ -25,8 +25,8 @@ namespace Color_Chan.Discord.Caching.Services
         /// </summary>
         /// <typeparam name="TValueType">The value type.</typeparam>
         /// <returns>
-        ///     The <see cref="CacheConfiguration"/> for the specified type if one was found.
-        ///     Return the default <see cref="CacheConfiguration"/> if none were found.
+        ///     The <see cref="CacheConfiguration" /> for the specified type if one was found.
+        ///     Return the default <see cref="CacheConfiguration" /> if none were found.
         /// </returns>
         CacheConfiguration GetCacheConfig<TValueType>();
     }

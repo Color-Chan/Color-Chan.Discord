@@ -57,7 +57,7 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse(result.Entity));
         }
-        
+
         public static Result<IDiscordMessage> ConvertResult(Result<DiscordMessageData> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordMessage>.FromError(null, result.ErrorResult);

@@ -30,9 +30,9 @@ namespace Color_Chan.Discord.Controllers
         private readonly IDiscordInteractionAuthService _authService;
         private readonly IDiscordSlashCommandHandler _commandHandler;
         private readonly InteractionsConfiguration _configuration;
-        private readonly IDiscordRestApplication _restApplication;
         private readonly DiscordTokens _discordTokens;
         private readonly ILogger<DiscordInteractionController> _logger;
+        private readonly IDiscordRestApplication _restApplication;
         private readonly JsonSerializerOptions _serializerOptions;
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Color_Chan.Discord.Controllers
                 {
                     Type = DiscordInteractionResponseType.DeferredChannelMessageWithSource
                 };
-                    
+
                 var acknowledgeResult = await _restApplication.CreateInteractionResponseAsync(interactionData.Id, interactionData.Token, acknowledgeResponse).ConfigureAwait(false);
                 if (!acknowledgeResult.IsSuccessful)
                 {
@@ -106,7 +106,7 @@ namespace Color_Chan.Discord.Controllers
                 DiscordInteractionType.MessageComponent => throw new NotImplementedException(),
                 _ => throw new ArgumentOutOfRangeException()
             };
-            
+
             // Send the response back to discord.
             if (!_configuration.AcknowledgeInteractions || interactionData.Type == DiscordInteractionType.Ping)
             {
@@ -122,10 +122,10 @@ namespace Color_Chan.Discord.Controllers
                 Components = responseData?.Components,
                 AllowedMentions = responseData?.AllowedMentions
             };
-            
+
             var responseResult = await _restApplication.EditOriginalInteractionResponse(_discordTokens.ApplicationId, interactionData.Token, editResponse).ConfigureAwait(false);
             if (responseResult.IsSuccessful) return Ok();
-            
+
             // Send an error response.
             _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}", interactionData.Id.ToString(), responseResult.ErrorResult?.ErrorMessage);
             return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);

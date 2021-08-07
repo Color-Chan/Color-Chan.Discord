@@ -12,25 +12,25 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Webhook
         /// </summary>
         [JsonPropertyName("content")]
         public string? Content { get; set; }
-        
+
         /// <summary>
         ///     Any embedded content.
         /// </summary>
         [JsonPropertyName("embeds")]
         public IEnumerable<DiscordEmbedData>? Embeds { get; set; }
-        
+
         /// <summary>
         ///     Allowed mentions object.
         /// </summary>
         [JsonPropertyName("allowed_mentions")]
         public DiscordAllowedMentionsData? AllowedMentions { get; init; }
-        
+
         /// <summary>
         ///     Any attached files.
         /// </summary>
         [JsonPropertyName("attachments")]
         public IEnumerable<DiscordAttachmentData>? Attachments { get; set; }
-        
+
         /// <summary>
         ///     Sent if the message contains components like buttons, action rows, or other interactive components.
         /// </summary>

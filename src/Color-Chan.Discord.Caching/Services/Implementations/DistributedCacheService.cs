@@ -12,23 +12,26 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
     /// <inheritdoc />
     public class DistributedCacheService : ICacheService
     {
-        private readonly IDistributedCache _distributedCache;
         private readonly ITypeCacheConfigurationService _configurationService;
+        private readonly IDistributedCache _distributedCache;
         private readonly JsonSerializerOptions _serializerOptions;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="DistributedCacheService" />.
         /// </summary>
-        /// <param name="distributedCache">The <see cref="IDistributedCache"/> that will contain all the cached values.</param>
+        /// <param name="distributedCache">The <see cref="IDistributedCache" /> that will contain all the cached values.</param>
         /// <param name="serializerOptions">The JSON options used for serialization.</param>
-        /// <param name="configurationService">The <see cref="ITypeCacheConfigurationService"/> that contains all the cache config for the value types.</param>
+        /// <param name="configurationService">
+        ///     The <see cref="ITypeCacheConfigurationService" /> that contains all the cache config
+        ///     for the value types.
+        /// </param>
         public DistributedCacheService(IDistributedCache distributedCache, IOptions<JsonSerializerOptions> serializerOptions, ITypeCacheConfigurationService configurationService)
         {
             _distributedCache = distributedCache;
             _configurationService = configurationService;
             _serializerOptions = serializerOptions.Value;
         }
-        
+
         /// <inheritdoc />
         public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Func<Task<TValue>> getValue) where TValue : notnull
         {
@@ -38,7 +41,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             {
                 return await GetUncachedValueAsync();
             }
-            
+
             var stream = new MemoryStream(result);
             var cachedValue = await JsonSerializer.DeserializeAsync<TValue>(stream, _serializerOptions).ConfigureAwait(false);
 
@@ -48,7 +51,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             }
 
             return Result<TValue>.FromSuccess(cachedValue);
-            
+
             async Task<Result<TValue>> GetUncachedValueAsync()
             {
                 var uncachedValue = await getValue();
@@ -66,12 +69,12 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             {
                 return Result<TValue>.FromError(default, new CacheErrorResult(key));
             }
-            
+
             var stream = new MemoryStream(result);
             var cachedValue = await JsonSerializer.DeserializeAsync<TValue>(stream, _serializerOptions).ConfigureAwait(false);
 
-            return cachedValue is null 
-                ? Result<TValue>.FromError(default, new CacheErrorResult(key)) 
+            return cachedValue is null
+                ? Result<TValue>.FromError(default, new CacheErrorResult(key))
                 : Result<TValue>.FromSuccess(cachedValue);
         }
 
@@ -97,7 +100,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
             };
-            
+
             // Set the cached value.
             var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
             await _distributedCache.SetAsync(key, bytes, redisCacheConfig);
@@ -119,7 +122,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
             };
-            
+
             // Set the cached value.
             var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
             _distributedCache.Set(key, bytes, redisCacheConfig);

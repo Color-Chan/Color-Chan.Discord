@@ -47,7 +47,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 throw new ArgumentNullException(nameof(interaction.Data), "Interaction data can not be null for a slash command!");
             }
-            
+
             ISlashCommandContext context = new SlashCommandContext
             {
                 User = interaction.User ?? interaction.GuildMember?.User ?? throw new NullReferenceException(nameof(context.User)),

@@ -35,7 +35,7 @@ namespace Color_Chan.Discord.Extensions
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
-        public static IServiceCollection AddColorChanDiscord(this IServiceCollection services, string botToken, string publicBotToken, ulong applicationId, 
+        public static IServiceCollection AddColorChanDiscord(this IServiceCollection services, string botToken, string publicBotToken, ulong applicationId,
                                                              InteractionsConfiguration? configuration = null)
         {
             if (botToken == null) throw new ArgumentNullException(nameof(botToken));

@@ -6,6 +6,5 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Interaction
     [TestFixture]
     public class DiscordInteractionCommandCallbackDataTests : JsonTestBase<DiscordInteractionCommandCallbackData>
     {
-        
     }
 }

@@ -36,9 +36,9 @@ namespace Color_Chan.Discord.Caching.Extensions
                 configuration.AbsoluteExpiration = TimeSpan.FromSeconds(30);
                 configuration.SlidingExpiration = TimeSpan.FromSeconds(15);
             };
-            
+
             services.Configure(defaultCacheConfig);
-            
+
             if (redisCacheOptions is not null)
             {
                 services.AddStackExchangeRedisCache(redisCacheOptions);

@@ -29,10 +29,10 @@ namespace Color_Chan.Discord.Commands.Commands
 
         /// <inheritdoc />
         public ulong ApplicationId { get; init; }
-        
+
         /// <inheritdoc />
         public string Token { get; init; } = null!;
-        
+
         /// <inheritdoc />
         public ulong InteractionId { get; init; }
 

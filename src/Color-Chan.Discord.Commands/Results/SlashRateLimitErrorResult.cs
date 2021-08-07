@@ -14,7 +14,7 @@ namespace Color_Chan.Discord.Commands.Results
         /// </summary>
         /// <param name="errorMessage">The message of the error.</param>
         /// <param name="contextUser">The user that hit the rate limit.</param>
-        /// <param name="max">The max amount of time the command could be used during the <paramref name="absoluteTimeSpan"/>.</param>
+        /// <param name="max">The max amount of time the command could be used during the <paramref name="absoluteTimeSpan" />.</param>
         /// <param name="absoluteTimeSpan">The timeframe in which the command can be used a certain amount of times.</param>
         public SlashRateLimitErrorResult(string errorMessage, IDiscordUser contextUser, int max, TimeSpan absoluteTimeSpan) : base(errorMessage)
         {
@@ -22,17 +22,17 @@ namespace Color_Chan.Discord.Commands.Results
             Max = max;
             AbsoluteTimeSpan = absoluteTimeSpan;
         }
-        
+
         /// <summary>
         ///     The user that hit the rate limit..
         /// </summary>
         public IDiscordUser ContextUser { get; }
-        
+
         /// <summary>
-        ///     The max amount of time the command could be used during the <see cref="AbsoluteTimeSpan"/>.
+        ///     The max amount of time the command could be used during the <see cref="AbsoluteTimeSpan" />.
         /// </summary>
         public int Max { get; }
-        
+
         /// <summary>
         ///     The timeframe in which the command can be used a certain amount of times
         /// </summary>

@@ -13,7 +13,7 @@ namespace Color_Chan.Discord.Rest.Models
             AllowedUsers = data.AllowedUsers;
             ShouldReplyMentionsAuthor = data.ShouldReplyMentionsAuthor;
         }
-        
+
         /// <inheritdoc />
         public IEnumerable<DiscordAllowedMentionsType> Allowed { get; init; } = new List<DiscordAllowedMentionsType>();
 

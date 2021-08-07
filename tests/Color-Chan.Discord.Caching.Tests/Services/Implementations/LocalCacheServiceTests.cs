@@ -21,8 +21,8 @@ namespace Color_Chan.Discord.Caching.Tests.Services.Implementations
             }));
 
             var serviceProvider = new ServiceCollection()
-                .AddMemoryCache()
-                .BuildServiceProvider();
+                                  .AddMemoryCache()
+                                  .BuildServiceProvider();
 
             var memCache = serviceProvider.GetRequiredService<IMemoryCache>();
             CacheService = new LocalCacheService(memCache, typeCache);
