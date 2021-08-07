@@ -1,13 +1,12 @@
 using System;
 using Color_Chan.Discord.Core.Common.Models;
-using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Results
 {
     /// <summary>
     ///     An error result describing a slash command rate limit.
     /// </summary>
-    public record SlashRateLimitErrorResult : ErrorResult
+    public record SlashRateLimitErrorResult : SlashCommandRequirementErrorResult
     {
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashRateLimitErrorResult" />.

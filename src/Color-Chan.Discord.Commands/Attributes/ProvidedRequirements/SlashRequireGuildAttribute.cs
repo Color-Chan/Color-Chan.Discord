@@ -9,13 +9,9 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     /// <summary>
     ///     Requires the slash command to be executed in a guild.
     /// </summary>
-    /// <remarks>
-    ///     This requirement will limit the command to guild only.
-    /// </remarks>
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module so they can only be used in
-    ///     guilds. You can also put the <see cref="SlashRequireGuildAttribute" /> on a method if you only want to rate
-    ///     limit a specific slash command.
+    ///     guilds. You can also put the <see cref="SlashRequireGuildAttribute" /> on a method if you only want to have it ona specific command.
     ///     <code language="cs">
     ///     [SlashRequireGuild]
     ///     public class PongCommands : SlashCommandModule
