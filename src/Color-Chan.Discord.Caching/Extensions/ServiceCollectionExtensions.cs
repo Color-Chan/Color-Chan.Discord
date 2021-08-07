@@ -2,6 +2,7 @@
 using Color_Chan.Discord.Caching.Configurations;
 using Color_Chan.Discord.Caching.Services;
 using Color_Chan.Discord.Caching.Services.Implementations;
+using Color_Chan.Discord.Core.Extensions;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -50,7 +51,8 @@ namespace Color_Chan.Discord.Caching.Extensions
             }
 
             services.AddSingleton<ITypeCacheConfigurationService, TypeCacheConfigurationService>();
-            
+            services.AddColorChanDiscordCore();
+
             return services;
         }
     }
