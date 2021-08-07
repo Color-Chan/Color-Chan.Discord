@@ -35,6 +35,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     {
         private readonly TimeSpan _absoluteTimeSpan;
         private readonly int _max;
+        private readonly string _uniqueRateLimitTime;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashRateLimitAttribute" />.
@@ -45,6 +46,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         {
             _max = max;
             _absoluteTimeSpan = TimeSpan.FromSeconds(resetAfterSeconds);
+            _uniqueRateLimitTime = $"{max.ToString()}{resetAfterSeconds.ToString()}";
         }
 
         /// <inheritdoc />
@@ -52,7 +54,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         {
             var cacheService = services.GetRequiredService<ICacheService>();
 
-            var key = $"{context.CommandRequest.Id.ToString()}{context.MethodName}{context.User.Id.ToString()}";
+            var key = $"{_uniqueRateLimitTime}{context.CommandRequest.Id.ToString()}{context.MethodName}{context.User.Id.ToString()}";
             var userRateLimitResult = await cacheService.GetValueAsync<int>(key).ConfigureAwait(false);
 
             if (!userRateLimitResult.IsSuccessful)
