@@ -121,14 +121,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Try to execute the command.
             try
             {
-                if (commandMethod.Invoke(instance, args.ToArray()) is not Task<IDiscordInteractionResponse> task)
+                if (commandMethod.Invoke(instance, args.ToArray()) is not Task<Result<IDiscordInteractionResponse>> task)
                 {
-                    _logger.LogWarning("Failed to cast {MethodName} to Task<IDiscordInteractionResponse>", commandMethod.Name);
-                    return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Failed to cast command to Task<IDiscordInteractionResponse>"));
+                    var errorMessage = $"Failed to cast {commandMethod.Name} to Task<Result<IDiscordInteractionResponse>>";
+                    _logger.LogWarning(errorMessage);
+                    return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(errorMessage));
                 }
 
-                var result = await task.ConfigureAwait(false);
-                return Result<IDiscordInteractionResponse>.FromSuccess(result);
+                return await task.ConfigureAwait(false);
             }
             catch (Exception e)
             {

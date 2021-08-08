@@ -4,6 +4,7 @@ using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Commands.Tests.Valid.Requirements;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
+using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Tests.Valid
 {
@@ -16,7 +17,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         [BoolRequirement(false)]
         [BoolRequirement(true)]
         [SlashCommandGuild(ulong.MaxValue)]
-        public Task<IDiscordInteractionResponse> CommandMethod1Async
+        public Task<Result<IDiscordInteractionResponse>> CommandMethod1Async
         (
             [SlashCommandOption("Role name", "A role name.")]
             [SlashCommandChoiceAttribute("Role name 1", "RoleName1")]
@@ -38,7 +39,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         [SlashCommand("Command2", "a unit test command.")]
         [BoolRequirement(true)]
         [BoolRequirement(true)]
-        public Task<IDiscordInteractionResponse> CommandMethod2Async
+        public Task<Result<IDiscordInteractionResponse>> CommandMethod2Async
         (
             [SlashCommandOption("Role name", "A role name.")]
             [SlashCommandChoiceAttribute("Role name 1", "RoleName1")]
@@ -59,7 +60,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
 
         [SlashCommand("Command3", "a unit test command.")]
         [BoolRequirement(false)]
-        public Task<IDiscordInteractionResponse> CommandMethod3Async()
+        public Task<Result<IDiscordInteractionResponse>> CommandMethod3Async()
         {
             throw new Exception();
         }

@@ -17,7 +17,7 @@ namespace Color_Chan.Discord.Commands.Services
         void RegisterErrorHandler(Func<IErrorResult, Task<Result<IDiscordInteractionResponse>>> errorHandler);
 
         /// <summary>
-        ///     Handles a interaction slash command rquest.
+        ///     Handles a interaction slash command request.
         /// </summary>
         /// <param name="interaction">The interaction that was used.</param>
         /// <returns>

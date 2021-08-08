@@ -11,6 +11,7 @@ using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
+using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
@@ -274,7 +275,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         private static bool IsValidCommandDefinition(MethodInfo methodInfo)
         {
             return methodInfo.IsDefined(typeof(SlashCommandAttribute))
-                   && methodInfo.ReturnType == typeof(Task<IDiscordInteractionResponse>)
+                   && methodInfo.ReturnType == typeof(Task<Result<IDiscordInteractionResponse>>)
                    && !methodInfo.IsStatic
                    && !methodInfo.IsGenericMethod;
         }
