@@ -1,11 +1,60 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Color_Chan.Discord.Commands.Contexts;
+using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Commands.Attributes
 {
     /// <summary>
     ///     Makes a method available as an global slash command.
     /// </summary>
+    /// <example>
+    ///     The following example will add the slash command `/ping` to the application.
+    ///     <code language="cs">
+    ///     public class PongCommands : SlashCommandModule
+    ///     {
+    ///         [SlashCommand("ping", "Ping Pong!")]
+    ///         public Task&lt;Result&lt;IDiscordInteractionResponse&gt;&gt; PongAsync()
+    ///         {
+    ///             // Command code...
+    ///         }
+    ///     }
+    ///     </code>
+    ///     The following example will add the slash command `/rolename` to the application.
+    ///     With a required string input.
+    ///     <code language="cs">
+    ///     public class RoleCommands : SlashCommandModule
+    ///     {
+    ///         [SlashCommand("rolename", "A role command")]
+    ///         public Task&lt;Result&lt;IDiscordInteractionResponse&gt;&gt; RoleNameAsync
+    ///         (
+    ///             [SlashCommandOption("name", "The name of the new role.", true)]
+    ///             string roleName
+    ///         )
+    ///         {
+    ///             // Command code...
+    ///         }
+    ///     }
+    ///     </code>
+    ///     The following example will add the slash command `/role` to the application.
+    ///     With a required role input. The given role will be added to the <see cref="ISlashCommandContext.CommandRequest" />,
+    ///     <see cref="IDiscordInteractionCommand.Resolved" />, <see cref="IDiscordInteractionCommandResolved.Roles" /> list.
+    ///     <code language="cs">
+    ///     public class RoleCommands : SlashCommandModule
+    ///     {
+    ///         [SlashCommand("role", "A role command")]
+    ///         public Task&lt;Result&lt;IDiscordInteractionResponse&gt;&gt; RoleAsync
+    ///         (
+    ///             [SlashCommandOption("role", "A role.", true, DiscordApplicationCommandOptionType.Role)]
+    ///             ulong roleId
+    ///         )
+    ///         {
+    ///             // Command code...
+    ///         }
+    ///     }
+    ///     </code>
+    ///     Go to the samples solution folder to see more examples.
+    /// </example>
     [AttributeUsage(AttributeTargets.Method)]
     public class SlashCommandAttribute : Attribute
     {
