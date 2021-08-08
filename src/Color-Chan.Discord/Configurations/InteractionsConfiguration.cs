@@ -11,6 +11,6 @@ namespace Color_Chan.Discord.Configurations
         /// <remarks>
         ///     This can be useful when some of your commands run for longer then 3 seconds.
         /// </remarks>
-        public bool AcknowledgeInteractions { get; set; } = true;
+        public bool AcknowledgeInteractions { get; set; }
     }
 }
