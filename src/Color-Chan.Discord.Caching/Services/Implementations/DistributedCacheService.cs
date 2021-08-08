@@ -93,12 +93,26 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationOverwrite) where TValue : notnull
+        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationRelativeToNow) where TValue : notnull
         {
             var redisCacheConfig = new DistributedCacheEntryOptions
             {
                 SlidingExpiration = slidingExpirationOverwrite,
-                AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
+                AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow
+            };
+
+            // Set the cached value.
+            var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
+            await _distributedCache.SetAsync(key, bytes, redisCacheConfig);
+        }
+        
+        /// <inheritdoc />
+        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, DateTimeOffset? absoluteExpiration) where TValue : notnull
+        {
+            var redisCacheConfig = new DistributedCacheEntryOptions
+            {
+                SlidingExpiration = slidingExpirationOverwrite,
+                AbsoluteExpiration = absoluteExpiration
             };
 
             // Set the cached value.
@@ -115,12 +129,26 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationOverwrite) where TValue : notnull
+        public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationRelativeToNow) where TValue : notnull
         {
             var redisCacheConfig = new DistributedCacheEntryOptions
             {
                 SlidingExpiration = slidingExpirationOverwrite,
-                AbsoluteExpirationRelativeToNow = absoluteExpirationOverwrite
+                AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow
+            };
+
+            // Set the cached value.
+            var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
+            _distributedCache.Set(key, bytes, redisCacheConfig);
+        }
+        
+        /// <inheritdoc />
+        public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, DateTimeOffset? absoluteExpiration) where TValue : notnull
+        {
+            var redisCacheConfig = new DistributedCacheEntryOptions
+            {
+                SlidingExpiration = slidingExpirationOverwrite,
+                AbsoluteExpiration = absoluteExpiration
             };
 
             // Set the cached value.

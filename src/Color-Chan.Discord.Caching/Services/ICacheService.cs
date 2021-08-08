@@ -55,10 +55,23 @@ namespace Color_Chan.Discord.Caching.Services
         ///     How long a cache entry can be inactive (e.g. not accessed) before it will be
         ///     removed. Set to null to use no sliding cache expiration.
         /// </param>
-        /// <param name="absoluteExpirationOverwrite">The absolute expiration time, relative to now. Set to null to use no absolute cache expiration.</param>
+        /// <param name="absoluteExpirationRelativeToNow">The absolute expiration time, relative to now. Set to null to use no absolute cache expiration.</param>
         /// <typeparam name="TValue">The type of the cached value.</typeparam>
-        Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationOverwrite) where TValue : notnull;
+        Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationRelativeToNow) where TValue : notnull;
 
+        /// <summary>
+        ///     Caches a value.
+        /// </summary>
+        /// <param name="key">The key of the value that will be cached.</param>
+        /// <param name="cachedValue">The value that will be cached.</param>
+        /// <param name="slidingExpirationOverwrite">
+        ///     How long a cache entry can be inactive (e.g. not accessed) before it will be
+        ///     removed. Set to null to use no sliding cache expiration.
+        /// </param>
+        /// <param name="absoluteExpiration">The absolute expiration date for the cache entry.</param>
+        /// <typeparam name="TValue">The type of the cached value.</typeparam>
+        Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, DateTimeOffset? absoluteExpiration) where TValue : notnull;
+        
         /// <summary>
         ///     Caches a value.
         /// </summary>
@@ -76,8 +89,21 @@ namespace Color_Chan.Discord.Caching.Services
         ///     How long a cache entry can be inactive (e.g. not accessed) before it will be
         ///     removed. Set to null to use no sliding cache expiration.
         /// </param>
-        /// <param name="absoluteExpirationOverwrite">The absolute expiration time, relative to now. Set to null to use no absolute cache expiration.</param>
+        /// <param name="absoluteExpirationRelativeToNow">The absolute expiration time, relative to now. Set to null to use no absolute cache expiration.</param>
         /// <typeparam name="TValue">The type of the cached value.</typeparam>
-        void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationOverwrite) where TValue : notnull;
+        void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationRelativeToNow) where TValue : notnull;
+
+        /// <summary>
+        ///     Caches a value.
+        /// </summary>
+        /// <param name="key">The key of the value that will be cached.</param>
+        /// <param name="cachedValue">The value that will be cached.</param>
+        /// <param name="slidingExpirationOverwrite">
+        ///     How long a cache entry can be inactive (e.g. not accessed) before it will be
+        ///     removed. Set to null to use no sliding cache expiration.
+        /// </param>
+        /// <param name="absoluteExpiration">The absolute expiration date for the cache entry.</param>
+        /// <typeparam name="TValue">The type of the cached value.</typeparam>
+        void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, DateTimeOffset? absoluteExpiration) where TValue : notnull;
     }
 }
