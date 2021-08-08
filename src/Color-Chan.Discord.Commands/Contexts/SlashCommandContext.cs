@@ -1,14 +1,19 @@
-﻿using Color_Chan.Discord.Core;
-using Color_Chan.Discord.Core.Common.Models;
+﻿using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Message;
 
-namespace Color_Chan.Discord.Commands.Commands
+namespace Color_Chan.Discord.Commands.Contexts
 {
     /// <inheritdoc />
     public class SlashCommandContext : ISlashCommandContext
     {
+        /// <inheritdoc />
+        public IDiscordGuild? Guild { get; init; }
+        
+        /// <inheritdoc />
+        public IDiscordChannel? Channel { get; init; }
+
         /// <inheritdoc />
         public IDiscordGuildMember? Member { get; init; }
 

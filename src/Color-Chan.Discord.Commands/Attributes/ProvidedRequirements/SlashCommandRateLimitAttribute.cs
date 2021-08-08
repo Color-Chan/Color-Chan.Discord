@@ -1,8 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Caching.Services;
+using Color_Chan.Discord.Commands.Contexts;
+using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Results;
-using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,8 +36,8 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
     public class SlashCommandRateLimitAttribute : SlashCommandRequirementAttribute
     {
-        private readonly TimeSpan _absoluteTimeSpan;
         private readonly int _max;
+        private readonly int _resetAfterSeconds;
         private readonly string _uniqueRateLimitTime;
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         public SlashCommandRateLimitAttribute(int max, int resetAfterSeconds)
         {
             _max = max;
-            _absoluteTimeSpan = TimeSpan.FromSeconds(resetAfterSeconds);
+            _resetAfterSeconds = resetAfterSeconds;
             _uniqueRateLimitTime = $"{max.ToString()}{resetAfterSeconds.ToString()}";
         }
 
@@ -57,25 +58,35 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             var cacheService = services.GetRequiredService<ICacheService>();
 
             var key = $"{_uniqueRateLimitTime}{context.CommandRequest.Id.ToString()}{context.MethodName}{context.User.Id.ToString()}";
-            var userRateLimitResult = await cacheService.GetValueAsync<int>(key).ConfigureAwait(false);
+            var userRateLimitResult = await cacheService.GetValueAsync<RateLimitUser>(key).ConfigureAwait(false);
 
             if (!userRateLimitResult.IsSuccessful)
             {
-                await cacheService.CacheValueAsync(key, _max - 1, _absoluteTimeSpan, _absoluteTimeSpan);
+                var absoluteExpiration = DateTimeOffset.UtcNow.AddSeconds(_resetAfterSeconds);
+
+                await cacheService.CacheValueAsync(key, new RateLimitUser
+                {
+                    Expiration = absoluteExpiration,
+                    Remaining = _max - 1
+                }, null, absoluteExpiration);
                 return Result.FromSuccess();
             }
 
-            var remaining = userRateLimitResult.Entity;
-
-            if (remaining > 0)
+            var rateLimitUser = userRateLimitResult.Entity;
+            if (rateLimitUser is null)
             {
-                remaining--;
-
-                await cacheService.CacheValueAsync(key, remaining);
+                throw new NullReferenceException();
+            }
+            
+            if (rateLimitUser.Remaining > 0)
+            {
+                rateLimitUser.Remaining--;
+                
+                await cacheService.CacheValueAsync(key, rateLimitUser, null, rateLimitUser.Expiration);
                 return Result.FromSuccess();
             }
 
-            return Result.FromError(new SlashCommandRateLimitErrorResult("Rate limit hit!", context.User, _max, _absoluteTimeSpan));
+            return Result.FromError(new SlashCommandRateLimitErrorResult("Rate limit hit!", context.User, _max, rateLimitUser.Expiration));
         }
     }
 }

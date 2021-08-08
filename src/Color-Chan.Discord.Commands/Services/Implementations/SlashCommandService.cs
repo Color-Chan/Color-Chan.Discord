@@ -5,12 +5,11 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Commands.Configurations;
+using Color_Chan.Discord.Commands.Contexts;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Info;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Commands.Services.Builders;
-using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,7 +25,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         private readonly ISlashCommandRequirementService _requirementService;
         private readonly ISlashCommandBuildService _slashCommandBuildService;
         private readonly ConcurrentDictionary<string, ISlashCommandInfo> _slashCommands = new();
-        private SlashCommandConfiguration? _configurations;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandService" />.
@@ -72,10 +70,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             _logger.LogInformation("Registered {Count} slash commands to the command registry", _slashCommands.Count.ToString());
 
-            // Default config if no config was set.
-            _configurations ??= new SlashCommandConfiguration();
-
-            var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value), _configurations).ConfigureAwait(false);
+            var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value)).ConfigureAwait(false);
 
             if (!result.IsSuccessful) throw new UpdateSlashCommandException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
         }
@@ -126,14 +121,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Try to execute the command.
             try
             {
-                if (commandMethod.Invoke(instance, args.ToArray()) is not Task<IDiscordInteractionResponse> task)
+                if (commandMethod.Invoke(instance, args.ToArray()) is not Task<Result<IDiscordInteractionResponse>> task)
                 {
-                    _logger.LogWarning("Failed to cast {MethodName} to Task<IDiscordInteractionResponse>", commandMethod.Name);
-                    return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Failed to cast command to Task<IDiscordInteractionResponse>"));
+                    var errorMessage = $"Failed to cast {commandMethod.Name} to Task<Result<IDiscordInteractionResponse>>";
+                    _logger.LogWarning(errorMessage);
+                    return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(errorMessage));
                 }
 
-                var result = await task.ConfigureAwait(false);
-                return Result<IDiscordInteractionResponse>.FromSuccess(result);
+                return await task.ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -245,13 +240,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var subCommandGroupInfo = commandGroupInfo?.CommandOptions?.FirstOrDefault(x => x.Name == subCommandGroupName);
             var subCommand = subCommandGroupInfo?.CommandOptions?.FirstOrDefault(x => x.Name == subCommandName);
             return subCommand;
-        }
-
-        /// <inheritdoc />
-        public SlashCommandConfiguration Configure(SlashCommandConfiguration options)
-        {
-            _configurations = options;
-            return options;
         }
 
         /// <summary>

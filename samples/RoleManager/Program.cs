@@ -1,6 +1,5 @@
 using System.Reflection;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -13,13 +12,8 @@ namespace RoleManager
         {
             var host = CreateHostBuilder(args).Build();
 
-            // Configure Color-Chan.Discord.Commands
-            // EnableAutoSync is off by default. Turn this own if you dont want to send the slash command to discord manually.
-            var config = new SlashCommandConfiguration
-            {
-                EnableAutoSync = true // <----- 
-            };
-            await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly(), config).ConfigureAwait(false); // <----- 
+            // Register all the commands in an Assembly.
+            await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly()).ConfigureAwait(false); // <----- 
 
             // Run the WebHost, and start accepting requests.
             await host.RunAsync().ConfigureAwait(false);

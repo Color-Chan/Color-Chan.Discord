@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Color_Chan.Discord.Commands.Contexts;
 using Color_Chan.Discord.Commands.Results;
-using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Core.Results;
