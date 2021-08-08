@@ -93,7 +93,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan slidingExpirationOverwrite, TimeSpan absoluteExpirationOverwrite) where TValue : notnull
+        public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationOverwrite) where TValue : notnull
         {
             var redisCacheConfig = new DistributedCacheEntryOptions
             {
@@ -115,7 +115,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         }
 
         /// <inheritdoc />
-        public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan slidingExpirationOverwrite, TimeSpan absoluteExpirationOverwrite) where TValue : notnull
+        public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationOverwrite) where TValue : notnull
         {
             var redisCacheConfig = new DistributedCacheEntryOptions
             {
