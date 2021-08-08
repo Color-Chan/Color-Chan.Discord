@@ -202,23 +202,10 @@ public class PongCommands : SlashCommandModule
     ///     A simple Ping Pong command.
     /// </summary>
     [SlashCommand("ping", "Ping Pong!")]
-    public Task<IDiscordInteractionResponse> PongAsync()
+    public Task<Result<IDiscordInteractionResponse>> PongAsync()
     {
-        //  Build the response embed.
-        var embedBuilder = new DiscordEmbedBuilder()
-                           .WithTitle("Ping response")
-                           .WithDescription("Pong!")
-                           .WithColor(Color.Aqua)
-                           .WithTimeStamp();
-
-        // Build the response with the embed.
-        var response = new SlashCommandResponseBuilder()
-                       .WithEmbed(embedBuilder.Build())
-                       .MakePrivate()
-                       .Build();
-
         //  Return the response to Discord.
-        return Task.FromResult(response);
+        return FromSuccess("Pong!");
     }
 }
 ```
