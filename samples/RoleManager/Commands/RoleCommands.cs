@@ -17,7 +17,7 @@ namespace RoleManager.Commands
     /// <summary>
     ///     The command module for all role related commands.
     /// </summary>
-    [SlashCommandGroup("roles", "Gets, creates or updates roles.")]
+    [SlashCommandGroup("role", "Gets, creates or updates roles.")]
     [SlashCommandRateLimit(10, 30)] // Sets the rate limit for this command module to 10 requests per 30 seconds per user.
     [SlashCommandRequireGuild] // Required all commands in this command module to be executed in a guild.
     public class RoleCommands : SlashCommandModule
