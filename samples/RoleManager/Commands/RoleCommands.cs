@@ -18,6 +18,8 @@ namespace RoleManager.Commands
     ///     The command module for all role related commands.
     /// </summary>
     [SlashCommandGroup("roles", "Gets, creates or updates roles.")]
+    [SlashCommandRateLimit(10, 30)] // Sets the rate limit for this command module to 10 requests per 30 seconds per user.
+    [SlashCommandRequireGuild] // Required all commands in this command module to be executed in a guild.
     public class RoleCommands : SlashCommandModule
     {
         private readonly IDiscordRestGuild _restGuild;
@@ -38,8 +40,6 @@ namespace RoleManager.Commands
         /// <returns>
         ///     A <see cref="IDiscordInteractionResponse" /> with an embed containing the new role name.
         /// </returns>
-        [SlashCommandRateLimit(10, 60)]
-        [SlashCommandRequireGuild]
         [SlashCommandGroup("add", "Adds a role.")]
         [SlashCommand("default", "Adds a role with the default permissions.")]
         public async Task<Result<IDiscordInteractionResponse>> AddDefaultRoleAsync
@@ -89,8 +89,6 @@ namespace RoleManager.Commands
         /// <returns>
         ///     A <see cref="IDiscordInteractionResponse" /> with an embed containing whether or not the role has been deleted.
         /// </returns>
-        [SlashCommandRateLimit(10, 60)]
-        [SlashCommandRequireGuild]
         [SlashCommand("delete", "Deletes a role!")]
         public async Task<Result<IDiscordInteractionResponse>> DeleteRoleAsync
         (
@@ -138,8 +136,6 @@ namespace RoleManager.Commands
         /// <returns>
         ///     A <see cref="IDiscordInteractionResponse" /> with an embed containing the role names.
         /// </returns>
-        [SlashCommandRateLimit(10, 60)]
-        [SlashCommandRequireGuild]
         [SlashCommand("lists", "Get a neat little list with all the roles!")]
         public async Task<Result<IDiscordInteractionResponse>> ListRolesAsync()
         {
