@@ -1,15 +1,32 @@
-﻿using Color_Chan.Discord.Core.Common.Models;
+﻿using Color_Chan.Discord.Commands.Configurations;
+using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Message;
 
-namespace Color_Chan.Discord.Core
+namespace Color_Chan.Discord.Commands.Contexts
 {
     /// <summary>
     ///     The context for a interaction command.
     /// </summary>
     public interface ISlashCommandContext
     {
+        /// <summary>
+        ///     The guild the slash command was used in.
+        /// </summary>
+        /// <remarks>
+        ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild"/> is disabled.
+        /// </remarks>
+        IDiscordGuild? Guild { get; init; }
+        
+        /// <summary>
+        ///     The channel the slash command was used in.
+        /// </summary>
+        /// <remarks>
+        ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild"/> is disabled.
+        /// </remarks>
+        IDiscordChannel? Channel { get; init; }
+        
         /// <summary>
         ///     The guild user that has made the interaction request.
         /// </summary>

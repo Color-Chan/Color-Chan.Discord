@@ -13,6 +13,7 @@ using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
@@ -24,6 +25,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         private readonly ISlashCommandBuildService _commandBuildService;
         private readonly DiscordTokens _discordTokens;
         private readonly ISlashCommandGuildBuildService _guildBuildService;
+        private readonly SlashCommandConfiguration _slashConfigs;
         private readonly ILogger<SlashCommandAutoSyncService> _logger;
         private readonly IDiscordRestApplication _restApplication;
 
@@ -42,20 +44,22 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <param name="guildBuildService">
         ///     The <see cref="ISlashCommandGuildBuildService" /> that will be used to build the guild command permissions.
         /// </param>
+        /// <param name="slashConfigs">The configurations for the slash commands.</param>
         public SlashCommandAutoSyncService(IDiscordRestApplication restApplication, DiscordTokens discordTokens, ILogger<SlashCommandAutoSyncService> logger,
-                                           ISlashCommandBuildService commandBuildService, ISlashCommandGuildBuildService guildBuildService)
+                                           ISlashCommandBuildService commandBuildService, ISlashCommandGuildBuildService guildBuildService, IOptions<SlashCommandConfiguration> slashConfigs)
         {
             _commandBuildService = commandBuildService;
             _guildBuildService = guildBuildService;
+            _slashConfigs = slashConfigs.Value;
             _restApplication = restApplication;
             _discordTokens = discordTokens;
             _logger = logger;
         }
 
         /// <inheritdoc />
-        public async Task<Result> UpdateApplicationCommandsAsync(IEnumerable<ISlashCommandInfo> commandInfos, SlashCommandConfiguration configurations)
+        public async Task<Result> UpdateApplicationCommandsAsync(IEnumerable<ISlashCommandInfo> commandInfos)
         {
-            if (!configurations.EnableAutoSync) return Result.FromSuccess();
+            if (!_slashConfigs.EnableAutoSync) return Result.FromSuccess();
 
             _logger.LogInformation("Checking for new or outdated slash commands");
             var slashCommandInfos = commandInfos.ToList();

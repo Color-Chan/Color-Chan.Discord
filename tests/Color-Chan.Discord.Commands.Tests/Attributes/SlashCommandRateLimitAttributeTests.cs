@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Color_Chan.Discord.Caching.Services;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
-using Color_Chan.Discord.Commands.Commands;
+using Color_Chan.Discord.Commands.Contexts;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Results;

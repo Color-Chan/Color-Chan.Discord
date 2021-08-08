@@ -46,12 +46,12 @@ namespace Color_Chan.Discord.Controllers
         /// <param name="restApplication">The REST class for application api calls.</param>
         /// <param name="discordTokens">The bot tokens and IDs.</param>
         public DiscordInteractionController(IDiscordInteractionAuthService authService, ILogger<DiscordInteractionController> logger, IOptions<JsonSerializerOptions> serializerOptions,
-                                            IDiscordSlashCommandHandler commandHandler, InteractionsConfiguration configuration, IDiscordRestApplication restApplication, DiscordTokens discordTokens)
+                                            IDiscordSlashCommandHandler commandHandler, IOptions<InteractionsConfiguration> configuration, IDiscordRestApplication restApplication, DiscordTokens discordTokens)
         {
             _authService = authService;
             _logger = logger;
             _commandHandler = commandHandler;
-            _configuration = configuration;
+            _configuration = configuration.Value;
             _restApplication = restApplication;
             _discordTokens = discordTokens;
             _serializerOptions = serializerOptions.Value;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Commands.Contexts;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
 

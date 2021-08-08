@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Commands.Configurations;
+using Color_Chan.Discord.Commands.Contexts;
 using Color_Chan.Discord.Commands.Info;
-using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 
@@ -176,14 +175,5 @@ namespace Color_Chan.Discord.Commands.Services
         ///     The <see cref="ISlashCommandOptionInfo" /> containing the sub command.
         /// </returns>
         ISlashCommandOptionInfo? SearchSlashCommand(string groupName, string subCommandGroupName, string subCommandName);
-
-        /// <summary>
-        ///     Configure the <see cref="ISlashCommandService" />.
-        /// </summary>
-        /// <param name="options">The configurations.</param>
-        /// <returns>
-        ///     The <see cref="ISlashCommandService" /> containing the config settings.
-        /// </returns>
-        SlashCommandConfiguration Configure(SlashCommandConfiguration options);
     }
 }
