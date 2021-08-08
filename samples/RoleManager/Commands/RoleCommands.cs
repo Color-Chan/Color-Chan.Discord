@@ -59,12 +59,7 @@ namespace RoleManager.Commands
             // Check if the role was successfully created.
             if (!newRoleResponse.IsSuccessful)
             {
-                var errorResponse = new SlashCommandResponseBuilder()
-                                    .WithContent("Failed to create the role.")
-                                    .MakePrivate()
-                                    .Build();
-
-                return FromSuccess(errorResponse);
+                return FromSuccess("Failed to create the role.", true);
             }
 
             //  Build the response embed.
@@ -73,14 +68,9 @@ namespace RoleManager.Commands
                                .WithDescription($"Role: {roleName} has been created.")
                                .WithColor(newRoleResponse.Entity!.Color)
                                .WithTimeStamp();
-
-            // Build the response with the embed.
-            var response = new SlashCommandResponseBuilder()
-                           .WithEmbed(embedBuilder.Build())
-                           .Build();
-
+            
             //  Return the response to Discord.
-            return FromSuccess(response);
+            return FromSuccess(embedBuilder.Build());
         }
 
         /// <summary>
@@ -106,12 +96,7 @@ namespace RoleManager.Commands
             // Check if the role were successfully deleted.
             if (!deleteResponse.IsSuccessful)
             {
-                var errorResponse = new SlashCommandResponseBuilder()
-                                    .WithContent("Failed to delete the role.")
-                                    .MakePrivate()
-                                    .Build();
-
-                return FromSuccess(errorResponse);
+                return FromSuccess("Failed to delete the role.", true);
             }
 
             //  Build the response embed.
@@ -120,14 +105,9 @@ namespace RoleManager.Commands
                                .WithDescription("The role has been successfully deleted!")
                                .WithColor(role?.Color ?? Color.FromArgb(0))
                                .WithTimeStamp();
-
-            // Build the response with the embed.
-            var response = new SlashCommandResponseBuilder()
-                           .WithEmbed(embedBuilder.Build())
-                           .Build();
-
+            
             //  Return the response to Discord.
-            return FromSuccess(response);
+            return FromSuccess(embedBuilder.Build());
         }
 
         /// <summary>
@@ -145,12 +125,7 @@ namespace RoleManager.Commands
             // Check if the roles were successfully loaded.
             if (!rolesResult.IsSuccessful)
             {
-                var errorResponse = new SlashCommandResponseBuilder()
-                                    .WithContent("Failed to get guild roles.")
-                                    .MakePrivate()
-                                    .Build();
-
-                return FromSuccess(errorResponse);
+                return FromSuccess("Failed to get guild roles.", true);
             }
 
             // Build the response.
@@ -163,14 +138,9 @@ namespace RoleManager.Commands
                                .WithDescription(description)
                                .WithColor(Color.HotPink)
                                .WithTimeStamp();
-
-            // Build the response with the embed.
-            var response = new SlashCommandResponseBuilder()
-                           .WithEmbed(embedBuilder.Build())
-                           .Build();
-
+            
             //  Return the response to Discord.
-            return FromSuccess(response);
+            return FromSuccess(embedBuilder.Build());
         }
     }
 }

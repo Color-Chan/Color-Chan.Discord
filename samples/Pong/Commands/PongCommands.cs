@@ -1,7 +1,5 @@
 ﻿#pragma warning disable 1998
-using System.Drawing;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Commands.Modules;
@@ -25,21 +23,9 @@ namespace Pong.Commands
         [SlashCommand("ping", "Ping Pong!")]
         public async Task<Result<IDiscordInteractionResponse>> PongAsync()
         {
-            //  Build the response embed.
-            var embedBuilder = new DiscordEmbedBuilder()
-                               .WithTitle("Ping response")
-                               .WithDescription("Pong!")
-                               .WithColor(Color.Aqua)
-                               .WithTimeStamp();
-
-            // Build the response with the embed.
-            var response = new SlashCommandResponseBuilder()
-                           .WithEmbed(embedBuilder.Build())
-                           .MakePrivate()
-                           .Build();
-
             //  Return the response to Discord.
-            return FromSuccess(response);
+            var message = "Pong!";
+            return FromSuccess(message);
         }
     }
 }
