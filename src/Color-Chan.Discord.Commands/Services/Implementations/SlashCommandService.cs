@@ -133,7 +133,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             catch (Exception e)
             {
                 _logger.LogError(e, "Exception thrown while running command {CommandName}", commandMethod.Name);
-                return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException!));
+                return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException ?? e));
             }
         }
 
