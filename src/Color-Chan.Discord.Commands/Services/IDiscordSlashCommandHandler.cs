@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
-using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Services
 {
@@ -10,12 +9,6 @@ namespace Color_Chan.Discord.Commands.Services
     /// </summary>
     public interface IDiscordSlashCommandHandler
     {
-        /// <summary>
-        ///     Registers an error handler middleware.
-        /// </summary>
-        /// <param name="errorHandler">The new error handler middleware.</param>
-        void RegisterErrorHandler(Func<IErrorResult, Task<Result<IDiscordInteractionResponse>>> errorHandler);
-
         /// <summary>
         ///     Handles a interaction slash command request.
         /// </summary>

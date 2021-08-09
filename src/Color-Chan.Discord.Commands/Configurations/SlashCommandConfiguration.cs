@@ -21,5 +21,10 @@ namespace Color_Chan.Discord.Commands.Configurations
         ///     Whether or not <see cref="ISlashCommandContext.Channel"/> should be auto loaded on command requests. Default: false.
         /// </summary>
         public bool EnableAutoGetChannel { get; set; }
+        
+        /// <summary>
+        ///     Whether or not the command handler should send a default error message when a slash command returned unsuccessfully. Default: false.
+        /// </summary>
+        public bool SendDefaultErrorMessage { get; set; } = false;
     }
 }

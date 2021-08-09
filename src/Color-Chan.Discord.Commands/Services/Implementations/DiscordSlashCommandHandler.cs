@@ -1,17 +1,18 @@
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Pipelines;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
@@ -20,7 +21,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
     /// <inheritdoc />
     public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
     {
-        private readonly List<Func<IErrorResult, Task<Result<IDiscordInteractionResponse>>>> _errorHandlerMiddlewares = new();
         private readonly ILogger<DiscordSlashCommandHandler> _logger;
         private readonly IDiscordRestGuild _restGuild;
         private readonly IDiscordRestChannel _restChannel;
@@ -46,12 +46,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             _restGuild = restGuild;
             _restChannel = restChannel;
             _slashCommandConfiguration = slashCommandConfiguration.Value;
-        }
-
-        /// <inheritdoc />
-        public void RegisterErrorHandler(Func<IErrorResult, Task<Result<IDiscordInteractionResponse>>> errorHandler)
-        {
-            _errorHandlerMiddlewares.Add(errorHandler);
         }
 
         /// <inheritdoc />
@@ -91,51 +85,45 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 Guild = guild
             };
 
+            Task<Result<IDiscordInteractionResponse>>? commandTask = null;
             if (interaction.Data.Options is not null)
             {
                 // Check if any of the used options was a sub command (group) and execute it.
                 foreach (var option in interaction.Data.Options)
                 {
-                    switch (option.Type)
+                    commandTask = option.Type switch
                     {
-                        case DiscordApplicationCommandOptionType.SubCommand:
-                            return await ExecuteSubCommandAsync(interaction.Data.Name, option, context).ConfigureAwait(false);
-                        case DiscordApplicationCommandOptionType.SubCommandGroup:
-                            return await ExecuteSubCommandGroupAsync(interaction.Data.Name, option, context).ConfigureAwait(false);
-                    }
+                        DiscordApplicationCommandOptionType.SubCommand => ExecuteSubCommandAsync(interaction.Data.Name, option, context),
+                        DiscordApplicationCommandOptionType.SubCommandGroup => ExecuteSubCommandGroupAsync(interaction.Data.Name, option, context),
+                        _ => commandTask
+                    };
                 }
             }
 
             // Execute normal slash command.
-            var result = await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
-
+            commandTask = _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options?.ToList(), _serviceProvider);
+            
+            // Execute the the pipelines and commands.
+            var pipelines = _serviceProvider.GetServices<ISlashDiscordPipeline>();
+            Task<Result<IDiscordInteractionResponse>> Handler() => commandTask;
+            var result = await pipelines.Aggregate((SlashCommandHandlerDelegate) Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))();
+            
             // Return the response.
             if (result.IsSuccessful) return result.Entity!;
-            return await HandleSlashCommandErrorResultAsync(result.ErrorResult!).ConfigureAwait(false);
-        }
 
-        /// <summary>
-        ///     Handles an error that occured when a slash command executed.
-        /// </summary>
-        /// <param name="errorResult">The <see cref="IErrorResult" /> containing the error details.</param>
-        /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse" /> with the error response.
-        /// </returns>
-        private async Task<IDiscordInteractionResponse> HandleSlashCommandErrorResultAsync(IErrorResult errorResult)
-        {
-            // Try to handle the error that occured.
-            foreach (var errorHandlerMiddleware in _errorHandlerMiddlewares)
+            if (_slashCommandConfiguration.SendDefaultErrorMessage)
             {
-                var errorHandlerResult = await errorHandlerMiddleware.Invoke(errorResult).ConfigureAwait(false);
-                if (errorHandlerResult.IsSuccessful)
-                {
-                    return errorHandlerResult.Entity!;
-                }
+                return DefaultErrorMessage();
             }
 
-            _logger.LogWarning("An unhandled slash command error occured: {ErrorMessage}", errorResult.ErrorMessage);
-            _logger.LogWarning("Sending default error message");
-
+            throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
+        }
+        
+        /// <summary>
+        ///     Get a default error message response.
+        /// </summary>
+        private IDiscordInteractionResponse DefaultErrorMessage()
+        {
             //  Build the response embed.
             var errorEmbedBuilder = new DiscordEmbedBuilder()
                                     .WithTitle("Error")
@@ -162,13 +150,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <returns>
         ///     A <see cref="IDiscordInteractionResponse" /> with the the slash command response.
         /// </returns>
-        private async Task<IDiscordInteractionResponse> ExecuteSubCommandAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
+        private async Task<Result<IDiscordInteractionResponse>> ExecuteSubCommandAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
         {
-            var result = await _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, context, option.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
-
-            // Return the response.
-            if (result.IsSuccessful) return result.Entity!;
-            return await HandleSlashCommandErrorResultAsync(result.ErrorResult!).ConfigureAwait(false);
+            return await _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, context, option.SubOptions?.ToList(), _serviceProvider).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -182,7 +166,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// </returns>
         /// <exception cref="NullReferenceException">Thrown when the sub options are null.</exception>
         /// <exception cref="InvalidSlashCommandGroupException">Thrown when no sub command has been found.</exception>
-        private async Task<IDiscordInteractionResponse> ExecuteSubCommandGroupAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
+        private async Task<Result<IDiscordInteractionResponse>> ExecuteSubCommandGroupAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
         {
             if (option.SubOptions is null)
             {
@@ -194,13 +178,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
                 {
-                    var result = await _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, subOption.Name, context, subOption.SubOptions?.ToList(), _serviceProvider)
+                    return await _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, subOption.Name, context, subOption.SubOptions?.ToList(), _serviceProvider)
                                                            .ConfigureAwait(false);
-                    if (result.IsSuccessful) return result.Entity!;
-
-                    // Return the response.
-                    if (result.IsSuccessful) return result.Entity!;
-                    return await HandleSlashCommandErrorResultAsync(result.ErrorResult!).ConfigureAwait(false);
                 }
             }
 
