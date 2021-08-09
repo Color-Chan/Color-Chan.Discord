@@ -3,13 +3,13 @@ using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 
-namespace Color_Chan.Discord.Commands.Pipelines
+namespace Color_Chan.Discord.Commands
 {
     /// <summary>
     ///     Pipeline behavior to surround the the slash command handler.
     ///     Implementations add additional behavior and await the next delegate.
     /// </summary>
-    public interface ISlashDiscordPipeline
+    public interface ISlashCommandPipeline
     {
         /// <summary>
         ///     A pipeline handler to surround the inner command handler.
