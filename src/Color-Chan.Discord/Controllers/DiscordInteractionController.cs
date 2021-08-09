@@ -26,6 +26,8 @@ namespace Color_Chan.Discord.Controllers
     [Route("api/v{apiVersion}/discord")]
     public class DiscordInteractionController : ControllerBase
     {
+        private const string SignatureHeader = "X-Signature-Ed25519";
+        private const string TimeStampHeader = "X-Signature-Timestamp";
         private const string ReturnContentType = "application/json";
         private readonly IDiscordInteractionAuthService _authService;
         private readonly IDiscordSlashCommandHandler _commandHandler;
@@ -67,9 +69,16 @@ namespace Color_Chan.Discord.Controllers
         [HttpPost("interaction")]
         public async Task<ActionResult> HandleInteractionRequestAsync()
         {
+            // Check if the request has the headers needed for verification.
+            if (!Request.Headers.ContainsKey(SignatureHeader) || !Request.Headers.ContainsKey(TimeStampHeader))
+            {
+                return Unauthorized();
+            }
+            
             // Verify the interaction request.
-            var signature = Request.Headers["X-Signature-Ed25519"].ToString();
-            var timeStamp = Request.Headers["X-Signature-Timestamp"].ToString();
+            var signature = Request.Headers[SignatureHeader].ToString();
+            var timeStamp = Request.Headers[TimeStampHeader].ToString();
+            
             if (!await _authService.VerifySignatureAsync(signature, timeStamp, Request.Body).ConfigureAwait(false))
             {
                 _logger.LogWarning("Failed to verify interaction command");
