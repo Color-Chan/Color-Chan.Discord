@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
 

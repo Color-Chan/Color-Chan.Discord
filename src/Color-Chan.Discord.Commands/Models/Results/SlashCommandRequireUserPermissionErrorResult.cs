@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
-namespace Color_Chan.Discord.Commands.Results
+namespace Color_Chan.Discord.Commands.Models.Results
 {
     /// <summary>
     ///     An error result describing an error for <see cref="SlashCommandRequireUserPermissionAttribute" /> when the user did

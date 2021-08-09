@@ -5,7 +5,7 @@ using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
-namespace Color_Chan.Discord.Commands.Info
+namespace Color_Chan.Discord.Commands.Models.Info
 {
     /// <inheritdoc />
     public class SlashCommandOptionInfo : ISlashCommandOptionInfo

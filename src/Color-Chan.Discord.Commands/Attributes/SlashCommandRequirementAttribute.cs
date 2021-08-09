@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Contexts;
+using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Attributes

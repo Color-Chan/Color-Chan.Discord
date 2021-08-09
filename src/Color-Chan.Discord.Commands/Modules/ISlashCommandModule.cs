@@ -1,5 +1,5 @@
 ﻿using System;
-using Color_Chan.Discord.Commands.Contexts;
+using Color_Chan.Discord.Commands.Models.Contexts;
 
 namespace Color_Chan.Discord.Commands.Modules
 {

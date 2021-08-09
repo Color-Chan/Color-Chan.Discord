@@ -91,7 +91,7 @@ namespace Color_Chan.Discord.Commands
         {
             _embeds ??= new List<IDiscordEmbed>();
 
-            if (_embeds.Count > 10) throw new ArgumentOutOfRangeException(nameof(embed), $"Can not add more then {MaxEmbeds.ToString()} embed to a response.");
+            if (_embeds.Count > 10) throw new ArgumentOutOfRangeException(nameof(embed), $"Can not add more then {MaxEmbeds.ToString()} embeds to a response.");
 
             _embeds.Add(embed);
             return this;

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Exceptions;
-using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;

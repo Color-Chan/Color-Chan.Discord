@@ -1,7 +1,7 @@
 using System;
 using Color_Chan.Discord.Core.Common.Models;
 
-namespace Color_Chan.Discord.Commands.Results
+namespace Color_Chan.Discord.Commands.Models.Results
 {
     /// <summary>
     ///     An error result describing a slash command rate limit.
