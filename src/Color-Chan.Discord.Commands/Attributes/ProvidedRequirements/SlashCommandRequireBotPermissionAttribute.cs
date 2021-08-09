@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Commands.Models.Results;
 using Color_Chan.Discord.Core;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
@@ -90,7 +90,6 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             var botRoles = guild.Roles.Where(x => botMember.Entity!.Roles.Contains(x.Id));
             var rolePerms = botRoles.Aggregate(DiscordPermission.None, (current, botRole) => current | botRole.Permissions);
 
-            var restChannel = services.GetRequiredService<IDiscordRestChannel>();
             
             // Get the channel.
             IDiscordChannel? channel;
@@ -100,6 +99,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             }
             else
             {
+                var restChannel = services.GetRequiredService<IDiscordRestChannel>();
                 var channelResult = await restChannel.GetChannelAsync(context.ChannelId).ConfigureAwait(false);
                 channel = channelResult.Entity;
             }
