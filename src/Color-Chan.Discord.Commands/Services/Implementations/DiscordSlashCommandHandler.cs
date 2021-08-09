@@ -65,7 +65,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             IDiscordGuild? guild = null;
             if (_slashCommandConfiguration.EnableAutoGetGuild && interaction.GuildId is not null)
             {
-                var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value).ConfigureAwait(false);
+                var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
                 guild = guildResult.Entity;
             }
             
