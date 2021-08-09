@@ -22,10 +22,10 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             {
                 Member = new DiscordGuildMember(new DiscordGuildMemberData
                 {
-                    Permissions = DiscordGuildPermission.Administrator
+                    Permissions = DiscordPermission.Administrator
                 })
             };
-            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordGuildPermission.Administrator);
+            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordPermission.Administrator);
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
@@ -40,7 +40,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             // Arrange
             var collectionProvider = new ServiceCollection().BuildServiceProvider();
             var context = new SlashCommandContext();
-            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordGuildPermission.Administrator);
+            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordPermission.Administrator);
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
@@ -58,12 +58,12 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             {
                 Member = new DiscordGuildMember(new DiscordGuildMemberData
                 {
-                    Permissions = DiscordGuildPermission.AddReactions | DiscordGuildPermission.Speak
+                    Permissions = DiscordPermission.AddReactions | DiscordPermission.Speak
                 })
             };
-            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordGuildPermission.Administrator
-                                                                           | DiscordGuildPermission.Speak
-                                                                           | DiscordGuildPermission.AddReactions);
+            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordPermission.Administrator
+                                                                           | DiscordPermission.Speak
+                                                                           | DiscordPermission.AddReactions);
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
@@ -77,7 +77,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             reqError.MissingPermissions!.Count.Should().Be(1);
             foreach (var missingPermission in reqError.MissingPermissions)
             {
-                missingPermission.Should().Be(DiscordGuildPermission.Administrator);
+                missingPermission.Should().Be(DiscordPermission.Administrator);
             }
         }
     }

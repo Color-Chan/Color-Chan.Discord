@@ -14,7 +14,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     /// </summary>
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module to users that have the
-    ///     <see cref="DiscordGuildPermission.BanMembers" /> and <see cref="DiscordGuildPermission.KickMembers" /> permission.
+    ///     <see cref="DiscordPermission.BanMembers" /> and <see cref="DiscordPermission.KickMembers" /> permission.
     ///     You can also put the <see cref="SlashCommandRequireUserPermissionAttribute" /> on a method if you only want to have
     ///     it on a specific command.
     ///     <code language="cs">
@@ -32,18 +32,18 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class SlashCommandRequireUserPermissionAttribute : SlashCommandRequirementAttribute
     {
-        private readonly DiscordGuildPermission _requiredGuildPermission;
+        private readonly DiscordPermission _requiredPermission;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandRateLimitAttribute" />.
         /// </summary>
-        /// <param name="requiredGuildPermission">
-        ///     The <see cref="DiscordGuildPermission" /> the user is required to have for this
+        /// <param name="requiredPermission">
+        ///     The <see cref="DiscordPermission" /> the user is required to have for this
         ///     command/command group.
         /// </param>
-        public SlashCommandRequireUserPermissionAttribute(DiscordGuildPermission requiredGuildPermission)
+        public SlashCommandRequireUserPermissionAttribute(DiscordPermission requiredPermission)
         {
-            _requiredGuildPermission = requiredGuildPermission;
+            _requiredPermission = requiredPermission;
         }
 
         /// <inheritdoc />
@@ -59,14 +59,14 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 throw new ArgumentNullException(nameof(context.Member.Permissions), "No permission found");
             }
 
-            if (context.Member.Permissions.Value.HasFlag(_requiredGuildPermission))
+            if (context.Member.Permissions.Value.HasFlag(_requiredPermission))
             {
                 return Task.FromResult(Result.FromSuccess());
             }
 
             var userPerms = context.Member.Permissions.ToList();
-            var requiredPerms = _requiredGuildPermission.ToList();
-            var missingPerms = new List<DiscordGuildPermission>();
+            var requiredPerms = _requiredPermission.ToList();
+            var missingPerms = new List<DiscordPermission>();
 
             foreach (var requiredPerm in requiredPerms)
             {

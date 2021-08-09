@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Core.Benchmarks
     public class GuildPermissionExtensionsBenchmarks
     {
         [Benchmark]
-        public DiscordGuildPermission ConvertToGuildPermissionSpan()
+        public DiscordPermission ConvertToGuildPermissionSpan()
         {
             var permString = "1409286155";
             var permSpan = permString.AsSpan();
@@ -19,7 +19,7 @@ namespace Color_Chan.Discord.Core.Benchmarks
         }
 
         [Benchmark]
-        public DiscordGuildPermission ConvertToGuildPermissionString()
+        public DiscordPermission ConvertToGuildPermissionString()
         {
             var permString = "1409286155";
             return permString.ConvertToGuildPermission();

@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// <summary>
         ///     Permission bit set.
         /// </summary>
-        DiscordGuildPermission Permissions { get; init; }
+        DiscordPermission Permissions { get; init; }
 
         /// <summary>
         ///     Whether this role is managed by an integration

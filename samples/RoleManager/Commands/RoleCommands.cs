@@ -52,7 +52,7 @@ namespace RoleManager.Commands
             var roleConfig = new DiscordCreateGuildRole
             {
                 Name = roleName,
-                Permissions = DiscordGuildPermission.None
+                Permissions = DiscordPermission.None
             };
             var newRoleResponse = await _restGuild.CreateGuildRoleAsync(SlashContext.GuildId!.Value, roleConfig).ConfigureAwait(false);
 

@@ -15,20 +15,20 @@ namespace Color_Chan.Discord.Commands.Results
         /// </summary>
         /// <param name="errorMessage">The message of the error.</param>
         /// <param name="missingPermissions">
-        ///     The missing <see cref="DiscordGuildPermission" />s the bot was required to have for
+        ///     The missing <see cref="DiscordPermission" />s the bot was required to have for
         ///     this command/command group.
         /// </param>
-        public SlashCommandRequireBotPermissionErrorResult(string errorMessage, List<DiscordGuildPermission>? missingPermissions) : base(errorMessage)
+        public SlashCommandRequireBotPermissionErrorResult(string errorMessage, List<DiscordPermission>? missingPermissions) : base(errorMessage)
         {
             MissingPermissions = missingPermissions;
         }
 
         /// <summary>
-        ///     The missing <see cref="DiscordGuildPermission" />s the bot was required to have for this command/command group.
+        ///     The missing <see cref="DiscordPermission" />s the bot was required to have for this command/command group.
         /// </summary>
         /// <remarks>
         ///     Null when the command was used in DMs.
         /// </remarks>
-        public List<DiscordGuildPermission>? MissingPermissions { get; }
+        public List<DiscordPermission>? MissingPermissions { get; }
     }
 }

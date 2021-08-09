@@ -46,6 +46,6 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public bool? Pending { get; init; }
 
         /// <inheritdoc />
-        public DiscordGuildPermission? Permissions { get; init; }
+        public DiscordPermission? Permissions { get; init; }
     }
 }
