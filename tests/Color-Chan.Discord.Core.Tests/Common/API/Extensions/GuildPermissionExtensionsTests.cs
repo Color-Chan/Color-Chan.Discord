@@ -1,5 +1,5 @@
 ﻿using System;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Extensions;
 using FluentAssertions;
 using NUnit.Framework;

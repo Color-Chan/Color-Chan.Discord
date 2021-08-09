@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
+namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
 	/// <summary>
 	///     Represents a discord Bitwise Permission Flags API model.

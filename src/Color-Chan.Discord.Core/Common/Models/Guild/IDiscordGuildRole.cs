@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild

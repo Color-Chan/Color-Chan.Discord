@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {

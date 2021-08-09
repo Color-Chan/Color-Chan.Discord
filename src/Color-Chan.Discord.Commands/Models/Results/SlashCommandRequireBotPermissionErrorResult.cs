@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Commands.Models.Results
 {
