@@ -42,5 +42,58 @@ namespace Color_Chan.Discord.Core.Extensions
                        .Cast<DiscordGuildPermission>()
                        .ToList();
         }
+        
+        /// <summary>
+        ///     Get a readable string for a single <paramref name="permission"/>.
+        /// </summary>
+        /// <param name="permission">The permission that will be turned into a string.</param>
+        /// <returns>
+        ///     A readable string for a single <paramref name="permission"/>.
+        /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when there was no string for the provided <paramref name="permission"/>.</exception>
+        public static string ToReadableString(this DiscordGuildPermission permission)
+        {
+            return permission switch
+            {
+                DiscordGuildPermission.None => "None",
+                DiscordGuildPermission.CreateInstantInvite => "Create instant invite",
+                DiscordGuildPermission.KickMembers => "Kick members",
+                DiscordGuildPermission.BanMembers => "Ban members",
+                DiscordGuildPermission.Administrator => "Administrator",
+                DiscordGuildPermission.ManageChannels => "Manage channels",
+                DiscordGuildPermission.ManageGuild => "Manage server",
+                DiscordGuildPermission.AddReactions => "Add reactions",
+                DiscordGuildPermission.ViewAuditLog => "View audit log",
+                DiscordGuildPermission.PrioritySpeaker => "Priority speaker",
+                DiscordGuildPermission.Stream => "Stream",
+                DiscordGuildPermission.ViewChannel => "View channel",
+                DiscordGuildPermission.SendMessages => "Send messages",
+                DiscordGuildPermission.SendTtsMessages => "Send Text-to-Speech messages",
+                DiscordGuildPermission.ManageMessages => "Manage messages",
+                DiscordGuildPermission.EmbedLinks => "Embed links",
+                DiscordGuildPermission.AttachFiles => "Attach files",
+                DiscordGuildPermission.ReadMessageHistory => "Read message history",
+                DiscordGuildPermission.MentionEveryone => "Mention everyone",
+                DiscordGuildPermission.UseExternalEmojis => "Use external emojis",
+                DiscordGuildPermission.ViewGuildInsights => "View guild insights",
+                DiscordGuildPermission.Connect => "Connect",
+                DiscordGuildPermission.Speak => "Speak",
+                DiscordGuildPermission.MuteMembers => "Mute members",
+                DiscordGuildPermission.DeafenMembers => "Deafen members",
+                DiscordGuildPermission.MoveMembers => "Move members",
+                DiscordGuildPermission.UseVoiceActivity => "Use voice activity",
+                DiscordGuildPermission.ChangeNickname => "Change nicknames",
+                DiscordGuildPermission.ManageNicknames => "Manage nicknames",
+                DiscordGuildPermission.ManageRoles => "Manage roles",
+                DiscordGuildPermission.ManageWebhooks => "Manage webhooks",
+                DiscordGuildPermission.ManageEmojisAndStickers => "Manage emojis and stickers",
+                DiscordGuildPermission.UseSlashCommands => "Use slash commands",
+                DiscordGuildPermission.RequestToSpeak => "Request to speak",
+                DiscordGuildPermission.ManageThreads => "Manage threads",
+                DiscordGuildPermission.UsePublicThreads => "Use public threads",
+                DiscordGuildPermission.UsePrivateThreads => "Use private threads",
+                _ => throw new ArgumentOutOfRangeException(nameof(permission), permission, null)
+            };
+        }
     }
 }
