@@ -104,7 +104,6 @@ namespace Color_Chan.Discord.Extensions
             services.AddColorChanDiscordCommand(configurations.SlashCommandConfigs, configurations.DefaultCacheConfig, configurations.RedisCacheOptions);
             
             services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
-            services.AddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
             services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
 
             configurations.InteractionConfigs ??= configuration =>
