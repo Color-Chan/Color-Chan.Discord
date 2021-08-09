@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
+namespace Color_Chan.Discord.Commands.Tests.Services.Implementations.Builders
 {
     [TestFixture]
     public class SlashCommandOptionBuildServiceTests
