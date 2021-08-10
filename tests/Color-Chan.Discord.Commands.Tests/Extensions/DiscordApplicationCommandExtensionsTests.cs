@@ -110,7 +110,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                                 new()
                                                 {
                                                     Name = "name1",
-                                                    Value = "value1"
+                                                    Value = 123
                                                 }
                                             }
                                         }
@@ -217,7 +217,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                                 new()
                                                 {
                                                     Name = "name1",
-                                                    Value = "value1"
+                                                    Value = 123
                                                 }
                                             }
                                         }

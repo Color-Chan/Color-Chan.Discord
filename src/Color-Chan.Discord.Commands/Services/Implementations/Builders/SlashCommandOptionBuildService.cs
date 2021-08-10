@@ -42,7 +42,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                 if (choiceAttributes.Any())
                 {
                     var choices = choiceAttributes
-                                  .Select(choiceAttribute => new KeyValuePair<string, string>(choiceAttribute.Name, choiceAttribute.Value))
+                                  .Select(choiceAttribute => new KeyValuePair<string, object>(choiceAttribute.Name, choiceAttribute.ObjectValue()))
                                   .ToList();
 
                     options.Add(new SlashCommandOptionInfo(optionAttribute.Name, optionAttribute.Description, parameter.ParameterType, optionAttribute.IsRequired, choices, optionAttribute.Type));
@@ -86,7 +86,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         }
 
         /// <inheritdoc />
-        public IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, string>>? choicePairs)
+        public IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs)
         {
             if (choicePairs is null) return null;
 

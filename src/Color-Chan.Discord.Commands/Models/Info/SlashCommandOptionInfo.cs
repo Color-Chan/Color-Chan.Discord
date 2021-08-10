@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         ///     Thrown when <paramref name="name" />, <paramref name="description" /> or
         ///     <paramref name="type" /> is null.
         /// </exception>
-        public SlashCommandOptionInfo(string name, string description, Type type, bool? isRequired, IEnumerable<KeyValuePair<string, string>>? choices = null,
+        public SlashCommandOptionInfo(string name, string description, Type type, bool? isRequired, IEnumerable<KeyValuePair<string, object>>? choices = null,
                                       DiscordApplicationCommandOptionType? optionType = null)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
@@ -114,7 +114,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         public bool? IsRequired { get; init; }
 
         /// <inheritdoc />
-        public IEnumerable<KeyValuePair<string, string>>? Choices { get; init; }
+        public IEnumerable<KeyValuePair<string, object>>? Choices { get; init; }
 
         /// <inheritdoc />
         public MethodInfo? CommandMethod { get; set; }

@@ -56,7 +56,7 @@ namespace Color_Chan.Discord.Commands.Extensions
 
                         // The command option choice already exists.
 
-                        if (!newChoice.Value.Equals(existingChoice.Value))
+                        if (!newChoice.Value.Equals(existingChoice.RawValue))
                             // Value has been updated.
                             return true;
                     }
