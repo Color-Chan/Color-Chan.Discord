@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Extensions;
@@ -8,6 +10,7 @@ using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -95,6 +98,55 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Assert
             result.Should().NotBeNull();
             _orderTestMessage.Should().Be("command");
+        }
+        
+        [Test]
+        public async Task Should_execute_top_level_command_with_resolved_and_pipelines()
+        {
+            // Arrange
+            var serviceProvider = new ServiceCollection()
+                                  .AddSlashCommandPipeline<ResolvedPipeline>()
+                                  .BuildServiceProvider();
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var interaction = new DiscordInteraction(new DiscordInteractionData
+            {
+                Data = new DiscordInteractionCommandData
+                {
+                    Id = ulong.MaxValue,
+                    Name = "command",
+                    Resolved = new DiscordInteractionCommandResolvedData
+                    {
+                        Roles = new Dictionary<ulong, DiscordGuildRoleData>
+                        {
+                            {865723094761078804, new DiscordGuildRoleData
+                            {
+                                Id = 865723094761078804,
+                                Color = Color.Red,
+                                Managed = false,
+                                Name = "red",
+                                Mentionable = true,
+                                Permissions = DiscordPermission.None,
+                                Position = 12,
+                                IsHoisted = false
+                            }}
+                        }
+                    }
+                },
+                User = new DiscordUserData
+                {
+                    Id = 1
+                },
+                ApplicationId = 2,
+                ChannelId = 3,
+                Token = "token"
+            });
+
+            // Act
+            var result = await handler.HandleSlashCommandAsync(interaction);
+
+            // Assert
+            result.Should().NotBeNull();
+            _orderTestMessage.Should().Be("red_command_red");
         }
 
         [Test]
@@ -242,6 +294,20 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                 _orderTestMessage += "inner_";
                 var result = await next();
                 _orderTestMessage += "_inner";
+                
+                return result;
+            }
+        }
+        
+        private class ResolvedPipeline : ISlashCommandPipeline
+        {
+            public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
+            {
+                var role = context.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == 865723094761078804).Value;
+                
+                _orderTestMessage += $"{role?.Name}_";
+                var result = await next();
+                _orderTestMessage += $"_{role?.Name}";
                 
                 return result;
             }
