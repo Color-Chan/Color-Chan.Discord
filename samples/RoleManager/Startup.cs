@@ -26,10 +26,11 @@ namespace RoleManager
             {
                 SlashCommandConfigs = slashOptions =>
                 {
-                    slashOptions.EnableAutoSync = true; // <---
-                    slashOptions.EnableAutoGetGuild = true; // <---
+                    slashOptions.EnableAutoSync = true; 
+                    slashOptions.EnableAutoGetGuild = true; 
+                    slashOptions.SendDefaultErrorMessage = true;
                 }
-            };
+            }; 
 
             //  Replace the arguments with the data of your bot.
             //  Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.

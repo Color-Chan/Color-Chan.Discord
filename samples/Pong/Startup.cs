@@ -26,6 +26,7 @@ namespace Pong
                 {
                     slashOptions.EnableAutoSync = true;
                     slashOptions.EnableAutoGetGuild = true;
+                    slashOptions.SendDefaultErrorMessage = true;
                 }
             };
 
