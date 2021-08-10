@@ -87,7 +87,6 @@ namespace Color_Chan.Discord.Commands.Services
         ///     Execute a specific command with their dependencies.
         ///     The command will be searched for with its <see cref="SlashCommandAttribute.Name" />.
         /// </summary>
-        /// <param name="name">The name of the command.</param>
         /// <param name="context">The current <see cref="ISlashCommandContext" /> that will be passed to the command module.</param>
         /// <param name="options">The options used with the command.</param>
         /// <param name="serviceProvider">
@@ -99,49 +98,8 @@ namespace Color_Chan.Discord.Commands.Services
         /// </returns>
         /// <seealso cref="Result" />
         /// <seealso cref="SlashCommandAttribute" />
-        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
+        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
                                                                            IServiceProvider? serviceProvider = null);
-
-        /// <summary>
-        ///     Execute a specific command with their dependencies.
-        ///     The command will be searched for with its <see cref="SlashCommandAttribute.Name" />.
-        /// </summary>
-        /// <param name="commandGroupName">The name of the command group.</param>
-        /// <param name="commandName">The name of the command.</param>
-        /// <param name="context">The current <see cref="ISlashCommandContext" /> that will be passed to the command module.</param>
-        /// <param name="options">The options used with the command.</param>
-        /// <param name="serviceProvider">
-        ///     The <see cref="IServiceProvider" /> containing the necessary dependencies for the the
-        ///     module of the command.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Result" /> containing the result of the command execution.
-        /// </returns>
-        /// <seealso cref="Result" />
-        /// <seealso cref="SlashCommandAttribute" />
-        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string commandName, ISlashCommandContext context,
-                                                                           IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null);
-
-        /// <summary>
-        ///     Execute a specific command with their dependencies.
-        ///     The command will be searched for with its <see cref="SlashCommandAttribute.Name" />.
-        /// </summary>
-        /// <param name="commandGroupName">The name of the command group.</param>
-        /// <param name="subCommandGroupName">The name of the sub command group.</param>
-        /// <param name="commandName">The name of the command.</param>
-        /// <param name="context">The current <see cref="ISlashCommandContext" /> that will be passed to the command module.</param>
-        /// <param name="options">The options used with the command.</param>
-        /// <param name="serviceProvider">
-        ///     The <see cref="IServiceProvider" /> containing the necessary dependencies for the the
-        ///     module of the command.
-        /// </param>
-        /// <returns>
-        ///     The <see cref="Result" /> containing the result of the command execution.
-        /// </returns>
-        /// <seealso cref="Result" />
-        /// <seealso cref="SlashCommandAttribute" />
-        Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string subCommandGroupName, string commandName, ISlashCommandContext context,
-                                                                           IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null);
 
         /// <summary>
         ///     Search for a command by its <see cref="SlashCommandAttribute.Name" />.

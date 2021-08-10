@@ -1,4 +1,5 @@
-﻿using Color_Chan.Discord.Core.Common.Models;
+﻿using System.Collections.Generic;
+using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Message;
@@ -42,6 +43,9 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         public ulong InteractionId { get; init; }
 
         /// <inheritdoc />
-        public string MethodName { get; set; } = null!;
+        public string? MethodName { get; set; }
+
+        /// <inheritdoc />
+        public IEnumerable<string> SlashCommandName { get; set; } = null!;
     }
 }
