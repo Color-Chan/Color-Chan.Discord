@@ -27,7 +27,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     The type of the invoked command.
         /// </summary>
         [JsonPropertyName("type")] 
-        public DiscordApplicationCommandTypes Type { get; set; }
+        public DiscordApplicationCommandTypes Type { get; init; }
 
         /// <summary>
         ///     Converted users + roles + channels.
@@ -39,7 +39,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     The params + values from the user.
         /// </summary>
         [JsonPropertyName("options")]
-        public IEnumerable<DiscordInteractionOptionData>? Options { get; set; }
+        public IEnumerable<DiscordInteractionOptionData>? Options { get; init; }
 
         /// <summary>
         ///     For components, the custom_id of the component.

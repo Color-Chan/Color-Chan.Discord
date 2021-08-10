@@ -16,18 +16,18 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
         ///     The user presence is being updated for.
         /// </summary>
         [JsonPropertyName("user")]
-        public DiscordUserData User { get; set; } = null!;
+        public DiscordUserData User { get; init; } = null!;
 
         /// <summary>
         ///     id of the guild.
         /// </summary>
         [JsonPropertyName("guild_id")]
-        public ulong GuildId { get; set; }
+        public ulong GuildId { get; init; }
 
         /// <summary>
         ///     Either "idle", "dnd", "online", or "offline".
         /// </summary>
         [JsonPropertyName("status")]
-        public string Status { get; set; } = null!;
+        public string Status { get; init; } = null!;
     }
 }

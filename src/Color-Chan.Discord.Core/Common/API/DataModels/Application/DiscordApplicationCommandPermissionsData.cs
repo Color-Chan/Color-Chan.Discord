@@ -12,18 +12,18 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
         ///     The id of the role or user.
         /// </summary>
         [JsonPropertyName("id")]
-        public ulong Id { get; set; }
+        public ulong Id { get; init; }
 
         /// <summary>
         ///     The type of the <see cref="DiscordApplicationCommandPermissionsData" />.
         /// </summary>
         [JsonPropertyName("type")]
-        public DiscordApplicationCommandPermissionsType Type { get; set; }
+        public DiscordApplicationCommandPermissionsType Type { get; init; }
 
         /// <summary>
         ///     true to allow, false, to disallow.
         /// </summary>
         [JsonPropertyName("permission")]
-        public bool Allow { get; set; }
+        public bool Allow { get; init; }
     }
 }

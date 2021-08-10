@@ -11,12 +11,12 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Errors
         ///     The error code.
         /// </summary>
         [JsonPropertyName("code")]
-        public string Code { get; set; } = null!;
+        public string Code { get; init; } = null!;
 
         /// <summary>
         ///     The error message.
         /// </summary>
         [JsonPropertyName("message")]
-        public string Message { get; set; } = null!;
+        public string Message { get; init; } = null!;
     }
 }

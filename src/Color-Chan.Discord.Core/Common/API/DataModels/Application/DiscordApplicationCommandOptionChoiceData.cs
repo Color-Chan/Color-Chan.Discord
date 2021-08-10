@@ -12,12 +12,12 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
         ///     1-100 character choice name.
         /// </summary>
         [JsonPropertyName("name")]
-        public string Name { get; set; } = null!;
+        public string Name { get; init; } = null!;
 
         /// <summary>
         ///     Value of the choice, up to 100 characters if string.
         /// </summary>
         [JsonPropertyName("value")]
-        public object Value { get; set; } = null!;
+        public object Value { get; init; } = null!;
     }
 }

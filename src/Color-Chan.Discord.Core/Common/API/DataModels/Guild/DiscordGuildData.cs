@@ -65,7 +65,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Total permissions for the user in the guild (excludes overwrites).
         /// </summary>
         [JsonPropertyName("permission")]
-        public string? CurrentUserPermission { get; set; }
+        public string? CurrentUserPermission { get; init; }
 
         /// <summary>
         ///     Voice region id for the guild (deprecated).
@@ -76,99 +76,99 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         [Obsolete("This field is deprecated and will be removed in v9 and is replaced by rtc_region")]
         [JsonPropertyName("region")]
 
-        public string? Region { get; set; }
+        public string? Region { get; init; }
 
         /// <summary>
         ///     Id of afk channel.
         /// </summary>
         [JsonPropertyName("afk_channel_id")]
-        public ulong? AfkChannelId { get; set; }
+        public ulong? AfkChannelId { get; init; }
 
         /// <summary>
         ///     Ffk timeout in seconds.
         /// </summary>
         [JsonPropertyName("afk_timeout")]
-        public int AfkTimeout { get; set; }
+        public int AfkTimeout { get; init; }
 
         /// <summary>
         ///     True if the server widget is enabled.
         /// </summary>
         [JsonPropertyName("widget_enabled")]
-        public bool? WidgetEnabled { get; set; }
+        public bool? WidgetEnabled { get; init; }
 
         /// <summary>
         ///     The channel id that the widget will generate an invite to, or null if set to no invite.
         /// </summary>
         [JsonPropertyName("widget_channel_id")]
 
-        public ulong? WidgetChannelId { get; set; }
+        public ulong? WidgetChannelId { get; init; }
 
         /// <summary>
         ///     Verification level required for the guild.
         /// </summary>
         [JsonPropertyName("verification_level")]
-        public DiscordGuildVerificationLevel VerificationLevel { get; set; }
+        public DiscordGuildVerificationLevel VerificationLevel { get; init; }
 
         /// <summary>
         ///     Default message notifications level.
         /// </summary>
         [JsonPropertyName("default_message_notifications")]
-        public DiscordGuildDefaultMessageNotificationLevel DefaultMessageNotifications { get; set; }
+        public DiscordGuildDefaultMessageNotificationLevel DefaultMessageNotifications { get; init; }
 
         /// <summary>
         ///     Explicit content filter level.
         /// </summary>
         [JsonPropertyName("explicit_content_filter")]
-        public DiscordGuildExplicitContentFilterLevel ExplicitContentFilter { get; set; }
+        public DiscordGuildExplicitContentFilterLevel ExplicitContentFilter { get; init; }
 
         /// <summary>
         ///     Roles in the guild.
         /// </summary>
         [JsonPropertyName("roles")]
-        public IEnumerable<DiscordGuildRoleData> Roles { get; set; } = new List<DiscordGuildRoleData>();
+        public IEnumerable<DiscordGuildRoleData> Roles { get; init; } = new List<DiscordGuildRoleData>();
 
         /// <summary>
         ///     Custom guild emojis.
         /// </summary>
         [JsonPropertyName("emojis")]
-        public IEnumerable<DiscordEmojiData> Emojis { get; set; } = new List<DiscordEmojiData>();
+        public IEnumerable<DiscordEmojiData> Emojis { get; init; } = new List<DiscordEmojiData>();
 
         /// <summary>
         ///     Enabled guild features.
         /// </summary>
         [JsonPropertyName("features")]
-        public IEnumerable<DiscordGuildFeature> Features { get; set; } = new List<DiscordGuildFeature>();
+        public IEnumerable<DiscordGuildFeature> Features { get; init; } = new List<DiscordGuildFeature>();
 
         /// <summary>
         ///     Required MFA level for the guild.
         /// </summary>
         [JsonPropertyName("mfa_level")]
-        public DiscordGuildMfaLevel MfaLevel { get; set; }
+        public DiscordGuildMfaLevel MfaLevel { get; init; }
 
         /// <summary>
         ///     Application id of the guild creator if it is bot-created.
         /// </summary>
         [JsonPropertyName("application_id")]
-        public ulong? ApplicationId { get; set; }
+        public ulong? ApplicationId { get; init; }
 
         /// <summary>
         ///     The id of the channel where guild notices such as welcome messages and boost events are posted.
         /// </summary>
         [JsonPropertyName("system_channel_id")]
 
-        public ulong? SystemChannelId { get; set; }
+        public ulong? SystemChannelId { get; init; }
 
         /// <summary>
         ///     The system channel flags.
         /// </summary>
         [JsonPropertyName("system_channel_flags")]
-        public DiscordSystemChannelFlags SystemChannelFlags { get; set; }
+        public DiscordSystemChannelFlags SystemChannelFlags { get; init; }
 
         /// <summary>
         ///     The id of the channel where Community guilds can display rules and/or guidelines.
         /// </summary>
         [JsonPropertyName("rules_channel_id")]
-        public ulong? RulesChannelId { get; set; }
+        public ulong? RulesChannelId { get; init; }
 
         /// <summary>
         ///     When the current user joined this guild.
@@ -177,7 +177,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("joined_at")]
-        public DateTimeOffset? JoinedAt { get; set; }
+        public DateTimeOffset? JoinedAt { get; init; }
 
         /// <summary>
         ///     True if this is considered a large guild.
@@ -186,7 +186,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("large")]
-        public bool? Large { get; set; }
+        public bool? Large { get; init; }
 
         /// <summary>
         ///     True if this guild is unavailable due to an outage.
@@ -195,7 +195,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("unavailable")]
-        public bool? Unavailable { get; set; }
+        public bool? Unavailable { get; init; }
 
         /// <summary>
         ///     Total number of members in this guild.
@@ -204,7 +204,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("member_count")]
-        public int? MemberCount { get; set; }
+        public int? MemberCount { get; init; }
 
         /// <summary>
         ///     States of members currently in voice channels; lacks the guild_id key.
@@ -213,7 +213,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("voice_states")]
-        public IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
+        public IEnumerable<DiscordVoiceState>? VoiceStates { get; init; }
 
         /// <summary>
         ///     Users in the guild.
@@ -222,7 +222,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("members")]
-        public IEnumerable<DiscordGuildMemberData>? Members { get; set; }
+        public IEnumerable<DiscordGuildMemberData>? Members { get; init; }
 
         /// <summary>
         ///     Channels in the guild.
@@ -231,7 +231,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("channels")]
-        public IEnumerable<DiscordChannelData>? Channels { get; set; }
+        public IEnumerable<DiscordChannelData>? Channels { get; init; }
 
         /// <summary>
         ///     All active threads in the guild that current user has permission to view.
@@ -240,7 +240,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("threads")]
-        public IEnumerable<DiscordChannelData>? Threads { get; set; }
+        public IEnumerable<DiscordChannelData>? Threads { get; init; }
 
         /// <summary>
         ///     presences of the members in the guild, will only include non-offline members if the size is greater than large
@@ -256,93 +256,93 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     </para>
         /// </remarks>
         [JsonPropertyName("presences")]
-        public IEnumerable<DiscordGuildPresenceData>? Presences { get; set; }
+        public IEnumerable<DiscordGuildPresenceData>? Presences { get; init; }
 
         /// <summary>
         ///     The maximum number of presences for the guild (null is always returned, apart from the largest of guilds).
         /// </summary>
         [JsonPropertyName("max_presences")]
-        public int? MaxPresences { get; set; }
+        public int? MaxPresences { get; init; }
 
         /// <summary>
         ///     The maximum number of members for the guild.
         /// </summary>
         [JsonPropertyName("max_members")]
-        public int? MaxMembers { get; set; }
+        public int? MaxMembers { get; init; }
 
         /// <summary>
         ///     The vanity url code for the guild.
         /// </summary>
         [JsonPropertyName("vanity_url_code")]
-        public string? VanityUrlCode { get; set; }
+        public string? VanityUrlCode { get; init; }
 
         /// <summary>
         ///     The description of a Community guild.
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        public string? Description { get; init; }
 
         /// <summary>
         ///     Banner hash.
         /// </summary>
         [JsonPropertyName("banner")]
-        public string? Banner { get; set; }
+        public string? Banner { get; init; }
 
         /// <summary>
         ///     Premium tier (Server Boost level).
         /// </summary>
         [JsonPropertyName("premium_tier")]
-        public DiscordGuildPremiumTier PremiumTier { get; set; }
+        public DiscordGuildPremiumTier PremiumTier { get; init; }
 
         /// <summary>
         ///     The number of boosts this guild currently has.
         /// </summary>
         [JsonPropertyName("premium_subscription_count")]
 
-        public int? PremiumSubscriptionCount { get; set; }
+        public int? PremiumSubscriptionCount { get; init; }
 
         /// <summary>
         ///     The preferred locale of a Community guild; used in server discovery and notices from Discord; defaults to "en-US".
         /// </summary>
         [JsonPropertyName("preferred_locale")]
-        public string PreferredLocale { get; set; } = null!;
+        public string PreferredLocale { get; init; } = null!;
 
         /// <summary>
         ///     The id of the channel where admins and moderators of Community guilds receive notices from Discord.
         /// </summary>
         [JsonPropertyName("public_updates_channel_id")]
-        public ulong? PublicUpdatesChannelId { get; set; }
+        public ulong? PublicUpdatesChannelId { get; init; }
 
         /// <summary>
         ///     The maximum amount of users in a video channel.
         /// </summary>
         [JsonPropertyName("max_video_channel_users")]
-        public int? MaxVideoChannelUsers { get; set; }
+        public int? MaxVideoChannelUsers { get; init; }
 
         /// <summary>
         ///     Approximate number of members in this guild, returned from the GET /guilds/{id} endpoint when with_counts is true.
         /// </summary>
         [JsonPropertyName("approximate_member_count")]
-        public int? ApproximateMemberCount { get; set; }
+        public int? ApproximateMemberCount { get; init; }
 
         /// <summary>
         ///     Approximate number of non-offline members in this guild, returned from the GET /guilds/{id} endpoint when
         ///     with_counts is true.
         /// </summary>
         [JsonPropertyName("approximate_presence_count")]
-        public int? ApproximatePresenceCount { get; set; }
+        public int? ApproximatePresenceCount { get; init; }
 
         /// <summary>
         ///     The welcome screen of a Community guild, shown to new members, returned in an Invite's guild object.
         /// </summary>
         [JsonPropertyName("welcome_screen")]
-        public DiscordGuildWelcomeScreenData? WelcomeScreen { get; set; }
+        public DiscordGuildWelcomeScreenData? WelcomeScreen { get; init; }
 
         /// <summary>
         ///     Guild NSFW level.
         /// </summary>
         [JsonPropertyName("nsfw_level")]
-        public DiscordGuildNsfwLevel NsfwLevel { get; set; }
+        public DiscordGuildNsfwLevel NsfwLevel { get; init; }
 
         /// <summary>
         ///     Stage instances in the guild.
@@ -351,6 +351,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("stage_instances")]
-        public DiscordStageinstanceData? StageInstances { get; set; }
+        public DiscordStageinstanceData? StageInstances { get; init; }
     }
 }

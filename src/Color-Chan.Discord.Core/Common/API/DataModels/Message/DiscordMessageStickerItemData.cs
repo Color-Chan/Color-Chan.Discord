@@ -8,18 +8,18 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         ///     The id of the sticker.
         /// </summary>
         [JsonPropertyName("id")]
-        public ulong Id { get; set; }
+        public ulong Id { get; init; }
 
         /// <summary>
         ///     Name of the sticker.
         /// </summary>
         [JsonPropertyName("name")]
-        public string Name { get; set; } = null!;
+        public string Name { get; init; } = null!;
 
         /// <summary>
         ///     Type of sticker format.
         /// </summary>
         [JsonPropertyName("format_type")]
-        public ulong DiscordMessageStickerItemType { get; set; }
+        public ulong DiscordMessageStickerItemType { get; init; }
     }
 }
