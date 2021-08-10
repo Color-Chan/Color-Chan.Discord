@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
+namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
 	/// <summary>
 	///     Represents a discord Bitwise Permission Flags API model.
 	///     https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
 	/// </summary>
 	[Flags]
-    public enum DiscordGuildPermission : ulong
+    public enum DiscordPermission : ulong
     {
 	    /// <summary>
-	    ///     A <see cref="DiscordGuildPermission" /> with no permissions.
+	    ///     A <see cref="DiscordPermission" /> with no permissions.
 	    /// </summary>
 	    None = 0,
 

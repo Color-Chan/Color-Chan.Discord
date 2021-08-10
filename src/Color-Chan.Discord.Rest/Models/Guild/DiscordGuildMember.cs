@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
@@ -46,6 +47,6 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public bool? Pending { get; init; }
 
         /// <inheritdoc />
-        public DiscordGuildPermission? Permissions { get; init; }
+        public DiscordPermission? Permissions { get; init; }
     }
 }

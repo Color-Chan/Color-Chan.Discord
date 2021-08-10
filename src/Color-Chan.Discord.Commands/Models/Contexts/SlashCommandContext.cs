@@ -3,7 +3,7 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Message;
 
-namespace Color_Chan.Discord.Commands.Contexts
+namespace Color_Chan.Discord.Commands.Models.Contexts
 {
     /// <inheritdoc />
     public class SlashCommandContext : ISlashCommandContext

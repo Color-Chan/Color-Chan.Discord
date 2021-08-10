@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace RoleManager
 {
@@ -22,6 +23,11 @@ namespace RoleManager
         private static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
+                       .ConfigureLogging(logging =>
+                       {
+                           logging.ClearProviders();
+                           logging.AddConsole();
+                       })
                        .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
         }
     }

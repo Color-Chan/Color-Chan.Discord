@@ -2,7 +2,7 @@
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
 
-namespace Color_Chan.Discord.Commands.Info
+namespace Color_Chan.Discord.Commands.Models.Info
 {
     /// <summary>
     ///     Contains all the information about a slash command.

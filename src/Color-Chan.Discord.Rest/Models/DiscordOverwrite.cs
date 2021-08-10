@@ -20,9 +20,9 @@ namespace Color_Chan.Discord.Rest.Models
         public DiscordPermissionTargetType TargetType { get; init; }
 
         /// <inheritdoc />
-        public string Allow { get; init; }
+        public DiscordPermission Allow { get; init; }
 
         /// <inheritdoc />
-        public string Deny { get; init; }
+        public DiscordPermission Deny { get; init; }
     }
 }

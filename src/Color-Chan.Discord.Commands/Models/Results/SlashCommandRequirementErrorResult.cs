@@ -1,7 +1,7 @@
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Core.Results;
 
-namespace Color_Chan.Discord.Commands.Results
+namespace Color_Chan.Discord.Commands.Models.Results
 {
     /// <summary>
     ///     An error result describing an error thrown by a <see cref="SlashCommandRequirementAttribute" />.

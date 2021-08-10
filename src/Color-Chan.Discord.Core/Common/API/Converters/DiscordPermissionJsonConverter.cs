@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Extensions;
 
 namespace Color_Chan.Discord.Core.Common.API.Converters
 {
     /// <summary>
-    ///     Converters a <see cref="ulong" /> <see cref="string" /> json value to a <see cref="DiscordGuildPermission" />.
+    ///     Converters a <see cref="ulong" /> <see cref="string" /> json value to a <see cref="DiscordPermission" />.
     /// </summary>
-    public class DiscordGuildPermissionJsonConverter : JsonConverter<DiscordGuildPermission>
+    public class DiscordPermissionJsonConverter : JsonConverter<DiscordPermission>
     {
         /// <inheritdoc />
-        public override DiscordGuildPermission Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override DiscordPermission Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var permissionString = reader.GetString();
 
@@ -22,7 +22,7 @@ namespace Color_Chan.Discord.Core.Common.API.Converters
         }
 
         /// <inheritdoc />
-        public override void Write(Utf8JsonWriter writer, DiscordGuildPermission value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, DiscordPermission value, JsonSerializerOptions options)
         {
             writer.WriteStringValue(value.ConvertToString());
         }

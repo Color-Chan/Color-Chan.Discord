@@ -1,6 +1,6 @@
 using System.Drawing;
 using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Guild
 {
@@ -16,7 +16,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         ///     The bitwise value of the enabled/disabled permissions. Default is @everyone permissions in guild.
         /// </summary>
         [JsonPropertyName("permissions")]
-        public DiscordGuildPermission Permissions { get; init; }
+        public DiscordPermission Permissions { get; init; }
 
         /// <summary>
         ///     The RGB color value. Default: 0;

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Contexts;
-using Color_Chan.Discord.Commands.Results;
+using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Models.Results;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
@@ -40,7 +40,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         public override Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
         {
             return Task.FromResult(context.ChannelId != _channelId 
-                                       ? Result.FromError(new SlashCommandRequirementErrorResult($"Channel with ID {_channelId.ToString()} is required to use this command.")) 
+                                       ? Result.FromError(new SlashCommandRequireChannelErrorResult($"Channel with ID {_channelId.ToString()} is required to use this command.")) 
                                        : Result.FromSuccess());
         }
     }

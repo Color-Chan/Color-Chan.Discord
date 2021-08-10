@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Contexts;
-using Color_Chan.Discord.Commands.Results;
+using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Models.Results;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Results;
@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         {
             if (context.GuildId is null)
             {
-                return Result.FromError(new SlashCommandRequirementErrorResult("Command can not be executed in DMs"));
+                return Result.FromError(new SlashCommandRequireGuildOwnerErrorResult("Command can not be executed in DMs"));
             }
 
             IDiscordGuild? guild;
@@ -61,7 +61,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Result.FromSuccess();
             }
 
-            return Result.FromError(new SlashCommandRequirementErrorResult("Guild owner is required"));
+            return Result.FromError(new SlashCommandRequireGuildOwnerErrorResult("Guild owner is required"));
         }
     }
 }

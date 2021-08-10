@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Commands.Contexts;
-using Color_Chan.Discord.Commands.Info;
+using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Services

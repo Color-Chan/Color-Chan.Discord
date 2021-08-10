@@ -17,11 +17,11 @@ namespace Color_Chan.Discord.Core.Common.Models
         /// <summary>
         ///     Permission bit set.
         /// </summary>
-        string Allow { get; init; }
+        DiscordPermission Allow { get; init; }
 
         /// <summary>
         ///     Permission bit set.
         /// </summary>
-        string Deny { get; init; }
+        DiscordPermission Deny { get; init; }
     }
 }

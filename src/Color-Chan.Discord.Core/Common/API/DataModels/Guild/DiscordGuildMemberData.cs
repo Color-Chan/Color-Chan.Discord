@@ -62,6 +62,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Total permissions of the member in the channel, including overwrites, returned when in the interaction object.
         /// </summary>
         [JsonPropertyName("permissions")]
-        public DiscordGuildPermission? Permissions { get; init; }
+        public DiscordPermission? Permissions { get; init; }
     }
 }

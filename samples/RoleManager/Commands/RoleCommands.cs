@@ -5,8 +5,8 @@ using Color_Chan.Discord.Commands;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -52,7 +52,7 @@ namespace RoleManager.Commands
             var roleConfig = new DiscordCreateGuildRole
             {
                 Name = roleName,
-                Permissions = DiscordGuildPermission.None
+                Permissions = DiscordPermission.None
             };
             var newRoleResponse = await _restGuild.CreateGuildRoleAsync(SlashContext.GuildId!.Value, roleConfig).ConfigureAwait(false);
 

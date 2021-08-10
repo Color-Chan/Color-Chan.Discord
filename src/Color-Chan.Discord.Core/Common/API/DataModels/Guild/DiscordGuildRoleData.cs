@@ -43,7 +43,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Permission bit set.
         /// </summary>
         [JsonPropertyName("permissions")]
-        public DiscordGuildPermission Permissions { get; init; }
+        public DiscordPermission Permissions { get; init; }
 
         /// <summary>
         ///     Whether this role is managed by an integration

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Contexts;
-using Color_Chan.Discord.Commands.Results;
+using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Models.Results;
 using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Task.FromResult(Result.FromSuccess());
             }
 
-            return Task.FromResult(Result.FromError(new SlashCommandRequirementErrorResult("Command can not be executed in DMs")));
+            return Task.FromResult(Result.FromError(new SlashCommandRequireGuildErrorResult("Command can not be executed in DMs")));
         }
     }
 }

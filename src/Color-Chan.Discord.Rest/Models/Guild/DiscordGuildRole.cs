@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 
@@ -34,7 +35,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public int Position { get; init; }
 
         /// <inheritdoc />
-        public DiscordGuildPermission Permissions { get; init; }
+        public DiscordPermission Permissions { get; init; }
 
         /// <inheritdoc />
         public bool Managed { get; init; }

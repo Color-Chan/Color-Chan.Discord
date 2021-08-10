@@ -20,12 +20,12 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
         ///     Permission bit set.
         /// </summary>
         [JsonPropertyName("allow")]
-        public string Allow { get; init; } = null!;
+        public DiscordPermission Allow { get; init; }
 
         /// <summary>
         ///     Permission bit set.
         /// </summary>
         [JsonPropertyName("deny")]
-        public string Deny { get; init; } = null!;
+        public DiscordPermission Deny { get; init; }
     }
 }

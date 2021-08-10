@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild
 {
@@ -49,6 +49,6 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// <summary>
         ///     Total permissions of the member in the channel, including overwrites, returned when in the interaction object.
         /// </summary>
-        DiscordGuildPermission? Permissions { get; init; }
+        DiscordPermission? Permissions { get; init; }
     }
 }

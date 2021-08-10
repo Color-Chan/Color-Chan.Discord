@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Caching.Services;
-using Color_Chan.Discord.Commands.Contexts;
 using Color_Chan.Discord.Commands.Models;
-using Color_Chan.Discord.Commands.Results;
+using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Models.Results;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.DependencyInjection;
 
