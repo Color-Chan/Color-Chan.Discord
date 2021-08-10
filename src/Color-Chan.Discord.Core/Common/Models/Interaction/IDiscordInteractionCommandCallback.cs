@@ -32,7 +32,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         /// <summary>
         ///     Interaction application command callback data flags
         /// </summary>
-        public DiscordInteractionCommandCallbackFlags? Flags { get; init; }
+        public DiscordInteractionCallbackFlags? Flags { get; init; }
 
         /// <summary>
         ///     Message components.
@@ -43,8 +43,8 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         ///     Converts the model back to a discord data model so that it can be send to discord.
         /// </summary>
         /// <returns>
-        ///     The converted <see cref="DiscordInteractionCommandCallbackData" />.
+        ///     The converted <see cref="DiscordInteractionCallbackData" />.
         /// </returns>
-        DiscordInteractionCommandCallbackData ToDataModel();
+        DiscordInteractionCallbackData ToDataModel();
     }
 }

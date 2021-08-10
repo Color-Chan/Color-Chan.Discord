@@ -19,7 +19,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         /// <summary>
         ///     The type of interaction.
         /// </summary>
-        DiscordInteractionType Type { get; init; }
+        DiscordInteractionRequestType RequestType { get; init; }
 
         /// <summary>
         ///     The command data payload.
@@ -66,10 +66,10 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         IDiscordMessage? Message { get; init; }
 
         /// <summary>
-        ///     Checks whether or not the interaction <see cref="Type" /> is <see cref="DiscordInteractionType.Ping" />.
+        ///     Checks whether or not the interaction <see cref="RequestType" /> is <see cref="DiscordInteractionRequestType.Ping" />.
         /// </summary>
         /// <returns>
-        ///     True or false depending on the value of <see cref="Type" />.
+        ///     True or false depending on the value of <see cref="RequestType" />.
         /// </returns>
         bool IsPingInteraction();
     }

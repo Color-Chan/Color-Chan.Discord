@@ -5,7 +5,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    public record DiscordInteractionCommandOptionData
+    public record DiscordInteractionOptionData
     {
         /// <summary>
         ///     The name of the parameter.
@@ -29,6 +29,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     Present if this option is a group or subcommand.
         /// </summary>
         [JsonPropertyName("options")]
-        public IEnumerable<DiscordInteractionCommandOptionData>? SubOptions { get; set; }
+        public IEnumerable<DiscordInteractionOptionData>? SubOptions { get; set; }
     }
 }

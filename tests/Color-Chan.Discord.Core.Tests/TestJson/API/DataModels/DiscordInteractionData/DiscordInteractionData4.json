@@ -5,6 +5,7 @@
   "data": {
     "id": "999999999999",
     "name": "roles",
+    "type": 0,
     "resolved": {
       "users": {
         "999999999999": {

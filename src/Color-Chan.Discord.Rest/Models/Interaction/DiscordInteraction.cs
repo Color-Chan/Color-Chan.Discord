@@ -12,7 +12,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public DiscordInteraction(DiscordInteractionData data)
         {
             ApplicationId = data.ApplicationId;
-            Type = data.Type;
+            RequestType = data.RequestType;
             if (data.Data is not null) Data = new DiscordInteractionCommand(data.Data);
             GuildId = data.GuildId;
             ChannelId = data.ChannelId;
@@ -29,7 +29,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public ulong ApplicationId { get; init; }
 
         /// <inheritdoc />
-        public DiscordInteractionType Type { get; init; }
+        public DiscordInteractionRequestType RequestType { get; init; }
 
         /// <inheritdoc />
         public IDiscordInteractionCommand? Data { get; init; }
@@ -58,7 +58,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         /// <inheritdoc />
         public bool IsPingInteraction()
         {
-            return Type == DiscordInteractionType.Ping;
+            return RequestType == DiscordInteractionRequestType.Ping;
         }
     }
 }

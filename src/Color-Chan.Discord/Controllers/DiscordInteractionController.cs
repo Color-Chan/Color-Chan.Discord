@@ -93,7 +93,7 @@ namespace Color_Chan.Discord.Controllers
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
 
             // Acknowledge the interaction.
-            if (_configuration.AcknowledgeInteractions && interactionData.Type != DiscordInteractionType.Ping)
+            if (_configuration.AcknowledgeInteractions && interactionData.RequestType != DiscordInteractionRequestType.Ping)
             {
                 var acknowledgeResponse = new DiscordInteractionResponseData
                 {
@@ -108,16 +108,16 @@ namespace Color_Chan.Discord.Controllers
             }
 
             // Execute the correct interaction type.
-            var response = interactionData.Type switch
+            var response = interactionData.RequestType switch
             {
-                DiscordInteractionType.Ping => PingResponse(),
-                DiscordInteractionType.ApplicationCommand => await _commandHandler.HandleSlashCommandAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
-                DiscordInteractionType.MessageComponent => throw new NotImplementedException(),
+                DiscordInteractionRequestType.Ping => PingResponse(),
+                DiscordInteractionRequestType.ApplicationCommand => await _commandHandler.HandleSlashCommandAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
+                DiscordInteractionRequestType.MessageComponent => throw new NotImplementedException(),
                 _ => throw new ArgumentOutOfRangeException()
             };
 
             // Send the response back to discord.
-            if (!_configuration.AcknowledgeInteractions || interactionData.Type == DiscordInteractionType.Ping)
+            if (!_configuration.AcknowledgeInteractions || interactionData.RequestType == DiscordInteractionRequestType.Ping)
             {
                 return SerializeResult(response);
             }

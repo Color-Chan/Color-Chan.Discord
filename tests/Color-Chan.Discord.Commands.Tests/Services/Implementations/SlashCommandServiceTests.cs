@@ -224,13 +224,13 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             var options = new List<IDiscordInteractionCommandOption>
             {
-                new DiscordInteractionCommandOption(new DiscordInteractionCommandOptionData
+                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
                 {
                     Name = "Role name",
                     Type = DiscordApplicationCommandOptionType.String,
                     JsonValue = doc.RootElement.GetProperty("stringValue")
                 }),
-                new DiscordInteractionCommandOption(new DiscordInteractionCommandOptionData
+                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
                 {
                     Name = "Number",
                     Type = DiscordApplicationCommandOptionType.Integer,
@@ -265,9 +265,9 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
             var context = new SlashCommandContext
             {
-                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionCommandData
+                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionRequestData
                 {
-                    Resolved = new DiscordInteractionCommandResolvedData
+                    Resolved = new DiscordInteractionResolvedData
                     {
                         Roles = new Dictionary<ulong, DiscordGuildRoleData>
                         {
@@ -296,7 +296,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             var options = new List<IDiscordInteractionCommandOption>
             {
-                new DiscordInteractionCommandOption(new DiscordInteractionCommandOptionData
+                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
                 {
                     Name = "role",
                     Type = DiscordApplicationCommandOptionType.Role,

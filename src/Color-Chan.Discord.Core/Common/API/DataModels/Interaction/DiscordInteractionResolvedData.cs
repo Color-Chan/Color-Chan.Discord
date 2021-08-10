@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    public record DiscordInteractionCommandResolvedData
+    public record DiscordInteractionResolvedData
     {
         /// <summary>
         ///     The ids and User objects.
@@ -35,5 +36,11 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         /// </remarks>
         [JsonPropertyName("channels")]
         public IReadOnlyDictionary<ulong, DiscordChannelData>? Channels { get; init; }
+        
+        /// <summary>
+        ///     The ids and partial Message objects.
+        /// </summary>
+        [JsonPropertyName("messages")]
+        public IReadOnlyDictionary<ulong, DiscordMessageData>? Messages { get; init; }
     }
 }

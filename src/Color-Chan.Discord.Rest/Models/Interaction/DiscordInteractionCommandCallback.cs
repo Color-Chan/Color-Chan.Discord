@@ -14,7 +14,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         {
         }
 
-        public DiscordInteractionCommandCallback(DiscordInteractionCommandCallbackData data)
+        public DiscordInteractionCommandCallback(DiscordInteractionCallbackData data)
         {
             IsTts = data.IsTts;
             Content = data.Content;
@@ -36,15 +36,15 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public IDiscordAllowedMentions? AllowedMentions { get; init; }
 
         /// <inheritdoc />
-        public DiscordInteractionCommandCallbackFlags? Flags { get; init; }
+        public DiscordInteractionCallbackFlags? Flags { get; init; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordComponent>? Components { get; init; }
 
         /// <inheritdoc />
-        public DiscordInteractionCommandCallbackData ToDataModel()
+        public DiscordInteractionCallbackData ToDataModel()
         {
-            return new DiscordInteractionCommandCallbackData
+            return new DiscordInteractionCallbackData
             {
                 Content = Content,
                 Embeds = Embeds?.Select(x => x.ToDataModel()),
