@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         {
             Id = data.Id;
             Name = data.Name;
-            if (data.Resolved is not null) Resolved = new DiscordInteractionCommandResolved(data.Resolved);
+            Resolved = data.Resolved is not null ? new DiscordInteractionCommandResolved(data.Resolved) : null;
             Options = data.Options?.Select(optionData => new DiscordInteractionCommandOption(optionData));
             CustomId = data.CustomId;
             ComponentType = data.ComponentType;

@@ -79,7 +79,7 @@ namespace Color_Chan.Discord.Controllers
             var signature = Request.Headers[SignatureHeader].ToString();
             var timeStamp = Request.Headers[TimeStampHeader].ToString();
             
-            if (!await _authService.VerifySignatureAsync(signature, timeStamp, Request.Body).ConfigureAwait(false))
+            if (_configuration.VerifyInteractions && !await _authService.VerifySignatureAsync(signature, timeStamp, Request.Body).ConfigureAwait(false))
             {
                 _logger.LogWarning("Failed to verify interaction command");
                 return Unauthorized("Failed to verify signatures");
