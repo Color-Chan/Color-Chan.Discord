@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Rest.Models.Select
             Label = data.Label;
             Value = data.Value;
             Description = data.Description;
-            Emoji = new DiscordEmoji(data.Emoji);
+            Emoji = data.Emoji is not null ? new DiscordEmoji(data.Emoji) : null;
             Default = data.Default;
         }
 
