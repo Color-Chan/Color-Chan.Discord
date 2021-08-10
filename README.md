@@ -28,7 +28,7 @@
     <a href="https://discord-library.colorchan.com/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Color-Chan/Color-Chan.Discord">View Demo W.I.P</a>
+    <a href="https://discord.com/oauth2/authorize?client_id=869214758920921118&permissions=18432&scope=applications.commands%20bot">View Demo</a>
     ·
     <a href="https://github.com/Color-Chan/Color-Chan.Discord/issues">Report Bug</a>
     ·

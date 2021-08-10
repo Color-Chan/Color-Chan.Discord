@@ -1,0 +1,14 @@
+{
+  "roles": {
+    "865723094761078804": {
+      "id": "865723094761078804",
+      "name": "red",
+      "color": 16711680,
+      "hoist": false,
+      "position": 132,
+      "permissions": "0",
+      "managed": false,
+      "mentionable": false
+    }
+  }
+}

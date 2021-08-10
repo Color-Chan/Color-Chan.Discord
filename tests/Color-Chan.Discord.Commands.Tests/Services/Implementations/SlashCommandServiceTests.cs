@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
@@ -11,7 +12,9 @@ using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Commands.Services.Implementations.Builders;
 using Color_Chan.Discord.Commands.Tests.Valid;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
@@ -221,20 +224,18 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             var options = new List<IDiscordInteractionCommandOption>
             {
-                new DiscordInteractionCommandOption(
-                    new DiscordInteractionCommandOptionData
-                    {
-                        Name = "Role name",
-                        Type = DiscordApplicationCommandOptionType.String,
-                        JsonValue = doc.RootElement.GetProperty("stringValue")
-                    }),
-                new DiscordInteractionCommandOption(
-                    new DiscordInteractionCommandOptionData
-                    {
-                        Name = "Number",
-                        Type = DiscordApplicationCommandOptionType.Integer,
-                        JsonValue = doc.RootElement.GetProperty("intValue")
-                    })
+                new DiscordInteractionCommandOption(new DiscordInteractionCommandOptionData
+                {
+                    Name = "Role name",
+                    Type = DiscordApplicationCommandOptionType.String,
+                    JsonValue = doc.RootElement.GetProperty("stringValue")
+                }),
+                new DiscordInteractionCommandOption(new DiscordInteractionCommandOptionData
+                {
+                    Name = "Number",
+                    Type = DiscordApplicationCommandOptionType.Integer,
+                    JsonValue = doc.RootElement.GetProperty("intValue")
+                })
             };
 
             // Act
@@ -246,6 +247,71 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             result.IsSuccessful.Should().BeTrue();
             result.Entity!.Data!.Content.Should().Contain("roleName:test json role value");
             result.Entity!.Data!.Content.Should().Contain("number:12345678");
+        }
+        
+        [TestCase("role", "Command19")]
+        public async Task Should_execute_interaction_command_with_role_option(string commandGroupName, string commandName)
+        {
+            // Arrange
+            var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
+            requirementServiceMock
+                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .ReturnsAsync(Result.FromSuccess);
+            var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
+            var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
+            var optionBuilder = new SlashCommandOptionBuildService(_optionBuilderServiceLoggerMock.Object);
+            var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, _buildServiceLoggerMock.Object, optionBuilder);
+            var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
+            var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
+            var context = new SlashCommandContext
+            {
+                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionCommandData
+                {
+                    Resolved = new DiscordInteractionCommandResolvedData
+                    {
+                        Roles = new Dictionary<ulong, DiscordGuildRoleData>
+                        {
+                            {
+                                865723094761078804,
+                                new DiscordGuildRoleData
+                                {
+                                    Id = 865723094761078804,
+                                    Color = Color.Red,
+                                    Managed = false,
+                                    Mentionable = true,
+                                    Name = "red",
+                                    Permissions = DiscordPermission.None,
+                                    Position = 0,
+                                    IsHoisted = false,
+                                }
+                            }
+                        }
+                    }
+                })
+            };
+
+            const string jsonInput = @"{""roleId"": ""865723094761078804""}";
+
+            using JsonDocument doc = JsonDocument.Parse(jsonInput);
+
+            var options = new List<IDiscordInteractionCommandOption>
+            {
+                new DiscordInteractionCommandOption(new DiscordInteractionCommandOptionData
+                {
+                    Name = "role",
+                    Type = DiscordApplicationCommandOptionType.Role,
+                    JsonValue = doc.RootElement.GetProperty("roleId")
+                })
+            };
+
+            // Act
+            await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);
+            var command = commandService.SearchSlashCommand(commandGroupName, commandName);
+            var result = await commandService.ExecuteSlashCommandAsync(command!.CommandMethod!, command.CommandOptions, command.Requirements, context, options);
+
+            // Assert
+            result.IsSuccessful.Should().BeTrue();
+            result.Entity!.Data!.Content.Should().Be("865723094761078804");
         }
     }
 }

@@ -1,3 +1,5 @@
+using Color_Chan.Discord.Controllers;
+
 namespace Color_Chan.Discord.Configurations
 {
     /// <summary>
@@ -12,5 +14,11 @@ namespace Color_Chan.Discord.Configurations
         ///     This can be useful when some of your commands run for longer then 3 seconds.
         /// </remarks>
         public bool AcknowledgeInteractions { get; set; } = true;
+        
+        /// <summary>
+        ///     Whether or not the <see cref="DiscordInteractionController"/> should verify the incoming interactions.
+        ///     This could be used to test interaction locally. It should never be turned off when the API is public.
+        /// </summary>
+        public bool VerifyInteractions { get; set; } = true;
     }
 }

@@ -46,8 +46,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
                 var t when t == typeof(int) => DiscordApplicationCommandOptionType.Integer,
                 var t when t == typeof(double) => DiscordApplicationCommandOptionType.Number,
                 var t when t == typeof(string) => DiscordApplicationCommandOptionType.String,
-                var t when t == typeof(ulong) => DiscordApplicationCommandOptionType.Mentionable,
-                _ => throw new UnsupportedSlashCommandParameterException($"{type.Name} is not supported as a slash command options.")
+                _ => throw new UnsupportedSlashCommandParameterException($"Failed to find type for {type.Name}, please specify the option type")
             };
         }
 

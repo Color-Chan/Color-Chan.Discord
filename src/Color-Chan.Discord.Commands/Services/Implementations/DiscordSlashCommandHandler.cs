@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -83,30 +84,46 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 Channel = channel,
                 Guild = guild
             };
+
+            IEnumerable<IDiscordInteractionCommandOption>? options = null;
             
-            // Get the command name.
+            // Get the command name and the options.
             if (interaction.Data.Options is null)
             {
+                options = interaction.Data.Options;
                 context.SlashCommandName = new []{interaction.Data.Name};
             }
             else
             {
-                // Check if any of the used options was a sub command (group) and execute it.
+                // Check if any of the used options is a sub command (group).
                 foreach (var option in interaction.Data.Options)
                 {
-                    context.SlashCommandName = option.Type switch
+                    switch (option.Type)
                     {
-                        DiscordApplicationCommandOptionType.SubCommand => context.SlashCommandName = new []{interaction.Data.Name, option.Name},
-                        DiscordApplicationCommandOptionType.SubCommandGroup => new []{interaction.Data.Name, option.Name, GetSubGroupCommandName(option)},
-                        _ => throw new InvalidSlashCommandGroupException("Failed to find sub command")
-                    };
+                        case DiscordApplicationCommandOptionType.SubCommand:
+                            context.SlashCommandName = new[] { interaction.Data.Name, option.Name };
+                            options = option.SubOptions;
+                            break;
+                        case DiscordApplicationCommandOptionType.SubCommandGroup:
+                            if (option.SubOptions is null) throw new NullReferenceException("A sub command group needs to have options");
+                            context.SlashCommandName = new[] { interaction.Data.Name, option.Name };
+                            foreach (var subOption in option.SubOptions)
+                            {
+                                if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
+                                {
+                                    context.SlashCommandName = context.SlashCommandName.Append(subOption.Name);
+                                    options = subOption.SubOptions;
+                                }
+                            }
+                            break;
+                    }
                 }
             }
             
             // Local method to execute the command.
             async Task<Result<IDiscordInteractionResponse>> Handler()
             {
-                return await _slashCommandService.ExecuteSlashCommandAsync(context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
+                return await _slashCommandService.ExecuteSlashCommandAsync(context, options?.ToList(), _serviceProvider).ConfigureAwait(false);
             }
 
             // Execute the pipelines and the command.
@@ -118,6 +135,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             if (_slashCommandConfiguration.SendDefaultErrorMessage)
             {
+                _logger.LogWarning("Sending default error message");
                 return DefaultErrorMessage();
             }
 
@@ -144,28 +162,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             //  Return the response to Discord.
             return errorResponse;
-        }
-        
-        private string GetSubGroupCommandName(IDiscordInteractionCommandOption option)
-        {
-            if (option.SubOptions is null)
-            {
-                throw new NullReferenceException("A sub command group needs to sub commands");
-            }
-
-            // Try to find the sub command and execute it.
-            foreach (var subOption in option.SubOptions)
-            {
-                if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
-                {
-                    return subOption.Name;
-                }
-            }
-
-            // The command group had no sub command.
-            var exception = new InvalidSlashCommandGroupException($"Command group {option.Name} had no sub command");
-            _logger.LogError(exception, "Command group {Name} had no sub command", option.Name);
-            throw exception;
         }
     }
 }
