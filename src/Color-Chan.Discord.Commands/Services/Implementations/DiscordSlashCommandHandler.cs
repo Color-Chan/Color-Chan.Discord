@@ -85,11 +85,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             };
 
             // Local method to execute the command.
-            Task<Result<IDiscordInteractionResponse>> Handler()
+            async Task<Result<IDiscordInteractionResponse>> Handler()
             {
                 if (interaction.Data.Options is null)
                 {
-                    return _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options?.ToList(), _serviceProvider);
+                    return await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
                 }
                 
                 // Check if any of the used options was a sub command (group) and execute it.
@@ -97,8 +97,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 {
                     return option.Type switch
                     {
-                        DiscordApplicationCommandOptionType.SubCommand => ExecuteSubCommandAsync(interaction.Data.Name, option, context),
-                        DiscordApplicationCommandOptionType.SubCommandGroup => ExecuteSubCommandGroupAsync(interaction.Data.Name, option, context),
+                        DiscordApplicationCommandOptionType.SubCommand => await ExecuteSubCommandAsync(interaction.Data.Name, option, context).ConfigureAwait(false),
+                        DiscordApplicationCommandOptionType.SubCommandGroup => await ExecuteSubCommandGroupAsync(interaction.Data.Name, option, context).ConfigureAwait(false),
                         _ => throw new InvalidSlashCommandGroupException("Failed to find sub command")
                     };
                 }
@@ -108,7 +108,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             // Execute the pipelines and the command.
             var result = await _serviceProvider.GetServices<ISlashCommandPipeline>()
-                                               .Aggregate((SlashCommandHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))();
+                                               .Aggregate((SlashCommandHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
 
             // Return the response.
             if (result.IsSuccessful) return result.Entity!;
