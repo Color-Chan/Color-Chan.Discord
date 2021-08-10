@@ -169,54 +169,41 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string name, ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
-                                                                                        IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
         {
-            var commandInfo = SearchSlashCommand(name);
-
-            if (commandInfo is null)
+            var arr = context.SlashCommandName.ToArray();
+            var count = arr.Length;
+            
+            switch (count)
             {
-                _logger.LogWarning("Failed to find slash command {Name}", name);
-                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {name}"));
+                case 1:
+                {
+                    var command = SearchSlashCommand(arr[0]);
+                    if (command is null) return NoCommandFoundResponse();
+                    return await ExecuteSlashCommandAsync(command, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
+                }
+                case 2:
+                {
+                    var subCommand = SearchSlashCommand(arr[0], arr[1]);
+                    if (subCommand is null) return NoCommandFoundResponse();
+                    return await ExecuteSlashCommandAsync(subCommand, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
+                }
+                case 3:
+                {
+                    var subCommand = SearchSlashCommand(arr[0], arr[1], arr[2]);
+                    if (subCommand is null) return NoCommandFoundResponse();
+                    return await ExecuteSlashCommandAsync(subCommand, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
+                }
             }
 
-            if (commandInfo.CommandMethod is null)
+            Result<IDiscordInteractionResponse> NoCommandFoundResponse()
             {
-                _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
-                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
+                var readableCommandName = string.Join(" ", context.SlashCommandName);
+                _logger.LogWarning("Command {Name} is not registered", context.SlashCommandName);
+                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {readableCommandName}"));
             }
 
-            return await ExecuteSlashCommandAsync(commandInfo, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
-        }
-
-        /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string commandName, ISlashCommandContext context,
-                                                                                        IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
-        {
-            var searchResult = SearchSlashCommand(commandGroupName, commandName);
-
-            if (searchResult is null)
-            {
-                _logger.LogWarning("Command {GroupName} {CommandName} is not registered", commandGroupName, commandName);
-                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {commandGroupName} {commandName}"));
-            }
-
-            return await ExecuteSlashCommandAsync(searchResult, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
-        }
-
-        /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(string commandGroupName, string subCommandGroupName, string commandName, ISlashCommandContext context,
-                                                                                        IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
-        {
-            var searchResult = SearchSlashCommand(commandGroupName, subCommandGroupName, commandName);
-
-            if (searchResult is null)
-            {
-                _logger.LogWarning("Command {GroupName} {SubCommandGroupName} {CommandName} is not registered", commandGroupName, subCommandGroupName, commandName);
-                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {commandGroupName} {subCommandGroupName} {commandName}"));
-            }
-
-            return await ExecuteSlashCommandAsync(searchResult, context, options?.ToList(), serviceProvider).ConfigureAwait(false);
+            throw new ArgumentOutOfRangeException(nameof(context.SlashCommandName), "A command name needs to be between 1 one 3 words");
         }
 
         /// <inheritdoc />

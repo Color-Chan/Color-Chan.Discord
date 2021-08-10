@@ -97,11 +97,14 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, _buildServiceLoggerMock.Object, optionBuilderMock.Object);
             var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
-            var mockContext = new Mock<ISlashCommandContext>();
+            var mockContext = new SlashCommandContext
+            {
+                SlashCommandName = new[] { commandName }
+            };
 
             // Act
             await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);
-            var result = await commandService.ExecuteSlashCommandAsync(commandName, mockContext.Object);
+            var result = await commandService.ExecuteSlashCommandAsync(mockContext);
 
             // Assert
             result.IsSuccessful.Should().BeFalse();
@@ -126,14 +129,17 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, _buildServiceLoggerMock.Object, optionBuilderMock.Object);
             var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
-            var mockContext = new Mock<ISlashCommandContext>();
+            var mockContext = new SlashCommandContext
+            {
+                SlashCommandName = new[] { commandName }
+            };
             var serviceProvider = new ServiceCollection()
                                   .AddLogging()
                                   .BuildServiceProvider();
 
             // Act
             await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);
-            var result = await commandService.ExecuteSlashCommandAsync(commandName, mockContext.Object, null, serviceProvider);
+            var result = await commandService.ExecuteSlashCommandAsync(mockContext, null, serviceProvider);
 
             // Assert
             result.IsSuccessful.Should().BeTrue();
@@ -154,11 +160,14 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var requirementService = new SlashCommandRequirementService(_requirementServiceLoggerMock.Object);
             var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementService, autoSyncMock.Object);
-            var mockContext = new Mock<ISlashCommandContext>();
-
+            var mockContext = new SlashCommandContext
+            {
+                SlashCommandName = new[] { commandName }
+            };
+            
             // Act
             await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);
-            var result = await commandService.ExecuteSlashCommandAsync(commandName, mockContext.Object);
+            var result = await commandService.ExecuteSlashCommandAsync(mockContext);
 
             // Assert
             result.IsSuccessful.Should().BeTrue();

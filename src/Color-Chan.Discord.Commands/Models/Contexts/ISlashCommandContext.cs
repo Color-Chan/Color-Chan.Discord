@@ -1,4 +1,5 @@
-﻿using Color_Chan.Discord.Commands.Configurations;
+﻿using System.Collections.Generic;
+using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -84,6 +85,11 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         /// <remarks>
         ///     Used to create a unique string for rate limiting.
         /// </remarks>
-        string MethodName { get; set; }
+        string? MethodName { get; set; }
+
+        /// <summary>
+        ///     The full slash command name.
+        /// </summary>
+        IEnumerable<string> SlashCommandName { get; set; }
     }
 }

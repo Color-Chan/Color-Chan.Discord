@@ -83,27 +83,30 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 Channel = channel,
                 Guild = guild
             };
-
-            // Local method to execute the command.
-            async Task<Result<IDiscordInteractionResponse>> Handler()
+            
+            // Get the command name.
+            if (interaction.Data.Options is null)
             {
-                if (interaction.Data.Options is null)
-                {
-                    return await _slashCommandService.ExecuteSlashCommandAsync(interaction.Data.Name, context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
-                }
-                
+                context.SlashCommandName = new []{interaction.Data.Name};
+            }
+            else
+            {
                 // Check if any of the used options was a sub command (group) and execute it.
                 foreach (var option in interaction.Data.Options)
                 {
-                    return option.Type switch
+                    context.SlashCommandName = option.Type switch
                     {
-                        DiscordApplicationCommandOptionType.SubCommand => await ExecuteSubCommandAsync(interaction.Data.Name, option, context).ConfigureAwait(false),
-                        DiscordApplicationCommandOptionType.SubCommandGroup => await ExecuteSubCommandGroupAsync(interaction.Data.Name, option, context).ConfigureAwait(false),
+                        DiscordApplicationCommandOptionType.SubCommand => context.SlashCommandName = new []{interaction.Data.Name, option.Name},
+                        DiscordApplicationCommandOptionType.SubCommandGroup => new []{interaction.Data.Name, option.Name, GetSubGroupCommandName(option)},
                         _ => throw new InvalidSlashCommandGroupException("Failed to find sub command")
                     };
                 }
-
-                throw new InvalidSlashCommandGroupException("Failed to find top level/sub command");
+            }
+            
+            // Local method to execute the command.
+            async Task<Result<IDiscordInteractionResponse>> Handler()
+            {
+                return await _slashCommandService.ExecuteSlashCommandAsync(context, interaction.Data.Options?.ToList(), _serviceProvider).ConfigureAwait(false);
             }
 
             // Execute the pipelines and the command.
@@ -120,7 +123,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
             throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
         }
-        
+
         /// <summary>
         ///     Get a default error message response.
         /// </summary>
@@ -142,33 +145,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             //  Return the response to Discord.
             return errorResponse;
         }
-
-        /// <summary>
-        ///     Executes a sub slash command.
-        /// </summary>
-        /// <param name="commandGroupName">The command group the sub command belongs to.</param>
-        /// <param name="option">The options used with the command request.</param>
-        /// <param name="context">The current context of the command request.</param>
-        /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse" /> with the the slash command response.
-        /// </returns>
-        private Task<Result<IDiscordInteractionResponse>> ExecuteSubCommandAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
-        {
-            return _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, context, option.SubOptions?.ToList(), _serviceProvider);
-        }
-
-        /// <summary>
-        ///     Executes a sub slash command in a sub command group.
-        /// </summary>
-        /// <param name="commandGroupName">The command group the sub command group belongs to.</param>
-        /// <param name="option">The options used with the command request.</param>
-        /// <param name="context">The current context of the command request.</param>
-        /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse" /> with the the slash command response.
-        /// </returns>
-        /// <exception cref="NullReferenceException">Thrown when the sub options are null.</exception>
-        /// <exception cref="InvalidSlashCommandGroupException">Thrown when no sub command has been found.</exception>
-        private Task<Result<IDiscordInteractionResponse>> ExecuteSubCommandGroupAsync(string commandGroupName, IDiscordInteractionCommandOption option, ISlashCommandContext context)
+        
+        private string GetSubGroupCommandName(IDiscordInteractionCommandOption option)
         {
             if (option.SubOptions is null)
             {
@@ -180,13 +158,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 if (subOption.Type == DiscordApplicationCommandOptionType.SubCommand)
                 {
-                    return _slashCommandService.ExecuteSlashCommandAsync(commandGroupName, option.Name, subOption.Name, context, subOption.SubOptions?.ToList(), _serviceProvider);
+                    return subOption.Name;
                 }
             }
 
             // The command group had no sub command.
-            var exception = new InvalidSlashCommandGroupException($"Command group {commandGroupName} had no sub command");
-            _logger.LogError(exception, "Command group {Name} had no sub command", commandGroupName);
+            var exception = new InvalidSlashCommandGroupException($"Command group {option.Name} had no sub command");
+            _logger.LogError(exception, "Command group {Name} had no sub command", option.Name);
             throw exception;
         }
     }

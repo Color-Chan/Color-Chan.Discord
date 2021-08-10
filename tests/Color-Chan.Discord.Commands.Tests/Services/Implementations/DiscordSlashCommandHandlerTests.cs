@@ -42,23 +42,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             _commandServiceMock = new Mock<ISlashCommandService>();
             _orderTestMessage = string.Empty;
             
-            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<string>(),
-                                                                      It.IsAny<ISlashCommandContext>(),
-                                                                      It.IsAny<IEnumerable<IDiscordInteractionCommandOption>>(),
-                                                                      It.IsAny<IServiceProvider>()))
-                               .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
-                               .Callback(FakeSlashCommandCall);
-            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<string>(),
-                                                                      It.IsAny<string>(),
-                                                                      It.IsAny<ISlashCommandContext>(),
-                                                                      It.IsAny<IEnumerable<IDiscordInteractionCommandOption>>(),
-                                                                      It.IsAny<IServiceProvider>()))
-                               .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
-                               .Callback(FakeSlashCommandCall);
-            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<string>(),
-                                                                      It.IsAny<string>(),
-                                                                      It.IsAny<string>(),
-                                                                      It.IsAny<ISlashCommandContext>(),
+            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<ISlashCommandContext>(),
                                                                       It.IsAny<IEnumerable<IDiscordInteractionCommandOption>>(),
                                                                       It.IsAny<IServiceProvider>()))
                                .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
@@ -235,11 +219,13 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             result.Should().NotBeNull();
             _orderTestMessage.Should().Be("outer_inner_command_inner_outer");
         }
-        
-        public class OuterPipeline : ISlashCommandPipeline
+
+        private class OuterPipeline : ISlashCommandPipeline
         {
             public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
             {
+                context.SlashCommandName.Should().NotBeNull();
+                
                 _orderTestMessage += "outer_";
                 var result = await next();
                 _orderTestMessage += "_outer";
@@ -247,14 +233,16 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             }
         }
         
-        public class InnerPipeline : ISlashCommandPipeline
+        private class InnerPipeline : ISlashCommandPipeline
         {
             public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
             {
+                context.SlashCommandName.Should().NotBeNull();
+                
                 _orderTestMessage += "inner_";
                 var result = await next();
                 _orderTestMessage += "_inner";
-
+                
                 return result;
             }
         }
