@@ -1,9 +1,11 @@
+using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Configurations;
 using Color_Chan.Discord.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RoleManager.Pipelines;
 
 namespace RoleManager
 {
@@ -24,8 +26,8 @@ namespace RoleManager
             {
                 SlashCommandConfigs = slashOptions =>
                 {
-                    slashOptions.EnableAutoSync = true;
-                    slashOptions.EnableAutoGetGuild = true;
+                    slashOptions.EnableAutoSync = true; // <---
+                    slashOptions.EnableAutoGetGuild = true; // <---
                 }
             };
 
@@ -33,6 +35,9 @@ namespace RoleManager
             //  Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.
             services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999, config); // <---
 
+            // Register your custom pipelines if any.
+            services.AddSlashCommandPipeline<PerformancePipeline>(); // <---
+            
             services.AddControllers();
         }
 
