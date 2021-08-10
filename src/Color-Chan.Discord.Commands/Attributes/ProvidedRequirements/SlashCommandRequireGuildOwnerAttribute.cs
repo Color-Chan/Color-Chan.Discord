@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         {
             if (context.GuildId is null)
             {
-                return Result.FromError(new SlashCommandRequirementErrorResult("Command can not be executed in DMs"));
+                return Result.FromError(new SlashCommandRequireGuildOwnerErrorResult("Command can not be executed in DMs"));
             }
 
             IDiscordGuild? guild;
@@ -61,7 +61,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Result.FromSuccess();
             }
 
-            return Result.FromError(new SlashCommandRequirementErrorResult("Guild owner is required"));
+            return Result.FromError(new SlashCommandRequireGuildOwnerErrorResult("Guild owner is required"));
         }
     }
 }

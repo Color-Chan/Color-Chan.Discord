@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Task.FromResult(Result.FromSuccess());
             }
 
-            return Task.FromResult(Result.FromError(new SlashCommandRequirementErrorResult("Command can not be executed in DMs")));
+            return Task.FromResult(Result.FromError(new SlashCommandRequireGuildErrorResult("Command can not be executed in DMs")));
         }
     }
 }
