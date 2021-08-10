@@ -5,7 +5,7 @@
         /// <summary>
         ///     The channel is a text channel.
         /// </summary>
-        Text = 0,
+        GuildText = 0,
 
         /// <summary>
         ///     The channel is a Direct Message channel.
@@ -15,21 +15,46 @@
         /// <summary>
         ///     The channel is a voice channel.
         /// </summary>
-        Voice = 2,
+        GuildVoice = 2,
 
         /// <summary>
         ///     The channel is a group channel.
         /// </summary>
-        Group = 3,
+        GroupDm = 3,
 
         /// <summary>
         ///     The channel is a category channel.
         /// </summary>
-        Category = 4,
+        GuildCategory = 4,
 
         /// <summary>
         ///     The channel is a news channel.
         /// </summary>
-        News = 5
+        GuildNews = 5,
+        
+        /// <summary>
+        ///     A channel in which game developers can sell their game on Discord.
+        /// </summary>
+        GuildStore = 6,
+        
+        /// <summary>
+        ///     A temporary sub-channel within a GUILD_NEWS channel.
+        /// </summary>
+        GuildNewsThread = 10,
+        
+        /// <summary>
+        ///     A temporary sub-channel within a GUILD_TEXT channel.
+        /// </summary>
+        GuildPublicThread = 11,
+        
+        /// <summary>
+        ///     A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission.
+        /// </summary>
+        GuildPrivateThread = 12,
+        
+        /// <summary>
+        ///     A voice channel for hosting events with an audience.
+        /// </summary>
+        GuildStageVoice = 13
     }
 }
