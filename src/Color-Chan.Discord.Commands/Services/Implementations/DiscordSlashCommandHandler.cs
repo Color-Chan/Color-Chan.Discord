@@ -76,7 +76,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 Message = interaction.Message,
                 Member = interaction.GuildMember,
                 GuildId = interaction.GuildId,
-                ChannelId = interaction.ChannelId!.Value,
+                ChannelId = interaction.ChannelId ?? interaction.User?.Id ?? throw new NullReferenceException(nameof(context.User)),
                 ApplicationId = interaction.ApplicationId,
                 CommandRequest = interaction.Data,
                 InteractionId = interaction.Id,
