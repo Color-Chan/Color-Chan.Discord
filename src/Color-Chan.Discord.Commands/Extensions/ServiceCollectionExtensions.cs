@@ -60,5 +60,19 @@ namespace Color_Chan.Discord.Commands.Extensions
 
             return services;
         }
+        
+        /// <summary>
+        ///     Adds a <see cref="ISlashCommandPipeline"/> to the <paramref name="services"/>.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/> where the <typeparamref name="TPipeline"/> will be added to.</param>
+        /// <typeparam name="TPipeline">The new <see cref="ISlashCommandPipeline"/>.</typeparam>
+        /// <returns>
+        ///     The updated <see cref="IServiceCollection" />.
+        /// </returns>
+        public static IServiceCollection AddSlashCommandPipeline<TPipeline>(this IServiceCollection services) where TPipeline : class, ISlashCommandPipeline
+        {
+            services.AddTransient<ISlashCommandPipeline, TPipeline>();
+            return services;
+        }
     }
 }

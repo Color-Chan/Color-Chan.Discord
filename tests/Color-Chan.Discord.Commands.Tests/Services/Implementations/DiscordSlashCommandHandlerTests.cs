@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
+using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Implementations;
@@ -117,8 +118,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             // Arrange
             var serviceProvider = new ServiceCollection()
-                                  .AddTransient<ISlashCommandPipeline, InnerPipeline>()
-                                  .AddTransient<ISlashCommandPipeline, OuterPipeline>()
+                                  .AddSlashCommandPipeline<InnerPipeline>()
+                                  .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
@@ -150,8 +151,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             // Arrange
             var serviceProvider = new ServiceCollection()
-                                  .AddTransient<ISlashCommandPipeline, InnerPipeline>()
-                                  .AddTransient<ISlashCommandPipeline, OuterPipeline>()
+                                  .AddSlashCommandPipeline<InnerPipeline>()
+                                  .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
@@ -191,8 +192,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             // Arrange
             var serviceProvider = new ServiceCollection()
-                                  .AddTransient<ISlashCommandPipeline, InnerPipeline>()
-                                  .AddTransient<ISlashCommandPipeline, OuterPipeline>()
+                                  .AddSlashCommandPipeline<InnerPipeline>()
+                                  .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
