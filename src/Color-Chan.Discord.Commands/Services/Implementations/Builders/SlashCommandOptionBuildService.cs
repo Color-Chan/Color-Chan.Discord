@@ -45,11 +45,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                                   .Select(choiceAttribute => new KeyValuePair<string, string>(choiceAttribute.Name, choiceAttribute.Value))
                                   .ToList();
 
-                    options.Add(new SlashCommandOptionInfo(optionAttribute.Name, optionAttribute.Description, parameter.ParameterType, optionAttribute.IsRequired, choices));
+                    options.Add(new SlashCommandOptionInfo(optionAttribute.Name, optionAttribute.Description, parameter.ParameterType, optionAttribute.IsRequired, choices, optionAttribute.Type));
                 }
                 else
                 {
-                    options.Add(new SlashCommandOptionInfo(optionAttribute.Name, optionAttribute.Description, parameter.ParameterType, optionAttribute.IsRequired));
+                    options.Add(new SlashCommandOptionInfo(optionAttribute.Name, optionAttribute.Description, parameter.ParameterType, optionAttribute.IsRequired, null, optionAttribute.Type));
                 }
             }
 
