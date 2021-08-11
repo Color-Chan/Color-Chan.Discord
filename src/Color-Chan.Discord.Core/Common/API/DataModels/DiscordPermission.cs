@@ -278,7 +278,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
 	    /// <remarks>
 	    ///     Channels types: Text.
 	    /// </remarks>
-	    UseSlashCommands = (ulong)1 << 31,
+	    UseApplicationCommands = (ulong)1 << 31,
 
 	    /// <summary>
 	    ///     Allows for requesting to speak in stage channels. (This permission is under active development and may be changed
@@ -315,6 +315,14 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
 	    /// <remarks>
 	    ///     Channels types: Text.
 	    /// </remarks>
-	    UsePrivateThreads = (ulong)1 << 36
+	    UsePrivateThreads = (ulong)1 << 36,
+	    
+	    /// <summary>
+	    ///     	Allows the usage of custom stickers from other servers.
+	    /// </summary>
+	    /// <remarks>
+	    ///     Channels types: Text.
+	    /// </remarks>
+	    UseExternalStickers = (ulong)1 << 37
     }
 }

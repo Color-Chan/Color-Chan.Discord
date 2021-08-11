@@ -14,6 +14,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     An optional response message.
         /// </summary>
         [JsonPropertyName("data")]
-        public DiscordInteractionCommandCallbackData? Data { get; init; }
+        public DiscordInteractionCallbackData? Data { get; init; }
     }
 }

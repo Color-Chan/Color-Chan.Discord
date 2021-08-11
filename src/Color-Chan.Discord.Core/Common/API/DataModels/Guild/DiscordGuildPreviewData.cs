@@ -39,26 +39,26 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Roles in the guild.
         /// </summary>
         [JsonPropertyName("roles")]
-        public IEnumerable<DiscordGuildRoleData> Roles { get; set; } = new List<DiscordGuildRoleData>();
+        public IEnumerable<DiscordGuildRoleData> Roles { get; init; } = new List<DiscordGuildRoleData>();
 
         /// <summary>
         ///     Custom guild emojis.
         /// </summary>
         [JsonPropertyName("emojis")]
-        public IEnumerable<DiscordEmojiData> Emojis { get; set; } = new List<DiscordEmojiData>();
+        public IEnumerable<DiscordEmojiData> Emojis { get; init; } = new List<DiscordEmojiData>();
 
         /// <summary>
         ///     Approximate number of members in this guild, returned from the GET /guilds/{id} endpoint when with_counts is true.
         /// </summary>
         [JsonPropertyName("approximate_member_count")]
-        public int? ApproximateMemberCount { get; set; }
+        public int? ApproximateMemberCount { get; init; }
 
         /// <summary>
         ///     Approximate number of non-offline members in this guild, returned from the GET /guilds/{id} endpoint when
         ///     with_counts is true.
         /// </summary>
         [JsonPropertyName("approximate_presence_count")]
-        public int? ApproximatePresenceCount { get; set; }
+        public int? ApproximatePresenceCount { get; init; }
 
         /// <summary>
         ///     The description for the guild, if the guild is discoverable.

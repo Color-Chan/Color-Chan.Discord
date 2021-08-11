@@ -4,16 +4,16 @@ namespace Color_Chan.Discord.Rest.Models.Application
 {
     public record DiscordApplicationCommandOptionChoice : IDiscordApplicationCommandOptionChoice
     {
-        public DiscordApplicationCommandOptionChoice(string name, string value)
+        public DiscordApplicationCommandOptionChoice(string name, object value)
         {
             Name = name;
-            Value = value;
+            RawValue = value;
         }
 
         /// <inheritdoc />
         public string Name { get; set; }
 
         /// <inheritdoc />
-        public string Value { get; set; }
+        public object RawValue { get; set; }
     }
 }

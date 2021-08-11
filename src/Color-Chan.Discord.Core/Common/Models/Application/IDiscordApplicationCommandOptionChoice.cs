@@ -10,6 +10,6 @@
         /// <summary>
         ///     Value of the choice, up to 100 characters if string.
         /// </summary>
-        public string Value { get; set; }
+        public object RawValue { get; set; }
     }
 }

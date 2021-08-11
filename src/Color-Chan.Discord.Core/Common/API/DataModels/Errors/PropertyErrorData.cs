@@ -15,6 +15,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Errors
         /// <summary>
         ///     The error infos explaining what went wrong.
         /// </summary>
-        public IEnumerable<PropertyErrorInfoData>? Errors { get; set; }
+        public IEnumerable<PropertyErrorInfoData>? Errors { get; init; }
     }
 }

@@ -34,7 +34,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         ///     A list of <see cref="KeyValuePair{TKey,TValue}" /> where each key is a choice name, and the value is the raw value
         ///     of the choice.
         /// </summary>
-        IEnumerable<KeyValuePair<string, string>>? Choices { get; init; }
+        IEnumerable<KeyValuePair<string, object>>? Choices { get; init; }
 
         /// <summary>
         ///     The <see cref="MethodInfo" /> containing the method of the sub command.

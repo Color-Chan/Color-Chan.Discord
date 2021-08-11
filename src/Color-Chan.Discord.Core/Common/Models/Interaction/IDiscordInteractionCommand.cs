@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.Models.Select;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
 {
@@ -13,6 +15,11 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         ///     The name of the invoked command.
         /// </summary>
         string Name { get; init; }
+        
+        /// <summary>
+        ///     The type of the invoked command.
+        /// </summary>
+        DiscordApplicationCommandTypes Type { get; set; }
 
         /// <summary>
         ///     Converted users + roles + channels.
@@ -33,5 +40,15 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         ///     For components, the type of the component.
         /// </summary>
         string? ComponentType { get; init; }
+        
+        /// <summary>
+        ///     The values the user selected.
+        /// </summary>
+        public IDiscordSelectOption? Values { get; init; }
+        
+        /// <summary>
+        ///     Id the of user or message targeted by a user or message command.
+        /// </summary>
+        public ulong? TargetId { get; init; }
     }
 }

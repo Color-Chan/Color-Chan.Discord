@@ -70,61 +70,92 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             else
             {
                 var guildResult = await restGuild.GetGuildAsync(context.GuildId.Value).ConfigureAwait(false);
+                
+                if (!guildResult.IsSuccessful)
+                {
+                    return Result.FromError(guildResult.ErrorResult ?? new ErrorResult("Failed to get the guild"));
+                }
+                
                 guild = guildResult.Entity;
             }
 
             if (guild is null)
             {
-                throw new NullReferenceException("Failed to get guild");
+                throw new NullReferenceException("Failed to get the guild");
             }
 
             // Get the bot user.
             var discordTokens = services.GetRequiredService<DiscordTokens>();
-            var botMember = await restGuild.GetGuildMemberAsync(context.GuildId.Value, discordTokens.ApplicationId);
-            if (!botMember.IsSuccessful)
+            var botMemberResult = await restGuild.GetGuildMemberAsync(context.GuildId.Value, discordTokens.ApplicationId);
+            if (!botMemberResult.IsSuccessful)
             {
-                return Result.FromError(new SlashCommandRequireBotPermissionErrorResult("Guild member does not exist", default));
+                return Result.FromError(botMemberResult.ErrorResult ?? new SlashCommandRequireBotPermissionErrorResult("Guild member does not exist", default));
+            }
+
+            if (botMemberResult.Entity is null)
+            {
+                throw new NullReferenceException("Failed to get the bot member");
             }
             
             // Get the bot role permissions.
-            var botRoles = guild.Roles.Where(x => botMember.Entity!.Roles.Contains(x.Id));
+            var botRoles = guild.Roles.Where(x => botMemberResult.Entity.Roles.Contains(x.Id));
             var rolePerms = botRoles.Aggregate(DiscordPermission.None, (current, botRole) => current | botRole.Permissions);
 
+            // Admin overrides any potential permission overwrites.
+            if ((rolePerms & DiscordPermission.Administrator) == DiscordPermission.Administrator)
+            {
+                return Result.FromSuccess();
+            }
             
-            // Get the channel.
-            IDiscordChannel? channel;
-            if (context.Guild is not null)
+            // Only try to deny any channel perms if there are any required.
+            if (_requiredPermission.HasChannelPermissions())
             {
-                channel = context.Channel;
-            }
-            else
-            {
-                var restChannel = services.GetRequiredService<IDiscordRestChannel>();
-                var channelResult = await restChannel.GetChannelAsync(context.ChannelId).ConfigureAwait(false);
-                channel = channelResult.Entity;
-            }
-
-            if (channel is null)
-            {
-                throw new NullReferenceException("Failed to get channel");
-            }
-
-            if (channel.PermissionOverwrites is null)
-            {
-                throw new NullReferenceException("Missing permission overwrites");
-            }
-
-            // Removed the denied permissions from the role perms.
-            foreach (var permissionOverwrite in channel.PermissionOverwrites)
-            {
-                if (permissionOverwrite.TargetId == discordTokens.ApplicationId || botMember.Entity!.Roles.Contains(permissionOverwrite.TargetId))
+                // Get the channel.
+                IDiscordChannel? channel;
+                if (context.Guild is not null)
                 {
-                    rolePerms |= permissionOverwrite.Allow;
-                    rolePerms &= ~permissionOverwrite.Deny;
+                    channel = context.Channel;
+                }
+                else
+                {
+                    var restChannel = services.GetRequiredService<IDiscordRestChannel>();
+                    var channelResult = await restChannel.GetChannelAsync(context.ChannelId).ConfigureAwait(false);
+
+                    if (!channelResult.IsSuccessful)
+                    {
+                        return Result.FromError(channelResult.ErrorResult ?? new ErrorResult("Failed to get the channel"));
+                    }
+                    
+                    channel = channelResult.Entity;
+                }
+
+                if (channel is null)
+                {
+                    throw new NullReferenceException("Failed to get the channel");
+                }
+
+                if (channel.PermissionOverwrites is null)
+                {
+                    throw new NullReferenceException("Missing permission overwrites");
+                }
+
+                // Removed the denied permissions from the role perms.
+                foreach (var permissionOverwrite in channel.PermissionOverwrites)
+                {
+                    if (permissionOverwrite.TargetId == discordTokens.ApplicationId || botMemberResult.Entity.Roles.Contains(permissionOverwrite.TargetId))
+                    {
+                        rolePerms |= permissionOverwrite.Allow;
+                        rolePerms &= ~permissionOverwrite.Deny;
+                    }
                 }
             }
+
+            if ((rolePerms & _requiredPermission) == _requiredPermission)
+            {
+                return Result.FromSuccess();
+            }
             
-            var missingPerms = _requiredPermission.ToList().Where(requiredPerm => !rolePerms.HasFlag(requiredPerm)).ToList();
+            var missingPerms = _requiredPermission.ToList().Where(requiredPerm => (rolePerms & requiredPerm) != requiredPerm).ToList();
             if (missingPerms.Any())
             {
                 return Result.FromError(new SlashCommandRequireBotPermissionErrorResult("Bot did not meet permission requirements", missingPerms));

@@ -11,6 +11,15 @@ namespace Color_Chan.Discord.Core.Extensions
     /// </summary>
     public static class DiscordPermissionExtensions
     {
+        private const DiscordPermission ChannelPerms = DiscordPermission.CreateInstantInvite | DiscordPermission.ManageChannels | DiscordPermission.AddReactions | DiscordPermission.PrioritySpeaker |
+                                                       DiscordPermission.Stream | DiscordPermission.ViewChannel | DiscordPermission.SendMessages | DiscordPermission.SendTtsMessages |
+                                                       DiscordPermission.ManageMessages | DiscordPermission.EmbedLinks | DiscordPermission.AttachFiles | DiscordPermission.ReadMessageHistory |
+                                                       DiscordPermission.MentionEveryone | DiscordPermission.UseExternalEmojis | DiscordPermission.Connect | DiscordPermission.Speak |
+                                                       DiscordPermission.MuteMembers | DiscordPermission.DeafenMembers | DiscordPermission.MoveMembers | DiscordPermission.UseVoiceActivity |
+                                                       DiscordPermission.ManageRoles | DiscordPermission.ManageWebhooks | DiscordPermission.UseApplicationCommands | DiscordPermission.RequestToSpeak |
+                                                       DiscordPermission.ManageThreads | DiscordPermission.UsePublicThreads | DiscordPermission.UsePrivateThreads |
+                                                       DiscordPermission.UseExternalStickers;
+
         /// <summary>
         ///     Convert a permission <see cref="ReadOnlySpan{T}" /> of <see cref="char" /> into a
         ///     <see cref="DiscordPermission" />.
@@ -81,8 +90,8 @@ namespace Color_Chan.Discord.Core.Extensions
         {
             return ((ulong)permissions).ToString();
         }
-        
-         /// <summary>
+
+        /// <summary>
         ///     Get all the flags of <see cref="DiscordPermission" /> separately in a list.
         /// </summary>
         /// <param name="permission">The permission flags.</param>
@@ -108,21 +117,27 @@ namespace Color_Chan.Discord.Core.Extensions
         /// </returns>
         public static List<DiscordPermission> ToList(this DiscordPermission permission)
         {
-            return Enum.GetValues(typeof(DiscordPermission))
-                       .Cast<Enum>()
-                       .Where(permission.HasFlag)
-                       .Cast<DiscordPermission>()
-                       .ToList();
+            var permissions = Enum.GetValues(typeof(DiscordPermission))
+                                 .Cast<Enum>()
+                                 .Where(permission.HasFlag)
+                                 .Cast<DiscordPermission>()
+                                 .ToList();
+            
+            permissions.Remove(DiscordPermission.None);
+            return permissions;
         }
-        
+
         /// <summary>
-        ///     Get a readable string for a single <paramref name="permission"/>.
+        ///     Get a readable string for a single <paramref name="permission" />.
         /// </summary>
         /// <param name="permission">The permission that will be turned into a string.</param>
         /// <returns>
-        ///     A readable string for a single <paramref name="permission"/>.
+        ///     A readable string for a single <paramref name="permission" />.
         /// </returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when there was no string for the provided <paramref name="permission"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Thrown when there was no string for the provided
+        ///     <paramref name="permission" />.
+        /// </exception>
         public static string ToReadableString(this DiscordPermission permission)
         {
             return permission switch
@@ -159,13 +174,26 @@ namespace Color_Chan.Discord.Core.Extensions
                 DiscordPermission.ManageRoles => "Manage roles",
                 DiscordPermission.ManageWebhooks => "Manage webhooks",
                 DiscordPermission.ManageEmojisAndStickers => "Manage emojis and stickers",
-                DiscordPermission.UseSlashCommands => "Use slash commands",
+                DiscordPermission.UseApplicationCommands => "Use application commands",
                 DiscordPermission.RequestToSpeak => "Request to speak",
                 DiscordPermission.ManageThreads => "Manage threads",
                 DiscordPermission.UsePublicThreads => "Use public threads",
                 DiscordPermission.UsePrivateThreads => "Use private threads",
+                DiscordPermission.UseExternalStickers => "Use external stickers",
                 _ => throw new ArgumentOutOfRangeException(nameof(permission), permission, null)
             };
+        }
+
+        /// <summary>
+        ///     Checks if the provided <paramref name="permissions" /> contains any channel permissions.
+        /// </summary>
+        /// <param name="permissions">The <see cref="DiscordPermission" /> that will be checked for channel permissions.</param>
+        /// <returns>
+        ///     Whether or not the <paramref name="permissions" /> contained any channel permissions.
+        /// </returns>
+        public static bool HasChannelPermissions(this DiscordPermission permissions)
+        {
+            return (permissions & ChannelPerms) != 0;
         }
     }
 }

@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    public record DiscordInteractionCommandCallbackData
+    public record DiscordInteractionCallbackData
     {
         /// <summary>
         ///     Whether or not the response is TTS.
@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     Interaction application command callback data flags
         /// </summary>
         [JsonPropertyName("flags")]
-        public DiscordInteractionCommandCallbackFlags? Flags { get; init; }
+        public DiscordInteractionCallbackFlags? Flags { get; init; }
 
         /// <summary>
         ///     Message components.

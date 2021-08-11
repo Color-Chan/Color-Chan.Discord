@@ -62,6 +62,9 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         /// <summary>
         ///     The Channel id of the current Channel.
         /// </summary>
+        /// <remarks>
+        ///     This will be the user the id when the slash command was used in DMs.
+        /// </remarks>
         ulong ChannelId { get; set; }
 
         /// <summary>

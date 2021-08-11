@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     The type of interaction.
         /// </summary>
         [JsonPropertyName("type")]
-        public DiscordInteractionType Type { get; init; }
+        public DiscordInteractionRequestType RequestType { get; init; }
 
         /// <summary>
         ///     The command data payload.
@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     It is optional for future-proofing against new interaction types.
         /// </remarks>
         [JsonPropertyName("data")]
-        public DiscordInteractionCommandData? Data { get; init; }
+        public DiscordInteractionRequestData? Data { get; init; }
 
         /// <summary>
         ///     The guild it was sent from.

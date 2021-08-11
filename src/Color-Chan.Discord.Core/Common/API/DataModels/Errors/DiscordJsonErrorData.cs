@@ -24,6 +24,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Errors
         ///     The error message.
         /// </summary>
         [JsonPropertyName("message")]
-        public string Message { get; set; } = null!;
+        public string Message { get; init; } = null!;
     }
 }

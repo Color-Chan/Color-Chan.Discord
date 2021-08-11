@@ -14,24 +14,24 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Unique id of the command.
         /// </summary>
         [JsonPropertyName("id")]
-        public ulong CommandId { get; set; }
+        public ulong CommandId { get; init; }
 
         /// <summary>
         ///     The id of the application the command belongs to.
         /// </summary>
         [JsonPropertyName("application_id")]
-        public ulong ApplicationId { get; set; }
+        public ulong ApplicationId { get; init; }
 
         /// <summary>
         ///     The id of the guild.
         /// </summary>
         [JsonPropertyName("guild_id")]
-        public ulong GuildId { get; set; }
+        public ulong GuildId { get; init; }
 
         /// <summary>
         ///     The permissions for the command in the guild.
         /// </summary>
         [JsonPropertyName("permissions")]
-        public IEnumerable<DiscordApplicationCommandPermissionsData> Permissions { get; set; } = new List<DiscordApplicationCommandPermissionsData>();
+        public IEnumerable<DiscordApplicationCommandPermissionsData> Permissions { get; init; } = new List<DiscordApplicationCommandPermissionsData>();
     }
 }

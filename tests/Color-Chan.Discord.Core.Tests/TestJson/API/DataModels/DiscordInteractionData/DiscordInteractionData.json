@@ -3,15 +3,29 @@
   "application_id": "9999999999999999",
   "type": 3,
   "data": {
-    "id": "9999999999999999",
-    "name": "test",
+    "id": "871460926161838081",
+    "name": "roles",
+    "type": 1,
     "options": [
       {
-        "name": "test",
-        "type": 3,
-        "value": "test_test"
+        "name": "add",
+        "type": 2,
+        "options": [
+          {
+            "name": "empty",
+            "type": 1,
+            "options": [
+              {
+                "name": "name",
+                "type": 3,
+                "value": "test role name"
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "target_id": "0"
   },
   "guild_id": "9999999999999999",
   "channel_id": "9999999999999999",

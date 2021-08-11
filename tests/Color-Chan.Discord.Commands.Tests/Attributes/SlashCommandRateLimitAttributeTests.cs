@@ -32,7 +32,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                 {
                     Id = 123
                 }),
-                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionCommandData
+                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionRequestData
                 {
                     Id = 456
                 }),
@@ -76,7 +76,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                 {
                     Id = 123
                 }),
-                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionCommandData
+                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionRequestData
                 {
                     Id = 456
                 }),

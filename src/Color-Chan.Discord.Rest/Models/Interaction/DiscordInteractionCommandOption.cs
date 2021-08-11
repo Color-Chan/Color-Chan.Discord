@@ -10,7 +10,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
 {
     public record DiscordInteractionCommandOption : IDiscordInteractionCommandOption
     {
-        public DiscordInteractionCommandOption(DiscordInteractionCommandOptionData data)
+        public DiscordInteractionCommandOption(DiscordInteractionOptionData data)
         {
             Name = data.Name;
             Type = data.Type;

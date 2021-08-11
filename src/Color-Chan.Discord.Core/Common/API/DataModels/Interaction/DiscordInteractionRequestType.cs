@@ -1,6 +1,6 @@
 ﻿namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    public enum DiscordInteractionType : byte
+    public enum DiscordInteractionRequestType : byte
     {
         Ping = 1,
         ApplicationCommand = 2,

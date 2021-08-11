@@ -13,12 +13,12 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     The server description shown in the welcome screen.
         /// </summary>
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        public string? Description { get; init; }
 
         /// <summary>
         ///     The server description shown in the welcome screen.
         /// </summary>
         [JsonPropertyName("welcome_channels")]
-        public IEnumerable<DiscordGuildWelcomeChannelData> WelcomeChannels { get; set; } = new List<DiscordGuildWelcomeChannelData>();
+        public IEnumerable<DiscordGuildWelcomeChannelData> WelcomeChannels { get; init; } = new List<DiscordGuildWelcomeChannelData>();
     }
 }

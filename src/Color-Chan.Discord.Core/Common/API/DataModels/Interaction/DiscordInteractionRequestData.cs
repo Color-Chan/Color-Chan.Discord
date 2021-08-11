@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.API.DataModels.Select;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
@@ -7,7 +9,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
     ///     More info on
     ///     https://discord.com/developers/docs/interactions/slash-commands#interaction-object-application-command-interaction-data-structure.
     /// </summary>
-    public record DiscordInteractionCommandData
+    public record DiscordInteractionRequestData
     {
         /// <summary>
         ///     The ID of the invoked command.
@@ -20,18 +22,24 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
+        
+        /// <summary>
+        ///     The type of the invoked command.
+        /// </summary>
+        [JsonPropertyName("type")] 
+        public DiscordApplicationCommandTypes Type { get; init; }
 
         /// <summary>
         ///     Converted users + roles + channels.
         /// </summary>
         [JsonPropertyName("resolved")]
-        public DiscordInteractionCommandResolvedData? Resolved { get; init; }
+        public DiscordInteractionResolvedData? Resolved { get; init; }
 
         /// <summary>
         ///     The params + values from the user.
         /// </summary>
         [JsonPropertyName("options")]
-        public IEnumerable<DiscordInteractionCommandOptionData>? Options { get; set; }
+        public IEnumerable<DiscordInteractionOptionData>? Options { get; init; }
 
         /// <summary>
         ///     For components, the custom_id of the component.
@@ -44,5 +52,17 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         /// </summary>
         [JsonPropertyName("component_type")]
         public string? ComponentType { get; init; }
+        
+        /// <summary>
+        ///     The values the user selected.
+        /// </summary>
+        [JsonPropertyName("values")]
+        public DiscordSelectOptionData? Values { get; init; }
+        
+        /// <summary>
+        ///     Id the of user or message targeted by a user or message command.
+        /// </summary>
+        [JsonPropertyName("target_id")]
+        public ulong? TargetId { get; init; }
     }
 }

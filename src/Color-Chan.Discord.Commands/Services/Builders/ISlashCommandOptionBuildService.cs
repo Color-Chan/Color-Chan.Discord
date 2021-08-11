@@ -46,6 +46,6 @@ namespace Color_Chan.Discord.Commands.Services.Builders
         ///     The generated <see cref="IEnumerable{T}" /> of <see cref="DiscordApplicationCommandOptionChoiceData" />.
         /// </returns>
         /// <exception cref="UpdateSlashCommandException">Thrown when the command options exceeds the maximum allowed choices.</exception>
-        IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, string>>? choicePairs);
+        IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs);
     }
 }

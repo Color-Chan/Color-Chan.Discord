@@ -38,7 +38,7 @@ namespace Color_Chan.Discord.Commands
         /// <summary>
         ///     Interaction application command callback data flags
         /// </summary>
-        private DiscordInteractionCommandCallbackFlags? _flags;
+        private DiscordInteractionCallbackFlags? _flags;
 
         /// <summary>
         ///     Whether or not the response is TTS.
@@ -63,7 +63,7 @@ namespace Color_Chan.Discord.Commands
         /// <returns></returns>
         public SlashCommandResponseBuilder MakePrivate()
         {
-            _flags = DiscordInteractionCommandCallbackFlags.Ephemeral;
+            _flags = DiscordInteractionCallbackFlags.Ephemeral;
             return this;
         }
 

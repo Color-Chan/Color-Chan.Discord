@@ -78,7 +78,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
-                Data = new DiscordInteractionCommandData
+                Data = new DiscordInteractionRequestData
                 {
                     Id = ulong.MaxValue,
                     Name = "command"
@@ -110,11 +110,11 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
-                Data = new DiscordInteractionCommandData
+                Data = new DiscordInteractionRequestData
                 {
                     Id = ulong.MaxValue,
                     Name = "command",
-                    Resolved = new DiscordInteractionCommandResolvedData
+                    Resolved = new DiscordInteractionResolvedData
                     {
                         Roles = new Dictionary<ulong, DiscordGuildRoleData>
                         {
@@ -160,7 +160,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
-                Data = new DiscordInteractionCommandData
+                Data = new DiscordInteractionRequestData
                 {
                     Id = ulong.MaxValue,
                     Name = "command"
@@ -193,11 +193,11 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
-                Data = new DiscordInteractionCommandData
+                Data = new DiscordInteractionRequestData
                 {
                     Id = ulong.MaxValue,
                     Name = "sub",
-                    Options = new List<DiscordInteractionCommandOptionData>
+                    Options = new List<DiscordInteractionOptionData>
                     {
                         new()
                         {
@@ -234,17 +234,17 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
-                Data = new DiscordInteractionCommandData
+                Data = new DiscordInteractionRequestData
                 {
                     Id = ulong.MaxValue,
                     Name = "sub",
-                    Options = new List<DiscordInteractionCommandOptionData>
+                    Options = new List<DiscordInteractionOptionData>
                     {
                         new()
                         {
                             Type = DiscordApplicationCommandOptionType.SubCommandGroup,
                             Name = "command",
-                            SubOptions = new List<DiscordInteractionCommandOptionData>
+                            SubOptions = new List<DiscordInteractionOptionData>
                             {
                                 new()
                                 {
