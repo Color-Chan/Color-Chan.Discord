@@ -40,7 +40,7 @@
         <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
         <RepositoryBranch>main</RepositoryBranch>
         <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
-        <PackageTags>slashcommands;discord;library;api</PackageTags>
+        <PackageTags>slash;commands;discord;library;api;interactions;bot;webhook</PackageTags>
         <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
     </PropertyGroup>
 

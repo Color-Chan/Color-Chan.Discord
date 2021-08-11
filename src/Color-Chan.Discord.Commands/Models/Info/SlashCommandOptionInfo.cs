@@ -42,9 +42,9 @@ namespace Color_Chan.Discord.Commands.Models.Info
 
             Type = type switch
             {
-                var t when t == typeof(bool) => DiscordApplicationCommandOptionType.Boolean,
-                var t when t == typeof(int) => DiscordApplicationCommandOptionType.Integer,
-                var t when t == typeof(double) => DiscordApplicationCommandOptionType.Number,
+                var t when t == typeof(bool) || t == typeof(bool?) => DiscordApplicationCommandOptionType.Boolean,
+                var t when t == typeof(int) || t == typeof(int?) => DiscordApplicationCommandOptionType.Integer,
+                var t when t == typeof(double) || t == typeof(double?) => DiscordApplicationCommandOptionType.Number,
                 var t when t == typeof(string) => DiscordApplicationCommandOptionType.String,
                 _ => throw new UnsupportedSlashCommandParameterException($"Failed to find type for {type.Name}, please specify the option type")
             };
