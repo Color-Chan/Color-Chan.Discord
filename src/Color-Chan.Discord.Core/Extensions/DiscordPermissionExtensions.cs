@@ -179,6 +179,7 @@ namespace Color_Chan.Discord.Core.Extensions
                 DiscordPermission.ManageThreads => "Manage threads",
                 DiscordPermission.UsePublicThreads => "Use public threads",
                 DiscordPermission.UsePrivateThreads => "Use private threads",
+                DiscordPermission.UseExternalStickers => "Use external stickers",
                 _ => throw new ArgumentOutOfRangeException(nameof(permission), permission, null)
             };
         }
