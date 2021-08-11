@@ -64,6 +64,8 @@ namespace Color_Chan.Discord.Commands.Modules
             // Build the response with the embed.
             var responseBuilder = new SlashCommandResponseBuilder().WithEmbed(embed);
             
+            if (isPrivate) responseBuilder.MakePrivate();
+            
             //  Return the response to Discord.
             return FromSuccess(responseBuilder.Build());
         }
