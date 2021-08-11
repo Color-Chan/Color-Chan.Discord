@@ -9,6 +9,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Guild;
+using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models;
 using Color_Chan.Discord.Rest.Models.Guild;
@@ -22,14 +23,17 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
     [TestFixture]
     public class SlashCommandRequireBotPermissionAttributeTests
     {
-        [Test]
-        public async Task Should_pass_user_permission_requirement()
+        [TestCase(DiscordPermission.Speak, DiscordPermission.Speak, DiscordPermission.Administrator)]
+        [TestCase(DiscordPermission.Speak | DiscordPermission.DeafenMembers | DiscordPermission.BanMembers, 
+                  DiscordPermission.None, 
+                  DiscordPermission.Speak | DiscordPermission.Stream | DiscordPermission.BanMembers | DiscordPermission.DeafenMembers | DiscordPermission.KickMembers)]
+        public async Task Should_pass_user_permission_requirement(DiscordPermission required, DiscordPermission deny, DiscordPermission botPerms)
         {
             // Arrange
-            var attribute = new SlashCommandRequireBotPermissionAttribute(DiscordPermission.AddReactions);
+            var attribute = new SlashCommandRequireBotPermissionAttribute(required);
             var discordToken = new DiscordTokens("TOKEN", "PUBLIC_KEY", 123);
             var restGuildMock = new Mock<IDiscordRestGuild>();
-            var context = GetTestContext(DiscordPermission.Speak | DiscordPermission.AddReactions, DiscordPermission.Speak);
+            var context = GetTestContext(botPerms, deny);
             var botMember = new DiscordGuildMember(new DiscordGuildMemberData
             {
                 Roles = new ulong[]{1}
@@ -76,22 +80,28 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             result.IsSuccessful.Should().BeFalse();
         }
 
-        [Test]
-        public async Task Should_not_pass_user_permission_requirement()
+        [TestCase(DiscordPermission.AddReactions | DiscordPermission.AttachFiles | DiscordPermission.Speak | DiscordPermission.Stream,
+                  DiscordPermission.AddReactions,
+                  DiscordPermission.Speak | DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream, 
+                  DiscordPermission.AddReactions | DiscordPermission.AttachFiles)]
+        [TestCase(DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream,
+                  DiscordPermission.AddReactions,
+                  DiscordPermission.Speak | DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream | DiscordPermission.AttachFiles | DiscordPermission.BanMembers, 
+                  DiscordPermission.AddReactions)]
+        public async Task Should_not_pass_user_permission_requirement(DiscordPermission required, DiscordPermission deny, DiscordPermission bot, DiscordPermission missing)
         {
             // Arrange
             var discordToken = new DiscordTokens("TOKEN", "PUBLIC_KEY", 123);
             var restGuildMock = new Mock<IDiscordRestGuild>();
-            var context = GetTestContext(DiscordPermission.Speak | DiscordPermission.AddReactions, DiscordPermission.Speak);
-            var attribute = new SlashCommandRequireBotPermissionAttribute(DiscordPermission.Speak
-                                                                          | DiscordPermission.AddReactions);
+            var context = GetTestContext(bot, deny);
+            var attribute = new SlashCommandRequireBotPermissionAttribute(required);
             var botMember = new DiscordGuildMember(new DiscordGuildMemberData
             {
                 Roles = new ulong[]{1}
             });
             restGuildMock.Setup(x => x.GetGuildMemberAsync(It.IsAny<ulong>(), It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
                          .ReturnsAsync(Result<IDiscordGuildMember>.FromSuccess(botMember));
-            
+            var missingList = missing.ToList();
             var collectionProvider = new ServiceCollection()
                                      .AddSingleton(restGuildMock.Object)
                                      .AddSingleton(discordToken)
@@ -106,10 +116,10 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             result.ErrorResult.Should().BeOfType<SlashCommandRequireBotPermissionErrorResult>();
             var reqError = result.ErrorResult as SlashCommandRequireBotPermissionErrorResult;
             reqError!.MissingPermissions.Should().NotBeNull();
-            reqError.MissingPermissions!.Count.Should().Be(1);
+            reqError.MissingPermissions!.Count.Should().Be(missingList.Count);
             foreach (var missingPermission in reqError.MissingPermissions)
             {
-                missingPermission.Should().Be(DiscordPermission.Speak);
+                missingList.Should().Contain(missingPermission);
             }
         }
 

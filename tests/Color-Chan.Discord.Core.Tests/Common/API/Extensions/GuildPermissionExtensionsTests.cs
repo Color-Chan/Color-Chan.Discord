@@ -32,7 +32,7 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.Extensions
                             DiscordPermission.MentionEveryone |
                             DiscordPermission.AddReactions)]
         [TestCase("6442975488", DiscordPermission.ViewGuildInsights |
-                                DiscordPermission.UseSlashCommands |
+                                DiscordPermission.UseApplicationCommands |
                                 DiscordPermission.PrioritySpeaker |
                                 DiscordPermission.RequestToSpeak)]
         [TestCase("120259084800", DiscordPermission.Stream |
@@ -78,7 +78,7 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.Extensions
                             DiscordPermission.MentionEveryone |
                             DiscordPermission.AddReactions)]
         [TestCase("6442975488", DiscordPermission.ViewGuildInsights |
-                                DiscordPermission.UseSlashCommands |
+                                DiscordPermission.UseApplicationCommands |
                                 DiscordPermission.PrioritySpeaker |
                                 DiscordPermission.RequestToSpeak)]
         [TestCase("120259084800", DiscordPermission.Stream |

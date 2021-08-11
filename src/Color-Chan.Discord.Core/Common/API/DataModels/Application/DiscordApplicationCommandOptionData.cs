@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
         ///     Choices for string, int and number types for the user to pick from.
         /// </summary>
         [JsonPropertyName("choices")]
-        public IEnumerable<DiscordApplicationCommandOptionChoiceData>? Choices { get; init; }
+        public IEnumerable<DiscordApplicationCommandOptionChoiceData>? Choices { get; set; }
 
         /// <summary>
         ///     If the option is a subcommand or subcommand group type, this nested options will be the parameters.
