@@ -132,7 +132,7 @@ namespace Color_Chan.Discord.Controllers
                 AllowedMentions = responseData?.AllowedMentions
             };
 
-            var responseResult = await _restApplication.EditOriginalInteractionResponse(_discordTokens.ApplicationId, interactionData.Token, editResponse).ConfigureAwait(false);
+            var responseResult = await _restApplication.EditOriginalInteractionResponseAsync(_discordTokens.ApplicationId, interactionData.Token, editResponse).ConfigureAwait(false);
             if (responseResult.IsSuccessful) return Ok();
 
             // Send an error response.

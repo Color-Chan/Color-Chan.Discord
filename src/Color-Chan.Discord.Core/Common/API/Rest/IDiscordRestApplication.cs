@@ -290,6 +290,17 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <returns>
         ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
         /// </returns>
-        Task<Result<IDiscordMessage>> EditOriginalInteractionResponse(ulong applicationId, string token, DiscordEditWebhookMessage webhookMessage, CancellationToken ct = default);
+        Task<Result<IDiscordMessage>> EditOriginalInteractionResponseAsync(ulong applicationId, string token, DiscordEditWebhookMessage webhookMessage, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Deletes the initial Interaction response.
+        /// </summary>
+        /// <param name="applicationId">The ID of the application.</param>
+        /// <param name="token">The token of the interaction.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> DeleteOriginalInteractionResponseAsync(ulong applicationId, string token, CancellationToken ct = default);
     }
 }

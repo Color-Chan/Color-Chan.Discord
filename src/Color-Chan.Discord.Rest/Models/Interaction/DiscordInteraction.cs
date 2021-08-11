@@ -11,6 +11,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
     {
         public DiscordInteraction(DiscordInteractionData data)
         {
+            Id = data.Id;
             ApplicationId = data.ApplicationId;
             RequestType = data.RequestType;
             if (data.Data is not null) Data = new DiscordInteractionCommand(data.Data);
