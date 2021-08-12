@@ -73,7 +73,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                     Name = optionInfo.Name,
                     Description = optionInfo.Description,
                     Type = optionInfo.Type,
-                    IsRequired = optionInfo.IsRequired,
+                    IsRequired = optionInfo.IsRequired is true ? true : null,
                     Choices = BuildChoiceData(optionInfo.Choices),
                     SubOptions = subOptions
                 });

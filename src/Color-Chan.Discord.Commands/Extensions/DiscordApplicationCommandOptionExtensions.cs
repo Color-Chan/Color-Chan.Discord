@@ -32,7 +32,7 @@ namespace Color_Chan.Discord.Commands.Extensions
                     // Description has been updated.
                     return true;
 
-                if (commandOption.IsRequired != existingOption.IsRequired)
+                if ((commandOption.IsRequired ?? false) != (existingOption.IsRequired ?? false))
                     // IsRequired has been updated.
                     return true;
 
