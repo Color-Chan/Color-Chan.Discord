@@ -103,7 +103,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                         {
                                             Name = "role",
                                             Description = "The role name",
-                                            IsRequired = true,
+                                            IsRequired = false,
                                             Type = DiscordApplicationCommandOptionType.String,
                                             Choices = new List<DiscordApplicationCommandOptionChoiceData>
                                             {
@@ -210,7 +210,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                                         {
                                             Name = "role",
                                             Description = "The role name",
-                                            IsRequired = true,
+                                            IsRequired = null,
                                             Type = DiscordApplicationCommandOptionType.String,
                                             Choices = new List<DiscordApplicationCommandOptionChoiceData>
                                             {
