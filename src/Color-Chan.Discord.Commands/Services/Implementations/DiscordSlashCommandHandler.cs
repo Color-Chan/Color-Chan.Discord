@@ -22,10 +22,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
     public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
     {
         private readonly ILogger<DiscordSlashCommandHandler> _logger;
-        private readonly IDiscordRestGuild _restGuild;
         private readonly IDiscordRestChannel _restChannel;
-        private readonly SlashCommandConfiguration _slashCommandConfiguration;
+        private readonly IDiscordRestGuild _restGuild;
         private readonly IServiceProvider _serviceProvider;
+        private readonly SlashCommandConfiguration _slashCommandConfiguration;
         private readonly ISlashCommandService _slashCommandService;
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
                 guild = guildResult.Entity;
             }
-            
+
             IDiscordChannel? channel = null;
             if (_slashCommandConfiguration.EnableAutoGetGuild && interaction.ChannelId is not null)
             {
@@ -86,12 +86,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             };
 
             IEnumerable<IDiscordInteractionCommandOption>? options = null;
-            
+
             // Get the command name and the options.
             if (interaction.Data.Options is null)
             {
                 options = interaction.Data.Options;
-                context.SlashCommandName = new []{interaction.Data.Name};
+                context.SlashCommandName = new[] { interaction.Data.Name };
             }
             else
             {
@@ -115,11 +115,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                     options = subOption.SubOptions;
                                 }
                             }
+
                             break;
                     }
                 }
             }
-            
+
             // Local method to execute the command.
             async Task<Result<IDiscordInteractionResponse>> Handler()
             {

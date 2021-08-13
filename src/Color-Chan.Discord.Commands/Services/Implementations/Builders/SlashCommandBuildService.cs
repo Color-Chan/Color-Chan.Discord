@@ -82,7 +82,6 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                     validCommands.Add(commandInfoKeyValuePair.Value);
                     _logger.LogDebug("Found valid command in command module {TopLevelCommandName}", commandInfoKeyValuePair.Value.Key);
                 }
-
             }
 
             _logger.LogDebug("Found {CommandCount} valid commands in assembly {AssemblyName}", validCommands.Count.ToString(), assembly.FullName);
@@ -96,9 +95,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
             foreach (var typeInfo in assembly.DefinedTypes)
             {
-                if (!typeInfo.IsPublic && !typeInfo.IsNestedPublic) 
+                if (!typeInfo.IsPublic && !typeInfo.IsNestedPublic)
                     continue;
-                
+
                 if (IsValidModuleDefinition(typeInfo))
                     result.Add(typeInfo);
             }

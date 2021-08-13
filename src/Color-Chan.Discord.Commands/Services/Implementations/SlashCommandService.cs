@@ -169,11 +169,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null, IServiceProvider? serviceProvider = null)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
+                                                                                        IServiceProvider? serviceProvider = null)
         {
             var arr = context.SlashCommandName.ToArray();
             var count = arr.Length;
-            
+
             switch (count)
             {
                 case 1:

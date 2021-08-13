@@ -23,7 +23,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class SlashCommandRequireChannelAttribute  : SlashCommandRequirementAttribute
+    public class SlashCommandRequireChannelAttribute : SlashCommandRequirementAttribute
     {
         private readonly ulong _channelId;
 
@@ -35,12 +35,12 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         {
             _channelId = channelId;
         }
-        
+
         /// <inheritdoc />
         public override Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
         {
-            return Task.FromResult(context.ChannelId != _channelId 
-                                       ? Result.FromError(new SlashCommandRequireChannelErrorResult($"Channel with ID {_channelId.ToString()} is required to use this command.")) 
+            return Task.FromResult(context.ChannelId != _channelId
+                                       ? Result.FromError(new SlashCommandRequireChannelErrorResult($"Channel with ID {_channelId.ToString()} is required to use this command."))
                                        : Result.FromSuccess());
         }
     }

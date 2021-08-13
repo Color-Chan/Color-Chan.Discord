@@ -33,13 +33,13 @@ namespace Color_Chan.Discord.Commands.Attributes
         /// <summary>
         ///     Check whether or not a rate limit has been hit.
         /// </summary>
-        /// <param name="context">The <see cref="ISlashCommandContext"/> of the current request.</param>
+        /// <param name="context">The <see cref="ISlashCommandContext" /> of the current request.</param>
         /// <param name="services">The service.</param>
         /// <param name="uniqueId">A unique ID that will be used to store the rate limit objects.</param>
         /// <returns>
-        ///     A <see cref="Result"/> containing if the rate limit was successfully passed or not.
+        ///     A <see cref="Result" /> containing if the rate limit was successfully passed or not.
         /// </returns>
-        /// <exception cref="NullReferenceException">When the <see cref="RateLimitInfo"/> is not found after creating it.</exception>
+        /// <exception cref="NullReferenceException">When the <see cref="RateLimitInfo" /> is not found after creating it.</exception>
         protected async Task<Result> CheckRateLimitAsync(ISlashCommandContext context, IServiceProvider services, ulong uniqueId)
         {
             var cacheService = services.GetRequiredService<ICacheService>();
@@ -64,11 +64,11 @@ namespace Color_Chan.Discord.Commands.Attributes
             {
                 throw new NullReferenceException();
             }
-            
+
             if (rateLimit.Remaining > 0)
             {
                 rateLimit.Remaining--;
-                
+
                 await cacheService.CacheValueAsync(key, rateLimit, null, rateLimit.Expiration);
                 return Result.FromSuccess();
             }

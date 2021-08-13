@@ -14,7 +14,8 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     /// </summary>
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module so they can only be used by the
-    ///     owner of the guild they are being requested in. You can also put the <see cref="SlashCommandRequireGuildOwnerAttribute" />
+    ///     owner of the guild they are being requested in. You can also put the
+    ///     <see cref="SlashCommandRequireGuildOwnerAttribute" />
     ///     on a method if you only want to have it on a specific command.
     ///     <code language="cs">
     ///     [SlashCommandRequireGuildOwner]

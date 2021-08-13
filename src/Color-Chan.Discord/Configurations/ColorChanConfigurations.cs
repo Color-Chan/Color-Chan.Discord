@@ -14,18 +14,18 @@ namespace Color_Chan.Discord.Configurations
         ///     The configurations for all the interactions.
         /// </summary>
         public Action<InteractionsConfiguration>? InteractionConfigs { get; set; }
-        
+
         /// <summary>
         ///     The configuration options for slash commands.
         /// </summary>
         public Action<SlashCommandConfiguration>? SlashCommandConfigs { get; set; }
-        
+
         /// <summary>
         ///     The default cache configurations.
         ///     Leave this null to use the default expiration values.
         /// </summary>
         public Action<CacheConfiguration>? DefaultCacheConfig { get; set; }
-        
+
         /// <summary>
         ///     The cache options for the redis cache.
         ///     Leave this null if you want to use a local cache.

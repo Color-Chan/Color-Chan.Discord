@@ -316,9 +316,9 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
 	    ///     Channels types: Text.
 	    /// </remarks>
 	    UsePrivateThreads = (ulong)1 << 36,
-	    
+
 	    /// <summary>
-	    ///     	Allows the usage of custom stickers from other servers.
+	    ///     Allows the usage of custom stickers from other servers.
 	    /// </summary>
 	    /// <remarks>
 	    ///     Channels types: Text.

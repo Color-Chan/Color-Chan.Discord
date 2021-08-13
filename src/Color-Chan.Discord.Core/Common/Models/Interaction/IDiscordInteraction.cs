@@ -66,7 +66,8 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         IDiscordMessage? Message { get; init; }
 
         /// <summary>
-        ///     Checks whether or not the interaction <see cref="RequestType" /> is <see cref="DiscordInteractionRequestType.Ping" />.
+        ///     Checks whether or not the interaction <see cref="RequestType" /> is
+        ///     <see cref="DiscordInteractionRequestType.Ping" />.
         /// </summary>
         /// <returns>
         ///     True or false depending on the value of <see cref="RequestType" />.

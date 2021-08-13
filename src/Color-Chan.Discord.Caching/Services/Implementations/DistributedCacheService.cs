@@ -105,7 +105,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
             await _distributedCache.SetAsync(key, bytes, redisCacheConfig);
         }
-        
+
         /// <inheritdoc />
         public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, DateTimeOffset? absoluteExpiration) where TValue : notnull
         {
@@ -141,7 +141,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
             _distributedCache.Set(key, bytes, redisCacheConfig);
         }
-        
+
         /// <inheritdoc />
         public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, DateTimeOffset? absoluteExpiration) where TValue : notnull
         {

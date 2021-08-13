@@ -10,7 +10,7 @@ namespace Color_Chan.Discord.Commands.Models.Results
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandUserRateLimitErrorResult" />.
         /// </summary>
-        /// <param name="baseError">The <see cref="BaseSlashCommandRateLimitErrorResult"/>.</param>
+        /// <param name="baseError">The <see cref="BaseSlashCommandRateLimitErrorResult" />.</param>
         /// <param name="user">The user that hit the rate limit.</param>
         public SlashCommandUserRateLimitErrorResult(BaseSlashCommandRateLimitErrorResult baseError, IDiscordUser user) : base(baseError.ErrorMessage, baseError.Max, baseError.AbsoluteExpiration)
         {

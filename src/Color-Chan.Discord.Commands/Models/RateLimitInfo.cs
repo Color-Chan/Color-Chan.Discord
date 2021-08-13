@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Commands.Models
         ///     The amount of requests remaining.
         /// </summary>
         public int Remaining { get; set; }
-        
+
         /// <summary>
         ///     When this rate limit object is going to expire in the cache.
         /// </summary>

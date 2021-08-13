@@ -69,7 +69,7 @@ namespace RoleManager.Commands
                                .WithDescription($"Role: {roleName} has been created.")
                                .WithColor(newRoleResponse.Entity!.Color)
                                .WithTimeStamp();
-            
+
             //  Return the response to Discord.
             return FromSuccess(embedBuilder.Build());
         }
@@ -106,7 +106,7 @@ namespace RoleManager.Commands
                                .WithDescription("The role has been successfully deleted!")
                                .WithColor(role?.Color ?? Color.FromArgb(0))
                                .WithTimeStamp();
-            
+
             //  Return the response to Discord.
             return FromSuccess(embedBuilder.Build());
         }
@@ -139,7 +139,7 @@ namespace RoleManager.Commands
                                .WithDescription(description)
                                .WithColor(Color.HotPink)
                                .WithTimeStamp();
-            
+
             //  Return the response to Discord.
             return FromSuccess(embedBuilder.Build());
         }

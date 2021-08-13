@@ -25,28 +25,28 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
 
         /// <inheritdoc />
         public ulong Id { get; init; }
-        
+
         /// <inheritdoc />
         public string Name { get; init; } = null!;
-        
+
         /// <inheritdoc />
         public DiscordApplicationCommandTypes Type { get; set; }
-        
+
         /// <inheritdoc />
         public IDiscordInteractionCommandResolved? Resolved { get; init; }
-        
+
         /// <inheritdoc />
         public IEnumerable<IDiscordInteractionCommandOption>? Options { get; set; }
-        
+
         /// <inheritdoc />
         public string? CustomId { get; init; }
-        
+
         /// <inheritdoc />
         public string? ComponentType { get; init; }
-        
+
         /// <inheritdoc />
         public IDiscordSelectOption? Values { get; init; }
-        
+
         /// <inheritdoc />
         public ulong? TargetId { get; init; }
     }

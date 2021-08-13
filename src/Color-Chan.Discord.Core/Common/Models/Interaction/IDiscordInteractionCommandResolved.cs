@@ -31,7 +31,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         ///     Partial Channel objects only have id, name, type and permissions fields.
         /// </remarks>
         IReadOnlyDictionary<ulong, IDiscordChannel>? Channels { get; init; }
-        
+
         /// <summary>
         ///     the ids and partial Message objects.
         /// </summary>

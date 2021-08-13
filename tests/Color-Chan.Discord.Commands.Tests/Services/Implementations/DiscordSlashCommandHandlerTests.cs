@@ -28,13 +28,6 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
     [TestFixture]
     public class DiscordSlashCommandHandlerTests
     {
-        private Mock<ILogger<DiscordSlashCommandHandler>> _handlerLoggerMock = null!;
-        private OptionsWrapper<SlashCommandConfiguration> _options = null!;
-        private Mock<ISlashCommandService> _commandServiceMock = null!;
-        private Mock<IDiscordRestChannel> _restChannelMock = null!;
-        private Mock<IDiscordRestGuild> _restGuildMock = null!;
-        private static string _orderTestMessage = "";
-
         [SetUp]
         public void SetUp()
         {
@@ -44,18 +37,25 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             _options = new OptionsWrapper<SlashCommandConfiguration>(new SlashCommandConfiguration());
             _commandServiceMock = new Mock<ISlashCommandService>();
             _orderTestMessage = string.Empty;
-            
+
             _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<ISlashCommandContext>(),
                                                                       It.IsAny<IEnumerable<IDiscordInteractionCommandOption>>(),
                                                                       It.IsAny<IServiceProvider>()))
                                .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
                                .Callback(FakeSlashCommandCall);
-            
+
             void FakeSlashCommandCall()
             {
                 _orderTestMessage += "command";
             }
         }
+
+        private Mock<ILogger<DiscordSlashCommandHandler>> _handlerLoggerMock = null!;
+        private OptionsWrapper<SlashCommandConfiguration> _options = null!;
+        private Mock<ISlashCommandService> _commandServiceMock = null!;
+        private Mock<IDiscordRestChannel> _restChannelMock = null!;
+        private Mock<IDiscordRestGuild> _restGuildMock = null!;
+        private static string _orderTestMessage = "";
 
         [Test]
         public void Should_throw_when_no_data()
@@ -68,13 +68,13 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Act & Assert
             Assert.ThrowsAsync<ArgumentNullException>(() => handler.HandleSlashCommandAsync(interaction));
         }
-        
+
         [Test]
         public async Task Should_execute_top_level_command_with_no_pipelines()
         {
             // Arrange
             var serviceProvider = new ServiceCollection()
-                                  .BuildServiceProvider();
+                .BuildServiceProvider();
             var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
@@ -99,7 +99,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             result.Should().NotBeNull();
             _orderTestMessage.Should().Be("command");
         }
-        
+
         [Test]
         public async Task Should_execute_top_level_command_with_resolved_and_pipelines()
         {
@@ -118,17 +118,19 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                     {
                         Roles = new Dictionary<ulong, DiscordGuildRoleData>
                         {
-                            {865723094761078804, new DiscordGuildRoleData
                             {
-                                Id = 865723094761078804,
-                                Color = Color.Red,
-                                Managed = false,
-                                Name = "red",
-                                Mentionable = true,
-                                Permissions = DiscordPermission.None,
-                                Position = 12,
-                                IsHoisted = false
-                            }}
+                                865723094761078804, new DiscordGuildRoleData
+                                {
+                                    Id = 865723094761078804,
+                                    Color = Color.Red,
+                                    Managed = false,
+                                    Name = "red",
+                                    Mentionable = true,
+                                    Permissions = DiscordPermission.None,
+                                    Position = 12,
+                                    IsHoisted = false
+                                }
+                            }
                         }
                     }
                 },
@@ -222,7 +224,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             result.Should().NotBeNull();
             _orderTestMessage.Should().Be("outer_inner_command_inner_outer");
         }
-        
+
         [Test]
         public async Task Should_execute_sub_sub_command_with_pipelines()
         {
@@ -277,38 +279,38 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
             {
                 context.SlashCommandName.Should().NotBeNull();
-                
+
                 _orderTestMessage += "outer_";
                 var result = await next();
                 _orderTestMessage += "_outer";
                 return result;
             }
         }
-        
+
         private class InnerPipeline : ISlashCommandPipeline
         {
             public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
             {
                 context.SlashCommandName.Should().NotBeNull();
-                
+
                 _orderTestMessage += "inner_";
                 var result = await next();
                 _orderTestMessage += "_inner";
-                
+
                 return result;
             }
         }
-        
+
         private class ResolvedPipeline : ISlashCommandPipeline
         {
             public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
             {
                 var role = context.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == 865723094761078804).Value;
-                
+
                 _orderTestMessage += $"{role?.Name}_";
                 var result = await next();
                 _orderTestMessage += $"_{role?.Name}";
-                
+
                 return result;
             }
         }

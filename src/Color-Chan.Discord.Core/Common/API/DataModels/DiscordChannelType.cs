@@ -31,27 +31,28 @@
         ///     The channel is a news channel.
         /// </summary>
         GuildNews = 5,
-        
+
         /// <summary>
         ///     A channel in which game developers can sell their game on Discord.
         /// </summary>
         GuildStore = 6,
-        
+
         /// <summary>
         ///     A temporary sub-channel within a GUILD_NEWS channel.
         /// </summary>
         GuildNewsThread = 10,
-        
+
         /// <summary>
         ///     A temporary sub-channel within a GUILD_TEXT channel.
         /// </summary>
         GuildPublicThread = 11,
-        
+
         /// <summary>
-        ///     A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission.
+        ///     A temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the
+        ///     MANAGE_THREADS permission.
         /// </summary>
         GuildPrivateThread = 12,
-        
+
         /// <summary>
         ///     A voice channel for hosting events with an audience.
         /// </summary>

@@ -70,12 +70,12 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             else
             {
                 var guildResult = await restGuild.GetGuildAsync(context.GuildId.Value).ConfigureAwait(false);
-                
+
                 if (!guildResult.IsSuccessful)
                 {
                     return Result.FromError(guildResult.ErrorResult ?? new ErrorResult("Failed to get the guild"));
                 }
-                
+
                 guild = guildResult.Entity;
             }
 
@@ -96,7 +96,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             {
                 throw new NullReferenceException("Failed to get the bot member");
             }
-            
+
             // Get the bot role permissions.
             var botRoles = guild.Roles.Where(x => botMemberResult.Entity.Roles.Contains(x.Id));
             var rolePerms = botRoles.Aggregate(DiscordPermission.None, (current, botRole) => current | botRole.Permissions);
@@ -106,7 +106,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             {
                 return Result.FromSuccess();
             }
-            
+
             // Only try to deny any channel perms if there are any required.
             if (_requiredPermission.HasChannelPermissions())
             {
@@ -125,7 +125,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                     {
                         return Result.FromError(channelResult.ErrorResult ?? new ErrorResult("Failed to get the channel"));
                     }
-                    
+
                     channel = channelResult.Entity;
                 }
 
@@ -154,13 +154,13 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             {
                 return Result.FromSuccess();
             }
-            
+
             var missingPerms = _requiredPermission.ToList().Where(requiredPerm => (rolePerms & requiredPerm) != requiredPerm).ToList();
             if (missingPerms.Any())
             {
                 return Result.FromError(new SlashCommandRequireBotPermissionErrorResult("Bot did not meet permission requirements", missingPerms));
             }
-            
+
             return Result.FromSuccess();
         }
     }

@@ -23,20 +23,20 @@ namespace RoleManager.Pipelines
         {
             _logger = logger;
         }
-        
+
         /// <inheritdoc />
         public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
         {
             var sw = new Stopwatch();
-            
+
             sw.Start();
-            
+
             // Run the command
             var result = await next().ConfigureAwait(false);
-            
+
             sw.Stop();
 
-            _logger.Log(sw.ElapsedMilliseconds > 500 ? LogLevel.Warning : LogLevel.Information ,"Command {Name} ran for {Time}ms.", context.MethodName, sw.ElapsedMilliseconds.ToString());
+            _logger.Log(sw.ElapsedMilliseconds > 500 ? LogLevel.Warning : LogLevel.Information, "Command {Name} ran for {Time}ms.", context.MethodName, sw.ElapsedMilliseconds.ToString());
             return result;
         }
     }

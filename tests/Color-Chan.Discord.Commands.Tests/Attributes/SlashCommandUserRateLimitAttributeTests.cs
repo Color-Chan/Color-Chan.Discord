@@ -52,7 +52,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             // Assert
             result.IsSuccessful.Should().Be(!shouldBeRateLimited);
         }
-        
+
         protected static IEnumerable<Tuple<RateLimitInfo, bool>> GetRateLimitUsers()
         {
             for (var i = 5 - 1; i >= 0; i--)

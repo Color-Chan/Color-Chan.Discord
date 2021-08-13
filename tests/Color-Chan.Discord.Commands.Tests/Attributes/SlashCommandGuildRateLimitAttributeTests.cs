@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             // Assert
             result.IsSuccessful.Should().BeTrue();
         }
-        
+
         [TestCaseSource(nameof(GetRateLimitServers))]
         public async Task Should_detect_rate_limit(Tuple<RateLimitInfo, bool> tuple)
         {
@@ -76,7 +76,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             // Assert
             result.IsSuccessful.Should().Be(!shouldBeRateLimited);
         }
-        
+
         protected static IEnumerable<Tuple<RateLimitInfo, bool>> GetRateLimitServers()
         {
             for (var i = 5 - 1; i >= 0; i--)
