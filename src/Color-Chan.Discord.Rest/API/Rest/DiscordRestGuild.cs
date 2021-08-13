@@ -159,7 +159,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
                                                                                   CancellationToken ct = default)
         {
             string endpoint = $"guilds/{guildId.ToString()}/roles/{roleId.ToString()}";
-            var result = await HttpClient.PostAsync<DiscordGuildRoleData, DiscordModifyGuildRole>(endpoint, role, auditLogReason, ct).ConfigureAwait(false);
+            var result = await HttpClient.PatchAsync<DiscordGuildRoleData, DiscordModifyGuildRole>(endpoint, role, auditLogReason, ct).ConfigureAwait(false);
             return ConvertResult(result);
         }
 
