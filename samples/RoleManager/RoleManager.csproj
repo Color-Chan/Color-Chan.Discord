@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj" />
+        <ProjectReference Include="..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj"/>
     </ItemGroup>
 
 </Project>

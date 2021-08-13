@@ -25,9 +25,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         private readonly ISlashCommandBuildService _commandBuildService;
         private readonly DiscordTokens _discordTokens;
         private readonly ISlashCommandGuildBuildService _guildBuildService;
-        private readonly SlashCommandConfiguration _slashConfigs;
         private readonly ILogger<SlashCommandAutoSyncService> _logger;
         private readonly IDiscordRestApplication _restApplication;
+        private readonly SlashCommandConfiguration _slashConfigs;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="IDiscordRestApplication" />.

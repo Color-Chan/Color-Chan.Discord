@@ -16,18 +16,18 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         ///     The guild the slash command was used in.
         /// </summary>
         /// <remarks>
-        ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild"/> is disabled.
+        ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild" /> is disabled.
         /// </remarks>
         IDiscordGuild? Guild { get; init; }
-        
+
         /// <summary>
         ///     The channel the slash command was used in.
         /// </summary>
         /// <remarks>
-        ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild"/> is disabled.
+        ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild" /> is disabled.
         /// </remarks>
         IDiscordChannel? Channel { get; init; }
-        
+
         /// <summary>
         ///     The guild user that has made the interaction request.
         /// </summary>

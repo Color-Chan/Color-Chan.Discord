@@ -22,11 +22,11 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
-        
+
         /// <summary>
         ///     The type of the invoked command.
         /// </summary>
-        [JsonPropertyName("type")] 
+        [JsonPropertyName("type")]
         public DiscordApplicationCommandTypes Type { get; init; }
 
         /// <summary>
@@ -52,13 +52,13 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         /// </summary>
         [JsonPropertyName("component_type")]
         public string? ComponentType { get; init; }
-        
+
         /// <summary>
         ///     The values the user selected.
         /// </summary>
         [JsonPropertyName("values")]
         public DiscordSelectOptionData? Values { get; init; }
-        
+
         /// <summary>
         ///     Id the of user or message targeted by a user or message command.
         /// </summary>

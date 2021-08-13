@@ -48,7 +48,8 @@ namespace Color_Chan.Discord.Controllers
         /// <param name="restApplication">The REST class for application api calls.</param>
         /// <param name="discordTokens">The bot tokens and IDs.</param>
         public DiscordInteractionController(IDiscordInteractionAuthService authService, ILogger<DiscordInteractionController> logger, IOptions<JsonSerializerOptions> serializerOptions,
-                                            IDiscordSlashCommandHandler commandHandler, IOptions<InteractionsConfiguration> configuration, IDiscordRestApplication restApplication, DiscordTokens discordTokens)
+                                            IDiscordSlashCommandHandler commandHandler, IOptions<InteractionsConfiguration> configuration, IDiscordRestApplication restApplication,
+                                            DiscordTokens discordTokens)
         {
             _authService = authService;
             _logger = logger;
@@ -74,11 +75,11 @@ namespace Color_Chan.Discord.Controllers
             {
                 return Unauthorized();
             }
-            
+
             // Verify the interaction request.
             var signature = Request.Headers[SignatureHeader].ToString();
             var timeStamp = Request.Headers[TimeStampHeader].ToString();
-            
+
             if (_configuration.VerifyInteractions && !await _authService.VerifySignatureAsync(signature, timeStamp, Request.Body).ConfigureAwait(false))
             {
                 _logger.LogWarning("Failed to verify interaction command");

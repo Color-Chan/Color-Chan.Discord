@@ -8,11 +8,11 @@ namespace Color_Chan.Discord.Core.Extensions
     public static class DiscordChannelExtensions
     {
         /// <summary>
-        ///     Get a string mentioning a specific <paramref name="channel"/>.
+        ///     Get a string mentioning a specific <paramref name="channel" />.
         /// </summary>
-        /// <param name="channel">The <see cref="IDiscordChannel"/> that will be mentioned.</param>
+        /// <param name="channel">The <see cref="IDiscordChannel" /> that will be mentioned.</param>
         /// <returns>
-        ///     A <see cref="string"/> containing the mentioned <paramref name="channel"/>.
+        ///     A <see cref="string" /> containing the mentioned <paramref name="channel" />.
         /// </returns>
         public static string Mention(this IDiscordChannel channel)
         {

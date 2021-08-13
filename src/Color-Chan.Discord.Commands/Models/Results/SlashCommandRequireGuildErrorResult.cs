@@ -3,7 +3,7 @@ using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 namespace Color_Chan.Discord.Commands.Models.Results
 {
     /// <summary>
-    ///     An error describing when a requirement failed for the <see cref="SlashCommandRequireGuildAttribute"/>.
+    ///     An error describing when a requirement failed for the <see cref="SlashCommandRequireGuildAttribute" />.
     /// </summary>
     public record SlashCommandRequireGuildErrorResult : SlashCommandRequirementErrorResult
     {

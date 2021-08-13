@@ -118,11 +118,11 @@ namespace Color_Chan.Discord.Core.Extensions
         public static List<DiscordPermission> ToList(this DiscordPermission permission)
         {
             var permissions = Enum.GetValues(typeof(DiscordPermission))
-                                 .Cast<Enum>()
-                                 .Where(permission.HasFlag)
-                                 .Cast<DiscordPermission>()
-                                 .ToList();
-            
+                                  .Cast<Enum>()
+                                  .Where(permission.HasFlag)
+                                  .Cast<DiscordPermission>()
+                                  .ToList();
+
             permissions.Remove(DiscordPermission.None);
             return permissions;
         }

@@ -33,9 +33,9 @@ namespace Color_Chan.Discord.Commands.Extensions
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
-        public static IServiceCollection AddColorChanDiscordCommand(this IServiceCollection services, 
-                                                                    Action<SlashCommandConfiguration>? slashCommandConfigs = null, 
-                                                                    Action<CacheConfiguration>? defaultCacheConfig = null, 
+        public static IServiceCollection AddColorChanDiscordCommand(this IServiceCollection services,
+                                                                    Action<SlashCommandConfiguration>? slashCommandConfigs = null,
+                                                                    Action<CacheConfiguration>? defaultCacheConfig = null,
                                                                     Action<RedisCacheOptions>? redisCacheOptions = null)
         {
             services.TryAddTransient<ISlashCommandRequirementBuildService, SlashCommandRequirementBuildService>();
@@ -55,17 +55,20 @@ namespace Color_Chan.Discord.Commands.Extensions
             };
 
             services.Configure(slashCommandConfigs);
-            
+
             services.AddColorChanCache(defaultCacheConfig, redisCacheOptions);
 
             return services;
         }
-        
+
         /// <summary>
-        ///     Adds a <see cref="ISlashCommandPipeline"/> to the <paramref name="services"/>.
+        ///     Adds a <see cref="ISlashCommandPipeline" /> to the <paramref name="services" />.
         /// </summary>
-        /// <param name="services">The <see cref="IServiceCollection"/> where the <typeparamref name="TPipeline"/> will be added to.</param>
-        /// <typeparam name="TPipeline">The new <see cref="ISlashCommandPipeline"/>.</typeparam>
+        /// <param name="services">
+        ///     The <see cref="IServiceCollection" /> where the <typeparamref name="TPipeline" /> will be added
+        ///     to.
+        /// </param>
+        /// <typeparam name="TPipeline">The new <see cref="ISlashCommandPipeline" />.</typeparam>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>

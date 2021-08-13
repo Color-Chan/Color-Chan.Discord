@@ -187,7 +187,8 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result<IDiscordMessage>> EditOriginalInteractionResponseAsync(ulong applicationId, string token, DiscordEditWebhookMessage webhookMessage, CancellationToken ct = default)
+        public virtual async Task<Result<IDiscordMessage>> EditOriginalInteractionResponseAsync(ulong applicationId, string token, DiscordEditWebhookMessage webhookMessage,
+                                                                                                CancellationToken ct = default)
         {
             string endpoint = $"webhooks/{applicationId.ToString()}/{token}/messages/@original";
             var result = await HttpClient.PatchAsync<DiscordMessageData, DiscordEditWebhookMessage>(endpoint, webhookMessage, ct: ct).ConfigureAwait(false);

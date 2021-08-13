@@ -19,7 +19,7 @@ namespace Pong.Commands
         /// <returns>
         ///     An embedded response with "Pong!".
         /// </returns>
-        [SlashCommandRateLimit(5, 10)] // Sets the rate limit for this command to 5 requests per 10 seconds per user.
+        [SlashCommandUserRateLimit(5, 10)] // Sets the rate limit for this command to 5 requests per 10 seconds per user.
         [SlashCommand("ping", "Ping Pong!")]
         public async Task<Result<IDiscordInteractionResponse>> PongAsync()
         {

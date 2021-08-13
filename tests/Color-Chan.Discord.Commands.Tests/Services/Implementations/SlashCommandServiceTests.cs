@@ -167,7 +167,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             {
                 SlashCommandName = new[] { commandName }
             };
-            
+
             // Act
             await commandService.AddInteractionCommandsAsync(ValidAssembly).ConfigureAwait(false);
             var result = await commandService.ExecuteSlashCommandAsync(mockContext);
@@ -248,7 +248,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             result.Entity!.Data!.Content.Should().Contain("roleName:test json role value");
             result.Entity!.Data!.Content.Should().Contain("number:12345678");
         }
-        
+
         [TestCase("role", "Command19")]
         public async Task Should_execute_interaction_command_with_role_option(string commandGroupName, string commandName)
         {
@@ -282,7 +282,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                                     Name = "red",
                                     Permissions = DiscordPermission.None,
                                     Position = 0,
-                                    IsHoisted = false,
+                                    IsHoisted = false
                                 }
                             }
                         }

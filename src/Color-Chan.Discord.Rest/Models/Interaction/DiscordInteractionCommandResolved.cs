@@ -34,7 +34,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
 
         /// <inheritdoc />
         public IReadOnlyDictionary<ulong, IDiscordChannel>? Channels { get; init; }
-        
+
         /// <inheritdoc />
         public IReadOnlyDictionary<ulong, IDiscordMessage>? Messages { get; init; }
 
@@ -50,7 +50,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
 
             return new Dictionary<ulong, IDiscordMessage>();
         }
-        
+
         private static Dictionary<ulong, IDiscordGuildMember> InitializeMembersDict(IReadOnlyDictionary<ulong, DiscordGuildMemberData>? data)
         {
             if (data is not null)

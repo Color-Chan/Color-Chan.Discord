@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         /// </remarks>
         [JsonPropertyName("channels")]
         public IReadOnlyDictionary<ulong, DiscordChannelData>? Channels { get; init; }
-        
+
         /// <summary>
         ///     The ids and partial Message objects.
         /// </summary>

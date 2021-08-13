@@ -19,7 +19,7 @@ namespace RoleManager.Commands
     /// </summary>
     [SlashCommandRequireBotPermission(DiscordPermission.ManageRoles)]
     [SlashCommandGroup("role", "Gets, creates or updates roles.")]
-    [SlashCommandRateLimit(10, 30)] // Sets the rate limit for this command module to 10 requests per 30 seconds per user.
+    [SlashCommandUserRateLimit(10, 30)] // Sets the rate limit for this command module to 10 requests per 30 seconds per user.
     [SlashCommandRequireGuild] // Required all commands in this command module to be executed in a guild.
     public class RoleCommands : SlashCommandModule
     {
@@ -69,7 +69,7 @@ namespace RoleManager.Commands
                                .WithDescription($"Role: {roleName} has been created.")
                                .WithColor(newRoleResponse.Entity!.Color)
                                .WithTimeStamp();
-            
+
             //  Return the response to Discord.
             return FromSuccess(embedBuilder.Build());
         }
@@ -106,7 +106,7 @@ namespace RoleManager.Commands
                                .WithDescription("The role has been successfully deleted!")
                                .WithColor(role?.Color ?? Color.FromArgb(0))
                                .WithTimeStamp();
-            
+
             //  Return the response to Discord.
             return FromSuccess(embedBuilder.Build());
         }
@@ -139,7 +139,7 @@ namespace RoleManager.Commands
                                .WithDescription(description)
                                .WithColor(Color.HotPink)
                                .WithTimeStamp();
-            
+
             //  Return the response to Discord.
             return FromSuccess(embedBuilder.Build());
         }

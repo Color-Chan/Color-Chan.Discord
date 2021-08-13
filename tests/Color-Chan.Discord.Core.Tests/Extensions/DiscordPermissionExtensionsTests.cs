@@ -15,11 +15,11 @@ namespace Color_Chan.Discord.Core.Tests.Extensions
         {
             // Act
             var result = permission.HasChannelPermissions();
-            
+
             // Assert
             result.Should().BeFalse();
         }
-        
+
         [TestCase(DiscordPermission.ManageChannels)]
         [TestCase(DiscordPermission.AddReactions)]
         [TestCase(DiscordPermission.ManageMessages)]
@@ -36,14 +36,14 @@ namespace Color_Chan.Discord.Core.Tests.Extensions
         [TestCase(DiscordPermission.Administrator | DiscordPermission.BanMembers | DiscordPermission.Stream)]
         [TestCase(DiscordPermission.ChangeNickname | DiscordPermission.PrioritySpeaker)]
         [TestCase(DiscordPermission.KickMembers | DiscordPermission.ManageGuild | DiscordPermission.ViewGuildInsights | DiscordPermission.AttachFiles)]
-        [TestCase(DiscordPermission.KickMembers | DiscordPermission.ManageGuild | DiscordPermission.ViewGuildInsights | 
-                  DiscordPermission.ChangeNickname | DiscordPermission.Administrator | DiscordPermission.BanMembers | 
+        [TestCase(DiscordPermission.KickMembers | DiscordPermission.ManageGuild | DiscordPermission.ViewGuildInsights |
+                  DiscordPermission.ChangeNickname | DiscordPermission.Administrator | DiscordPermission.BanMembers |
                   DiscordPermission.ManageGuild | DiscordPermission.ViewAuditLog | DiscordPermission.ManageEmojisAndStickers | DiscordPermission.SendMessages)]
         public void HasChannelPermissions_should_detect_channel_perm(DiscordPermission permission)
         {
             // Act
             var result = permission.HasChannelPermissions();
-            
+
             // Assert
             result.Should().BeTrue();
         }

@@ -69,6 +69,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
                     var commandInfoKeyValuePair = BuildCommandGroupInfoKeyValuePair(groupAttribute, parentModule);
                     validCommands.Add(commandInfoKeyValuePair);
+                    _logger.LogDebug("Found valid command in command module {TopLevelCommandName}", commandInfoKeyValuePair.Key);
                 }
 
                 // The command is not a sub command / group.
@@ -79,11 +80,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
                     if (!commandInfoKeyValuePair.HasValue) continue;
                     validCommands.Add(commandInfoKeyValuePair.Value);
+                    _logger.LogDebug("Found valid command in command module {TopLevelCommandName}", commandInfoKeyValuePair.Value.Key);
                 }
-
-                _logger.LogDebug("Found {CommandCount} valid commands in {ClassName}", validCommands.Count.ToString(), parentModule.FullName);
             }
 
+            _logger.LogDebug("Found {CommandCount} valid commands in assembly {AssemblyName}", validCommands.Count.ToString(), assembly.FullName);
             return validCommands;
         }
 
@@ -94,9 +95,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
             foreach (var typeInfo in assembly.DefinedTypes)
             {
-                if (typeInfo.IsPublic || typeInfo.IsNestedPublic)
-                    if (IsValidModuleDefinition(typeInfo))
-                        result.Add(typeInfo);
+                if (!typeInfo.IsPublic && !typeInfo.IsNestedPublic)
+                    continue;
+
+                if (IsValidModuleDefinition(typeInfo))
+                    result.Add(typeInfo);
             }
 
             return result;

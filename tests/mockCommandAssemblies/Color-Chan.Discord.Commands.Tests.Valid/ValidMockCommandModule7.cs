@@ -27,10 +27,10 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
             Assert.NotNull(SlashContext.CommandRequest);
             Assert.NotNull(SlashContext.CommandRequest.Resolved);
             Assert.NotNull(SlashContext.CommandRequest.Resolved?.Roles);
-            
+
             var role = SlashContext.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
             Assert.NotNull(role);
-            
+
             return FromSuccess(new DiscordInteractionResponse
             {
                 Type = DiscordInteractionResponseType.ChannelMessageWithSource,

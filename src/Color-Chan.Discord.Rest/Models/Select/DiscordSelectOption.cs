@@ -17,12 +17,16 @@ namespace Color_Chan.Discord.Rest.Models.Select
 
         /// <inheritdoc />
         public string Label { get; init; }
+
         /// <inheritdoc />
         public string Value { get; init; }
+
         /// <inheritdoc />
         public string? Description { get; init; }
+
         /// <inheritdoc />
         public IDiscordEmoji? Emoji { get; init; }
+
         /// <inheritdoc />
         public bool? Default { get; init; }
     }

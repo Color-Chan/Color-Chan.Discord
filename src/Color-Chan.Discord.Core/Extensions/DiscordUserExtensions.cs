@@ -8,14 +8,14 @@ namespace Color_Chan.Discord.Core.Extensions
     public static class DiscordUserExtensions
     {
         /// <summary>
-        ///     Get a string mentioning a specific <paramref name="user"/>.
+        ///     Get a string mentioning a specific <paramref name="user" />.
         /// </summary>
-        /// <param name="user">The <see cref="IDiscordUser"/> that will be mentioned.</param>
+        /// <param name="user">The <see cref="IDiscordUser" /> that will be mentioned.</param>
         /// <param name="useNickname">Whether or not the mention with the nickname of the user.</param>
         /// <returns>
-        ///     A <see cref="string"/> containing the mentioned <paramref name="user"/>.
+        ///     A <see cref="string" /> containing the mentioned <paramref name="user" />.
         /// </returns>
-        public static string Mention(this IDiscordUser user, bool useNickname = true) 
+        public static string Mention(this IDiscordUser user, bool useNickname = true)
         {
             return !useNickname ? $"<@{user.Id.ToString()}>" : $"<@!{user.Id.ToString()}>";
         }

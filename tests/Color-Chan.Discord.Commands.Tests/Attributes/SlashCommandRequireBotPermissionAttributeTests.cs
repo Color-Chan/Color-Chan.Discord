@@ -24,8 +24,8 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
     public class SlashCommandRequireBotPermissionAttributeTests
     {
         [TestCase(DiscordPermission.Speak, DiscordPermission.Speak, DiscordPermission.Administrator)]
-        [TestCase(DiscordPermission.Speak | DiscordPermission.DeafenMembers | DiscordPermission.BanMembers, 
-                  DiscordPermission.None, 
+        [TestCase(DiscordPermission.Speak | DiscordPermission.DeafenMembers | DiscordPermission.BanMembers,
+                  DiscordPermission.None,
                   DiscordPermission.Speak | DiscordPermission.Stream | DiscordPermission.BanMembers | DiscordPermission.DeafenMembers | DiscordPermission.KickMembers)]
         public async Task Should_pass_user_permission_requirement(DiscordPermission required, DiscordPermission deny, DiscordPermission botPerms)
         {
@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var context = GetTestContext(botPerms, deny);
             var botMember = new DiscordGuildMember(new DiscordGuildMemberData
             {
-                Roles = new ulong[]{1}
+                Roles = new ulong[] { 1 }
             });
             restGuildMock.Setup(x => x.GetGuildMemberAsync(It.IsAny<ulong>(), It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
                          .ReturnsAsync(Result<IDiscordGuildMember>.FromSuccess(botMember));
@@ -63,7 +63,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var context = new SlashCommandContext();
             var botMember = new DiscordGuildMember(new DiscordGuildMemberData
             {
-                Roles = new ulong[]{1}
+                Roles = new ulong[] { 1 }
             });
             restGuildMock.Setup(x => x.GetGuildMemberAsync(It.IsAny<ulong>(), It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
                          .ReturnsAsync(Result<IDiscordGuildMember>.FromSuccess(botMember));
@@ -82,11 +82,11 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
 
         [TestCase(DiscordPermission.AddReactions | DiscordPermission.AttachFiles | DiscordPermission.Speak | DiscordPermission.Stream,
                   DiscordPermission.AddReactions,
-                  DiscordPermission.Speak | DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream, 
+                  DiscordPermission.Speak | DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream,
                   DiscordPermission.AddReactions | DiscordPermission.AttachFiles)]
         [TestCase(DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream,
                   DiscordPermission.AddReactions,
-                  DiscordPermission.Speak | DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream | DiscordPermission.AttachFiles | DiscordPermission.BanMembers, 
+                  DiscordPermission.Speak | DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream | DiscordPermission.AttachFiles | DiscordPermission.BanMembers,
                   DiscordPermission.AddReactions)]
         public async Task Should_not_pass_user_permission_requirement(DiscordPermission required, DiscordPermission deny, DiscordPermission bot, DiscordPermission missing)
         {
@@ -97,7 +97,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var attribute = new SlashCommandRequireBotPermissionAttribute(required);
             var botMember = new DiscordGuildMember(new DiscordGuildMemberData
             {
-                Roles = new ulong[]{1}
+                Roles = new ulong[] { 1 }
             });
             restGuildMock.Setup(x => x.GetGuildMemberAsync(It.IsAny<ulong>(), It.IsAny<ulong>(), It.IsAny<CancellationToken>()))
                          .ReturnsAsync(Result<IDiscordGuildMember>.FromSuccess(botMember));
@@ -132,7 +132,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                 {
                     Roles = new List<DiscordGuildRoleData>
                     {
-                        new ()
+                        new()
                         {
                             Id = 1,
                             Permissions = permission
@@ -143,7 +143,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                 {
                     PermissionOverwrites = new List<DiscordOverwriteData>
                     {
-                        new ()
+                        new()
                         {
                             TargetId = 1,
                             TargetType = DiscordPermissionTargetType.Role,

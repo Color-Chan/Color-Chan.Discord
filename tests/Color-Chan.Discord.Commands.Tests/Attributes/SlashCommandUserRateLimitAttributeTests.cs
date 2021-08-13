@@ -18,14 +18,14 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Attributes
 {
     [TestFixture]
-    public class SlashCommandRateLimitAttributeTests
+    public class SlashCommandUserRateLimitAttributeTests
     {
         [TestCaseSource(nameof(GetRateLimitUsers))]
-        public async Task Should_detect_rate_limit(Tuple<RateLimitUser, bool> tuple)
+        public async Task Should_detect_rate_limit(Tuple<RateLimitInfo, bool> tuple)
         {
             // Arrange
             var (rateLimitUser, shouldBeRateLimited) = tuple;
-            var rateLimitAttribute = new SlashCommandRateLimitAttribute(rateLimitUser.Remaining, 60);
+            var rateLimitAttribute = new SlashCommandUserRateLimitAttribute(rateLimitUser.Remaining, 60);
             var context = new SlashCommandContext
             {
                 User = new DiscordUser(new DiscordUserData
@@ -39,8 +39,8 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                 MethodName = nameof(Should_detect_rate_limit)
             };
             var cacheMock = new Mock<ICacheService>();
-            cacheMock.Setup(service => service.GetValueAsync<RateLimitUser>(It.IsAny<string>()))
-                     .ReturnsAsync(Result<RateLimitUser>.FromSuccess(rateLimitUser));
+            cacheMock.Setup(service => service.GetValueAsync<RateLimitInfo>(It.IsAny<string>()))
+                     .ReturnsAsync(Result<RateLimitInfo>.FromSuccess(rateLimitUser));
 
             var serviceProvider = new ServiceCollection()
                                   .AddSingleton(cacheMock.Object)
@@ -52,12 +52,12 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             // Assert
             result.IsSuccessful.Should().Be(!shouldBeRateLimited);
         }
-        
-        protected static IEnumerable<Tuple<RateLimitUser, bool>> GetRateLimitUsers()
+
+        protected static IEnumerable<Tuple<RateLimitInfo, bool>> GetRateLimitUsers()
         {
             for (var i = 5 - 1; i >= 0; i--)
             {
-                yield return new Tuple<RateLimitUser, bool>(new RateLimitUser
+                yield return new Tuple<RateLimitInfo, bool>(new RateLimitInfo
                 {
                     Expiration = DateTimeOffset.UtcNow.AddSeconds(20),
                     Remaining = i
@@ -69,7 +69,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_detect_new_rate_limit()
         {
             // Arrange
-            var rateLimitAttribute = new SlashCommandRateLimitAttribute(2, 60);
+            var rateLimitAttribute = new SlashCommandUserRateLimitAttribute(2, 60);
             var context = new SlashCommandContext
             {
                 User = new DiscordUser(new DiscordUserData
@@ -83,8 +83,8 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                 MethodName = nameof(Should_detect_rate_limit)
             };
             var cacheMock = new Mock<ICacheService>();
-            cacheMock.Setup(service => service.GetValueAsync<RateLimitUser>(It.IsAny<string>()))
-                     .ReturnsAsync(Result<RateLimitUser>.FromError(default, new ErrorResult("error message")));
+            cacheMock.Setup(service => service.GetValueAsync<RateLimitInfo>(It.IsAny<string>()))
+                     .ReturnsAsync(Result<RateLimitInfo>.FromError(default, new ErrorResult("error message")));
 
             var serviceProvider = new ServiceCollection()
                                   .AddSingleton(cacheMock.Object)

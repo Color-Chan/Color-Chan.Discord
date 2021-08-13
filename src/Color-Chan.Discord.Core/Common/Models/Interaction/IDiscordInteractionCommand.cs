@@ -15,7 +15,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         ///     The name of the invoked command.
         /// </summary>
         string Name { get; init; }
-        
+
         /// <summary>
         ///     The type of the invoked command.
         /// </summary>
@@ -40,12 +40,12 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         ///     For components, the type of the component.
         /// </summary>
         string? ComponentType { get; init; }
-        
+
         /// <summary>
         ///     The values the user selected.
         /// </summary>
         public IDiscordSelectOption? Values { get; init; }
-        
+
         /// <summary>
         ///     Id the of user or message targeted by a user or message command.
         /// </summary>

@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
     {
         /// <inheritdoc />
         public IDiscordGuild? Guild { get; init; }
-        
+
         /// <inheritdoc />
         public IDiscordChannel? Channel { get; init; }
 
