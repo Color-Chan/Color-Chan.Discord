@@ -18,14 +18,14 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Attributes
 {
     [TestFixture]
-    public class SlashCommandRateLimitAttributeTests
+    public class SlashCommandUserRateLimitAttributeTests
     {
         [TestCaseSource(nameof(GetRateLimitUsers))]
         public async Task Should_detect_rate_limit(Tuple<RateLimitUser, bool> tuple)
         {
             // Arrange
             var (rateLimitUser, shouldBeRateLimited) = tuple;
-            var rateLimitAttribute = new SlashCommandRateLimitAttribute(rateLimitUser.Remaining, 60);
+            var rateLimitAttribute = new SlashCommandUserRateLimitAttribute(rateLimitUser.Remaining, 60);
             var context = new SlashCommandContext
             {
                 User = new DiscordUser(new DiscordUserData
@@ -69,7 +69,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_detect_new_rate_limit()
         {
             // Arrange
-            var rateLimitAttribute = new SlashCommandRateLimitAttribute(2, 60);
+            var rateLimitAttribute = new SlashCommandUserRateLimitAttribute(2, 60);
             var context = new SlashCommandContext
             {
                 User = new DiscordUser(new DiscordUserData

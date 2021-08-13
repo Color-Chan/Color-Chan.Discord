@@ -6,16 +6,16 @@ namespace Color_Chan.Discord.Commands.Models.Results
     /// <summary>
     ///     An error result describing a slash command rate limit.
     /// </summary>
-    public record SlashCommandRateLimitErrorResult : SlashCommandRequirementErrorResult
+    public record SlashCommandUserRateLimitErrorResult : SlashCommandRequirementErrorResult
     {
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandRateLimitErrorResult" />.
+        ///     Initializes a new instance of <see cref="SlashCommandUserRateLimitErrorResult" />.
         /// </summary>
         /// <param name="errorMessage">The message of the error.</param>
         /// <param name="contextUser">The user that hit the rate limit.</param>
         /// <param name="max">The max amount of time the command could be used during the <paramref name="absoluteExpiration" />.</param>
         /// <param name="absoluteExpiration">The absolute expiration date for the cache entry.</param>
-        public SlashCommandRateLimitErrorResult(string errorMessage, IDiscordUser contextUser, int max, DateTimeOffset absoluteExpiration) : base(errorMessage)
+        public SlashCommandUserRateLimitErrorResult(string errorMessage, IDiscordUser contextUser, int max, DateTimeOffset absoluteExpiration) : base(errorMessage)
         {
             ContextUser = contextUser;
             Max = max;

@@ -17,12 +17,12 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     /// </remarks>
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module to 2 requests every 10 seconds
-    ///     and 4 requests every 30 seconds. You can also put the <see cref="SlashCommandRateLimitAttribute" /> on a method if
+    ///     and 4 requests every 30 seconds. You can also put the <see cref="SlashCommandUserRateLimitAttribute" /> on a method if
     ///     you
     ///     only want to rate limit a specific slash command.
     ///     <code language="cs">
-    ///     [SlashCommandRateLimit(2, 10)]
-    ///     [SlashCommandRateLimit(4, 30)]
+    ///     [SlashCommandUserRateLimit(2, 10)]
+    ///     [SlashCommandUserRateLimit(4, 30)]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
@@ -34,18 +34,18 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
-    public class SlashCommandRateLimitAttribute : SlashCommandRequirementAttribute
+    public class SlashCommandUserRateLimitAttribute : SlashCommandRequirementAttribute
     {
         private readonly int _max;
         private readonly int _resetAfterSeconds;
         private readonly string _uniqueRateLimitTime;
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandRateLimitAttribute" />.
+        ///     Initializes a new instance of <see cref="SlashCommandUserRateLimitAttribute" />.
         /// </summary>
         /// <param name="max">The max amount of time the command could be used during the time period.</param>
         /// <param name="resetAfterSeconds">The timeframe in which the command can be used a certain amount of times.</param>
-        public SlashCommandRateLimitAttribute(int max, int resetAfterSeconds)
+        public SlashCommandUserRateLimitAttribute(int max, int resetAfterSeconds)
         {
             _max = max;
             _resetAfterSeconds = resetAfterSeconds;
@@ -86,7 +86,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Result.FromSuccess();
             }
 
-            return Result.FromError(new SlashCommandRateLimitErrorResult("Rate limit hit!", context.User, _max, rateLimitUser.Expiration));
+            return Result.FromError(new SlashCommandUserRateLimitErrorResult("Rate limit hit!", context.User, _max, rateLimitUser.Expiration));
         }
     }
 }

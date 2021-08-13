@@ -40,7 +40,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
         private readonly DiscordPermission _requiredPermission;
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandRateLimitAttribute" />.
+        ///     Initializes a new instance of <see cref="SlashCommandUserRateLimitAttribute" />.
         /// </summary>
         /// <param name="requiredPermission">
         ///     The <see cref="DiscordPermission" /> the bot is required to have for this
