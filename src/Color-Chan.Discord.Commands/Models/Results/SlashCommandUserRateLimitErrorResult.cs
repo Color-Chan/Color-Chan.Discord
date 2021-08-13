@@ -1,4 +1,3 @@
-using System;
 using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Commands.Models.Results
@@ -6,35 +5,21 @@ namespace Color_Chan.Discord.Commands.Models.Results
     /// <summary>
     ///     An error result describing a slash command rate limit.
     /// </summary>
-    public record SlashCommandUserRateLimitErrorResult : SlashCommandRequirementErrorResult
+    public record SlashCommandUserRateLimitErrorResult : BaseSlashCommandRateLimitErrorResult
     {
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandUserRateLimitErrorResult" />.
         /// </summary>
-        /// <param name="errorMessage">The message of the error.</param>
-        /// <param name="contextUser">The user that hit the rate limit.</param>
-        /// <param name="max">The max amount of time the command could be used during the <paramref name="absoluteExpiration" />.</param>
-        /// <param name="absoluteExpiration">The absolute expiration date for the cache entry.</param>
-        public SlashCommandUserRateLimitErrorResult(string errorMessage, IDiscordUser contextUser, int max, DateTimeOffset absoluteExpiration) : base(errorMessage)
+        /// <param name="baseError">The <see cref="BaseSlashCommandRateLimitErrorResult"/>.</param>
+        /// <param name="user">The user that hit the rate limit.</param>
+        public SlashCommandUserRateLimitErrorResult(BaseSlashCommandRateLimitErrorResult baseError, IDiscordUser user) : base(baseError.ErrorMessage, baseError.Max, baseError.AbsoluteExpiration)
         {
-            ContextUser = contextUser;
-            Max = max;
-            AbsoluteExpiration = absoluteExpiration;
+            User = user;
         }
 
         /// <summary>
-        ///     The user that hit the rate limit..
+        ///     The user that hit the rate limit.
         /// </summary>
-        public IDiscordUser ContextUser { get; }
-
-        /// <summary>
-        ///     The max amount of time the command could be used during the <see cref="AbsoluteExpiration" />.
-        /// </summary>
-        public int Max { get; }
-
-        /// <summary>
-        ///     The timeframe in which the command can be used a certain amount of times
-        /// </summary>
-        public DateTimeOffset AbsoluteExpiration { get; }
+        public IDiscordUser User { get; }
     }
 }

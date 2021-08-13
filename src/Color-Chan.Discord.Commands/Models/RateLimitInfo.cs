@@ -5,7 +5,7 @@ namespace Color_Chan.Discord.Commands.Models
     /// <summary>
     ///     A record containing the data to detect a rate limit.
     /// </summary>
-    public record RateLimitUser
+    public record RateLimitInfo
     {
         /// <summary>
         ///     The amount of requests remaining.
