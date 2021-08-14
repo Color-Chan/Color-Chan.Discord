@@ -11,9 +11,9 @@ namespace Color_Chan.Discord.Commands.Modules
     public class SlashCommandModule : ISlashCommandModule
     {
         /// <summary>
-        ///     The current context the the slash command.
+        ///     The current context the slash command.
         /// </summary>
-        public ISlashCommandContext SlashContext { get; set; } = null!;
+        protected ISlashCommandContext SlashContext { get; set; } = null!;
 
         /// <inheritdoc />
         public void SetContext(ISlashCommandContext slashContext)
