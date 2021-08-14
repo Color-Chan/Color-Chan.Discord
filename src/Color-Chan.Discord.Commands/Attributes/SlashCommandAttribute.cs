@@ -6,7 +6,7 @@ using Color_Chan.Discord.Core.Common.Models.Interaction;
 namespace Color_Chan.Discord.Commands.Attributes
 {
     /// <summary>
-    ///     Makes a method available as an global slash command.
+    ///     Makes a method available as a global slash command.
     /// </summary>
     /// <example>
     ///     The following example will add the slash command `/ping` to the application.
