@@ -17,7 +17,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         ///     The type of the component.
         /// </summary>
         public DiscordComponentType Type { get; set; }
-        
+
         /// <summary>
         ///     The <see cref="MethodInfo" /> containing the method of the component.
         /// </summary>

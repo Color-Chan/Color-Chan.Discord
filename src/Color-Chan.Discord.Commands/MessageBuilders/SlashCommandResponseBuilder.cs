@@ -124,7 +124,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
             _components ??= new List<IDiscordComponent>();
 
             if (_components.Count >= 5) throw new ArgumentOutOfRangeException(nameof(component), "Can not add more then 5 components to one message");
-            
+
             _components.Add(component);
             return this;
         }

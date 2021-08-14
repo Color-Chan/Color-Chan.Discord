@@ -27,7 +27,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         {
             _logger = logger;
         }
-        
+
         /// <inheritdoc />
         public IEnumerable<IComponentInfo> BuildComponentInfos(Assembly assembly)
         {
@@ -49,13 +49,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
             return validComponents;
         }
-        
+
         /// <summary>
-        ///     Gets the <see cref="TypeInfo"/>s of all the classes that extend <see cref="IComponentInteractionModule"/>.
+        ///     Gets the <see cref="TypeInfo" />s of all the classes that extend <see cref="IComponentInteractionModule" />.
         /// </summary>
-        /// <param name="assembly">The assembly where the <see cref="IComponentInteractionModule"/> are located.</param>
+        /// <param name="assembly">The assembly where the <see cref="IComponentInteractionModule" /> are located.</param>
         /// <returns>
-        ///     The <see cref="TypeInfo"/>s of all the classes that extend <see cref="IComponentInteractionModule"/>.
+        ///     The <see cref="TypeInfo" />s of all the classes that extend <see cref="IComponentInteractionModule" />.
         /// </returns>
         private IEnumerable<TypeInfo> GetSlashComponentModules(Assembly assembly)
         {
@@ -72,7 +72,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
             return result;
         }
-        
+
         /// <summary>
         ///     Get a <see cref="IEnumerable{T}" /> of <see cref="MethodInfo" />s containing only valid component methods.
         /// </summary>
@@ -86,7 +86,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                    .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
                    .Where(IsValidCommandDefinition);
         }
-        
+
         /// <summary>
         ///     Checks whether or not a component module is valid.
         /// </summary>
@@ -98,7 +98,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         {
             return ModuleTypeInfo.IsAssignableFrom(typeInfo) && !typeInfo.IsAbstract && !typeInfo.ContainsGenericParameters;
         }
-        
+
         /// <summary>
         ///     Checks whether or not a command method is valid.
         /// </summary>

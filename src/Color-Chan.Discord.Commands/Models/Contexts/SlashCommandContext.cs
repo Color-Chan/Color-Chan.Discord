@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Commands.Models.Contexts
 {
-    /// <inheritdoc cref="ISlashCommandContext"/>
+    /// <inheritdoc cref="ISlashCommandContext" />
     public class SlashCommandContext : InteractionContext, ISlashCommandContext
     {
         /// <inheritdoc />

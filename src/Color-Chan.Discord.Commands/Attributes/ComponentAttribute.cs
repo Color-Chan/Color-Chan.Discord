@@ -19,7 +19,7 @@ namespace Color_Chan.Discord.Commands.Attributes
             CustomId = customId;
             Type = type;
         }
-        
+
         /// <summary>
         ///     The developer-defined identifier for the component, max 100 characters
         /// </summary>

@@ -23,13 +23,13 @@ namespace Color_Chan.Discord.Commands.Models.Info
 
         /// <inheritdoc />
         public string CustomId { get; set; }
-        
+
         /// <inheritdoc />
         public DiscordComponentType Type { get; set; }
 
         /// <inheritdoc />
         public MethodInfo ComponentMethod { get; set; }
-        
+
         /// <inheritdoc />
         public TypeInfo ParentModule { get; set; }
     }

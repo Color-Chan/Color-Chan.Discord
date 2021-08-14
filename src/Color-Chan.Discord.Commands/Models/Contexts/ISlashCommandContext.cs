@@ -25,7 +25,7 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild" /> is disabled.
         /// </remarks>
         IDiscordChannel? Channel { get; init; }
-        
+
         /// <summary>
         ///     The method name of the slash command.
         /// </summary>
