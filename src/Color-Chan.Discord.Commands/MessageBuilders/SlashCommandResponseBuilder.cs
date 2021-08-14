@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Embed;
@@ -150,6 +151,28 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
                     IsTts = _isTts
                 }
             };
+        }
+
+        /// <summary>
+        ///     Get a default error message response.
+        /// </summary>
+        internal IDiscordInteractionResponse DefaultErrorMessage()
+        {
+            //  Build the response embed.
+            var errorEmbedBuilder = new DiscordEmbedBuilder()
+                                    .WithTitle("Error")
+                                    .WithDescription("Something went wrong!")
+                                    .WithColor(Color.Red)
+                                    .WithTimeStamp();
+
+            // Build the response with the embed.
+            var errorResponse = new SlashCommandResponseBuilder()
+                                .WithEmbed(errorEmbedBuilder.Build())
+                                .MakePrivate()
+                                .Build();
+
+            //  Return the response to Discord.
+            return errorResponse;
         }
     }
 }

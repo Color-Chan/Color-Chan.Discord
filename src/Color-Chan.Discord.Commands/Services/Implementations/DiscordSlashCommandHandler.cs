@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
@@ -138,32 +137,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             if (_slashCommandConfiguration.SendDefaultErrorMessage)
             {
                 _logger.LogWarning("Sending default error message");
-                return DefaultErrorMessage();
+                return new SlashCommandResponseBuilder().DefaultErrorMessage();
             }
 
             throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
-        }
-
-        /// <summary>
-        ///     Get a default error message response.
-        /// </summary>
-        private IDiscordInteractionResponse DefaultErrorMessage()
-        {
-            //  Build the response embed.
-            var errorEmbedBuilder = new DiscordEmbedBuilder()
-                                    .WithTitle("Error")
-                                    .WithDescription("Something went wrong!")
-                                    .WithColor(Color.Red)
-                                    .WithTimeStamp();
-
-            // Build the response with the embed.
-            var errorResponse = new SlashCommandResponseBuilder()
-                                .WithEmbed(errorEmbedBuilder.Build())
-                                .MakePrivate()
-                                .Build();
-
-            //  Return the response to Discord.
-            return errorResponse;
         }
     }
 }

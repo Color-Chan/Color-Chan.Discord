@@ -14,9 +14,6 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         public IDiscordChannel? Channel { get; init; }
 
         /// <inheritdoc />
-        public string? MethodName { get; set; }
-
-        /// <inheritdoc />
         public IEnumerable<string> SlashCommandName { get; set; } = null!;
     }
 }
