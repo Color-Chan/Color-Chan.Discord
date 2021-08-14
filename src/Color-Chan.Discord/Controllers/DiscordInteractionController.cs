@@ -11,6 +11,7 @@ using Color_Chan.Discord.Core.Common.API.Params.Webhook;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Rest.Models.Interaction;
+using Color_Chan.Discord.Rest.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -136,6 +137,16 @@ namespace Color_Chan.Discord.Controllers
             var responseResult = await _restApplication.EditOriginalInteractionResponseAsync(_discordTokens.ApplicationId, interactionData.Token, editResponse).ConfigureAwait(false);
             if (responseResult.IsSuccessful) return Ok();
 
+            if (responseResult.ErrorResult is DiscordHttpErrorResult httpErrorResult)
+            {
+                // Send an error response.
+                _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}, details: {Details}", 
+                                   interactionData.Id.ToString(), 
+                                   responseResult.ErrorResult?.ErrorMessage,
+                                   JsonSerializer.Serialize(httpErrorResult.ErrorData));
+                return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
+            }
+            
             // Send an error response.
             _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}", interactionData.Id.ToString(), responseResult.ErrorResult?.ErrorMessage);
             return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
