@@ -46,7 +46,8 @@ namespace Color_Chan.Discord.Commands.Extensions
             services.TryAddTransient<ISlashCommandBuildService, SlashCommandBuildService>();
             services.TryAddTransient<IComponentBuildService, ComponentBuildService>();
             services.TryAddTransient<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
-
+            services.TryAddTransient<IComponentService, ComponentService>();
+            
             services.TryAddSingleton<ISlashCommandService, SlashCommandService>();
 
             slashCommandConfigs ??= configuration =>
