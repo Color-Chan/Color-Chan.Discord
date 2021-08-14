@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
+using Color_Chan.Discord.Commands.MessageBuilders;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Rest;
