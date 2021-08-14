@@ -55,7 +55,7 @@ namespace RoleManager.Commands
                 Name = roleName,
                 Permissions = DiscordPermission.None
             };
-            var newRoleResponse = await _restGuild.CreateGuildRoleAsync(SlashContext.GuildId!.Value, roleConfig).ConfigureAwait(false);
+            var newRoleResponse = await _restGuild.CreateGuildRoleAsync(Context.GuildId!.Value, roleConfig).ConfigureAwait(false);
 
             // Check if the role was successfully created.
             if (!newRoleResponse.IsSuccessful)
@@ -88,11 +88,11 @@ namespace RoleManager.Commands
         )
         {
             // Get the role object.
-            var role = SlashContext.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
+            var role = Context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
 
             // Delete the role.
-            var auditLog = $"User: {SlashContext.Member?.User?.Username} requested this action";
-            var deleteResponse = await _restGuild.DeleteGuildRoleAsync(SlashContext.GuildId!.Value, roleId, auditLog).ConfigureAwait(false);
+            var auditLog = $"User: {Context.Member?.User?.Username} requested this action";
+            var deleteResponse = await _restGuild.DeleteGuildRoleAsync(Context.GuildId!.Value, roleId, auditLog).ConfigureAwait(false);
 
             // Check if the role were successfully deleted.
             if (!deleteResponse.IsSuccessful)
@@ -121,7 +121,7 @@ namespace RoleManager.Commands
         public async Task<Result<IDiscordInteractionResponse>> ListRolesAsync()
         {
             // Get the roles from the current guild.
-            var rolesResult = await _restGuild.GetGuildRolesAsync(SlashContext.GuildId!.Value).ConfigureAwait(false);
+            var rolesResult = await _restGuild.GetGuildRolesAsync(Context.GuildId!.Value).ConfigureAwait(false);
 
             // Check if the roles were successfully loaded.
             if (!rolesResult.IsSuccessful)

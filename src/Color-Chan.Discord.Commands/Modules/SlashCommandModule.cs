@@ -13,12 +13,12 @@ namespace Color_Chan.Discord.Commands.Modules
         /// <summary>
         ///     The current context the slash command.
         /// </summary>
-        protected ISlashCommandContext SlashContext { get; set; } = null!;
+        protected ISlashCommandContext Context { get; set; } = null!;
 
         /// <inheritdoc />
-        public void SetContext(ISlashCommandContext slashContext)
+        public void SetContext(ISlashCommandContext context)
         {
-            SlashContext = slashContext ?? throw new ArgumentNullException(nameof(slashContext));
+            Context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         /// <summary>
