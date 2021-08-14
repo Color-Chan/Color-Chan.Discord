@@ -1,7 +1,6 @@
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Commands.MessageBuilders;
