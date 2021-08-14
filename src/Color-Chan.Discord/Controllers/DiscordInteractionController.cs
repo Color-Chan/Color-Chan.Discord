@@ -34,6 +34,7 @@ namespace Color_Chan.Discord.Controllers
         private readonly IDiscordSlashCommandHandler _commandHandler;
         private readonly InteractionsConfiguration _configuration;
         private readonly DiscordTokens _discordTokens;
+        private readonly IComponentInteractionHandler _componentInteractionHandler;
         private readonly ILogger<DiscordInteractionController> _logger;
         private readonly IDiscordRestApplication _restApplication;
         private readonly JsonSerializerOptions _serializerOptions;
@@ -48,9 +49,10 @@ namespace Color_Chan.Discord.Controllers
         /// <param name="configuration">The configurations for interactions.</param>
         /// <param name="restApplication">The REST class for application api calls.</param>
         /// <param name="discordTokens">The bot tokens and IDs.</param>
+        /// <param name="componentInteractionHandler">The handler for the component interaction requests.</param>
         public DiscordInteractionController(IDiscordInteractionAuthService authService, ILogger<DiscordInteractionController> logger, IOptions<JsonSerializerOptions> serializerOptions,
                                             IDiscordSlashCommandHandler commandHandler, IOptions<InteractionsConfiguration> configuration, IDiscordRestApplication restApplication,
-                                            DiscordTokens discordTokens)
+                                            DiscordTokens discordTokens, IComponentInteractionHandler componentInteractionHandler)
         {
             _authService = authService;
             _logger = logger;
@@ -58,6 +60,7 @@ namespace Color_Chan.Discord.Controllers
             _configuration = configuration.Value;
             _restApplication = restApplication;
             _discordTokens = discordTokens;
+            _componentInteractionHandler = componentInteractionHandler;
             _serializerOptions = serializerOptions.Value;
         }
 
@@ -114,7 +117,7 @@ namespace Color_Chan.Discord.Controllers
             {
                 DiscordInteractionRequestType.Ping => PingResponse(),
                 DiscordInteractionRequestType.ApplicationCommand => await _commandHandler.HandleSlashCommandAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
-                DiscordInteractionRequestType.MessageComponent => throw new NotImplementedException(),
+                DiscordInteractionRequestType.MessageComponent => await _componentInteractionHandler.HandleComponentInteractionAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
                 _ => throw new ArgumentOutOfRangeException()
             };
 

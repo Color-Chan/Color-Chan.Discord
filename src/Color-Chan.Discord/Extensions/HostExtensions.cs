@@ -33,6 +33,12 @@ namespace Color_Chan.Discord.Extensions
             // Add all commands in an assembly to the slash command service.
             await commandService.AddInteractionCommandsAsync(assembly).ConfigureAwait(false);
 
+            // Get the slash command service.
+            var componentService = scope.ServiceProvider.GetRequiredService<IComponentService>();
+            
+            // Add all components in an assembly to the component service.
+            await componentService.AddComponentsAsync(assembly).ConfigureAwait(false);
+            
             return host;
         }
     }
