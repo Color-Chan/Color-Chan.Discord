@@ -15,6 +15,12 @@ namespace Color_Chan.Discord.Rest.Models.Select
             Default = data.Default;
         }
 
+        public DiscordSelectOption(string label, string value)
+        {
+            Label = label;
+            Value = value;
+        }
+
         /// <inheritdoc />
         public string Label { get; init; }
 
@@ -29,5 +35,17 @@ namespace Color_Chan.Discord.Rest.Models.Select
 
         /// <inheritdoc />
         public bool? Default { get; init; }
+
+        public DiscordSelectOptionData ToDataModel()
+        {
+            return new DiscordSelectOptionData
+            {
+                Label = Label,
+                Value = Value,
+                Description = Description,
+                Emoji = Emoji?.ToDataModel(),
+                Default = Default
+            };
+        }
     }
 }

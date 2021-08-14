@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -42,7 +43,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public string? CustomId { get; init; }
 
         /// <inheritdoc />
-        public string? ComponentType { get; init; }
+        public DiscordComponentType? ComponentType { get; init; }
 
         /// <inheritdoc />
         public IDiscordSelectOption? Values { get; init; }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.Models.Select;
 
@@ -39,7 +40,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         /// <summary>
         ///     For components, the type of the component.
         /// </summary>
-        string? ComponentType { get; init; }
+        DiscordComponentType? ComponentType { get; init; }
 
         /// <summary>
         ///     The values the user selected.
