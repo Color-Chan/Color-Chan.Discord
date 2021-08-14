@@ -87,6 +87,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// <returns>
         ///     The updated <see cref="SlashCommandResponseBuilder" />.
         /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the max embed limit of 10 has been reached.</exception>
         public SlashCommandResponseBuilder WithEmbed(IDiscordEmbed embed)
         {
             _embeds ??= new List<IDiscordEmbed>();
@@ -117,10 +118,13 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// <returns>
         ///     The updated <see cref="SlashCommandResponseBuilder" />.
         /// </returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the max component limit of 5 has been reached.</exception>
         public SlashCommandResponseBuilder WithComponent(IDiscordComponent component)
         {
             _components ??= new List<IDiscordComponent>();
 
+            if (_components.Count >= 5) throw new ArgumentOutOfRangeException(nameof(component), "Can not add more then 5 components to one message");
+            
             _components.Add(component);
             return this;
         }
