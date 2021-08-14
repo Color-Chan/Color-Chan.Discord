@@ -63,7 +63,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 if (_slashCommands.TryAdd(key, commandInfo)) continue;
 
                 // The command already existed.
-                var registeringException = new Exception($"Failed to register {commandInfo.CommandName}");
+                var registeringException = new Exception($"Failed to register slash command {commandInfo.CommandName}");
                 _logger.LogError(registeringException, "Can not register multiple commands with the same name");
                 throw registeringException;
             }
