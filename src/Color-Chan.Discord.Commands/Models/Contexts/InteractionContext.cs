@@ -18,7 +18,7 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         public IDiscordMessage? Message { get; init; }
 
         /// <inheritdoc />
-        public IDiscordInteractionCommand CommandRequest { get; init; } = null!;
+        public IDiscordInteractionRequest Data { get; init; } = null!;
 
         /// <inheritdoc />
         public ulong? GuildId { get; set; }
@@ -34,5 +34,8 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
 
         /// <inheritdoc />
         public ulong InteractionId { get; init; }
+
+        /// <inheritdoc />
+        public string? MethodName { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.Models.Message;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
 {
-    public interface IDiscordInteractionCommandResolved
+    public interface IDiscordInteractionResolved
     {
         /// <summary>
         ///     The ids and User objects.

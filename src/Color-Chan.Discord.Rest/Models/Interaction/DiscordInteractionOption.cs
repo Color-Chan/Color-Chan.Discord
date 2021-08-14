@@ -8,14 +8,14 @@ using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
-    public record DiscordInteractionCommandOption : IDiscordInteractionCommandOption
+    public record DiscordInteractionOption : IDiscordInteractionOption
     {
-        public DiscordInteractionCommandOption(DiscordInteractionOptionData data)
+        public DiscordInteractionOption(DiscordInteractionOptionData data)
         {
             Name = data.Name;
             Type = data.Type;
             Value = ConvertValueToCorrectType(data.JsonValue);
-            SubOptions = data.SubOptions?.Select(interactionData => new DiscordInteractionCommandOption(interactionData));
+            SubOptions = data.SubOptions?.Select(interactionData => new DiscordInteractionOption(interactionData));
         }
 
         /// <inheritdoc />
@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public object? Value { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<IDiscordInteractionCommandOption>? SubOptions { get; set; }
+        public IEnumerable<IDiscordInteractionOption>? SubOptions { get; set; }
 
         /// <inheritdoc />
         public string? GetStringValue()

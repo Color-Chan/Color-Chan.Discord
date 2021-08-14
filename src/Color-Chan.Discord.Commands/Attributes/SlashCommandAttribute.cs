@@ -37,8 +37,8 @@ namespace Color_Chan.Discord.Commands.Attributes
     ///     }
     ///     </code>
     ///     The following example will add the slash command `/role` to the application.
-    ///     With a required role input. The given role will be added to the <see cref="ISlashCommandContext.CommandRequest" />,
-    ///     <see cref="IDiscordInteractionCommand.Resolved" />, <see cref="IDiscordInteractionCommandResolved.Roles" /> list.
+    ///     With a required role input. The given role will be added to the <see cref="IInteractionContext.Data" />,
+    ///     <see cref="IDiscordInteractionRequest.Resolved" />, <see cref="IDiscordInteractionResolved.Roles" /> list.
     ///     <code language="cs">
     ///     public class RoleCommands : SlashCommandModule
     ///     {

@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         /// <summary>
         ///     The interaction command that the user has requested. Including the request data.
         /// </summary>
-        IDiscordInteractionCommand CommandRequest { get; init; }
+        IDiscordInteractionRequest Data { get; init; }
 
         /// <summary>
         ///     The message of the interaction request.
@@ -63,5 +63,13 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         ///     The interaction id.
         /// </summary>
         ulong InteractionId { get; init; }
+        
+        /// <summary>
+        ///     The method name of the method that will handle the interaction request.
+        /// </summary>
+        /// <remarks>
+        ///     Used to create a unique string for rate limiting.
+        /// </remarks>
+        string? MethodName { get; set; }
     }
 }

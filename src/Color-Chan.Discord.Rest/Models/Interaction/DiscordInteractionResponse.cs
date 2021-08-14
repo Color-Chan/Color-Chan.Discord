@@ -12,14 +12,14 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public DiscordInteractionResponse(DiscordInteractionResponseData data)
         {
             Type = data.Type;
-            Data = data.Data is not null ? new DiscordInteractionCommandCallback(data.Data) : null;
+            Data = data.Data is not null ? new DiscordInteractionCallback(data.Data) : null;
         }
 
         /// <inheritdoc />
         public DiscordInteractionResponseType Type { get; init; }
 
         /// <inheritdoc />
-        public IDiscordInteractionCommandCallback? Data { get; init; }
+        public IDiscordInteractionCallback? Data { get; init; }
 
         /// <inheritdoc />
         public DiscordInteractionResponseData ToDataModel()

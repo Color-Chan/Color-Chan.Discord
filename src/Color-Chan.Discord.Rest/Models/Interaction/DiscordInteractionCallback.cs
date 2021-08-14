@@ -8,13 +8,13 @@ using Color_Chan.Discord.Rest.Models.Embed;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
-    public record DiscordInteractionCommandCallback : IDiscordInteractionCommandCallback
+    public record DiscordInteractionCallback : IDiscordInteractionCallback
     {
-        public DiscordInteractionCommandCallback()
+        public DiscordInteractionCallback()
         {
         }
 
-        public DiscordInteractionCommandCallback(DiscordInteractionCallbackData data)
+        public DiscordInteractionCallback(DiscordInteractionCallbackData data)
         {
             IsTts = data.IsTts;
             Content = data.Content;

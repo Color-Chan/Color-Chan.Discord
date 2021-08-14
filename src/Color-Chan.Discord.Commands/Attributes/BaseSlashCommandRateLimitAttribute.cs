@@ -44,7 +44,7 @@ namespace Color_Chan.Discord.Commands.Attributes
         {
             var cacheService = services.GetRequiredService<ICacheService>();
 
-            var key = $"{_uniqueRateLimitTime}{context.CommandRequest.Id.ToString()}{context.MethodName}{uniqueId.ToString()}";
+            var key = $"{_uniqueRateLimitTime}{context.Data.Id.ToString()}{context.MethodName}{uniqueId.ToString()}";
             var rateLimitResult = await cacheService.GetValueAsync<RateLimitInfo>(key).ConfigureAwait(false);
 
             if (!rateLimitResult.IsSuccessful)

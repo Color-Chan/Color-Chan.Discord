@@ -12,9 +12,9 @@ using Color_Chan.Discord.Rest.Models.Message;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
-    public record DiscordInteractionCommandResolved : IDiscordInteractionCommandResolved
+    public record DiscordInteractionResolved : IDiscordInteractionResolved
     {
-        public DiscordInteractionCommandResolved(DiscordInteractionResolvedData data)
+        public DiscordInteractionResolved(DiscordInteractionResolvedData data)
         {
             Users = InitializeUsersDict(data.Users);
             Channels = InitializeChannelsDict(data.Channels);

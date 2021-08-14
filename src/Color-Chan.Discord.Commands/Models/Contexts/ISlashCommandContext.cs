@@ -27,14 +27,6 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         IDiscordChannel? Channel { get; init; }
 
         /// <summary>
-        ///     The method name of the slash command.
-        /// </summary>
-        /// <remarks>
-        ///     Used to create a unique string for rate limiting.
-        /// </remarks>
-        string? MethodName { get; set; }
-
-        /// <summary>
         ///     The full slash command name.
         /// </summary>
         IEnumerable<string> SlashCommandName { get; set; }

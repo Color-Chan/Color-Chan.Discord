@@ -54,7 +54,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         {
             if (interaction.Data is null)
             {
-                throw new ArgumentNullException(nameof(interaction.Data), "Interaction data can not be null for a slash command!");
+                throw new ArgumentNullException(nameof(interaction.Data),  $"{nameof(interaction.Data)} can not be null for a slash command!");
             }
 
             IDiscordGuild? guild = null;
@@ -79,14 +79,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 GuildId = interaction.GuildId,
                 ChannelId = interaction.ChannelId ?? interaction.User?.Id ?? throw new NullReferenceException(nameof(context.User)),
                 ApplicationId = interaction.ApplicationId,
-                CommandRequest = interaction.Data,
+                Data = interaction.Data,
                 InteractionId = interaction.Id,
                 Token = interaction.Token,
                 Channel = channel,
                 Guild = guild
             };
 
-            IEnumerable<IDiscordInteractionCommandOption>? options = null;
+            IEnumerable<IDiscordInteractionOption>? options = null;
 
             // Get the command name and the options.
             if (interaction.Data.Options is null)

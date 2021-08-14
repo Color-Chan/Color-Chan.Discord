@@ -80,7 +80,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                                                         IEnumerable<ISlashCommandOptionInfo>? options,
                                                                                         IEnumerable<SlashCommandRequirementAttribute>? requirements,
                                                                                         ISlashCommandContext context,
-                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null,
+                                                                                        List<IDiscordInteractionOption>? suppliedOptions = null,
                                                                                         IServiceProvider? serviceProvider = null)
         {
             serviceProvider ??= DefaultServiceProvider.Instance;
@@ -139,7 +139,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
         /// <inheritdoc />
         public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context,
-                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+                                                                                        List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
         {
             if (commandInfo.CommandMethod is not null)
             {
@@ -152,7 +152,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
         /// <inheritdoc />
         public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandOptionInfo commandOptionInfo, ISlashCommandContext context,
-                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+                                                                                        List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
         {
             if (commandOptionInfo.CommandMethod is not null)
             {
@@ -169,7 +169,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionOption>? options = null,
                                                                                         IServiceProvider? serviceProvider = null)
         {
             var arr = context.SlashCommandName.ToArray();

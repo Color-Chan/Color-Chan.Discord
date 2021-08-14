@@ -39,7 +39,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             _orderTestMessage = string.Empty;
 
             _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<ISlashCommandContext>(),
-                                                                      It.IsAny<IEnumerable<IDiscordInteractionCommandOption>>(),
+                                                                      It.IsAny<IEnumerable<IDiscordInteractionOption>>(),
                                                                       It.IsAny<IServiceProvider>()))
                                .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
                                .Callback(FakeSlashCommandCall);
@@ -305,7 +305,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
             {
-                var role = context.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == 865723094761078804).Value;
+                var role = context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == 865723094761078804).Value;
 
                 _orderTestMessage += $"{role?.Name}_";
                 var result = await next();

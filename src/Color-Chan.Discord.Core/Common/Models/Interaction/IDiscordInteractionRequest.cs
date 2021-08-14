@@ -5,7 +5,7 @@ using Color_Chan.Discord.Core.Common.Models.Select;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
 {
-    public interface IDiscordInteractionCommand
+    public interface IDiscordInteractionRequest
     {
         /// <summary>
         ///     The ID of the invoked command.
@@ -25,12 +25,12 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         /// <summary>
         ///     Converted users + roles + channels.
         /// </summary>
-        IDiscordInteractionCommandResolved? Resolved { get; init; }
+        IDiscordInteractionResolved? Resolved { get; init; }
 
         /// <summary>
         ///     The params + values from the user.
         /// </summary>
-        IEnumerable<IDiscordInteractionCommandOption>? Options { get; set; }
+        IEnumerable<IDiscordInteractionOption>? Options { get; set; }
 
         /// <summary>
         ///     For components, the custom_id of the component.

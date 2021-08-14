@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var context = new SlashCommandContext
             {
                 GuildId = null,
-                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionRequestData
+                Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
                 {
                     Id = 456
                 }),
@@ -56,7 +56,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var context = new SlashCommandContext
             {
                 GuildId = ulong.MaxValue,
-                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionRequestData
+                Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
                 {
                     Id = 456
                 }),
@@ -97,7 +97,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var context = new SlashCommandContext
             {
                 GuildId = ulong.MaxValue,
-                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionRequestData
+                Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
                 {
                     Id = 456
                 }),

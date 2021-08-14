@@ -14,7 +14,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             Id = data.Id;
             ApplicationId = data.ApplicationId;
             RequestType = data.RequestType;
-            if (data.Data is not null) Data = new DiscordInteractionCommand(data.Data);
+            if (data.Data is not null) Data = new DiscordInteractionRequest(data.Data);
             GuildId = data.GuildId;
             ChannelId = data.ChannelId;
             if (data.GuildMember is not null) GuildMember = new DiscordGuildMember(data.GuildMember);
@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public DiscordInteractionRequestType RequestType { get; init; }
 
         /// <inheritdoc />
-        public IDiscordInteractionCommand? Data { get; init; }
+        public IDiscordInteractionRequest? Data { get; init; }
 
         /// <inheritdoc />
         public ulong? GuildId { get; init; }

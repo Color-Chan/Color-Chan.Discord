@@ -140,7 +140,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
             return new DiscordInteractionResponse
             {
                 Type = DiscordInteractionResponseType.ChannelMessageWithSource,
-                Data = new DiscordInteractionCommandCallback
+                Data = new DiscordInteractionCallback
                 {
                     Components = _components,
                     Content = _content,

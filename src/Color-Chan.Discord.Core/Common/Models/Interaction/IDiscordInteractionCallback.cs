@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
 {
-    public interface IDiscordInteractionCommandCallback
+    public interface IDiscordInteractionCallback
     {
         /// <summary>
         ///     Whether or not the response is TTS.

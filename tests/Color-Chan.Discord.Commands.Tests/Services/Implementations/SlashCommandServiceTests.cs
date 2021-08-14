@@ -222,15 +222,15 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             using JsonDocument doc = JsonDocument.Parse(jsonInput);
 
-            var options = new List<IDiscordInteractionCommandOption>
+            var options = new List<IDiscordInteractionOption>
             {
-                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
+                new DiscordInteractionOption(new DiscordInteractionOptionData
                 {
                     Name = "Role name",
                     Type = DiscordApplicationCommandOptionType.String,
                     JsonValue = doc.RootElement.GetProperty("stringValue")
                 }),
-                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
+                new DiscordInteractionOption(new DiscordInteractionOptionData
                 {
                     Name = "Number",
                     Type = DiscordApplicationCommandOptionType.Integer,
@@ -265,7 +265,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
             var context = new SlashCommandContext
             {
-                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionRequestData
+                Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
                 {
                     Resolved = new DiscordInteractionResolvedData
                     {
@@ -294,9 +294,9 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             using JsonDocument doc = JsonDocument.Parse(jsonInput);
 
-            var options = new List<IDiscordInteractionCommandOption>
+            var options = new List<IDiscordInteractionOption>
             {
-                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
+                new DiscordInteractionOption(new DiscordInteractionOptionData
                 {
                     Name = "role",
                     Type = DiscordApplicationCommandOptionType.Role,

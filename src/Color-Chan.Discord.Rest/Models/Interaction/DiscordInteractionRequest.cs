@@ -9,15 +9,15 @@ using Color_Chan.Discord.Rest.Models.Select;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
-    public record DiscordInteractionCommand : IDiscordInteractionCommand
+    public record DiscordInteractionRequest : IDiscordInteractionRequest
     {
-        public DiscordInteractionCommand(DiscordInteractionRequestData data)
+        public DiscordInteractionRequest(DiscordInteractionRequestData data)
         {
             Id = data.Id;
             Name = data.Name;
             Type = data.Type;
-            Resolved = data.Resolved is not null ? new DiscordInteractionCommandResolved(data.Resolved) : null;
-            Options = data.Options?.Select(optionData => new DiscordInteractionCommandOption(optionData));
+            Resolved = data.Resolved is not null ? new DiscordInteractionResolved(data.Resolved) : null;
+            Options = data.Options?.Select(optionData => new DiscordInteractionOption(optionData));
             CustomId = data.CustomId;
             ComponentType = data.ComponentType;
             Values = data.Values is not null ? new DiscordSelectOption(data.Values) : null;
@@ -34,10 +34,10 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public DiscordApplicationCommandTypes Type { get; set; }
 
         /// <inheritdoc />
-        public IDiscordInteractionCommandResolved? Resolved { get; init; }
+        public IDiscordInteractionResolved? Resolved { get; init; }
 
         /// <inheritdoc />
-        public IEnumerable<IDiscordInteractionCommandOption>? Options { get; set; }
+        public IEnumerable<IDiscordInteractionOption>? Options { get; set; }
 
         /// <inheritdoc />
         public string? CustomId { get; init; }

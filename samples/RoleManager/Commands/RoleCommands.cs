@@ -88,7 +88,7 @@ namespace RoleManager.Commands
         )
         {
             // Get the role object.
-            var role = SlashContext.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
+            var role = SlashContext.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
 
             // Delete the role.
             var auditLog = $"User: {SlashContext.Member?.User?.Username} requested this action";
