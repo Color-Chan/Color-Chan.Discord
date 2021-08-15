@@ -15,15 +15,15 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
 {
     /// <summary>
-    ///     Requires the bot that requested the slash command to have a certain permissions.
+    ///     Requires the bot that requested the interaction to have a certain permissions.
     /// </summary>
     /// <example>
     ///     This example requires the bot to have the <see cref="DiscordPermission.BanMembers" /> and
     ///     <see cref="DiscordPermission.KickMembers" /> permission.
-    ///     You can also put the <see cref="SlashCommandRequireBotPermissionAttribute" /> on a method if you only want to have
+    ///     You can also put the <see cref="RequireBotPermissionAttribute" /> on a method if you only want to have
     ///     it on a specific command.
     ///     <code language="cs">
-    ///     [SlashCommandRequireBotPermission(DiscordGuildPermission.BanMembers | DiscordGuildPermission.KickMembers)]
+    ///     [RequireBotPermission(DiscordGuildPermission.BanMembers | DiscordGuildPermission.KickMembers)]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
@@ -35,28 +35,28 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class SlashCommandRequireBotPermissionAttribute : SlashCommandRequirementAttribute
+    public class RequireBotPermissionAttribute : InteractionRequirementAttribute
     {
         private readonly DiscordPermission _requiredPermission;
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandUserRateLimitAttribute" />.
+        ///     Initializes a new instance of <see cref="UserRateLimitAttribute" />.
         /// </summary>
         /// <param name="requiredPermission">
         ///     The <see cref="DiscordPermission" /> the bot is required to have for this
         ///     command/command group.
         /// </param>
-        public SlashCommandRequireBotPermissionAttribute(DiscordPermission requiredPermission)
+        public RequireBotPermissionAttribute(DiscordPermission requiredPermission)
         {
             _requiredPermission = requiredPermission;
         }
 
         /// <inheritdoc />
-        public override async Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
+        public override async Task<Result> CheckRequirementAsync(IInteractionContext context, IServiceProvider services)
         {
             if (context.GuildId is null)
             {
-                return Result.FromError(new SlashCommandRequireBotPermissionErrorResult("Command can not be executed in DMs", default));
+                return Result.FromError(new RequireBotPermissionErrorResult("Interaction can not be executed in DMs", default));
             }
 
             var restGuild = services.GetRequiredService<IDiscordRestGuild>();
@@ -89,7 +89,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             var botMemberResult = await restGuild.GetGuildMemberAsync(context.GuildId.Value, discordTokens.ApplicationId);
             if (!botMemberResult.IsSuccessful)
             {
-                return Result.FromError(botMemberResult.ErrorResult ?? new SlashCommandRequireBotPermissionErrorResult("Guild member does not exist", default));
+                return Result.FromError(botMemberResult.ErrorResult ?? new RequireBotPermissionErrorResult("Guild member does not exist", default));
             }
 
             if (botMemberResult.Entity is null)
@@ -158,7 +158,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             var missingPerms = _requiredPermission.ToList().Where(requiredPerm => (rolePerms & requiredPerm) != requiredPerm).ToList();
             if (missingPerms.Any())
             {
-                return Result.FromError(new SlashCommandRequireBotPermissionErrorResult("Bot did not meet permission requirements", missingPerms));
+                return Result.FromError(new RequireBotPermissionErrorResult("Bot did not meet permission requirements", missingPerms));
             }
 
             return Result.FromSuccess();

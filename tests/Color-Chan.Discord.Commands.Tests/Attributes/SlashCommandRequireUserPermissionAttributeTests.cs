@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                     Permissions = DiscordPermission.Administrator
                 })
             };
-            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordPermission.Administrator);
+            var attribute = new RequireUserPermissionAttribute(DiscordPermission.Administrator);
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
@@ -41,7 +41,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             // Arrange
             var collectionProvider = new ServiceCollection().BuildServiceProvider();
             var context = new SlashCommandContext();
-            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordPermission.Administrator);
+            var attribute = new RequireUserPermissionAttribute(DiscordPermission.Administrator);
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
@@ -62,7 +62,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                     Permissions = DiscordPermission.AddReactions | DiscordPermission.Speak
                 })
             };
-            var attribute = new SlashCommandRequireUserPermissionAttribute(DiscordPermission.Administrator
+            var attribute = new RequireUserPermissionAttribute(DiscordPermission.Administrator
                                                                            | DiscordPermission.Speak
                                                                            | DiscordPermission.AddReactions);
 
@@ -72,8 +72,8 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             // Assert
             result.IsSuccessful.Should().BeFalse();
             result.ErrorResult.Should().NotBeNull();
-            result.ErrorResult.Should().BeOfType<SlashCommandRequireUserPermissionErrorResult>();
-            var reqError = result.ErrorResult as SlashCommandRequireUserPermissionErrorResult;
+            result.ErrorResult.Should().BeOfType<RequireUserPermissionErrorResult>();
+            var reqError = result.ErrorResult as RequireUserPermissionErrorResult;
             reqError!.MissingPermissions.Should().NotBeNull();
             reqError.MissingPermissions!.Count.Should().Be(1);
             foreach (var missingPermission in reqError.MissingPermissions)

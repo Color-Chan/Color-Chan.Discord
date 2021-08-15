@@ -30,7 +30,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_pass_user_permission_requirement(DiscordPermission required, DiscordPermission deny, DiscordPermission botPerms)
         {
             // Arrange
-            var attribute = new SlashCommandRequireBotPermissionAttribute(required);
+            var attribute = new RequireBotPermissionAttribute(required);
             var discordToken = new DiscordTokens("TOKEN", "PUBLIC_KEY", 123);
             var restGuildMock = new Mock<IDiscordRestGuild>();
             var context = GetTestContext(botPerms, deny);
@@ -57,7 +57,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_not_pass_user_permission_requirement_dm()
         {
             // Arrange
-            var attribute = new SlashCommandRequireBotPermissionAttribute(DiscordPermission.Administrator);
+            var attribute = new RequireBotPermissionAttribute(DiscordPermission.Administrator);
             var discordToken = new DiscordTokens("TOKEN", "PUBLIC_KEY", 123);
             var restGuildMock = new Mock<IDiscordRestGuild>();
             var context = new SlashCommandContext();
@@ -94,7 +94,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var discordToken = new DiscordTokens("TOKEN", "PUBLIC_KEY", 123);
             var restGuildMock = new Mock<IDiscordRestGuild>();
             var context = GetTestContext(bot, deny);
-            var attribute = new SlashCommandRequireBotPermissionAttribute(required);
+            var attribute = new RequireBotPermissionAttribute(required);
             var botMember = new DiscordGuildMember(new DiscordGuildMemberData
             {
                 Roles = new ulong[] { 1 }
@@ -113,8 +113,8 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             // Assert
             result.IsSuccessful.Should().BeFalse();
             result.ErrorResult.Should().NotBeNull();
-            result.ErrorResult.Should().BeOfType<SlashCommandRequireBotPermissionErrorResult>();
-            var reqError = result.ErrorResult as SlashCommandRequireBotPermissionErrorResult;
+            result.ErrorResult.Should().BeOfType<RequireBotPermissionErrorResult>();
+            var reqError = result.ErrorResult as RequireBotPermissionErrorResult;
             reqError!.MissingPermissions.Should().NotBeNull();
             reqError.MissingPermissions!.Count.Should().Be(missingList.Count);
             foreach (var missingPermission in reqError.MissingPermissions)

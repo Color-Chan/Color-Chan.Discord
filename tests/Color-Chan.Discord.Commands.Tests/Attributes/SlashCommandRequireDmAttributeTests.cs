@@ -16,7 +16,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_pass_dm_requirement()
         {
             // Arrange
-            var attribute = new SlashCommandRequireDmAttribute();
+            var attribute = new RequireDmAttribute();
             var collectionProvider = new ServiceCollection().BuildServiceProvider();
             var context = new SlashCommandContext();
 
@@ -31,7 +31,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_not_pass_dm_requirement()
         {
             // Arrange
-            var attribute = new SlashCommandRequireDmAttribute();
+            var attribute = new RequireDmAttribute();
             var collectionProvider = new ServiceCollection().BuildServiceProvider();
             var context = new SlashCommandContext
             {

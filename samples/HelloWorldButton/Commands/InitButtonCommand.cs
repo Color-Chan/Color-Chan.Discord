@@ -13,7 +13,7 @@ namespace HelloWorldButton.Commands
 {
     public class InitButtonCommand : SlashCommandModule
     {
-        [SlashCommandUserRateLimit(2, 10)] // Sets the rate limit for this command to 2 requests per 10 seconds per user.
+        [UserRateLimit(2, 10)] // Sets the rate limit for this command to 2 requests per 10 seconds per user.
         [SlashCommand("init", "Initializes a button component.")]
         public async Task<Result<IDiscordInteractionResponse>> InitButtonAsync()
         {

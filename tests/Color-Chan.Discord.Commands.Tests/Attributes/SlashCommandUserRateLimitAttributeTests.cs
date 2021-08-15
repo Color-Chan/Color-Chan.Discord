@@ -25,7 +25,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         {
             // Arrange
             var (rateLimitUser, shouldBeRateLimited) = tuple;
-            var rateLimitAttribute = new SlashCommandUserRateLimitAttribute(rateLimitUser.Remaining, 60);
+            var rateLimitAttribute = new UserRateLimitAttribute(rateLimitUser.Remaining, 60);
             var context = new SlashCommandContext
             {
                 User = new DiscordUser(new DiscordUserData
@@ -69,7 +69,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_detect_new_rate_limit()
         {
             // Arrange
-            var rateLimitAttribute = new SlashCommandUserRateLimitAttribute(2, 60);
+            var rateLimitAttribute = new UserRateLimitAttribute(2, 60);
             var context = new SlashCommandContext
             {
                 User = new DiscordUser(new DiscordUserData

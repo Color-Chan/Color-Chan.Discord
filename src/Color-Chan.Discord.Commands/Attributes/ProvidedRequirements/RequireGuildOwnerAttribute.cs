@@ -10,15 +10,15 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
 {
     /// <summary>
-    ///     Requires the user that requested the slash command to be the owner of the guild.
+    ///     Requires the user that requested the interaction to be the owner of the guild.
     /// </summary>
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module so they can only be used by the
     ///     owner of the guild they are being requested in. You can also put the
-    ///     <see cref="SlashCommandRequireGuildOwnerAttribute" />
+    ///     <see cref="RequireGuildOwnerAttribute" />
     ///     on a method if you only want to have it on a specific command.
     ///     <code language="cs">
-    ///     [SlashCommandRequireGuildOwner]
+    ///     [RequireGuildOwner]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
@@ -30,14 +30,14 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class SlashCommandRequireGuildOwnerAttribute : SlashCommandRequirementAttribute
+    public class RequireGuildOwnerAttribute : InteractionRequirementAttribute
     {
         /// <inheritdoc />
-        public override async Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
+        public override async Task<Result> CheckRequirementAsync(IInteractionContext context, IServiceProvider services)
         {
             if (context.GuildId is null)
             {
-                return Result.FromError(new SlashCommandRequireGuildOwnerErrorResult("Command can not be executed in DMs"));
+                return Result.FromError(new RequireGuildOwnerErrorResult("Interaction can not be executed in DMs"));
             }
 
             IDiscordGuild? guild;
@@ -62,7 +62,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Result.FromSuccess();
             }
 
-            return Result.FromError(new SlashCommandRequireGuildOwnerErrorResult("Guild owner is required"));
+            return Result.FromError(new RequireGuildOwnerErrorResult("Guild owner is required"));
         }
     }
 }

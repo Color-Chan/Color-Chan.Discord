@@ -58,7 +58,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         public IEnumerable<SlashCommandGuildAttribute>? Guilds { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<SlashCommandRequirementAttribute>? Requirements { get; set; }
+        public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<SlashCommandPermissionAttribute>? Permissions { get; set; }

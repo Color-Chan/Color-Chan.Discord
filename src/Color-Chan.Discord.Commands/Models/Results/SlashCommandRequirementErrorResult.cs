@@ -4,7 +4,7 @@ using Color_Chan.Discord.Core.Results;
 namespace Color_Chan.Discord.Commands.Models.Results
 {
     /// <summary>
-    ///     An error result describing an error thrown by a <see cref="SlashCommandRequirementAttribute" />.
+    ///     An error result describing an error thrown by a <see cref="InteractionRequirementAttribute" />.
     /// </summary>
     public record SlashCommandRequirementErrorResult : ErrorResult
     {

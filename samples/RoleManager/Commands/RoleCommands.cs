@@ -17,10 +17,10 @@ namespace RoleManager.Commands
     /// <summary>
     ///     The command module for all role related commands.
     /// </summary>
-    [SlashCommandRequireBotPermission(DiscordPermission.ManageRoles)]
+    [RequireBotPermission(DiscordPermission.ManageRoles)]
     [SlashCommandGroup("role", "Gets, creates or updates roles.")]
-    [SlashCommandUserRateLimit(10, 30)] // Sets the rate limit for this command module to 10 requests per 30 seconds per user.
-    [SlashCommandRequireGuild] // Required all commands in this command module to be executed in a guild.
+    [UserRateLimit(10, 30)] // Sets the rate limit for this command module to 10 requests per 30 seconds per user.
+    [RequireGuild] // Required all commands in this command module to be executed in a guild.
     public class RoleCommands : SlashCommandModule
     {
         private readonly IDiscordRestGuild _restGuild;

@@ -10,15 +10,15 @@ using Color_Chan.Discord.Core.Results;
 namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
 {
     /// <summary>
-    ///     Requires the user that requested the slash command to have a certain permissions.
+    ///     Requires the user that requested the interaction to have a certain permissions.
     /// </summary>
     /// <example>
     ///     This example limits all the slash commands in the PongCommands slash command module to users that have the
     ///     <see cref="DiscordPermission.BanMembers" /> and <see cref="DiscordPermission.KickMembers" /> permission.
-    ///     You can also put the <see cref="SlashCommandRequireUserPermissionAttribute" /> on a method if you only want to have
+    ///     You can also put the <see cref="RequireUserPermissionAttribute" /> on a method if you only want to have
     ///     it on a specific command.
     ///     <code language="cs">
-    ///     [SlashCommandRequireUserPermission(DiscordGuildPermission.BanMembers | DiscordGuildPermission.KickMembers)]
+    ///     [RequireUserPermission(DiscordGuildPermission.BanMembers | DiscordGuildPermission.KickMembers)]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
@@ -30,28 +30,28 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class SlashCommandRequireUserPermissionAttribute : SlashCommandRequirementAttribute
+    public class RequireUserPermissionAttribute : InteractionRequirementAttribute
     {
         private readonly DiscordPermission _requiredPermission;
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandUserRateLimitAttribute" />.
+        ///     Initializes a new instance of <see cref="UserRateLimitAttribute" />.
         /// </summary>
         /// <param name="requiredPermission">
         ///     The <see cref="DiscordPermission" /> the user is required to have for this
         ///     command/command group.
         /// </param>
-        public SlashCommandRequireUserPermissionAttribute(DiscordPermission requiredPermission)
+        public RequireUserPermissionAttribute(DiscordPermission requiredPermission)
         {
             _requiredPermission = requiredPermission;
         }
 
         /// <inheritdoc />
-        public override Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
+        public override Task<Result> CheckRequirementAsync(IInteractionContext context, IServiceProvider services)
         {
             if (context.Member is null)
             {
-                return Task.FromResult(Result.FromError(new SlashCommandRequireUserPermissionErrorResult("Command can not be executed in DMs", default)));
+                return Task.FromResult(Result.FromError(new RequireUserPermissionErrorResult("Command can not be executed in DMs", default)));
             }
 
             if (context.Member.Permissions is null)
@@ -76,7 +76,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 }
             }
 
-            return Task.FromResult(Result.FromError(new SlashCommandRequireUserPermissionErrorResult("User did not meet permission requirements", missingPerms)));
+            return Task.FromResult(Result.FromError(new RequireUserPermissionErrorResult("User did not meet permission requirements", missingPerms)));
         }
     }
 }

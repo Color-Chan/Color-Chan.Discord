@@ -22,7 +22,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_ignore_dm()
         {
             // Arrange
-            var rateLimitAttribute = new SlashCommandGuildRateLimitAttribute(20, 60);
+            var rateLimitAttribute = new GuildRateLimitAttribute(20, 60);
             var context = new SlashCommandContext
             {
                 GuildId = null,
@@ -52,7 +52,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         {
             // Arrange
             var (rateLimitServer, shouldBeRateLimited) = tuple;
-            var rateLimitAttribute = new SlashCommandGuildRateLimitAttribute(rateLimitServer.Remaining, 60);
+            var rateLimitAttribute = new GuildRateLimitAttribute(rateLimitServer.Remaining, 60);
             var context = new SlashCommandContext
             {
                 GuildId = ulong.MaxValue,
@@ -93,7 +93,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_detect_new_rate_limit()
         {
             // Arrange
-            var rateLimitAttribute = new SlashCommandGuildRateLimitAttribute(2, 60);
+            var rateLimitAttribute = new GuildRateLimitAttribute(2, 60);
             var context = new SlashCommandContext
             {
                 GuildId = ulong.MaxValue,

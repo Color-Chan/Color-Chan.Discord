@@ -92,7 +92,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock
-                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<InteractionRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
                 .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
@@ -124,7 +124,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock
-                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<InteractionRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
                 .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
@@ -208,7 +208,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock
-                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<InteractionRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
                 .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
@@ -255,7 +255,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock
-                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<InteractionRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
                 .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();

@@ -5,26 +5,26 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 namespace Color_Chan.Discord.Commands.Models.Results
 {
     /// <summary>
-    ///     An error result describing an error for <see cref="SlashCommandRequireBotPermissionAttribute" /> when the bot did
+    ///     An error result describing an error for <see cref="RequireUserPermissionAttribute" /> when the user did
     ///     not meet the permission requirements.
     /// </summary>
-    public record SlashCommandRequireBotPermissionErrorResult : SlashCommandRequirementErrorResult
+    public record RequireUserPermissionErrorResult : SlashCommandRequirementErrorResult
     {
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandRequireBotPermissionErrorResult" />.
+        ///     Initializes a new instance of <see cref="RequireUserPermissionErrorResult" />.
         /// </summary>
         /// <param name="errorMessage">The message of the error.</param>
         /// <param name="missingPermissions">
-        ///     The missing <see cref="DiscordPermission" />s the bot was required to have for
+        ///     The missing <see cref="DiscordPermission" />s the user was required to have for
         ///     this command/command group.
         /// </param>
-        public SlashCommandRequireBotPermissionErrorResult(string errorMessage, List<DiscordPermission>? missingPermissions) : base(errorMessage)
+        public RequireUserPermissionErrorResult(string errorMessage, List<DiscordPermission>? missingPermissions) : base(errorMessage)
         {
             MissingPermissions = missingPermissions;
         }
 
         /// <summary>
-        ///     The missing <see cref="DiscordPermission" />s the bot was required to have for this command/command group.
+        ///     The missing <see cref="DiscordPermission" />s the user was required to have for this command/command group.
         /// </summary>
         /// <remarks>
         ///     Null when the command was used in DMs.

@@ -16,7 +16,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_not_pass_guild_requirement()
         {
             // Arrange
-            var attribute = new SlashCommandRequireGuildAttribute();
+            var attribute = new RequireGuildAttribute();
             var collectionProvider = new ServiceCollection().BuildServiceProvider();
             var context = new SlashCommandContext();
 
@@ -31,7 +31,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
         public async Task Should_pass_guild_requirement()
         {
             // Arrange
-            var attribute = new SlashCommandRequireGuildAttribute();
+            var attribute = new RequireGuildAttribute();
             var collectionProvider = new ServiceCollection().BuildServiceProvider();
             var context = new SlashCommandContext
             {

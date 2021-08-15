@@ -44,10 +44,10 @@ namespace Color_Chan.Discord.Commands.Models.Info
         public IEnumerable<SlashCommandGuildAttribute>? Guilds { get; set; }
 
         /// <summary>
-        ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandRequirementAttribute" />s containing all the requirements
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="InteractionRequirementAttribute" />s containing all the requirements
         ///     to execute the command.
         /// </summary>
-        public IEnumerable<SlashCommandRequirementAttribute>? Requirements { get; set; }
+        public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
 
         /// <summary>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" />s containing the permission data

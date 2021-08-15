@@ -42,7 +42,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// <seealso cref="Result" />
         /// <seealso cref="SlashCommandAttribute" />
         Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(MethodInfo commandMethod, IEnumerable<ISlashCommandOptionInfo>? options,
-                                                                           IEnumerable<SlashCommandRequirementAttribute>? requirements, ISlashCommandContext context,
+                                                                           IEnumerable<InteractionRequirementAttribute>? requirements, ISlashCommandContext context,
                                                                            List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null);
 
         /// <summary>

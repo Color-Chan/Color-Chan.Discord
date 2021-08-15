@@ -7,11 +7,11 @@ using Color_Chan.Discord.Core.Results;
 namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
 {
     /// <summary>
-    ///     This attribute requires a command to be executed in a specific channel.
+    ///     This attribute requires a interaction to be executed in a specific channel.
     /// </summary>
     /// <example>
     ///     <code language="cs">
-    ///     [SlashCommandRequireChannel(0123456789)]
+    ///     [RequireChannel(0123456789)]
     ///     public class PongCommands : SlashCommandModule
     ///     {
     ///         [SlashCommand("ping", "Ping Pong!")]
@@ -23,24 +23,24 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
-    public class SlashCommandRequireChannelAttribute : SlashCommandRequirementAttribute
+    public class RequireChannelAttribute : InteractionRequirementAttribute
     {
         private readonly ulong _channelId;
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandRequireChannelAttribute" />.
+        ///     Initializes a new instance of <see cref="RequireChannelAttribute" />.
         /// </summary>
         /// <param name="channelId">The ID of the channel.</param>
-        public SlashCommandRequireChannelAttribute(ulong channelId)
+        public RequireChannelAttribute(ulong channelId)
         {
             _channelId = channelId;
         }
 
         /// <inheritdoc />
-        public override Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
+        public override Task<Result> CheckRequirementAsync(IInteractionContext context, IServiceProvider services)
         {
             return Task.FromResult(context.ChannelId != _channelId
-                                       ? Result.FromError(new SlashCommandRequireChannelErrorResult($"Channel with ID {_channelId.ToString()} is required to use this command."))
+                                       ? Result.FromError(new RequireChannelErrorResult($"Channel with ID {_channelId.ToString()} is required to use this command."))
                                        : Result.FromSuccess());
         }
     }

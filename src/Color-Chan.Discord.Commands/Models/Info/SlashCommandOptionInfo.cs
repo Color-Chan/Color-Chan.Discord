@@ -74,7 +74,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         /// <param name="command">The <see cref="MethodInfo" /> containing the method of the command.</param>
         /// <param name="module">The command module containing the <see cref="CommandMethod" />.</param>
         /// <param name="requirements">
-        ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandRequirementAttribute" />s
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="InteractionRequirementAttribute" />s
         ///     containing all the requirements to execute the command.
         /// </param>
         /// <param name="commandOptions">
@@ -88,7 +88,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         /// <exception cref="ArgumentNullException">
         ///     Thrown when <paramref name="name" />, <paramref name="description" /> is null.
         /// </exception>
-        public SlashCommandOptionInfo(string name, string description, MethodInfo command, TypeInfo module, IEnumerable<SlashCommandRequirementAttribute>? requirements = null,
+        public SlashCommandOptionInfo(string name, string description, MethodInfo command, TypeInfo module, IEnumerable<InteractionRequirementAttribute>? requirements = null,
                                       List<ISlashCommandOptionInfo>? commandOptions = null, IEnumerable<SlashCommandGuildAttribute>? guilds = null)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
@@ -126,7 +126,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         public IEnumerable<SlashCommandGuildAttribute>? Guilds { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<SlashCommandRequirementAttribute>? Requirements { get; set; }
+        public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
 
         /// <inheritdoc />
         public List<ISlashCommandOptionInfo>? CommandOptions { get; set; }

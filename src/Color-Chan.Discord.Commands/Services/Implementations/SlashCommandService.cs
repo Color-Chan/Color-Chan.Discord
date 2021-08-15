@@ -78,7 +78,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <inheritdoc />
         public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(MethodInfo commandMethod,
                                                                                         IEnumerable<ISlashCommandOptionInfo>? options,
-                                                                                        IEnumerable<SlashCommandRequirementAttribute>? requirements,
+                                                                                        IEnumerable<InteractionRequirementAttribute>? requirements,
                                                                                         ISlashCommandContext context,
                                                                                         List<IDiscordInteractionOption>? suppliedOptions = null,
                                                                                         IServiceProvider? serviceProvider = null)
