@@ -1,3 +1,4 @@
+using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -71,5 +72,21 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         ///     Used to create a unique string for rate limiting.
         /// </remarks>
         string? MethodName { get; set; }
+        
+        /// <summary>
+        ///     The guild the interaction was used in.
+        /// </summary>
+        /// <remarks>
+        ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild" /> is disabled.
+        /// </remarks>
+        IDiscordGuild? Guild { get; init; }
+
+        /// <summary>
+        ///     The channel interaction was used in.
+        /// </summary>
+        /// <remarks>
+        ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild" /> is disabled.
+        /// </remarks>
+        IDiscordChannel? Channel { get; init; }
     }
 }
