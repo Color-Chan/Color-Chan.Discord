@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Reflection;
+using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Commands.Models.Info
@@ -32,5 +34,8 @@ namespace Color_Chan.Discord.Commands.Models.Info
 
         /// <inheritdoc />
         public TypeInfo ParentModule { get; set; }
+        
+        /// <inheritdoc />
+        public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
     }
 }

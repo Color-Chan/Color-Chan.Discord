@@ -23,7 +23,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result> ExecuteSlashCommandRequirementsAsync(IEnumerable<InteractionRequirementAttribute>? requirements, ISlashCommandContext context, IServiceProvider serviceProvider)
+        public async Task<Result> ExecuteSlashCommandRequirementsAsync(IEnumerable<InteractionRequirementAttribute>? requirements, IInteractionContext context, IServiceProvider serviceProvider)
         {
             if (requirements is null)
             {

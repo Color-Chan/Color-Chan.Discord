@@ -18,6 +18,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
     public class ComponentService : IComponentService
     {
         private readonly IComponentBuildService _componentBuildService;
+        private readonly ISlashCommandRequirementService _requirementService;
         private readonly ConcurrentDictionary<string, IComponentInfo> _components = new();
         private readonly ILogger<ComponentService> _logger;
 
@@ -26,10 +27,15 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// </summary>
         /// <param name="logger">The <see cref="ILogger" /> for <see cref="ComponentService" />.</param>
         /// <param name="componentBuildService">The build service that will build the <see cref="IComponentInfo" />s.</param>
-        public ComponentService(ILogger<ComponentService> logger, IComponentBuildService componentBuildService)
+        /// <param name="requirementService">
+        ///     The <see cref="ISlashCommandRequirementService" /> that will used to execute the
+        ///     requirements.
+        /// </param>
+        public ComponentService(ILogger<ComponentService> logger, IComponentBuildService componentBuildService, ISlashCommandRequirementService requirementService)
         {
             _logger = logger;
             _componentBuildService = componentBuildService;
+            _requirementService = requirementService;
         }
 
         /// <inheritdoc />
@@ -70,7 +76,22 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var instance = GetComponentInteractionModuleInstance(serviceProvider, searchResult.ComponentMethod);
             context.MethodName = searchResult.ComponentMethod.Name;
             instance.SetContext(context);
-
+            
+            // Try to run the requirements for the slash command.
+            try
+            {
+                var requirementsResult = await _requirementService.ExecuteSlashCommandRequirementsAsync(searchResult.Requirements, context, serviceProvider).ConfigureAwait(false);
+                if (!requirementsResult.IsSuccessful)
+                {
+                    return Result<IDiscordInteractionResponse>.FromError(default, requirementsResult.ErrorResult);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Exception thrown while running component interaction `{Name}` requirements", searchResult.CustomId);
+                return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException!));
+            }
+            
             // Try to execute the component interaction.
             try
             {
@@ -85,7 +106,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Exception thrown while running component interaction {CommandName}", searchResult.ComponentMethod.Name);
+                _logger.LogError(e, "Exception thrown while running component interaction {Name}", searchResult.ComponentMethod.Name);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException ?? e));
             }
         }

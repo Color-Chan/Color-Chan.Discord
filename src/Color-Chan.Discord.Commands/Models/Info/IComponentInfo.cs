@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Reflection;
+using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Commands.Models.Info
@@ -27,5 +29,11 @@ namespace Color_Chan.Discord.Commands.Models.Info
         ///     The component module containing the <see cref="ComponentMethod" />.
         /// </summary>
         public TypeInfo ParentModule { get; set; }
+        
+        /// <summary>
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="InteractionRequirementAttribute" />s containing all the requirements
+        ///     to execute the component.
+        /// </summary>
+        public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
     }
 }

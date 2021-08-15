@@ -18,14 +18,19 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
     {
         private static readonly TypeInfo ModuleTypeInfo = typeof(IComponentInteractionModule).GetTypeInfo();
         private readonly ILogger<ComponentBuildService> _logger;
+        private readonly ISlashCommandRequirementBuildService _requirementBuildService;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="ComponentBuildService" />.
         /// </summary>
         /// <param name="logger">The <see cref="ILogger" /> for <see cref="ComponentBuildService" />.</param>
-        public ComponentBuildService(ILogger<ComponentBuildService> logger)
+        /// <param name="requirementBuildService">
+        ///     The <see cref="ISlashCommandRequirementBuildService" /> that will get and build the component requirements.
+        /// </param>
+        public ComponentBuildService(ILogger<ComponentBuildService> logger, ISlashCommandRequirementBuildService requirementBuildService)
         {
             _logger = logger;
+            _requirementBuildService = requirementBuildService;
         }
 
         /// <inheritdoc />
@@ -41,7 +46,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                     var componentAttribute = validMethod.GetCustomAttribute<ComponentAttribute>();
                     if (componentAttribute is null) throw new NullReferenceException(nameof(componentAttribute));
 
-                    var componentInfo = new ComponentInfo(componentAttribute.CustomId, componentAttribute.Type, validMethod, parentModule);
+                    var componentInfo = new ComponentInfo(componentAttribute.CustomId, componentAttribute.Type, validMethod, parentModule)
+                    {
+                        Requirements = _requirementBuildService.GetCommandRequirements(validMethod)
+                    };
                     validComponents.Add(componentInfo);
                     _logger.LogDebug("Found valid Component {Id} in Component module {ModuleName}", componentInfo.CustomId, parentModule.FullName);
                 }
