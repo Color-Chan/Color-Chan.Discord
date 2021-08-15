@@ -65,6 +65,8 @@ namespace Color_Chan.Discord.Commands.Extensions
             componentInteractionConfig ??= configuration =>
             {
                 configuration.SendDefaultErrorMessage = false;
+                configuration.EnableAutoGetChannel = false;
+                configuration.EnableAutoGetGuild = false;
             };
             services.Configure(componentInteractionConfig);
 

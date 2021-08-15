@@ -5,6 +5,9 @@ using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.MessageBuilders;
 using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Core.Common.API.Rest;
+using Color_Chan.Discord.Core.Common.Models;
+using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +22,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         private readonly ILogger<ComponentInteractionHandler> _logger;
         private readonly IServiceProvider _serviceProvider;
         private readonly IComponentService _componentService;
+        private readonly IDiscordRestGuild _restGuild;
+        private readonly IDiscordRestChannel _restChannel;
         private readonly ComponentInteractionConfiguration _options;
 
         /// <summary>
@@ -28,12 +33,16 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <param name="serviceProvider">The services needed to execute the component interactions.</param>
         /// <param name="componentService">The <see cref="IComponentService"/> used to search and execute the correct components.</param>
         /// <param name="options">The <see cref="ComponentInteractionConfiguration"/> containing the configuration data for component interactions.</param>
+        /// <param name="restGuild">The rest class for Guilds.</param>
+        /// <param name="restChannel">The rest class for Channels.</param>
         public ComponentInteractionHandler(ILogger<ComponentInteractionHandler> logger, IServiceProvider serviceProvider, IComponentService componentService, 
-                                           IOptions<ComponentInteractionConfiguration> options)
+                                           IOptions<ComponentInteractionConfiguration> options, IDiscordRestGuild restGuild, IDiscordRestChannel restChannel)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
             _componentService = componentService;
+            _restGuild = restGuild;
+            _restChannel = restChannel;
             _options = options.Value;
         }
 
@@ -43,6 +52,20 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             if (interaction.Data is null)
             {
                 throw new ArgumentNullException(nameof(interaction.Data), $"{nameof(interaction.Data)} can not be null for a component interaction!");
+            }
+            
+            IDiscordGuild? guild = null;
+            if (_options.EnableAutoGetGuild && interaction.GuildId is not null)
+            {
+                var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
+                guild = guildResult.Entity;
+            }
+
+            IDiscordChannel? channel = null;
+            if (_options.EnableAutoGetGuild && interaction.ChannelId is not null)
+            {
+                var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
+                channel = channelResult.Entity;
             }
             
             InteractionContext context = new ()
@@ -55,7 +78,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 ApplicationId = interaction.ApplicationId,
                 Data = interaction.Data,
                 InteractionId = interaction.Id,
-                Token = interaction.Token
+                Token = interaction.Token,
+                Channel = channel,
+                Guild = guild
             };
             
             // Local method to execute the command.
