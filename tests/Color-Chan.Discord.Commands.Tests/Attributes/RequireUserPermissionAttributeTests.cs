@@ -12,7 +12,7 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Attributes
 {
     [TestFixture]
-    public class SlashCommandRequireUserPermissionAttributeTests
+    public class RequireUserPermissionAttributeTests
     {
         [Test]
         public async Task Should_pass_user_permission_requirement()

@@ -21,7 +21,7 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Attributes
 {
     [TestFixture]
-    public class SlashCommandRequireBotPermissionAttributeTests
+    public class RequireBotPermissionAttributeTests
     {
         [TestCase(DiscordPermission.Speak, DiscordPermission.Speak, DiscordPermission.Administrator)]
         [TestCase(DiscordPermission.Speak | DiscordPermission.DeafenMembers | DiscordPermission.BanMembers,

@@ -18,7 +18,7 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Attributes
 {
     [TestFixture]
-    public class SlashCommandUserRateLimitAttributeTests
+    public class UserRateLimitAttributeTests
     {
         [TestCaseSource(nameof(GetRateLimitUsers))]
         public async Task Should_detect_rate_limit(Tuple<RateLimitInfo, bool> tuple)

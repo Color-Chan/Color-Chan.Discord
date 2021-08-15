@@ -9,21 +9,21 @@ using Microsoft.Extensions.Logging;
 namespace Color_Chan.Discord.Commands.Services.Implementations
 {
     /// <inheritdoc />
-    public class SlashCommandRequirementService : ISlashCommandRequirementService
+    public class InteractionRequirementService : ISlashCommandRequirementService
     {
-        private readonly ILogger<SlashCommandRequirementService> _logger;
+        private readonly ILogger<InteractionRequirementService> _logger;
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandRequirementService" />.
+        ///     Initializes a new instance of <see cref="InteractionRequirementService" />.
         /// </summary>
-        /// <param name="logger">The <see cref="ILogger" /> for <see cref="SlashCommandRequirementService" />.</param>
-        public SlashCommandRequirementService(ILogger<SlashCommandRequirementService> logger)
+        /// <param name="logger">The <see cref="ILogger" /> for <see cref="InteractionRequirementService" />.</param>
+        public InteractionRequirementService(ILogger<InteractionRequirementService> logger)
         {
             _logger = logger;
         }
 
         /// <inheritdoc />
-        public async Task<Result> ExecuteSlashCommandRequirementsAsync(IEnumerable<InteractionRequirementAttribute>? requirements, IInteractionContext context, IServiceProvider serviceProvider)
+        public async Task<Result> ExecuteRequirementsAsync(IEnumerable<InteractionRequirementAttribute>? requirements, IInteractionContext context, IServiceProvider serviceProvider)
         {
             if (requirements is null)
             {

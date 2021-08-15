@@ -41,7 +41,7 @@ namespace Color_Chan.Discord.Commands.Extensions
                                                                     Action<ComponentInteractionConfiguration>? componentInteractionConfig = null)
         {
             services.TryAddTransient<ISlashCommandRequirementBuildService, SlashCommandRequirementBuildService>();
-            services.TryAddTransient<ISlashCommandRequirementService, SlashCommandRequirementService>();
+            services.TryAddTransient<ISlashCommandRequirementService, InteractionRequirementService>();
             services.TryAddTransient<ISlashCommandOptionBuildService, SlashCommandOptionBuildService>();
             services.TryAddTransient<ISlashCommandGuildBuildService, SlashCommandGuildBuildService>();
             services.TryAddTransient<ISlashCommandAutoSyncService, SlashCommandAutoSyncService>();

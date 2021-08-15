@@ -13,12 +13,12 @@ namespace Color_Chan.Discord.Commands.Configurations
         public bool EnableAutoSync { get; set; } = true;
 
         /// <summary>
-        ///     Whether or not <see cref="ISlashCommandContext.Guild" /> should be auto loaded on command requests. Default: false.
+        ///     Whether or not <see cref="IInteractionContext.Guild" /> should be auto loaded on command requests. Default: false.
         /// </summary>
         public bool EnableAutoGetGuild { get; set; }
 
         /// <summary>
-        ///     Whether or not <see cref="ISlashCommandContext.Channel" /> should be auto loaded on command requests. Default:
+        ///     Whether or not <see cref="IInteractionContext.Channel" /> should be auto loaded on command requests. Default:
         ///     false.
         /// </summary>
         public bool EnableAutoGetChannel { get; set; }

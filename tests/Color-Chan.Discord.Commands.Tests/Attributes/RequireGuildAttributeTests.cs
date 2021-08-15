@@ -10,13 +10,13 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Attributes
 {
     [TestFixture]
-    public class SlashCommandRequireDmAttributeTests
+    public class RequireGuildAttributeTests
     {
         [Test]
-        public async Task Should_pass_dm_requirement()
+        public async Task Should_not_pass_guild_requirement()
         {
             // Arrange
-            var attribute = new RequireDmAttribute();
+            var attribute = new RequireGuildAttribute();
             var collectionProvider = new ServiceCollection().BuildServiceProvider();
             var context = new SlashCommandContext();
 
@@ -24,14 +24,14 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
 
             // Assert
-            result.IsSuccessful.Should().BeTrue();
+            result.IsSuccessful.Should().BeFalse();
         }
 
         [Test]
-        public async Task Should_not_pass_dm_requirement()
+        public async Task Should_pass_guild_requirement()
         {
             // Arrange
-            var attribute = new RequireDmAttribute();
+            var attribute = new RequireGuildAttribute();
             var collectionProvider = new ServiceCollection().BuildServiceProvider();
             var context = new SlashCommandContext
             {
@@ -43,7 +43,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);
 
             // Assert
-            result.IsSuccessful.Should().BeFalse();
+            result.IsSuccessful.Should().BeTrue();
         }
     }
 }

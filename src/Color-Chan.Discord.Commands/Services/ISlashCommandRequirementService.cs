@@ -25,6 +25,6 @@ namespace Color_Chan.Discord.Commands.Services
         /// <returns>
         ///     The <see cref="Result" /> containing the result of executing the slash command requirements.
         /// </returns>
-        Task<Result> ExecuteSlashCommandRequirementsAsync(IEnumerable<InteractionRequirementAttribute>? requirements, IInteractionContext context, IServiceProvider serviceProvider);
+        Task<Result> ExecuteRequirementsAsync(IEnumerable<InteractionRequirementAttribute>? requirements, IInteractionContext context, IServiceProvider serviceProvider);
     }
 }

@@ -16,7 +16,7 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Attributes
 {
     [TestFixture]
-    public class SlashCommandGuildRateLimitAttributeTests
+    public class GuildRateLimitAttributeTests
     {
         [Test]
         public async Task Should_ignore_dm()

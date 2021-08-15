@@ -80,7 +80,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Try to run the requirements for the slash command.
             try
             {
-                var requirementsResult = await _requirementService.ExecuteSlashCommandRequirementsAsync(searchResult.Requirements, context, serviceProvider).ConfigureAwait(false);
+                var requirementsResult = await _requirementService.ExecuteRequirementsAsync(searchResult.Requirements, context, serviceProvider).ConfigureAwait(false);
                 if (!requirementsResult.IsSuccessful)
                 {
                     return Result<IDiscordInteractionResponse>.FromError(default, requirementsResult.ErrorResult);

@@ -14,7 +14,7 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 {
     [TestFixture]
-    public class SlashCommandRequirementServiceTests
+    public class InteractionRequirementServiceTests
     {
         [TestCase(0, true)]
         [TestCase(1, false)]
@@ -22,10 +22,10 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         public async Task ExecuteSlashCommandRequirementsAsync_should_get_one_error(int methodIndex, bool shouldHaveError)
         {
             // Arrange
-            var requirementServiceLoggerMock = new Mock<ILogger<SlashCommandRequirementService>>();
+            var requirementServiceLoggerMock = new Mock<ILogger<InteractionRequirementService>>();
             var contextMock = new Mock<ISlashCommandContext>();
             var serviceProviderMock = new Mock<IServiceProvider>();
-            var requirementService = new SlashCommandRequirementService(requirementServiceLoggerMock.Object);
+            var requirementService = new InteractionRequirementService(requirementServiceLoggerMock.Object);
 
             var module = typeof(ValidMockCommandModule1).GetTypeInfo();
             var method = module.GetMethods()[methodIndex];
@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             };
 
             // Act
-            var result = await requirementService.ExecuteSlashCommandRequirementsAsync(commandInfo.Requirements, contextMock.Object, serviceProviderMock.Object).ConfigureAwait(false);
+            var result = await requirementService.ExecuteRequirementsAsync(commandInfo.Requirements, contextMock.Object, serviceProviderMock.Object).ConfigureAwait(false);
 
             // Assert
             result.IsSuccessful.Should().Be(!shouldHaveError);
