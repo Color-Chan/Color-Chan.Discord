@@ -44,6 +44,7 @@ namespace Color_Chan.Discord.Extensions
         ///     The cache options for the redis cache.
         ///     Leave this null if you want to use a local cache.
         /// </param>
+        /// <param name="componentInteractionConfig">The configurations needed for the component interactions.</param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
@@ -54,12 +55,13 @@ namespace Color_Chan.Discord.Extensions
                                                              Action<InteractionsConfiguration>? interactionConfigs = null,
                                                              Action<SlashCommandConfiguration>? slashCommandConfigs = null,
                                                              Action<CacheConfiguration>? defaultCacheConfig = null,
-                                                             Action<RedisCacheOptions>? redisCacheOptions = null)
+                                                             Action<RedisCacheOptions>? redisCacheOptions = null,
+                                                             Action<ComponentInteractionConfiguration>? componentInteractionConfig = null)
         {
             if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
             services.AddColorChanDiscordRest(botToken);
-            services.AddColorChanDiscordCommand(slashCommandConfigs, defaultCacheConfig, redisCacheOptions);
+            services.AddColorChanDiscordCommand(slashCommandConfigs, defaultCacheConfig, redisCacheOptions, componentInteractionConfig);
 
             services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
             services.AddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
@@ -98,7 +100,7 @@ namespace Color_Chan.Discord.Extensions
             if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
             services.AddColorChanDiscordRest(botToken);
-            services.AddColorChanDiscordCommand(configurations.SlashCommandConfigs, configurations.DefaultCacheConfig, configurations.RedisCacheOptions);
+            services.AddColorChanDiscordCommand(configurations.SlashCommandConfigs, configurations.DefaultCacheConfig, configurations.RedisCacheOptions, configurations.ComponentInteractionConfig);
 
             services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
             services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
