@@ -25,8 +25,11 @@ namespace HelloWorldButton
                 SlashCommandConfigs = slashOptions =>
                 {
                     slashOptions.EnableAutoSync = true;
-                    slashOptions.EnableAutoGetGuild = true;
                     slashOptions.SendDefaultErrorMessage = true;
+                },
+                ComponentInteractionConfig = componentOptions =>
+                {
+                    componentOptions.SendDefaultErrorMessage = true;
                 }
             };
 
