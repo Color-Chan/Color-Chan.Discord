@@ -15,13 +15,18 @@ namespace Color_Chan.Discord.Commands.Models.Info
         /// <param name="defaultPermission">Whether the command is enabled by default when the app is added to a guild.</param>
         /// <param name="command">The <see cref="MethodInfo" /> containing the method of the command.</param>
         /// <param name="module">The command module containing the <see cref="CommandMethod" />.</param>
-        public SlashCommandInfo(string name, string description, bool defaultPermission, MethodInfo command, TypeInfo module)
+        /// <param name="acknowledge">
+        ///     Whether or not the command should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </param>
+        public SlashCommandInfo(string name, string description, bool defaultPermission, MethodInfo command, TypeInfo module, bool acknowledge = false)
         {
             CommandName = name;
             Description = description;
             DefaultPermission = defaultPermission;
             CommandMethod = command;
             ParentModule = module;
+            Acknowledge = acknowledge;
         }
 
         /// <summary>
@@ -53,6 +58,9 @@ namespace Color_Chan.Discord.Commands.Models.Info
 
         /// <inheritdoc />
         public TypeInfo ParentModule { get; set; }
+
+        /// <inheritdoc />
+        public bool Acknowledge { get; }
 
         /// <inheritdoc />
         public IEnumerable<SlashCommandGuildAttribute>? Guilds { get; set; }

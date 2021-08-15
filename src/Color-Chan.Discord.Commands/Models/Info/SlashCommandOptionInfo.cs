@@ -71,6 +71,10 @@ namespace Color_Chan.Discord.Commands.Models.Info
         /// </summary>
         /// <param name="name">The name of the sub command.</param>
         /// <param name="description">The description of the sub command.</param>
+        /// <param name="acknowledge">
+        ///     Whether or not the command should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </param>
         /// <param name="command">The <see cref="MethodInfo" /> containing the method of the command.</param>
         /// <param name="module">The command module containing the <see cref="CommandMethod" />.</param>
         /// <param name="requirements">
@@ -88,7 +92,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         /// <exception cref="ArgumentNullException">
         ///     Thrown when <paramref name="name" />, <paramref name="description" /> is null.
         /// </exception>
-        public SlashCommandOptionInfo(string name, string description, MethodInfo command, TypeInfo module, IEnumerable<InteractionRequirementAttribute>? requirements = null,
+        public SlashCommandOptionInfo(string name, string description, bool acknowledge, MethodInfo command, TypeInfo module, IEnumerable<InteractionRequirementAttribute>? requirements = null,
                                       List<ISlashCommandOptionInfo>? commandOptions = null, IEnumerable<SlashCommandGuildAttribute>? guilds = null)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
@@ -99,6 +103,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
             Requirements = requirements;
             CommandOptions = commandOptions;
             Guilds = guilds;
+            Acknowledge = acknowledge;
         }
 
         /// <inheritdoc />
@@ -122,6 +127,9 @@ namespace Color_Chan.Discord.Commands.Models.Info
         /// <inheritdoc />
         public TypeInfo? ParentModule { get; set; }
 
+        /// <inheritdoc />
+        public bool Acknowledge { get; }
+        
         /// <inheritdoc />
         public IEnumerable<SlashCommandGuildAttribute>? Guilds { get; set; }
 

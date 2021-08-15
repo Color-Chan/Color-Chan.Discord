@@ -53,6 +53,12 @@ namespace Color_Chan.Discord.Commands.Models.Info
         public TypeInfo? ParentModule { get; set; }
 
         /// <summary>
+        ///     Whether or not the command should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </summary>
+        public bool Acknowledge { get; }
+        
+        /// <summary>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandGuildAttribute" /> containing the IDs of the guilds that
         ///     will get access to this slash command.
         /// </summary>

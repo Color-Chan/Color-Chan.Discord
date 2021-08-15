@@ -186,6 +186,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                 var options = _optionBuildService.GetCommandOptions(rawValidCommand);
                 var subCommand = new SlashCommandOptionInfo(subCommandAttribute.Name,
                                                             subCommandAttribute.Description,
+                                                            subCommandAttribute.Acknowledge,
                                                             rawValidCommand,
                                                             parentModule,
                                                             commandRequirements,
