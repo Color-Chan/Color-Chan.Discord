@@ -1,6 +1,7 @@
 #pragma warning disable 1998
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
+using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Commands.MessageBuilders;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.DataModels;
@@ -13,6 +14,7 @@ namespace HelloWorldButton.Components
     {
         public const string HelloWorldComponentId = "hello_world";
 
+        [RequireGuild]
         [Component(HelloWorldComponentId, DiscordComponentType.Button)]
         public async Task<Result<IDiscordInteractionResponse>> HelloWorldButtonAsync()
         {
