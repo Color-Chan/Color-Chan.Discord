@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Core.Common.API.DataModels;
@@ -39,9 +40,17 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             _commandServiceMock = new Mock<ISlashCommandService>();
             _orderTestMessage = string.Empty;
 
-            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<ISlashCommandContext>(),
-                                                                      It.IsAny<IEnumerable<IDiscordInteractionOption>>(),
-                                                                      It.IsAny<IServiceProvider>()))
+            _commandServiceMock.Setup(x => x.SearchSlashCommand(It.IsAny<string>())).Returns(new SlashCommandInfo("", "", true, null!, null!));
+            _commandServiceMock.Setup(x => x.SearchSlashCommand(It.IsAny<string>(), It.IsAny<string>())).Returns(new SlashCommandOptionInfo("", "", true, null!, null!));
+            _commandServiceMock.Setup(x => x.SearchSlashCommand(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new SlashCommandOptionInfo("", "", true, null!, null!));
+
+            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(),
+                                                                      It.IsAny<List<IDiscordInteractionOption>>(), It.IsAny<IServiceProvider>()))
+                               .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
+                               .Callback(FakeSlashCommandCall);
+                               
+            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<SlashCommandOptionInfo>(), It.IsAny<ISlashCommandContext>(), 
+                                                                      It.IsAny<List<IDiscordInteractionOption>>(), It.IsAny<IServiceProvider>()))
                                .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
                                .Callback(FakeSlashCommandCall);
 
