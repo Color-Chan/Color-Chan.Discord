@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.MessageBuilders;
+using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
@@ -55,7 +56,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<IDiscordInteractionResponse> HandleSlashCommandAsync(IDiscordInteraction interaction)
+        public async Task<InternalInteractionResponse> HandleSlashCommandAsync(IDiscordInteraction interaction)
         {
             if (interaction.Data is null)
             {
@@ -157,7 +158,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
             
             // Acknowledge the slash command request if needed.
-            if (commandInfo is not null && commandInfo.Acknowledge)
+            var acknowledged = false;
+            if (commandInfo is not null && commandInfo.Acknowledge || optionInfo is not null && optionInfo.Acknowledge)
             {
                 var acknowledgeResponse = new DiscordInteractionResponseData
                 {
@@ -168,6 +170,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 if (!acknowledgeResult.IsSuccessful)
                 {
                     _logger.LogWarning("Failed to acknowledge interaction command {Id}, reason: {Message}", interaction.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
+                }
+                else
+                {
+                    _logger.LogDebug("Acknowledged interaction command {Id}", interaction.Id.ToString());
+                    acknowledged = true;
                 }
             }
             
@@ -187,12 +194,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                .Aggregate((SlashCommandHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
 
             // Return the response.
-            if (result.IsSuccessful) return result.Entity!;
+            if (result.IsSuccessful) return new InternalInteractionResponse(acknowledged, result.Entity!);
 
             if (_slashCommandConfiguration.SendDefaultErrorMessage)
             {
                 _logger.LogWarning("Sending default error message");
-                return new SlashCommandResponseBuilder().DefaultErrorMessage();
+                return new InternalInteractionResponse(acknowledged, new SlashCommandResponseBuilder().DefaultErrorMessage());
             }
 
             throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");

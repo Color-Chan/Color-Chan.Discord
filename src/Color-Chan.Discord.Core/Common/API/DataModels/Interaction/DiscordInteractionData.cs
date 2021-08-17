@@ -66,7 +66,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     A continuation token for responding to the interaction.
         /// </summary>
         [JsonPropertyName("token")]
-        public string Token { get; init; } = null!;
+        public string Token { get; set; } = null!;
 
         /// <summary>
         ///     Read-only property, always 1
