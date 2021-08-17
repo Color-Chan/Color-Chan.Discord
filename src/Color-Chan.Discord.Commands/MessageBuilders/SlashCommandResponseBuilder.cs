@@ -129,18 +129,43 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
             _components.Add(component);
             return this;
         }
+        
+        /// <summary>
+        ///     Sets the <see cref="_components"/> to an empty list of <see cref="IDiscordComponent"/>s.
+        /// </summary>
+        /// <returns>
+        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        /// </returns>
+        public SlashCommandResponseBuilder EmptyComponents()
+        {
+            _components = new List<IDiscordComponent>();
+            return this;
+        }
+        
+        /// <summary>
+        ///     Sets the <see cref="_embeds"/> to an empty list of <see cref="IDiscordEmbed"/>s.
+        /// </summary>
+        /// <returns>
+        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        /// </returns>
+        public SlashCommandResponseBuilder EmptyEmbeds()
+        {
+            _embeds = new List<IDiscordEmbed>();
+            return this;
+        }
 
         /// <summary>
         ///     Builds a <see cref="IDiscordInteractionResponse" /> with all the set values.
         /// </summary>
+        /// <param name="type">The type of the response.</param>
         /// <returns>
         ///     The build <see cref="IDiscordInteractionResponse" />.
         /// </returns>
-        public IDiscordInteractionResponse Build()
+        public IDiscordInteractionResponse Build(DiscordInteractionResponseType? type = null)
         {
             return new DiscordInteractionResponse
             {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource,
+                Type = type ?? DiscordInteractionResponseType.ChannelMessageWithSource,
                 Data = new DiscordInteractionCallback
                 {
                     Components = _components,
