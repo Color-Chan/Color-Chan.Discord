@@ -6,13 +6,13 @@ namespace Color_Chan.Discord.Commands.Models.Results
     /// <summary>
     ///     An error result describing an error thrown by a <see cref="InteractionRequirementAttribute" />.
     /// </summary>
-    public record SlashCommandRequirementErrorResult : ErrorResult
+    public record InteractionRequirementErrorResult : ErrorResult
     {
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandRequirementErrorResult" />.
+        ///     Initializes a new instance of <see cref="InteractionRequirementErrorResult" />.
         /// </summary>
         /// <param name="errorMessage">The message of the error.</param>
-        public SlashCommandRequirementErrorResult(string errorMessage) : base(errorMessage)
+        public InteractionRequirementErrorResult(string errorMessage) : base(errorMessage)
         {
         }
     }

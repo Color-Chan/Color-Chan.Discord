@@ -19,7 +19,8 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     from turning inactive after 3 seconds.
         /// </param>
         /// <param name="editOriginalMessage">
-        ///     Whether or not the original message of the component should be edited with the returned response. Ignored if <paramref name="acknowledge"/> is set to false.
+        ///     Whether or not the original message of the component should be edited with the returned response. Ignored if
+        ///     <paramref name="acknowledge" /> is set to false.
         /// </param>
         public ComponentAttribute(string customId, DiscordComponentType type, bool acknowledge = false, bool editOriginalMessage = false)
         {

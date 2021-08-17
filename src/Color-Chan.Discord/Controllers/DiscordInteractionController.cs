@@ -33,9 +33,9 @@ namespace Color_Chan.Discord.Controllers
         private const string ReturnContentType = "application/json";
         private readonly IDiscordInteractionAuthService _authService;
         private readonly IDiscordSlashCommandHandler _commandHandler;
+        private readonly IComponentInteractionHandler _componentInteractionHandler;
         private readonly InteractionsConfiguration _configuration;
         private readonly DiscordTokens _discordTokens;
-        private readonly IComponentInteractionHandler _componentInteractionHandler;
         private readonly ILogger<DiscordInteractionController> _logger;
         private readonly IDiscordRestApplication _restApplication;
         private readonly JsonSerializerOptions _serializerOptions;
@@ -97,7 +97,7 @@ namespace Color_Chan.Discord.Controllers
             if (interactionData is null) throw new JsonException("Failed to deserialize JSON body to DiscordInteractionData");
 
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
-            
+
             // Execute the correct interaction type.
             var interactionResponse = interactionData.RequestType switch
             {
@@ -113,7 +113,7 @@ namespace Color_Chan.Discord.Controllers
                 _logger.LogDebug("Returning interaction response {Id} to discord", interactionData.Id.ToString());
                 return SerializeResult(interactionResponse.Response);
             }
-            
+
             // Send an edit request.
             var responseData = interactionResponse.Response.Data?.ToDataModel();
             var editResponse = new DiscordEditWebhookMessage
@@ -123,21 +123,21 @@ namespace Color_Chan.Discord.Controllers
                 Components = responseData?.Components,
                 AllowedMentions = responseData?.AllowedMentions
             };
-            
+
             _logger.LogDebug("Editing original interaction response {Id}", interactionData.Id.ToString());
             var responseResult = await _restApplication.EditOriginalInteractionResponseAsync(_discordTokens.ApplicationId, interactionData.Token, editResponse).ConfigureAwait(false);
             if (responseResult.IsSuccessful) return Ok();
-            
+
             if (responseResult.ErrorResult is DiscordHttpErrorResult httpErrorResult)
             {
                 // Send an error response.
-                _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}, details: {Details}", 
-                                   interactionData.Id.ToString(), 
+                _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}, details: {Details}",
+                                   interactionData.Id.ToString(),
                                    responseResult.ErrorResult?.ErrorMessage,
                                    JsonSerializer.Serialize(httpErrorResult.ErrorData));
                 return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
             }
-            
+
             // Send an error response.
             _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}", interactionData.Id.ToString(), responseResult.ErrorResult?.ErrorMessage);
             return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);

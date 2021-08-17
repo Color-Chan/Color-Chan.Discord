@@ -36,7 +36,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 return Task.FromResult(Result.FromSuccess());
             }
 
-            return Task.FromResult(Result.FromError(new SlashCommandRequireDmErrorResult("Interaction can not be executed in a guild")));
+            return Task.FromResult(Result.FromError(new RequireDmErrorResult("Interaction can not be executed in a guild")));
         }
     }
 }

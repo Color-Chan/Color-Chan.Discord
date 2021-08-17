@@ -30,10 +30,10 @@ namespace HelloWorldButton.Commands
             var actionRowBuilder = new ActionRowComponentBuilder()
                 .WithButton("Hello world", DiscordButtonStyle.Primary, HelloWorldComponent.HelloWorldComponentId);
 
-            var responseBuilder = new SlashCommandResponseBuilder()
+            var responseBuilder = new InteractionResponseBuilder()
                                   .WithContent("hello world button")
                                   .WithComponent(actionRowBuilder.Build());
-            
+
             //  Return the response to Discord.
             return FromSuccess(responseBuilder.Build());
         }

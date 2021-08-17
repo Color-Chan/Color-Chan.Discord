@@ -34,21 +34,21 @@ namespace Color_Chan.Discord.Commands.Services
         /// <summary>
         ///     Executes a component interaction.
         /// </summary>
-        /// <param name="componentInfo">The <see cref="IComponentInfo"/> that will be executed.</param>
+        /// <param name="componentInfo">The <see cref="IComponentInfo" /> that will be executed.</param>
         /// <param name="context">The context of the interaction.</param>
         /// <param name="serviceProvider">The services needed for the interaction.</param>
         /// <returns>
         ///     The <see cref="Result" /> containing the result of the component interaction execution.
         /// </returns>
         Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(IComponentInfo componentInfo, InteractionContext context, IServiceProvider serviceProvider);
-        
+
         /// <summary>
         ///     Search for a registered component.
         /// </summary>
-        /// <param name="customId">The <see cref="IComponentInfo.CustomId"/> of the component.</param>
+        /// <param name="customId">The <see cref="IComponentInfo.CustomId" /> of the component.</param>
         /// <returns>
-        ///     A <see cref="IComponentInfo"/> if one was found.
-        ///     Null if no <see cref="IComponentInfo"/> was found.
+        ///     A <see cref="IComponentInfo" /> if one was found.
+        ///     Null if no <see cref="IComponentInfo" /> was found.
         /// </returns>
         IComponentInfo? SearchComponent(string customId);
     }

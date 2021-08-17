@@ -3,7 +3,7 @@ using Color_Chan.Discord.Commands.Models.Contexts;
 
 namespace Color_Chan.Discord.Commands.Modules
 {
-    /// <inheritdoc cref="IComponentInteractionModule"/>
+    /// <inheritdoc cref="IComponentInteractionModule" />
     public class ComponentInteractionModule : InteractionModuleBase, IComponentInteractionModule
     {
         /// <summary>

@@ -27,10 +27,7 @@ namespace HelloWorldButton
                     slashOptions.EnableAutoSync = true;
                     slashOptions.SendDefaultErrorMessage = true;
                 },
-                ComponentInteractionConfig = componentOptions =>
-                {
-                    componentOptions.SendDefaultErrorMessage = true;
-                }
+                ComponentInteractionConfig = componentOptions => { componentOptions.SendDefaultErrorMessage = true; }
             };
 
             //  Replace the arguments with the data of your bot.

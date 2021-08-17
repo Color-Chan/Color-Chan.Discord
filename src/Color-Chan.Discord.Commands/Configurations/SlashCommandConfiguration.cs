@@ -11,7 +11,6 @@ namespace Color_Chan.Discord.Commands.Configurations
         ///     Whether or not the slash commands auto sync feature is enabled. Default: true.
         /// </summary>
         public bool EnableAutoSync { get; set; } = true;
-        
 
         /// <summary>
         ///     Whether or not <see cref="IInteractionContext.Guild" /> should be auto loaded on command requests. Default: false.

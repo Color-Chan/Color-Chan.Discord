@@ -37,7 +37,7 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
 
         /// <inheritdoc />
         public string? MethodName { get; set; }
-        
+
         /// <inheritdoc />
         public IDiscordGuild? Guild { get; init; }
 

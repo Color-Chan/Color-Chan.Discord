@@ -29,19 +29,19 @@ namespace Color_Chan.Discord.Commands.Models.Info
         ///     The component module containing the <see cref="ComponentMethod" />.
         /// </summary>
         public TypeInfo ParentModule { get; set; }
-        
+
         /// <summary>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="InteractionRequirementAttribute" />s containing all the requirements
         ///     to execute the component.
         /// </summary>
         public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
-        
+
         /// <summary>
         ///     Whether or not the component interaction should be automatically acknowledge to prevent the token
         ///     from turning inactive after 3 seconds.
         /// </summary>
         public bool Acknowledge { get; }
-        
+
         /// <summary>
         ///     Whether or not the original message of the component should be edited with the returned response.
         /// </summary>

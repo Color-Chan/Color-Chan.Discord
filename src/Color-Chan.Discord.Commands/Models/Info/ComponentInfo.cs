@@ -19,7 +19,10 @@ namespace Color_Chan.Discord.Commands.Models.Info
         ///     Whether or not the component interaction should be automatically acknowledge to prevent the token
         ///     from turning inactive after 3 seconds.
         /// </param>
-        /// <param name="editOriginalMessage">Whether or not the original message of the component should be edited with the returned response.</param>
+        /// <param name="editOriginalMessage">
+        ///     Whether or not the original message of the component should be edited with the
+        ///     returned response.
+        /// </param>
         public ComponentInfo(string customId, DiscordComponentType type, MethodInfo componentMethod, TypeInfo parentModule, bool acknowledge, bool editOriginalMessage)
         {
             CustomId = customId;
@@ -41,13 +44,13 @@ namespace Color_Chan.Discord.Commands.Models.Info
 
         /// <inheritdoc />
         public TypeInfo ParentModule { get; set; }
-        
+
         /// <inheritdoc />
         public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
-        
+
         /// <inheritdoc />
         public bool Acknowledge { get; }
-        
+
         /// <inheritdoc />
         public bool EditOriginalMessage { get; }
     }

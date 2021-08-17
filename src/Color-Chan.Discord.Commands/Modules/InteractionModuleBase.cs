@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Commands.Modules
         protected static Result<IDiscordInteractionResponse> FromSuccess(string content, bool isPrivate = false)
         {
             // Build the response with the content.
-            var responseBuilder = new SlashCommandResponseBuilder().WithContent(content);
+            var responseBuilder = new InteractionResponseBuilder().WithContent(content);
 
             if (isPrivate) responseBuilder.MakePrivate();
 
@@ -52,7 +52,7 @@ namespace Color_Chan.Discord.Commands.Modules
         protected static Result<IDiscordInteractionResponse> FromSuccess(IDiscordEmbed embed, bool isPrivate = false)
         {
             // Build the response with the embed.
-            var responseBuilder = new SlashCommandResponseBuilder().WithEmbed(embed);
+            var responseBuilder = new InteractionResponseBuilder().WithEmbed(embed);
 
             if (isPrivate) responseBuilder.MakePrivate();
 

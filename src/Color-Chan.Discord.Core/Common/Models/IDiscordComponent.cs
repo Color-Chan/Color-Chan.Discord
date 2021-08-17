@@ -45,22 +45,22 @@ namespace Color_Chan.Discord.Core.Common.Models
         ///     The choices in the select, max 25.
         /// </summary>
         public List<IDiscordSelectOption>? SelectOptions { get; init; }
-        
+
         /// <summary>
         ///     Custom placeholder text if nothing is selected, max 100 characters.
         /// </summary>
         public string? Placeholder { get; init; }
-        
+
         /// <summary>
         ///     The minimum number of items that must be chosen; default 1, min 0, max 25.
         /// </summary>
         public int? MinValues { get; init; }
-        
+
         /// <summary>
         ///     The maximum number of items that can be chosen; default 1, max 25.
         /// </summary>
         public int? MaxValues { get; init; }
-        
+
         /// <summary>
         ///     A list of child components.
         /// </summary>

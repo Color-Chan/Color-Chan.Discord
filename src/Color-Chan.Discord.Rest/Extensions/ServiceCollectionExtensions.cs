@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Rest.Extensions
                                                             .WaitAndRetryAsync(retryDelay)
                                                             .WrapAsync(customPolicy)
             ).AddPolicyHandler(Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.TooManyRequests)
-                                     .WaitAndRetryAsync(1, (_, response, _) => response.Result?.Headers.RetryAfter?.Delta ?? TimeSpan.FromMilliseconds(2500), 
+                                     .WaitAndRetryAsync(1, (_, response, _) => response.Result?.Headers.RetryAfter?.Delta ?? TimeSpan.FromMilliseconds(2500),
                                                         (_, _, _, _) => Task.CompletedTask));
 
             // Add all rest classes with Transient live cycle that inherit DiscordRestBase.

@@ -129,7 +129,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
 
         /// <inheritdoc />
         public bool Acknowledge { get; }
-        
+
         /// <inheritdoc />
         public IEnumerable<SlashCommandGuildAttribute>? Guilds { get; set; }
 

@@ -48,8 +48,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                                                                       It.IsAny<List<IDiscordInteractionOption>>(), It.IsAny<IServiceProvider>()))
                                .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
                                .Callback(FakeSlashCommandCall);
-                               
-            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<SlashCommandOptionInfo>(), It.IsAny<ISlashCommandContext>(), 
+
+            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<SlashCommandOptionInfo>(), It.IsAny<ISlashCommandContext>(),
                                                                       It.IsAny<List<IDiscordInteractionOption>>(), It.IsAny<IServiceProvider>()))
                                .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
                                .Callback(FakeSlashCommandCall);
@@ -73,7 +73,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             // Arrange
             var serviceProviderMock = new Mock<IServiceProvider>();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProviderMock.Object, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProviderMock.Object, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
+                                                         _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData());
 
             // Act & Assert
@@ -86,7 +87,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var serviceProvider = new ServiceCollection()
                 .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object,  _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
+                                                         _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -118,7 +120,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var serviceProvider = new ServiceCollection()
                                   .AddSlashCommandPipeline<ResolvedPipeline>()
                                   .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object,  _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
+                                                         _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -170,7 +173,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                                   .AddSlashCommandPipeline<InnerPipeline>()
                                   .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object,  _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
+                                                         _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -203,7 +207,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                                   .AddSlashCommandPipeline<InnerPipeline>()
                                   .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object,  _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
+                                                         _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -244,7 +249,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                                   .AddSlashCommandPipeline<InnerPipeline>()
                                   .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object,  _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
+                                                         _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData

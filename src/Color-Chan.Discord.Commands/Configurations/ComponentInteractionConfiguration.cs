@@ -12,7 +12,7 @@ namespace Color_Chan.Discord.Commands.Configurations
         ///     unsuccessfully. Default: false.
         /// </summary>
         public bool SendDefaultErrorMessage { get; set; }
-        
+
         /// <summary>
         ///     Whether or not <see cref="IInteractionContext.Guild" /> should be auto loaded on command requests. Default: false.
         /// </summary>
