@@ -51,7 +51,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
         ///     For components, the type of the component.
         /// </summary>
         [JsonPropertyName("component_type")]
-        public string? ComponentType { get; init; }
+        public DiscordComponentType? ComponentType { get; init; }
 
         /// <summary>
         ///     The values the user selected.

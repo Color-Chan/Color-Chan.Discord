@@ -30,21 +30,28 @@ namespace Color_Chan.Discord.Commands.Extensions
         ///     The cache options for the redis cache.
         ///     Leave this null if you want to use a local cache.
         /// </param>
+        /// <param name="componentInteractionConfig">The configurations options for the component interactions.</param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
         public static IServiceCollection AddColorChanDiscordCommand(this IServiceCollection services,
                                                                     Action<SlashCommandConfiguration>? slashCommandConfigs = null,
                                                                     Action<CacheConfiguration>? defaultCacheConfig = null,
-                                                                    Action<RedisCacheOptions>? redisCacheOptions = null)
+                                                                    Action<RedisCacheOptions>? redisCacheOptions = null,
+                                                                    Action<ComponentInteractionConfiguration>? componentInteractionConfig = null)
         {
             services.TryAddTransient<ISlashCommandRequirementBuildService, SlashCommandRequirementBuildService>();
-            services.TryAddTransient<ISlashCommandRequirementService, SlashCommandRequirementService>();
+            services.TryAddTransient<ISlashCommandRequirementService, InteractionRequirementService>();
             services.TryAddTransient<ISlashCommandOptionBuildService, SlashCommandOptionBuildService>();
             services.TryAddTransient<ISlashCommandGuildBuildService, SlashCommandGuildBuildService>();
             services.TryAddTransient<ISlashCommandAutoSyncService, SlashCommandAutoSyncService>();
             services.TryAddTransient<ISlashCommandBuildService, SlashCommandBuildService>();
-            services.TryAddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
+            services.TryAddTransient<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
+            
+            services.TryAddTransient<IComponentInteractionHandler, ComponentInteractionHandler>();
+            services.TryAddTransient<IComponentBuildService, ComponentBuildService>();
+
+            services.TryAddSingleton<IComponentService, ComponentService>();
             services.TryAddSingleton<ISlashCommandService, SlashCommandService>();
 
             slashCommandConfigs ??= configuration =>
@@ -53,8 +60,15 @@ namespace Color_Chan.Discord.Commands.Extensions
                 configuration.EnableAutoGetChannel = false;
                 configuration.EnableAutoGetGuild = false;
             };
-
             services.Configure(slashCommandConfigs);
+
+            componentInteractionConfig ??= configuration =>
+            {
+                configuration.SendDefaultErrorMessage = false;
+                configuration.EnableAutoGetChannel = false;
+                configuration.EnableAutoGetGuild = false;
+            };
+            services.Configure(componentInteractionConfig);
 
             services.AddColorChanCache(defaultCacheConfig, redisCacheOptions);
 

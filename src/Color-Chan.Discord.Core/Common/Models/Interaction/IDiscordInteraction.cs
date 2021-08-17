@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         ///     This is always present on application command interaction types.
         ///     It is optional for future-proofing against new interaction types.
         /// </remarks>
-        IDiscordInteractionCommand? Data { get; init; }
+        IDiscordInteractionRequest? Data { get; init; }
 
         /// <summary>
         ///     The guild it was sent from.

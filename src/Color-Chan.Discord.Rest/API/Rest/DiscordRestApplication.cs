@@ -202,6 +202,38 @@ namespace Color_Chan.Discord.Rest.API.Rest
             return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordMessage>> CreateFollowupMessageAsync(ulong applicationId, string token, DiscordCreateFollowupMessage followupMessage, CancellationToken ct = default)
+        {
+            string endpoint = $"webhooks/{applicationId.ToString()}/{token}";
+            var result = await HttpClient.PostAsync<DiscordMessageData, DiscordCreateFollowupMessage>(endpoint, followupMessage, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
+
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordMessage>> GetFollowupMessageAsync(ulong applicationId, string token, ulong messageId, CancellationToken ct = default)
+        {
+            string endpoint = $"webhooks/{applicationId.ToString()}/{token}/messages/{messageId.ToString()}";
+            var result = await HttpClient.GetAsync<DiscordMessageData>(endpoint, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordMessage>> EditFollowupMessageAsync(ulong applicationId, string token, ulong messageId, DiscordEditWebhookMessage webhookMessage, 
+                                                                                    CancellationToken ct = default)
+        {
+            string endpoint = $"webhooks/{applicationId.ToString()}/{token}/messages/{messageId.ToString()}";
+            var result = await HttpClient.PatchAsync<DiscordMessageData, DiscordEditWebhookMessage>(endpoint, webhookMessage, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
+
+        /// <inheritdoc />
+        public virtual async Task<Result> DeleteFollowupMessageAsync(ulong applicationId, string token, ulong messageId, CancellationToken ct = default)
+        {
+            string endpoint = $"webhooks/{applicationId.ToString()}/{token}/messages/{messageId.ToString()}";
+            return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
+        }
+        
         #endregion
     }
 }

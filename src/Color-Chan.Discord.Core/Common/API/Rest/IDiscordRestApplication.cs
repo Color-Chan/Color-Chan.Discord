@@ -302,5 +302,63 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     The <see cref="Result" /> with the request results.
         /// </returns>
         Task<Result> DeleteOriginalInteractionResponseAsync(ulong applicationId, string token, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Create a followup message for an Interaction.
+        /// </summary>
+        /// <param name="applicationId">The ID of the application.</param>
+        /// <param name="token">The token of the interaction.</param>
+        /// <param name="followupMessage">The follow up message of the interaction.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordMessage>> CreateFollowupMessageAsync(ulong applicationId, string token, DiscordCreateFollowupMessage followupMessage, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Returns a followup message for an Interaction.
+        /// </summary>
+        /// <remarks>
+        ///     Does not support ephemeral followups.
+        /// </remarks>
+        /// <param name="applicationId">The ID of the application.</param>
+        /// <param name="token">The token of the interaction.</param>
+        /// <param name="messageId">The ID of the followup message.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordMessage>> GetFollowupMessageAsync(ulong applicationId, string token, ulong messageId, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Edits a followup message for an Interaction.
+        /// </summary>
+        /// <remarks>
+        ///     Does not support ephemeral followups.
+        /// </remarks>
+        /// <param name="applicationId">The ID of the application.</param>
+        /// <param name="token">The token of the interaction.</param>
+        /// <param name="messageId">The ID of the followup message.</param>
+        /// <param name="webhookMessage">The edited followup message.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordMessage>> EditFollowupMessageAsync(ulong applicationId, string token, ulong messageId, DiscordEditWebhookMessage webhookMessage, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Deletes a followup message for an Interaction.
+        /// </summary>
+        /// <remarks>
+        ///     Does not support ephemeral followups.
+        /// </remarks>
+        /// <param name="applicationId">The ID of the application.</param>
+        /// <param name="token">The token of the interaction.</param>
+        /// <param name="messageId">The ID of the followup message.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     The <see cref="Result" /> with the request results.
+        /// </returns>
+        Task<Result> DeleteFollowupMessageAsync(ulong applicationId, string token, ulong messageId, CancellationToken ct = default);
     }
 }

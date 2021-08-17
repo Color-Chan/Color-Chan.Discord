@@ -31,5 +31,10 @@ namespace Color_Chan.Discord.Configurations
         ///     Leave this null if you want to use a local cache.
         /// </summary>
         public Action<RedisCacheOptions>? RedisCacheOptions { get; set; }
+
+        /// <summary>
+        ///     The configurations needed for the component interactions.
+        /// </summary>
+        public Action<ComponentInteractionConfiguration>? ComponentInteractionConfig { get; set; }
     }
 }

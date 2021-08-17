@@ -21,14 +21,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
         }
 
         /// <inheritdoc />
-        public IEnumerable<SlashCommandRequirementAttribute> GetCommandRequirements(MethodInfo command)
+        public IEnumerable<InteractionRequirementAttribute> GetCommandRequirements(MethodInfo command)
         {
-            var attributes = new List<SlashCommandRequirementAttribute>();
+            var attributes = new List<InteractionRequirementAttribute>();
 
-            var parentAttributes = command.DeclaringType?.GetCustomAttributes<SlashCommandRequirementAttribute>();
+            var parentAttributes = command.DeclaringType?.GetCustomAttributes<InteractionRequirementAttribute>();
             if (parentAttributes != null) attributes.AddRange(parentAttributes);
 
-            var methodAttributes = command.GetCustomAttributes<SlashCommandRequirementAttribute>();
+            var methodAttributes = command.GetCustomAttributes<InteractionRequirementAttribute>();
             attributes.AddRange(methodAttributes);
 
             _logger.LogDebug("Found {Count} requirements for command {MethodName}", attributes.Count.ToString(), command.Name);

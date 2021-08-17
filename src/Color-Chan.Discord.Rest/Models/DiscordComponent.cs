@@ -2,11 +2,17 @@
 using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
+using Color_Chan.Discord.Core.Common.Models.Select;
+using Color_Chan.Discord.Rest.Models.Select;
 
 namespace Color_Chan.Discord.Rest.Models
 {
     public record DiscordComponent : IDiscordComponent
     {
+        public DiscordComponent()
+        {
+        }
+        
         public DiscordComponent(DiscordComponentData data)
         {
             Type = data.Type;
@@ -17,29 +23,45 @@ namespace Color_Chan.Discord.Rest.Models
             Url = data.Url;
             Disabled = data.Disabled;
             ChildComponents = data.ChildComponents?.Select(componentData => new DiscordComponent(componentData));
+            MaxValues = data.MaxValues;
+            MinValues = data.MinValues;
+            Placeholder = data.Placeholder;
+            SelectOptions = data.SelectOptions?.Select(selectData => new DiscordSelectOption(selectData)).Cast<IDiscordSelectOption>().ToList();
         }
-
+        
         /// <inheritdoc />
         public DiscordComponentType Type { get; init; }
-
+        
+        /// <inheritdoc />
+        public string? CustomId { get; init; }
+        
+        /// <inheritdoc />
+        public bool? Disabled { get; init; }
+        
         /// <inheritdoc />
         public DiscordButtonStyle? ButtonStyle { get; init; }
-
+        
         /// <inheritdoc />
         public string? Label { get; init; }
 
         /// <inheritdoc />
         public IDiscordEmoji? Emoji { get; init; }
-
-        /// <inheritdoc />
-        public string? CustomId { get; init; }
-
+        
         /// <inheritdoc />
         public string? Url { get; init; }
 
         /// <inheritdoc />
-        public bool? Disabled { get; init; }
-
+        public List<IDiscordSelectOption>? SelectOptions { get; init; }
+        
+        /// <inheritdoc />
+        public string? Placeholder { get; init; }
+        
+        /// <inheritdoc />
+        public int? MinValues { get; init; }
+        
+        /// <inheritdoc />
+        public int? MaxValues { get; init; }
+        
         /// <inheritdoc />
         public IEnumerable<IDiscordComponent>? ChildComponents { get; init; }
 
@@ -55,7 +77,11 @@ namespace Color_Chan.Discord.Rest.Models
                 Url = Url,
                 ButtonStyle = ButtonStyle,
                 ChildComponents = ChildComponents?.Select(x => x.ToDataModel()),
-                CustomId = CustomId
+                CustomId = CustomId,
+                SelectOptions = SelectOptions?.Select(x => x.ToDataModel()),
+                Placeholder = Placeholder,
+                MaxValues = MaxValues,
+                MinValues = MinValues
             };
         }
     }

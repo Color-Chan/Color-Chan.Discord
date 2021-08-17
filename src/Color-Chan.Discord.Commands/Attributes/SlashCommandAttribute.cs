@@ -6,7 +6,7 @@ using Color_Chan.Discord.Core.Common.Models.Interaction;
 namespace Color_Chan.Discord.Commands.Attributes
 {
     /// <summary>
-    ///     Makes a method available as an global slash command.
+    ///     Makes a method available as a global slash command.
     /// </summary>
     /// <example>
     ///     The following example will add the slash command `/ping` to the application.
@@ -37,8 +37,8 @@ namespace Color_Chan.Discord.Commands.Attributes
     ///     }
     ///     </code>
     ///     The following example will add the slash command `/role` to the application.
-    ///     With a required role input. The given role will be added to the <see cref="ISlashCommandContext.CommandRequest" />,
-    ///     <see cref="IDiscordInteractionCommand.Resolved" />, <see cref="IDiscordInteractionCommandResolved.Roles" /> list.
+    ///     With a required role input. The given role will be added to the <see cref="IInteractionContext.Data" />,
+    ///     <see cref="IDiscordInteractionRequest.Resolved" />, <see cref="IDiscordInteractionResolved.Roles" /> list.
     ///     <code language="cs">
     ///     public class RoleCommands : SlashCommandModule
     ///     {
@@ -69,6 +69,10 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     Whether the command is enabled by default when the app is added to a guild. Default:
         ///     true.
         /// </param>
+        /// <param name="acknowledge">
+        ///     Whether or not the command should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </param>
         /// <exception cref="ArgumentException">
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> doesn't
         ///     match the command name requirements.
@@ -77,7 +81,7 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> is
         ///     null.
         /// </exception>
-        public SlashCommandAttribute(string name, string description, bool defaultPermission = true)
+        public SlashCommandAttribute(string name, string description, bool defaultPermission = true, bool acknowledge = false)
         {
             if (name.Length is < 1 or > 32) throw new ArgumentException("Command names must be between 1 and 32 characters.");
 
@@ -90,6 +94,7 @@ namespace Color_Chan.Discord.Commands.Attributes
             Name = name ?? throw new ArgumentNullException(nameof(name), "Command name can not be null");
             Description = description ?? throw new ArgumentNullException(nameof(description), "Command description can not be null");
             DefaultPermission = defaultPermission;
+            Acknowledge = acknowledge;
         }
 
         /// <summary>
@@ -106,5 +111,11 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     Whether the command is enabled by default when the app is added to a guild.
         /// </summary>
         public bool DefaultPermission { get; }
+
+        /// <summary>
+        ///     Whether or not the command should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </summary>
+        public bool Acknowledge { get; }
     }
 }

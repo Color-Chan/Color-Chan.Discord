@@ -3,7 +3,7 @@ using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 namespace Color_Chan.Discord.Commands.Models.Results
 {
     /// <summary>
-    ///     An error describing when a requirement failed for the <see cref="SlashCommandRequireDmAttribute" />.
+    ///     An error describing when a requirement failed for the <see cref="RequireDmAttribute" />.
     /// </summary>
     public record SlashCommandRequireDmErrorResult : SlashCommandRequirementErrorResult
     {

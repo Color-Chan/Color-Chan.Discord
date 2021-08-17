@@ -53,6 +53,12 @@ namespace Color_Chan.Discord.Commands.Models.Info
         public TypeInfo? ParentModule { get; set; }
 
         /// <summary>
+        ///     Whether or not the command should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </summary>
+        public bool Acknowledge { get; }
+        
+        /// <summary>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandGuildAttribute" /> containing the IDs of the guilds that
         ///     will get access to this slash command.
         /// </summary>
@@ -62,14 +68,14 @@ namespace Color_Chan.Discord.Commands.Models.Info
         public IEnumerable<SlashCommandGuildAttribute>? Guilds { get; set; }
 
         /// <summary>
-        ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandRequirementAttribute" />s containing all the requirements
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="InteractionRequirementAttribute" />s containing all the requirements
         ///     to
         ///     execute the command.
         /// </summary>
         /// <remarks>
         ///     null when the option is not a sub command, or when the sub command doesn't have any requirements.
         /// </remarks>
-        public IEnumerable<SlashCommandRequirementAttribute>? Requirements { get; set; }
+        public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
 
         /// <summary>
         ///     The options for the slash command.

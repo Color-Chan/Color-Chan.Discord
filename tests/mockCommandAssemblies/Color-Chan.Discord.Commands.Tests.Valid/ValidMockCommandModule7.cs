@@ -23,18 +23,18 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         )
         {
             Assert.NotNull(roleId);
-            Assert.NotNull(SlashContext);
-            Assert.NotNull(SlashContext.CommandRequest);
-            Assert.NotNull(SlashContext.CommandRequest.Resolved);
-            Assert.NotNull(SlashContext.CommandRequest.Resolved?.Roles);
+            Assert.NotNull(Context);
+            Assert.NotNull(Context.Data);
+            Assert.NotNull(Context.Data.Resolved);
+            Assert.NotNull(Context.Data.Resolved?.Roles);
 
-            var role = SlashContext.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
+            var role = Context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
             Assert.NotNull(role);
 
             return FromSuccess(new DiscordInteractionResponse
             {
                 Type = DiscordInteractionResponseType.ChannelMessageWithSource,
-                Data = new DiscordInteractionCommandCallback
+                Data = new DiscordInteractionCallback
                 {
                     Content = roleId.ToString()
                 }

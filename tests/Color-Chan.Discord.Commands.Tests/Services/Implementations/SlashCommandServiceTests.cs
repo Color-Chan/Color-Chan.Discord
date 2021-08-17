@@ -34,7 +34,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         private readonly Mock<ILogger<SlashCommandBuildService>> _buildServiceLoggerMock = new();
         private readonly Mock<ILogger<SlashCommandRequirementBuildService>> _requirementBuildServiceLoggerMock = new();
         private readonly Mock<ILogger<SlashCommandService>> _commandServiceLoggerMock = new();
-        private readonly Mock<ILogger<SlashCommandRequirementService>> _requirementServiceLoggerMock = new();
+        private readonly Mock<ILogger<InteractionRequirementService>> _requirementServiceLoggerMock = new();
         private readonly Mock<ILogger<SlashCommandOptionBuildService>> _optionBuilderServiceLoggerMock = new();
 
         [TestCase("Command1", "CommandMethod1Async")]
@@ -92,7 +92,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock
-                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .Setup(x => x.ExecuteRequirementsAsync(It.IsAny<IEnumerable<InteractionRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
                 .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
@@ -124,7 +124,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock
-                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .Setup(x => x.ExecuteRequirementsAsync(It.IsAny<IEnumerable<InteractionRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
                 .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
@@ -160,7 +160,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
             var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
             var buildService = new SlashCommandBuildService(requirementBuilder, guildBuilderMock.Object, _buildServiceLoggerMock.Object, optionBuilderMock.Object);
-            var requirementService = new SlashCommandRequirementService(_requirementServiceLoggerMock.Object);
+            var requirementService = new InteractionRequirementService(_requirementServiceLoggerMock.Object);
             var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementService, autoSyncMock.Object);
             var mockContext = new SlashCommandContext
@@ -188,7 +188,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
             var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
             var buildService = new SlashCommandBuildService(requirementBuilder, guildBuilderMock.Object, _buildServiceLoggerMock.Object, optionBuilderMock.Object);
-            var requirementService = new SlashCommandRequirementService(_requirementServiceLoggerMock.Object);
+            var requirementService = new InteractionRequirementService(_requirementServiceLoggerMock.Object);
             var autoSyncMock = new Mock<ISlashCommandAutoSyncService>();
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementService, autoSyncMock.Object);
 
@@ -208,7 +208,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock
-                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .Setup(x => x.ExecuteRequirementsAsync(It.IsAny<IEnumerable<InteractionRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
                 .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
@@ -222,15 +222,15 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             using JsonDocument doc = JsonDocument.Parse(jsonInput);
 
-            var options = new List<IDiscordInteractionCommandOption>
+            var options = new List<IDiscordInteractionOption>
             {
-                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
+                new DiscordInteractionOption(new DiscordInteractionOptionData
                 {
                     Name = "Role name",
                     Type = DiscordApplicationCommandOptionType.String,
                     JsonValue = doc.RootElement.GetProperty("stringValue")
                 }),
-                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
+                new DiscordInteractionOption(new DiscordInteractionOptionData
                 {
                     Name = "Number",
                     Type = DiscordApplicationCommandOptionType.Integer,
@@ -255,7 +255,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var requirementServiceMock = new Mock<ISlashCommandRequirementService>();
             requirementServiceMock
-                .Setup(x => x.ExecuteSlashCommandRequirementsAsync(It.IsAny<IEnumerable<SlashCommandRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
+                .Setup(x => x.ExecuteRequirementsAsync(It.IsAny<IEnumerable<InteractionRequirementAttribute>>(), It.IsAny<ISlashCommandContext>(), It.IsAny<IServiceProvider>()))
                 .ReturnsAsync(Result.FromSuccess);
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
             var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
@@ -265,7 +265,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
             var context = new SlashCommandContext
             {
-                CommandRequest = new DiscordInteractionCommand(new DiscordInteractionRequestData
+                Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
                 {
                     Resolved = new DiscordInteractionResolvedData
                     {
@@ -294,9 +294,9 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             using JsonDocument doc = JsonDocument.Parse(jsonInput);
 
-            var options = new List<IDiscordInteractionCommandOption>
+            var options = new List<IDiscordInteractionOption>
             {
-                new DiscordInteractionCommandOption(new DiscordInteractionOptionData
+                new DiscordInteractionOption(new DiscordInteractionOptionData
                 {
                     Name = "role",
                     Type = DiscordApplicationCommandOptionType.Role,

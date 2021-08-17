@@ -63,7 +63,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 if (_slashCommands.TryAdd(key, commandInfo)) continue;
 
                 // The command already existed.
-                var registeringException = new Exception($"Failed to register {commandInfo.CommandName}");
+                var registeringException = new Exception($"Failed to register slash command {commandInfo.CommandName}");
                 _logger.LogError(registeringException, "Can not register multiple commands with the same name");
                 throw registeringException;
             }
@@ -78,9 +78,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <inheritdoc />
         public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(MethodInfo commandMethod,
                                                                                         IEnumerable<ISlashCommandOptionInfo>? options,
-                                                                                        IEnumerable<SlashCommandRequirementAttribute>? requirements,
+                                                                                        IEnumerable<InteractionRequirementAttribute>? requirements,
                                                                                         ISlashCommandContext context,
-                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null,
+                                                                                        List<IDiscordInteractionOption>? suppliedOptions = null,
                                                                                         IServiceProvider? serviceProvider = null)
         {
             serviceProvider ??= DefaultServiceProvider.Instance;
@@ -93,7 +93,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Try to run the requirements for the slash command.
             try
             {
-                var requirementsResult = await _requirementService.ExecuteSlashCommandRequirementsAsync(requirements, context, serviceProvider).ConfigureAwait(false);
+                var requirementsResult = await _requirementService.ExecuteRequirementsAsync(requirements, context, serviceProvider).ConfigureAwait(false);
                 if (!requirementsResult.IsSuccessful)
                 {
                     return Result<IDiscordInteractionResponse>.FromError(default, requirementsResult.ErrorResult);
@@ -139,7 +139,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
         /// <inheritdoc />
         public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context,
-                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+                                                                                        List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
         {
             if (commandInfo.CommandMethod is not null)
             {
@@ -152,7 +152,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
         /// <inheritdoc />
         public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandOptionInfo commandOptionInfo, ISlashCommandContext context,
-                                                                                        List<IDiscordInteractionCommandOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+                                                                                        List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
         {
             if (commandOptionInfo.CommandMethod is not null)
             {
@@ -169,7 +169,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionCommandOption>? options = null,
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionOption>? options = null,
                                                                                         IServiceProvider? serviceProvider = null)
         {
             var arr = context.SlashCommandName.ToArray();

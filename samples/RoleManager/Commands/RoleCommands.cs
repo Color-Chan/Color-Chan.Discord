@@ -1,9 +1,9 @@
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
+using Color_Chan.Discord.Commands.MessageBuilders;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
@@ -17,10 +17,10 @@ namespace RoleManager.Commands
     /// <summary>
     ///     The command module for all role related commands.
     /// </summary>
-    [SlashCommandRequireBotPermission(DiscordPermission.ManageRoles)]
+    [RequireBotPermission(DiscordPermission.ManageRoles)]
     [SlashCommandGroup("role", "Gets, creates or updates roles.")]
-    [SlashCommandUserRateLimit(10, 30)] // Sets the rate limit for this command module to 10 requests per 30 seconds per user.
-    [SlashCommandRequireGuild] // Required all commands in this command module to be executed in a guild.
+    [UserRateLimit(10, 30)] // Sets the rate limit for this command module to 10 requests per 30 seconds per user.
+    [RequireGuild] // Required all commands in this command module to be executed in a guild.
     public class RoleCommands : SlashCommandModule
     {
         private readonly IDiscordRestGuild _restGuild;
@@ -55,7 +55,7 @@ namespace RoleManager.Commands
                 Name = roleName,
                 Permissions = DiscordPermission.None
             };
-            var newRoleResponse = await _restGuild.CreateGuildRoleAsync(SlashContext.GuildId!.Value, roleConfig).ConfigureAwait(false);
+            var newRoleResponse = await _restGuild.CreateGuildRoleAsync(Context.GuildId!.Value, roleConfig).ConfigureAwait(false);
 
             // Check if the role was successfully created.
             if (!newRoleResponse.IsSuccessful)
@@ -88,11 +88,11 @@ namespace RoleManager.Commands
         )
         {
             // Get the role object.
-            var role = SlashContext.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
+            var role = Context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
 
             // Delete the role.
-            var auditLog = $"User: {SlashContext.Member?.User?.Username} requested this action";
-            var deleteResponse = await _restGuild.DeleteGuildRoleAsync(SlashContext.GuildId!.Value, roleId, auditLog).ConfigureAwait(false);
+            var auditLog = $"User: {Context.Member?.User?.Username} requested this action";
+            var deleteResponse = await _restGuild.DeleteGuildRoleAsync(Context.GuildId!.Value, roleId, auditLog).ConfigureAwait(false);
 
             // Check if the role were successfully deleted.
             if (!deleteResponse.IsSuccessful)
@@ -121,7 +121,7 @@ namespace RoleManager.Commands
         public async Task<Result<IDiscordInteractionResponse>> ListRolesAsync()
         {
             // Get the roles from the current guild.
-            var rolesResult = await _restGuild.GetGuildRolesAsync(SlashContext.GuildId!.Value).ConfigureAwait(false);
+            var rolesResult = await _restGuild.GetGuildRolesAsync(Context.GuildId!.Value).ConfigureAwait(false);
 
             // Check if the roles were successfully loaded.
             if (!rolesResult.IsSuccessful)

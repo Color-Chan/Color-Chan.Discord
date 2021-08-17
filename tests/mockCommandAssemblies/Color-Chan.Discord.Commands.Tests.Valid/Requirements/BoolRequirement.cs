@@ -7,7 +7,7 @@ using Color_Chan.Discord.Core.Results;
 namespace Color_Chan.Discord.Commands.Tests.Valid.Requirements
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
-    public class BoolRequirement : SlashCommandRequirementAttribute
+    public class BoolRequirement : InteractionRequirementAttribute
     {
         private readonly bool _value;
 
@@ -17,7 +17,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid.Requirements
         }
 
         /// <inheritdoc />
-        public override Task<Result> CheckRequirementAsync(ISlashCommandContext context, IServiceProvider services)
+        public override Task<Result> CheckRequirementAsync(IInteractionContext context, IServiceProvider services)
         {
             return Task.FromResult(_value ? Result.FromSuccess() : Result.FromError(new ErrorResult("Input was false")));
         }

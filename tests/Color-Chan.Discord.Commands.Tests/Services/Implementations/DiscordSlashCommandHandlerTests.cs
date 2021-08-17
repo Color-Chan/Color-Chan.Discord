@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Core.Common.API.DataModels;
@@ -33,14 +34,23 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             _restGuildMock = new Mock<IDiscordRestGuild>();
             _restChannelMock = new Mock<IDiscordRestChannel>();
+            _restApplicationMock = new Mock<IDiscordRestApplication>();
             _handlerLoggerMock = new Mock<ILogger<DiscordSlashCommandHandler>>();
             _options = new OptionsWrapper<SlashCommandConfiguration>(new SlashCommandConfiguration());
             _commandServiceMock = new Mock<ISlashCommandService>();
             _orderTestMessage = string.Empty;
 
-            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<ISlashCommandContext>(),
-                                                                      It.IsAny<IEnumerable<IDiscordInteractionCommandOption>>(),
-                                                                      It.IsAny<IServiceProvider>()))
+            _commandServiceMock.Setup(x => x.SearchSlashCommand(It.IsAny<string>())).Returns(new SlashCommandInfo("", "", true, null!, null!));
+            _commandServiceMock.Setup(x => x.SearchSlashCommand(It.IsAny<string>(), It.IsAny<string>())).Returns(new SlashCommandOptionInfo("", "", true, null!, null!));
+            _commandServiceMock.Setup(x => x.SearchSlashCommand(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new SlashCommandOptionInfo("", "", true, null!, null!));
+
+            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(),
+                                                                      It.IsAny<List<IDiscordInteractionOption>>(), It.IsAny<IServiceProvider>()))
+                               .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
+                               .Callback(FakeSlashCommandCall);
+                               
+            _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<SlashCommandOptionInfo>(), It.IsAny<ISlashCommandContext>(), 
+                                                                      It.IsAny<List<IDiscordInteractionOption>>(), It.IsAny<IServiceProvider>()))
                                .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
                                .Callback(FakeSlashCommandCall);
 
@@ -54,6 +64,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         private OptionsWrapper<SlashCommandConfiguration> _options = null!;
         private Mock<ISlashCommandService> _commandServiceMock = null!;
         private Mock<IDiscordRestChannel> _restChannelMock = null!;
+        private Mock<IDiscordRestApplication> _restApplicationMock = null!;
         private Mock<IDiscordRestGuild> _restGuildMock = null!;
         private static string _orderTestMessage = "";
 
@@ -62,7 +73,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             // Arrange
             var serviceProviderMock = new Mock<IServiceProvider>();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProviderMock.Object, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProviderMock.Object, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData());
 
             // Act & Assert
@@ -75,7 +86,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             // Arrange
             var serviceProvider = new ServiceCollection()
                 .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object,  _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -107,7 +118,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var serviceProvider = new ServiceCollection()
                                   .AddSlashCommandPipeline<ResolvedPipeline>()
                                   .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object,  _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -159,7 +170,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                                   .AddSlashCommandPipeline<InnerPipeline>()
                                   .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object,  _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -192,7 +203,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                                   .AddSlashCommandPipeline<InnerPipeline>()
                                   .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object,  _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -233,7 +244,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
                                   .AddSlashCommandPipeline<InnerPipeline>()
                                   .AddSlashCommandPipeline<OuterPipeline>()
                                   .BuildServiceProvider();
-            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
+            var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object,  _restApplicationMock.Object, _restGuildMock.Object, _restChannelMock.Object, _options);
             var interaction = new DiscordInteraction(new DiscordInteractionData
             {
                 Data = new DiscordInteractionRequestData
@@ -305,7 +316,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         {
             public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
             {
-                var role = context.CommandRequest.Resolved?.Roles?.FirstOrDefault(x => x.Key == 865723094761078804).Value;
+                var role = context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == 865723094761078804).Value;
 
                 _orderTestMessage += $"{role?.Name}_";
                 var result = await next();

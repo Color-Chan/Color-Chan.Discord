@@ -44,6 +44,7 @@ namespace Color_Chan.Discord.Extensions
         ///     The cache options for the redis cache.
         ///     Leave this null if you want to use a local cache.
         /// </param>
+        /// <param name="componentInteractionConfig">The configurations needed for the component interactions.</param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
@@ -54,18 +55,22 @@ namespace Color_Chan.Discord.Extensions
                                                              Action<InteractionsConfiguration>? interactionConfigs = null,
                                                              Action<SlashCommandConfiguration>? slashCommandConfigs = null,
                                                              Action<CacheConfiguration>? defaultCacheConfig = null,
-                                                             Action<RedisCacheOptions>? redisCacheOptions = null)
+                                                             Action<RedisCacheOptions>? redisCacheOptions = null,
+                                                             Action<ComponentInteractionConfiguration>? componentInteractionConfig = null)
         {
             if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
             services.AddColorChanDiscordRest(botToken);
-            services.AddColorChanDiscordCommand(slashCommandConfigs, defaultCacheConfig, redisCacheOptions);
+            services.AddColorChanDiscordCommand(slashCommandConfigs, defaultCacheConfig, redisCacheOptions, componentInteractionConfig);
 
             services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
             services.AddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
             services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
 
-            interactionConfigs ??= configuration => { configuration.AcknowledgeInteractions = true; };
+            interactionConfigs ??= configuration =>
+            {
+                configuration.VerifyInteractions = true;
+            };
 
             services.Configure(interactionConfigs);
 
@@ -89,25 +94,16 @@ namespace Color_Chan.Discord.Extensions
         ///     This can be found at https://discord.com/developers/applications/APPLICATION_ID/information
         /// </param>
         /// <param name="configurations">All the configuration options for Color-Chan.Discord.</param>
-        public static IServiceCollection AddColorChanDiscord(this IServiceCollection services,
-                                                             string botToken,
-                                                             string publicBotToken,
-                                                             ulong applicationId,
-                                                             ColorChanConfigurations configurations)
+        public static IServiceCollection AddColorChanDiscord(this IServiceCollection services, string botToken, string publicBotToken, ulong applicationId, ColorChanConfigurations configurations)
         {
-            if (botToken == null) throw new ArgumentNullException(nameof(botToken));
-
-            services.AddColorChanDiscordRest(botToken);
-            services.AddColorChanDiscordCommand(configurations.SlashCommandConfigs, configurations.DefaultCacheConfig, configurations.RedisCacheOptions);
-
-            services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
-            services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
-
-            configurations.InteractionConfigs ??= configuration => { configuration.AcknowledgeInteractions = true; };
-
-            services.Configure(configurations.InteractionConfigs);
-
-            return services;
+            return services.AddColorChanDiscord(botToken,
+                                                publicBotToken,
+                                                applicationId,
+                                                configurations.InteractionConfigs,
+                                                configurations.SlashCommandConfigs,
+                                                configurations.DefaultCacheConfig,
+                                                configurations.RedisCacheOptions,
+                                                configurations.ComponentInteractionConfig);
         }
     }
 }

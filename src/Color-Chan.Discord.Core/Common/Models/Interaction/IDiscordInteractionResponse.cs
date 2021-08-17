@@ -12,7 +12,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         /// <summary>
         ///     An optional response message.
         /// </summary>
-        public IDiscordInteractionCommandCallback? Data { get; init; }
+        public IDiscordInteractionCallback? Data { get; init; }
 
         /// <summary>
         ///     Converts the model back to a discord data model so that it can be send to discord.

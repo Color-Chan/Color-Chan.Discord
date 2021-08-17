@@ -1,3 +1,5 @@
+using Color_Chan.Discord.Core.Common.API.DataModels.Select;
+
 namespace Color_Chan.Discord.Core.Common.Models.Select
 {
     public interface IDiscordSelectOption
@@ -26,5 +28,13 @@ namespace Color_Chan.Discord.Core.Common.Models.Select
         ///     Will render this option as selected by default.
         /// </summary>
         bool? Default { get; init; }
+
+        /// <summary>
+        ///     Converts the model back to a discord data model so that it can be send to discord.
+        /// </summary>
+        /// <returns>
+        ///     The converted <see cref="DiscordSelectOptionData" />.
+        /// </returns>
+        DiscordSelectOptionData ToDataModel();
     }
 }

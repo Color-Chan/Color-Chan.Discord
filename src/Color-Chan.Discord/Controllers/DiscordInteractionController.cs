@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Configurations;
 using Color_Chan.Discord.Core;
@@ -11,6 +12,7 @@ using Color_Chan.Discord.Core.Common.API.Params.Webhook;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Rest.Models.Interaction;
+using Color_Chan.Discord.Rest.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -33,6 +35,7 @@ namespace Color_Chan.Discord.Controllers
         private readonly IDiscordSlashCommandHandler _commandHandler;
         private readonly InteractionsConfiguration _configuration;
         private readonly DiscordTokens _discordTokens;
+        private readonly IComponentInteractionHandler _componentInteractionHandler;
         private readonly ILogger<DiscordInteractionController> _logger;
         private readonly IDiscordRestApplication _restApplication;
         private readonly JsonSerializerOptions _serializerOptions;
@@ -47,9 +50,10 @@ namespace Color_Chan.Discord.Controllers
         /// <param name="configuration">The configurations for interactions.</param>
         /// <param name="restApplication">The REST class for application api calls.</param>
         /// <param name="discordTokens">The bot tokens and IDs.</param>
+        /// <param name="componentInteractionHandler">The handler for the component interaction requests.</param>
         public DiscordInteractionController(IDiscordInteractionAuthService authService, ILogger<DiscordInteractionController> logger, IOptions<JsonSerializerOptions> serializerOptions,
                                             IDiscordSlashCommandHandler commandHandler, IOptions<InteractionsConfiguration> configuration, IDiscordRestApplication restApplication,
-                                            DiscordTokens discordTokens)
+                                            DiscordTokens discordTokens, IComponentInteractionHandler componentInteractionHandler)
         {
             _authService = authService;
             _logger = logger;
@@ -57,6 +61,7 @@ namespace Color_Chan.Discord.Controllers
             _configuration = configuration.Value;
             _restApplication = restApplication;
             _discordTokens = discordTokens;
+            _componentInteractionHandler = componentInteractionHandler;
             _serializerOptions = serializerOptions.Value;
         }
 
@@ -92,39 +97,25 @@ namespace Color_Chan.Discord.Controllers
             if (interactionData is null) throw new JsonException("Failed to deserialize JSON body to DiscordInteractionData");
 
             _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
-
-            // Acknowledge the interaction.
-            if (_configuration.AcknowledgeInteractions && interactionData.RequestType != DiscordInteractionRequestType.Ping)
-            {
-                var acknowledgeResponse = new DiscordInteractionResponseData
-                {
-                    Type = DiscordInteractionResponseType.DeferredChannelMessageWithSource
-                };
-
-                var acknowledgeResult = await _restApplication.CreateInteractionResponseAsync(interactionData.Id, interactionData.Token, acknowledgeResponse).ConfigureAwait(false);
-                if (!acknowledgeResult.IsSuccessful)
-                {
-                    _logger.LogWarning("Failed to acknowledge interaction {Id}, reason: {Message}", interactionData.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
-                }
-            }
-
+            
             // Execute the correct interaction type.
-            var response = interactionData.RequestType switch
+            var interactionResponse = interactionData.RequestType switch
             {
-                DiscordInteractionRequestType.Ping => PingResponse(),
+                DiscordInteractionRequestType.Ping => InternalInteractionResponse.PingResponse(),
                 DiscordInteractionRequestType.ApplicationCommand => await _commandHandler.HandleSlashCommandAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
-                DiscordInteractionRequestType.MessageComponent => throw new NotImplementedException(),
+                DiscordInteractionRequestType.MessageComponent => await _componentInteractionHandler.HandleComponentInteractionAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            // Send the response back to discord.
-            if (!_configuration.AcknowledgeInteractions || interactionData.RequestType == DiscordInteractionRequestType.Ping)
+            if (!interactionResponse.Acknowledged)
             {
-                return SerializeResult(response);
+                // Send the response back to discord.
+                _logger.LogDebug("Returning interaction response {Id} to discord", interactionData.Id.ToString());
+                return SerializeResult(interactionResponse.Response);
             }
-
+            
             // Send an edit request.
-            var responseData = response.Data?.ToDataModel();
+            var responseData = interactionResponse.Response.Data?.ToDataModel();
             var editResponse = new DiscordEditWebhookMessage
             {
                 Content = responseData?.Content,
@@ -132,28 +123,24 @@ namespace Color_Chan.Discord.Controllers
                 Components = responseData?.Components,
                 AllowedMentions = responseData?.AllowedMentions
             };
-
+            
+            _logger.LogDebug("Editing original interaction response {Id}", interactionData.Id.ToString());
             var responseResult = await _restApplication.EditOriginalInteractionResponseAsync(_discordTokens.ApplicationId, interactionData.Token, editResponse).ConfigureAwait(false);
             if (responseResult.IsSuccessful) return Ok();
-
+            
+            if (responseResult.ErrorResult is DiscordHttpErrorResult httpErrorResult)
+            {
+                // Send an error response.
+                _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}, details: {Details}", 
+                                   interactionData.Id.ToString(), 
+                                   responseResult.ErrorResult?.ErrorMessage,
+                                   JsonSerializer.Serialize(httpErrorResult.ErrorData));
+                return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
+            }
+            
             // Send an error response.
             _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}", interactionData.Id.ToString(), responseResult.ErrorResult?.ErrorMessage);
             return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
-        }
-
-        /// <summary>
-        ///     Get a ping response.
-        /// </summary>
-        /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse" /> containing a ping response.
-        /// </returns>
-        private static IDiscordInteractionResponse PingResponse()
-        {
-            return new DiscordInteractionResponse
-            {
-                Type = DiscordInteractionResponseType.Pong,
-                Data = null
-            };
         }
 
         /// <summary>

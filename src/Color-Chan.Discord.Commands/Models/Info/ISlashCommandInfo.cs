@@ -38,16 +38,22 @@ namespace Color_Chan.Discord.Commands.Models.Info
         public TypeInfo ParentModule { get; set; }
 
         /// <summary>
+        ///     Whether or not the command should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </summary>
+        public bool Acknowledge { get; }
+        
+        /// <summary>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandGuildAttribute" /> containing the IDs of the guilds that
         ///     will get access to this slash command.
         /// </summary>
         public IEnumerable<SlashCommandGuildAttribute>? Guilds { get; set; }
 
         /// <summary>
-        ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandRequirementAttribute" />s containing all the requirements
+        ///     A <see cref="IEnumerable{T}" /> of <see cref="InteractionRequirementAttribute" />s containing all the requirements
         ///     to execute the command.
         /// </summary>
-        public IEnumerable<SlashCommandRequirementAttribute>? Requirements { get; set; }
+        public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
 
         /// <summary>
         ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" />s containing the permission data

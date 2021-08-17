@@ -3,7 +3,7 @@ using System;
 namespace Color_Chan.Discord.Commands.Exceptions
 {
     /// <summary>
-    ///     An exception that should be thrown when a command failed to execute and as not properly handled.
+    ///     An exception that should be thrown when a command failed to execute and has not properly been handled.
     /// </summary>
     public class SlashCommandResultException : Exception
     {

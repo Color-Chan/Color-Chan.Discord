@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
+using Color_Chan.Discord.Commands.MessageBuilders;
+using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
@@ -22,6 +25,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
     public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
     {
         private readonly ILogger<DiscordSlashCommandHandler> _logger;
+        private readonly IDiscordRestApplication _restApplication;
         private readonly IDiscordRestChannel _restChannel;
         private readonly IDiscordRestGuild _restGuild;
         private readonly IServiceProvider _serviceProvider;
@@ -37,23 +41,26 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <param name="restGuild">The rest class for Guilds.</param>
         /// <param name="restChannel">The rest class for Channels.</param>
         /// <param name="slashCommandConfiguration">The configuration class for slash commands.</param>
-        public DiscordSlashCommandHandler(ISlashCommandService slashCommandService, IServiceProvider serviceProvider, ILogger<DiscordSlashCommandHandler> logger,
-                                          IDiscordRestGuild restGuild, IDiscordRestChannel restChannel, IOptions<SlashCommandConfiguration> slashCommandConfiguration)
+        /// <param name="restApplication">The rest class for application calls.</param>
+        public DiscordSlashCommandHandler(ISlashCommandService slashCommandService, IServiceProvider serviceProvider, ILogger<DiscordSlashCommandHandler> logger, 
+                                          IDiscordRestApplication restApplication, IDiscordRestGuild restGuild, IDiscordRestChannel restChannel, 
+                                          IOptions<SlashCommandConfiguration> slashCommandConfiguration)
         {
             _slashCommandService = slashCommandService;
             _serviceProvider = serviceProvider;
             _logger = logger;
+            _restApplication = restApplication;
             _restGuild = restGuild;
             _restChannel = restChannel;
             _slashCommandConfiguration = slashCommandConfiguration.Value;
         }
 
         /// <inheritdoc />
-        public async Task<IDiscordInteractionResponse> HandleSlashCommandAsync(IDiscordInteraction interaction)
+        public async Task<InternalInteractionResponse> HandleSlashCommandAsync(IDiscordInteraction interaction)
         {
             if (interaction.Data is null)
             {
-                throw new ArgumentNullException(nameof(interaction.Data), "Interaction data can not be null for a slash command!");
+                throw new ArgumentNullException(nameof(interaction.Data),  $"{nameof(interaction.Data)} can not be null for a slash command!");
             }
 
             IDiscordGuild? guild = null;
@@ -78,14 +85,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 GuildId = interaction.GuildId,
                 ChannelId = interaction.ChannelId ?? interaction.User?.Id ?? throw new NullReferenceException(nameof(context.User)),
                 ApplicationId = interaction.ApplicationId,
-                CommandRequest = interaction.Data,
+                Data = interaction.Data,
                 InteractionId = interaction.Id,
                 Token = interaction.Token,
                 Channel = channel,
                 Guild = guild
             };
 
-            IEnumerable<IDiscordInteractionCommandOption>? options = null;
+            IEnumerable<IDiscordInteractionOption>? options = null;
 
             // Get the command name and the options.
             if (interaction.Data.Options is null)
@@ -121,10 +128,65 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 }
             }
 
+            // Search for a top level or sub command.
+            var arr = context.SlashCommandName.ToArray();
+            var count = arr.Length;
+            ISlashCommandInfo? commandInfo = null;
+            ISlashCommandOptionInfo? optionInfo = null;
+            switch (count)
+            {
+                case 1:
+                {
+                    commandInfo = _slashCommandService.SearchSlashCommand(arr[0]);
+                    break;
+                }
+                case 2:
+                {
+                    optionInfo = _slashCommandService.SearchSlashCommand(arr[0], arr[1]);
+                    break;
+                }
+                case 3:
+                {
+                    optionInfo = _slashCommandService.SearchSlashCommand(arr[0], arr[1], arr[2]);
+                    break;
+                }
+            }
+
+            if (commandInfo is null && optionInfo is null)
+            {
+                throw new NullReferenceException($"Failed to find the requested interaction command {interaction.Data.Name}");
+            }
+            
+            // Acknowledge the slash command request if needed.
+            var acknowledged = false;
+            if (commandInfo is not null && commandInfo.Acknowledge || optionInfo is not null && optionInfo.Acknowledge)
+            {
+                var acknowledgeResponse = new DiscordInteractionResponseData
+                {
+                    Type = DiscordInteractionResponseType.DeferredChannelMessageWithSource
+                };
+
+                var acknowledgeResult = await _restApplication.CreateInteractionResponseAsync(interaction.Id, interaction.Token, acknowledgeResponse).ConfigureAwait(false);
+                if (!acknowledgeResult.IsSuccessful)
+                {
+                    _logger.LogWarning("Failed to acknowledge interaction command {Id}, reason: {Message}", interaction.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
+                }
+                else
+                {
+                    _logger.LogDebug("Acknowledged interaction command {Id}", interaction.Id.ToString());
+                    acknowledged = true;
+                }
+            }
+            
             // Local method to execute the command.
             async Task<Result<IDiscordInteractionResponse>> Handler()
             {
-                return await _slashCommandService.ExecuteSlashCommandAsync(context, options?.ToList(), _serviceProvider).ConfigureAwait(false);
+                if (commandInfo is not null)
+                {
+                    return await _slashCommandService.ExecuteSlashCommandAsync(commandInfo, context, options?.ToList(), _serviceProvider).ConfigureAwait(false);
+                }
+                
+                return await _slashCommandService.ExecuteSlashCommandAsync(optionInfo!, context, options?.ToList(), _serviceProvider).ConfigureAwait(false);
             }
 
             // Execute the pipelines and the command.
@@ -132,37 +194,15 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                .Aggregate((SlashCommandHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
 
             // Return the response.
-            if (result.IsSuccessful) return result.Entity!;
+            if (result.IsSuccessful) return new InternalInteractionResponse(acknowledged, result.Entity!);
 
             if (_slashCommandConfiguration.SendDefaultErrorMessage)
             {
                 _logger.LogWarning("Sending default error message");
-                return DefaultErrorMessage();
+                return new InternalInteractionResponse(acknowledged, new SlashCommandResponseBuilder().DefaultErrorMessage());
             }
 
             throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
-        }
-
-        /// <summary>
-        ///     Get a default error message response.
-        /// </summary>
-        private IDiscordInteractionResponse DefaultErrorMessage()
-        {
-            //  Build the response embed.
-            var errorEmbedBuilder = new DiscordEmbedBuilder()
-                                    .WithTitle("Error")
-                                    .WithDescription("Something went wrong!")
-                                    .WithColor(Color.Red)
-                                    .WithTimeStamp();
-
-            // Build the response with the embed.
-            var errorResponse = new SlashCommandResponseBuilder()
-                                .WithEmbed(errorEmbedBuilder.Build())
-                                .MakePrivate()
-                                .Build();
-
-            //  Return the response to Discord.
-            return errorResponse;
         }
     }
 }

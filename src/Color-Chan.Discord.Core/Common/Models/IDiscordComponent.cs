@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Color_Chan.Discord.Core.Common.API.DataModels;
+using Color_Chan.Discord.Core.Common.Models.Select;
 
 namespace Color_Chan.Discord.Core.Common.Models
 {
@@ -40,6 +41,26 @@ namespace Color_Chan.Discord.Core.Common.Models
         /// </summary>
         bool? Disabled { get; init; }
 
+        /// <summary>
+        ///     The choices in the select, max 25.
+        /// </summary>
+        public List<IDiscordSelectOption>? SelectOptions { get; init; }
+        
+        /// <summary>
+        ///     Custom placeholder text if nothing is selected, max 100 characters.
+        /// </summary>
+        public string? Placeholder { get; init; }
+        
+        /// <summary>
+        ///     The minimum number of items that must be chosen; default 1, min 0, max 25.
+        /// </summary>
+        public int? MinValues { get; init; }
+        
+        /// <summary>
+        ///     The maximum number of items that can be chosen; default 1, max 25.
+        /// </summary>
+        public int? MaxValues { get; init; }
+        
         /// <summary>
         ///     A list of child components.
         /// </summary>
