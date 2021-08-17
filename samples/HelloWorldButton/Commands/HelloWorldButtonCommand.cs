@@ -33,7 +33,7 @@ namespace HelloWorldButton.Commands
             var responseBuilder = new InteractionResponseBuilder()
                                   .WithContent("hello world button")
                                   .WithComponent(actionRowBuilder.Build());
-            
+
             //  Return the response to Discord.
             return FromSuccess(responseBuilder.Build());
         }

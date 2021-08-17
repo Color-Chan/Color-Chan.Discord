@@ -3,7 +3,8 @@ using System;
 namespace Color_Chan.Discord.Commands.Exceptions
 {
     /// <summary>
-    ///     An exception that should be thrown when a component interaction failed to execute and has not properly been handled.
+    ///     An exception that should be thrown when a component interaction failed to execute and has not properly been
+    ///     handled.
     /// </summary>
     public class ComponentInteractionResultException : Exception
     {

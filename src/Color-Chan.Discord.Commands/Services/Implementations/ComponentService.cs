@@ -18,9 +18,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
     public class ComponentService : IComponentService
     {
         private readonly IComponentBuildService _componentBuildService;
-        private readonly ISlashCommandRequirementService _requirementService;
         private readonly ConcurrentDictionary<string, IComponentInfo> _components = new();
         private readonly ILogger<ComponentService> _logger;
+        private readonly ISlashCommandRequirementService _requirementService;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="ComponentService" />.
@@ -63,10 +63,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         public async Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(InteractionContext context, IServiceProvider serviceProvider)
         {
             if (context.Data.CustomId is null) throw new NullReferenceException(nameof(context.Data.CustomId));
-            
+
             // Get the component.
             var searchResult = SearchComponent(context.Data.CustomId);
-            if (searchResult is null) 
+            if (searchResult is null)
                 return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find component with id {context.Data.CustomId}"));
 
             return await ExecuteComponentInteractionAsync(searchResult, context, serviceProvider).ConfigureAwait(false);
@@ -87,7 +87,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var instance = GetComponentInteractionModuleInstance(serviceProvider, componentInfo.ComponentMethod);
             context.MethodName = componentInfo.ComponentMethod.Name;
             instance.SetContext(context);
-            
+
             // Try to run the requirements for the slash command.
             try
             {
@@ -102,7 +102,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 _logger.LogError(e, "Exception thrown while running component interaction `{Name}` requirements", componentInfo.CustomId);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException!));
             }
-            
+
             // Try to execute the component interaction.
             try
             {
@@ -121,13 +121,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException ?? e));
             }
         }
-        
+
         /// <inheritdoc />
         public IComponentInfo? SearchComponent(string customId)
         {
             return _components.TryGetValue(customId, out var componentInfo) ? componentInfo : null;
         }
-        
+
         /// <summary>
         ///     Get a new instance of a <see cref="IComponentInteractionModule" /> with its required dependencies.
         /// </summary>

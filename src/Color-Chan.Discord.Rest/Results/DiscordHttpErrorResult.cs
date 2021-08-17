@@ -9,11 +9,6 @@ namespace Color_Chan.Discord.Rest.Results
     public record DiscordHttpErrorResult : HttpErrorResult
     {
         /// <summary>
-        ///     The error data of the HTTP request.
-        /// </summary>
-        public DiscordJsonErrorData ErrorData { get; }
-
-        /// <summary>
         ///     Initializes a new instance of <see cref="DiscordHttpErrorResult" />.
         /// </summary>
         /// <param name="errorData">The error data.</param>
@@ -22,5 +17,10 @@ namespace Color_Chan.Discord.Rest.Results
         {
             ErrorData = errorData;
         }
+
+        /// <summary>
+        ///     The error data of the HTTP request.
+        /// </summary>
+        public DiscordJsonErrorData ErrorData { get; }
     }
 }

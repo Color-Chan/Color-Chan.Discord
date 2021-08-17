@@ -64,7 +64,7 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         ///     The interaction id.
         /// </summary>
         ulong InteractionId { get; init; }
-        
+
         /// <summary>
         ///     The method name of the method that will handle the interaction request.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
         ///     Used to create a unique string for rate limiting.
         /// </remarks>
         string? MethodName { get; set; }
-        
+
         /// <summary>
         ///     The guild the interaction was used in.
         /// </summary>

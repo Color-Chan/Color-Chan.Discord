@@ -13,7 +13,8 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     ///     This requirement will limit the amount of time a user can request interactions during a time period.
     /// </remarks>
     /// <example>
-    ///     This example limits all the interaction commands in the PongCommands interaction command module to 2 requests every 10 seconds
+    ///     This example limits all the interaction commands in the PongCommands interaction command module to 2 requests every
+    ///     10 seconds
     ///     and 4 requests every 30 seconds per user. You can also put the <see cref="UserRateLimitAttribute" /> on
     ///     a method if
     ///     you only want to rate limit a specific interaction.

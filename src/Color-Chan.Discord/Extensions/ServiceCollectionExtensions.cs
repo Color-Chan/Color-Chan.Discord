@@ -67,10 +67,7 @@ namespace Color_Chan.Discord.Extensions
             services.AddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
             services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
 
-            interactionConfigs ??= configuration =>
-            {
-                configuration.VerifyInteractions = true;
-            };
+            interactionConfigs ??= configuration => { configuration.VerifyInteractions = true; };
 
             services.Configure(interactionConfigs);
 

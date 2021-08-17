@@ -129,9 +129,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
             _components.Add(component);
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="_components"/> to an empty list of <see cref="IDiscordComponent"/>s.
+        ///     Sets the <see cref="_components" /> to an empty list of <see cref="IDiscordComponent" />s.
         /// </summary>
         /// <returns>
         ///     The updated <see cref="InteractionResponseBuilder" />.
@@ -141,9 +141,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
             _components = new List<IDiscordComponent>();
             return this;
         }
-        
+
         /// <summary>
-        ///     Sets the <see cref="_embeds"/> to an empty list of <see cref="IDiscordEmbed"/>s.
+        ///     Sets the <see cref="_embeds" /> to an empty list of <see cref="IDiscordEmbed" />s.
         /// </summary>
         /// <returns>
         ///     The updated <see cref="InteractionResponseBuilder" />.

@@ -63,8 +63,8 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                 })
             };
             var attribute = new RequireUserPermissionAttribute(DiscordPermission.Administrator
-                                                                           | DiscordPermission.Speak
-                                                                           | DiscordPermission.AddReactions);
+                                                               | DiscordPermission.Speak
+                                                               | DiscordPermission.AddReactions);
 
             // Act
             var result = await attribute.CheckRequirementAsync(context, collectionProvider);

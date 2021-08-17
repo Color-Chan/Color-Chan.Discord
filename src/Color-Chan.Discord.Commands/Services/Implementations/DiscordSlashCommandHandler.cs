@@ -42,8 +42,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <param name="restChannel">The rest class for Channels.</param>
         /// <param name="slashCommandConfiguration">The configuration class for slash commands.</param>
         /// <param name="restApplication">The rest class for application calls.</param>
-        public DiscordSlashCommandHandler(ISlashCommandService slashCommandService, IServiceProvider serviceProvider, ILogger<DiscordSlashCommandHandler> logger, 
-                                          IDiscordRestApplication restApplication, IDiscordRestGuild restGuild, IDiscordRestChannel restChannel, 
+        public DiscordSlashCommandHandler(ISlashCommandService slashCommandService, IServiceProvider serviceProvider, ILogger<DiscordSlashCommandHandler> logger,
+                                          IDiscordRestApplication restApplication, IDiscordRestGuild restGuild, IDiscordRestChannel restChannel,
                                           IOptions<SlashCommandConfiguration> slashCommandConfiguration)
         {
             _slashCommandService = slashCommandService;
@@ -60,7 +60,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         {
             if (interaction.Data is null)
             {
-                throw new ArgumentNullException(nameof(interaction.Data),  $"{nameof(interaction.Data)} can not be null for a slash command!");
+                throw new ArgumentNullException(nameof(interaction.Data), $"{nameof(interaction.Data)} can not be null for a slash command!");
             }
 
             IDiscordGuild? guild = null;
@@ -156,7 +156,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 throw new NullReferenceException($"Failed to find the requested interaction command {interaction.Data.Name}");
             }
-            
+
             // Acknowledge the slash command request if needed.
             var acknowledged = false;
             if (commandInfo is not null && commandInfo.Acknowledge || optionInfo is not null && optionInfo.Acknowledge)
@@ -177,7 +177,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                     acknowledged = true;
                 }
             }
-            
+
             // Local method to execute the command.
             async Task<Result<IDiscordInteractionResponse>> Handler()
             {
@@ -185,7 +185,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 {
                     return await _slashCommandService.ExecuteSlashCommandAsync(commandInfo, context, options?.ToList(), _serviceProvider).ConfigureAwait(false);
                 }
-                
+
                 return await _slashCommandService.ExecuteSlashCommandAsync(optionInfo!, context, options?.ToList(), _serviceProvider).ConfigureAwait(false);
             }
 

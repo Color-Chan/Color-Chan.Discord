@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Webhook
         ///     The message contents (up to 2000 characters).
         /// </summary>
         /// <remarks>
-        ///     Required when <see cref="Embeds"/> is not provided.
+        ///     Required when <see cref="Embeds" /> is not provided.
         /// </remarks>
         [JsonPropertyName("content")]
         public string? Content { get; set; }
@@ -21,24 +21,24 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Webhook
         /// </summary>
         [JsonPropertyName("username")]
         public string? Username { get; set; }
-        
+
         /// <summary>
         ///     Override the default avatar of the webhook.
         /// </summary>
         [JsonPropertyName("avatar_url")]
         public string? AvatarUrl { get; set; }
-        
+
         /// <summary>
         ///     True if this is a TTS message.
         /// </summary>
         [JsonPropertyName("tts")]
         public bool? UseTts { get; set; }
-        
+
         /// <summary>
         ///     Embedded rich content.
         /// </summary>
         /// <remarks>
-        ///     Required when <see cref="Content"/> is not provided.
+        ///     Required when <see cref="Content" /> is not provided.
         /// </remarks>
         [JsonPropertyName("embeds")]
         public IEnumerable<DiscordEmbedData>? Embeds { get; set; }

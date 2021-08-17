@@ -12,7 +12,7 @@ namespace Color_Chan.Discord.Rest.Models
         public DiscordComponent()
         {
         }
-        
+
         public DiscordComponent(DiscordComponentData data)
         {
             Type = data.Type;
@@ -28,40 +28,40 @@ namespace Color_Chan.Discord.Rest.Models
             Placeholder = data.Placeholder;
             SelectOptions = data.SelectOptions?.Select(selectData => new DiscordSelectOption(selectData)).Cast<IDiscordSelectOption>().ToList();
         }
-        
+
         /// <inheritdoc />
         public DiscordComponentType Type { get; init; }
-        
+
         /// <inheritdoc />
         public string? CustomId { get; init; }
-        
+
         /// <inheritdoc />
         public bool? Disabled { get; init; }
-        
+
         /// <inheritdoc />
         public DiscordButtonStyle? ButtonStyle { get; init; }
-        
+
         /// <inheritdoc />
         public string? Label { get; init; }
 
         /// <inheritdoc />
         public IDiscordEmoji? Emoji { get; init; }
-        
+
         /// <inheritdoc />
         public string? Url { get; init; }
 
         /// <inheritdoc />
         public List<IDiscordSelectOption>? SelectOptions { get; init; }
-        
+
         /// <inheritdoc />
         public string? Placeholder { get; init; }
-        
+
         /// <inheritdoc />
         public int? MinValues { get; init; }
-        
+
         /// <inheritdoc />
         public int? MaxValues { get; init; }
-        
+
         /// <inheritdoc />
         public IEnumerable<IDiscordComponent>? ChildComponents { get; init; }
 
