@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Exceptions;
+using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Commands.Services
@@ -15,11 +16,11 @@ namespace Color_Chan.Discord.Commands.Services
         /// </summary>
         /// <param name="interaction">The <see cref="IDiscordInteraction"/> that was requested.</param>
         /// <returns>
-        ///     A <see cref="IDiscordInteractionResponse" /> containing the result of the component interaction.
+        ///     A <see cref="InternalInteractionResponse" /> containing the result of the component interaction.
         /// </returns>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="IDiscordInteraction.Data"/> is null.</exception>
         /// <exception cref="NullReferenceException">Thrown when no user or member was found.</exception>
         /// <exception cref="ComponentInteractionResultException">Thrown when no channel id was found.</exception>
-        Task<IDiscordInteractionResponse> HandleComponentInteractionAsync(IDiscordInteraction interaction);
+        Task<InternalInteractionResponse> HandleComponentInteractionAsync(IDiscordInteraction interaction);
     }
 }

@@ -4,7 +4,9 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.MessageBuilders;
+using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
@@ -24,6 +26,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         private readonly IComponentService _componentService;
         private readonly IDiscordRestGuild _restGuild;
         private readonly IDiscordRestChannel _restChannel;
+        private readonly IDiscordRestApplication _restApplication;
         private readonly ComponentInteractionConfiguration _options;
 
         /// <summary>
@@ -35,23 +38,30 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         /// <param name="options">The <see cref="ComponentInteractionConfiguration"/> containing the configuration data for component interactions.</param>
         /// <param name="restGuild">The rest class for Guilds.</param>
         /// <param name="restChannel">The rest class for Channels.</param>
+        /// <param name="application">The rest class the Application calls.</param>
         public ComponentInteractionHandler(ILogger<ComponentInteractionHandler> logger, IServiceProvider serviceProvider, IComponentService componentService, 
-                                           IOptions<ComponentInteractionConfiguration> options, IDiscordRestGuild restGuild, IDiscordRestChannel restChannel)
+                                           IOptions<ComponentInteractionConfiguration> options, IDiscordRestGuild restGuild, IDiscordRestChannel restChannel, IDiscordRestApplication application)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
             _componentService = componentService;
             _restGuild = restGuild;
             _restChannel = restChannel;
+            _restApplication = application;
             _options = options.Value;
         }
 
         /// <inheritdoc />
-        public async Task<IDiscordInteractionResponse> HandleComponentInteractionAsync(IDiscordInteraction interaction)
+        public async Task<InternalInteractionResponse> HandleComponentInteractionAsync(IDiscordInteraction interaction)
         {
             if (interaction.Data is null)
             {
                 throw new ArgumentNullException(nameof(interaction.Data), $"{nameof(interaction.Data)} can not be null for a component interaction!");
+            }
+            
+            if (interaction.Data.CustomId is null)
+            {
+                throw new ArgumentNullException(nameof(interaction.Data), $"{nameof(interaction.Data.CustomId)} can not be null for a component interaction!");
             }
             
             IDiscordGuild? guild = null;
@@ -82,6 +92,33 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 Channel = channel,
                 Guild = guild
             };
+
+            var componentInfo = _componentService.SearchComponent(context.Data.CustomId);
+            if (componentInfo is null)
+            {
+                throw new NullReferenceException($"Failed to find the requested interaction component {interaction.Data.CustomId}");
+            }
+            
+            // Acknowledge the component interaction request if needed.
+            var acknowledged = false;
+            if (componentInfo.Acknowledge)
+            {
+                var acknowledgeResponse = new DiscordInteractionResponseData
+                {
+                    Type = componentInfo.EditOriginalMessage ? DiscordInteractionResponseType.DeferredUpdateMessage : DiscordInteractionResponseType.DeferredChannelMessageWithSource
+                };
+
+                var acknowledgeResult = await _restApplication.CreateInteractionResponseAsync(interaction.Id, interaction.Token, acknowledgeResponse).ConfigureAwait(false);
+                if (!acknowledgeResult.IsSuccessful)
+                {
+                    _logger.LogWarning("Failed to acknowledge interaction command {Id}, reason: {Message}", interaction.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
+                }
+                else
+                {
+                    _logger.LogDebug("Acknowledged component interaction {Id}", interaction.Id.ToString());
+                    acknowledged = true;
+                }
+            }
             
             // Local method to execute the command.
             async Task<Result<IDiscordInteractionResponse>> Handler()
@@ -94,12 +131,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                .Aggregate((ComponentInteractionHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
 
             // Return the response.
-            if (result.IsSuccessful) return result.Entity!;
+            if (result.IsSuccessful) return new InternalInteractionResponse(acknowledged, result.Entity!);
 
             if (_options.SendDefaultErrorMessage)
             {
                 _logger.LogWarning("Sending default error message");
-                return new SlashCommandResponseBuilder().DefaultErrorMessage();
+                return new InternalInteractionResponse(acknowledged, new SlashCommandResponseBuilder().DefaultErrorMessage());
             }
 
             throw new ComponentInteractionResultException($"Component interaction request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");

@@ -63,24 +63,35 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         public async Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(InteractionContext context, IServiceProvider serviceProvider)
         {
             if (context.Data.CustomId is null) throw new NullReferenceException(nameof(context.Data.CustomId));
-
+            
             // Get the component.
             var searchResult = SearchComponent(context.Data.CustomId);
             if (searchResult is null) 
                 return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find component with id {context.Data.CustomId}"));
-            
-            // Validate the types.
-            if(context.Data.ComponentType != searchResult.Type) 
-                return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"The component types do not match for {context.Data.CustomId} {context.Data.ComponentType}:{searchResult.Type}"));
 
-            var instance = GetComponentInteractionModuleInstance(serviceProvider, searchResult.ComponentMethod);
-            context.MethodName = searchResult.ComponentMethod.Name;
+            return await ExecuteComponentInteractionAsync(searchResult, context, serviceProvider).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(IComponentInfo componentInfo, InteractionContext context, IServiceProvider serviceProvider)
+        {
+            if (context.Data.CustomId is null) throw new NullReferenceException(nameof(context.Data.CustomId));
+
+            // Validate the types.
+            if (context.Data.ComponentType != componentInfo.Type)
+            {
+                var error = new ErrorResult($"The component types do not match for {context.Data.CustomId} {context.Data.ComponentType}:{componentInfo.Type}");
+                return Result<IDiscordInteractionResponse>.FromError(default, error);
+            }
+
+            var instance = GetComponentInteractionModuleInstance(serviceProvider, componentInfo.ComponentMethod);
+            context.MethodName = componentInfo.ComponentMethod.Name;
             instance.SetContext(context);
             
             // Try to run the requirements for the slash command.
             try
             {
-                var requirementsResult = await _requirementService.ExecuteRequirementsAsync(searchResult.Requirements, context, serviceProvider).ConfigureAwait(false);
+                var requirementsResult = await _requirementService.ExecuteRequirementsAsync(componentInfo.Requirements, context, serviceProvider).ConfigureAwait(false);
                 if (!requirementsResult.IsSuccessful)
                 {
                     return Result<IDiscordInteractionResponse>.FromError(default, requirementsResult.ErrorResult);
@@ -88,16 +99,16 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Exception thrown while running component interaction `{Name}` requirements", searchResult.CustomId);
+                _logger.LogError(e, "Exception thrown while running component interaction `{Name}` requirements", componentInfo.CustomId);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException!));
             }
             
             // Try to execute the component interaction.
             try
             {
-                if (searchResult.ComponentMethod.Invoke(instance, null) is not Task<Result<IDiscordInteractionResponse>> task)
+                if (componentInfo.ComponentMethod.Invoke(instance, null) is not Task<Result<IDiscordInteractionResponse>> task)
                 {
-                    var errorMessage = $"Failed to cast {searchResult.ComponentMethod.Name} to Task<Result<IDiscordInteractionResponse>>";
+                    var errorMessage = $"Failed to cast {componentInfo.ComponentMethod.Name} to Task<Result<IDiscordInteractionResponse>>";
                     _logger.LogWarning(errorMessage);
                     return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(errorMessage));
                 }
@@ -106,12 +117,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Exception thrown while running component interaction {Name}", searchResult.ComponentMethod.Name);
+                _logger.LogError(e, "Exception thrown while running component interaction {Name}", componentInfo.ComponentMethod.Name);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException ?? e));
             }
         }
         
-        private IComponentInfo? SearchComponent(string customId)
+        /// <inheritdoc />
+        public IComponentInfo? SearchComponent(string customId)
         {
             return _components.TryGetValue(customId, out var componentInfo) ? componentInfo : null;
         }

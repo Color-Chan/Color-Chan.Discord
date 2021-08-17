@@ -15,7 +15,10 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     Checks if a specific requirement for a interaction request has met.
         /// </summary>
         /// <param name="context">The <see cref="IInteractionContext" /> of the interaction request.</param>
-        /// <param name="services">The <see cref="IServiceProvider" /> containing all the necessary dependencies for the interaction request.</param>
+        /// <param name="services">
+        ///     The <see cref="IServiceProvider" /> containing all the necessary dependencies for the
+        ///     interaction request.
+        /// </param>
         /// <returns>
         ///     The result of the interaction request requirement.
         /// </returns>

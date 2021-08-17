@@ -15,12 +15,19 @@ namespace Color_Chan.Discord.Commands.Models.Info
         /// <param name="type">The type of the component.</param>
         /// <param name="componentMethod">The method of the component.</param>
         /// <param name="parentModule">The parent module of the component.</param>
-        public ComponentInfo(string customId, DiscordComponentType type, MethodInfo componentMethod, TypeInfo parentModule)
+        /// <param name="acknowledge">
+        ///     Whether or not the component interaction should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </param>
+        /// <param name="editOriginalMessage">Whether or not the original message of the component should be edited with the returned response.</param>
+        public ComponentInfo(string customId, DiscordComponentType type, MethodInfo componentMethod, TypeInfo parentModule, bool acknowledge, bool editOriginalMessage)
         {
             CustomId = customId;
             Type = type;
             ComponentMethod = componentMethod;
             ParentModule = parentModule;
+            Acknowledge = acknowledge;
+            EditOriginalMessage = editOriginalMessage;
         }
 
         /// <inheritdoc />
@@ -37,5 +44,11 @@ namespace Color_Chan.Discord.Commands.Models.Info
         
         /// <inheritdoc />
         public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
+        
+        /// <inheritdoc />
+        public bool Acknowledge { get; }
+        
+        /// <inheritdoc />
+        public bool EditOriginalMessage { get; }
     }
 }

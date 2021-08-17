@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                     var componentAttribute = validMethod.GetCustomAttribute<ComponentAttribute>();
                     if (componentAttribute is null) throw new NullReferenceException(nameof(componentAttribute));
 
-                    var componentInfo = new ComponentInfo(componentAttribute.CustomId, componentAttribute.Type, validMethod, parentModule)
+                    var componentInfo = new ComponentInfo(componentAttribute.CustomId, componentAttribute.Type, validMethod, parentModule, componentAttribute.Acknowledge, componentAttribute.EditOriginalMessage)
                     {
                         Requirements = _requirementBuildService.GetCommandRequirements(validMethod)
                     };

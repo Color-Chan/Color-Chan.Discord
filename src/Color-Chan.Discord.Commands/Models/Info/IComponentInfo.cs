@@ -35,5 +35,16 @@ namespace Color_Chan.Discord.Commands.Models.Info
         ///     to execute the component.
         /// </summary>
         public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
+        
+        /// <summary>
+        ///     Whether or not the component interaction should be automatically acknowledge to prevent the token
+        ///     from turning inactive after 3 seconds.
+        /// </summary>
+        public bool Acknowledge { get; }
+        
+        /// <summary>
+        ///     Whether or not the original message of the component should be edited with the returned response.
+        /// </summary>
+        public bool EditOriginalMessage { get; }
     }
 }
