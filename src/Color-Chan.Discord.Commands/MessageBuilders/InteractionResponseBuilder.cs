@@ -12,7 +12,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
     /// <summary>
     ///     Represents a builder class for creating <see cref="IDiscordInteractionResponse" />s.
     /// </summary>
-    public class SlashCommandResponseBuilder
+    public class InteractionResponseBuilder
     {
         private const int MaxEmbeds = 10;
 
@@ -50,9 +50,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         ///     Enables Text To Speech for the response.
         /// </summary>
         /// <returns>
-        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        ///     The updated <see cref="InteractionResponseBuilder" />.
         /// </returns>
-        public SlashCommandResponseBuilder EnableTts()
+        public InteractionResponseBuilder EnableTts()
         {
             _isTts = true;
             return this;
@@ -62,7 +62,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         ///     Makes the response only visible to the person that has used the slash command.
         /// </summary>
         /// <returns></returns>
-        public SlashCommandResponseBuilder MakePrivate()
+        public InteractionResponseBuilder MakePrivate()
         {
             _flags = DiscordInteractionCallbackFlags.Ephemeral;
             return this;
@@ -73,9 +73,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// </summary>
         /// <param name="content">The content.</param>
         /// <returns>
-        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        ///     The updated <see cref="InteractionResponseBuilder" />.
         /// </returns>
-        public SlashCommandResponseBuilder WithContent(string content)
+        public InteractionResponseBuilder WithContent(string content)
         {
             _content = content;
             return this;
@@ -86,10 +86,10 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// </summary>
         /// <param name="embed">The embed that will be added.</param>
         /// <returns>
-        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        ///     The updated <see cref="InteractionResponseBuilder" />.
         /// </returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the max embed limit of 10 has been reached.</exception>
-        public SlashCommandResponseBuilder WithEmbed(IDiscordEmbed embed)
+        public InteractionResponseBuilder WithEmbed(IDiscordEmbed embed)
         {
             _embeds ??= new List<IDiscordEmbed>();
 
@@ -104,9 +104,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// </summary>
         /// <param name="allowedMentions">The allowed mentions.</param>
         /// <returns>
-        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        ///     The updated <see cref="InteractionResponseBuilder" />.
         /// </returns>
-        public SlashCommandResponseBuilder WithAllowedMentions(IDiscordAllowedMentions allowedMentions)
+        public InteractionResponseBuilder WithAllowedMentions(IDiscordAllowedMentions allowedMentions)
         {
             _allowedMentions = allowedMentions;
             return this;
@@ -117,10 +117,10 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// </summary>
         /// <param name="component">The new component.</param>
         /// <returns>
-        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        ///     The updated <see cref="InteractionResponseBuilder" />.
         /// </returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the max component limit of 5 has been reached.</exception>
-        public SlashCommandResponseBuilder WithComponent(IDiscordComponent component)
+        public InteractionResponseBuilder WithComponent(IDiscordComponent component)
         {
             _components ??= new List<IDiscordComponent>();
 
@@ -134,9 +134,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         ///     Sets the <see cref="_components"/> to an empty list of <see cref="IDiscordComponent"/>s.
         /// </summary>
         /// <returns>
-        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        ///     The updated <see cref="InteractionResponseBuilder" />.
         /// </returns>
-        public SlashCommandResponseBuilder EmptyComponents()
+        public InteractionResponseBuilder EmptyComponents()
         {
             _components = new List<IDiscordComponent>();
             return this;
@@ -146,9 +146,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         ///     Sets the <see cref="_embeds"/> to an empty list of <see cref="IDiscordEmbed"/>s.
         /// </summary>
         /// <returns>
-        ///     The updated <see cref="SlashCommandResponseBuilder" />.
+        ///     The updated <see cref="InteractionResponseBuilder" />.
         /// </returns>
-        public SlashCommandResponseBuilder EmptyEmbeds()
+        public InteractionResponseBuilder EmptyEmbeds()
         {
             _embeds = new List<IDiscordEmbed>();
             return this;
@@ -191,7 +191,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
                                     .WithTimeStamp();
 
             // Build the response with the embed.
-            var errorResponse = new SlashCommandResponseBuilder()
+            var errorResponse = new InteractionResponseBuilder()
                                 .WithEmbed(errorEmbedBuilder.Build())
                                 .MakePrivate()
                                 .Build();

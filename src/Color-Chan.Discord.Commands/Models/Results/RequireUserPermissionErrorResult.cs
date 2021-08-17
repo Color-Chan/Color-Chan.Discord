@@ -8,7 +8,7 @@ namespace Color_Chan.Discord.Commands.Models.Results
     ///     An error result describing an error for <see cref="RequireUserPermissionAttribute" /> when the user did
     ///     not meet the permission requirements.
     /// </summary>
-    public record RequireUserPermissionErrorResult : SlashCommandRequirementErrorResult
+    public record RequireUserPermissionErrorResult : InteractionRequirementErrorResult
     {
         /// <summary>
         ///     Initializes a new instance of <see cref="RequireUserPermissionErrorResult" />.

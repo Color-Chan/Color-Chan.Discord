@@ -199,7 +199,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             if (_slashCommandConfiguration.SendDefaultErrorMessage)
             {
                 _logger.LogWarning("Sending default error message");
-                return new InternalInteractionResponse(acknowledged, new SlashCommandResponseBuilder().DefaultErrorMessage());
+                return new InternalInteractionResponse(acknowledged, new InteractionResponseBuilder().DefaultErrorMessage());
             }
 
             throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");

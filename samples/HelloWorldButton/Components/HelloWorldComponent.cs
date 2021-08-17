@@ -23,7 +23,7 @@ namespace HelloWorldButton.Components
         [Component(HelloWorldComponentId, DiscordComponentType.Button)]
         public async Task<Result<IDiscordInteractionResponse>> HelloWorldButtonAsync()
         {
-            var response = new SlashCommandResponseBuilder()
+            var response = new InteractionResponseBuilder()
                            .WithContent("Hello world!")
                            .EmptyComponents()
                            .Build(DiscordInteractionResponseType.UpdateMessage);

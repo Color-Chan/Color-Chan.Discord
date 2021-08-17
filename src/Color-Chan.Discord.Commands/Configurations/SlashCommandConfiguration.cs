@@ -12,7 +12,6 @@ namespace Color_Chan.Discord.Commands.Configurations
         /// </summary>
         public bool EnableAutoSync { get; set; } = true;
         
-
         /// <summary>
         ///     Whether or not <see cref="IInteractionContext.Guild" /> should be auto loaded on command requests. Default: false.
         /// </summary>

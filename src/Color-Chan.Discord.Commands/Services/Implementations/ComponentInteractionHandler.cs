@@ -136,7 +136,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             if (_options.SendDefaultErrorMessage)
             {
                 _logger.LogWarning("Sending default error message");
-                return new InternalInteractionResponse(acknowledged, new SlashCommandResponseBuilder().DefaultErrorMessage());
+                return new InternalInteractionResponse(acknowledged, new InteractionResponseBuilder().DefaultErrorMessage());
             }
 
             throw new ComponentInteractionResultException($"Component interaction request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");

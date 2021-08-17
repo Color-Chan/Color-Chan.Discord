@@ -5,7 +5,7 @@ namespace Color_Chan.Discord.Commands.Models.Results
     /// <summary>
     ///     An error result describing a slash command rate limit.
     /// </summary>
-    public record BaseRateLimitErrorResult : SlashCommandRequirementErrorResult
+    public record BaseRateLimitErrorResult : InteractionRequirementErrorResult
     {
         /// <summary>
         ///     Initializes a new instance of <see cref="BaseRateLimitErrorResult" />.
