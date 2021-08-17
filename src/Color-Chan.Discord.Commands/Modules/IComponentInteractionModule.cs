@@ -9,10 +9,10 @@ namespace Color_Chan.Discord.Commands.Modules
     public interface IComponentInteractionModule
     {
         /// <summary>
-        ///     Set the current <see cref="IInteractionContext" /> for a component.
+        ///     Set the current <see cref="IComponentContext" /> for a component.
         /// </summary>
-        /// <param name="context">The new <see cref="IInteractionContext" />.</param>
+        /// <param name="context">The new <see cref="IComponentContext" />.</param>
         /// <exception cref="ArgumentNullException">When the given context was null.</exception>
-        void SetContext(IInteractionContext context);
+        void SetContext(IComponentContext context);
     }
 }

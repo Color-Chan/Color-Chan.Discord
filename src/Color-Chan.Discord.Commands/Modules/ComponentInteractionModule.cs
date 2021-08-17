@@ -9,10 +9,10 @@ namespace Color_Chan.Discord.Commands.Modules
         /// <summary>
         ///     The current context the component interaction.
         /// </summary>
-        protected IInteractionContext Context { get; set; } = null!;
+        protected IComponentContext Context { get; set; } = null!;
 
         /// <inheritdoc />
-        public void SetContext(IInteractionContext context)
+        public void SetContext(IComponentContext context)
         {
             Context = context ?? throw new ArgumentNullException(nameof(context));
         }

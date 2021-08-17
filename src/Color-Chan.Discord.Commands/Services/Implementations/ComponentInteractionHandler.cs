@@ -81,7 +81,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 channel = channelResult.Entity;
             }
 
-            InteractionContext context = new()
+            ComponentContext context = new()
             {
                 User = interaction.User ?? interaction.GuildMember?.User ?? throw new NullReferenceException(nameof(context.User)),
                 Message = interaction.Message,
@@ -96,7 +96,17 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 Guild = guild
             };
 
-            var componentInfo = _componentService.SearchComponent(context.Data.CustomId);
+            var customId = context.Data.CustomId;
+            if (customId.Contains(_options.CustomIdDataSeparator))
+            {
+                var customIdData = context.Data.CustomId.Split(_options.CustomIdDataSeparator).ToList();
+                customId = customIdData.First();
+                
+                customIdData.RemoveAt(0);
+                context.Args.AddRange(customIdData);
+            }
+            
+            var componentInfo = _componentService.SearchComponent(customId);
             if (componentInfo is null)
             {
                 throw new NullReferenceException($"Failed to find the requested interaction component {interaction.Data.CustomId}");

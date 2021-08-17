@@ -15,13 +15,13 @@ namespace Color_Chan.Discord.Commands.Configurations
         /// <summary>
         ///     Whether or not <see cref="IInteractionContext.Guild" /> should be auto loaded on command requests. Default: false.
         /// </summary>
-        public bool EnableAutoGetGuild { get; set; }
+        public bool EnableAutoGetGuild { get; set; } = false;
 
         /// <summary>
         ///     Whether or not <see cref="IInteractionContext.Channel" /> should be auto loaded on command requests. Default:
         ///     false.
         /// </summary>
-        public bool EnableAutoGetChannel { get; set; }
+        public bool EnableAutoGetChannel { get; set; } = false;
 
         /// <summary>
         ///     Whether or not the command handler should send a default error message when a slash command returned

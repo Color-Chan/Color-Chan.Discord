@@ -60,7 +60,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(InteractionContext context, IServiceProvider serviceProvider)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(IComponentContext context, IServiceProvider serviceProvider)
         {
             if (context.Data.CustomId is null) throw new NullReferenceException(nameof(context.Data.CustomId));
 
@@ -73,7 +73,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         }
 
         /// <inheritdoc />
-        public async Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(IComponentInfo componentInfo, InteractionContext context, IServiceProvider serviceProvider)
+        public async Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(IComponentInfo componentInfo, IComponentContext context, IServiceProvider serviceProvider)
         {
             if (context.Data.CustomId is null) throw new NullReferenceException(nameof(context.Data.CustomId));
 
@@ -106,6 +106,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Try to execute the component interaction.
             try
             {
+                // Todo: Pass down parsed arguments instead of having a string array on the context.
                 if (componentInfo.ComponentMethod.Invoke(instance, null) is not Task<Result<IDiscordInteractionResponse>> task)
                 {
                     var errorMessage = $"Failed to cast {componentInfo.ComponentMethod.Name} to Task<Result<IDiscordInteractionResponse>>";
