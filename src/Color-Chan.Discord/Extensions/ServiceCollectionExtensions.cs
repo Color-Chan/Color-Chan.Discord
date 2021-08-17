@@ -67,7 +67,10 @@ namespace Color_Chan.Discord.Extensions
             services.AddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
             services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
 
-            interactionConfigs ??= configuration => { configuration.AcknowledgeInteractions = true; };
+            interactionConfigs ??= configuration =>
+            {
+                configuration.VerifyInteractions = true;
+            };
 
             services.Configure(interactionConfigs);
 
@@ -91,25 +94,16 @@ namespace Color_Chan.Discord.Extensions
         ///     This can be found at https://discord.com/developers/applications/APPLICATION_ID/information
         /// </param>
         /// <param name="configurations">All the configuration options for Color-Chan.Discord.</param>
-        public static IServiceCollection AddColorChanDiscord(this IServiceCollection services,
-                                                             string botToken,
-                                                             string publicBotToken,
-                                                             ulong applicationId,
-                                                             ColorChanConfigurations configurations)
+        public static IServiceCollection AddColorChanDiscord(this IServiceCollection services, string botToken, string publicBotToken, ulong applicationId, ColorChanConfigurations configurations)
         {
-            if (botToken == null) throw new ArgumentNullException(nameof(botToken));
-
-            services.AddColorChanDiscordRest(botToken);
-            services.AddColorChanDiscordCommand(configurations.SlashCommandConfigs, configurations.DefaultCacheConfig, configurations.RedisCacheOptions, configurations.ComponentInteractionConfig);
-
-            services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
-            services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
-
-            configurations.InteractionConfigs ??= configuration => { configuration.AcknowledgeInteractions = true; };
-
-            services.Configure(configurations.InteractionConfigs);
-
-            return services;
+            return services.AddColorChanDiscord(botToken,
+                                                publicBotToken,
+                                                applicationId,
+                                                configurations.InteractionConfigs,
+                                                configurations.SlashCommandConfigs,
+                                                configurations.DefaultCacheConfig,
+                                                configurations.RedisCacheOptions,
+                                                configurations.ComponentInteractionConfig);
         }
     }
 }
