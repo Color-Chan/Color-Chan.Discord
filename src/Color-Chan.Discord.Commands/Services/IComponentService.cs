@@ -29,7 +29,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// <returns>
         ///     The <see cref="Result" /> containing the result of the component interaction execution.
         /// </returns>
-        Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(InteractionContext context, IServiceProvider serviceProvider);
+        Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(IComponentContext context, IServiceProvider serviceProvider);
 
         /// <summary>
         ///     Executes a component interaction.
@@ -40,7 +40,7 @@ namespace Color_Chan.Discord.Commands.Services
         /// <returns>
         ///     The <see cref="Result" /> containing the result of the component interaction execution.
         /// </returns>
-        Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(IComponentInfo componentInfo, InteractionContext context, IServiceProvider serviceProvider);
+        Task<Result<IDiscordInteractionResponse>> ExecuteComponentInteractionAsync(IComponentInfo componentInfo, IComponentContext context, IServiceProvider serviceProvider);
 
         /// <summary>
         ///     Search for a registered component.
