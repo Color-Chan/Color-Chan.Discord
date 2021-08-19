@@ -30,9 +30,9 @@ namespace ButtonArgs.Commands
             [SlashCommandOption("args", "A string argument", true)]
             string args,
             [SlashCommandOption("args2", "A string argument", false)]
-            string args2,
+            string? args2,
             [SlashCommandOption("args3", "A string argument", false)]
-            string args3
+            string? args3
         )
         {
             var customId = $"{ArgsButtonComponent.ButtonId};{args}";
