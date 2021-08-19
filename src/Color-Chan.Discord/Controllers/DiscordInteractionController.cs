@@ -78,7 +78,7 @@ namespace Color_Chan.Discord.Controllers
             // Check if the request has the headers needed for verification.
             if (!Request.Headers.ContainsKey(SignatureHeader) || !Request.Headers.ContainsKey(TimeStampHeader))
             {
-                return Unauthorized();
+                return UnauthorizedInteraction();
             }
 
             // Verify the interaction request.
@@ -87,8 +87,7 @@ namespace Color_Chan.Discord.Controllers
 
             if (_configuration.VerifyInteractions && !await _authService.VerifySignatureAsync(signature, timeStamp, Request.Body).ConfigureAwait(false))
             {
-                _logger.LogWarning("Failed to verify interaction command");
-                return Unauthorized("Failed to verify signatures");
+                return UnauthorizedInteraction();
             }
 
             // Convert the JSON body to a DiscordInteractionData object.
@@ -96,7 +95,7 @@ namespace Color_Chan.Discord.Controllers
             var interactionData = await JsonSerializer.DeserializeAsync<DiscordInteractionData>(Request.Body, _serializerOptions).ConfigureAwait(false);
             if (interactionData is null) throw new JsonException("Failed to deserialize JSON body to DiscordInteractionData");
 
-            _logger.LogDebug("Verified Interaction {Id}", interactionData.Id.ToString());
+            _logger.LogDebug("Interaction {Id} : Verified", interactionData.Id.ToString());
 
             // Execute the correct interaction type.
             var interactionResponse = interactionData.RequestType switch
@@ -110,7 +109,7 @@ namespace Color_Chan.Discord.Controllers
             if (!interactionResponse.Acknowledged)
             {
                 // Send the response back to discord.
-                _logger.LogDebug("Returning interaction response {Id} to discord", interactionData.Id.ToString());
+                _logger.LogDebug("Interaction {Id} : Returning interaction response to discord", interactionData.Id.ToString());
                 return SerializeResult(interactionResponse.Response);
             }
 
@@ -124,14 +123,14 @@ namespace Color_Chan.Discord.Controllers
                 AllowedMentions = responseData?.AllowedMentions
             };
 
-            _logger.LogDebug("Editing original interaction response {Id}", interactionData.Id.ToString());
+            _logger.LogDebug("Interaction {Id} : Editing original interaction response", interactionData.Id.ToString());
             var responseResult = await _restApplication.EditOriginalInteractionResponseAsync(_discordTokens.ApplicationId, interactionData.Token, editResponse).ConfigureAwait(false);
             if (responseResult.IsSuccessful) return Ok();
 
             if (responseResult.ErrorResult is DiscordHttpErrorResult httpErrorResult)
             {
                 // Send an error response.
-                _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}, details: {Details}",
+                _logger.LogWarning("Interaction {Id} : Failed to edit interaction response, reason: {Message}, details: {Details}",
                                    interactionData.Id.ToString(),
                                    responseResult.ErrorResult?.ErrorMessage,
                                    JsonSerializer.Serialize(httpErrorResult.ErrorData));
@@ -139,7 +138,7 @@ namespace Color_Chan.Discord.Controllers
             }
 
             // Send an error response.
-            _logger.LogWarning("Failed to edit interaction response {Id}, reason: {Message}", interactionData.Id.ToString(), responseResult.ErrorResult?.ErrorMessage);
+            _logger.LogWarning("Interaction {Id} : Failed to edit interaction response, reason: {Message}", interactionData.Id.ToString(), responseResult.ErrorResult?.ErrorMessage);
             return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
         }
 
@@ -154,6 +153,12 @@ namespace Color_Chan.Discord.Controllers
         {
             var data = result.ToDataModel();
             return Content(JsonSerializer.Serialize(data, data.GetType(), _serializerOptions), ReturnContentType, Encoding.UTF8);
+        }
+
+        private ActionResult UnauthorizedInteraction()
+        {
+            _logger.LogWarning("Interaction {Id} : Failed to verify interaction command", "unknown");
+            return Unauthorized("Failed to verify signatures");
         }
     }
 }

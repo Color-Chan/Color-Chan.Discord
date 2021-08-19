@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Commands.Configurations
         public bool EnableAutoGetChannel { get; set; } = false;
 
         /// <summary>
-        ///     The <see cref="char"/> used to separate arguments in the <see cref="DiscordInteractionRequestData.CustomId"/>.
+        ///     The <see cref="char" /> used to separate arguments in the <see cref="DiscordInteractionRequestData.CustomId" />.
         ///     Default: `;`.
         /// </summary>
         public char CustomIdDataSeparator { get; set; } = ';';

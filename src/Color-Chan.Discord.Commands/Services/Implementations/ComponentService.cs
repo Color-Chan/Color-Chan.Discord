@@ -77,6 +77,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
         {
             if (context.Data.CustomId is null) throw new NullReferenceException(nameof(context.Data.CustomId));
 
+            _logger.LogInformation("Interaction {Id} : Executing component {ComponentId}, args: {Args}", context.InteractionId.ToString(), componentInfo.CustomId, context.Args);
+
             // Validate the types.
             if (context.Data.ComponentType != componentInfo.Type)
             {
