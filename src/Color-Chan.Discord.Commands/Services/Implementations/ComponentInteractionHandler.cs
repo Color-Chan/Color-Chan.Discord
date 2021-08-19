@@ -72,6 +72,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
                 guild = guildResult.Entity;
+                _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(),interaction.GuildId.Value.ToString());
             }
 
             IDiscordChannel? channel = null;
@@ -79,6 +80,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
                 channel = channelResult.Entity;
+                _logger.LogDebug("Interaction: {Id} : Fetched channel data {ChannelId}", interaction.Id.ToString(), interaction.ChannelId.Value.ToString());
             }
 
             ComponentContext context = new()
@@ -99,6 +101,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             var customId = context.Data.CustomId;
             if (customId.Contains(_options.CustomIdDataSeparator))
             {
+                _logger.LogDebug("Interaction: {Id} : Parsing custom id arguments", interaction.Id.ToString());
                 var customIdData = context.Data.CustomId.Split(_options.CustomIdDataSeparator).ToList();
                 customId = customIdData.First();
                 
@@ -124,11 +127,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 var acknowledgeResult = await _restApplication.CreateInteractionResponseAsync(interaction.Id, interaction.Token, acknowledgeResponse).ConfigureAwait(false);
                 if (!acknowledgeResult.IsSuccessful)
                 {
-                    _logger.LogWarning("Failed to acknowledge interaction command {Id}, reason: {Message}", interaction.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
+                    _logger.LogWarning("Interaction: {Id} : Failed to acknowledge interaction command, reason: {Message}", interaction.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
                 }
                 else
                 {
-                    _logger.LogDebug("Acknowledged component interaction {Id}", interaction.Id.ToString());
+                    _logger.LogDebug("Interaction: {Id} : Acknowledged component interaction", interaction.Id.ToString());
                     acknowledged = true;
                 }
             }
@@ -146,9 +149,10 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Return the response.
             if (result.IsSuccessful) return new InternalInteractionResponse(acknowledged, result.Entity!);
 
+            _logger.LogWarning("Interaction: {Id} : Returned unsuccessfully, reason: {ErrorReason}", interaction.Id.ToString(), result.ErrorResult?.ErrorMessage);
             if (_options.SendDefaultErrorMessage)
             {
-                _logger.LogWarning("Sending default error message");
+                _logger.LogWarning("Interaction: {Id} : Sending default error message", interaction.Id.ToString());
                 return new InternalInteractionResponse(acknowledged, new InteractionResponseBuilder().DefaultErrorMessage());
             }
 
