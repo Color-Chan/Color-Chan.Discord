@@ -31,7 +31,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
 
             _logger.LogDebug("Interaction {Id} : Executing interaction requirements", context.InteractionId.ToString());
-            
+
             foreach (var requirement in requirements)
             {
                 var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);

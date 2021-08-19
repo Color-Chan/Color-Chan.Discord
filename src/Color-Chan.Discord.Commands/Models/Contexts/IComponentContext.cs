@@ -9,7 +9,7 @@ namespace Color_Chan.Discord.Commands.Models.Contexts
     public interface IComponentContext : IInteractionContext
     {
         /// <summary>
-        ///     The arguments embedded in the <see cref="IComponentInfo.CustomId"/>
+        ///     The arguments embedded in the <see cref="IComponentInfo.CustomId" />
         /// </summary>
         List<string> Args { get; set; }
     }

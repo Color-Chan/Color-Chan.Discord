@@ -38,7 +38,7 @@ namespace ButtonArgs.Commands
             var customId = $"{ArgsButtonComponent.ButtonId};{args}";
             if (args2 is not null) customId += $";{args2}";
             if (args3 is not null) customId += $";{args3}";
-            
+
             var actionRowBuilder = new ActionRowComponentBuilder()
                 .WithButton("Don't press me!", DiscordButtonStyle.Danger, customId);
 

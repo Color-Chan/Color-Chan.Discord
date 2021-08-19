@@ -72,7 +72,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
                 guild = guildResult.Entity;
-                _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(),interaction.GuildId.Value.ToString());
+                _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(), interaction.GuildId.Value.ToString());
             }
 
             IDiscordChannel? channel = null;
@@ -104,11 +104,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 _logger.LogDebug("Interaction: {Id} : Parsing custom id arguments", interaction.Id.ToString());
                 var customIdData = context.Data.CustomId.Split(_options.CustomIdDataSeparator).ToList();
                 customId = customIdData.First();
-                
+
                 customIdData.RemoveAt(0);
                 context.Args.AddRange(customIdData);
             }
-            
+
             var componentInfo = _componentService.SearchComponent(customId);
             if (componentInfo is null)
             {

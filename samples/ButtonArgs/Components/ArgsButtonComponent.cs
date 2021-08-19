@@ -28,7 +28,7 @@ namespace ButtonArgs.Components
             {
                 embedBuilder.WithField(Context.Args.IndexOf(arg).ToString(), arg);
             }
-            
+
             var response = new InteractionResponseBuilder()
                            .WithEmbed(embedBuilder.Build())
                            .EmptyComponents()

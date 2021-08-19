@@ -124,11 +124,12 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                     options = subOption.SubOptions;
                                 }
                             }
+
                             break;
                     }
                 }
             }
-            
+
             // Search for a top level or sub command.
             var arr = context.SlashCommandName.ToArray();
             var count = arr.Length;

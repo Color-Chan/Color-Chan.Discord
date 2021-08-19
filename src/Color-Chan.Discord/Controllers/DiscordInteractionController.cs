@@ -154,7 +154,7 @@ namespace Color_Chan.Discord.Controllers
             var data = result.ToDataModel();
             return Content(JsonSerializer.Serialize(data, data.GetType(), _serializerOptions), ReturnContentType, Encoding.UTF8);
         }
-        
+
         private ActionResult UnauthorizedInteraction()
         {
             _logger.LogWarning("Interaction {Id} : Failed to verify interaction command", "unknown");

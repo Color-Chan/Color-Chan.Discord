@@ -91,7 +91,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             instance.SetContext(context);
 
             _logger.LogInformation("Interaction: {Id} : Executing slash command {Name}", context.InteractionId.ToString(), context.SlashCommandName);
-            
+
             // Try to run the requirements for the slash command.
             try
             {
