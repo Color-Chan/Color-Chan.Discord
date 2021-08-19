@@ -136,7 +136,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Local method to execute the command.
             async Task<Result<IDiscordInteractionResponse>> Handler()
             {
-                return await _componentService.ExecuteComponentInteractionAsync(context, _serviceProvider).ConfigureAwait(false);
+                return await _componentService.ExecuteComponentInteractionAsync(componentInfo, context, _serviceProvider).ConfigureAwait(false);
             }
 
             // Execute the pipelines and the component interaction.
