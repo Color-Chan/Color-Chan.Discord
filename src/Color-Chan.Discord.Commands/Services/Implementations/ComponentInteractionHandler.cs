@@ -147,9 +147,13 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                .Aggregate((ComponentInteractionHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
 
             // Return the response.
-            if (result.IsSuccessful) return new InternalInteractionResponse(acknowledged, result.Entity!);
+            if (result.IsSuccessful)
+            {
+                _logger.LogWarning("Interaction: {Id} : Component interaction returned successfully", interaction.Id.ToString());
+                return new InternalInteractionResponse(acknowledged, result.Entity!);
+            }
 
-            _logger.LogWarning("Interaction: {Id} : Returned unsuccessfully, reason: {ErrorReason}", interaction.Id.ToString(), result.ErrorResult?.ErrorMessage);
+            _logger.LogWarning("Interaction: {Id} : Component interaction returned unsuccessfully, reason: {ErrorReason}", interaction.Id.ToString(), result.ErrorResult?.ErrorMessage);
             if (_options.SendDefaultErrorMessage)
             {
                 _logger.LogWarning("Interaction: {Id} : Sending default error message", interaction.Id.ToString());

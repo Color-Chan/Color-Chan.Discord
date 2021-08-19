@@ -90,6 +90,8 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             context.MethodName = commandMethod.Name;
             instance.SetContext(context);
 
+            _logger.LogInformation("Interaction: {Id} : Executing slash command {Name}", context.InteractionId.ToString(), context.SlashCommandName);
+            
             // Try to run the requirements for the slash command.
             try
             {
@@ -101,7 +103,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Exception thrown while running command {CommandName} requirements", commandMethod.Name);
+                _logger.LogError(e, "Interaction: {Id} : Exception thrown while running command {CommandName} requirements", context.InteractionId.ToString(), commandMethod.Name);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException!));
             }
 
@@ -124,7 +126,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 if (commandMethod.Invoke(instance, args.ToArray()) is not Task<Result<IDiscordInteractionResponse>> task)
                 {
                     var errorMessage = $"Failed to cast {commandMethod.Name} to Task<Result<IDiscordInteractionResponse>>";
-                    _logger.LogWarning(errorMessage);
+                    _logger.LogWarning("Interaction: {Id} : {ErrorMessage}", context.InteractionId.ToString(), errorMessage);
                     return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(errorMessage));
                 }
 
@@ -132,7 +134,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Exception thrown while running command {CommandName}", commandMethod.Name);
+                _logger.LogError(e, "Interaction: {Id} : Exception thrown while running command {CommandName}", context.InteractionId.ToString(), commandMethod.Name);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException ?? e));
             }
         }
@@ -146,7 +148,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 return await ExecuteSlashCommandAsync(commandInfo.CommandMethod, commandInfo.CommandOptions, commandInfo.Requirements, context, suppliedOptions, serviceProvider).ConfigureAwait(false);
             }
 
-            _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandInfo.CommandName);
+            _logger.LogWarning("Interaction: {Id} : Failed to executed {Name} since it was a command group or a sub command group", context.InteractionId.ToString(), commandInfo.CommandName);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
         }
 
@@ -164,7 +166,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                       serviceProvider).ConfigureAwait(false);
             }
 
-            _logger.LogWarning("Failed to executed {Name} since it was a command group or a sub command group", commandOptionInfo.Name);
+            _logger.LogWarning("Interaction: {Id} : Failed to executed {Name} since it was a command group or a sub command group", context.InteractionId.ToString(), commandOptionInfo.Name);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
         }
 
@@ -200,7 +202,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             Result<IDiscordInteractionResponse> NoCommandFoundResponse()
             {
                 var readableCommandName = string.Join(" ", context.SlashCommandName);
-                _logger.LogWarning("Command {Name} is not registered", context.SlashCommandName);
+                _logger.LogWarning("Interaction: {Id} : Command {Name} is not registered", context.InteractionId.ToString(), context.SlashCommandName);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {readableCommandName}"));
             }
 

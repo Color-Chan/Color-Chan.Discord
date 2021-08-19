@@ -30,13 +30,15 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 return Result.FromSuccess();
             }
 
+            _logger.LogDebug("Interaction {Id} : Executing interaction requirements", context.InteractionId.ToString());
+            
             foreach (var requirement in requirements)
             {
                 var result = await requirement.CheckRequirementAsync(context, serviceProvider).ConfigureAwait(false);
 
                 if (result.IsSuccessful) continue;
 
-                _logger.LogDebug("Failed to pass requirement {RequirementName}", requirement.GetType().Name);
+                _logger.LogDebug("Interaction {Id} : Failed to pass requirement {RequirementName}", context.InteractionId.ToString(), requirement.GetType().Name);
                 return Result.FromError(result.ErrorResult!);
             }
 

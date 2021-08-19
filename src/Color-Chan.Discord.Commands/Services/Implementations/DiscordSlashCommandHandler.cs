@@ -68,6 +68,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
                 guild = guildResult.Entity;
+                _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(), interaction.GuildId.Value.ToString());
             }
 
             IDiscordChannel? channel = null;
@@ -75,6 +76,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
                 channel = channelResult.Entity;
+                _logger.LogDebug("Interaction: {Id} : Fetched channel data {ChannelId}", interaction.Id.ToString(), interaction.ChannelId.Value.ToString());
             }
 
             ISlashCommandContext context = new SlashCommandContext
@@ -122,12 +124,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                     options = subOption.SubOptions;
                                 }
                             }
-
                             break;
                     }
                 }
             }
-
+            
             // Search for a top level or sub command.
             var arr = context.SlashCommandName.ToArray();
             var count = arr.Length;
@@ -169,11 +170,11 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 var acknowledgeResult = await _restApplication.CreateInteractionResponseAsync(interaction.Id, interaction.Token, acknowledgeResponse).ConfigureAwait(false);
                 if (!acknowledgeResult.IsSuccessful)
                 {
-                    _logger.LogWarning("Failed to acknowledge interaction command {Id}, reason: {Message}", interaction.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
+                    _logger.LogWarning("Interaction: {Id} : Failed to acknowledge interaction command, reason: {Message}", interaction.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
                 }
                 else
                 {
-                    _logger.LogDebug("Acknowledged interaction command {Id}", interaction.Id.ToString());
+                    _logger.LogDebug("Interaction: {Id} : Acknowledged interaction command", interaction.Id.ToString());
                     acknowledged = true;
                 }
             }
@@ -194,11 +195,16 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                                                .Aggregate((SlashCommandHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
 
             // Return the response.
-            if (result.IsSuccessful) return new InternalInteractionResponse(acknowledged, result.Entity!);
+            if (result.IsSuccessful)
+            {
+                _logger.LogWarning("Interaction: {Id} : Slash command interaction returned successfully", interaction.Id.ToString());
+                return new InternalInteractionResponse(acknowledged, result.Entity!);
+            }
 
+            _logger.LogWarning("Interaction: {Id} : Slash command interaction returned unsuccessfully, reason: {ErrorReason}", interaction.Id.ToString(), result.ErrorResult?.ErrorMessage);
             if (_slashCommandConfiguration.SendDefaultErrorMessage)
             {
-                _logger.LogWarning("Sending default error message");
+                _logger.LogWarning("Interaction: {Id} : Sending default error message", interaction.Id.ToString());
                 return new InternalInteractionResponse(acknowledged, new InteractionResponseBuilder().DefaultErrorMessage());
             }
 
