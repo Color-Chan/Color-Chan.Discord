@@ -117,14 +117,14 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result> DeleteMessageAsync(ulong channelId, ulong messageId, string auditLogReason, CancellationToken ct = default)
+        public virtual async Task<Result> DeleteMessageAsync(ulong channelId, ulong messageId, string? auditLogReason = null, CancellationToken ct = default)
         {
             var endpoint = $"channels/{channelId.ToString()}/messages/{messageId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public virtual async Task<Result> BulkDeleteMessageAsync(ulong channelId, IReadOnlyList<ulong> messageIds, string auditLogReason, CancellationToken ct = default)
+        public virtual async Task<Result> BulkDeleteMessageAsync(ulong channelId, IReadOnlyList<ulong> messageIds, string? auditLogReason = null, CancellationToken ct = default)
         {
             if (messageIds.Count is < 2 or > 100) throw new ArgumentOutOfRangeException(nameof(messageIds), "The amount of message IDs has to be between 2 and 100.");
 
