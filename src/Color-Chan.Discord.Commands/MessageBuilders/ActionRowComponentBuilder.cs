@@ -76,6 +76,49 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
 
             return this;
         }
+        
+        /// <summary>
+        ///     Adds a button to the action row.
+        /// </summary>
+        /// <param name="emoji">The emoji the button will use.</param>
+        /// <param name="style">The style the button will use.</param>
+        /// <param name="customId">The custom id. Required if <paramref name="url" /> is not set.</param>
+        /// <param name="url">The URL the button will open. Required if <paramref name="customId" /> is not set.</param>
+        /// <param name="disabled">Whether or not the button is disabled.</param>
+        /// <returns>
+        ///     The <see cref="ActionRowComponentBuilder" /> with the added button.
+        /// </returns>
+        /// <remarks>
+        ///     Only one of <paramref name="url" /> or <paramref name="customId" /> can be set!
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">When the ActionRow already has 5 buttons.</exception>
+        /// <exception cref="MissingButtonPropertiesException">
+        ///     When <paramref name="url" /> and <paramref name="customId" /> are
+        ///     both null.
+        /// </exception>
+        /// <exception cref="ArgumentException">When <paramref name="url" /> <paramref name="customId" /> are both set.</exception>
+        /// <exception cref="InvalidActionRowException">When the <see cref="_childComponents" /> contains a select menu component.</exception>
+        public ActionRowComponentBuilder WithButton(IDiscordEmoji emoji, DiscordButtonStyle style, string? customId, string? url = null, bool disabled = false)
+        {
+            if (customId is not null && customId.Length > MaxCustomIdLength)
+                throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {MaxCustomIdLength} characters.");
+            if (_selectMenu is not null) throw new InvalidActionRowException("An action row can not have a select menu and buttons");
+            if (_childComponents.Count >= MaxButtons) throw new ArgumentOutOfRangeException(nameof(_childComponents), $"An action row can not have more then {MaxButtons} buttons");
+            if (customId is null && url is null) throw new MissingButtonPropertiesException($"{nameof(url)} or {nameof(customId)} needs to be set");
+            if (customId is not null && url is not null) throw new ArgumentException($"Only one of {nameof(url)} or {nameof(customId)} can be set");
+
+            _childComponents.Add(new DiscordComponent
+            {
+                Disabled = disabled,
+                CustomId = customId,
+                ButtonStyle = style,
+                Emoji = emoji,
+                Type = DiscordComponentType.Button,
+                Url = url
+            });
+
+            return this;
+        }
 
         /// <summary>
         ///     Adds a select menu to the action row.
