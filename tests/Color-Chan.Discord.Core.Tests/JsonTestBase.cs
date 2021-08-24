@@ -61,8 +61,8 @@ namespace Color_Chan.Discord.Core.Tests
             var serialized = await JsonDocument.ParseAsync(stream);
             var original = await JsonDocument.ParseAsync(testJson);
 
-            var serializedString = serialized.RootElement.GetRawText();
-            var originalString = original.RootElement.GetRawText();
+            var serializedString = serialized.RootElement.GetRawText().Replace("\r", "").Replace("\n", "");
+            var originalString = original.RootElement.GetRawText().Replace("\r", "").Replace("\n", "");
 
             serializedString.Should().BeEquivalentTo(originalString);
         }
