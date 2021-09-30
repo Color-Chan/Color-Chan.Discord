@@ -112,6 +112,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
                 if (componentInfo.ComponentMethod.Invoke(instance, null) is not Task<Result<IDiscordInteractionResponse>> task)
                 {
                     var errorMessage = $"Failed to cast {componentInfo.ComponentMethod.Name} to Task<Result<IDiscordInteractionResponse>>";
+                    // ReSharper disable once TemplateIsNotCompileTimeConstantProblem
                     _logger.LogWarning(errorMessage);
                     return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(errorMessage));
                 }

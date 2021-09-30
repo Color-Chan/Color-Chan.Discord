@@ -4,6 +4,7 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Rest.Models.Guild;
+using Color_Chan.Discord.Rest.Models.Message;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
@@ -21,6 +22,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
             if (data.User is not null) User = new DiscordUser(data.User);
             Token = data.Token;
             Versions = data.Versions;
+            if (data.Message is not null) Message = new DiscordMessage(data.Message);
         }
 
         /// <inheritdoc />

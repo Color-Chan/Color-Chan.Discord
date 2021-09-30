@@ -36,7 +36,7 @@ namespace RoleManager.Pipelines
 
             sw.Stop();
 
-            _logger.Log(sw.ElapsedMilliseconds > 500 ? LogLevel.Warning : LogLevel.Information, "Command {Name} ran for {Time}ms.", context.MethodName, sw.ElapsedMilliseconds.ToString());
+            _logger.Log(sw.ElapsedMilliseconds > 500 ? LogLevel.Warning : LogLevel.Information, "Command {Name} ran for {Time}ms", context.MethodName, sw.ElapsedMilliseconds.ToString());
             return result;
         }
     }

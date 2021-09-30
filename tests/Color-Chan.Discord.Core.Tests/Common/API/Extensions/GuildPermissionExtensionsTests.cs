@@ -52,7 +52,7 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.Extensions
             var permission = permissionString.ConvertToGuildPermission();
 
             // Assert
-            expectedPermission.Should().BeEquivalentTo(permission);
+            expectedPermission.Should().Be(permission);
         }
 
         [TestCase("1409286155", DiscordPermission.Administrator |
@@ -101,7 +101,7 @@ namespace Color_Chan.Discord.Core.Tests.Common.API.Extensions
             var permission = span.ConvertToGuildPermission();
 
             // Assert
-            expectedPermission.Should().BeEquivalentTo(permission);
+            expectedPermission.Should().Be(permission);
         }
     }
 }
