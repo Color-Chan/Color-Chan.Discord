@@ -37,6 +37,7 @@ namespace Color_Chan.Discord.Rest.Models.Message
             Reactions = data.Reactions?.Select(reactionData => new DiscordReaction(reactionData));
             Nonce = data.Nonce;
             IsPinned = data.IsPinned;
+            WebhookId = data.WebhookId;
             Type = data.Type;
             Activity = data.Activity is not null ? new DiscordMessageActivity(data.Activity) : null;
             Application = data.Application is not null ? new DiscordApplication(data.Application) : null;
