@@ -77,6 +77,27 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IReadOnlyList<IDiscordMessage>>.FromSuccess(list);
         }
+
+        internal static Result<IDiscordUser> ConvertResult(Result<DiscordUserData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordUser>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordUser>.FromSuccess(new DiscordUser(result.Entity));
+        }
+        
+        internal static Result<IDiscordGuild> ConvertResult(Result<DiscordGuildData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuild>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordGuild>.FromSuccess(new DiscordGuild(result.Entity));
+        }
+
+        internal static Result<IDiscordGuildPreview> ConvertResult(Result<DiscordGuildPreviewData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildPreview>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordGuildPreview>.FromSuccess(new DiscordGuildPreview(result.Entity));
+        }
         
         internal static Result<IDiscordChannel> ConvertResult(Result<DiscordChannelData> result)
         {
@@ -84,12 +105,49 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IDiscordChannel>.FromSuccess(new DiscordChannel(result.Entity));
         }
-        
-        internal static Result<IDiscordUser> ConvertResult(Result<DiscordUserData> result)
-        {
-            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordUser>.FromError(null, result.ErrorResult);
 
-            return Result<IDiscordUser>.FromSuccess(new DiscordUser(result.Entity));
+        internal static Result<IReadOnlyList<IDiscordChannel>> ConvertResult(Result<IReadOnlyList<DiscordChannelData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordChannel>>.FromError(null, result.ErrorResult);
+
+            var roles = new List<IDiscordChannel>();
+            foreach (var data in result.Entity) roles.Add(new DiscordChannel(data));
+
+            return Result<IReadOnlyList<IDiscordChannel>>.FromSuccess(roles);
+        }
+        
+        internal static Result<IDiscordGuildRole> ConvertResult(Result<DiscordGuildRoleData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildRole>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordGuildRole>.FromSuccess(new DiscordGuildRole(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordGuildRole>> ConvertResult(Result<IReadOnlyList<DiscordGuildRoleData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordGuildRole>>.FromError(null, result.ErrorResult);
+
+            var roles = new List<IDiscordGuildRole>();
+            foreach (var roleData in result.Entity) roles.Add(new DiscordGuildRole(roleData));
+
+            return Result<IReadOnlyList<IDiscordGuildRole>>.FromSuccess(roles);
+        }
+        
+        internal static Result<IDiscordGuildMember> ConvertResult(Result<DiscordGuildMemberData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildMember>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordGuildMember>.FromSuccess(new DiscordGuildMember(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordGuildMember>> ConvertResult(Result<IReadOnlyList<DiscordGuildMemberData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordGuildMember>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordGuildMember>();
+            foreach (var data in result.Entity) list.Add(new DiscordGuildMember(data));
+
+            return Result<IReadOnlyList<IDiscordGuildMember>>.FromSuccess(list);
         }
     }
 }
