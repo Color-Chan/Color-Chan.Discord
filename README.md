@@ -223,7 +223,7 @@ You will need to add this URL to you [application](https://discord.com/developer
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/Color-Chan/Color-Chan.Discord/issues) for a list of proposed features (and known issues) W.I.P.
+See the [milestones](https://github.com/Color-Chan/Color-Chan.Discord/milestones) for a list of proposed features.
 
 
 
