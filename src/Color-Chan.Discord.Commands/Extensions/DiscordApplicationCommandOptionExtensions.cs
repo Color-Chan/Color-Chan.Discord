@@ -36,9 +36,43 @@ namespace Color_Chan.Discord.Commands.Extensions
                     // IsRequired has been updated.
                     return true;
 
-                if (!commandOption.Type.Equals(existingOption.Type))
+                if (commandOption.Type != existingOption.Type)
                     // Type has been updated.
                     return true;
+                
+                if ((commandOption.Autocomplete ?? false) != (existingOption.Autocomplete ?? false))
+                    // Autocomplete has been updated.
+                    return true;
+                
+                if (commandOption.MaxValue != existingOption.MaxValue)
+                    // MaxValue has been updated.
+                    return true;
+                
+                if (commandOption.MinValue != existingOption.MinValue)
+                    // Autocomplete has been updated.
+                    return true;
+
+                if (commandOption.ChanelTypes != null)
+                {
+                    if (existingOption.ChanelTypes is not null && commandOption.ChanelTypes.Count() != existingOption.ChanelTypes.Count())
+                        // Amount of ChanelTypes has been updated.
+                        return true;
+
+                    foreach (var newChannelType in commandOption.ChanelTypes)
+                    {
+                        var existingChannelType = existingOption.ChanelTypes?.FirstOrDefault(x => x == newChannelType);
+
+                        if (existingChannelType is null)
+                            // New option found.
+                            return true;
+
+                        // The command option channel type already exists.
+
+                        if (newChannelType != existingChannelType)
+                            // Value has been updated.
+                            return true;
+                    }
+                }
 
                 if (commandOption.Choices != null)
                 {
