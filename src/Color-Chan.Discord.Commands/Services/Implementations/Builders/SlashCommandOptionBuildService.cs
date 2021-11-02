@@ -75,11 +75,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                     Type = optionInfo.Type,
                     IsRequired = optionInfo.IsRequired is true ? true : null,
                     Choices = BuildChoiceData(optionInfo.Choices),
-                    SubOptions = subOptions
+                    SubOptions = subOptions,
+                    Autocomplete = optionInfo.Autocomplete,
+                    ChanelTypes = optionInfo.ChanelTypes,
+                    MaxValue = optionInfo.MaxValue,
+                    MinValue = optionInfo.MinValue
                 });
             }
-
-
+            
             if (options.Count > MaxCommandOptions) throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
 
             return options;

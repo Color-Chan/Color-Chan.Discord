@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.Models.Application
@@ -34,5 +35,25 @@ namespace Color_Chan.Discord.Core.Common.Models.Application
         ///     If the option is a subcommand or subcommand group type, this nested options will be the parameters.
         /// </summary>
         public IEnumerable<IDiscordApplicationCommandOption>? SubOptions { get; set; }
+        
+        /// <summary>
+        ///     If the option is a channel type, the channels shown will be restricted to these types.
+        /// </summary>
+        public IEnumerable<DiscordChannelType>? ChanelTypes { get; init; }
+
+        /// <summary>
+        ///     If the option is an INTEGER or NUMBER type, the minimum value permitted.
+        /// </summary>
+        public int? MinValue { get; init; }
+
+        /// <summary>
+        ///     If the option is an INTEGER or NUMBER type, the maximum value permitted.
+        /// </summary>
+        public int? MaxValue { get; init; }
+        
+        /// <summary>
+        ///     Enable autocomplete interactions for this option.
+        /// </summary>
+        public bool? Autocomplete { get; init; }
     }
 }

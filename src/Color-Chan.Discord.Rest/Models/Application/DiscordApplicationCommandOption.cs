@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.Models.Application;
 
@@ -15,6 +16,10 @@ namespace Color_Chan.Discord.Rest.Models.Application
             IsRequired = data.IsRequired;
             Choices = data.Choices?.Select(choice => new DiscordApplicationCommandOptionChoice(choice.Name, choice.Value));
             SubOptions = data.SubOptions?.Select(subOption => new DiscordApplicationCommandOption(subOption));
+            ChanelTypes = data.ChanelTypes;
+            MinValue = data.MinValue;
+            MaxValue = data.MaxValue;
+            Autocomplete = data.Autocomplete;
         }
 
         /// <inheritdoc />
@@ -34,5 +39,17 @@ namespace Color_Chan.Discord.Rest.Models.Application
 
         /// <inheritdoc />
         public IEnumerable<IDiscordApplicationCommandOption>? SubOptions { get; set; }
+
+        /// <inheritdoc />
+        public IEnumerable<DiscordChannelType>? ChanelTypes { get; init; }
+
+        /// <inheritdoc />
+        public int? MinValue { get; init; }
+
+        /// <inheritdoc />
+        public int? MaxValue { get; init; }
+
+        /// <inheritdoc />
+        public bool? Autocomplete { get; init; }
     }
 }
