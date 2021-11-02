@@ -49,7 +49,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
         ///     If the option is a channel type, the channels shown will be restricted to these types.
         /// </summary>
         [JsonPropertyName("channel_types")]
-        public IEnumerable<DiscordChannelType>? ChanelTypes { get; init; }
+        public IEnumerable<DiscordChannelType>? ChanelTypes { get; set; }
 
         /// <summary>
         ///     If the option is an INTEGER or NUMBER type, the minimum value permitted.

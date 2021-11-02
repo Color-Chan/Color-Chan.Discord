@@ -41,15 +41,14 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
 
                 if (choiceAttributes.Any())
                 {
-                    var choices = choiceAttributes
-                                  .Select(choiceAttribute => new KeyValuePair<string, object>(choiceAttribute.Name, choiceAttribute.ObjectValue()))
-                                  .ToList();
+                    var choices = choiceAttributes.Select(choiceAttribute => new KeyValuePair<string, object>(choiceAttribute.Name, choiceAttribute.ObjectValue()))
+                                                  .ToList();
 
-                    options.Add(new SlashCommandOptionInfo(optionAttribute.Name, optionAttribute.Description, parameter.ParameterType, optionAttribute.IsRequired, choices, optionAttribute.Type));
+                    options.Add(new SlashCommandOptionInfo(optionAttribute, parameter.ParameterType, choices));
                 }
                 else
                 {
-                    options.Add(new SlashCommandOptionInfo(optionAttribute.Name, optionAttribute.Description, parameter.ParameterType, optionAttribute.IsRequired, null, optionAttribute.Type));
+                    options.Add(new SlashCommandOptionInfo(optionAttribute, parameter.ParameterType));
                 }
             }
 

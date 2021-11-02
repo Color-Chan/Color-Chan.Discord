@@ -12,32 +12,29 @@ namespace Color_Chan.Discord.Commands.Models.Info
     public class SlashCommandOptionInfo : ISlashCommandOptionInfo
     {
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" />.
+        ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" /> for a command option.
         /// </summary>
-        /// <param name="name">The name of the option.</param>
-        /// <param name="description">The description of the option.</param>
+        /// <param name="optionAttribute">The <see cref="SlashCommandOptionAttribute"/> containing all the data about the option.</param>
         /// <param name="type">The type of the parameter.</param>
-        /// <param name="isRequired">Whether or not the option is required.</param>
-        /// <param name="choices"></param>
-        /// <param name="optionType">
-        ///     The type of the option. Will be automatically set to the correct type when set to null, using
-        ///     <paramref name="type" />.
-        /// </param>
+        /// <param name="choices">the choices that the command option has.</param>
         /// <exception cref="ArgumentNullException">
-        ///     Thrown when <paramref name="name" />, <paramref name="description" /> or
+        ///     Thrown when <see cref="SlashCommandOptionAttribute.Name"/>, <see cref="SlashCommandOptionAttribute.Description"/> or
         ///     <paramref name="type" /> is null.
         /// </exception>
-        public SlashCommandOptionInfo(string name, string description, Type type, bool? isRequired, IEnumerable<KeyValuePair<string, object>>? choices = null,
-                                      DiscordApplicationCommandOptionType? optionType = null)
+        public SlashCommandOptionInfo(SlashCommandOptionAttribute optionAttribute, Type type, IEnumerable<KeyValuePair<string, object>>? choices = null)
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Description = description ?? throw new ArgumentNullException(nameof(description));
-            IsRequired = isRequired;
+            Name = optionAttribute.Name ?? throw new ArgumentNullException(nameof(optionAttribute.Name));
+            Description = optionAttribute.Description ?? throw new ArgumentNullException(nameof(optionAttribute.Description));
+            IsRequired = optionAttribute.IsRequired;
             Choices = choices;
+            MinValue = optionAttribute.MinValue;
+            MaxValue = optionAttribute.MaxValue;
+            Autocomplete = optionAttribute.Autocomplete;
+            ChanelTypes = optionAttribute.ChanelTypes;
 
-            if (optionType.HasValue)
+            if (optionAttribute.Type.HasValue)
             {
-                Type = optionType.Value;
+                Type = optionAttribute.Type.Value;
                 return;
             }
 
@@ -52,7 +49,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         }
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" />.
+        ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" /> for a sub command group.
         /// </summary>
         /// <param name="name">The name of the sub command.</param>
         /// <param name="description">The description of the sub command.</param>
@@ -68,7 +65,7 @@ namespace Color_Chan.Discord.Commands.Models.Info
         }
 
         /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" />.
+        ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" /> for a sub command.
         /// </summary>
         /// <param name="name">The name of the sub command.</param>
         /// <param name="description">The description of the sub command.</param>
