@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Color_Chan.Discord.Commands.Extensions;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Rest.Models.Application;
@@ -531,6 +532,22 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                 new(),
                 new(),
                 new()
+            };
+
+            // Act
+            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+            // Assert
+            result.Should().NotBeNullOrEmpty();
+        }
+        
+        [Test]
+        public void Should_detect_new_options_with_new_channelType_value()
+        {
+            // Arrange
+            NewCommands[0].Options!.FirstOrDefault()!.ChanelTypes = new List<DiscordChannelType>
+            {
+                DiscordChannelType.GuildText
             };
 
             // Act
