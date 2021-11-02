@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> is
         ///     null.
         /// </exception>
-        public SlashCommandOptionAttribute(string name, string description, bool isRequired, DiscordApplicationCommandOptionType type, IEnumerable<DiscordChannelType>? chanelTypes)
+        public SlashCommandOptionAttribute(string name, string description, bool isRequired, DiscordApplicationCommandOptionType type, params DiscordChannelType[] chanelTypes)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Description = description ?? throw new ArgumentNullException(nameof(description));
@@ -58,7 +58,7 @@ namespace Color_Chan.Discord.Commands.Attributes
         ///     Thrown when <paramref name="name" /> or <paramref name="description" /> is
         ///     null.
         /// </exception>
-        public SlashCommandOptionAttribute(string name, string description, DiscordApplicationCommandOptionType type, IEnumerable<DiscordChannelType>? chanelTypes)
+        public SlashCommandOptionAttribute(string name, string description, DiscordApplicationCommandOptionType type, params DiscordChannelType[] chanelTypes)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Description = description ?? throw new ArgumentNullException(nameof(description));

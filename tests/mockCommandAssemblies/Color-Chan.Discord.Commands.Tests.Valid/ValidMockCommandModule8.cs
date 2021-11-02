@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Modules;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -24,7 +25,9 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
             [SlashCommandOption("booly", "nullable bool", false)]
             bool? boolValue,
             [SlashCommandOption("number", "nullable double", false)]
-            double? number
+            double? number,
+            [SlashCommandOption("channel", "nullable channel", false, DiscordApplicationCommandOptionType.Channel, DiscordChannelType.GuildText)]
+            ulong? channel
         )
         {
             return FromSuccess(new DiscordInteractionResponse
