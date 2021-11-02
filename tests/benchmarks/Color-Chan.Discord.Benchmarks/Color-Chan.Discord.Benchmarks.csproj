@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+        <PackageReference Include="BenchmarkDotNet" Version="0.13.1"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj" />
+        <ProjectReference Include="..\..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj"/>
     </ItemGroup>
 
 </Project>

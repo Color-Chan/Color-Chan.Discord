@@ -39,15 +39,15 @@ namespace Color_Chan.Discord.Commands.Extensions
                 if (commandOption.Type != existingOption.Type)
                     // Type has been updated.
                     return true;
-                
+
                 if ((commandOption.Autocomplete ?? false) != (existingOption.Autocomplete ?? false))
                     // Autocomplete has been updated.
                     return true;
-                
+
                 if (commandOption.MaxValue != existingOption.MaxValue)
                     // MaxValue has been updated.
                     return true;
-                
+
                 if (commandOption.MinValue != existingOption.MinValue)
                     // Autocomplete has been updated.
                     return true;

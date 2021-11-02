@@ -62,7 +62,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
         /// </summary>
         [JsonPropertyName("max_value")]
         public int? MaxValue { get; init; }
-        
+
         /// <summary>
         ///     Enable autocomplete interactions for this option.
         /// </summary>

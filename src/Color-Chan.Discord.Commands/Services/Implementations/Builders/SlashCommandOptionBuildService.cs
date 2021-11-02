@@ -82,7 +82,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
                     MinValue = optionInfo.MinValue
                 });
             }
-            
+
             if (options.Count > MaxCommandOptions) throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
 
             return options;
