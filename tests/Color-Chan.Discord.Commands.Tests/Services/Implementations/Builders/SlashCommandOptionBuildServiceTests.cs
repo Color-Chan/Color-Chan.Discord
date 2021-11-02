@@ -26,8 +26,8 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations.Builders
             commandOptions.Count.Should().Be(2);
             var first = commandOptions.First();
             first.Type.Should().Be(DiscordApplicationCommandOptionType.String);
-            first.Name.Should().Be("Role name");
-            first.Description.Should().Be("A role name.");
+            first.Name.Should().Be("RoleName");
+            first.Description.Should().Be("A RoleName.");
             var last = commandOptions.Last();
             last.Type.Should().Be(DiscordApplicationCommandOptionType.Integer);
             last.Name.Should().Be("Number");
@@ -52,7 +52,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations.Builders
             var index = 1;
             foreach (var choice in first.Choices!)
             {
-                choice.Key.Should().Be($"Role name {index}");
+                choice.Key.Should().Be($"RoleName {index}");
                 choice.Value.Should().Be($"RoleName{index}");
                 index++;
             }

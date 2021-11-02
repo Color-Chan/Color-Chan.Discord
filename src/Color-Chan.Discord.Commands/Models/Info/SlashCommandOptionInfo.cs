@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Exceptions;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Commands.Models.Info
@@ -120,6 +121,18 @@ namespace Color_Chan.Discord.Commands.Models.Info
 
         /// <inheritdoc />
         public IEnumerable<KeyValuePair<string, object>>? Choices { get; init; }
+
+        /// <inheritdoc />
+        public IEnumerable<DiscordChannelType>? ChanelTypes { get; init; }
+
+        /// <inheritdoc />
+        public int? MinValue { get; init; }
+
+        /// <inheritdoc />
+        public int? MaxValue { get; init; }
+
+        /// <inheritdoc />
+        public bool? Autocomplete { get; init; }
 
         /// <inheritdoc />
         public MethodInfo? CommandMethod { get; set; }

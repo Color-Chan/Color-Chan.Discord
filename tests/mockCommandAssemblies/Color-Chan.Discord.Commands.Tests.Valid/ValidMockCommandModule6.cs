@@ -16,7 +16,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         [SlashCommand("Command18", "a unit test command.")]
         public async Task<Result<IDiscordInteractionResponse>> CommandMethod1Async
         (
-            [SlashCommandOption("Role name", "A role name.")]
+            [SlashCommandOption("RoleName", "A RoleName.")]
             string roleName,
             [SlashCommandOption("Number", "A random number.", false)]
             int number
@@ -27,7 +27,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
                 Type = DiscordInteractionResponseType.ChannelMessageWithSource,
                 Data = new DiscordInteractionCallback
                 {
-                    Content = $"{nameof(roleName)}:{roleName}:{nameof(number)}:{number}"
+                    Content = $"{nameof(roleName)}:{roleName}:{nameof(number)}:{number.ToString()}"
                 }
             });
         }

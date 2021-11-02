@@ -226,7 +226,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             {
                 new DiscordInteractionOption(new DiscordInteractionOptionData
                 {
-                    Name = "Role name",
+                    Name = "RoleName",
                     Type = DiscordApplicationCommandOptionType.String,
                     JsonValue = doc.RootElement.GetProperty("stringValue")
                 }),

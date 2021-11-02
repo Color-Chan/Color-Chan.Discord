@@ -91,7 +91,7 @@ namespace Color_Chan.Discord.Commands.Extensions
             services.AddTransient<ISlashCommandPipeline, TPipeline>();
             return services;
         }
-        
+
         /// <summary>
         ///     Adds a <see cref="IComponentInteractionPipeline" /> to the <paramref name="services" />.
         /// </summary>

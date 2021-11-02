@@ -19,11 +19,11 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         [SlashCommandGuild(ulong.MaxValue)]
         public Task<Result<IDiscordInteractionResponse>> CommandMethod1Async
         (
-            [SlashCommandOption("Role name", "A role name.")]
-            [SlashCommandChoiceAttribute("Role name 1", "RoleName1")]
-            [SlashCommandChoiceAttribute("Role name 2", "RoleName2")]
-            [SlashCommandChoiceAttribute("Role name 3", "RoleName3")]
-            [SlashCommandChoiceAttribute("Role name 4", "RoleName4")]
+            [SlashCommandOption("RoleName", "A RoleName.")]
+            [SlashCommandChoiceAttribute("roleName 1", "RoleName1")]
+            [SlashCommandChoiceAttribute("RoleName 2", "RoleName2")]
+            [SlashCommandChoiceAttribute("RoleName 3", "RoleName3")]
+            [SlashCommandChoiceAttribute("RoleName 4", "RoleName4")]
             string roleName,
             [SlashCommandOption("Number", "A random number.", false)]
             [SlashCommandChoiceAttribute("value name 1", "1")]
@@ -41,11 +41,11 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         [BoolRequirement(true)]
         public Task<Result<IDiscordInteractionResponse>> CommandMethod2Async
         (
-            [SlashCommandOption("Role name", "A role name.")]
-            [SlashCommandChoiceAttribute("Role name 1", "RoleName1")]
-            [SlashCommandChoiceAttribute("Role name 2", "RoleName2")]
-            [SlashCommandChoiceAttribute("Role name 3", "RoleName3")]
-            [SlashCommandChoiceAttribute("Role name 4", "RoleName4")]
+            [SlashCommandOption("RoleName", "A RoleName.")]
+            [SlashCommandChoiceAttribute("RoleName 1", "RoleName1")]
+            [SlashCommandChoiceAttribute("RoleName 2", "RoleName2")]
+            [SlashCommandChoiceAttribute("RoleName 3", "RoleName3")]
+            [SlashCommandChoiceAttribute("RoleName 4", "RoleName4")]
             string roleName,
             [SlashCommandOption("Number", "A random number.", false)]
             [SlashCommandChoiceAttribute("Value name 1", "1")]

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Commands.Models.Info
@@ -35,6 +36,26 @@ namespace Color_Chan.Discord.Commands.Models.Info
         ///     of the choice.
         /// </summary>
         IEnumerable<KeyValuePair<string, object>>? Choices { get; init; }
+
+        /// <summary>
+        ///     If the option is a channel type, the channels shown will be restricted to these types.
+        /// </summary>
+        public IEnumerable<DiscordChannelType>? ChanelTypes { get; init; }
+
+        /// <summary>
+        ///     If the option is an INTEGER or NUMBER type, the minimum value permitted.
+        /// </summary>
+        public int? MinValue { get; init; }
+
+        /// <summary>
+        ///     If the option is an INTEGER or NUMBER type, the maximum value permitted.
+        /// </summary>
+        public int? MaxValue { get; init; }
+
+        /// <summary>
+        ///     Enable autocomplete interactions for this option.
+        /// </summary>
+        public bool? Autocomplete { get; init; }
 
         /// <summary>
         ///     The <see cref="MethodInfo" /> containing the method of the sub command.

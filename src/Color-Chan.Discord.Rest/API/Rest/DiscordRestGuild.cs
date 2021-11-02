@@ -22,6 +22,24 @@ namespace Color_Chan.Discord.Rest.API.Rest
         {
         }
 
+        // All api calls for guild channels.
+
+        #region Guild channels
+
+        /// <inheritdoc />
+        public virtual async Task<Result<IReadOnlyList<IDiscordChannel>>> GetGuildChannelsAsync(ulong guildId, CancellationToken ct = default)
+        {
+            var endpoint = $"guilds/{guildId.ToString()}/channels";
+            var result = await HttpClient.GetAsync<IReadOnlyList<DiscordChannelData>>(endpoint, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
+
+        // Todo: Create guild channel: https://discord.com/developers/docs/resources/guild#create-guild-channel
+
+        // Todo: Modify Guild Channel Positions: https://discord.com/developers/docs/resources/guild#modify-guild-channel-positions
+
+        #endregion
+
         // All api calls for guilds.
 
         #region Guild
@@ -69,24 +87,6 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var endpoint = $"guilds/{guildId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
         }
-
-        #endregion
-
-        // All api calls for guild channels.
-
-        #region Guild channels
-
-        /// <inheritdoc />
-        public virtual async Task<Result<IReadOnlyList<IDiscordChannel>>> GetGuildChannelsAsync(ulong guildId, CancellationToken ct = default)
-        {
-            var endpoint = $"guilds/{guildId.ToString()}/channels";
-            var result = await HttpClient.GetAsync<IReadOnlyList<DiscordChannelData>>(endpoint, ct: ct).ConfigureAwait(false);
-            return ApiResultConverters.ConvertResult(result);
-        }
-
-        // Todo: Create guild channel: https://discord.com/developers/docs/resources/guild#create-guild-channel
-
-        // Todo: Modify Guild Channel Positions: https://discord.com/developers/docs/resources/guild#modify-guild-channel-positions
 
         #endregion
 

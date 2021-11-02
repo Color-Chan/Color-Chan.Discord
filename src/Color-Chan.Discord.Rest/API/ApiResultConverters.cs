@@ -84,7 +84,7 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IDiscordUser>.FromSuccess(new DiscordUser(result.Entity));
         }
-        
+
         internal static Result<IDiscordGuild> ConvertResult(Result<DiscordGuildData> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuild>.FromError(null, result.ErrorResult);
@@ -98,7 +98,7 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IDiscordGuildPreview>.FromSuccess(new DiscordGuildPreview(result.Entity));
         }
-        
+
         internal static Result<IDiscordChannel> ConvertResult(Result<DiscordChannelData> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordChannel>.FromError(null, result.ErrorResult);
@@ -115,7 +115,7 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IReadOnlyList<IDiscordChannel>>.FromSuccess(roles);
         }
-        
+
         internal static Result<IDiscordGuildRole> ConvertResult(Result<DiscordGuildRoleData> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildRole>.FromError(null, result.ErrorResult);
@@ -132,7 +132,7 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IReadOnlyList<IDiscordGuildRole>>.FromSuccess(roles);
         }
-        
+
         internal static Result<IDiscordGuildMember> ConvertResult(Result<DiscordGuildMemberData> result)
         {
             if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordGuildMember>.FromError(null, result.ErrorResult);

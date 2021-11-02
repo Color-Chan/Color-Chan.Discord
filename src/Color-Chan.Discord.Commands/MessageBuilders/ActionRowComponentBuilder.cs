@@ -76,7 +76,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
 
             return this;
         }
-        
+
         /// <summary>
         ///     Adds a button to the action row.
         /// </summary>

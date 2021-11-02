@@ -269,6 +269,8 @@ The versioning will be using the following format: MAJOR.MINOR.PATCH.
 * [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/)
 * [Readme-template](https://github.com/othneildrew/Best-README-Template)
 * [Scrutor](https://github.com/khellang/Scrutor)
+* [Fluent Assertions](https://github.com/fluentassertions/fluentassertions)
+* [Moq](https://github.com/moq/moq4)
 
 
 

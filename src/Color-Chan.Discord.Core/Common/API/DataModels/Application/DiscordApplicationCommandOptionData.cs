@@ -44,5 +44,29 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
         /// </summary>
         [JsonPropertyName("options")]
         public IEnumerable<DiscordApplicationCommandOptionData>? SubOptions { get; init; }
+
+        /// <summary>
+        ///     If the option is a channel type, the channels shown will be restricted to these types.
+        /// </summary>
+        [JsonPropertyName("channel_types")]
+        public IEnumerable<DiscordChannelType>? ChanelTypes { get; init; }
+
+        /// <summary>
+        ///     If the option is an INTEGER or NUMBER type, the minimum value permitted.
+        /// </summary>
+        [JsonPropertyName("min_value")]
+        public int? MinValue { get; init; }
+
+        /// <summary>
+        ///     If the option is an INTEGER or NUMBER type, the maximum value permitted.
+        /// </summary>
+        [JsonPropertyName("max_value")]
+        public int? MaxValue { get; init; }
+
+        /// <summary>
+        ///     Enable autocomplete interactions for this option.
+        /// </summary>
+        [JsonPropertyName("autocomplete")]
+        public bool? Autocomplete { get; init; }
     }
 }
