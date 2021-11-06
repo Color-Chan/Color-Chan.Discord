@@ -149,7 +149,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             // Return the response.
             if (result.IsSuccessful)
             {
-                _logger.LogWarning("Interaction: {Id} : Component interaction returned successfully", interaction.Id.ToString());
+                _logger.LogInformation("Interaction: {Id} : Component interaction returned successfully", interaction.Id.ToString());
                 return new InternalInteractionResponse(acknowledged, result.Entity!);
             }
 
