@@ -80,6 +80,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             result.IsSuccessful.Should().BeFalse();
         }
 
+        [TestCase(DiscordPermission.SendMessages, DiscordPermission.SendMessages, DiscordPermission.SendMessages, DiscordPermission.SendMessages)]
         [TestCase(DiscordPermission.AddReactions | DiscordPermission.AttachFiles | DiscordPermission.Speak | DiscordPermission.Stream,
                   DiscordPermission.AddReactions,
                   DiscordPermission.Speak | DiscordPermission.AddReactions | DiscordPermission.Speak | DiscordPermission.Stream,
@@ -103,6 +104,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                          .ReturnsAsync(Result<IDiscordGuildMember>.FromSuccess(botMember));
             var missingList = missing.ToList();
             var collectionProvider = new ServiceCollection()
+                                     .AddLogging()
                                      .AddSingleton(restGuildMock.Object)
                                      .AddSingleton(discordToken)
                                      .BuildServiceProvider();

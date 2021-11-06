@@ -139,10 +139,14 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                     throw new NullReferenceException("Missing permission overwrites");
                 }
 
+                var everyoneRoleId = guild.Roles.FirstOrDefault(x => x.Name == "@everyone")?.Id;
+                
                 // Removed the denied permissions from the role perms.
                 foreach (var permissionOverwrite in channel.PermissionOverwrites)
                 {
-                    if (permissionOverwrite.TargetId == discordTokens.ApplicationId || botMemberResult.Entity.Roles.Contains(permissionOverwrite.TargetId))
+                    if (permissionOverwrite.TargetId == discordTokens.ApplicationId || 
+                        permissionOverwrite.TargetId == everyoneRoleId || 
+                        botMemberResult.Entity.Roles.Contains(permissionOverwrite.TargetId))
                     {
                         rolePerms |= permissionOverwrite.Allow;
                         rolePerms &= ~permissionOverwrite.Deny;
