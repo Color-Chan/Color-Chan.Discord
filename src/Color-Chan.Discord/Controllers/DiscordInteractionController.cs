@@ -106,10 +106,26 @@ namespace Color_Chan.Discord.Controllers
                 _ => throw new ArgumentOutOfRangeException()
             };
 
+            // Check if the response contains a message.
+            if (interactionResponse.Response is null)
+            {
+                if (interactionData.RequestType != DiscordInteractionRequestType.MessageComponent)
+                {
+                    throw new NullReferenceException("The interaction response can not be null for Application Commands.");
+                }
+                
+                _logger.LogDebug("Interaction {Id} : Returning empty interaction response to discord", interactionData.Id.ToString());
+                return SerializeResult(new DiscordInteractionResponseData
+                {
+                    Type = DiscordInteractionResponseType.DeferredUpdateMessage
+                });
+            }
+
             if (!interactionResponse.Acknowledged)
             {
                 // Send the response back to discord.
                 _logger.LogDebug("Interaction {Id} : Returning interaction response to discord", interactionData.Id.ToString());
+                // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                 return SerializeResult(interactionResponse.Response);
             }
 
@@ -143,7 +159,7 @@ namespace Color_Chan.Discord.Controllers
         }
 
         /// <summary>
-        ///     Serializes a <see cref="IDiscordInteractionResponse" /> to a <see cref="DiscordInteractionResponseData" />.
+        ///     Serializes a <see cref="IDiscordInteractionResponse" /> to json content.
         /// </summary>
         /// <param name="result">The <see cref="IDiscordInteractionResponse" /> that will be serialized.</param>
         /// <returns>
@@ -152,6 +168,18 @@ namespace Color_Chan.Discord.Controllers
         private ContentResult SerializeResult(IDiscordInteractionResponse result)
         {
             var data = result.ToDataModel();
+            return SerializeResult(data);
+        }
+        
+        /// <summary>
+        ///     Serializes a <see cref="DiscordInteractionResponseData" /> to json content.
+        /// </summary>
+        /// <param name="data">The <see cref="DiscordInteractionResponseData" /> that will be serialized.</param>
+        /// <returns>
+        ///     The serialized <see cref="DiscordInteractionResponseData" />.
+        /// </returns>
+        private ContentResult SerializeResult(DiscordInteractionResponseData data)
+        {
             return Content(JsonSerializer.Serialize(data, data.GetType(), _serializerOptions), ReturnContentType, Encoding.UTF8);
         }
 

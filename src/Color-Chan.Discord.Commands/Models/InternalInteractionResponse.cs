@@ -23,7 +23,7 @@ namespace Color_Chan.Discord.Commands.Models
         /// <summary>
         ///     The response that will be returned to discord.
         /// </summary>
-        public IDiscordInteractionResponse Response { get; set; }
+        public IDiscordInteractionResponse? Response { get; set; }
 
         /// <summary>
         ///     Get a ping response.
