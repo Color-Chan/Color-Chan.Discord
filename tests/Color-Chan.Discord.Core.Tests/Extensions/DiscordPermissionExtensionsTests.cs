@@ -9,7 +9,9 @@ namespace Color_Chan.Discord.Core.Tests.Extensions
     public class DiscordPermissionExtensionsTests
     {
         [TestCase(DiscordPermission.Administrator | DiscordPermission.BanMembers)]
-        [TestCase(DiscordPermission.ChangeNickname)]
+        [TestCase(DiscordPermission.ManageRoles)]
+        [TestCase(DiscordPermission.ManageNicknames)]
+        [TestCase(DiscordPermission.ViewAuditLog)]
         [TestCase(DiscordPermission.KickMembers | DiscordPermission.ManageGuild | DiscordPermission.ViewGuildInsights)]
         public void HasChannelPermissions_should_not_detect_channel_perm(DiscordPermission permission)
         {

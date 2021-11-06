@@ -16,7 +16,7 @@ namespace Color_Chan.Discord.Core.Extensions
                                                        DiscordPermission.ManageMessages | DiscordPermission.EmbedLinks | DiscordPermission.AttachFiles | DiscordPermission.ReadMessageHistory |
                                                        DiscordPermission.MentionEveryone | DiscordPermission.UseExternalEmojis | DiscordPermission.Connect | DiscordPermission.Speak |
                                                        DiscordPermission.MuteMembers | DiscordPermission.DeafenMembers | DiscordPermission.MoveMembers | DiscordPermission.UseVoiceActivity |
-                                                       DiscordPermission.ManageRoles | DiscordPermission.ManageWebhooks | DiscordPermission.UseApplicationCommands | DiscordPermission.RequestToSpeak |
+                                                       DiscordPermission.ManageWebhooks | DiscordPermission.UseApplicationCommands | DiscordPermission.RequestToSpeak |
                                                        DiscordPermission.ManageThreads | DiscordPermission.UsePublicThreads | DiscordPermission.UsePrivateThreads |
                                                        DiscordPermission.UseExternalStickers;
 
