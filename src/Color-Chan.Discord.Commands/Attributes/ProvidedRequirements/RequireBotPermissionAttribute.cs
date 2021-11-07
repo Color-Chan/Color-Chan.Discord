@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Models.Contexts;
@@ -10,6 +11,7 @@ using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Core.Results;
+using Color_Chan.Discord.Rest.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
@@ -37,7 +39,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class RequireBotPermissionAttribute : InteractionRequirementAttribute
     {
-        private readonly DiscordPermission _requiredPermission;
+        private DiscordPermission _requiredPermission;
 
         /// <summary>
         ///     Initializes a new instance of <see cref="UserRateLimitAttribute" />.
@@ -112,7 +114,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
             {
                 // Get the channel.
                 IDiscordChannel? channel;
-                if (context.Guild is not null)
+                if (context.Channel is not null)
                 {
                     channel = context.Channel;
                 }
@@ -123,10 +125,31 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
 
                     if (!channelResult.IsSuccessful)
                     {
-                        return Result.FromError(channelResult.ErrorResult ?? new ErrorResult("Failed to get the channel"));
+                        if (channelResult.ErrorResult?.ErrorMessage != "Missing Access" && channelResult.ErrorResult?.ErrorMessage != "Unknown Channel")
+                        {
+                            return Result.FromError(channelResult.ErrorResult ?? new ErrorResult("Failed to get the channel"));
+                        }
+                        
+                        // Assume it doesn't have access to see the channel.
+                        _requiredPermission |= DiscordPermission.ViewChannel;
+                        channel = new DiscordChannel(new DiscordChannelData
+                        {
+                            PermissionOverwrites = new List<DiscordOverwriteData>
+                            {
+                                new ()
+                                {
+                                    TargetId = discordTokens.ApplicationId,
+                                    TargetType = DiscordPermissionTargetType.User,
+                                    Deny = DiscordPermission.ViewChannel | DiscordPermission.SendMessages,
+                                    Allow = default,
+                                }
+                            }
+                        });
                     }
-
-                    channel = channelResult.Entity;
+                    else
+                    {
+                        channel = channelResult.Entity;
+                    }
                 }
 
                 if (channel is null)
