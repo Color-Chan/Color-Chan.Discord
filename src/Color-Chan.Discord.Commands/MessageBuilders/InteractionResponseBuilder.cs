@@ -15,6 +15,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
     public class InteractionResponseBuilder
     {
         private const int MaxEmbeds = 10;
+        private const int MaxActionRows = 5;
 
         /// <summary>
         ///     Allowed mentions object.
@@ -93,7 +94,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         {
             _embeds ??= new List<IDiscordEmbed>();
 
-            if (_embeds.Count > 10) throw new ArgumentOutOfRangeException(nameof(embed), $"Can not add more then {MaxEmbeds.ToString()} embeds to a response.");
+            if (_embeds.Count > MaxEmbeds) throw new ArgumentOutOfRangeException(nameof(embed), $"Can not add more then {MaxEmbeds.ToString()} embeds to a response.");
 
             _embeds.Add(embed);
             return this;
@@ -124,7 +125,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         {
             _components ??= new List<IDiscordComponent>();
 
-            if (_components.Count >= 5) throw new ArgumentOutOfRangeException(nameof(component), "Can not add more then 5 components to one message");
+            if (_components.Count >= MaxActionRows) throw new ArgumentOutOfRangeException(nameof(component), "Can not add more then 5 components to one message");
 
             _components.Add(component);
             return this;
