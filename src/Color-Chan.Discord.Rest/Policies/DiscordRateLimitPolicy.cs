@@ -15,7 +15,6 @@ namespace Color_Chan.Discord.Rest.Policies
     internal class DiscordRateLimitPolicy : AsyncPolicy<HttpResponseMessage>
     {
         private readonly ConcurrentDictionary<string, DiscordRateLimitBucket> _buckets;
-        private readonly ConcurrentDictionary<string, string> _endpointBucketIdDictionary;
         private DiscordRateLimitBucket _globalRateLimitBucket;
 
         /// <summary>
@@ -23,7 +22,6 @@ namespace Color_Chan.Discord.Rest.Policies
         /// </summary>
         internal DiscordRateLimitPolicy(int globalLimit, int globalRemaining)
         {
-            _endpointBucketIdDictionary = new ConcurrentDictionary<string, string>();
             _buckets = new ConcurrentDictionary<string, DiscordRateLimitBucket>();
             _globalRateLimitBucket = new DiscordRateLimitBucket(true, globalLimit, globalRemaining, DateTimeOffset.UtcNow.AddDays(2), TimeSpan.MinValue, "global");
         }
@@ -35,7 +33,7 @@ namespace Color_Chan.Discord.Rest.Policies
             var endpoint = context.GetEndpoint();
 
             // Check if the endpoint already has a bucket assigned to it.
-            if (!_endpointBucketIdDictionary.TryGetValue(endpoint, out var rateLimitBucketId) || !_buckets.TryGetValue(rateLimitBucketId, out var rateLimitBucket))
+            if (!_buckets.TryGetValue(endpoint, out var rateLimitBucket))
                 // Assume the endpoint belongs to the global rate limit.
                 rateLimitBucket = _globalRateLimitBucket;
 
@@ -67,8 +65,7 @@ namespace Color_Chan.Discord.Rest.Policies
                 }
 
             // Update the existing bucket.
-            _endpointBucketIdDictionary.TryAdd(endpoint, updatedBucket.Id);
-            _buckets.AddOrUpdate(updatedBucket.Id, updatedBucket, (_, oldBucket) => oldBucket.ResetsAt < updatedBucket.ResetsAt ? updatedBucket : oldBucket);
+            _buckets.AddOrUpdate(endpoint, updatedBucket, (_, oldBucket) => oldBucket.ResetsAt < updatedBucket.ResetsAt ? updatedBucket : oldBucket);
 
             return response;
         }
