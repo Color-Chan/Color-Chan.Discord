@@ -60,7 +60,7 @@ namespace Color_Chan.Discord.Extensions
         {
             if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
-            services.AddColorChanDiscordRest(botToken);
+            services.AddColorChanDiscordRest(botToken, defaultCacheConfig, redisCacheOptions);
             services.AddColorChanDiscordCommand(slashCommandConfigs, defaultCacheConfig, redisCacheOptions, componentInteractionConfig);
 
             services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));

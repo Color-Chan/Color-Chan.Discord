@@ -73,7 +73,7 @@ namespace Color_Chan.Discord.Rest.Tests.API
             bucket!.Limit.Should().Be(0);
             bucket.Remaining.Should().Be(0);
             bucket.ResetsAfter.Should().Be(TimeSpan.FromMilliseconds(double.Parse(resetAtString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture) * 1000));
-            bucket.Id.Should().Be("global");
+            bucket.Id.Should().Be(DiscordRateLimitBucket.GlobalBucketId);
 
             var resetAt = DateTimeOffset.UtcNow + TimeSpan.FromSeconds(int.Parse(resetAtString));
             bucket.ResetsAt.Year.Should().Be(resetAt.Year);
