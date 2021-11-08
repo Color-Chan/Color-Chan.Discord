@@ -151,6 +151,7 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
                     })
                 };
             }
+
             return new SlashCommandContext
             {
                 GuildId = 2,

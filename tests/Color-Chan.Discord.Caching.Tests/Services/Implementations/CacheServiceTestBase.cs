@@ -8,6 +8,7 @@ using NUnit.Framework;
 
 namespace Color_Chan.Discord.Caching.Tests.Services.Implementations
 {
+    [ParallelizableAttribute]
     public class CacheServiceTestBase<TServiceType> where TServiceType : class, ICacheService
     {
         protected TServiceType CacheService = null!;
@@ -34,6 +35,126 @@ namespace Color_Chan.Discord.Caching.Tests.Services.Implementations
         public void CacheValueAsync_with_overwrites_should_cache_value(KeyValuePair<string, object> keyValuePair)
         {
             Assert.DoesNotThrowAsync(() => CacheService.CacheValueAsync(keyValuePair.Key, keyValuePair.Value, TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(40)));
+        }
+
+        [TestCaseSource(nameof(GetKeyValuePairs))]
+        public async Task CacheValue_with_absoluteExpiration_should_expire(KeyValuePair<string, object> keyValuePair)
+        {
+            // Arrange
+            Assert.DoesNotThrow(() => CacheService.CacheValue(keyValuePair.Key, keyValuePair.Value, null, DateTimeOffset.Now.AddMilliseconds(200)));
+
+            // Act
+            await Task.Delay(100);
+            var nonExpiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            await Task.Delay(125); // let it expire.
+            var expiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            // Assert
+            nonExpiredResult.IsSuccessful.Should().BeTrue();
+            AssertObjectValue(nonExpiredResult.Entity!, keyValuePair.Value);
+
+            expiredResult.IsSuccessful.Should().BeFalse();
+        }
+
+        [TestCaseSource(nameof(GetKeyValuePairs))]
+        public async Task CacheValue_with_slidingExpirationOverwrite_should_expire(KeyValuePair<string, object> keyValuePair)
+        {
+            // Arrange
+            Assert.DoesNotThrow(() => CacheService.CacheValue(keyValuePair.Key, keyValuePair.Value, TimeSpan.FromMilliseconds(100), DateTimeOffset.Now.AddDays(1)));
+
+            // Act
+            await Task.Delay(75);
+            var nonExpiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            await Task.Delay(125); // let it expire.
+            var expiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            // Assert
+            nonExpiredResult.IsSuccessful.Should().BeTrue();
+            AssertObjectValue(nonExpiredResult.Entity!, keyValuePair.Value);
+
+            expiredResult.IsSuccessful.Should().BeFalse();
+        }
+
+        [TestCaseSource(nameof(GetKeyValuePairs))]
+        public async Task CacheValue_with_absoluteExpirationRelativeToNow_should_expire(KeyValuePair<string, object> keyValuePair)
+        {
+            // Arrange
+            Assert.DoesNotThrow(() => CacheService.CacheValue(keyValuePair.Key, keyValuePair.Value, null, TimeSpan.FromMilliseconds(200)));
+
+            // Act
+            await Task.Delay(100);
+            var nonExpiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            await Task.Delay(125); // let it expire.
+            var expiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            // Assert
+            nonExpiredResult.IsSuccessful.Should().BeTrue();
+            AssertObjectValue(nonExpiredResult.Entity!, keyValuePair.Value);
+
+            expiredResult.IsSuccessful.Should().BeFalse();
+        }
+
+        [TestCaseSource(nameof(GetKeyValuePairs))]
+        public async Task CacheValueAsync_with_absoluteExpiration_should_expire(KeyValuePair<string, object> keyValuePair)
+        {
+            // Arrange
+            Assert.DoesNotThrowAsync(() => CacheService.CacheValueAsync(keyValuePair.Key, keyValuePair.Value, null, DateTimeOffset.Now.AddMilliseconds(200)));
+
+            // Act
+            await Task.Delay(100);
+            var nonExpiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            await Task.Delay(125); // let it expire.
+            var expiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            // Assert
+            nonExpiredResult.IsSuccessful.Should().BeTrue();
+            AssertObjectValue(nonExpiredResult.Entity!, keyValuePair.Value);
+
+            expiredResult.IsSuccessful.Should().BeFalse();
+        }
+
+        [TestCaseSource(nameof(GetKeyValuePairs))]
+        public async Task CacheValueAsync_with_slidingExpirationOverwrite_should_expire(KeyValuePair<string, object> keyValuePair)
+        {
+            // Arrange
+            Assert.DoesNotThrowAsync(() => CacheService.CacheValueAsync(keyValuePair.Key, keyValuePair.Value, TimeSpan.FromMilliseconds(100), DateTimeOffset.Now.AddDays(1)));
+
+            // Act
+            await Task.Delay(75);
+            var nonExpiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            await Task.Delay(125); // let it expire.
+            var expiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            // Assert
+            nonExpiredResult.IsSuccessful.Should().BeTrue();
+            AssertObjectValue(nonExpiredResult.Entity!, keyValuePair.Value);
+
+            expiredResult.IsSuccessful.Should().BeFalse();
+        }
+
+        [TestCaseSource(nameof(GetKeyValuePairs))]
+        public async Task CacheValueAsync_with_absoluteExpirationRelativeToNow_should_expire(KeyValuePair<string, object> keyValuePair)
+        {
+            // Arrange
+            Assert.DoesNotThrowAsync(() => CacheService.CacheValueAsync(keyValuePair.Key, keyValuePair.Value, null, TimeSpan.FromMilliseconds(200)));
+
+            // Act
+            await Task.Delay(100);
+            var nonExpiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            await Task.Delay(125); // let it expire.
+            var expiredResult = await CacheService.GetValueAsync<object>(keyValuePair.Key);
+
+            // Assert
+            nonExpiredResult.IsSuccessful.Should().BeTrue();
+            AssertObjectValue(nonExpiredResult.Entity!, keyValuePair.Value);
+
+            expiredResult.IsSuccessful.Should().BeFalse();
         }
 
         [TestCaseSource(nameof(GetKeyValuePairs))]
@@ -183,12 +304,12 @@ namespace Color_Chan.Discord.Caching.Tests.Services.Implementations
         {
             var keyValueParis = new List<KeyValuePair<string, object>>
             {
-                new("testKey", int.MaxValue),
-                new("testKeyString", "test string value"),
-                new("testKeyConfig", new CacheConfiguration()),
-                new("testKeyDate", DateTime.UtcNow),
-                new("testKeyTimeSpan", TimeSpan.FromDays(1)),
-                new("testKeyDateOffset", DateTimeOffset.UtcNow)
+                new(Guid.NewGuid().ToString(), int.MaxValue),
+                new(Guid.NewGuid().ToString(), "test string value"),
+                new(Guid.NewGuid().ToString(), new CacheConfiguration()),
+                new(Guid.NewGuid().ToString(), DateTime.UtcNow),
+                new(Guid.NewGuid().ToString(), TimeSpan.FromDays(1)),
+                new(Guid.NewGuid().ToString(), DateTimeOffset.UtcNow)
             };
 
             foreach (var keyValuePair in keyValueParis)

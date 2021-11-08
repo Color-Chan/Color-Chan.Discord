@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Rest.Extensions;
@@ -11,6 +12,7 @@ namespace Color_Chan.Discord.Rest.Models
 {
     public class DiscordRateLimitBucket
     {
+        internal const string GlobalBucketId = "discord_global_rate_limit_bucket";
         private readonly SemaphoreSlim _semaphore;
 
         /// <summary>
@@ -83,32 +85,33 @@ namespace Color_Chan.Discord.Rest.Models
         {
             bucket = null;
 
-            if (headers.Contains("X-RateLimit-Global"))
+            var isGlobal = headers.Contains("x-rateLimit-global");
+            if (isGlobal)
             {
                 var retryAfter = headers.TryGetValues("Retry-After", out var temp) &&
                                  int.TryParse(temp.SingleOrDefault(), out var retryAfterTemp)
                     ? TimeSpan.FromSeconds(retryAfterTemp)
                     : TimeSpan.FromSeconds(600);
 
-                bucket = new DiscordRateLimitBucket(true, 0, 0, DateTimeOffset.UtcNow + retryAfter, retryAfter, "global");
+                bucket = new DiscordRateLimitBucket(isGlobal, 0, 0, DateTimeOffset.UtcNow + retryAfter, retryAfter, GlobalBucketId);
                 return true;
             }
 
-            if (!headers.TryGetValues("X-RateLimit-Limit", out var rawLimit) || !int.TryParse(rawLimit.SingleOrDefault(), out var limit)) return false;
+            if (!headers.TryGetValues("x-rateLimit-limit", out var rawLimit) || !int.TryParse(rawLimit.SingleOrDefault(), out var limit)) return false;
 
-            if (!headers.TryGetValues("X-RateLimit-Remaining", out var rawRemaining) || !int.TryParse(rawRemaining.SingleOrDefault(), out var remaining)) return false;
+            if (!headers.TryGetValues("x-rateLimit-remaining", out var rawRemaining) || !int.TryParse(rawRemaining.SingleOrDefault(), out var remaining)) return false;
 
-            if (!headers.TryGetValues("X-RateLimit-Reset", out var rawReset) ||
+            if (!headers.TryGetValues("x-rateLimit-reset", out var rawReset) ||
                 !double.TryParse(rawReset.SingleOrDefault(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var resetsAtEpoch)) return false;
 
-            if (!headers.TryGetValues("X-RateLimit-Reset-After", out var rawResetAfter) ||
+            if (!headers.TryGetValues("x-rateLimit-reset-after", out var rawResetAfter) ||
                 !double.TryParse(rawResetAfter.SingleOrDefault(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var resetsAtTemp)) return false;
 
             if (!headers.TryParseBucketId(out var id)) return false;
 
             var resetsAt = DateTimeOffset.UnixEpoch + TimeSpan.FromSeconds(resetsAtEpoch);
 
-            bucket = new DiscordRateLimitBucket(true, limit, remaining, resetsAt, TimeSpan.FromMilliseconds(resetsAtTemp * 1000), id);
+            bucket = new DiscordRateLimitBucket(isGlobal, limit, remaining, resetsAt, TimeSpan.FromSeconds(resetsAtTemp), id);
             return true;
         }
 
@@ -135,6 +138,51 @@ namespace Color_Chan.Discord.Rest.Models
             {
                 _semaphore.Release();
             }
+        }
+
+        /// <summary>
+        ///     Deconstructs the <see cref="DiscordRateLimitBucket" /> so it can be printed out to the console.
+        /// </summary>
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append('{');
+
+            stringBuilder.Append("isGlobal: ");
+            stringBuilder.Append(IsGlobal);
+            AddSpace(stringBuilder);
+
+            stringBuilder.Append("limit: ");
+            stringBuilder.Append(Limit);
+            AddSpace(stringBuilder);
+
+            stringBuilder.Append("remaining: ");
+            stringBuilder.Append(Remaining);
+            AddSpace(stringBuilder);
+
+            stringBuilder.Append("isGlobal: ");
+            stringBuilder.Append(IsGlobal);
+            AddSpace(stringBuilder);
+
+            stringBuilder.Append("resetAt: ");
+            stringBuilder.Append(ResetsAt.ToString());
+            AddSpace(stringBuilder);
+
+            stringBuilder.Append("resetAfter: ");
+            stringBuilder.Append(ResetsAfter.ToString());
+            AddSpace(stringBuilder);
+
+            stringBuilder.Append("id: ");
+            stringBuilder.Append(Id);
+
+            stringBuilder.Append('}');
+
+            static void AddSpace(StringBuilder builder)
+            {
+                builder.Append(", ");
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

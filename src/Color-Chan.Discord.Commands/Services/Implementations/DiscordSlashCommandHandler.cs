@@ -72,7 +72,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
 
             IDiscordChannel? channel = null;
-            if (_slashCommandConfiguration.EnableAutoGetGuild && interaction.ChannelId is not null)
+            if (_slashCommandConfiguration.EnableAutoGetChannel && interaction.ChannelId is not null)
             {
                 var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
                 channel = channelResult.Entity;

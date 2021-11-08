@@ -160,7 +160,7 @@ namespace Color_Chan.Discord.Rest
 
             foreach (var (key, value) in _headers) request.Headers.Add(key, value);
 
-            var context = new Context { { "endpoint", _endpoint } };
+            var context = new Context { { "endpoint", _endpoint }, { "method", _method.ToString() } };
             request.SetPolicyExecutionContext(context);
 
             return request;

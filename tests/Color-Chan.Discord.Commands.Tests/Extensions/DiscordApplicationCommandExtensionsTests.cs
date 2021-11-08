@@ -540,7 +540,7 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
             // Assert
             result.Should().NotBeNullOrEmpty();
         }
-        
+
         [Test]
         public void Should_detect_new_options_with_new_channelType_value()
         {
