@@ -129,19 +129,19 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                         {
                             return Result.FromError(channelResult.ErrorResult ?? new ErrorResult("Failed to get the channel"));
                         }
-                        
+
                         // Assume it doesn't have access to see the channel.
                         _requiredPermission |= DiscordPermission.ViewChannel;
                         channel = new DiscordChannel(new DiscordChannelData
                         {
                             PermissionOverwrites = new List<DiscordOverwriteData>
                             {
-                                new ()
+                                new()
                                 {
                                     TargetId = discordTokens.ApplicationId,
                                     TargetType = DiscordPermissionTargetType.User,
                                     Deny = DiscordPermission.ViewChannel | DiscordPermission.SendMessages,
-                                    Allow = default,
+                                    Allow = default
                                 }
                             }
                         });
@@ -163,12 +163,12 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                 }
 
                 var everyoneRoleId = guild.Roles.FirstOrDefault(x => x.Name == "@everyone")?.Id;
-                
+
                 // Removed the denied permissions from the role perms.
                 foreach (var permissionOverwrite in channel.PermissionOverwrites)
                 {
-                    if (permissionOverwrite.TargetId == discordTokens.ApplicationId || 
-                        permissionOverwrite.TargetId == everyoneRoleId || 
+                    if (permissionOverwrite.TargetId == discordTokens.ApplicationId ||
+                        permissionOverwrite.TargetId == everyoneRoleId ||
                         botMemberResult.Entity.Roles.Contains(permissionOverwrite.TargetId))
                     {
                         rolePerms |= permissionOverwrite.Allow;

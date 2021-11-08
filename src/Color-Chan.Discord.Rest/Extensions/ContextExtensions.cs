@@ -21,7 +21,7 @@ namespace Color_Chan.Discord.Rest.Extensions
 
             throw new InvalidOperationException("Failed to find `endpoint`");
         }
-        
+
         /// <summary>
         ///     Get the method value from the <see cref="Context" />.
         /// </summary>

@@ -7,17 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Color-Chan.Discord.Caching\Color-Chan.Discord.Caching.csproj" />
-        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj" />
+        <ProjectReference Include="..\Color-Chan.Discord.Caching\Color-Chan.Discord.Caching.csproj"/>
+        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" />
-        <PackageReference Include="Scrutor" Version="3.3.0" />
+        <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1"/>
+        <PackageReference Include="Scrutor" Version="3.3.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
     </ItemGroup>
 
     <PropertyGroup>
@@ -47,7 +47,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
+        <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
     </ItemGroup>
 
 </Project>

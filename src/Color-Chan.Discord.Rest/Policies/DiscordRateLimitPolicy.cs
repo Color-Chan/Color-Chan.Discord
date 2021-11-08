@@ -27,10 +27,10 @@ namespace Color_Chan.Discord.Rest.Policies
         {
             _cacheService = cacheService;
             _logger = logger;
-            
+
             _logger.LogWarning("Initializing global rate limit bucket");
             var globalBucket = new DiscordRateLimitBucket(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), DiscordRateLimitBucket.GlobalBucketId);
-            cacheService.CacheValue(DiscordRateLimitBucket.GlobalBucketId, globalBucket, null, (TimeSpan?) null);
+            cacheService.CacheValue(DiscordRateLimitBucket.GlobalBucketId, globalBucket, null, (TimeSpan?)null);
         }
 
         /// <inheritdoc />
@@ -38,7 +38,7 @@ namespace Color_Chan.Discord.Rest.Policies
                                                                                CancellationToken cancellationToken, bool continueOnCapturedContext)
         {
             var endpoint = $"{context.GetMethod()}:{context.GetEndpoint()}";
-            
+
             // Check if the endpoint already has a bucket assigned to it.
             var bucketResult = await _cacheService.GetValueAsync<DiscordRateLimitBucket>(endpoint).ConfigureAwait(false);
             if (!bucketResult.IsSuccessful)
@@ -48,7 +48,7 @@ namespace Color_Chan.Discord.Rest.Policies
                 bucketResult = await _cacheService.GetValueAsync<DiscordRateLimitBucket>(DiscordRateLimitBucket.GlobalBucketId).ConfigureAwait(false);
                 if (!bucketResult.IsSuccessful)
                 {
-                    throw new UnknownBucketException($"Failed to fallback on the global rate limit bucket");
+                    throw new UnknownBucketException("Failed to fallback on the global rate limit bucket");
                 }
             }
             else
@@ -57,7 +57,7 @@ namespace Color_Chan.Discord.Rest.Policies
             }
 
             var rateLimitBucket = bucketResult.Entity ?? throw new NullReferenceException($"{nameof(bucketResult)} can not be null.");
-            
+
             // Check if the bucket is available for the next request.
             var currentTimeOffset = DateTimeOffset.UtcNow;
             if (!await rateLimitBucket.IsAvailableAsync().ConfigureAwait(false))
@@ -67,7 +67,7 @@ namespace Color_Chan.Discord.Rest.Policies
                 var rateLimitedResponse = new HttpResponseMessage(HttpStatusCode.TooManyRequests);
                 var delay = rateLimitBucket.ResetsAt.Subtract(currentTimeOffset);
                 rateLimitedResponse.Headers.RetryAfter = new RetryConditionHeaderValue(delay);
-                
+
                 return rateLimitedResponse;
             }
 
@@ -89,9 +89,9 @@ namespace Color_Chan.Discord.Rest.Policies
                     return response;
                 }
             }
-            
+
             // An non rate limited global request will never get here!!!!!!
-            
+
             // Update the existing bucket.
             await _cacheService.CacheValueAsync(endpoint, updatedBucket, null, updatedBucket.ResetsAfter);
             return response;

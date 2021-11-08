@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Globalization;
 using System.Net;
 using System.Net.Http;
@@ -32,7 +31,7 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
                            .AddLogging()
                            .BuildServiceProvider();
             var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());
-            var context = new Context { { "endpoint", endpoint }, {"method", method} };
+            var context = new Context { { "endpoint", endpoint }, { "method", method } };
             var message = new HttpResponseMessage();
 
             // Act
@@ -41,7 +40,7 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
             // Assert
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
-        
+
         [TestCase("234", "5", "645.1", "64.57", "asfd4ytvbnt67ig", "guilds/234123456778", "GET")]
         [TestCase("10", "5", "1470173023.123", "64.57", "abcd1234", "guilds/898904567567", "POST")]
         [TestCase("4234234", "543", "3456.453", "234.456", "asdgf3w6sdfgsgxcvb", "guilds/6789567456", "DELETE")]
@@ -55,7 +54,7 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
                            .AddLogging()
                            .BuildServiceProvider();
             var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());
-            var context = new Context { { "endpoint", endpoint }, {"method", method} };
+            var context = new Context { { "endpoint", endpoint }, { "method", method } };
             var message = new HttpResponseMessage();
 
             var headers = message.Headers;
@@ -85,7 +84,7 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
                            .AddLogging()
                            .BuildServiceProvider();
             var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());
-            var context = new Context { { "endpoint", endpoint }, {"method", "GET"} };
+            var context = new Context { { "endpoint", endpoint }, { "method", "GET" } };
             var message = new HttpResponseMessage();
             message.StatusCode = HttpStatusCode.TooManyRequests;
 
@@ -113,8 +112,8 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
                            .AddColorChanCache()
                            .AddLogging()
                            .BuildServiceProvider();
-            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());       
-            var context = new Context { { "endpoint", endpoint }, {"method", method} };
+            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());
+            var context = new Context { { "endpoint", endpoint }, { "method", method } };
             var message = new HttpResponseMessage();
             message.StatusCode = HttpStatusCode.OK;
 

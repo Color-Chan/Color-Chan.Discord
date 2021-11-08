@@ -16,11 +16,11 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
         {
             // Act
             var result = endpoint.GetMayorParameter();
-            
+
             // Assert
             result.Should().Be(mayorParam);
         }
-        
+
         [TestCase("stickers/123456")]
         [TestCase("voice/regions")]
         [TestCase("users/@me")]
@@ -30,7 +30,7 @@ namespace Color_Chan.Discord.Rest.Tests.Extensions
         {
             // Act
             var result = endpoint.GetMayorParameter();
-            
+
             // Assert
             result.Should().BeNull();
         }

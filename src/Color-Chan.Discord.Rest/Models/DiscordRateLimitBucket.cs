@@ -139,49 +139,49 @@ namespace Color_Chan.Discord.Rest.Models
                 _semaphore.Release();
             }
         }
-        
+
         /// <summary>
-        ///     Deconstructs the <see cref="DiscordRateLimitBucket"/> so it can be printed out to the console.
+        ///     Deconstructs the <see cref="DiscordRateLimitBucket" /> so it can be printed out to the console.
         /// </summary>
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();
             stringBuilder.Append('{');
-            
+
             stringBuilder.Append("isGlobal: ");
             stringBuilder.Append(IsGlobal);
             AddSpace(stringBuilder);
-            
+
             stringBuilder.Append("limit: ");
             stringBuilder.Append(Limit);
             AddSpace(stringBuilder);
-            
+
             stringBuilder.Append("remaining: ");
             stringBuilder.Append(Remaining);
             AddSpace(stringBuilder);
-            
+
             stringBuilder.Append("isGlobal: ");
             stringBuilder.Append(IsGlobal);
             AddSpace(stringBuilder);
-            
+
             stringBuilder.Append("resetAt: ");
             stringBuilder.Append(ResetsAt.ToString());
             AddSpace(stringBuilder);
-            
+
             stringBuilder.Append("resetAfter: ");
             stringBuilder.Append(ResetsAfter.ToString());
             AddSpace(stringBuilder);
-            
+
             stringBuilder.Append("id: ");
             stringBuilder.Append(Id);
-            
+
             stringBuilder.Append('}');
-            
+
             static void AddSpace(StringBuilder builder)
             {
                 builder.Append(", ");
             }
-            
+
             return stringBuilder.ToString();
         }
     }

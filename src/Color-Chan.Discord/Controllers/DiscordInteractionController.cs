@@ -113,7 +113,7 @@ namespace Color_Chan.Discord.Controllers
                 {
                     throw new NullReferenceException("The interaction response can not be null for Application Commands.");
                 }
-                
+
                 _logger.LogDebug("Interaction {Id} : Returning empty interaction response to discord", interactionData.Id.ToString());
                 return SerializeResult(new DiscordInteractionResponseData
                 {
@@ -170,7 +170,7 @@ namespace Color_Chan.Discord.Controllers
             var data = result.ToDataModel();
             return SerializeResult(data);
         }
-        
+
         /// <summary>
         ///     Serializes a <see cref="DiscordInteractionResponseData" /> to json content.
         /// </summary>

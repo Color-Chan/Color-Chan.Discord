@@ -74,7 +74,7 @@ namespace Color_Chan.Discord.Rest.Extensions
             services.TryAddTransient<IDiscordHttpClient, DiscordHttpClient>();
             services.AddColorChanDiscordCore();
             services.AddColorChanCache(defaultCacheConfig, redisCacheOptions);
-            
+
             return services;
         }
     }

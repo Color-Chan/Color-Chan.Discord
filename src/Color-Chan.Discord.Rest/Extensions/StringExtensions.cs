@@ -11,11 +11,11 @@ namespace Color_Chan.Discord.Rest.Extensions
             {
                 return null;
             }
-            
+
             var mayorParam = splitEndpoint.GetValue(1) as string;
-            
+
             // todo: Check if the the webhook_token  mayor param exist.
-            
+
             // We can assume that the mayor param at pos 1 is always a ulong, since the webhook_token mayor param never occurs there. 
             return ulong.TryParse(mayorParam, out _) ? mayorParam : null;
         }

@@ -14,11 +14,12 @@ namespace Color_Chan.Discord.Commands.Models.Info
         /// <summary>
         ///     Initializes a new instance of <see cref="SlashCommandOptionInfo" /> for a command option.
         /// </summary>
-        /// <param name="optionAttribute">The <see cref="SlashCommandOptionAttribute"/> containing all the data about the option.</param>
+        /// <param name="optionAttribute">The <see cref="SlashCommandOptionAttribute" /> containing all the data about the option.</param>
         /// <param name="type">The type of the parameter.</param>
         /// <param name="choices">the choices that the command option has.</param>
         /// <exception cref="ArgumentNullException">
-        ///     Thrown when <see cref="SlashCommandOptionAttribute.Name"/>, <see cref="SlashCommandOptionAttribute.Description"/> or
+        ///     Thrown when <see cref="SlashCommandOptionAttribute.Name" />, <see cref="SlashCommandOptionAttribute.Description" />
+        ///     or
         ///     <paramref name="type" /> is null.
         /// </exception>
         public SlashCommandOptionInfo(SlashCommandOptionAttribute optionAttribute, Type type, IEnumerable<KeyValuePair<string, object>>? choices = null)
