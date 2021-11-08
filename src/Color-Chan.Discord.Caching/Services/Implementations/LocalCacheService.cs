@@ -153,7 +153,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             {
                 SlidingExpiration = cacheConfig.SlidingExpiration,
                 AbsoluteExpirationRelativeToNow = cacheConfig.AbsoluteExpiration
-            };;
+            };
         }
     }
 }
