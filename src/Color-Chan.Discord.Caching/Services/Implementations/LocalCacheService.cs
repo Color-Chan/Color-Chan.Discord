@@ -84,7 +84,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         /// <inheritdoc />
         public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationRelativeToNow) where TValue : notnull
         {
-            var redisCacheConfig = new MemoryCacheEntryOptions
+            var cacheConfig = new MemoryCacheEntryOptions
             {
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow
@@ -93,14 +93,14 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             // Set the cached value.
             SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
             await cacheLock.WaitAsync();
-            _memoryCache.Set(key, cachedValue, redisCacheConfig);
+            _memoryCache.Set(key, cachedValue, cacheConfig);
             cacheLock.Release();
         }
 
         /// <inheritdoc />
         public async Task CacheValueAsync<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, DateTimeOffset? absoluteExpiration) where TValue : notnull
         {
-            var redisCacheConfig = new MemoryCacheEntryOptions
+            var cacheConfig = new MemoryCacheEntryOptions
             {
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpiration = absoluteExpiration
@@ -109,7 +109,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             // Set the cached value.
             SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
             await cacheLock.WaitAsync();
-            _memoryCache.Set(key, cachedValue, redisCacheConfig);
+            _memoryCache.Set(key, cachedValue, cacheConfig);
             cacheLock.Release();
         }
 
@@ -123,39 +123,37 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         /// <inheritdoc />
         public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, TimeSpan? absoluteExpirationRelativeToNow) where TValue : notnull
         {
-            var redisCacheConfig = new MemoryCacheEntryOptions
+            var cacheConfig = new MemoryCacheEntryOptions
             {
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow
             };
 
             // Set the cached value.
-            _memoryCache.Set(key, cachedValue, redisCacheConfig);
+            _memoryCache.Set(key, cachedValue, cacheConfig);
         }
 
         /// <inheritdoc />
         public void CacheValue<TValue>(string key, TValue cachedValue, TimeSpan? slidingExpirationOverwrite, DateTimeOffset? absoluteExpiration) where TValue : notnull
         {
-            var redisCacheConfig = new MemoryCacheEntryOptions
+            var cacheConfig = new MemoryCacheEntryOptions
             {
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpiration = absoluteExpiration
             };
 
             // Set the cached value.
-            _memoryCache.Set(key, cachedValue, redisCacheConfig);
+            _memoryCache.Set(key, cachedValue, cacheConfig);
         }
 
         private MemoryCacheEntryOptions GetCacheConfig<TValue>() where TValue : notnull
         {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
-            var redisCacheConfig = new MemoryCacheEntryOptions
+            return new MemoryCacheEntryOptions
             {
                 SlidingExpiration = cacheConfig.SlidingExpiration,
                 AbsoluteExpirationRelativeToNow = cacheConfig.AbsoluteExpiration
-            };
-
-            return redisCacheConfig;
+            };;
         }
     }
 }
