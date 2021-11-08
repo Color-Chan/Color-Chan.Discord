@@ -8,6 +8,7 @@ using NUnit.Framework;
 
 namespace Color_Chan.Discord.Caching.Tests.Services.Implementations
 {
+    [ParallelizableAttribute]
     public class CacheServiceTestBase<TServiceType> where TServiceType : class, ICacheService
     {
         protected TServiceType CacheService = null!;
@@ -303,12 +304,12 @@ namespace Color_Chan.Discord.Caching.Tests.Services.Implementations
         {
             var keyValueParis = new List<KeyValuePair<string, object>>
             {
-                new("testKey", int.MaxValue),
-                new("testKeyString", "test string value"),
-                new("testKeyConfig", new CacheConfiguration()),
-                new("testKeyDate", DateTime.UtcNow),
-                new("testKeyTimeSpan", TimeSpan.FromDays(1)),
-                new("testKeyDateOffset", DateTimeOffset.UtcNow)
+                new(Guid.NewGuid().ToString(), int.MaxValue),
+                new(Guid.NewGuid().ToString(), "test string value"),
+                new(Guid.NewGuid().ToString(), new CacheConfiguration()),
+                new(Guid.NewGuid().ToString(), DateTime.UtcNow),
+                new(Guid.NewGuid().ToString(), TimeSpan.FromDays(1)),
+                new(Guid.NewGuid().ToString(), DateTimeOffset.UtcNow)
             };
 
             foreach (var keyValuePair in keyValueParis)
