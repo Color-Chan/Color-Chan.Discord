@@ -14,7 +14,6 @@ using Polly;
 
 namespace Color_Chan.Discord.Rest.Policies
 {
-    // Todo: Find a way to inject the ICacheService so the rate limiting can be stateless when a distributed cache is used.
     internal class DiscordRateLimitPolicy : AsyncPolicy<HttpResponseMessage>
     {
         private readonly ICacheService _cacheService;
@@ -30,7 +29,7 @@ namespace Color_Chan.Discord.Rest.Policies
             _logger = logger;
             
             _logger.LogWarning("Initializing global rate limit bucket");
-            var globalBucket = new DiscordRateLimitBucket(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddDays(7), TimeSpan.FromDays(7), DiscordRateLimitBucket.GlobalBucketId);
+            var globalBucket = new DiscordRateLimitBucket(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), DiscordRateLimitBucket.GlobalBucketId);
             cacheService.CacheValue(DiscordRateLimitBucket.GlobalBucketId, globalBucket, null, (TimeSpan?) null);
         }
 
@@ -38,26 +37,25 @@ namespace Color_Chan.Discord.Rest.Policies
         protected override async Task<HttpResponseMessage> ImplementationAsync(Func<Context, CancellationToken, Task<HttpResponseMessage>> action, Context context,
                                                                                CancellationToken cancellationToken, bool continueOnCapturedContext)
         {
-            var endpoint = context.GetEndpoint();
-
+            var endpoint = $"{context.GetMethod()}:{context.GetEndpoint()}";
+            
             // Check if the endpoint already has a bucket assigned to it.
             var bucketResult = await _cacheService.GetValueAsync<DiscordRateLimitBucket>(endpoint).ConfigureAwait(false);
             if (!bucketResult.IsSuccessful)
             {
                 // Assume the endpoint belongs to the global rate limit.
+                _logger.LogDebug("No existing bucket found for endpoint {Endpoint}, using global bucket", endpoint);
                 bucketResult = await _cacheService.GetValueAsync<DiscordRateLimitBucket>(DiscordRateLimitBucket.GlobalBucketId).ConfigureAwait(false);
                 if (!bucketResult.IsSuccessful)
                 {
-                    throw new UnknownBucketException("Failed to find the rate limit bucket!");
+                    throw new UnknownBucketException($"Failed to fallback on the global rate limit bucket");
                 }
-                
-                _logger.LogWarning("No existing bucket found for endpoint {Endpoint}, using global bucket", endpoint);
             }
             else
             {
-                _logger.LogWarning("Existing bucket {Id}, found for endpoint {Endpoint}", bucketResult.Entity, endpoint);
+                _logger.LogDebug("Existing bucket {Bucket}, found for endpoint {Endpoint}", bucketResult.Entity?.Id, endpoint);
             }
-            
+
             var rateLimitBucket = bucketResult.Entity ?? throw new NullReferenceException($"{nameof(bucketResult)} can not be null.");
             
             // Check if the bucket is available for the next request.
@@ -91,6 +89,8 @@ namespace Color_Chan.Discord.Rest.Policies
                     return response;
                 }
             }
+            
+            // An non rate limited global request will never get here!!!!!!
             
             // Update the existing bucket.
             await _cacheService.CacheValueAsync(endpoint, updatedBucket, null, updatedBucket.ResetsAfter);
