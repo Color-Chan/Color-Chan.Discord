@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Rest.Policies
             _cacheService = cacheService;
             _logger = logger;
 
-            _logger.LogWarning("Initializing global rate limit bucket");
+            _logger.LogDebug("Initializing global rate limit bucket");
             var globalBucket = new DiscordRateLimitBucket(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), DiscordRateLimitBucket.GlobalBucketId);
             cacheService.CacheValue(DiscordRateLimitBucket.GlobalBucketId, globalBucket, null, (TimeSpan?)null);
         }

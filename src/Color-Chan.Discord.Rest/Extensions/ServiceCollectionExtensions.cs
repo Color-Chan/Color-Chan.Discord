@@ -38,13 +38,21 @@ namespace Color_Chan.Discord.Rest.Extensions
         ///     The cache options for the redis cache.
         ///     Leave this null if you want to use a local cache.
         /// </param>
+        /// <param name="discordBaseUriOverwrite">
+        ///     The base <see cref="Uri"/> that will be used with the Discord HTTP client.
+        ///     Example: http://localhost:3000/api/v9/
+        ///     <remarks>
+        ///         This can be useful if you want to use something like https://github.com/twilight-rs/http-proxy.
+        ///     </remarks>
+        /// </param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="botToken" /> is null.</exception>
         public static IServiceCollection AddColorChanDiscordRest(this IServiceCollection services, string botToken,
                                                                  Action<CacheConfiguration>? defaultCacheConfig = null,
-                                                                 Action<RedisCacheOptions>? redisCacheOptions = null)
+                                                                 Action<RedisCacheOptions>? redisCacheOptions = null,
+                                                                 Uri? discordBaseUriOverwrite = null)
         {
             if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
@@ -54,7 +62,7 @@ namespace Color_Chan.Discord.Rest.Extensions
             services.AddSingleton<DiscordRateLimitPolicy>();
             services.AddHttpClient("Discord", client =>
             {
-                client.BaseAddress = Constants.DiscordApiUrl;
+                client.BaseAddress = discordBaseUriOverwrite ?? Constants.DiscordApiUrl;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bot", botToken);
             }).AddPolicyHandler((provider, _) => HttpPolicyExtensions.HandleTransientHttpError()
                                                                      .WaitAndRetryAsync(retryDelay)
