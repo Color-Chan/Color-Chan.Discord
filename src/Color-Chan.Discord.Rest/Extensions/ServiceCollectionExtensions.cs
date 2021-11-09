@@ -41,9 +41,9 @@ namespace Color_Chan.Discord.Rest.Extensions
         /// <param name="discordBaseUriOverwrite">
         ///     The base <see cref="Uri"/> that will be used with the Discord HTTP client.
         ///     Example: http://localhost:3000/api/v9/
-        /// <remarks>
-        ///     This can be useful if you want to use something like https://github.com/twilight-rs/http-proxy.
-        /// </remarks>
+        ///     <remarks>
+        ///         This can be useful if you want to use something like https://github.com/twilight-rs/http-proxy.
+        ///     </remarks>
         /// </param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.

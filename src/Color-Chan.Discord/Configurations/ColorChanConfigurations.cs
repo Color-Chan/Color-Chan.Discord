@@ -36,5 +36,14 @@ namespace Color_Chan.Discord.Configurations
         ///     The configurations needed for the component interactions.
         /// </summary>
         public Action<ComponentInteractionConfiguration>? ComponentInteractionConfig { get; set; }
+
+        /// <summary>
+        ///     The base <see cref="Uri"/> that will be used with the Discord HTTP client.
+        ///     Example: http://localhost:3000/api/v9/
+        ///     <remarks>
+        ///         This can be useful if you want to use something like https://github.com/twilight-rs/http-proxy.
+        ///     </remarks>
+        /// </summary>
+        public Uri? DiscordBaseUriOverwrite { get; set; }
     }
 }
