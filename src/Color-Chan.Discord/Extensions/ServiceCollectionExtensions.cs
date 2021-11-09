@@ -45,6 +45,13 @@ namespace Color_Chan.Discord.Extensions
         ///     Leave this null if you want to use a local cache.
         /// </param>
         /// <param name="componentInteractionConfig">The configurations needed for the component interactions.</param>
+        /// <param name="discordBaseUriOverwrite">
+        ///     The base <see cref="Uri"/> that will be used with the Discord HTTP client.
+        ///     Example: http://localhost:3000/api/v9/
+        /// <remarks>
+        ///     This can be useful if you want to use something like https://github.com/twilight-rs/http-proxy.
+        /// </remarks>
+        /// </param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
@@ -56,11 +63,12 @@ namespace Color_Chan.Discord.Extensions
                                                              Action<SlashCommandConfiguration>? slashCommandConfigs = null,
                                                              Action<CacheConfiguration>? defaultCacheConfig = null,
                                                              Action<RedisCacheOptions>? redisCacheOptions = null,
-                                                             Action<ComponentInteractionConfiguration>? componentInteractionConfig = null)
+                                                             Action<ComponentInteractionConfiguration>? componentInteractionConfig = null,
+                                                             Uri? discordBaseUriOverwrite = null)
         {
             if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
-            services.AddColorChanDiscordRest(botToken, defaultCacheConfig, redisCacheOptions);
+            services.AddColorChanDiscordRest(botToken, defaultCacheConfig, redisCacheOptions, discordBaseUriOverwrite);
             services.AddColorChanDiscordCommand(slashCommandConfigs, defaultCacheConfig, redisCacheOptions, componentInteractionConfig);
 
             services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
