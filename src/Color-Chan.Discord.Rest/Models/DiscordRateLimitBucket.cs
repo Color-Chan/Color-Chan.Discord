@@ -141,6 +141,14 @@ namespace Color_Chan.Discord.Rest.Models
         }
 
         /// <summary>
+        ///     Get a default instance for a global rate limit bucket.
+        /// </summary>
+        /// <returns>
+        ///     A default instance for a global rate limit bucket.
+        /// </returns>
+        internal static DiscordRateLimitBucket GetDefaultGlobalBucket() => new(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), GlobalBucketId);
+        
+        /// <summary>
         ///     Deconstructs the <see cref="DiscordRateLimitBucket" /> so it can be printed out to the console.
         /// </summary>
         public override string ToString()

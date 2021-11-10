@@ -6,7 +6,6 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Caching.Services;
-using Color_Chan.Discord.Rest.Exceptions;
 using Color_Chan.Discord.Rest.Extensions;
 using Color_Chan.Discord.Rest.Models;
 using Microsoft.Extensions.Logging;
@@ -29,8 +28,7 @@ namespace Color_Chan.Discord.Rest.Policies
             _logger = logger;
 
             _logger.LogDebug("Initializing global rate limit bucket");
-            var globalBucket = new DiscordRateLimitBucket(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), DiscordRateLimitBucket.GlobalBucketId);
-            cacheService.CacheValue(DiscordRateLimitBucket.GlobalBucketId, globalBucket, null, (TimeSpan?)null);
+            cacheService.CacheValue(DiscordRateLimitBucket.GlobalBucketId, DiscordRateLimitBucket.GetDefaultGlobalBucket(), null, (TimeSpan?)null);
         }
 
         /// <inheritdoc />
@@ -48,7 +46,9 @@ namespace Color_Chan.Discord.Rest.Policies
                 bucketResult = await _cacheService.GetValueAsync<DiscordRateLimitBucket>(DiscordRateLimitBucket.GlobalBucketId).ConfigureAwait(false);
                 if (!bucketResult.IsSuccessful)
                 {
-                    throw new UnknownBucketException("Failed to fallback on the global rate limit bucket");
+                    // A new global bucket needs to be initialized after a global rate limit has ended.
+                    _logger.LogDebug("Initializing new global rate limit bucket");
+                    await _cacheService.CacheValueAsync(DiscordRateLimitBucket.GlobalBucketId, DiscordRateLimitBucket.GetDefaultGlobalBucket(), null, (TimeSpan?)null);
                 }
             }
             else
