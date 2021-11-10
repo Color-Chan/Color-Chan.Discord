@@ -6,10 +6,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Caching.Extensions;
 using Color_Chan.Discord.Caching.Services;
+using Color_Chan.Discord.Rest.Configurations;
 using Color_Chan.Discord.Rest.Policies;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using Polly;
 
@@ -30,7 +32,8 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
                            .AddColorChanCache()
                            .AddLogging()
                            .BuildServiceProvider();
-            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());
+            var restConfig = new OptionsWrapper<RestConfiguration>(new RestConfiguration());
+            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>(), restConfig);
             var context = new Context { { "endpoint", endpoint }, { "method", method } };
             var message = new HttpResponseMessage();
 
@@ -53,7 +56,8 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
                            .AddColorChanCache()
                            .AddLogging()
                            .BuildServiceProvider();
-            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());
+            var restConfig = new OptionsWrapper<RestConfiguration>(new RestConfiguration());
+            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>(), restConfig);
             var context = new Context { { "endpoint", endpoint }, { "method", method } };
             var message = new HttpResponseMessage();
 
@@ -83,7 +87,8 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
                            .AddColorChanCache()
                            .AddLogging()
                            .BuildServiceProvider();
-            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());
+            var restConfig = new OptionsWrapper<RestConfiguration>(new RestConfiguration());
+            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>(), restConfig);
             var context = new Context { { "endpoint", endpoint }, { "method", "GET" } };
             var message = new HttpResponseMessage();
             message.StatusCode = HttpStatusCode.TooManyRequests;
@@ -112,7 +117,8 @@ namespace Color_Chan.Discord.Rest.Tests.Policies
                            .AddColorChanCache()
                            .AddLogging()
                            .BuildServiceProvider();
-            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>());
+            var restConfig = new OptionsWrapper<RestConfiguration>(new RestConfiguration());
+            var policy = new DiscordRateLimitPolicy(services.GetRequiredService<ICacheService>(), services.GetRequiredService<ILogger<DiscordRateLimitPolicy>>(), restConfig);
             var context = new Context { { "endpoint", endpoint }, { "method", method } };
             var message = new HttpResponseMessage();
             message.StatusCode = HttpStatusCode.OK;
