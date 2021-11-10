@@ -7,6 +7,7 @@ using Color_Chan.Discord.Caching.Configurations;
 using Color_Chan.Discord.Caching.Extensions;
 using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Rest.API.Rest;
+using Color_Chan.Discord.Rest.Configurations;
 using Color_Chan.Discord.Rest.Policies;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,12 +39,8 @@ namespace Color_Chan.Discord.Rest.Extensions
         ///     The cache options for the redis cache.
         ///     Leave this null if you want to use a local cache.
         /// </param>
-        /// <param name="discordBaseUriOverwrite">
-        ///     The base <see cref="Uri"/> that will be used with the Discord HTTP client.
-        ///     Example: http://localhost:3000/api/v9/
-        ///     <remarks>
-        ///         This can be useful if you want to use something like https://github.com/twilight-rs/http-proxy.
-        ///     </remarks>
+        /// <param name="restOptions">
+        ///     The options that will be used for Color.Chan.Discord.Rest
         /// </param>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
@@ -52,17 +49,27 @@ namespace Color_Chan.Discord.Rest.Extensions
         public static IServiceCollection AddColorChanDiscordRest(this IServiceCollection services, string botToken,
                                                                  Action<CacheConfiguration>? defaultCacheConfig = null,
                                                                  Action<RedisCacheOptions>? redisCacheOptions = null,
-                                                                 Uri? discordBaseUriOverwrite = null)
+                                                                 Action<RestConfiguration>? restOptions = null)
         {
             if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
             // See https://github.com/App-vNext/Polly/wiki/Retry-with-jitter for more info why jitter is used.
             var retryDelay = Backoff.DecorrelatedJitterBackoffV2(TimeSpan.FromSeconds(1), 5);
 
+            // Set the default config if none provided.
+            restOptions ??= configuration =>
+            {
+                configuration.DiscordBaseUriOverwrite = null;
+                configuration.UseRateLimiting = true;
+            };
+            var localRestOptions = new RestConfiguration();
+            restOptions.Invoke(localRestOptions);
+            services.Configure(restOptions);
+            
             services.AddSingleton<DiscordRateLimitPolicy>();
             services.AddHttpClient("Discord", client =>
             {
-                client.BaseAddress = discordBaseUriOverwrite ?? Constants.DiscordApiUrl;
+                client.BaseAddress = localRestOptions.DiscordBaseUriOverwrite ?? Constants.DiscordApiUrl;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bot", botToken);
             }).AddPolicyHandler((provider, _) => HttpPolicyExtensions.HandleTransientHttpError()
                                                                      .WaitAndRetryAsync(retryDelay)

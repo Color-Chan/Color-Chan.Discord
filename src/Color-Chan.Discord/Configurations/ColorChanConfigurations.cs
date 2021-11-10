@@ -1,6 +1,7 @@
 using System;
 using Color_Chan.Discord.Caching.Configurations;
 using Color_Chan.Discord.Commands.Configurations;
+using Color_Chan.Discord.Rest.Configurations;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 namespace Color_Chan.Discord.Configurations
@@ -38,12 +39,9 @@ namespace Color_Chan.Discord.Configurations
         public Action<ComponentInteractionConfiguration>? ComponentInteractionConfig { get; set; }
 
         /// <summary>
-        ///     The base <see cref="Uri"/> that will be used with the Discord HTTP client.
-        ///     Example: http://localhost:3000/api/v9/
-        ///     <remarks>
-        ///         This can be useful if you want to use something like https://github.com/twilight-rs/http-proxy.
-        ///     </remarks>
+        ///     The options that will be used for Color.Chan.Discord.Rest
+        ///     Leave this null if you want to use default settings.
         /// </summary>
-        public Uri? DiscordBaseUriOverwrite { get; set; }
+        public Action<RestConfiguration>? RestOptions { get; set; }
     }
 }

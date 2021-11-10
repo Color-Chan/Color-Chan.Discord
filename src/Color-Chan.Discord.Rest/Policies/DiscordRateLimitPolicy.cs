@@ -6,9 +6,11 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Caching.Services;
+using Color_Chan.Discord.Rest.Configurations;
 using Color_Chan.Discord.Rest.Extensions;
 using Color_Chan.Discord.Rest.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Polly;
 
 namespace Color_Chan.Discord.Rest.Policies
@@ -17,13 +19,15 @@ namespace Color_Chan.Discord.Rest.Policies
     {
         private readonly ICacheService _cacheService;
         private readonly ILogger<DiscordRateLimitPolicy> _logger;
-
+        private readonly RestConfiguration _restConfig;
+        
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordRateLimitPolicy" />.
         /// </summary>
         // ReSharper disable once UnusedMember.Global used in DI
-        public DiscordRateLimitPolicy(ICacheService cacheService, ILogger<DiscordRateLimitPolicy> logger)
+        public DiscordRateLimitPolicy(ICacheService cacheService, ILogger<DiscordRateLimitPolicy> logger, IOptions<RestConfiguration> restConfig)
         {
+            _restConfig = restConfig.Value;
             _cacheService = cacheService;
             _logger = logger;
 
@@ -35,6 +39,11 @@ namespace Color_Chan.Discord.Rest.Policies
         protected override async Task<HttpResponseMessage> ImplementationAsync(Func<Context, CancellationToken, Task<HttpResponseMessage>> action, Context context,
                                                                                CancellationToken cancellationToken, bool continueOnCapturedContext)
         {
+            if (!_restConfig.UseRateLimiting)
+            {
+                return await action(context, cancellationToken).ConfigureAwait(continueOnCapturedContext);
+            }
+            
             var endpoint = $"{context.GetMethod()}:{context.GetEndpoint()}";
 
             // Check if the endpoint already has a bucket assigned to it.
