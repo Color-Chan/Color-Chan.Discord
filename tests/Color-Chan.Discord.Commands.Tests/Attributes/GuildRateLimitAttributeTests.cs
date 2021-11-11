@@ -5,8 +5,10 @@ using Color_Chan.Discord.Caching.Services;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Models.Contexts;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Results;
+using Color_Chan.Discord.Rest.Models;
 using Color_Chan.Discord.Rest.Models.Interaction;
 using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,6 +57,10 @@ namespace Color_Chan.Discord.Commands.Tests.Attributes
             var rateLimitAttribute = new GuildRateLimitAttribute(rateLimitServer.Remaining, 60);
             var context = new SlashCommandContext
             {
+                User = new DiscordUser(new DiscordUserData
+                {
+                    Id = ulong.MaxValue
+                }),
                 GuildId = ulong.MaxValue,
                 Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
                 {
