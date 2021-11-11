@@ -13,8 +13,17 @@ namespace Color_Chan.Discord.Rest.Models
     public class DiscordRateLimitBucket
     {
         internal const string GlobalBucketId = "discord_global_rate_limit_bucket";
-        private readonly SemaphoreSlim _semaphore;
+        private readonly SemaphoreSlim _semaphore = new (1, 1);
 
+        /// <summary>
+        ///     Do not use this constructor, it should ony be used by the DistributedCacheService.
+        /// </summary>
+        [Obsolete("Do not use this constructor, it should ony be used by the DistributedCacheService.")]
+        // ReSharper disable once UnusedMember.Global
+        public DiscordRateLimitBucket()
+        {
+        }
+        
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordRateLimitBucket" />.
         /// </summary>
@@ -48,28 +57,28 @@ namespace Color_Chan.Discord.Rest.Models
         /// <summary>
         ///     The number of requests that can be made.
         /// </summary>
-        public int Limit { get; }
+        public int Limit { get; set; }
 
         /// <summary>
         ///     The number of remaining requests that can be made.
         /// </summary>
-        public int Remaining { get; private set; }
+        public int Remaining { get; set; }
 
         /// <summary>
         ///     Epoch time (seconds since 00:00:00 UTC on January 1, 1970) at which the rate limit resets.
         /// </summary>
-        public DateTimeOffset ResetsAt { get; }
+        public DateTimeOffset ResetsAt { get; set; }
 
         /// <summary>
         ///     Total time (in seconds) of when the current rate limit bucket will reset. Can have decimals to match previous
         ///     millisecond rate limit precision.
         /// </summary>
-        public TimeSpan ResetsAfter { get; }
+        public TimeSpan ResetsAfter { get; set; }
 
         /// <summary>
         ///     A unique string denoting the rate limit being encountered (non-inclusive of major parameters in the route path).
         /// </summary>
-        public string Id { get; }
+        public string Id { get; set; } = null!;
 
         /// <summary>
         ///     Converts the <see cref="HttpResponseHeaders" /> containing the rate limit headers to its
