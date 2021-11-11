@@ -73,7 +73,7 @@ namespace Color_Chan.Discord.Commands.Attributes
                 return Result.FromSuccess();
             }
 
-            return Result.FromError(new BaseRateLimitErrorResult("Rate limit hit!", _max, rateLimit.Expiration));
+            return Result.FromError(new BaseRateLimitErrorResult($"User {context.User.Id.ToString()} has hit an interaction rate limit!", _max, rateLimit.Expiration));
         }
     }
 }
