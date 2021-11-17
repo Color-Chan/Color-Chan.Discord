@@ -94,6 +94,8 @@ namespace Color_Chan.Discord.Rest.Policies
                 LogRateLimit(updatedBucket, endpoint, false);
                 if (updatedBucket.IsGlobal)
                 {
+                    // Prevent rate limit buckets that have been reset from being added.
+                    if (updatedBucket.ResetsAfter <= TimeSpan.Zero) return response;
                     await _cacheService.CacheValueAsync(DiscordRateLimitBucket.GlobalBucketId, updatedBucket, null, updatedBucket.ResetsAfter);
                     return response;
                 }
@@ -101,7 +103,8 @@ namespace Color_Chan.Discord.Rest.Policies
 
             // An non rate limited global request will never get here!!!!!!
 
-            // Update the existing bucket.
+            // Only update the existing bucket if the it isn't already reset.
+            if (updatedBucket.ResetsAfter <= TimeSpan.Zero) return response;
             await _cacheService.CacheValueAsync(endpoint, updatedBucket, null, updatedBucket.ResetsAfter);
             return response;
         }
