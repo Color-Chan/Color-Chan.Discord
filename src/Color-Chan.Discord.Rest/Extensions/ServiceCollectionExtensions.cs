@@ -71,11 +71,14 @@ namespace Color_Chan.Discord.Rest.Extensions
             {
                 client.BaseAddress = localRestOptions.DiscordBaseUriOverwrite ?? Constants.DiscordApiUrl;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bot", botToken);
-            }).AddPolicyHandler((provider, _) => HttpPolicyExtensions.HandleTransientHttpError()
-                                                                     .WaitAndRetryAsync(retryDelay)
-                                                                     .WrapAsync(provider.GetRequiredService<DiscordRateLimitPolicy>())
-            ).AddPolicyHandler(Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.TooManyRequests)
-                                     .WaitAndRetryAsync(1, (_, response, _) => response.Result?.Headers.RetryAfter?.Delta ?? TimeSpan.FromMilliseconds(2500), (_, _, _, _) => Task.CompletedTask));
+            }).AddPolicyHandler((provider, _) =>
+            {
+                using var scope = provider.CreateScope();
+                return HttpPolicyExtensions.HandleTransientHttpError()
+                                           .WaitAndRetryAsync(retryDelay)
+                                           .WrapAsync(scope.ServiceProvider.GetRequiredService<DiscordRateLimitPolicy>());
+            }).AddPolicyHandler(Policy.HandleResult<HttpResponseMessage>(response => response.StatusCode == HttpStatusCode.TooManyRequests)
+                                      .WaitAndRetryAsync(1, (_, response, _) => response.Result?.Headers.RetryAfter?.Delta ?? TimeSpan.FromMilliseconds(2500), (_, _, _, _) => Task.CompletedTask));
 
             // Add all rest classes with Transient live cycle that inherit DiscordRestBase.
             services.Scan(scan =>
