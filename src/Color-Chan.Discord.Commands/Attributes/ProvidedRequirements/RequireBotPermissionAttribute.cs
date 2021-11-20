@@ -162,14 +162,18 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                     throw new NullReferenceException("Missing permission overwrites");
                 }
 
-                var everyoneRoleId = guild.Roles.FirstOrDefault(x => x.Name == "@everyone")?.Id;
-
-                // Removed the denied permissions from the role perms.
+                // Apply the `everyone` role permission overwrites for this channel. This needs to be done first to avoid issues with the other overwrites.
+                var everyoneOverwrite = channel.PermissionOverwrites.FirstOrDefault(x => x.TargetId == guild.Roles.FirstOrDefault(z => z.Name == "@everyone")?.Id);
+                if (everyoneOverwrite is not null)
+                {
+                    rolePerms |= everyoneOverwrite.Allow;
+                    rolePerms &= ~everyoneOverwrite.Deny;
+                }
+                
+                // Apply permission overwrites for the bot for this channel.
                 foreach (var permissionOverwrite in channel.PermissionOverwrites)
                 {
-                    if (permissionOverwrite.TargetId == discordTokens.ApplicationId ||
-                        permissionOverwrite.TargetId == everyoneRoleId ||
-                        botMemberResult.Entity.Roles.Contains(permissionOverwrite.TargetId))
+                    if (permissionOverwrite.TargetId == discordTokens.ApplicationId || botMemberResult.Entity.Roles.Contains(permissionOverwrite.TargetId))
                     {
                         rolePerms |= permissionOverwrite.Allow;
                         rolePerms &= ~permissionOverwrite.Deny;
