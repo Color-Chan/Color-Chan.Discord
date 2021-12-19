@@ -23,7 +23,7 @@
   <h3 align="center">Color-Chan.Discord</h3>
 
   <p align="center">
-    A Discord library made in .NET 5 for interactions using HTTPS.
+    A Discord library made in .NET 6 for interactions using HTTPS.
     <br />
     <a href="https://discord-library.colorchan.com/"><strong>Explore the docs »</strong></a>
     <br />
@@ -77,8 +77,8 @@ Color-Chan.Discord was originally made because i wanted full controll over what 
 
 ### Built With
 
-* [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
+* [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
 
 
 <!-- GETTING STARTED -->
@@ -89,8 +89,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
+* [.NET 5](https://dotnet.microsoft.com/download/dotnet/6.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
 
 ### Installation
 
