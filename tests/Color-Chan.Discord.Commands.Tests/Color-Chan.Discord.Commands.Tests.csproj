@@ -8,18 +8,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="6.2.0"/>
-        <PackageReference Include="GitHubActionsTestLogger" Version="1.2.0"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0"/>
-        <PackageReference Include="Moq" Version="4.16.1"/>
-        <PackageReference Include="nunit" Version="3.13.2"/>
-        <PackageReference Include="NUnit3TestAdapter" Version="4.0.0"/>
+        <PackageReference Include="FluentAssertions" Version="6.2.0" />
+        <PackageReference Include="GitHubActionsTestLogger" Version="1.2.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+        <PackageReference Include="Moq" Version="4.16.1" />
+        <PackageReference Include="nunit" Version="3.13.2" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj"/>
-        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Invalid\Color-Chan.Discord.Commands.Tests.Invalid.csproj"/>
-        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Valid\Color-Chan.Discord.Commands.Tests.Valid.csproj"/>
+        <ProjectReference Include="..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj" />
+        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Invalid\Color-Chan.Discord.Commands.Tests.Invalid.csproj" />
+        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Valid\Color-Chan.Discord.Commands.Tests.Valid.csproj" />
     </ItemGroup>
 
 </Project>
