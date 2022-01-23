@@ -89,7 +89,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* [.NET 5](https://dotnet.microsoft.com/download/dotnet/6.0)
+* [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
 * [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
 
 ### Installation
