@@ -69,7 +69,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Color-Chan.Discord is a C# Discord library made for slash commands, using Discord webhooks, .NET 5 and ASP.NET.  
+Color-Chan.Discord is a C# Discord library made for slash commands, using Discord webhooks, .NET 6 and ASP.NET.  
 The library is still in development so there expect some bug here and there, but please report it if you find one!
 
 Color-Chan.Discord was originally made because i wanted full control over what the bot exactly does, i also wanted it to be reliable and it had to run without a connection with discord gateway.
