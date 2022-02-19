@@ -14,26 +14,6 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
     public interface IDiscordRestUser
     {
         /// <summary>
-        ///     Leave a guild.
-        /// </summary>
-        /// <param name="guildId">The ID of the guild that the current user will leave.</param>
-        /// <param name="ct">The <see cref="CancellationToken" />.</param>
-        /// <returns>
-        ///     A <see cref="Result" /> containing the request results.
-        /// </returns>
-        Task<Result> LeaveGuild(ulong guildId, CancellationToken ct = default);
-
-        /// <summary>
-        ///     Creates a new DM channel with a user.
-        /// </summary>
-        /// <param name="createDm">The <see cref="DiscordCreateDm" /> containing the recipient ID.</param>
-        /// <param name="ct">The <see cref="CancellationToken" />.</param>
-        /// <returns>
-        ///     A <see cref="Result{T}" /> of <see cref="IDiscordChannel" /> with the request results.
-        /// </returns>
-        Task<Result<IDiscordChannel>> CreateDm(DiscordCreateDm createDm, CancellationToken ct = default);
-
-        /// <summary>
         ///     Get the user object of the requesters account. For OAuth2, this requires the identify scope, which will return the
         ///     object without an email, and optionally the email scope, which returns the object with an email.
         /// </summary>
@@ -52,5 +32,35 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     A <see cref="Result{T}" /> of <see cref="IDiscordUser" /> with the request results.
         /// </returns>
         Task<Result<IDiscordUser>> GetUser(ulong userId, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Modify the current user.
+        /// </summary>
+        /// <param name="modifyCurrentUser">The data used to modify the current user.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result{T}" /> of <see cref="IDiscordUser" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordUser>> ModifyCurrentUser(DiscordModifyCurrentUser modifyCurrentUser, CancellationToken ct = default);
+        
+        /// <summary>
+        ///     Leave a guild.
+        /// </summary>
+        /// <param name="guildId">The ID of the guild that the current user will leave.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result" /> containing the request results.
+        /// </returns>
+        Task<Result> LeaveGuild(ulong guildId, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Creates a new DM channel with a user.
+        /// </summary>
+        /// <param name="createDm">The <see cref="DiscordCreateDm" /> containing the recipient ID.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result{T}" /> of <see cref="IDiscordChannel" /> with the request results.
+        /// </returns>
+        Task<Result<IDiscordChannel>> CreateDm(DiscordCreateDm createDm, CancellationToken ct = default);
     }
 }
