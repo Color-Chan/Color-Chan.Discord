@@ -51,7 +51,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// <exception cref="ArgumentException">When <paramref name="url" /> <paramref name="customId" /> are both set.</exception>
         /// <exception cref="ArgumentNullException">When <paramref name="label" /> is null.</exception>
         /// <exception cref="InvalidActionRowException">When the <see cref="_childComponents" /> contains a select menu component.</exception>
-        public ActionRowComponentBuilder WithButton(string label, DiscordButtonStyle style, string? customId, string? url = null, IDiscordEmoji? emoji = null, bool disabled = false)
+        public ActionRowComponentBuilder WithButton(string label, DiscordButtonStyle style, string? customId = null, string? url = null, IDiscordEmoji? emoji = null, bool disabled = false)
         {
             if (customId is not null && customId.Length > MaxCustomIdLength)
                 throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {MaxCustomIdLength} characters.");
@@ -98,7 +98,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// </exception>
         /// <exception cref="ArgumentException">When <paramref name="url" /> <paramref name="customId" /> are both set.</exception>
         /// <exception cref="InvalidActionRowException">When the <see cref="_childComponents" /> contains a select menu component.</exception>
-        public ActionRowComponentBuilder WithButton(IDiscordEmoji emoji, DiscordButtonStyle style, string? customId, string? url = null, bool disabled = false)
+        public ActionRowComponentBuilder WithButton(IDiscordEmoji emoji, DiscordButtonStyle style, string? customId = null, string? url = null, bool disabled = false)
         {
             if (customId is not null && customId.Length > MaxCustomIdLength)
                 throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {MaxCustomIdLength} characters.");
