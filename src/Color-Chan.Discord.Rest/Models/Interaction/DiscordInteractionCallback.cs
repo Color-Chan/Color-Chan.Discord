@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -36,7 +37,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public IDiscordAllowedMentions? AllowedMentions { get; init; }
 
         /// <inheritdoc />
-        public DiscordInteractionCallbackFlags? Flags { get; init; }
+        public DiscordMessageFlags? Flags { get; init; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordComponent>? Components { get; init; }

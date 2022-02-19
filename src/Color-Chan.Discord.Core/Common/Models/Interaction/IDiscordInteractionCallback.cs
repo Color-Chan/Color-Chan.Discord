@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
@@ -30,9 +31,12 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         public IDiscordAllowedMentions? AllowedMentions { get; init; }
 
         /// <summary>
-        ///     Interaction application command callback data flags
+        ///     Interaction callback flags.
         /// </summary>
-        public DiscordInteractionCallbackFlags? Flags { get; init; }
+        /// <remarks>
+        ///     Only <see cref="DiscordMessageFlags.SuppressEmbeds"/> and <see cref="DiscordMessageFlags.Ephemeral"/> can be set.
+        /// </remarks>
+        public DiscordMessageFlags? Flags { get; init; }
 
         /// <summary>
         ///     Message components.
