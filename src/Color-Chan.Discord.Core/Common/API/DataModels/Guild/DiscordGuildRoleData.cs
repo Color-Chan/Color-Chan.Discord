@@ -5,7 +5,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
     /// <summary>
     ///     Represents a discord Role Structure API model.
-    ///     https://discord.com/developers/docs/topics/permissions#role-object-role-structure
+    ///     Docs: https://discord.com/developers/docs/topics/permissions#role-object-role-structure
     /// </summary>
     public record DiscordGuildRoleData
     {

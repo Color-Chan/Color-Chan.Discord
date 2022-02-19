@@ -7,7 +7,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
     /// <summary>
     ///     More info on
-    ///     https://discord.com/developers/docs/interactions/slash-commands#interaction-object-application-command-interaction-data-structure.
+    ///     Docs: https://discord.com/developers/docs/interactions/slash-commands#interaction-object-application-command-interaction-data-structure.
     /// </summary>
     public record DiscordInteractionRequestData
     {

@@ -9,7 +9,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
     // Todo: Implement missing API methods
     /// <summary>
     ///     Contains all the API calls mentioned in the user documentation.
-    ///     https://discord.com/developers/docs/resources/user
+    ///     Docs: https://discord.com/developers/docs/resources/user
     /// </summary>
     public interface IDiscordRestUser
     {

@@ -5,7 +5,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
 {
     /// <summary>
     ///     Represents a discord Application Command Option Structure API model.
-    ///     https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure
+    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure
     /// </summary>
     public record DiscordApplicationCommandOptionData
     {

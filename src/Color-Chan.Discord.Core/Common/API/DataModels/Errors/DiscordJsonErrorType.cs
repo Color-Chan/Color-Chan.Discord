@@ -2,6 +2,7 @@
 {
     /// <summary>
     ///     Describes the JSON error.
+    ///     Docs: https://discord.com/developers/docs/topics/opcodes-and-status-codes#json
     /// </summary>
     public enum DiscordJsonError
     {

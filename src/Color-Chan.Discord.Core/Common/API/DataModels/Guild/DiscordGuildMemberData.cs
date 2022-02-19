@@ -6,7 +6,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
     /// <summary>
     ///     Represents a discord Guild Member Structure API model.
-    ///     https://discord.com/developers/docs/resources/guild#guild-member-object-guild-member-structure
+    ///     Docs: https://discord.com/developers/docs/resources/guild#guild-member-object-guild-member-structure
     /// </summary>
     public record DiscordGuildMemberData
     {

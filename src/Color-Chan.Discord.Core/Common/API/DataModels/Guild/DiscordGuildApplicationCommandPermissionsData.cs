@@ -6,7 +6,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
     /// <summary>
     ///     Represents a discord Guild Application Command Permissions Structure API model.
-    ///     https://discord.com/developers/docs/interactions/slash-commands#application-command-permissions-object-guild-application-command-permissions-structure
+    ///     Docs: https://discord.com/developers/docs/interactions/slash-commands#application-command-permissions-object-guild-application-command-permissions-structure
     /// </summary>
     public class DiscordGuildApplicationCommandPermissionsData
     {

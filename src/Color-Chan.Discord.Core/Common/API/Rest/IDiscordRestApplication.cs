@@ -13,7 +13,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
 {
     /// <summary>
     ///     Contains all the API calls mentioned in the Application object documentation.
-    ///     https://discord.com/developers/docs/resources/application
+    ///     Docs: https://discord.com/developers/docs/resources/application
     /// </summary>
     public interface IDiscordRestApplication
     {

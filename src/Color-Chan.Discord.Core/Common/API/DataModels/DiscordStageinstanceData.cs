@@ -4,7 +4,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
     /// <summary>
     ///     Represents a Stage Instance Structure API model.
-    ///     https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-stage-instance-structure
+    ///     Docs: https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-stage-instance-structure
     /// </summary>
     public record DiscordStageinstanceData
     {

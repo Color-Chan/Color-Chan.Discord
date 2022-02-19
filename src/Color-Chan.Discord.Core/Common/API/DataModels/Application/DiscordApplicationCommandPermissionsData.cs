@@ -4,7 +4,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
 {
     /// <summary>
     ///     Represents a discord Application Command Permissions Structure API model.
-    ///     https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure
+    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure
     /// </summary>
     public class DiscordApplicationCommandPermissionsData
     {
