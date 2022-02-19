@@ -349,6 +349,21 @@
         ///     Maximum number of stickers reached.
         /// </summary>
         MaxStickersReached = 30039,
+        
+        /// <summary>
+        ///     Maximum number of prune requests has been reached. Try again later.
+        /// </summary>
+        MaxPrunesReached = 30040,
+        
+        /// <summary>
+        ///     Maximum number of guild widget settings updates has been reached. Try again later.
+        /// </summary>
+        MaxGuildWidgetUpdatesReached = 30042,
+        
+        /// <summary>
+        /// 	Maximum number of edits to messages older than 1 hour reached. Try again later.
+        /// </summary>
+        MaxMessageEditsReached = 30046,
 
         /// <summary>
         ///     Unauthorized. Provide a valid token and try again.
@@ -394,6 +409,11 @@
         ///     An application command with that name already exists.
         /// </summary>
         ApplicationCommandWithNameExists = 40041,
+        
+        /// <summary>
+        ///     Interaction has already been acknowledged.
+        /// </summary>
+        InteractionAlreadyAcknowledged = 40046,
 
         /// <summary>
         ///     Missing access.
@@ -586,6 +606,16 @@
         ///     This server needs monetization enabled in order to perform this action.
         /// </summary>
         ServerNeedsMonetizationEnabledToPerformThisAction = 50097,
+        
+        /// <summary>
+        ///     This server needs more boosts to perform this action.
+        /// </summary>
+        ServerNeedsMoreBoosts = 50101,
+        
+        /// <summary>
+        ///     The request body contains invalid JSON.
+        /// </summary>
+        JsonRequestBodyInvalid = 50109,
 
         /// <summary>
         ///     Two factor is required for this operation.
@@ -611,12 +641,17 @@
         ///     The stage channel is already open.
         /// </summary>
         StageAlreadyOpen = 150006,
+        
+        /// <summary>
+        ///     Cannot reply without permission to read message history.
+        /// </summary>
+        MissingMessageHistoryToReply = 160002,
 
         /// <summary>
         ///     A thread has already been created for this message.
         /// </summary>
         ThreadAlreadyCreated = 160004,
-
+        
         /// <summary>
         ///     The thread has been locked.
         /// </summary>
@@ -630,6 +665,51 @@
         /// <summary>
         ///     The maximum number of announcement threads has been reached.
         /// </summary>
-        MaxNumberOfAnnouncementThreadsReached = 160007
+        MaxNumberOfAnnouncementThreadsReached = 160007,
+        
+        /// <summary>
+        ///     Invalid JSON for uploaded Lottie file
+        /// </summary>
+        InvalidJsonLottieFile = 170001,
+        
+        /// <summary>
+        ///     Uploaded Lotties cannot contain rasterized images such as PNG or JPEG
+        /// </summary>
+        UploadContentInvalid = 170002,
+        
+        /// <summary>
+        ///     Sticker maximum framerate exceeded
+        /// </summary>
+        MaxStickerFramerateExceeded = 170003,
+        
+        /// <summary>
+        ///     Sticker frame count exceeds maximum of 1000 frames
+        /// </summary>
+        MaxStickerFramesExceeded = 170004,
+        
+        /// <summary>
+        ///     Lottie animation maximum dimensions exceeded
+        /// </summary>
+        LottieAnimationDimensionExceeded = 170005,
+        
+        /// <summary>
+        ///     Sticker frame rate is either too small or too large
+        /// </summary>
+        StickerFramerateIncorrect = 170006,
+        
+        /// <summary>
+        ///     Sticker animation duration exceeds maximum of 5 seconds
+        /// </summary>
+        StickerAnimationToLong = 170007,
+        
+        /// <summary>
+        ///     Cannot update a finished event
+        /// </summary>
+        CannotUpdateFinishedEvent = 180000,
+        
+        /// <summary>
+        ///     	Failed to create stage needed for stage event
+        /// </summary>
+        FailedToCreateStage = 180002
     }
 }
