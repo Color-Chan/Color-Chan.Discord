@@ -73,7 +73,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         ulong? AfkChannelId { get; set; }
 
         /// <summary>
-        ///     Ffk timeout in seconds.
+        ///     Afk timeout in seconds.
         /// </summary>
         int AfkTimeout { get; set; }
 
