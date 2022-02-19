@@ -17,7 +17,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Color-Chan/Color-Chan.Discord">
-    <img src="https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_round_512x.png" alt="Logo" width="120" height="120">
+    <img src="https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_round_512x.png" alt="Logo" width="120">
   </a>
 
   <h3 align="center">Color-Chan.Discord</h3>
