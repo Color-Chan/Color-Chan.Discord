@@ -51,6 +51,9 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         /// <summary>
         ///     Contents of the message.
         /// </summary>
+        /// <remarks>
+        ///     Requires the message content intent, unless the message is from the current application.
+        /// </remarks>
         [JsonPropertyName("content")]
         public string Content { get; init; } = null!;
 
@@ -99,12 +102,18 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         /// <summary>
         ///     Any attached files.
         /// </summary>
+        /// <remarks>
+        ///     Requires the message content intent, unless the message is from the current application.
+        /// </remarks>
         [JsonPropertyName("attachments")]
         public IEnumerable<DiscordAttachmentData> Attachments { get; init; } = new List<DiscordAttachmentData>();
 
         /// <summary>
         ///     Any embedded content.
         /// </summary>
+        /// <remarks>
+        ///     Requires the message content intent, unless the message is from the current application.
+        /// </remarks>
         [JsonPropertyName("embeds")]
         public IEnumerable<DiscordEmbedData> Embeds { get; init; } = new List<DiscordEmbedData>();
 
@@ -195,6 +204,9 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         /// <summary>
         ///     Sent if the message contains components like buttons, action rows, or other interactive components.
         /// </summary>
+        /// <remarks>
+        ///     Requires the message content intent, unless the message is from the current application.
+        /// </remarks>
         [JsonPropertyName("components")]
         public IEnumerable<DiscordComponentData>? Components { get; init; }
 
