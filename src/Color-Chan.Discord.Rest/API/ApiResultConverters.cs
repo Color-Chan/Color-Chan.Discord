@@ -149,5 +149,22 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IReadOnlyList<IDiscordGuildMember>>.FromSuccess(list);
         }
+        
+        internal static Result<IDiscordPartialGuild> ConvertResult(Result<DiscordPartialGuildData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordPartialGuild>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordPartialGuild>.FromSuccess(new DiscordPartialGuild(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordPartialGuild>> ConvertResult(Result<IReadOnlyList<DiscordPartialGuildData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordPartialGuild>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordPartialGuild>();
+            foreach (var data in result.Entity) list.Add(new DiscordPartialGuild(data));
+
+            return Result<IReadOnlyList<IDiscordPartialGuild>>.FromSuccess(list);
+        }
     }
 }
