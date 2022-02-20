@@ -54,7 +54,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         public ulong? AfkChannelId { get; set; }
 
         /// <summary>
-        ///     Ffk timeout in seconds.
+        ///     Afk timeout in seconds.
         /// </summary>
         [JsonPropertyName("afk_timeout")]
         public int AfkTimeout { get; set; }
