@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.DataModels;
+using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.Params.User;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models;
@@ -53,11 +55,20 @@ namespace Color_Chan.Discord.Rest.API.Rest
         #region Guilds
 
         /// <inheritdoc />
+        public virtual async Task<Result<IReadOnlyList<IDiscordPartialGuild>>> GetCurrentUserGuilds(CancellationToken ct = default)
+        {
+            const string endpoint = "users/@me/guilds";
+            var result = await HttpClient.GetAsync<IReadOnlyList<DiscordPartialGuildData>>(endpoint, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
+        
+        /// <inheritdoc />
         public virtual async Task<Result> LeaveGuild(ulong guildId, CancellationToken ct = default)
         {
             var endpoint = $"users/@me/guilds/{guildId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, ct: ct).ConfigureAwait(false);
         }
+        
 
         #endregion
         
