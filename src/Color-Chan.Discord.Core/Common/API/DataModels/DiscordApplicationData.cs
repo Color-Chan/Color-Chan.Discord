@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a Application Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/application#application-object-application-structure
+    /// </summary>
     public record DiscordApplicationData
     {
         /// <summary>
