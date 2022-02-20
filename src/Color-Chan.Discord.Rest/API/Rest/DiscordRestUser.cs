@@ -91,6 +91,14 @@ namespace Color_Chan.Discord.Rest.API.Rest
             var result = await HttpClient.PostAsync<DiscordChannelData, DiscordCreateDm>(endpoint, createDm, ct: ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
+        
+        /// <inheritdoc />
+        public virtual async Task<Result<IDiscordChannel>> CreateDmGroup(DiscordCreateDmGroup createDm, CancellationToken ct = default)
+        {
+            const string endpoint = "users/@me/channels";
+            var result = await HttpClient.PostAsync<DiscordChannelData, DiscordCreateDmGroup>(endpoint, createDm, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
 
         #endregion
     }

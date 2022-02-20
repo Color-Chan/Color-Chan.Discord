@@ -93,5 +93,18 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     A <see cref="Result{T}" /> of <see cref="IDiscordChannel" /> with the request results.
         /// </returns>
         Task<Result<IDiscordChannel>> CreateDm(DiscordCreateDm createDm, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Create a new group DM channel with multiple users.
+        /// </summary>
+        /// <param name="createDm">The <see cref="DiscordCreateDmGroup"/> containing all the members data for the group.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result{T}" /> of <see cref="IDiscordChannel" /> with the request results.
+        /// </returns>
+        /// <remarks>
+        ///     This endpoint is limited to 10 active group DMs.
+        /// </remarks>
+        Task<Result<IDiscordChannel>> CreateDmGroup(DiscordCreateDmGroup createDm, CancellationToken ct = default);
     }
 }
