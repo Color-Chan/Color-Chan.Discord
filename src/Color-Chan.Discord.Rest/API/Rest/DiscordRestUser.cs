@@ -101,5 +101,13 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
 
         #endregion
+
+        /// <inheritdoc />
+        public virtual async Task<Result<IReadOnlyList<IDiscordConnection>>> GetUserConnections(CancellationToken ct = default)
+        {
+            const string endpoint = "users/@me/connections";
+            var result = await HttpClient.GetAsync<IReadOnlyList<DiscordConnectionData>>(endpoint, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
     }
 }

@@ -111,5 +111,17 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     This endpoint is limited to 10 active group DMs.
         /// </remarks>
         Task<Result<IDiscordChannel>> CreateDmGroup(DiscordCreateDmGroup createDm, CancellationToken ct = default);
+
+        /// <summary>
+        ///     Get a list of <see cref="IDiscordConnection"/> objects.
+        /// </summary>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result{T}" /> of <see cref="IDiscordConnection" />s with the request results.
+        /// </returns>
+        /// <remarks>
+        ///     Requires the connections OAuth2 scope.
+        /// </remarks>
+        Task<Result<IReadOnlyList<IDiscordConnection>>> GetUserConnections(CancellationToken ct = default);
     }
 }
