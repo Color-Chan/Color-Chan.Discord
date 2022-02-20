@@ -1,7 +1,9 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <inheritdoc cref="IDiscordAttachment"/>
     public record DiscordAttachmentData
     {
         /// <summary>
