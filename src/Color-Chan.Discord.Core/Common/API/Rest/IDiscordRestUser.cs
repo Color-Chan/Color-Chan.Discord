@@ -92,6 +92,11 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         /// <returns>
         ///     A <see cref="Result{T}" /> of <see cref="IDiscordChannel" /> with the request results.
         /// </returns>
+        /// <remarks>
+        ///     You should not use this endpoint to DM everyone in a server about something.
+        ///     DMs should generally be initiated by a user action. If you open a significant amount of DMs too quickly,
+        ///     your bot may be rate limited or blocked from opening new ones.
+        /// </remarks>
         Task<Result<IDiscordChannel>> CreateDm(DiscordCreateDm createDm, CancellationToken ct = default);
 
         /// <summary>
