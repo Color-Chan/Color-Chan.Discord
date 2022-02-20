@@ -63,6 +63,14 @@ namespace Color_Chan.Discord.Rest.API.Rest
         }
         
         /// <inheritdoc />
+        public virtual async Task<Result<IDiscordGuildMember>> GetCurrentUserGuildMember(ulong guildId, CancellationToken ct = default)
+        {
+            string endpoint = $"users/@me/guilds/{guildId}";
+            var result = await HttpClient.GetAsync<DiscordGuildMemberData>(endpoint, ct: ct).ConfigureAwait(false);
+            return ApiResultConverters.ConvertResult(result);
+        }
+        
+        /// <inheritdoc />
         public virtual async Task<Result> LeaveGuild(ulong guildId, CancellationToken ct = default)
         {
             var endpoint = $"users/@me/guilds/{guildId.ToString()}";

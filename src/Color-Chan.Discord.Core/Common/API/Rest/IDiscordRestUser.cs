@@ -60,6 +60,19 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
         ///     Therefore, pagination is not needed for integrations that need to get a list of the users' guilds.
         /// </remarks>
         Task<Result<IReadOnlyList<IDiscordPartialGuild>>> GetCurrentUserGuilds(CancellationToken ct = default);
+
+        /// <summary>
+        ///     Get a <see cref="IDiscordGuildMember"/> of the current user for a specific guild.
+        /// </summary>
+        /// <param name="guildId">The ID of the guild.</param>
+        /// <param name="ct">The <see cref="CancellationToken" />.</param>
+        /// <returns>
+        ///     A <see cref="Result{T}" /> of <see cref="IDiscordGuildMember" /> with the request results.
+        /// </returns>
+        /// <remarks>
+        ///     Requires the guilds.members.read OAuth2 scope.
+        /// </remarks>
+        Task<Result<IDiscordGuildMember>> GetCurrentUserGuildMember(ulong guildId, CancellationToken ct = default);
         
         /// <summary>
         ///     Leave a guild.
