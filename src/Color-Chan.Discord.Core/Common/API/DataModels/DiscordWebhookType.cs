@@ -1,5 +1,9 @@
 ﻿namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a discord Webhook Types API model.
+    ///     Docs: https://discord.com/developers/docs/resources/webhook#webhook-object-webhook-types
+    /// </summary>
     public enum DiscordWebhookType
     {
         /// <summary>

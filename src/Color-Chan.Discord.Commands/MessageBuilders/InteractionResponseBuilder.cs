@@ -165,11 +165,11 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// <returns>
         ///     The build <see cref="IDiscordInteractionResponse" />.
         /// </returns>
-        public IDiscordInteractionResponse Build(DiscordInteractionResponseType? type = null)
+        public IDiscordInteractionResponse Build(DiscordInteractionCallbackType? type = null)
         {
             return new DiscordInteractionResponse
             {
-                Type = type ?? DiscordInteractionResponseType.ChannelMessageWithSource,
+                Type = type ?? DiscordInteractionCallbackType.ChannelMessageWithSource,
                 Data = new DiscordInteractionCallback
                 {
                     Components = _components,

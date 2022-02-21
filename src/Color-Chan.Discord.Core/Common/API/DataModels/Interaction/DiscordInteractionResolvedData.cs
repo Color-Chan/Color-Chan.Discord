@@ -5,6 +5,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
+    /// <summary>
+    ///     Represents a discord Resolved Data Structure API model.
+    ///     Docs: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-resolved-data-structure
+    /// </summary>
     public record DiscordInteractionResolvedData
     {
         /// <summary>

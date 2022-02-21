@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a discord Overwrite Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#overwrite-object-overwrite-structure
+    /// </summary>
     public record DiscordOverwriteData
     {
         /// <summary>

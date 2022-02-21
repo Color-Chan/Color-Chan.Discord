@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a discord User Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/user#user-object-user-structure
+    /// </summary>
     public record DiscordUserData
     {
         /// <summary>
@@ -68,7 +72,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
         ///     The private flags on a user's account.
         /// </summary>
         [JsonPropertyName("flags")]
-        public DiscordUserProperties? PrivateFlags { get; init; }
+        public DiscordUserFlags? PrivateFlags { get; init; }
 
         /// <summary>
         ///     The type of Nitro subscription on a user's account.
@@ -80,6 +84,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
         ///     The public flags on a user's account.
         /// </summary>
         [JsonPropertyName("public_flags")]
-        public DiscordUserProperties? PublicFlags { get; init; }
+        public DiscordUserFlags? PublicFlags { get; init; }
     }
 }

@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a discord Reaction Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#reaction-object-reaction-structure
+    /// </summary>
     public record DiscordReactionData
     {
         /// <summary>

@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
 {
+    /// <summary>
+    ///     Represents a discord Sticker Item Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/sticker#sticker-item-object-sticker-item-structure
+    /// </summary>
     public record DiscordMessageStickerItemData
     {
         /// <summary>

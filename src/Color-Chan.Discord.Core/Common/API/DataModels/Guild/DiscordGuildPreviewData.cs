@@ -3,6 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
+    /// <summary>
+    ///     Represents a discord Guild Preview Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/guild#guild-preview-object-guild-preview-structure
+    /// </summary>
     public class DiscordGuildPreviewData
     {
         /// <summary>

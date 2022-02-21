@@ -32,7 +32,7 @@ namespace Pong
 
             //  Replace the arguments with the data of your bot.
             //  Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.
-            services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999, config); // <---
+            services.AddColorChanDiscord("ODY5MjE0NzU4OTIwOTIxMTE4.YP69Uw.V9zmxgAph-0JBDYSR7xmDvkh0B4", "d24324b6f62f166324c2b1e27a806a71c8c969572f956c067fd714ea4292f17f", 869214758920921118, config); // <---
 
             services.AddControllers();
         }

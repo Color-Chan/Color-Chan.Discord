@@ -7,6 +7,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
 {
+    /// <summary>
+    ///     Represents a discord Message Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#message-object-message-structure
+    /// </summary>
     public record DiscordMessageData
     {
         /// <summary>

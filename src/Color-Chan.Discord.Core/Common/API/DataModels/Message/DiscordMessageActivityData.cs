@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
 {
+    /// <summary>
+    ///     Represents a discord Message Activity Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#message-object-message-activity-structure
+    /// </summary>
     public record DiscordMessageActivityData
     {
         /// <summary>

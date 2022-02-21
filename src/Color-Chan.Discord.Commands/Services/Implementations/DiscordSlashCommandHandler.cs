@@ -165,7 +165,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             {
                 var acknowledgeResponse = new DiscordInteractionResponseData
                 {
-                    Type = DiscordInteractionResponseType.DeferredChannelMessageWithSource
+                    Type = DiscordInteractionCallbackType.DeferredChannelMessageWithSource
                 };
 
                 var acknowledgeResult = await _restApplication.CreateInteractionResponseAsync(interaction.Id, interaction.Token, acknowledgeResponse).ConfigureAwait(false);

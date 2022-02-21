@@ -5,6 +5,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
+    /// <summary>
+    ///     Represents a discord Application Command Interaction Data Option Structure API model.
+    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-interaction-data-option-structure
+    /// </summary>
     public record DiscordInteractionOptionData
     {
         /// <summary>

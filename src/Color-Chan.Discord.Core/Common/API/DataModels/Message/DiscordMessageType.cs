@@ -1,5 +1,9 @@
 ﻿namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
 {
+    /// <summary>
+    ///     Represents a discord Message Types API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#message-object-message-types
+    /// </summary>
     public enum DiscordMessageType
     {
         /// <summary>
