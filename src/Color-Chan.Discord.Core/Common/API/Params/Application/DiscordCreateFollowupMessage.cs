@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.API.Params.Webhook;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Application
 {
+    /// <summary>
+    ///     Represents a discord Create Followup Message API request model.
+    ///     Docs: https://discord.com/developers/docs/interactions/receiving-and-responding#create-followup-message
+    /// </summary>
     public record DiscordCreateFollowupMessage : DiscordExecuteWebhook
     {
         /// <summary>
