@@ -35,7 +35,7 @@ namespace Color_Chan.Discord.Commands.Models
         {
             return new InternalInteractionResponse(false, new DiscordInteractionResponse
             {
-                Type = DiscordInteractionResponseType.Pong,
+                Type = DiscordInteractionCallbackType.Pong,
                 Data = null
             });
         }

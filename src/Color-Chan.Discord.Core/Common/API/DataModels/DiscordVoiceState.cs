@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a discord Voice State Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/voice#voice-state-object-voice-state-structure
+    /// </summary>
     public record DiscordVoiceState
     {
         /// <summary>

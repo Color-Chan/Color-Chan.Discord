@@ -3,12 +3,20 @@ using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Rest.Models.Embed
 {
+    /// <inheritdoc cref="IDiscordEmbedAuthor"/>
     public record DiscordEmbedAuthor : IDiscordEmbedAuthor
     {
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordEmbedAuthor"/>
+        /// </summary>
         public DiscordEmbedAuthor()
         {
         }
 
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordEmbedAuthor"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordEmbedAuthor"/>.</param>
         public DiscordEmbedAuthor(DiscordEmbedAuthorData data)
         {
             Name = data.Name;

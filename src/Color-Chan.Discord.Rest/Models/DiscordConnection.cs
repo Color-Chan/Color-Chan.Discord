@@ -6,6 +6,10 @@ namespace Color_Chan.Discord.Rest.Models;
 /// <inheritdoc cref="IDiscordConnection"/>
 public class DiscordConnection : IDiscordConnection
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordConnectionData"/>
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordConnectionData"/>.</param>
     public DiscordConnection(DiscordConnectionData data)
     {
         Id = data.Id;

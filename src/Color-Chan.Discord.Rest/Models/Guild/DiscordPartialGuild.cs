@@ -11,6 +11,10 @@ namespace Color_Chan.Discord.Rest.Models.Guild;
 /// <inheritdoc />
 public class DiscordPartialGuild : IDiscordPartialGuild
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordPartialGuild"/>
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordPartialGuild"/>.</param>
     public DiscordPartialGuild(DiscordPartialGuildData data)
     {
         Id = data.Id;
@@ -64,6 +68,7 @@ public class DiscordPartialGuild : IDiscordPartialGuild
         StageInstances = data.StageInstances is not null ? new DiscordStageInstance(data.StageInstances) : null;
     }
 
+    /// <inheritdoc />
     public ulong? Id { get; init; }
 
     /// <inheritdoc />

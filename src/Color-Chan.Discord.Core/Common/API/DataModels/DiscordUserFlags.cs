@@ -2,8 +2,12 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a discord User Flags API model.
+    ///     Docs: https://discord.com/developers/docs/resources/user#user-object-user-flags
+    /// </summary>
     [Flags]
-    public enum DiscordUserProperties
+    public enum DiscordUserFlags
     {
         /// <summary>
         ///     Default value for flags, when none are given to an account.

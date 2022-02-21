@@ -6,7 +6,14 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
     /// </summary>
     public enum DiscordApplicationCommandPermissionsType
     {
+        /// <summary>
+        ///     Requires a specific role.
+        /// </summary>
         Role = 1,
+        
+        /// <summary>
+        ///     Requires a specific user.
+        /// </summary>
         User = 2
     }
 }

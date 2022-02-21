@@ -117,7 +117,7 @@ namespace Color_Chan.Discord.Controllers
                 _logger.LogDebug("Interaction {Id} : Returning empty interaction response to discord", interactionData.Id.ToString());
                 return SerializeResult(new DiscordInteractionResponseData
                 {
-                    Type = DiscordInteractionResponseType.DeferredUpdateMessage
+                    Type = DiscordInteractionCallbackType.DeferredUpdateMessage
                 });
             }
 

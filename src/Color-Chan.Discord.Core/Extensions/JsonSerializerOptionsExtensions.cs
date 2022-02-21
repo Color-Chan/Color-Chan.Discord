@@ -28,7 +28,7 @@ namespace Color_Chan.Discord.Core.Extensions
         }
 
         /// <summary>
-        ///     Adds a <see cref="TConverter" /> of type <see cref="JsonConverter" /> to the <see cref="JsonSerializerOptions" />.
+        ///     Adds a <typeparamref name="TConverter" /> of type <see cref="JsonConverter" /> to the <see cref="JsonSerializerOptions" />.
         /// </summary>
         /// <param name="options">The <see cref="JsonSerializerOptions" />.</param>
         /// <typeparam name="TConverter">The type of the <see cref="JsonConverter{T}" />.</typeparam>

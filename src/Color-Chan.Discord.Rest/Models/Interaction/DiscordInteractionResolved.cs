@@ -12,8 +12,13 @@ using Color_Chan.Discord.Rest.Models.Message;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
+    /// <inheritdoc cref="IDiscordInteractionResolved"/>
     public record DiscordInteractionResolved : IDiscordInteractionResolved
     {
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordInteractionResolved"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordInteractionResolved"/>.</param>
         public DiscordInteractionResolved(DiscordInteractionResolvedData data)
         {
             Users = InitializeUsersDict(data.Users);

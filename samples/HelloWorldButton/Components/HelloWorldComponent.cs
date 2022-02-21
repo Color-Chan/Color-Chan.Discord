@@ -26,7 +26,7 @@ namespace HelloWorldButton.Components
             var response = new InteractionResponseBuilder()
                            .WithContent("Hello world!")
                            .EmptyComponents()
-                           .Build(DiscordInteractionResponseType.UpdateMessage);
+                           .Build(DiscordInteractionCallbackType.UpdateMessage);
 
             return FromSuccess(response);
         }

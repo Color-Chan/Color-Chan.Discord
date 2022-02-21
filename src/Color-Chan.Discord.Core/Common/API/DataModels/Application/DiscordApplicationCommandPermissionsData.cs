@@ -1,28 +1,20 @@
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
 {
-    /// <summary>
-    ///     Represents a discord Application Command Permissions Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure
-    /// </summary>
+    /// <inheritdoc cref="IDiscordApplicationCommandPermissions"/>
     public class DiscordApplicationCommandPermissionsData
     {
-        /// <summary>
-        ///     The id of the role or user.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordApplicationCommandPermissions.Id"/>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
 
-        /// <summary>
-        ///     The type of the <see cref="DiscordApplicationCommandPermissionsData" />.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordApplicationCommandPermissions.Type"/>
         [JsonPropertyName("type")]
         public DiscordApplicationCommandPermissionsType Type { get; init; }
 
-        /// <summary>
-        ///     true to allow, false, to disallow.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordApplicationCommandPermissions.Allow"/>
         [JsonPropertyName("permission")]
         public bool Allow { get; init; }
     }

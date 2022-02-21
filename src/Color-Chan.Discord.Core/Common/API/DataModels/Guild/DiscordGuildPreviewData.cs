@@ -1,68 +1,49 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
+    /// <inheritdoc cref="IDiscordGuildPreview"/>
     public class DiscordGuildPreviewData
     {
-        /// <summary>
-        ///     Guild id.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.Id"/>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
 
-        /// <summary>
-        ///     Guild name (2-100 characters, excluding trailing and leading whitespace).
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.Name"/>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
 
-        /// <summary>
-        ///     Icon hash.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.Icon"/>
         [JsonPropertyName("icon")]
         public string? Icon { get; init; }
 
-        /// <summary>
-        ///     Splash hash.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.Splash"/>
         [JsonPropertyName("splash")]
         public string? Splash { get; init; }
 
-        /// <summary>
-        ///     Discovery splash hash; only present for guilds with the "DISCOVERABLE" feature.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.DiscoverySplash"/>
         [JsonPropertyName("discovery_splash")]
         public string? DiscoverySplash { get; init; }
 
-        /// <summary>
-        ///     Roles in the guild.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.Roles"/>
         [JsonPropertyName("roles")]
         public IEnumerable<DiscordGuildRoleData> Roles { get; init; } = new List<DiscordGuildRoleData>();
 
-        /// <summary>
-        ///     Custom guild emojis.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.Emojis"/>
         [JsonPropertyName("emojis")]
         public IEnumerable<DiscordEmojiData> Emojis { get; init; } = new List<DiscordEmojiData>();
 
-        /// <summary>
-        ///     Approximate number of members in this guild, returned from the GET /guilds/{id} endpoint when with_counts is true.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.ApproximateMemberCount"/>
         [JsonPropertyName("approximate_member_count")]
         public int? ApproximateMemberCount { get; init; }
 
-        /// <summary>
-        ///     Approximate number of non-offline members in this guild, returned from the GET /guilds/{id} endpoint when
-        ///     with_counts is true.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.ApproximatePresenceCount"/>
         [JsonPropertyName("approximate_presence_count")]
         public int? ApproximatePresenceCount { get; init; }
 
-        /// <summary>
-        ///     The description for the guild, if the guild is discoverable.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildPreview.Description"/>
         [JsonPropertyName("description")]
         public string? Description { get; init; }
     }

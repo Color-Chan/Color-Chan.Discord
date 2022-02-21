@@ -32,7 +32,7 @@ namespace ButtonArgs.Components
             var response = new InteractionResponseBuilder()
                            .WithEmbed(embedBuilder.Build())
                            .EmptyComponents()
-                           .Build(DiscordInteractionResponseType.UpdateMessage);
+                           .Build(DiscordInteractionCallbackType.UpdateMessage);
 
             return FromSuccess(response);
         }

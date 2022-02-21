@@ -2,18 +2,13 @@
 
 namespace Color_Chan.Discord.Rest.Models.Application
 {
-    public record DiscordApplicationCommandOptionChoice : IDiscordApplicationCommandOptionChoice
+    /// <inheritdoc cref="IDiscordApplicationCommandOptionChoice"/>
+    public record DiscordApplicationCommandOptionChoice(string Name, object RawValue) : IDiscordApplicationCommandOptionChoice
     {
-        public DiscordApplicationCommandOptionChoice(string name, object value)
-        {
-            Name = name;
-            RawValue = value;
-        }
+        /// <inheritdoc />
+        public string Name { get; set; } = Name;
 
         /// <inheritdoc />
-        public string Name { get; set; }
-
-        /// <inheritdoc />
-        public object RawValue { get; set; }
+        public object RawValue { get; set; } = RawValue;
     }
 }

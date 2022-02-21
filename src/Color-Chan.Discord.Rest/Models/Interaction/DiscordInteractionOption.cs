@@ -8,8 +8,13 @@ using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
+    /// <inheritdoc cref="IDiscordInteractionOption"/>
     public record DiscordInteractionOption : IDiscordInteractionOption
     {
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordInteractionOption"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordInteractionOption"/>.</param>
         public DiscordInteractionOption(DiscordInteractionOptionData data)
         {
             Name = data.Name;

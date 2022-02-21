@@ -5,17 +5,22 @@ using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Rest.Models.Application
 {
+    /// <inheritdoc />
     public class DiscordApplicationCommand : IDiscordApplicationCommand
     {
-        public DiscordApplicationCommand(DiscordApplicationCommandData resultEntity)
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordApplicationCommand"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordApplicationCommand"/>.</param>
+        public DiscordApplicationCommand(DiscordApplicationCommandData data)
         {
-            Id = resultEntity.Id;
-            ApplicationId = resultEntity.ApplicationId;
-            GuildId = resultEntity.GuildId;
-            Name = resultEntity.Name;
-            Description = resultEntity.Description;
-            Options = resultEntity.Options?.Select(option => new DiscordApplicationCommandOption(option));
-            DefaultPermission = resultEntity.DefaultPermission;
+            Id = data.Id;
+            ApplicationId = data.ApplicationId;
+            GuildId = data.GuildId;
+            Name = data.Name;
+            Description = data.Description;
+            Options = data.Options?.Select(option => new DiscordApplicationCommandOption(option));
+            DefaultPermission = data.DefaultPermission;
         }
 
         /// <inheritdoc />

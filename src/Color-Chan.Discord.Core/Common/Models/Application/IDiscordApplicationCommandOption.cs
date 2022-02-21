@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.Models.Application
 {
+    /// <summary>
+    ///     Represents a discord Application Command Option Structure API model.
+    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure
+    /// </summary>
     public interface IDiscordApplicationCommandOption
     {
         /// <summary>

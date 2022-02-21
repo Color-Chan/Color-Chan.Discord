@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
 {
+    /// <summary>
+    ///     Represents a discord Message Flags API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#message-object-message-flags
+    /// </summary>
     [Flags]
     public enum DiscordMessageFlags
     {

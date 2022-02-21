@@ -1,46 +1,32 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <summary>
-    ///     Represents a Stage Instance Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-stage-instance-structure
-    /// </summary>
+    /// <inheritdoc cref="IDiscordStageInstance"/>
     public record DiscordStageinstanceData
     {
-        /// <summary>
-        ///     The id of this Stage instance.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordStageInstance.Id"/>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
 
-        /// <summary>
-        ///     The guild id of the associated Stage channel.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordStageInstance.GuildId"/>
         [JsonPropertyName("guild_id")]
         public ulong GuildId { get; init; }
 
-        /// <summary>
-        ///     The id of the associated Stage channel.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordStageInstance.ChannelId"/>
         [JsonPropertyName("channel_id")]
         public ulong ChannelId { get; init; }
 
-        /// <summary>
-        ///     The topic of the Stage instance (1-120 characters).
-        /// </summary>
+        /// <inheritdoc cref="IDiscordStageInstance.Topic"/>
         [JsonPropertyName("topic")]
         public string Topic { get; init; } = null!;
 
-        /// <summary>
-        ///     The privacy level of the Stage instance.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordStageInstance.PrivacyLevel"/>
         [JsonPropertyName("privacy_level")]
         public DiscordStagePrivacyLevel PrivacyLevel { get; init; }
 
-        /// <summary>
-        ///     Whether or not Stage discovery is disabled.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordStageInstance.DiscoverableDisabled"/>
         [JsonPropertyName("discoverable_disabled")]
         public bool DiscoverableDisabled { get; init; }
     }
