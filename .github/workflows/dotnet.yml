@@ -19,7 +19,8 @@ jobs:
         with:
          dotnet-version: 6.0.x
 
-      - uses: actions/cache@v2
+      - name: Load nuget cache
+        uses: actions/cache@v2
         with:
           path: |
             ~/.nuget/packages
