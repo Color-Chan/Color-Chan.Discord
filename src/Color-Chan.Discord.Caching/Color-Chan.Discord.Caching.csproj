@@ -43,7 +43,6 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <DebugSymbols>false</DebugSymbols>
         <DocumentationFile>bin\Release\Color-Chan.Discord.Chaching.xml</DocumentationFile>
     </PropertyGroup>
 

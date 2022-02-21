@@ -49,8 +49,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <DocumentationFile></DocumentationFile>
-        <DebugSymbols>true</DebugSymbols>
+        <DocumentationFile>bin\Release\Color-Chan.Discord.Core.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
