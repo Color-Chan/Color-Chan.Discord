@@ -16,7 +16,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         }
 
         /// <inheritdoc />
-        public DiscordInteractionResponseType Type { get; init; }
+        public DiscordInteractionCallbackType Type { get; init; }
 
         /// <inheritdoc />
         public IDiscordInteractionCallback? Data { get; init; }

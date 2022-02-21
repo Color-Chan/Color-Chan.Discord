@@ -7,7 +7,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Interaction
         /// <summary>
         ///     The type of interaction.
         /// </summary>
-        public DiscordInteractionResponseType Type { get; init; }
+        public DiscordInteractionCallbackType Type { get; init; }
 
         /// <summary>
         ///     An optional response message.

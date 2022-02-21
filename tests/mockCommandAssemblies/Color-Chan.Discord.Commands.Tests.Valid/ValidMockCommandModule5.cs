@@ -24,7 +24,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         {
             return FromSuccess(new DiscordInteractionResponse
             {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource
+                Type = DiscordInteractionCallbackType.ChannelMessageWithSource
             });
         }
 
@@ -35,7 +35,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         {
             return FromSuccess(new DiscordInteractionResponse
             {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource
+                Type = DiscordInteractionCallbackType.ChannelMessageWithSource
             });
         }
 
@@ -48,7 +48,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         {
             return FromSuccess(new DiscordInteractionResponse
             {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource
+                Type = DiscordInteractionCallbackType.ChannelMessageWithSource
             });
         }
 
@@ -59,7 +59,7 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         {
             return FromSuccess(new DiscordInteractionResponse
             {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource
+                Type = DiscordInteractionCallbackType.ChannelMessageWithSource
             });
         }
     }

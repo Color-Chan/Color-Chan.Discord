@@ -53,13 +53,13 @@ namespace Color_Chan.Discord.Rest.Models
         public string? Email { get; init; }
 
         /// <inheritdoc />
-        public DiscordUserProperties? PrivateFlags { get; init; }
+        public DiscordUserFlags? PrivateFlags { get; init; }
 
         /// <inheritdoc />
         public DiscordPremiumType? PremiumType { get; init; }
 
         /// <inheritdoc />
-        public DiscordUserProperties? PublicFlags { get; init; }
+        public DiscordUserFlags? PublicFlags { get; init; }
 
         /// <inheritdoc />
         public DiscordUserData ToDataModel()
