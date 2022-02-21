@@ -61,7 +61,7 @@ namespace Color_Chan.Discord.Core.Extensions
         /// </param>
         /// <param name="permission">The converted <see cref="DiscordPermission" />.</param>
         /// <returns>
-        ///     Whether or not the <see cref="permissionString" /> has been converted to a <see cref="DiscordPermission" />.
+        ///     Whether or not the <paramref name="permissionString" /> has been converted to a <see cref="DiscordPermission" />.
         /// </returns>
         public static bool TryParseDiscordGuildPermission(this string? permissionString, [NotNullWhen(true)] out DiscordPermission? permission)
         {
