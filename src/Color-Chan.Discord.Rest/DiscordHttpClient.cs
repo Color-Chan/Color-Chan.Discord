@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 
 namespace Color_Chan.Discord.Rest
 {
+    /// <inheritdoc />
     public class DiscordHttpClient : IDiscordHttpClient
     {
         private const string AuditLogHeaderKey = "X-Audit-Log-Reason";

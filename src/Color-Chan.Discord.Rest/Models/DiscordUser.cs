@@ -3,8 +3,13 @@ using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Rest.Models
 {
+    /// <inheritdoc cref="IDiscordUser"/>
     public record DiscordUser : IDiscordUser
     {
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordUser"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordUser"/>.</param>
         public DiscordUser(DiscordUserData data)
         {
             Id = data.Id;

@@ -3,8 +3,13 @@ using Color_Chan.Discord.Core.Common.Models.Message;
 
 namespace Color_Chan.Discord.Rest.Models.Message
 {
+    /// <inheritdoc cref="IDiscordMessageReference"/>
     public class DiscordMessageReference : IDiscordMessageReference
     {
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordMessageReference"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordMessageReference"/>.</param>
         public DiscordMessageReference(DiscordMessageReferenceData data)
         {
             MessageId = data.MessageId;

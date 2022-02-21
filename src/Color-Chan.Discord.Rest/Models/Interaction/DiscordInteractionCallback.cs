@@ -9,12 +9,20 @@ using Color_Chan.Discord.Rest.Models.Embed;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
+    /// <inheritdoc cref="IDiscordInteractionCallback"/>
     public record DiscordInteractionCallback : IDiscordInteractionCallback
     {
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordInteractionCallback"/>
+        /// </summary>
         public DiscordInteractionCallback()
         {
         }
 
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordInteractionCallback"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordInteractionCallback"/>.</param>
         public DiscordInteractionCallback(DiscordInteractionCallbackData data)
         {
             IsTts = data.IsTts;

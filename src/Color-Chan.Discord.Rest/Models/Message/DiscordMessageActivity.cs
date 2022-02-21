@@ -3,8 +3,13 @@ using Color_Chan.Discord.Core.Common.Models.Message;
 
 namespace Color_Chan.Discord.Rest.Models.Message
 {
+    /// <inheritdoc cref="IDiscordMessageActivity"/>
     public class DiscordMessageActivity : IDiscordMessageActivity
     {
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordMessageActivity"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordMessageActivity"/>.</param>
         public DiscordMessageActivity(DiscordMessageActivityData data)
         {
             Type = data.Type;

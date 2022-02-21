@@ -11,6 +11,7 @@ using Color_Chan.Discord.Core.Results;
 
 namespace Color_Chan.Discord.Rest.API.Rest
 {
+    /// <inheritdoc cref="IDiscordRestUser"/>
     public class DiscordRestUser : DiscordRestBase, IDiscordRestUser
     {
         /// <summary>

@@ -8,8 +8,13 @@ using Color_Chan.Discord.Rest.Models.Message;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
+    /// <inheritdoc cref="IDiscordInteraction"/>
     public record DiscordInteraction : IDiscordInteraction
     {
+        /// <summary>
+        ///     Initializes a new <see cref="DiscordInteraction"/>
+        /// </summary>
+        /// <param name="data">The data needed to create the <see cref="DiscordInteraction"/>.</param>
         public DiscordInteraction(DiscordInteractionData data)
         {
             Id = data.Id;
