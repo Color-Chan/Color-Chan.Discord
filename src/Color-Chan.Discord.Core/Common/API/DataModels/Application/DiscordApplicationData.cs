@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.Models.Application;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels
+namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
 {
     /// <inheritdoc cref="IDiscordApplication"/>
     public record DiscordApplicationData

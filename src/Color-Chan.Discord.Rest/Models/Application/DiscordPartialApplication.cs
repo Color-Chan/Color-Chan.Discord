@@ -4,13 +4,13 @@ using Color_Chan.Discord.Core.Common.Models.Application;
 namespace Color_Chan.Discord.Rest.Models.Application
 {
     /// <inheritdoc />
-    public class DiscordApplication : IDiscordApplication
+    public class DiscordPartialApplication : IDiscordPartialApplication
     {
         /// <summary>
-        ///     Initializes a new <see cref="DiscordApplication"/>
+        ///     Initializes a new <see cref="DiscordPartialApplication"/>
         /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordApplication"/>.</param>
-        public DiscordApplication(DiscordApplicationData data)
+        /// <param name="data">The data needed to create the <see cref="DiscordPartialApplication"/>.</param>
+        public DiscordPartialApplication(DiscordPartialApplicationData data)
         {
             Id = data.Id;
             Name = data.Name;
@@ -20,16 +20,16 @@ namespace Color_Chan.Discord.Rest.Models.Application
         }
 
         /// <inheritdoc />
-        public ulong Id { get; init; }
+        public ulong? Id { get; init; }
 
         /// <inheritdoc />
-        public string Name { get; init; }
+        public string? Name { get; init; }
 
         /// <inheritdoc />
         public string? Icon { get; init; }
 
         /// <inheritdoc />
-        public string Description { get; init; }
+        public string? Description { get; init; }
 
         /// <inheritdoc />
         public string? CoverImage { get; init; }

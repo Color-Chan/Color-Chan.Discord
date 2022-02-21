@@ -53,6 +53,16 @@ namespace Color_Chan.Discord.Rest
             internal static string WithCountsQueryName { get; } = "with_counts";
 
             /// <summary>
+            ///     The query name to get a result back with the expiration.
+            /// </summary>
+            internal static string WithExpirationQueryName { get; } = "with_expiration";
+
+            /// <summary>
+            ///     The query name for the guild scheduled event to include with the invite.
+            /// </summary>
+            internal static string WithGuildScheduledEventIdQueryName { get; } = "guild_scheduled_event_id";
+
+            /// <summary>
             ///     The query name to get a result around a certain value.
             /// </summary>
             internal static string AroundQueryName { get; } = "around";
