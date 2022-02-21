@@ -3,17 +3,20 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.API.DataModels.Invite;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
+using Color_Chan.Discord.Core.Common.Models.Invites;
 using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models;
 using Color_Chan.Discord.Rest.Models.Application;
 using Color_Chan.Discord.Rest.Models.Guild;
 using Color_Chan.Discord.Rest.Models.Interaction;
+using Color_Chan.Discord.Rest.Models.Invite;
 using Color_Chan.Discord.Rest.Models.Message;
 
 namespace Color_Chan.Discord.Rest.API
@@ -182,6 +185,23 @@ namespace Color_Chan.Discord.Rest.API
             foreach (var data in result.Entity) list.Add(new DiscordConnection(data));
 
             return Result<IReadOnlyList<IDiscordConnection>>.FromSuccess(list);
+        }
+        
+        internal static Result<IDiscordInvite> ConvertResult(Result<DiscordInviteData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordInvite>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordInvite>.FromSuccess(new DiscordInvite(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordInvite>> ConvertResult(Result<IReadOnlyList<DiscordInviteData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordInvite>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordInvite>();
+            foreach (var data in result.Entity) list.Add(new DiscordInvite(data));
+
+            return Result<IReadOnlyList<IDiscordInvite>>.FromSuccess(list);
         }
     }
 }
