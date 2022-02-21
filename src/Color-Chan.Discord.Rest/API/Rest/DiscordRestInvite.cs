@@ -35,4 +35,12 @@ public class DiscordRestInvite : DiscordRestBase, IDiscordRestInvite
         var result = await HttpClient.GetAsync<DiscordInviteData>(endpoint, queries, ct).ConfigureAwait(false);
         return ApiResultConverters.ConvertResult(result);
     }
+
+    /// <inheritdoc />
+    public virtual async Task<Result<IDiscordInvite>> DeleteInvite(string inviteCode, CancellationToken ct = default)
+    {
+        var endpoint = $"invites/{inviteCode}";
+        var result = await HttpClient.DeleteAsync<DiscordInviteData>(endpoint, ct: ct).ConfigureAwait(false);
+        return ApiResultConverters.ConvertResult(result);
+    }
 }

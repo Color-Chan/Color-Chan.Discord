@@ -23,4 +23,26 @@ public interface IDiscordRestInvite
     ///     A <see cref="Result{T}" /> of <see cref="IDiscordInvite" /> with the request results.
     /// </returns>
     Task<Result<IDiscordInvite>> GetInvite(string inviteCode, bool? withCounts = null, bool? withExpiration = null, ulong? evenId = null, CancellationToken ct = default);
+
+    /// <summary>
+    ///     Deletes an invite.
+    /// </summary>
+    /// <param name="inviteCode">The code of the invite that will be deleted.</param>
+    /// <param name="ct">The <see cref="CancellationToken" />.</param>
+    /// <returns>
+    ///     A <see cref="Result{T}" /> of <see cref="IDiscordInvite" /> with the request results.
+    /// </returns>
+    /// <remarks>
+    ///     <para>
+    ///         Requires the `MANAGE_CHANNELS` permission on the channel this invite belongs to.
+    ///     </para>
+    ///     <para>
+    ///         Requires the `MANAGE_GUILD` permission to remove any invite across the guild.
+    ///     </para>
+    ///     <para>
+    ///         Fires a Invite Delete Gateway event.
+    ///         More info: https://discord.com/developers/docs/topics/gateway#invite-delete
+    ///     </para>
+    /// </remarks>
+    Task<Result<IDiscordInvite>> DeleteInvite(string inviteCode, CancellationToken ct = default);
 }
