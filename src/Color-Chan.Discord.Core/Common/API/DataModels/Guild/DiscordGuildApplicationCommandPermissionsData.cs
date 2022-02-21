@@ -1,36 +1,26 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
-    /// <summary>
-    ///     Represents a discord Guild Application Command Permissions Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/slash-commands#application-command-permissions-object-guild-application-command-permissions-structure
-    /// </summary>
+    /// <inheritdoc cref="IDiscordGuildApplicationCommandPermissions"/>
     public class DiscordGuildApplicationCommandPermissionsData
     {
-        /// <summary>
-        ///     Unique id of the command.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildApplicationCommandPermissions.CommandId"/>
         [JsonPropertyName("id")]
         public ulong CommandId { get; init; }
 
-        /// <summary>
-        ///     The id of the application the command belongs to.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildApplicationCommandPermissions.ApplicationId"/>
         [JsonPropertyName("application_id")]
         public ulong ApplicationId { get; init; }
 
-        /// <summary>
-        ///     The id of the guild.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildApplicationCommandPermissions.GuildId"/>
         [JsonPropertyName("guild_id")]
         public ulong GuildId { get; init; }
 
-        /// <summary>
-        ///     The permissions for the command in the guild.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordGuildApplicationCommandPermissions.Permissions"/>
         [JsonPropertyName("permissions")]
         public IEnumerable<DiscordApplicationCommandPermissionsData> Permissions { get; init; } = new List<DiscordApplicationCommandPermissionsData>();
     }

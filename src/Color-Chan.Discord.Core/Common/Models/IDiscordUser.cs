@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.Models
 {
+    /// <summary>
+    ///     Represents a discord User Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/user#user-object-user-structure
+    /// </summary>
     public interface IDiscordUser
     {
         /// <summary>

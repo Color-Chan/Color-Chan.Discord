@@ -1,22 +1,16 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    /// <summary>
-    ///     Represents a discord Interaction Response Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-response-structure
-    /// </summary>
+    /// <inheritdoc cref="IDiscordInteractionResponse"/>
     public record DiscordInteractionResponseData
     {
-        /// <summary>
-        ///     The type of interaction.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordInteractionResponse.Type"/>
         [JsonPropertyName("type")]
         public DiscordInteractionCallbackType Type { get; init; }
 
-        /// <summary>
-        ///     An optional response message.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordInteractionResponse.Data"/>
         [JsonPropertyName("data")]
         public DiscordInteractionCallbackData? Data { get; init; }
     }

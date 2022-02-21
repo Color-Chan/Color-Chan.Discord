@@ -2,6 +2,10 @@ using System.Collections.Generic;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild
 {
+    /// <summary>
+    ///     Represents a discord Guild Preview Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/guild#guild-preview-object-guild-preview-structure
+    /// </summary>
     public interface IDiscordGuildPreview
     {
         /// <summary>

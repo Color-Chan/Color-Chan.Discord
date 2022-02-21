@@ -2,48 +2,30 @@
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
+using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    /// <summary>
-    ///     Represents a discord Resolved Data Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-resolved-data-structure
-    /// </summary>
+    /// <inheritdoc cref="IDiscordInteractionResolved"/>
     public record DiscordInteractionResolvedData
     {
-        /// <summary>
-        ///     The ids and User objects.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordInteractionResolved.Users"/>
         [JsonPropertyName("users")]
         public IReadOnlyDictionary<ulong, DiscordUserData>? Users { get; init; }
 
-        /// <summary>
-        ///     The ids and partial Member objects.
-        /// </summary>
-        /// <remarks>
-        ///     Partial Member objects are missing user, deaf and mute fields.
-        /// </remarks>
+        /// <inheritdoc cref="IDiscordInteractionResolved.Members"/>
         [JsonPropertyName("members")]
         public IReadOnlyDictionary<ulong, DiscordGuildMemberData>? Members { get; init; }
 
-        /// <summary>
-        ///     The ids and Role objects.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordInteractionResolved.Roles"/>
         [JsonPropertyName("roles")]
         public IReadOnlyDictionary<ulong, DiscordGuildRoleData>? Roles { get; init; }
 
-        /// <summary>
-        ///     The ids and partial Channel objects.
-        /// </summary>
-        /// <remarks>
-        ///     Partial Channel objects only have id, name, type and permissions fields.
-        /// </remarks>
+        /// <inheritdoc cref="IDiscordInteractionResolved.Channels"/>
         [JsonPropertyName("channels")]
         public IReadOnlyDictionary<ulong, DiscordChannelData>? Channels { get; init; }
 
-        /// <summary>
-        ///     The ids and partial Message objects.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordInteractionResolved.Messages"/>
         [JsonPropertyName("messages")]
         public IReadOnlyDictionary<ulong, DiscordMessageData>? Messages { get; init; }
     }

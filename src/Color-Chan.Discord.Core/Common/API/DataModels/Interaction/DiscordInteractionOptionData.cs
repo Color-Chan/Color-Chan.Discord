@@ -2,36 +2,26 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
+using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    /// <summary>
-    ///     Represents a discord Application Command Interaction Data Option Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-interaction-data-option-structure
-    /// </summary>
+    /// <inheritdoc cref="IDiscordInteractionOption"/>
     public record DiscordInteractionOptionData
     {
-        /// <summary>
-        ///     The name of the parameter.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordInteractionOption.Name"/>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
 
-        /// <summary>
-        ///     Value of application command option type.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordInteractionOption.Type"/>
         [JsonPropertyName("type")]
         public DiscordApplicationCommandOptionType Type { get; init; }
-
-        /// <summary>
-        ///     The value of the pair.
-        /// </summary>
+        
+        /// <inheritdoc cref="IDiscordInteractionOption.Value"/>
         [JsonPropertyName("value")]
         public JsonElement? JsonValue { get; init; }
 
-        /// <summary>
-        ///     Present if this option is a group or subcommand.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordInteractionOption.SubOptions"/>
         [JsonPropertyName("options")]
         public IEnumerable<DiscordInteractionOptionData>? SubOptions { get; init; }
     }

@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.Models.Message;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
 {
+    /// <summary>
+    ///     Represents a discord Resolved Data Structure API model.
+    ///     Docs: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-resolved-data-structure
+    /// </summary>
     public interface IDiscordInteractionResolved
     {
         /// <summary>

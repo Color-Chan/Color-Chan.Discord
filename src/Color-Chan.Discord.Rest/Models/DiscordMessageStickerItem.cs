@@ -9,7 +9,7 @@ namespace Color_Chan.Discord.Rest.Models
         {
             Id = data.Id;
             Name = data.Name;
-            DiscordMessageStickerItemType = data.DiscordMessageStickerItemType;
+            FormatType = data.FormatType;
         }
 
         /// <inheritdoc />
@@ -19,6 +19,6 @@ namespace Color_Chan.Discord.Rest.Models
         public string Name { get; set; } = null!;
 
         /// <inheritdoc />
-        public ulong DiscordMessageStickerItemType { get; set; }
+        public ulong FormatType { get; set; }
     }
 }

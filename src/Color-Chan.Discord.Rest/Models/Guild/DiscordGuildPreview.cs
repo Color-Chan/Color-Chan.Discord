@@ -26,7 +26,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public ulong Id { get; init; }
 
         /// <inheritdoc />
-        public string Name { get; init; } = null!;
+        public string Name { get; init; }
 
         /// <inheritdoc />
         public string? Icon { get; init; }
