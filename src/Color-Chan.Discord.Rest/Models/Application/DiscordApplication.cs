@@ -1,4 +1,4 @@
-using Color_Chan.Discord.Core.Common.API.DataModels;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Rest.Models.Application
