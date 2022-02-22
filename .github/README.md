@@ -79,9 +79,6 @@ Color-Chan.Discord is a powerful Discord library made to communicate with the [D
 - Modular
 - Completely asynchronous
 
-Color-Chan.Discord was originally made because i wanted full control over what the bot exactly does, i also wanted it to be reliable and it had to run without a connection with discord gateway.
-
-
 ### Built With
 
 * [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
