@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support Discord Server
+    url: https://colorchan.com/permalinks/support
+    about: Please feel free to ask any questions here!
+  - name: Library discussions
+    url: https://github.com/Color-Chan/Color-Chan.Discord/discussions
+    about: Discuss anything related to Color-Chan.Discord here! 
