@@ -97,7 +97,7 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             IEnumerable<IDiscordInteractionOption>? options = null;
 
             // Get the command name and the options.
-            if (interaction.Data.Options is null)
+            if (interaction.Data.Options is null || !ContainsSubCommand(interaction))
             {
                 options = interaction.Data.Options;
                 context.SlashCommandName = new[] { interaction.Data.Name };
@@ -210,6 +210,15 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
             }
 
             throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
+        }
+
+        private static bool ContainsSubCommand(IDiscordInteraction interaction)
+        {
+            if (interaction.Data?.Options is null) 
+                return false;
+            
+            return interaction.Data.Options.Select(x => x.Type).Contains(DiscordApplicationCommandOptionType.SubCommand) ||
+                   interaction.Data.Options.Select(x => x.Type).Contains(DiscordApplicationCommandOptionType.SubCommandGroup);
         }
     }
 }
