@@ -46,7 +46,7 @@ public class DiscordPartialGuild : IDiscordPartialGuild
         Large = data.Large;
         Unavailable = data.Unavailable;
         MemberCount = data.MemberCount;
-        VoiceStates = data.VoiceStates;
+        VoiceStates = data.VoiceStates?.Select(voiceStateData => new DiscordVoiceState(voiceStateData));
         Members = data.Members?.Select(memberData => new DiscordGuildMember(memberData));
         Channels = data.Channels?.Select(channelData => new DiscordChannel(channelData));
         Threads = data.Threads?.Select(channelData => new DiscordChannel(channelData));
@@ -156,7 +156,7 @@ public class DiscordPartialGuild : IDiscordPartialGuild
     public int? MemberCount { get; set; }
 
     /// <inheritdoc />
-    public IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
+    public IEnumerable<IDiscordVoiceState>? VoiceStates { get; set; }
 
     /// <inheritdoc />
     public IEnumerable<IDiscordGuildMember>? Members { get; set; }

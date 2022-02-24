@@ -213,7 +213,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("voice_states")]
-        public IEnumerable<DiscordVoiceState>? VoiceStates { get; init; }
+        public IEnumerable<DiscordVoiceStateData>? VoiceStates { get; init; }
 
         /// <summary>
         ///     Users in the guild.

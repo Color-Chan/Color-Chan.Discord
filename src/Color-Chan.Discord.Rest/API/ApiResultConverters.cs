@@ -203,5 +203,22 @@ namespace Color_Chan.Discord.Rest.API
 
             return Result<IReadOnlyList<IDiscordInvite>>.FromSuccess(list);
         }
+        
+        internal static Result<IDiscordVoiceRegion> ConvertResult(Result<DiscordVoiceRegionData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordVoiceRegion>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordVoiceRegion>.FromSuccess(new DiscordVoiceRegion(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordVoiceRegion>> ConvertResult(Result<IReadOnlyList<DiscordVoiceRegionData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordVoiceRegion>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordVoiceRegion>();
+            foreach (var data in result.Entity) list.Add(new DiscordVoiceRegion(data));
+
+            return Result<IReadOnlyList<IDiscordVoiceRegion>>.FromSuccess(list);
+        }
     }
 }

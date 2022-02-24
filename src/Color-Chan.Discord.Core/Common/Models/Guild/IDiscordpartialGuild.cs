@@ -100,7 +100,7 @@ public interface IDiscordPartialGuild
     int? MemberCount { get; set; }
     /// <inheritdoc cref="IDiscordGuild.VoiceStates" />
 
-    IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
+    IEnumerable<IDiscordVoiceState>? VoiceStates { get; set; }
     
     /// <inheritdoc cref="IDiscordGuild.Members" />
     IEnumerable<IDiscordGuildMember>? Members { get; set; }
