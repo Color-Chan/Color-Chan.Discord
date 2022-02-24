@@ -46,7 +46,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             Large = data.Large;
             Unavailable = data.Unavailable;
             MemberCount = data.MemberCount;
-            VoiceStates = data.VoiceStates;
+            VoiceStates = data.VoiceStates?.Select(voiceStateData => new DiscordVoiceState(voiceStateData));
             Members = data.Members?.Select(memberData => new DiscordGuildMember(memberData));
             Channels = data.Channels?.Select(channelData => new DiscordChannel(channelData));
             Threads = data.Threads?.Select(channelData => new DiscordChannel(channelData));
