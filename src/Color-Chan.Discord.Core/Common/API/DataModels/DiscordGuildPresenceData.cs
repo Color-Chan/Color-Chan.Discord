@@ -10,7 +10,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
     ///     If you are using Gateway Intents, you must specify the GUILD_PRESENCES intent in order to receive Presence Update
     ///     events.
     /// </remarks>
-    public record DiscordGuildPresenceData
+    public record DiscordGuildPresenceData // Todo: Add interface
     {
         /// <summary>
         ///     The user presence is being updated for.

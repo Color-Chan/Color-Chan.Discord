@@ -180,7 +180,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// <remarks>
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
-        IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
+        IEnumerable<IDiscordVoiceState>? VoiceStates { get; set; }
 
         /// <summary>
         ///     Users in the guild.

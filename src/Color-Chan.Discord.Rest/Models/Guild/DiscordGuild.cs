@@ -156,7 +156,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public int? MemberCount { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
+        public IEnumerable<IDiscordVoiceState>? VoiceStates { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordGuildMember>? Members { get; set; }
