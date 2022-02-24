@@ -8,17 +8,17 @@ public class DiscordVoiceRegionData
 {
     /// <inheritdoc cref="IDiscordVoiceRegion.Id"/>
     [JsonPropertyName("id")]
-    public string Id { get; set; }
+    public string Id { get; set; } = null!;
     
     /// <inheritdoc cref="IDiscordVoiceRegion.Name"/>
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
     
     /// <inheritdoc cref="IDiscordVoiceRegion.Optimal"/>
     [JsonPropertyName("optimal")]
     public bool Optimal { get; set; }
     
-    /// <inheritdoc cref="IDiscordVoiceRegion.Depricated"/>
+    /// <inheritdoc cref="IDiscordVoiceRegion.Deprecated"/>
     [JsonPropertyName("deprecated")]
     public bool Deprecated { get; set; }
     
