@@ -1,0 +1,4661 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/a/Color-Chan.Discord/Color-Chan.Discord/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "1BNju85eAL4bYxOLN42niKVKabmOD6Fo40i60EkaJMY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Configurations.CacheConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Configurations.CacheConfiguration.html",
+          "hash": "eS32qNyxoJ/0E5nEtjIfk+fajveMnhFKpuIwSd121Ns="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Configurations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Configurations.html",
+          "hash": "5LOtaoLCufIudI3LxMP/Cg3SISawa6RJ15LCscWAd2g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Extensions.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Extensions.ServiceCollectionExtensions.html",
+          "hash": "FubtDs0vuI5jJ/r51GYikBtuVvMnaMdnIDHMZGyBbiw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Extensions.html",
+          "hash": "Z5gNh95r/aP0lT4+SdJYXHFeS0+GryGj5Cr2mwzYqtw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Results.CacheErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Results.CacheErrorResult.html",
+          "hash": "8JRt174qy/KrtpA5E69G1WxcgeU7Mp1xgQmFzXtfe9Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Results.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Results.html",
+          "hash": "JlbTY2tXvhk3I/Oq5OUivcnZG35eyd/XKwqaARvg0iU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Services.ICacheService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Services.ICacheService.html",
+          "hash": "OEfNVKmHGhCKMrxDFVaIOQofHxJ5ZMoqsPP0OkzbOrA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Services.ITypeCacheConfigurationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Services.ITypeCacheConfigurationService.html",
+          "hash": "6AbqrHvzOGxCHk0rF18NGAxZEg88xbR8ah7X+UYMfdg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Services.Implementations.DistributedCacheService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Services.Implementations.DistributedCacheService.html",
+          "hash": "lnVpAR0QJFec5nXIEqG6SyM5gldLzWBzs18n/+xvGsk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Services.Implementations.LocalCacheService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Services.Implementations.LocalCacheService.html",
+          "hash": "sQWdfILmI7PSUr9GnqEaltW/5DRXPKo88KDx6t9gyCo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Services.Implementations.TypeCacheConfigurationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Services.Implementations.TypeCacheConfigurationService.html",
+          "hash": "ltd/lZQjDDTaNZDlHReJV97eJSO7hgQoIaxPwMyqH0w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Services.Implementations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Services.Implementations.html",
+          "hash": "9Zx8jSE0kcPXkgaZxUy0dM29y9LbnUESkvAJR4CgBmo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Caching.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Caching.Services.html",
+          "hash": "lFxkpW+W+znjIqUbOv2CWnMHcUM9wL3g/VtRKkN+bMw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.BaseRateLimitAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.BaseRateLimitAttribute.html",
+          "hash": "44YQ0l40M4XyiNurnyBnO48LVUjDTTXTj/9AJPs0Ihw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ComponentAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ComponentAttribute.html",
+          "hash": "JPhDSFXCL3NTLaRxvu302bZfWSsPYQbUEdvUMWYY9mE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.InteractionRequirementAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.InteractionRequirementAttribute.html",
+          "hash": "J2FYthU58+rK13uu1kc+ql4ZXkGGJj5+8GB68dDaPvg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.GuildRateLimitAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.GuildRateLimitAttribute.html",
+          "hash": "zf51sgR65PrLyzup4ZKUIPyDHtCh2tHI6bhlU/h8klI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireBotPermissionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireBotPermissionAttribute.html",
+          "hash": "H4L8ttpVWLMiOTV3BQExQwdYYfsHtEV1H5WUxPFVqMM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireChannelAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireChannelAttribute.html",
+          "hash": "IviLs8VzLiI8m3BvaIvh8Mr60cfIk0261f8ip3iavME="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireDmAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireDmAttribute.html",
+          "hash": "cRQzZyd530MRvSDq6wyZhPEtsk/GrsQGv0s5MmHH0Dc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireGuildAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireGuildAttribute.html",
+          "hash": "LEMnblXyUH2jagum8DIkqXUGOH4Dh/Le86Ynw09UMDM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireGuildOwnerAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireGuildOwnerAttribute.html",
+          "hash": "/5ug1Fq5ijQieJ2frAG8t21+/VuqvRESg02Qzhq31tE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireUserPermissionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.RequireUserPermissionAttribute.html",
+          "hash": "NjnkfKlo6gGO6u2iahynp3u8KAF2Yp7mwGUbq8zsfAc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.UserRateLimitAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.UserRateLimitAttribute.html",
+          "hash": "O9ArTmZWCicPURg7QW451IeFT3LAdDYDXDDqzcmjvPo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.ProvidedRequirements.html",
+          "hash": "1JtIZaUyi3ksvBeL186fjAqJebUHGRaEFrngv5xyR1w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.SlashCommandAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.SlashCommandAttribute.html",
+          "hash": "nX7EZpOmXpUOHeQqYGC0HYvnCnAppQ7Onb8nNMgVPiE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.SlashCommandChoiceAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.SlashCommandChoiceAttribute.html",
+          "hash": "kc5BtkY4qG5Op1J1fuJA44ArQL/ggPCVjkaipYkcRpo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.SlashCommandGroupAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.SlashCommandGroupAttribute.html",
+          "hash": "jYS2n6YxMbayI2ZCr2yf6zVZCvDzltwSbSm40TUpOds="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.SlashCommandGuildAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.SlashCommandGuildAttribute.html",
+          "hash": "eQdQyP1TTroas8wWdyz+IkVKXB3XV7HKY/tT8dwIz3s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.SlashCommandOptionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.SlashCommandOptionAttribute.html",
+          "hash": "ipKYfrLjXhbjqrcr+wJa7Q17U3tOJbc8pv2b1Vd4lXQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.SlashCommandPermissionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.SlashCommandPermissionAttribute.html",
+          "hash": "+EY9i8er5nqgh8da187m2dR1ogZ482Gq0iuLat5Fijs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Attributes.html",
+          "hash": "aAVPT3lUpR+Us2KyIxBywPbGll91S6g6f0dSqT0K+e0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.ComponentInteractionHandlerDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.ComponentInteractionHandlerDelegate.html",
+          "hash": "Hk/mWTwRCEAce3T1nS1w6vl7r0srkNq1Kz76UJzsO2w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Configurations.ComponentInteractionConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Configurations.ComponentInteractionConfiguration.html",
+          "hash": "zZ7vqIEBhOYVW6b2p54fNpCco6KzlKjZe6tDn5IlFFU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Configurations.SlashCommandConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Configurations.SlashCommandConfiguration.html",
+          "hash": "WOhhLc+Wo4waABnBbeiAxYay0g1+BtiLtLea2bk6r80="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Configurations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Configurations.html",
+          "hash": "vgn8LrIOF/tQSLtxbOQO3FjCWmWHU2EvN3G2iDPW3sk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.ComponentInteractionResultException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.ComponentInteractionResultException.html",
+          "hash": "joFxyzrGskXbhHeXOue49b7vhR56gHJiPJt/qRrEMsY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.InvalidActionRowException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.InvalidActionRowException.html",
+          "hash": "6y4uJb7fHGvU224agE4hybIQzC8atfOWnUHPdeByQ8k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.InvalidGuildSlashCommandException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.InvalidGuildSlashCommandException.html",
+          "hash": "lJjDnnNpM/lXgN2hlEtxbnWtRxhmM7H/JsRzZS40fas="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.InvalidSlashCommandGroupException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.InvalidSlashCommandGroupException.html",
+          "hash": "4CvMVDFYnNUA20gqFhRHGVvFuR0wo5mezW7U1OfrIws="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.MissingButtonPropertiesException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.MissingButtonPropertiesException.html",
+          "hash": "fgRNSaxg8YVGRWMQKjCnWR14YEF13+9MTzrSZSxQPYU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.ModuleCastNullReferenceException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.ModuleCastNullReferenceException.html",
+          "hash": "mD1kZ9cw644YvAX+8dlvAlJ2RZd17Ev/wO4zJx+OWp4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.NoOptionAttributeArgumentException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.NoOptionAttributeArgumentException.html",
+          "hash": "lFzpRWYwsCsGtb42exNc+uFb2kOo0PqukISnewasPsE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.SlashCommandResultException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.SlashCommandResultException.html",
+          "hash": "0YXmbdR8ychGa4gKrpiY/MCH09DG++qo0tPCAt6tJaM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.UnsupportedSlashCommandParameterException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.UnsupportedSlashCommandParameterException.html",
+          "hash": "n0B8S1yG8ruoiU32iPpxu9rAxK26ryjKDwmxSoca6bU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.UpdateSlashCommandException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.UpdateSlashCommandException.html",
+          "hash": "s/G1Btu+tI6pvup3FNNl4eaoGjTMhlS2PI3LiN/Wnqc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Exceptions.html",
+          "hash": "V47S9DzOf8swYm1S2XK4vgBDdHaj+mBTZE304R2BLvM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Extensions.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Extensions.ServiceCollectionExtensions.html",
+          "hash": "G+62Q8DY+y8HfDcLsMYASuoDpd04HPEnheR8e3cTAcc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Extensions.html",
+          "hash": "kFh6HfbUqGAJPcsAo471+XNAtEfQ4V1Ssq+gh1KNgbw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.IComponentInteractionPipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.IComponentInteractionPipeline.html",
+          "hash": "eb10NaPWAZWUNpFKErBtE5J5kymPxG+IJcGFJZ4GF1g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.ISlashCommandPipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.ISlashCommandPipeline.html",
+          "hash": "9B/ORNFOQ/CLjil2JIS1bIppVMULW3Xp+ImW059JyD8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.MessageBuilders.ActionRowComponentBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.MessageBuilders.ActionRowComponentBuilder.html",
+          "hash": "r9TMpfk/usFAcSF723qmu+SNTROdiSPx7/ruRU3hDag="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.MessageBuilders.DiscordEmbedBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.MessageBuilders.DiscordEmbedBuilder.html",
+          "hash": "dw/XJnpeM4C3gG11CtN6sjNX3qrsIFxyJ2yn5h8UAmw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.MessageBuilders.InteractionResponseBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.MessageBuilders.InteractionResponseBuilder.html",
+          "hash": "zfKpgHs0oOTgIKYg/plcn0EqshJxz9JHqp/Z/1EOLdo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.MessageBuilders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.MessageBuilders.html",
+          "hash": "kXMwYjgqolM8CV+bZCbtGqbHJ//FTFbd+FmGwZ54PG4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Contexts.ComponentContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Contexts.ComponentContext.html",
+          "hash": "FSyOc1NO8CJSTVE9OIsTi3b6m+wh4vMgGj8d50ZwJUs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Contexts.IComponentContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Contexts.IComponentContext.html",
+          "hash": "pRr9HyQQKHjQjoN9B4EBSH68kLauQqEHy7FefmEyB3g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Contexts.IInteractionContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Contexts.IInteractionContext.html",
+          "hash": "UaH6/fTcHzlUx3m1GAhFJ+zVFZSXXhjKOsCdpEt/jHw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Contexts.ISlashCommandContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Contexts.ISlashCommandContext.html",
+          "hash": "3phnUJhQ1O3jm/GPOKnBbRQzQ0FvHZPaAHYIAmBcXs0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Contexts.InteractionContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Contexts.InteractionContext.html",
+          "hash": "m4Tqw3aEBEbiS+SvK37D5FaqP1J3q0mjiEBns2BDbjQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Contexts.SlashCommandContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Contexts.SlashCommandContext.html",
+          "hash": "nRhDyF4PiyskVODJkos5mgIfl4ZHzTEQLC0iOGPTxXE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Contexts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Contexts.html",
+          "hash": "HSqBaveESYvGjlJNBXg+ktKZf8T2aWfSTNwa2eBU/Mg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Info.ComponentInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Info.ComponentInfo.html",
+          "hash": "EVX0QIVULHB9VI/vvZNCl0YNYXwTc6zlzDN+Vkt2hRY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Info.IComponentInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Info.IComponentInfo.html",
+          "hash": "/JfNib1cjmym1ANCH2TMOg3NURLDBnntLc9ZH1omqWM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Info.ISlashCommandInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Info.ISlashCommandInfo.html",
+          "hash": "7mxxf6cz0r7SCuQXIiMowSMYBXZRKCBG7MimrwyzdWs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Info.ISlashCommandOptionInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Info.ISlashCommandOptionInfo.html",
+          "hash": "QWmlCp/Y4dxelqN9t0IrCTu2UtWISWSNLfAsm+dp2Vc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Info.SlashCommandInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Info.SlashCommandInfo.html",
+          "hash": "7eFyZW53v2iJqmDjbZ1XVmQNArbfLt5kOnIs1PB5oCw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Info.SlashCommandOptionInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Info.SlashCommandOptionInfo.html",
+          "hash": "qtsXfXfUufe2k6tYsCOdjJHxv8/fetQ1hoCwDIkLXZw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Info.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Info.html",
+          "hash": "dbQDJko17X176Wu9cIgTNSPiYfpl7VHI5HCCtcWvibM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.InternalInteractionResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.InternalInteractionResponse.html",
+          "hash": "VIryU4WBcu8T/fNKqgrLdP2o+xtYBdGw5JQbVJ2vlhU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.RateLimitInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.RateLimitInfo.html",
+          "hash": "Yh5nSjbih1PD54miDRQbMhWnWIjEKJlAFRIzmE6YpW8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.BaseRateLimitErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.BaseRateLimitErrorResult.html",
+          "hash": "cvqag5BsCJ/QQC7rfc0Iv8roWpGzI+f7foluxOQy700="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.GuildRateLimitErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.GuildRateLimitErrorResult.html",
+          "hash": "V6534T1mouXrtF90a2uRe0moXBW26GYaTtKeJ3XcGW0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.InteractionRequirementErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.InteractionRequirementErrorResult.html",
+          "hash": "myYNjUpeGLlxG1nSK8hZOBOyepl1Minjy5ZV+LYLlM4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.RequireBotPermissionErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.RequireBotPermissionErrorResult.html",
+          "hash": "bjXANdFeLmdhin0xxZi1vAuCESLYdy6wuMgvWXsKAmk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.RequireChannelErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.RequireChannelErrorResult.html",
+          "hash": "rSZudZum2ztrKVz5d0qLRDQI8cjjsdKT7xkOD8ddLas="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.RequireDmErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.RequireDmErrorResult.html",
+          "hash": "7CI8FbZqSIGwN+c1ppDWRJFu0iQ7ulG2P8/ovXfzyDQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.RequireGuildErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.RequireGuildErrorResult.html",
+          "hash": "YAi+H9V97i+27BJGVWtDE4wJy2I0fbxD/0jY6izjj3Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.RequireGuildOwnerErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.RequireGuildOwnerErrorResult.html",
+          "hash": "hFtMuWmlRI06hbUmpfYkJgs2buhMimcsTNrRCsH/h/A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.RequireUserPermissionErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.RequireUserPermissionErrorResult.html",
+          "hash": "5wHia0F2e5F/KGeh3fOLdeaq3HF5ZMnfp71ZCLlTI4k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.UserRateLimitErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.UserRateLimitErrorResult.html",
+          "hash": "PYO0RrGtGWzWsmEnDNA51e3rtc3x1pEtP2gD6naMa4w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.Results.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.Results.html",
+          "hash": "nTOG99n7JiJVbKy+b+6W/EV7il3t/XS6Kbxf8wbhom8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Models.html",
+          "hash": "dJsfR9bJ6UHRhQlEi91hxTzStyuhOdB097/bntERZqo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Modules.ComponentInteractionModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Modules.ComponentInteractionModule.html",
+          "hash": "kGuunfbUgsLmxsM8bpF2T4hKYVvUntQcTEmPRF7D3qw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Modules.IComponentInteractionModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Modules.IComponentInteractionModule.html",
+          "hash": "3KJiZn/XRUdmiL8UwFJaAN5WsxF9+nmWVrbgq8WBt5Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Modules.ISlashCommandModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Modules.ISlashCommandModule.html",
+          "hash": "E9AtkzCVkrmUDeLSkiY6YRnVIUNDwn1uceEuHDmNYyI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Modules.InteractionModuleBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Modules.InteractionModuleBase.html",
+          "hash": "9D+IIRaxJqSV6tvfqonX2+fX1o7WuZp0Ez+9B6ippJk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Modules.SlashCommandModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Modules.SlashCommandModule.html",
+          "hash": "/wQ3F83ndjpxgxAsHfFw1zU5R2rl2XOxoD2FauRhv0w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Modules.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Modules.html",
+          "hash": "GI/UuTH+tFjutyS0RH1gejgsieF0kX+X0O1D+SBAayA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Builders.IComponentBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Builders.IComponentBuildService.html",
+          "hash": "jfRB/kcLkSg6indS0P8sGw7rUWEQthSfyB+EkIppqXU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Builders.ISlashCommandBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Builders.ISlashCommandBuildService.html",
+          "hash": "tsHrFlmCtSgylmc2ldjS7rZWdX2AXum2kYolG5Oc9uw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Builders.ISlashCommandGuildBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Builders.ISlashCommandGuildBuildService.html",
+          "hash": "nwVUxs562FbR0ChYT8vIdl9nOz/QOuYx08XtwNAfFe4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Builders.ISlashCommandOptionBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Builders.ISlashCommandOptionBuildService.html",
+          "hash": "d/nMDUWbJyygtbkDhlF4+QIOIHAkoodPlpIBnEypq+Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Builders.ISlashCommandRequirementBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Builders.ISlashCommandRequirementBuildService.html",
+          "hash": "6V4wD8yxGEgMk/uX97h8ytos538wDxMhM4mGXhr7Imc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Builders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Builders.html",
+          "hash": "rYECSejLJgFJ7CFS63WPFAXRDZkadoXnvD/yoprDiJ0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.IComponentInteractionHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.IComponentInteractionHandler.html",
+          "hash": "aAovZ39rXwZ0RVUCvxQTAPdVV5Kfw4Saxjr2+nf1YkQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.IComponentService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.IComponentService.html",
+          "hash": "eCs2M5Whm2jOoNT1PhH/epHuGEcOXe1ienDaXdAG2X4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.IDiscordInteractionAuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.IDiscordInteractionAuthService.html",
+          "hash": "cYEhT9YI/3fzrPAtekfji0+w7geOW94H31COR5b0haQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.IDiscordSlashCommandHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.IDiscordSlashCommandHandler.html",
+          "hash": "Hhi54It8qBycQTdJ/KzDrMbGj+ws9U306KRykelIsMk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.ISlashCommandAutoSyncService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.ISlashCommandAutoSyncService.html",
+          "hash": "+AkFcKPI4mTMFNP1eLQ8bsRxVHIeVUsIGmuIvzSEZ68="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.ISlashCommandRequirementService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.ISlashCommandRequirementService.html",
+          "hash": "jmfIPxgMgACppsxm5sJ4ALEF57drblWjhTiAejBi50g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.ISlashCommandService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.ISlashCommandService.html",
+          "hash": "FLN2qou9qCGKdH6r6NqtU17geGnoJMyWHn9y0+1mCVo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.Builders.ComponentBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.Builders.ComponentBuildService.html",
+          "hash": "UaRFgMCqlvLvXKghML35NkbY3+vJzjpph9qNDyZrkvc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.Builders.SlashCommandBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.Builders.SlashCommandBuildService.html",
+          "hash": "9PD8S57eO0jl6cuj3biQ8XNY8bZFRlMqK6FIAmdhAuc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.Builders.SlashCommandGuildBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.Builders.SlashCommandGuildBuildService.html",
+          "hash": "JPOP9QbR6lbnS0nCR7xitCsIEjuf54IFDuDbfgAte1U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.Builders.SlashCommandOptionBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.Builders.SlashCommandOptionBuildService.html",
+          "hash": "L78Qla9EVasVEslB1CYB+uUzpoP1WHl7sVu6vbg5Q4g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.Builders.SlashCommandRequirementBuildService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.Builders.SlashCommandRequirementBuildService.html",
+          "hash": "5T3np6KJbhi1J5yzIhS3qixm96JHTosO8A7nYK8Yots="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.Builders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.Builders.html",
+          "hash": "7n1JY+WXJ6wf8aDjk8o5GWScf3Vwp8TLuerG6CFLYD8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.ComponentInteractionHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.ComponentInteractionHandler.html",
+          "hash": "Tytu5yH+6EQfQQRmYIUsot/GfkPcR4RVw+2y4LWdtsE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.ComponentService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.ComponentService.html",
+          "hash": "zxr6Dw/mhvnpwacji7HJCD1y3CzEFrJovIPK14TfE34="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.DiscordInteractionAuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.DiscordInteractionAuthService.html",
+          "hash": "5e19+dAKpCLicWmiImYDHIMcseJW8b1TzVoR3Sgclho="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.DiscordSlashCommandHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.DiscordSlashCommandHandler.html",
+          "hash": "HGEyZdu8aYHAdH95s7rItPwaYvHQ583XYw9lwEQLztg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.InteractionRequirementService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.InteractionRequirementService.html",
+          "hash": "Z65A1tL6/5u/0Zm2xJa2aqvkTNBT5WUBL7iKmNFDYaM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.SlashCommandAutoSyncService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.SlashCommandAutoSyncService.html",
+          "hash": "KXvB1XaANo6tlbQPuC8BNM52RS21ZCjy94Jf2Ll+16I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.SlashCommandService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.SlashCommandService.html",
+          "hash": "90FAuT5CcM32x1u0OVMOJ7n+l50WXTJvmHNLpIE+IT4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.Implementations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.Implementations.html",
+          "hash": "Ty37KWvz4hmN/yDhcTuMLWDjwaxuhMbqjtxAaWlYezE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.Services.html",
+          "hash": "jBOYXEm7tio6TPke1R+K2z9qCmhAsJ+h55gIppe4MmQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.SlashCommandHandlerDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.SlashCommandHandlerDelegate.html",
+          "hash": "G0hOAvfR860Qn0WRUSxK/MyWz/gVRefiG1aTfxW+k9g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Commands.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Commands.html",
+          "hash": "033qc/848iRb7Yx0P30vghe5uulnal1IwPouGz09abk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Configurations.ColorChanConfigurations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Configurations.ColorChanConfigurations.html",
+          "hash": "ghZobdRoz0wxX7IYoam0Qi7NXAbxU4tW2hInEVK3qM0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Configurations.InteractionsConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Configurations.InteractionsConfiguration.html",
+          "hash": "QH8Cl/ZFxFF+o6lHsXELAfpy8jlNk1gziA94jAMpAsk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Configurations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Configurations.html",
+          "hash": "FPCfhjlV7XvFJNMi/gS75qOs1V3xqwWFw7f2rImrzrk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Controllers.DiscordInteractionController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Controllers.DiscordInteractionController.html",
+          "hash": "rXFN07Grk7IP1fhF1rajWoT9AmkhKI66bQKLZc8q81k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Controllers.html",
+          "hash": "1Wm/2SxaQD8KSKSgrywGX/C0I5cEeP8ABm40Ks5pxBU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Converters.ColorConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Converters.ColorConverter.html",
+          "hash": "vNRVE4haJKAmtKGmvTA00+MNFsXUiUuYvd6vqdyKAUc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Converters.DiscordEmbedTypeConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Converters.DiscordEmbedTypeConverter.html",
+          "hash": "lmcwN3LPpNpPIfqqwAgkUvQvRn6dnCCqqW3aSqGf/JQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Converters.DiscordGuildFeatureConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Converters.DiscordGuildFeatureConverter.html",
+          "hash": "/s/O/mtdHVHpx1+D7vX7AXbr7s6SC11yt9S+kqiKXTM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Converters.DiscordPermissionJsonConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Converters.DiscordPermissionJsonConverter.html",
+          "hash": "fXjBXDL/C+WZFKEP/j9R9wlVJfnTk3k4Siutlgo+CmA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Converters.PropertyErrorDataConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Converters.PropertyErrorDataConverter.html",
+          "hash": "8d7wfM57fhRnZ73sDbVYd8xYRp3BFyTOKmf7Wpg4Iu8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Converters.Uint64Converter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Converters.Uint64Converter.html",
+          "hash": "G8xeRFDIlNpE27xxpZut5vMQTA3iLEVO6TBve3IHik8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Converters.html",
+          "hash": "4iLzoLrADHm8XIXVY4ws32Su2MS0+K/sf15yvknRulU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandData.html",
+          "hash": "LylG00+vPXa4OBsd+R+4Bzb9wc9sDFxAJ3AwiavKjes="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandOptionChoiceData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandOptionChoiceData.html",
+          "hash": "RhavfWHDJjcFXA3ELrd1+iJCQlflY0aFiUSpl6nB99g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandOptionData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandOptionData.html",
+          "hash": "nzR+blNAxCiPXfI9UAA/ksyuTsVDSl2LA15B7lWoLAk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandOptionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandOptionType.html",
+          "hash": "LcYmYc5hp4wX1rwn46tFeolAXpNr1IIx1FyEIhkN1PI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandPermissionsData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandPermissionsData.html",
+          "hash": "0+cRp1wgz/jxsv+IzNHq7Ga1AYIYxoSGYRkzxKCP92k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandPermissionsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandPermissionsType.html",
+          "hash": "jIs2UpMVHa2/k5BEEiPTpkRWPk+TaWRhuUIn4wMA+F4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandTypes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Application.DiscordApplicationCommandTypes.html",
+          "hash": "9JsY2sWVqw3VS1byklcSy1tvHjd14LD+8fwbCmnRHME="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Application.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Application.html",
+          "hash": "gy3WLyr6vIMgWX+vkbFVWuzDN2PaELRnm7F0ivGw36I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordAllowedMentionsData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordAllowedMentionsData.html",
+          "hash": "9QQqBMcijtyJbETEMRZ7onhkoclJZRhQOAKWisacdfo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordAllowedMentionsType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordAllowedMentionsType.html",
+          "hash": "66eYXaz+Buhmpml8FMNZY/cjQtBnBBYCDUrsfGa8Pjk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordApplicationData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordApplicationData.html",
+          "hash": "HLJLssqpmTjxOhwxPXtPNivZojmWEYKfTZPO3Nu5SnY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordAttachmentData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordAttachmentData.html",
+          "hash": "wutysUVV4wbpullgrJHab9nZFXBR5RKWmKBN6YoWbhc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordButtonStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordButtonStyle.html",
+          "hash": "78kp/k1kyvG83WunPrVRv9gZ+jcQs5W0p+1OqsOjgD0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordChannelData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordChannelData.html",
+          "hash": "ZnUOAEfkXTo703xxFAtuX1LNLJVeeyJ0C6CHsAp4/TQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordChannelType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordChannelType.html",
+          "hash": "7SCnB1VhmV4IynSNFfZUWwjSrriKU+LJ/LHGyKtbOsk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordComponentData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordComponentData.html",
+          "hash": "EBgH+6KKyrUrDgDOJbacZTUNysHaIsEQLL0X2YA83qw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordComponentType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordComponentType.html",
+          "hash": "STuahaiXVWmFlkyjXZv0UjGkJbCBSDMmt9yGiRjQd6I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordEmojiData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordEmojiData.html",
+          "hash": "NO4eNt8uc8Fu5LKrX2gysZtsNP3m5z9yiW4UKkMd3aw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordGatewayBotData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordGatewayBotData.html",
+          "hash": "/OPa89Nqt9KUEZj/kfR+rpXMhWJLc25A7kwgGuzZlRo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordGuildPresenceData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordGuildPresenceData.html",
+          "hash": "J3asfKh5siQrH0+HRf/w6cUA7KrNdTPeAqIEgz7eR/Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordOverwriteData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordOverwriteData.html",
+          "hash": "wl9o+O3st/KsWINffaVJjpmxWJmwnnXsjiXOpJGeemE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordPermission.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordPermission.html",
+          "hash": "vzMx+2imGc32AEDuK4pNewzpd9GyakZfsJDsxXTtYy0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordPermissionTargetType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordPermissionTargetType.html",
+          "hash": "Ly3Y+Vaqr+ecjMZiMDsouat1kXO1PttJMk+MXCJWb2M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordPremiumType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordPremiumType.html",
+          "hash": "7ipOluigDy+n2fxMEJQc4Lviqd5aJnvDEByeO2yEZhs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordRateLimitResponseData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordRateLimitResponseData.html",
+          "hash": "botLn+kt1yYEzSeTLyUzjll0Z+HTc4UVhLgOT55q2zs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordReactionData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordReactionData.html",
+          "hash": "obeRfR35KsvtKgwN0JHQPQ7jj1k/Mm/6ISMBMi9ZBNI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordSessionStartLimitData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordSessionStartLimitData.html",
+          "hash": "f16PPdnibpyUtU/HTmIVj5h6TOaNQInKZ7XhM6tfTpA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordStagePrivacyLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordStagePrivacyLevel.html",
+          "hash": "Ok0iTA4+at/6qWBlkVUF8mb8WofXM1c2LGgQICvl80c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordStageinstanceData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordStageinstanceData.html",
+          "hash": "HNmLhl5rESkTBTb4lBb6/9OdIxGPbM1ElJx3cxp9WJ8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordStickerData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordStickerData.html",
+          "hash": "E7kiw6fTjWC+2nOvvlxJ+29RWxxb4VnDLJjRNQW/qDI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordStickerType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordStickerType.html",
+          "hash": "UW6OGyt3aNdXygBgvDrtiT5ylWN6py0cXv9+w/hWq2c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordUserData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordUserData.html",
+          "hash": "xhQwrf9w/ETOCSKaj0PckyqyBP5v8Q1pCcA56KvAMtA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordUserProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordUserProperties.html",
+          "hash": "YbLjnqugUM11WKXwNZLbq798WMMsEOaZ9+pXX3FduoI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordVoiceState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordVoiceState.html",
+          "hash": "hIswR2oQ/fxxTmlZmHqvhpKWfq+jQctwh8V2oQBlLnk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordWebhookData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordWebhookData.html",
+          "hash": "v2W4/DtImrwo8tYoCRIwiCL26Cg8RF6IwhgwSujnGew="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordWebhookType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.DiscordWebhookType.html",
+          "hash": "aXw13dDG5VEtteQtqkzOKf8HspuxILSh7KE/HvS2HxQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedAuthorData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedAuthorData.html",
+          "hash": "ztAetx60C2n+4tfKeivHgwhrvIpGyTvSOfgEXjvzsu4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedData.html",
+          "hash": "NnKY8BMzxQ32YFo7AhdjPHNSoYhkAGlOiJf/6+PF4vA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedFieldData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedFieldData.html",
+          "hash": "ufjr9vYnuioayjedX1bGWujIL8YNhURaLMASfdi1HBY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedFooterData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedFooterData.html",
+          "hash": "kWuLBI5yS4vbig5JL607E6Q/LkboC2xWr59ah3FewJU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedImageData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedImageData.html",
+          "hash": "57PGvl9Pctcr+q56ShB/BGz4UMO4QCxIucsqYHnkuPw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedProviderData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedProviderData.html",
+          "hash": "36e1b0+OSPUYHLm+ukvKaN5KAn+dGbUFU/Y9Td8I2tE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedThumbnailData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedThumbnailData.html",
+          "hash": "NvjU6FltyX0Pt2tiwXzkCJxqVsCGmRpClb2GMgdQ9MU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedType.html",
+          "hash": "ioHMOV8RyfMNW9KyDk8dQh/rwETVRkn/OLp4X56WyvM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedVideoData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.DiscordEmbedVideoData.html",
+          "hash": "gLIC/C4jf/CiNfFdRk+Xj6fYf6xMrH8zQRcRfL42RiQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Embed.html",
+          "hash": "bmetvRo44u0z2Zx8rpGGk1Q8mH/atrD464e3MdfPlao="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.DiscordJsonError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.DiscordJsonError.html",
+          "hash": "x3Dcx0eZVixuRdiby2diHfJwhTSO9YkEtKjGnm3ubZk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.DiscordJsonErrorData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.DiscordJsonErrorData.html",
+          "hash": "jd+dJPfpaStocZvTMpAjK6gm6cYWtxgIsa+qr7Q4rAQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.PropertyErrorData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.PropertyErrorData.html",
+          "hash": "TImXm+MgS6Z91+VxiMQvewkMKPR7VB7XAOckM7RV9YM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.PropertyErrorInfoData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.PropertyErrorInfoData.html",
+          "hash": "dyqyaGnrdgtaVtfzUlfG2I4xmA0vtW84nGOxsfyupBg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Errors.html",
+          "hash": "pvCkyCoUnjThpLIlKCW8aStKKgssWfDJ4Hp85KuCF8M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildApplicationCommandPermissionsData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildApplicationCommandPermissionsData.html",
+          "hash": "qAtP0Vj1/NtLyBvPFExd5rIyebmJmZX/YgznUEHxvi0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildData.html",
+          "hash": "tRsL6UomjAGElN9iI71DZl0kPNGhZERlB1Qk2QdlpCo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildDefaultMessageNotificationLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildDefaultMessageNotificationLevel.html",
+          "hash": "s2S5pONd9YrsD/HSA4NqmE6C3OsGgtZYMZWAJo1G5pw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildExplicitContentFilterLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildExplicitContentFilterLevel.html",
+          "hash": "e/5X6DZc14bmqeGPGQjcBqBzZ8q/SYUyCzaYZ+fBgyg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildFeature.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildFeature.html",
+          "hash": "UwnIXcdqFhJ2+f4CjHniDsud+S47yUEBVTmp+lKsK0U="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildMemberData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildMemberData.html",
+          "hash": "qCX2O48w9kiZJKhm0n7H8/WwVpendWeQatPVHCrn3wY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildMfaLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildMfaLevel.html",
+          "hash": "T7W18QyMFYTCLRJsc+RNJn+N2efBIIN+nkCSeo9i3RQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildNsfwLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildNsfwLevel.html",
+          "hash": "Xz9vwTiiOm+wS5aVpPNOS+z4dNrs9YQmzLlii1FoUoQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildPremiumTier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildPremiumTier.html",
+          "hash": "v5ErifOQCDIegZBmJwDlB7z8Xilg2g03LPqGcTu0Hqw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildPreviewData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildPreviewData.html",
+          "hash": "vUZjaeYbCsQLtEWPEzweiu1VIOO0L9bZxSzZ173G3CI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildRoleData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildRoleData.html",
+          "hash": "W93Pj0JdJlYldoK2pwrvo6GOGGQ8BMgESeI+jL+G9b8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildVerificationLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildVerificationLevel.html",
+          "hash": "7n0vrxGLv0sIwuHzy8etxGwMeOT6r8PVWvQ6sJjyrL0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildWelcomeChannelData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildWelcomeChannelData.html",
+          "hash": "VwfKTUONy5p1vKcucH5i+kCZAKJ0gGJbYxpUPNsDTks="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildWelcomeScreenData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordGuildWelcomeScreenData.html",
+          "hash": "W5RWCf0Ii+hsFp0mkSoWXH55Cemm6XNxy8VnvP3URS0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordSystemChannelFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.DiscordSystemChannelFlags.html",
+          "hash": "Oa0CALV1YuqsGjpsg0Q/QcB0iHgP0bZNVhfDnMZ5N+o="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Guild.html",
+          "hash": "LhJ5wptqqUdi3u5F/a9t81ZQPoRi5fpeyrtIQWIPRIA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionCallbackData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionCallbackData.html",
+          "hash": "QA/k1/KxtxeaB7rYFXZtEWRNraeuEghz8M0P9nInBbU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionCallbackFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionCallbackFlags.html",
+          "hash": "6od+aBuT0VrUzz3N+KzWb4dRJqWMFQLyjNyqMao8fOk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionData.html",
+          "hash": "vG5hxDRufP0KMks5eg0ZArJ0ny9PcogHlf62SmdO4PI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionOptionData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionOptionData.html",
+          "hash": "bBKYZ45+QlusiyutHYLS0RJLSuCoElNlGdDo3tWU6OU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionRequestData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionRequestData.html",
+          "hash": "tHCEaNLwXhAaD4nUTOLZwvNXCeqURHT1AIWGO6AOkFI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionRequestType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionRequestType.html",
+          "hash": "IZcTSp6g4H/U+tGA4a5XONiCS1rbTTr95lF8or4hB7g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionResolvedData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionResolvedData.html",
+          "hash": "S9XIRiCwfsWrDKUzJ/7XUTLDInQfZcCYJtHQhG9eIwU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionResponseData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionResponseData.html",
+          "hash": "dIK+COA1KvnyCC8Xfs3oulURR/xaD4BBYGO3Crlx5n0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionResponseType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.DiscordInteractionResponseType.html",
+          "hash": "FRZSYOgkEQktCZqTMYV8JwCzjNGetx+JCbHrvcni2iM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Interaction.html",
+          "hash": "YUWU2t6u7BhHB9Ukw9MofzspFaL4c6xQlmZamd0FmCY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageActivityData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageActivityData.html",
+          "hash": "d563uTiDRnYUSsNF8An5jBHESN9zLv7JU+bpyv6JBjE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageActivityType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageActivityType.html",
+          "hash": "uj400WEN8m/8QEMVejRgGfmVy/+65i+73HWH9/lVPEM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageData.html",
+          "hash": "KRl2PlFuouqisHbvkjOnDaFbIWrvnu4lPcIqCrpIw+E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageFlags.html",
+          "hash": "J8ueeVvWRJc7n4563TUVhORblDB9UdfMpmqRHLqzTYs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageReferenceData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageReferenceData.html",
+          "hash": "a86KN44urhawY1DVrSLC9hWoxOM7BQBxRgCHAzt2Sww="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageStickerItemData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageStickerItemData.html",
+          "hash": "70NvV4TAxCW6ifP+cktnMc3r4/w17H2rtqPQmyx5ffw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Message.DiscordMessageType.html",
+          "hash": "GvHlav1akwy9g5z0hO+j3XYrKL8/m8kWBfIySFLrHKc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Message.html",
+          "hash": "NhMhenH8DmZJt9sQeX1IByxLwgRw72uS0V6UxjwB0Ug="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Select.DiscordSelectOptionData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Select.DiscordSelectOptionData.html",
+          "hash": "d5MWpYWpd8nffUz6p/bOuwD2cWRFg3qhFy1Tg04zEhQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.Select.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.Select.html",
+          "hash": "16NZgUIWwunB6MygnWlrQEfnZgZnZYqMiFDz91CNFnY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.DataModels.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.DataModels.html",
+          "hash": "f4xCr5jjXQoTV8y+AzXyPMz65L40zzfq7G4q9S/Ymp8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Application.DiscordBatchEditApplicationCommandPermissions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Application.DiscordBatchEditApplicationCommandPermissions.html",
+          "hash": "f7HOVUl0EkI5nJxbyBrbQv31Oh2Kl9Eny+k4d2QUhU4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Application.DiscordCreateApplicationCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Application.DiscordCreateApplicationCommand.html",
+          "hash": "oZ9SDvrZ8G3utYz5XgPMu96cb2FJ9NhazWoasD4XBFM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Application.DiscordCreateFollowupMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Application.DiscordCreateFollowupMessage.html",
+          "hash": "nzmX5g79rBs1zXniU8QrBmwjlLV6O+aLoHExqOrkIKw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Application.DiscordEditApplicationCommandPermissions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Application.DiscordEditApplicationCommandPermissions.html",
+          "hash": "sNyJuTQ8a/tiECPaIg7WblQaqL1/2wF8xuI2bepImu0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Application.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Application.html",
+          "hash": "9OXNykfk9bJkLCBEQONQSo6VNWZ7JmUyjQLRrcMhBcU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Channel.DiscordCreateChannelMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Channel.DiscordCreateChannelMessage.html",
+          "hash": "9kkonmXlYO8Wpxxlwvv7yVkoopdPn3aWBm5i+aAgtE0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Channel.DiscordEditChannelMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Channel.DiscordEditChannelMessage.html",
+          "hash": "4zpG7bhZo41tIG6v6D60XHss3tz4S+s6KmcuDYcd24Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Channel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Channel.html",
+          "hash": "joideyGTrTn6IInfCZoZaemNYavhyMd9CMseHEDzVuE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordAddGuildMember.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordAddGuildMember.html",
+          "hash": "s0Ro7ctXRBnfyjyVRdOo6yiCg9ttwAM6Vxh+TRTQ1CQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordCreateGuild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordCreateGuild.html",
+          "hash": "JT0kqw3h+g1mW/c9wLmxSDC8Ykvp9s6YlGNjRw9+Dlc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordCreateGuildRole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordCreateGuildRole.html",
+          "hash": "hAMO6SK5P2DLl4F0rnSGARHP6NSW1z98DrWSyk5J2WE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyCurrentUserNick.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyCurrentUserNick.html",
+          "hash": "ltu5zJmQNynJwKuZqgk4GRD7bIbJrpPtcxZpjIOwnJQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyGuild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyGuild.html",
+          "hash": "Lu9ayRWa4fIsKl7Hl2aGAPgvgxsU3+CtZTSV5UzKFII="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyGuildMember.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyGuildMember.html",
+          "hash": "cgiZAIb+EVg67aj6TwmjAdHmjEA56RlF1JH7OX5GBsA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyGuildRole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyGuildRole.html",
+          "hash": "PNo4mjlWzF3QyYHwE9FoX2sEsxmiDIOu9DA1osCDfCk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyGuildRolePositions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.DiscordModifyGuildRolePositions.html",
+          "hash": "iGsTev2QhPb0dTvlzoLO6F3X2HklsrMRxLZ/LFBZ8i8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Guild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Guild.html",
+          "hash": "4/x1GIVVR6EEaZ5UuyVsbfFCFpZSfE2A+x16kCbgCMc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.User.DiscordCreateDm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.User.DiscordCreateDm.html",
+          "hash": "DpW+8xtEB+3znam1wJetkOMDh1/cQaIIDTFrQviPgPo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.User.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.User.html",
+          "hash": "259GNmzUtVyTDV+Xk2hFFQeqGHfa4JJM0lSK6zcbdh0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Webhook.DiscordEditWebhookMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Webhook.DiscordEditWebhookMessage.html",
+          "hash": "0CABTiZiX6aAvZUNP5VxnSt22zekpI98WLQ4/dS1aA8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Webhook.DiscordExecuteWebhook.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Webhook.DiscordExecuteWebhook.html",
+          "hash": "8GsmZBROD1m6kkdGxb1N7rw5GEOiQC9a1ZUikC81Tmg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Params.Webhook.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Params.Webhook.html",
+          "hash": "r2bA8dZuviDQkaziXOS3l6KvRjoSQWTR7RZO4NOozqo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestApplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestApplication.html",
+          "hash": "7A4BkBLqXjJOKMeVPS921CWEgOwsVyuED86+XD9WsIA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestChannel.html",
+          "hash": "hdfCz2svYTVgIA84yzZ65+uGTAnQH491U8vQ1C2C+GY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestGuild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestGuild.html",
+          "hash": "4u6/WuRj1M91MmGI/HbugaF3mRVfRwNizd+ZHM2TGGw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestUser.html",
+          "hash": "I3qPkDmFtxrGd3I3HK9CZqonS+8BgE8GXcv8UMUNE/4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.API.Rest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.API.Rest.html",
+          "hash": "n7dvtA/U/BF7MqcDY2D4VJlO0or6nnSFnuUBlmbWGkw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplication.html",
+          "hash": "WvvbO3A4v5GaOtrkAUdmE5a7eoJW6BmJZeqrHX9Pxao="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplicationCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplicationCommand.html",
+          "hash": "/E1t9ceyUdAZuUl5h9Fg0o7mKGfDbv9FwokfIVCkpq0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplicationCommandOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplicationCommandOption.html",
+          "hash": "lmAFO+kFiq3zkCPRCyU5PXO/O6ZWDeYILiG/lEqshew="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplicationCommandOptionChoice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplicationCommandOptionChoice.html",
+          "hash": "sJgHh4bdq4V+6d8WrS3f6ooMaIOK6yuXZ6qsE/9Wv18="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplicationCommandPermissions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Application.IDiscordApplicationCommandPermissions.html",
+          "hash": "TLSpyGAiT/UdqeT5YHCeFZFd0tnnnS5qWLXpIXZmz3E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Application.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Application.html",
+          "hash": "bCUw3JOWyaexZDd8rP2NA99yDihcJ0kY+40U5r+qxGY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbed.html",
+          "hash": "XNzAPUG6eiNaiLafZ7dET8l7VR5lKRLhtYASPi6ba1M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedAuthor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedAuthor.html",
+          "hash": "ByACWBb9nkkllTb+f8X6sf/wk3LnPfLig5hDp9IrKwY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedField.html",
+          "hash": "BUnpzTI0Vt0cZTu3NgwX3M+z6+lItIf/OYw4/us0Kzc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedFooter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedFooter.html",
+          "hash": "cGEY8A1JEyUCDfo0Yho1pYGCbVtYfE1sUlIPDz/+Frg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedImage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedImage.html",
+          "hash": "x27XGLAtkyIrfJ44Quknce1+BqDbApkAwPggLBC4H6A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedProvider.html",
+          "hash": "oqlEN4g4V39HgBmfcK7QlegxP134w6EpW9BktOmUB1k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedThumbnail.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedThumbnail.html",
+          "hash": "BRRdmsuZF6QK6nRfqyrulcQgwSy8A70p/TfX4QyXTAU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedVideo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.IDiscordEmbedVideo.html",
+          "hash": "HU5hku5kGxt1F0w4eRo7d2K2dW+xBNWJc1iNpYYv3m0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Embed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Embed.html",
+          "hash": "PGtjkGTMAhsO76rOj1RIxGcSGxH0XINDtD+j5LO/7Qw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuild.html",
+          "hash": "fSeNIjg1s1L5DXhePjexiixLzx7bWQaGzqO/ppOhFdU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildApplicationCommandPermissions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildApplicationCommandPermissions.html",
+          "hash": "7tSOH1ofk7o/U1/BRn2eKGWP7gXYQXK9B16voGIGWxI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildMember.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildMember.html",
+          "hash": "R8Ugea4E6mHnVEXuwB1khWT5SK6B/tpPCwma+BAHZ7c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildPreview.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildPreview.html",
+          "hash": "JeiV5BRgMvZYvLK2jvMEVKTjU2wzJvY8ol7ykZRuqGQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildRole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildRole.html",
+          "hash": "XH9nbLUXmIriR5dlLyD8FfIp05khG2+LAVok81iPViE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildWelcomeChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildWelcomeChannel.html",
+          "hash": "5o10vOXrCo+T+YGH0G9bgSM3hDuNCb+MaVSFAnqBg5E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildWelcomeScreen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Guild.IDiscordGuildWelcomeScreen.html",
+          "hash": "auJF4BxmkiDKanxFJ3V2n1yoXOQoFhmDHNHRL0qRDxI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Guild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Guild.html",
+          "hash": "p4Q3pYVnzYE4cMvorhMMwuBwHGFq4YtIdpt67nZA6pg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordAllowedMentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordAllowedMentions.html",
+          "hash": "BqMAgnRaT2/9fHxd9e/Xw6XyhNCrQdEQM3nI89fVHZk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordAttachment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordAttachment.html",
+          "hash": "+ZCXrsLxUInOWj8OoKNEQZ/1jxafRdM8VABWGDUPdmw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordChannel.html",
+          "hash": "bhWD0Gl8NmCUMQnEru2GVTot4PN/A/iE7n2kRRtybv4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordComponent.html",
+          "hash": "ZvWoGXHtmUcmHfn0jWh9qiKH5bVTCpl0QqqPyKkn6m4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordEmoji.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordEmoji.html",
+          "hash": "6dMi29drBBOnIra7Gm4tjy0rfvp56USc1mrp38ClASs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordMessageStickerItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordMessageStickerItem.html",
+          "hash": "dPdI3pbggLSE/HhqyGlWIIwEjS56WQ/aDv2JCOGE8go="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordOverwrite.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordOverwrite.html",
+          "hash": "IhsJ8STE1xk41fJJitHk+kZHjYDb97B0Krxv3UCV/FY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordReaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordReaction.html",
+          "hash": "QcgDs/YrzbCz85RBs4cxibFItRyzMzwfbMTkwEkx4so="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordStageInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordStageInstance.html",
+          "hash": "HjqUspG7X5HGZQtiR73KtvnuEBqvGT+PSfIjBu4WqTU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.IDiscordUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.IDiscordUser.html",
+          "hash": "uCC471NI1Ftk+FGORU9McZRdF3Ygtt3g5JIYsoZlrLc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteraction.html",
+          "hash": "quyRTmBoLe0/Vxf0Uj81PlSNvQnCdUfIZeTRj9e09vY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionCallback.html",
+          "hash": "eJAgBym7YIRKSuran4vYe2FxI5fZDyiXDjHKWIf20d4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionOption.html",
+          "hash": "D5/Z3BMGe3AYdlpKTzmNqREfD/Ac443OaOukHzwSAcU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionRequest.html",
+          "hash": "M+oIxQIhocJGna0FIZpbtCAN76STxHXUwqSjBQpajpE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionResolved.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionResolved.html",
+          "hash": "wZau+jN293shuRuHTTkWYljQeZofX7oM4Ic9Dy0Gleg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteractionResponse.html",
+          "hash": "+vH14bsagDuURvs2cArpEudedamgm4mFcyCQjt9h2ac="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Interaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Interaction.html",
+          "hash": "kbgRC/IPVoSk4tXmdkiLqE13hIqAAtElfZMXeXP1YfI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Message.IDiscordMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Message.IDiscordMessage.html",
+          "hash": "zbSZco0p9/l+6udWfOhhTt9SPQwuEOAOTjoPfMMJuyE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Message.IDiscordMessageActivity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Message.IDiscordMessageActivity.html",
+          "hash": "4v1WqyiTkrPoZFTEJ829VxGNoLV/p61OM9QB86t4JCQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Message.IDiscordMessageReference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Message.IDiscordMessageReference.html",
+          "hash": "pnrskmdPhky4jydWAhad82IGszFOP6gUtMN5Phww3GM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Message.html",
+          "hash": "oVO0ggV6zOimP0g9+//359Gn0OlmOAdzBSgQ2Y/KK5I="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Select.IDiscordSelectOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Select.IDiscordSelectOption.html",
+          "hash": "qXjI41bL4/J95MRuDXEIcIySqVb/n1II+9DvX8t+2Xo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.Select.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.Select.html",
+          "hash": "A4XSYyfEr6bG4QlXyMXjxAkqscih+Xc+hsyqNacmBVQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Common.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Common.Models.html",
+          "hash": "aPzbZY7kCFW/rYdq/Imdc9vW9FvfoCkln3c2GuKPVoo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.DiscordTokens.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.DiscordTokens.html",
+          "hash": "2hc+fZABygqKxXKQ9z/Y179DylcH3PRSrEa6Yj/OyTA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Extensions.DiscordChannelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Extensions.DiscordChannelExtensions.html",
+          "hash": "YlxB06y6zho4LOz+vqETkQi2rX0bqrxhxHXuOpHHFjc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Extensions.DiscordGuildRoleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Extensions.DiscordGuildRoleExtensions.html",
+          "hash": "Fn9ykY3BeTI48GwM1rUTO9jhEF2Jz3y4z5JPplGh4Vk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Extensions.DiscordPermissionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Extensions.DiscordPermissionExtensions.html",
+          "hash": "Ro+rocLTImPqBbxvQzh4wVeA8ZFhAZIHTqtgepyXL3w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Extensions.DiscordUserExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Extensions.DiscordUserExtensions.html",
+          "hash": "B338q6kjtb58alhwHFmGQCQsd9mBafXMNuf+bytz09E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Extensions.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Extensions.ServiceCollectionExtensions.html",
+          "hash": "aFOAoi+mqW+JSZY7Qhy0OoV+QCpSVb3LxyQwnnQkyNI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Extensions.html",
+          "hash": "rdSYnY2+v0n49UBzI2aO5+8X4Ap/kk8h1fCIHeaKT18="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Results.ErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Results.ErrorResult.html",
+          "hash": "VxNPOCb4i2zrpkwd1UNi15PvC+ibSaStMlCHP7TGEBM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Results.ExceptionResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Results.ExceptionResult.html",
+          "hash": "a3ISIsSJZ7BSxZUECow9RLSvYPBLWkzpw2SHKJb8/54="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Results.IErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Results.IErrorResult.html",
+          "hash": "5s5c6DLWBvIT9xTnqAmVRwiXB6KJufmLgXh7cndbhqw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Results.IExceptionResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Results.IExceptionResult.html",
+          "hash": "ykBEWBSQxfIbACmKhX72udjl3j+69C+b9RHsR/TPEL8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Results.IResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Results.IResult.html",
+          "hash": "79DVPCO2DcP4cUhVbtBfHAzYVEFBHYQQppZCkTPqgo4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Results.Result-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Results.Result-1.html",
+          "hash": "xCz1aMr9JmY8YCEFxPgsRfgGO7e2hjFVFGHONaBDV2s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Results.Result.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Results.Result.html",
+          "hash": "O6Acybt4WzdOTKDEGDIgnLBKK9V6QR7oMO0AcyNIiWg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.Results.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.Results.html",
+          "hash": "+OH9+iGvky9YAaHSgT4kDOujS4iobofEgJGdamdhRFM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Core.html",
+          "hash": "zG6TCEKemjVMwcZzfGLJg36Ytya6W6FLsjXXtT5CAcQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Extensions.ApplicationBuilderExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Extensions.ApplicationBuilderExtensions.html",
+          "hash": "xYVwIkYc9xyLHsIE3vrhvVpTfsQJwB1c77EKAYgAyh8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Extensions.HostExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Extensions.HostExtensions.html",
+          "hash": "fZtFtJ3BmWE0BBZClnnM6e9yDphovhNmD29JWTbg4ns="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Extensions.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Extensions.ServiceCollectionExtensions.html",
+          "hash": "i/Nv3ZO6VZOuYyn1HFSicCV/hZHjZds1k6c6H16Bvm0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Extensions.html",
+          "hash": "lAILTzGLPzXieyaM0FZ4ekJNLfzxHtsQFJBQ1wIgnSI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.API.Rest.DiscordRestApplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.API.Rest.DiscordRestApplication.html",
+          "hash": "RaR8f2cBYA8tJtTMOPx5mRCdZInehmin5IVI5m9oQuQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.API.Rest.DiscordRestBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.API.Rest.DiscordRestBase.html",
+          "hash": "Fy6GCFydd7q1JapypDtQL+gVc23JGVdmLrxj4KLCuIE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.API.Rest.DiscordRestChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.API.Rest.DiscordRestChannel.html",
+          "hash": "PMSI08Y0T6akHsJJGTae9IrMDFZdSIwr/w8vDj2+MxU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.API.Rest.DiscordRestGuild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.API.Rest.DiscordRestGuild.html",
+          "hash": "nC2AqJ30ktskH89QKK2HplcUIMsCqQm9zeBN7UP3+Ok="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.API.Rest.DiscordRestUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.API.Rest.DiscordRestUser.html",
+          "hash": "gBWmnt3SQhHQuNfdyTth9ATKOO+yHeu9sgriPeyARpQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.API.Rest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.API.Rest.html",
+          "hash": "eHxS70BFho+9Jc6JbpPODwFZKzXxcZK7TiPIknyN4xg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Configurations.RestConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Configurations.RestConfiguration.html",
+          "hash": "cI3f9NJ6AVnX1qhiGM7XjerhW8BUysmG5k441ZGujiA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Configurations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Configurations.html",
+          "hash": "IwJS9tct0E65azkHkw6YRNS5xjYjm/NkL0gzLIalW+g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.DiscordHttpClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.DiscordHttpClient.html",
+          "hash": "voZiJ35AN8KZ/0bD8OzXAfXm6/H6/evpzpKF9BEa6gg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Exceptions.UnknownBucketException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Exceptions.UnknownBucketException.html",
+          "hash": "f7yMtIzoUjvR0wgVhWVbT05l2T+dAZzM+JYU0qphMC4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Exceptions.html",
+          "hash": "qW4wn0WWC5e/XidUqAzb4vM5Ga+kMtW2vRpQYu4rV5Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Extensions.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Extensions.ServiceCollectionExtensions.html",
+          "hash": "unlo43iJAUtnLlQG4VbS6fGWV1Vb7aO/+dglNJC0bQw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Extensions.html",
+          "hash": "WXnhkSs2UDrP+yRmhPNOvXZ5DTDP/iOxMR+pVGC72wI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.IDiscordHttpClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.IDiscordHttpClient.html",
+          "hash": "SRVaUUV3z+F8CswHPzGVhg8aKvfPwcB5c8zPZqn6PLs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Application.DiscordApplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Application.DiscordApplication.html",
+          "hash": "EVgkqM/2khC2a/nx43FDbg2oeJ9JtfFmX9L9nvmdVc4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Application.DiscordApplicationCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Application.DiscordApplicationCommand.html",
+          "hash": "YeD5YG1mYI10AcChAKZi57LF+a0JgoVGdDKkSr9RuMo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Application.DiscordApplicationCommandOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Application.DiscordApplicationCommandOption.html",
+          "hash": "oU+kPOXtLqG/1XQGOmFbNCvJtZAyTg9J75XLp/Wlm8w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Application.DiscordApplicationCommandOptionChoice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Application.DiscordApplicationCommandOptionChoice.html",
+          "hash": "ezdvQSNrQoX14qvyIm2mX7e/wGatANgrF239Tr13O50="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Application.DiscordApplicationCommandPermissions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Application.DiscordApplicationCommandPermissions.html",
+          "hash": "WPWHrOJkGHhlOtG64qSJOORH8STRunYfJBGDwhPvL34="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Application.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Application.html",
+          "hash": "PjwnbEMwat9Sy2KvO/O8JEvYGywYWdZzl/XTzcqBpvo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordAllowedMentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordAllowedMentions.html",
+          "hash": "+J+mqSsl8hMlQJuzIOUZuUQelsgEUe2JpMWgO6m7/wY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordAttachment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordAttachment.html",
+          "hash": "lEzWwwUQVsHLq1HrVtUgoI5Xk2lN61ZSCrrI9+UbGl4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordChannel.html",
+          "hash": "Ux6jIfd8w9IqRBonYLk2tpNi72Bg6ruBM8q8DYszdxM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordComponent.html",
+          "hash": "p8ED8E+Eshp7jpwT7yVP2rmqc4mbwAZ9p+s03JVhF3Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordEmoji.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordEmoji.html",
+          "hash": "q3l5qbc2fMQDUFrKprJmsffbi9ixyecyvhcwUAZfcqA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordMessageStickerItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordMessageStickerItem.html",
+          "hash": "qBgQ2Uif0DCh7nRwDFhWplRNDaopRZUxNCfyJxPKpCc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordOverwrite.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordOverwrite.html",
+          "hash": "6pH1NVRukjoY6TyQ2gSBoZ69EcQ5DDD7tN0kEOAy+TM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordRateLimitBucket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordRateLimitBucket.html",
+          "hash": "ht+SqYnc7Pol1GOnO82Cymw9laxtNepsCXBFKJA8v4E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordReaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordReaction.html",
+          "hash": "Y+xO+hbthiEU2HXGij6VDne3si8MVzI+U2L9d2t+mKs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordStageInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordStageInstance.html",
+          "hash": "tSIzDl1Lhm5NiTImeH1AuielCfeTxPYWhrVCBfp4W1s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.DiscordUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.DiscordUser.html",
+          "hash": "Ki4J/xfzcgoK8pQEEATiAwnpBnMGcswW2NDpbYN4yCA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbed.html",
+          "hash": "5B2hkshCNl2T/uwJq2pJ/RSM2HBjov8Hz/JQP2TBKn4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedAuthor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedAuthor.html",
+          "hash": "b8CBXHrLvFxFFzCmNWBrfO7Quq7Qwo8RDYAYW7nM+4E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedField.html",
+          "hash": "85D1xvzTxN+cKRLr1yQWR3hSfMgon0PY8jT2NgmF2iY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedFooter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedFooter.html",
+          "hash": "CFrTjo8dU0WedSPkUIHKuBU3WDNO+q5Pc3NakmCoue0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedImage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedImage.html",
+          "hash": "loZaIExZ5+I5PCMmadpmlrnQAFgI4FL6h9+Hy4mw1Gw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedProvider.html",
+          "hash": "Kz2Biu+It0Ojubxf28gQ+8mvm24qxKFCUnM0Svm710g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedThumbnail.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedThumbnail.html",
+          "hash": "E7zibgPy13yrBDFLEMEwdFUp9ReY3ncosdmV1R7KVyI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedVideo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.DiscordEmbedVideo.html",
+          "hash": "V7WUEnhodiOSOhdl1Ij8jcuAfgnKPeOGv45UXMux4FY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Embed.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Embed.html",
+          "hash": "76N5kI9FOpL7PDMlz/hayJ+QccdcDuepo2hwkTUpar4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuild.html",
+          "hash": "tVTXWKZFrxk42GSVroh2g3CSDvUTR2YNZnLwKuT76bU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildApplicationCommandPermissions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildApplicationCommandPermissions.html",
+          "hash": "VdTj0MSORt9WMxwRS6zT9cYIZneKvUemVJueLBdEYOY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildMember.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildMember.html",
+          "hash": "DbAMQUP9H6Kv97VWtI1WOkKmrVnXaGSd6lws/aKiRV8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildPreview.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildPreview.html",
+          "hash": "wlcy29gYp0BgPvyquc5p+QZDRVGXN+rWR7OXudhvYjA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildRole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildRole.html",
+          "hash": "JVAWLrF52w+S9Kj6CAtDEl9ONr319BSaN/A/g9nMfFo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildWelcomeChannel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildWelcomeChannel.html",
+          "hash": "I/nt1FC7y02id+8A3en95EQ5U9mf24bQAXFv4033NnY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildWelcomeScreen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Guild.DiscordGuildWelcomeScreen.html",
+          "hash": "EoN/2qSyEx/eWKEgN3tzrUO88JBiIyDch/PE5wUUHCc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Guild.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Guild.html",
+          "hash": "WFML17EdknOuciXCiIusvzC+oR6oz4N9borR6JvKgs0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteraction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteraction.html",
+          "hash": "Ij44nO/MTyOUXsRX8TRxuDBjRR7Ol+9Jtr6hfu9S+v4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionCallback.html",
+          "hash": "RK1vj99LhXOAOHfoK03t7m4T+ocmmJY5y2LjdNxIV9A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionOption.html",
+          "hash": "TRvOwRBDsSqAtUt/d++FqNNUpWjlCe7NyhK4H3cbyjU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionRequest.html",
+          "hash": "zQdM99dd/W2+mSmDNis6ASZurblywCAANjBio9zNhXw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionResolved.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionResolved.html",
+          "hash": "x5mXpjj0XNxKfepP8HRFL+KZy4kD7I/CQCyoe0HZ9nY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Interaction.DiscordInteractionResponse.html",
+          "hash": "3NB8ma4ewKuTmb+wG7zNyZvh8FVdbhIEVXGKN/SRAA8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Interaction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Interaction.html",
+          "hash": "LTMjyzhqBw3yvdu6pbqXSBGdqhIer9h0pFO05EUzOoo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Message.DiscordMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Message.DiscordMessage.html",
+          "hash": "cmu3kzCQwjm7G10UaWpeVZ0TwovIZCm38S3XaLLSpAs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Message.DiscordMessageActivity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Message.DiscordMessageActivity.html",
+          "hash": "hu/Z4LSkmUTg5kxWg0Goz/kfryj3orfbV+DfhLf7viU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Message.DiscordMessageReference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Message.DiscordMessageReference.html",
+          "hash": "PRTm5h1MFb/4sg2GTQXRNh2YLujvDe/YXsLj7/3AiYg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Message.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Message.html",
+          "hash": "IoMk2QI//vYpttBMkD0dSDzKJjMH6zYOrpJ2XW9YYsU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Select.DiscordSelectOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Select.DiscordSelectOption.html",
+          "hash": "pSgNUxOS4TVl+gyornkGDVXMfq0WDZ+bzYFutht08Dk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.Select.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.Select.html",
+          "hash": "6GotZEODibI9VT8tjUDjcPXlnfANDdteAgR1rXxsDvU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Models.html",
+          "hash": "58gEV1XLrjjRGDgMyxNHPM7ZH+nSS5iGpDMh+R0s1yw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Results.DiscordHttpErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Results.DiscordHttpErrorResult.html",
+          "hash": "DkaHZIXmy7SeIEWOEPMtsiZPP79GmvLuRViVgCh9vqo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Results.HttpErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Results.HttpErrorResult.html",
+          "hash": "NJN2lgIvG15yaL1Y/A2qInPPu1Yr888saqrNW1xtXEQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Results.IHttpErrorResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Results.IHttpErrorResult.html",
+          "hash": "K3VjrxcMKmFiZRrNShrXnWoii5tYe/sSwZ+r0fo1GQM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.Results.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.Results.html",
+          "hash": "Ho6aMjQH1dQhpGTABbOnLItP+0XnQ7jX/tvdGirOKOw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/api/Color_Chan.Discord.Rest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Color_Chan.Discord.Rest.html",
+          "hash": "F4D3IkjC3irlk7xdoMe8pH0H57AlrfUQ7RrZQIVGKMg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "lFOYimWyVUWgTUaJ9pWJ53AdEjXqGtf2obG1XI1cghE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+gw5o0debk0eJm19mYzacy71aODPsTqEp1VkEmCtbnM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 380,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
