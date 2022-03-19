@@ -74,38 +74,21 @@ namespace Color_Chan.Discord.Commands.Extensions
 
             return services;
         }
-
+        
         /// <summary>
-        ///     Adds a <see cref="ISlashCommandPipeline" /> to the <paramref name="services" />.
+        ///     Adds a <see cref="IInteractionPipeline" /> to the <paramref name="services" />.
         /// </summary>
         /// <param name="services">
         ///     The <see cref="IServiceCollection" /> where the <typeparamref name="TPipeline" /> will be added
         ///     to.
         /// </param>
-        /// <typeparam name="TPipeline">The new <see cref="ISlashCommandPipeline" />.</typeparam>
+        /// <typeparam name="TPipeline">The new <see cref="IInteractionPipeline" />.</typeparam>
         /// <returns>
         ///     The updated <see cref="IServiceCollection" />.
         /// </returns>
-        public static IServiceCollection AddSlashCommandPipeline<TPipeline>(this IServiceCollection services) where TPipeline : class, ISlashCommandPipeline
+        public static IServiceCollection AddInteractionPipeline<TPipeline>(this IServiceCollection services) where TPipeline : class, IInteractionPipeline
         {
-            services.AddTransient<ISlashCommandPipeline, TPipeline>();
-            return services;
-        }
-
-        /// <summary>
-        ///     Adds a <see cref="IComponentInteractionPipeline" /> to the <paramref name="services" />.
-        /// </summary>
-        /// <param name="services">
-        ///     The <see cref="IServiceCollection" /> where the <typeparamref name="TPipeline" /> will be added
-        ///     to.
-        /// </param>
-        /// <typeparam name="TPipeline">The new <see cref="IComponentInteractionPipeline" />.</typeparam>
-        /// <returns>
-        ///     The updated <see cref="IServiceCollection" />.
-        /// </returns>
-        public static IServiceCollection AddComponentInteractionPipeline<TPipeline>(this IServiceCollection services) where TPipeline : class, IComponentInteractionPipeline
-        {
-            services.AddTransient<IComponentInteractionPipeline, TPipeline>();
+            services.AddTransient<IInteractionPipeline, TPipeline>();
             return services;
         }
     }

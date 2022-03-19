@@ -37,7 +37,7 @@ namespace RoleManager
             services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999, config); // <---
 
             // Register your custom pipelines if any.
-            services.AddSlashCommandPipeline<PerformancePipeline>(); // <---
+            services.AddInteractionPipeline<PerformancePipeline>(); // <---
 
             services.AddControllers();
         }

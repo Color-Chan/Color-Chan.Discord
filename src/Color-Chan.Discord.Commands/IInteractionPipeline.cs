@@ -6,16 +6,16 @@ using Color_Chan.Discord.Core.Results;
 namespace Color_Chan.Discord.Commands
 {
     /// <summary>
-    ///     Pipeline behavior to surround the the component interaction handler.
+    ///     Pipeline behavior to surround the interaction handler.
     ///     Implementations add additional behavior and await the next delegate.
     /// </summary>
     /// <example>
     ///     The following example showcases a simple implementation for a pipeline that measures
-    ///     the performance of the component interactions.
+    ///     the performance of the interactions.
     ///     <code language="cs">
-    ///     public class PerformancePipeline : IComponentInteractionPipeline
+    ///     public class PerformancePipeline : IInteractionPipeline
     ///     {
-    ///         public async Task&lt;Result&lt;IDiscordInteractionResponse&gt;&gt; HandleAsync(IInteractionContext context, ComponentInteractionHandlerDelegate next)
+    ///         public async Task&lt;Result&lt;IDiscordInteractionResponse&gt;&gt; HandleAsync(IInteractionContext context, InteractionHandlerDelegate next)
     ///         {
     ///             var sw = new Stopwatch();
     /// 
@@ -23,13 +23,13 @@ namespace Color_Chan.Discord.Commands
     ///             var result = await next().ConfigureAwait(false);
     ///             sw.Stop();
     /// 
-    ///             Console.WriteLine($"Component interaction {context.MethodName} ran for {sw.ElapsedMilliseconds.ToString()}ms.");
+    ///             Console.WriteLine($"Interaction ran for {sw.ElapsedMilliseconds.ToString()}ms.");
     ///             return result;
     ///         }
     ///     }
     ///     </code>
     /// </example>
-    public interface IComponentInteractionPipeline
+    public interface IInteractionPipeline
     {
         /// <summary>
         ///     A pipeline handler to surround the inner component interaction handler.
@@ -42,11 +42,11 @@ namespace Color_Chan.Discord.Commands
         /// <returns>
         ///     <see cref="Result" /> of <see cref="IDiscordInteractionResponse" /> containing the component interaction result.
         /// </returns>
-        Task<Result<IDiscordInteractionResponse>> HandleAsync(IInteractionContext context, ComponentInteractionHandlerDelegate next);
+        Task<Result<IDiscordInteractionResponse>> HandleAsync(IInteractionContext context, InteractionHandlerDelegate next);
     }
 
     /// <summary>
     ///     Represents an async continuation for the next task to execute in the pipeline.
     /// </summary>
-    public delegate Task<Result<IDiscordInteractionResponse>> ComponentInteractionHandlerDelegate();
+    public delegate Task<Result<IDiscordInteractionResponse>> InteractionHandlerDelegate();
 }
