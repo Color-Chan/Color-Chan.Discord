@@ -25,6 +25,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             Mute = data.Mute;
             Pending = data.Pending;
             Permissions = data.Permissions;
+            CommunicationDisabledUntil = data.CommunicationDisabledUntil;
         }
 
         /// <inheritdoc />
@@ -53,5 +54,8 @@ namespace Color_Chan.Discord.Rest.Models.Guild
 
         /// <inheritdoc />
         public DiscordPermission? Permissions { get; init; }
+
+        /// <inheritdoc />
+        public DateTimeOffset? CommunicationDisabledUntil { get; set; }
     }
 }

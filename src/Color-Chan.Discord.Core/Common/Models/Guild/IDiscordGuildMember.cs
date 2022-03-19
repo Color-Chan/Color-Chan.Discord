@@ -54,5 +54,11 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         ///     Total permissions of the member in the channel, including overwrites, returned when in the interaction object.
         /// </summary>
         DiscordPermission? Permissions { get; init; }
+        
+        /// <summary>
+        ///     When the user's timeout will expire and the user will be able to communicate in the guild again,
+        ///     null or a time in the past if the user is not timed out.
+        /// </summary>
+        DateTimeOffset? CommunicationDisabledUntil { get; set; }
     }
 }
