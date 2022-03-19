@@ -1,28 +1,36 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Application;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
+namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <inheritdoc cref="IDiscordApplication"/>
     public record DiscordApplicationData
     {
-        /// <inheritdoc cref="IDiscordApplication.Id"/>
+        /// <summary>
+        ///     The id of the app.
+        /// </summary>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
-        
-        /// <inheritdoc cref="IDiscordApplication.Name"/>
+
+        /// <summary>
+        ///     The name of the app.
+        /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
 
-        /// <inheritdoc cref="IDiscordApplication.Icon"/>
+        /// <summary>
+        ///     The icon hash of the app.
+        /// </summary>
         [JsonPropertyName("icon")]
         public string? Icon { get; init; }
 
-        /// <inheritdoc cref="IDiscordApplication.Description"/>
+        /// <summary>
+        ///     The description of the app.
+        /// </summary>
         [JsonPropertyName("description")]
         public string Description { get; init; } = null!;
 
-        /// <inheritdoc cref="IDiscordApplication.CoverImage"/>
+        /// <summary>
+        ///     Gets the ID of the embed's image asset.
+        /// </summary>
         [JsonPropertyName("cover_image")]
         public string? CoverImage { get; init; }
     }

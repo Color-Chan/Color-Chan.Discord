@@ -1,10 +1,7 @@
 ﻿using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 
 namespace Color_Chan.Discord.Core.Common.Models.Embed
-{    /// <summary>
-    ///     Represents a discord Embed Field Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure
-    /// </summary>
+{
     public interface IDiscordEmbedField
     {
         /// <summary>

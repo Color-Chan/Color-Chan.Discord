@@ -4,10 +4,6 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild
 {
-    /// <summary>
-    ///     Represents a discord Role Structure API model.
-    ///     Docs: https://discord.com/developers/docs/topics/permissions#role-object-role-structure
-    /// </summary>
     public interface IDiscordGuildRole
     {
         /// <summary>

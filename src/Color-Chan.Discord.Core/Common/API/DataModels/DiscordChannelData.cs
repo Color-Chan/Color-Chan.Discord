@@ -1,83 +1,120 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <inheritdoc cref="IDiscordChannel"/>
+    /// <summary>
+    ///     Represents a guild or DM channel within Discord.
+    /// </summary>
     public record DiscordChannelData
     {
         // Shared
-        /// <inheritdoc cref="IDiscordChannel.Id"/>
+        /// <summary>
+        ///     The id of this channel.
+        /// </summary>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.Type"/>
+        /// <summary>
+        ///     The type of channel.
+        /// </summary>
         [JsonPropertyName("type")]
         public DiscordChannelType Type { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.LastMessageId"/>
+        /// <summary>
+        ///     The id of the last message sent in this channel (may not point to an existing or valid message).
+        /// </summary>
         [JsonPropertyName("last_message_id")]
         public ulong? LastMessageId { get; init; }
 
         //GuildChannel
-        /// <inheritdoc cref="IDiscordChannel.GuildId"/>
+        /// <summary>
+        ///     The id of the guild (may be missing for some channel objects received over gateway guild dispatches).
+        /// </summary>
         [JsonPropertyName("guild_id")]
         public ulong? GuildId { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.Name"/>
+        /// <summary>
+        ///     The name of the channel (1-100 characters).
+        /// </summary>
         [JsonPropertyName("name")]
         public string? Name { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.Position"/>
+        /// <summary>
+        ///     Sorting position of the channel.
+        /// </summary>
         [JsonPropertyName("position")]
         public int? Position { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.PermissionOverwrites"/>
+        /// <summary>
+        ///     Explicit permission overwrites for members and roles.
+        /// </summary>
         [JsonPropertyName("permission_overwrites")]
 
         public IEnumerable<DiscordOverwriteData>? PermissionOverwrites { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.CategoryId"/>
+        /// <summary>
+        ///     For guild channels: id of the parent category for a channel
+        ///     (each parent category can contain up to 50 channels),
+        ///     for threads: id of the text channel this thread was created
+        /// </summary>
         [JsonPropertyName("parent_id")]
         public ulong? CategoryId { get; init; }
 
         //TextChannel
-        /// <inheritdoc cref="IDiscordChannel.Topic"/>
+        /// <summary>
+        ///     The channel topic (0-1024 characters).
+        /// </summary>
         [JsonPropertyName("topic")]
         public string? Topic { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.LastPinTimestamp"/>
+        /// <summary>
+        ///     When the last pinned message was pinned.
+        ///     This may be null in events such as GUILD_CREATE when a message is not pinned.
+        /// </summary>
         [JsonPropertyName("last_pin_timestamp")]
 
         public DateTimeOffset? LastPinTimestamp { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.Nsfw"/>
+        /// <summary>
+        ///     Whether the channel is nsfw
+        /// </summary>
         [JsonPropertyName("nsfw")]
         public bool? Nsfw { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.SlowMode"/>
+        /// <summary>
+        ///     Amount of seconds a user has to wait before sending another message (0-21600);
+        ///     bots, as well as users with the permission manage_messages or manage_channel, are unaffected
+        /// </summary>
         [JsonPropertyName("rate_limit_per_user")]
 
         public int? SlowMode { get; init; }
 
         //VoiceChannel
-        /// <inheritdoc cref="IDiscordChannel.Bitrate"/>
+        /// <summary>
+        ///     The bitrate (in bits) of the voice channel.
+        /// </summary>
         [JsonPropertyName("bitrate")]
         public int? Bitrate { get; init; }
 
-        /// <inheritdoc cref="IDiscordChannel.UserLimit"/>
+        /// <summary>
+        ///     The user limit of the voice channel.
+        /// </summary>
         [JsonPropertyName("user_limit")]
         public int? UserLimit { get; init; }
 
         //PrivateChannel
-        /// <inheritdoc cref="IDiscordChannel.Recipients"/>
+        /// <summary>
+        ///     The recipients of the DM.
+        /// </summary>
         [JsonPropertyName("recipients")]
         public IEnumerable<DiscordUserData>? Recipients { get; init; }
 
         //GroupChannel
-        /// <inheritdoc cref="IDiscordChannel.Icon"/>
+        /// <summary>
+        ///     Icon hash.
+        /// </summary>
         [JsonPropertyName("icon")]
         public string? Icon { get; init; }
     }

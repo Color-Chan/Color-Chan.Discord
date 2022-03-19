@@ -2,10 +2,6 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Select;
 
 namespace Color_Chan.Discord.Core.Common.Models.Select
 {
-    /// <summary>
-    ///     Represents a discord Select Option Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-option-structure
-    /// </summary>
     public interface IDiscordSelectOption
     {
         /// <summary>

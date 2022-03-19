@@ -2,7 +2,7 @@
 {
     /// <summary>
     ///     Represents a discord Guild NSFW Level API model.
-    ///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-guild-nsfw-level
+    ///     https://discord.com/developers/docs/resources/guild#guild-object-guild-nsfw-level
     /// </summary>
     public enum DiscordGuildNsfwLevel
     {

@@ -2,10 +2,6 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
 {
-    /// <summary>
-    ///     Represents a discord Message Flags API model.
-    ///     Docs: https://discord.com/developers/docs/resources/channel#message-object-message-flags
-    /// </summary>
     [Flags]
     public enum DiscordMessageFlags
     {
@@ -55,11 +51,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
         /// <summary>
         ///     This message is an Interaction Response and the bot is "thinking".
         /// </summary>
-        Loading = 1 << 7,
-        
-        /// <summary>
-        ///     This message failed to mention some roles and add their members to the thread.
-        /// </summary>
-        FailedToMentionSomeRolesInThread = 1 << 8
+        Loading = 1 << 7
     }
 }

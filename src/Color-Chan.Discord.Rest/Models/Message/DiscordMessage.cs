@@ -15,13 +15,8 @@ using Color_Chan.Discord.Rest.Models.Interaction;
 
 namespace Color_Chan.Discord.Rest.Models.Message
 {
-    /// <inheritdoc cref="IDiscordMessage"/>
     public record DiscordMessage : IDiscordMessage
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordMessage"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordMessage"/>.</param>
         public DiscordMessage(DiscordMessageData data)
         {
             Id = data.Id;

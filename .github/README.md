@@ -81,8 +81,8 @@ Color-Chan.Discord is a powerful Discord library made to communicate with the [D
 
 ### Built With
 
-* [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
+* [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
 
 
 <!-- GETTING STARTED -->
@@ -93,8 +93,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
+* [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
 
 ### Installation
 
@@ -114,7 +114,7 @@ Color-Chan.Discord is available on [NuGet](https://www.nuget.org/packages/Color-
   dotnet add package Color-Chan.Discord
   ```
 
-The individual components are also available on NuGet:
+The induvidial components are also available on NuGet:
 * [Color-Chan.Discord.Rest](https://www.nuget.org/packages/Color-Chan.Discord.Rest)
 * [Color-Chan.Discord.Commands](https://www.nuget.org/packages/Color-Chan.Discord.Commands)
 * [Color-Chan.Discord.Core](https://www.nuget.org/packages/Color-Chan.Discord.Core)
@@ -162,7 +162,7 @@ public static async Task Main(string[] args)
 
 ### Startup.cs
 
-You will need to add your bot token, public key and application id, these can be found at [discord.com](https://discordapp.com/developers/applications/).
+You will need to add your bot token, public key and application id, these can be found at [discordapp.com](https://discordapp.com/developers/applications/).
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

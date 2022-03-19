@@ -3,13 +3,8 @@ using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Rest.Models
 {
-    /// <inheritdoc cref="IDiscordAttachment"/>
     public class DiscordAttachment : IDiscordAttachment
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordAttachment"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordAttachment"/>.</param>
         public DiscordAttachment(DiscordAttachmentData data)
         {
             Id = data.Id;

@@ -2,16 +2,12 @@
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
 {
-    /// <summary>
-    ///     Represents a discord Interaction Response Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-response-structure
-    /// </summary>
     public interface IDiscordInteractionResponse
     {
         /// <summary>
         ///     The type of interaction.
         /// </summary>
-        public DiscordInteractionCallbackType Type { get; init; }
+        public DiscordInteractionResponseType Type { get; init; }
 
         /// <summary>
         ///     An optional response message.

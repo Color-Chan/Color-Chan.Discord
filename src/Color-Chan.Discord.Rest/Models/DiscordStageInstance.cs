@@ -3,21 +3,16 @@ using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Rest.Models
 {
-    /// <inheritdoc cref="IDiscordStageInstance"/>
     public class DiscordStageInstance : IDiscordStageInstance
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordStageInstance"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordStageInstance"/>.</param>
-        public DiscordStageInstance(DiscordStageinstanceData data)
+        public DiscordStageInstance(DiscordStageinstanceData dataStageInstances)
         {
-            Id = data.Id;
-            GuildId = data.GuildId;
-            ChannelId = data.ChannelId;
-            Topic = data.Topic;
-            PrivacyLevel = data.PrivacyLevel;
-            DiscoverableDisabled = data.DiscoverableDisabled;
+            Id = dataStageInstances.Id;
+            GuildId = dataStageInstances.GuildId;
+            ChannelId = dataStageInstances.ChannelId;
+            Topic = dataStageInstances.Topic;
+            PrivacyLevel = dataStageInstances.PrivacyLevel;
+            DiscoverableDisabled = dataStageInstances.DiscoverableDisabled;
         }
 
         /// <inheritdoc />

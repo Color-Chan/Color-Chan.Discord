@@ -1,24 +1,34 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
 {
-    /// <inheritdoc cref="IDiscordEmbedThumbnail"/>
+    /// <summary>
+    ///     Represents a discord Embed Thumbnail Structure API model.
+    ///     https://discord.com/developers/docs/resources/channel#embed-object-embed-thumbnail-structure
+    /// </summary>
     public record DiscordEmbedThumbnailData
     {
-        /// <inheritdoc cref="IDiscordEmbedThumbnail.Url"/>
+        /// <summary>
+        ///     Source url of thumbnail (only supports http(s) and attachments).
+        /// </summary>
         [JsonPropertyName("url")]
         public string? Url { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmbedThumbnail.ProxyUrl"/>
+        /// <summary>
+        ///     A proxied url of the image.
+        /// </summary>
         [JsonPropertyName("proxy_url")]
         public string? ProxyUrl { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmbedThumbnail.Height"/>
+        /// <summary>
+        ///     Height of image.
+        /// </summary>
         [JsonPropertyName("height")]
         public int? Height { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmbedThumbnail.Width"/>
+        /// <summary>
+        ///     Width of image.
+        /// </summary>
         [JsonPropertyName("width")]
         public int? Width { get; init; }
     }

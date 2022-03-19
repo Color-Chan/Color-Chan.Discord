@@ -1,41 +1,59 @@
 ﻿using System.Drawing;
 using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
-    /// <inheritdoc cref="IDiscordGuildRole"/>
+    /// <summary>
+    ///     Represents a discord Role Structure API model.
+    ///     https://discord.com/developers/docs/topics/permissions#role-object-role-structure
+    /// </summary>
     public record DiscordGuildRoleData
     {
-        /// <inheritdoc cref="IDiscordGuildRole.Id"/>
+        /// <summary>
+        ///     Role id.
+        /// </summary>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildRole.Name"/>
+        /// <summary>
+        ///     Role name.
+        /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
 
-        /// <inheritdoc cref="IDiscordGuildRole.Color"/>
+        /// <summary>
+        ///     Integer representation of hexadecimal color code.
+        /// </summary>
         [JsonPropertyName("color")]
         public Color Color { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildRole.IsHoisted"/>
+        /// <summary>
+        ///     If this role is pinned in the user listing.
+        /// </summary>
         [JsonPropertyName("hoist")]
         public bool IsHoisted { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildRole.Position"/>
+        /// <summary>
+        ///     Position of this role.
+        /// </summary>
         [JsonPropertyName("position")]
         public int Position { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildRole.Permissions"/>
+        /// <summary>
+        ///     Permission bit set.
+        /// </summary>
         [JsonPropertyName("permissions")]
         public DiscordPermission Permissions { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildRole.Managed"/>
+        /// <summary>
+        ///     Whether this role is managed by an integration
+        /// </summary>
         [JsonPropertyName("managed")]
         public bool Managed { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildRole.Mentionable"/>
+        /// <summary>
+        ///     Whether this role is mentionable
+        /// </summary>
         [JsonPropertyName("mentionable")]
         public bool Mentionable { get; init; }
     }

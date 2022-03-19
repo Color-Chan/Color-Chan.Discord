@@ -2,30 +2,44 @@
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
-using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    /// <inheritdoc cref="IDiscordInteractionResolved"/>
     public record DiscordInteractionResolvedData
     {
-        /// <inheritdoc cref="IDiscordInteractionResolved.Users"/>
+        /// <summary>
+        ///     The ids and User objects.
+        /// </summary>
         [JsonPropertyName("users")]
         public IReadOnlyDictionary<ulong, DiscordUserData>? Users { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionResolved.Members"/>
+        /// <summary>
+        ///     The ids and partial Member objects.
+        /// </summary>
+        /// <remarks>
+        ///     Partial Member objects are missing user, deaf and mute fields.
+        /// </remarks>
         [JsonPropertyName("members")]
         public IReadOnlyDictionary<ulong, DiscordGuildMemberData>? Members { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionResolved.Roles"/>
+        /// <summary>
+        ///     The ids and Role objects.
+        /// </summary>
         [JsonPropertyName("roles")]
         public IReadOnlyDictionary<ulong, DiscordGuildRoleData>? Roles { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionResolved.Channels"/>
+        /// <summary>
+        ///     The ids and partial Channel objects.
+        /// </summary>
+        /// <remarks>
+        ///     Partial Channel objects only have id, name, type and permissions fields.
+        /// </remarks>
         [JsonPropertyName("channels")]
         public IReadOnlyDictionary<ulong, DiscordChannelData>? Channels { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionResolved.Messages"/>
+        /// <summary>
+        ///     The ids and partial Message objects.
+        /// </summary>
         [JsonPropertyName("messages")]
         public IReadOnlyDictionary<ulong, DiscordMessageData>? Messages { get; init; }
     }

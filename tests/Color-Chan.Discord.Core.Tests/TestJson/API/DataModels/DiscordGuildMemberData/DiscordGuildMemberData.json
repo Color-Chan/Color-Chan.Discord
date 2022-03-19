@@ -21,6 +21,5 @@
   "deaf": true,
   "mute": true,
   "pending": true,
-  "permissions": "274877906943",
-  "communication_disabled_until": "2020-01-21T23:01:24.057+00:00"
+  "permissions": "274877906943"
 }

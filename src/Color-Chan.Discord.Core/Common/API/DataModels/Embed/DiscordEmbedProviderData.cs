@@ -1,16 +1,22 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
 {
-    /// <inheritdoc cref="IDiscordEmbedProvider"/>
+    /// <summary>
+    ///     Represents a discord Embed Provider Structure API model.
+    ///     https://discord.com/developers/docs/resources/channel#embed-object-embed-provider-structure
+    /// </summary>
     public record DiscordEmbedProviderData
     {
-        /// <inheritdoc cref="IDiscordEmbedProvider.Name"/>
+        /// <summary>
+        ///     Name of provider.
+        /// </summary>
         [JsonPropertyName("name")]
         public string? Name { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmbedProvider.Url"/>
+        /// <summary>
+        ///     Url of provider.
+        /// </summary>
         [JsonPropertyName("url")]
         public string? Url { get; init; }
     }

@@ -11,10 +11,6 @@ namespace Color_Chan.Discord.Rest.Models.Guild
     /// <inheritdoc />
     public class DiscordGuild : IDiscordGuild
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordGuild"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordGuild"/>.</param>
         public DiscordGuild(DiscordGuildData data)
         {
             Id = data.Id;
@@ -46,7 +42,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             Large = data.Large;
             Unavailable = data.Unavailable;
             MemberCount = data.MemberCount;
-            VoiceStates = data.VoiceStates?.Select(voiceStateData => new DiscordVoiceState(voiceStateData));
+            VoiceStates = data.VoiceStates;
             Members = data.Members?.Select(memberData => new DiscordGuildMember(memberData));
             Channels = data.Channels?.Select(channelData => new DiscordChannel(channelData));
             Threads = data.Threads?.Select(channelData => new DiscordChannel(channelData));
@@ -156,7 +152,7 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         public int? MemberCount { get; set; }
 
         /// <inheritdoc />
-        public IEnumerable<IDiscordVoiceState>? VoiceStates { get; set; }
+        public IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordGuildMember>? Members { get; set; }
@@ -206,7 +202,6 @@ namespace Color_Chan.Discord.Rest.Models.Guild
         /// <inheritdoc />
         public int? ApproximatePresenceCount { get; set; }
 
-        /// <inheritdoc />
         public IDiscordGuildWelcomeScreen? WelcomeScreen { get; set; }
 
         /// <inheritdoc />

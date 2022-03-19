@@ -3,10 +3,6 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.Models
 {
-    /// <summary>
-    ///     Represents a discord Allowed Mentions Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/channel#allowed-mentions-object-allowed-mentions-structure
-    /// </summary>
     public interface IDiscordAllowedMentions
     {
         /// <summary>

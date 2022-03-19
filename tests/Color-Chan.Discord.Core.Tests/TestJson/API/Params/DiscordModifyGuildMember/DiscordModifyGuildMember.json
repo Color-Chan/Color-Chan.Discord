@@ -2,6 +2,5 @@
   "nick": "nickname",
   "mute": true,
   "deaf": true,
-  "channel_id": "99999999999",
-  "communication_disabled_until": "2020-01-21T23:01:24.057+00:00"
+  "channel_id": "99999999999"
 }

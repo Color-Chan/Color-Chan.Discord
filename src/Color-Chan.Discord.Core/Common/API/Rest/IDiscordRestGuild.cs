@@ -11,7 +11,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
     // Todo: Implement missing API methods
     /// <summary>
     ///     Contains all the API calls mentioned in the guild object documentation.
-    ///     Docs: https://discord.com/developers/docs/resources/guild
+    ///     https://discord.com/developers/docs/resources/guild
     /// </summary>
     public interface IDiscordRestGuild
     {

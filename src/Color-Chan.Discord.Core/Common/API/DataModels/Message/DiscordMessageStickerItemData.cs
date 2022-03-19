@@ -1,21 +1,25 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
 {
-    /// <inheritdoc cref="IDiscordMessageStickerItem"/>
     public record DiscordMessageStickerItemData
     {
-        /// <inheritdoc cref="IDiscordMessageStickerItem.Id"/>
+        /// <summary>
+        ///     The id of the sticker.
+        /// </summary>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
 
-        /// <inheritdoc cref="IDiscordMessageStickerItem.Name"/>
+        /// <summary>
+        ///     Name of the sticker.
+        /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
 
-        /// <inheritdoc cref="IDiscordMessageStickerItem.FormatType"/>
+        /// <summary>
+        ///     Type of sticker format.
+        /// </summary>
         [JsonPropertyName("format_type")]
-        public ulong FormatType { get; init; }
+        public ulong DiscordMessageStickerItemType { get; init; }
     }
 }

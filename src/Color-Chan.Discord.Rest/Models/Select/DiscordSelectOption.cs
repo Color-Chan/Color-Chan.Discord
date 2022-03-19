@@ -4,12 +4,8 @@ using Color_Chan.Discord.Core.Common.Models.Select;
 
 namespace Color_Chan.Discord.Rest.Models.Select
 {
-    /// <inheritdoc cref="IDiscordSelectOption"/>
     public record DiscordSelectOption : IDiscordSelectOption
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordSelectOption"/>
-        /// </summary>
         public DiscordSelectOption(DiscordSelectOptionData data)
         {
             Label = data.Label;
@@ -19,11 +15,6 @@ namespace Color_Chan.Discord.Rest.Models.Select
             Default = data.Default;
         }
 
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordSelectOption"/>
-        /// </summary>
-        /// <param name="label">The label for the select option.</param>
-        /// <param name="value">The actual value for the select option.</param>
         public DiscordSelectOption(string label, string value)
         {
             Label = label;
@@ -45,7 +36,6 @@ namespace Color_Chan.Discord.Rest.Models.Select
         /// <inheritdoc />
         public bool? Default { get; init; }
 
-        /// <inheritdoc />
         public DiscordSelectOptionData ToDataModel()
         {
             return new DiscordSelectOptionData

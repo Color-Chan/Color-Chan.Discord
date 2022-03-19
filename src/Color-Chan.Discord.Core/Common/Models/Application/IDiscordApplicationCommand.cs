@@ -2,10 +2,6 @@ using System.Collections.Generic;
 
 namespace Color_Chan.Discord.Core.Common.Models.Application
 {
-    /// <summary>
-    ///     Represents a discord Application Command Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
-    /// </summary>
     public interface IDiscordApplicationCommand
     {
         /// <summary>

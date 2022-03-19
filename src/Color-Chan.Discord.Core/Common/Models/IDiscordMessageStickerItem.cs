@@ -1,9 +1,5 @@
 namespace Color_Chan.Discord.Core.Common.Models
 {
-    /// <summary>
-    ///     Represents a discord Sticker Item Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/sticker#sticker-item-object-sticker-item-structure
-    /// </summary>
     public interface IDiscordMessageStickerItem
     {
         /// <summary>
@@ -19,6 +15,6 @@ namespace Color_Chan.Discord.Core.Common.Models
         /// <summary>
         ///     Type of sticker format.
         /// </summary>
-        ulong FormatType { get; set; }
+        ulong DiscordMessageStickerItemType { get; set; }
     }
 }
