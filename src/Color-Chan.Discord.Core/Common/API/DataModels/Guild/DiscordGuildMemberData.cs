@@ -43,5 +43,9 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         /// <inheritdoc cref="IDiscordGuildMember.Permissions"/>
         [JsonPropertyName("permissions")]
         public DiscordPermission? Permissions { get; init; }
+        
+        /// <inheritdoc cref="IDiscordGuildMember.CommunicationDisabledUntil"/>
+        [JsonPropertyName("communication_disabled_until")]
+        public DateTimeOffset? CommunicationDisabledUntil { get; set; }
     }
 }
