@@ -1,5 +1,9 @@
 ﻿namespace Color_Chan.Discord.Core.Common.Models.Application
-{
+{    
+    /// <summary>
+    ///     Represents a discord Application Command Option Choice Structure API model.
+    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure
+    /// </summary>
     public interface IDiscordApplicationCommandOptionChoice
     {
         /// <summary>

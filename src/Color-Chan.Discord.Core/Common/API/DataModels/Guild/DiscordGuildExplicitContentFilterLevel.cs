@@ -2,7 +2,7 @@
 {
     /// <summary>
     ///     Represents a discord Explicit Content Filter Level API model.
-    ///     https://discord.com/developers/docs/resources/guild#guild-object-explicit-content-filter-level
+    ///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-explicit-content-filter-level
     /// </summary>
     public enum DiscordGuildExplicitContentFilterLevel
     {

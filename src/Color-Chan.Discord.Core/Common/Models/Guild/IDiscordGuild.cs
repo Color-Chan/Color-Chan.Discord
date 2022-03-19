@@ -73,7 +73,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         ulong? AfkChannelId { get; set; }
 
         /// <summary>
-        ///     Ffk timeout in seconds.
+        ///     Afk timeout in seconds.
         /// </summary>
         int AfkTimeout { get; set; }
 
@@ -180,7 +180,7 @@ namespace Color_Chan.Discord.Core.Common.Models.Guild
         /// <remarks>
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
-        IEnumerable<DiscordVoiceState>? VoiceStates { get; set; }
+        IEnumerable<IDiscordVoiceState>? VoiceStates { get; set; }
 
         /// <summary>
         ///     Users in the guild.

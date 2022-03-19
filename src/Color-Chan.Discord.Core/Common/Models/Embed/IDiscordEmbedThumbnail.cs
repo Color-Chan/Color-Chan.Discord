@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.Models.Embed
 {
+    /// <summary>
+    ///     Represents a discord Embed Thumbnail Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#embed-object-embed-thumbnail-structure
+    /// </summary>
     public interface IDiscordEmbedThumbnail
     {
         /// <summary>

@@ -1,5 +1,9 @@
 ﻿namespace Color_Chan.Discord.Core.Common.Models
 {
+    /// <summary>
+    ///     Represents a discord Reaction Structure API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#reaction-object-reaction-structure
+    /// </summary>
     public interface IDiscordReaction
     {
         /// <summary>

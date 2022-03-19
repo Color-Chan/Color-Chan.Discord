@@ -6,7 +6,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Channel
-{
+{    /// <summary>
+    ///     Represents a discord Create Message API request model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#embed-limits-jsonform-params
+    /// </summary>
     public class DiscordCreateChannelMessage
     {
         /// <summary>

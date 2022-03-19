@@ -1,28 +1,20 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
 {
-    /// <summary>
-    ///     Represents a discord Embed Footer Structure API model.
-    ///     https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmbedFooter"/>
     public record DiscordEmbedFooterData
     {
-        /// <summary>
-        ///     Footer text.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordEmbedFooter.Text"/>
         [JsonPropertyName("text")]
         public string Text { get; init; } = null!;
 
-        /// <summary>
-        ///     Url of footer icon (only supports http(s) and attachments).
-        /// </summary>
+        /// <inheritdoc cref="IDiscordEmbedFooter.IconUrl"/>
         [JsonPropertyName("icon_url")]
         public string? IconUrl { get; init; }
 
-        /// <summary>
-        ///     A proxied url of footer icon.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordEmbedFooter.ProxyIconUrl"/>
         [JsonPropertyName("proxy_icon_url")]
         public string? ProxyIconUrl { get; init; }
     }

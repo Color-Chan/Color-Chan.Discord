@@ -1,18 +1,16 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Message;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Message
 {
+    /// <inheritdoc cref="IDiscordMessageActivity"/>
     public record DiscordMessageActivityData
     {
-        /// <summary>
-        ///     Type of message activity.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordMessageActivity.Type"/>
         [JsonPropertyName("type")]
         public DiscordMessageActivityType Type { get; init; }
 
-        /// <summary>
-        ///     Party_id from a Rich Presence event.
-        /// </summary>
+        /// <inheritdoc cref="IDiscordMessageActivity.PartyId"/>
         [JsonPropertyName("party_id")]
         public string? PartyId { get; init; }
     }

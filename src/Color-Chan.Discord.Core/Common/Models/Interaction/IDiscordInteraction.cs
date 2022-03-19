@@ -4,6 +4,13 @@ using Color_Chan.Discord.Core.Common.Models.Message;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
 {
+    /// <summary>
+    ///     An interaction is the base "thing" that is sent when a user invokes a command,
+    ///     and is the same for Slash Commands and other future interaction types (such as Message Components).
+    ///
+    ///     Represents a discord Interaction Structure API model.
+    ///     Docs: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-structure
+    /// </summary>
     public interface IDiscordInteraction
     {
         /// <summary>

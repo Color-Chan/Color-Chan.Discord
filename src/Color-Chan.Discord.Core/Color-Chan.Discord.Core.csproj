@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>Color_Chan.Discord.Core</RootNamespace>
         <Nullable>enable</Nullable>
     </PropertyGroup>
@@ -45,12 +45,11 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <DocumentationFile></DocumentationFile>
+        <DocumentationFile>bin\Debug\Color-Chan.Discord.Core.xml</DocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <DocumentationFile></DocumentationFile>
-        <DebugSymbols>false</DebugSymbols>
+        <DocumentationFile>bin\Release\Color-Chan.Discord.Core.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

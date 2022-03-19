@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.Models.Select;
 
 namespace Color_Chan.Discord.Core.Common.Models
 {
+    /// <summary>
+    ///     Represents a discord components API model.
+    ///     Docs: https://discord.com/developers/docs/interactions/message-components#component-object
+    /// </summary>
     public interface IDiscordComponent
     {
         /// <summary>

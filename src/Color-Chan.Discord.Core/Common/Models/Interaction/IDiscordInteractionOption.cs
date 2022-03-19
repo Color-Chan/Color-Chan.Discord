@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction
 {
+    /// <summary>
+    ///     Represents a discord Application Command Interaction Data Option Structure API model.
+    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-interaction-data-option-structure
+    /// </summary>
     public interface IDiscordInteractionOption
     {
         /// <summary>

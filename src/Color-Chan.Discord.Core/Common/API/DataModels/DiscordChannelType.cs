@@ -1,5 +1,9 @@
 ﻿namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
+    /// <summary>
+    ///     Represents a discord Channel Types API model.
+    ///     Docs: https://discord.com/developers/docs/resources/channel#channel-object-channel-types
+    /// </summary>
     public enum DiscordChannelType : byte
     {
         /// <summary>

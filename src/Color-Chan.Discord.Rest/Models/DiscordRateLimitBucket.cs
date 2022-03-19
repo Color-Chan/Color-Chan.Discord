@@ -10,7 +10,7 @@ using Color_Chan.Discord.Rest.Extensions;
 
 namespace Color_Chan.Discord.Rest.Models
 {
-    public class DiscordRateLimitBucket
+    internal class DiscordRateLimitBucket
     {
         internal const string GlobalBucketId = "discord_global_rate_limit_bucket";
         private readonly SemaphoreSlim _semaphore = new (1, 1);
@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Rest.Models
         /// <param name="resets">The time at where the rate limit will reset.</param>
         /// <param name="resetsAfter">Total time (in seconds) of when the current rate limit bucket will reset.</param>
         /// <param name="id">The unique string denoting the rate limit being encountered.</param>
-        public DiscordRateLimitBucket(bool isGlobal, int limit, int remaining, DateTimeOffset resets, TimeSpan resetsAfter, string id)
+        private DiscordRateLimitBucket(bool isGlobal, int limit, int remaining, DateTimeOffset resets, TimeSpan resetsAfter, string id)
         {
             _semaphore = new SemaphoreSlim(1, 1);
 

@@ -4,7 +4,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.User
 {
     /// <summary>
     ///     Represents a discord Create DM parameter model.
-    ///     https://discord.com/developers/docs/resources/user#create-dm-json-params
+    ///     Docs: https://discord.com/developers/docs/resources/user#create-dm-json-params
     /// </summary>
     public class DiscordCreateDm
     {

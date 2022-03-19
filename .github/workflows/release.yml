@@ -13,6 +13,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: '6.0.x'
+
     - name: Verify commit exists in origin/main
       run: |
         git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*

@@ -3,17 +3,20 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.API.DataModels.Invite;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
+using Color_Chan.Discord.Core.Common.Models.Invites;
 using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models;
 using Color_Chan.Discord.Rest.Models.Application;
 using Color_Chan.Discord.Rest.Models.Guild;
 using Color_Chan.Discord.Rest.Models.Interaction;
+using Color_Chan.Discord.Rest.Models.Invite;
 using Color_Chan.Discord.Rest.Models.Message;
 
 namespace Color_Chan.Discord.Rest.API
@@ -148,6 +151,74 @@ namespace Color_Chan.Discord.Rest.API
             foreach (var data in result.Entity) list.Add(new DiscordGuildMember(data));
 
             return Result<IReadOnlyList<IDiscordGuildMember>>.FromSuccess(list);
+        }
+        
+        internal static Result<IDiscordPartialGuild> ConvertResult(Result<DiscordPartialGuildData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordPartialGuild>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordPartialGuild>.FromSuccess(new DiscordPartialGuild(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordPartialGuild>> ConvertResult(Result<IReadOnlyList<DiscordPartialGuildData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordPartialGuild>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordPartialGuild>();
+            foreach (var data in result.Entity) list.Add(new DiscordPartialGuild(data));
+
+            return Result<IReadOnlyList<IDiscordPartialGuild>>.FromSuccess(list);
+        }
+        
+        internal static Result<IDiscordConnection> ConvertResult(Result<DiscordConnectionData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordConnection>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordConnection>.FromSuccess(new DiscordConnection(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordConnection>> ConvertResult(Result<IReadOnlyList<DiscordConnectionData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordConnection>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordConnection>();
+            foreach (var data in result.Entity) list.Add(new DiscordConnection(data));
+
+            return Result<IReadOnlyList<IDiscordConnection>>.FromSuccess(list);
+        }
+        
+        internal static Result<IDiscordInvite> ConvertResult(Result<DiscordInviteData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordInvite>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordInvite>.FromSuccess(new DiscordInvite(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordInvite>> ConvertResult(Result<IReadOnlyList<DiscordInviteData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordInvite>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordInvite>();
+            foreach (var data in result.Entity) list.Add(new DiscordInvite(data));
+
+            return Result<IReadOnlyList<IDiscordInvite>>.FromSuccess(list);
+        }
+        
+        internal static Result<IDiscordVoiceRegion> ConvertResult(Result<DiscordVoiceRegionData> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordVoiceRegion>.FromError(null, result.ErrorResult);
+
+            return Result<IDiscordVoiceRegion>.FromSuccess(new DiscordVoiceRegion(result.Entity));
+        }
+
+        internal static Result<IReadOnlyList<IDiscordVoiceRegion>> ConvertResult(Result<IReadOnlyList<DiscordVoiceRegionData>> result)
+        {
+            if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordVoiceRegion>>.FromError(null, result.ErrorResult);
+
+            var list = new List<IDiscordVoiceRegion>();
+            foreach (var data in result.Entity) list.Add(new DiscordVoiceRegion(data));
+
+            return Result<IReadOnlyList<IDiscordVoiceRegion>>.FromSuccess(list);
         }
     }
 }
