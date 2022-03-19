@@ -136,7 +136,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
                 SlidingExpiration = slidingExpirationOverwrite,
                 AbsoluteExpirationRelativeToNow = absoluteExpirationRelativeToNow
             };
-            
+
             // Set the cached value.
             var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
             _distributedCache.Set(key, bytes, redisCacheConfig);

@@ -169,7 +169,7 @@ namespace Color_Chan.Discord.Commands.Attributes.ProvidedRequirements
                     rolePerms |= everyoneOverwrite.Allow;
                     rolePerms &= ~everyoneOverwrite.Deny;
                 }
-                
+
                 // Apply permission overwrites for the bot for this channel.
                 foreach (var permissionOverwrite in channel.PermissionOverwrites)
                 {

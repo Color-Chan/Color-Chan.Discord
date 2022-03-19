@@ -65,7 +65,7 @@ namespace Color_Chan.Discord.Rest.Extensions
             var localRestOptions = new RestConfiguration();
             restOptions.Invoke(localRestOptions);
             services.Configure(restOptions);
-            
+
             services.AddSingleton<DiscordRateLimitPolicy>();
             services.AddHttpClient("Discord", client =>
             {

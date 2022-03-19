@@ -13,7 +13,7 @@ namespace Color_Chan.Discord.Rest.Models
     public class DiscordRateLimitBucket
     {
         internal const string GlobalBucketId = "discord_global_rate_limit_bucket";
-        private readonly SemaphoreSlim _semaphore = new (1, 1);
+        private readonly SemaphoreSlim _semaphore = new(1, 1);
 
         /// <summary>
         ///     Do not use this constructor, it should ony be used by the DistributedCacheService.
@@ -23,7 +23,7 @@ namespace Color_Chan.Discord.Rest.Models
         public DiscordRateLimitBucket()
         {
         }
-        
+
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordRateLimitBucket" />.
         /// </summary>
@@ -155,8 +155,11 @@ namespace Color_Chan.Discord.Rest.Models
         /// <returns>
         ///     A default instance for a global rate limit bucket.
         /// </returns>
-        internal static DiscordRateLimitBucket GetDefaultGlobalBucket() => new(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), GlobalBucketId);
-        
+        internal static DiscordRateLimitBucket GetDefaultGlobalBucket()
+        {
+            return new(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), GlobalBucketId);
+        }
+
         /// <summary>
         ///     Deconstructs the <see cref="DiscordRateLimitBucket" /> so it can be printed out to the console.
         /// </summary>

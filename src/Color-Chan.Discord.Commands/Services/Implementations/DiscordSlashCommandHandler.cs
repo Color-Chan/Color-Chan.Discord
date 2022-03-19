@@ -214,9 +214,9 @@ namespace Color_Chan.Discord.Commands.Services.Implementations
 
         private static bool ContainsSubCommand(IDiscordInteraction interaction)
         {
-            if (interaction.Data?.Options is null) 
+            if (interaction.Data?.Options is null)
                 return false;
-            
+
             return interaction.Data.Options.Select(x => x.Type).Contains(DiscordApplicationCommandOptionType.SubCommand) ||
                    interaction.Data.Options.Select(x => x.Type).Contains(DiscordApplicationCommandOptionType.SubCommandGroup);
         }

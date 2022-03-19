@@ -17,7 +17,7 @@ namespace Color_Chan.Discord.Rest.Configurations
         public bool UseRateLimiting { get; set; } = true;
 
         /// <summary>
-        ///     The base <see cref="Uri"/> that will be used with the Discord HTTP client.
+        ///     The base <see cref="Uri" /> that will be used with the Discord HTTP client.
         ///     Example: http://localhost:3000/api/v9/
         ///     <remarks>
         ///         Disabling this can be useful if you want to use a rate limited proxy of the Discord API.

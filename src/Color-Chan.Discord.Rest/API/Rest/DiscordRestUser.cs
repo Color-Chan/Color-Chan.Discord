@@ -60,7 +60,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordUser>> GetUser(ulong userId, CancellationToken ct = default)
         {
-            string endpoint = $"users/{userId.ToString()}";
+            var endpoint = $"users/{userId.ToString()}";
             var result = await HttpClient.GetAsync<DiscordUserData>(endpoint, ct: ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }

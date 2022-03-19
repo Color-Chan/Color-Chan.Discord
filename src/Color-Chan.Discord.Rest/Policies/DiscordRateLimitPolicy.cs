@@ -20,7 +20,7 @@ namespace Color_Chan.Discord.Rest.Policies
         private readonly ICacheService _cacheService;
         private readonly ILogger<DiscordRateLimitPolicy> _logger;
         private readonly RestConfiguration _restConfig;
-        
+
         /// <summary>
         ///     Initializes a new instance of <see cref="DiscordRateLimitPolicy" />.
         /// </summary>
@@ -43,7 +43,7 @@ namespace Color_Chan.Discord.Rest.Policies
             {
                 return await action(context, cancellationToken).ConfigureAwait(continueOnCapturedContext);
             }
-            
+
             var endpoint = $"{context.GetMethod()}:{context.GetEndpoint()}";
 
             // Check if the endpoint already has a bucket assigned to it.

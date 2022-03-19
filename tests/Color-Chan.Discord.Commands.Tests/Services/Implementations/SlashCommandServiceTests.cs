@@ -220,7 +220,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             var jsonInput = @"{""stringValue"": ""test json role value"",""intValue"": 12345678}";
 
-            using JsonDocument doc = JsonDocument.Parse(jsonInput);
+            using var doc = JsonDocument.Parse(jsonInput);
 
             var options = new List<IDiscordInteractionOption>
             {
@@ -292,7 +292,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             const string jsonInput = @"{""roleId"": ""865723094761078804""}";
 
-            using JsonDocument doc = JsonDocument.Parse(jsonInput);
+            using var doc = JsonDocument.Parse(jsonInput);
 
             var options = new List<IDiscordInteractionOption>
             {

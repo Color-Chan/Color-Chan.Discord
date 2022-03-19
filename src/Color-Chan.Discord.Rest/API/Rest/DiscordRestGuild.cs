@@ -97,7 +97,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         /// <inheritdoc />
         public virtual async Task<Result<IReadOnlyList<IDiscordGuildRole>>> GetGuildRolesAsync(ulong guildId, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/roles";
+            var endpoint = $"guilds/{guildId.ToString()}/roles";
             var result = await HttpClient.GetAsync<IReadOnlyList<DiscordGuildRoleData>>(endpoint, ct: ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
@@ -105,7 +105,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordGuildRole>> CreateGuildRoleAsync(ulong guildId, DiscordCreateGuildRole role, string? auditLogReason = null, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/roles";
+            var endpoint = $"guilds/{guildId.ToString()}/roles";
             var result = await HttpClient.PostAsync<DiscordGuildRoleData, DiscordCreateGuildRole>(endpoint, role, auditLogReason, ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
@@ -114,7 +114,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         public virtual async Task<Result<IReadOnlyList<IDiscordGuildRole>>> ModifyGuildRolePositionsAsync(ulong guildId, IEnumerable<DiscordModifyGuildRolePositions> modifyGuildRoles,
                                                                                                           string? auditLogReason = null, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/roles";
+            var endpoint = $"guilds/{guildId.ToString()}/roles";
             var result = await HttpClient.PatchAsync<IReadOnlyList<DiscordGuildRoleData>, IEnumerable<DiscordModifyGuildRolePositions>>(endpoint, modifyGuildRoles, auditLogReason, ct)
                                          .ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
@@ -124,7 +124,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         public virtual async Task<Result<IDiscordGuildRole>> ModifyGuildRoleAsync(ulong guildId, ulong roleId, DiscordModifyGuildRole role, string? auditLogReason = null,
                                                                                   CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/roles/{roleId.ToString()}";
+            var endpoint = $"guilds/{guildId.ToString()}/roles/{roleId.ToString()}";
             var result = await HttpClient.PatchAsync<DiscordGuildRoleData, DiscordModifyGuildRole>(endpoint, role, auditLogReason, ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
@@ -132,7 +132,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         /// <inheritdoc />
         public virtual async Task<Result> DeleteGuildRoleAsync(ulong guildId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/roles/{roleId.ToString()}";
+            var endpoint = $"guilds/{guildId.ToString()}/roles/{roleId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
         }
 
@@ -145,7 +145,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         /// <inheritdoc />
         public virtual async Task<Result<IDiscordGuildMember>> GetGuildMemberAsync(ulong guildId, ulong userId, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
+            var endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
             var result = await HttpClient.GetAsync<DiscordGuildMemberData>(endpoint, ct: ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
@@ -159,7 +159,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
                 new(Constants.Headers.AfterQueryName, afterId.ToString())
             };
 
-            string endpoint = $"guilds/{guildId.ToString()}/members";
+            var endpoint = $"guilds/{guildId.ToString()}/members";
             var result = await HttpClient.GetAsync<IReadOnlyList<DiscordGuildMemberData>>(endpoint, queries, ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
@@ -173,7 +173,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
                 new(Constants.Headers.SearchQueryName, query)
             };
 
-            string endpoint = $"guilds/{guildId.ToString()}/members/search";
+            var endpoint = $"guilds/{guildId.ToString()}/members/search";
             var result = await HttpClient.GetAsync<IReadOnlyList<DiscordGuildMemberData>>(endpoint, queries, ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
@@ -182,7 +182,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         public virtual async Task<Result<IDiscordGuildMember?>> AddGuildMemberAsync(ulong guildId, ulong userId, DiscordAddGuildMember addGuildMember, CancellationToken ct = default)
         {
             // Todo: can return null!
-            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
+            var endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
             var result = await HttpClient.PutAsync<DiscordGuildMemberData, DiscordAddGuildMember>(endpoint, addGuildMember, ct: ct).ConfigureAwait(false);
 
             if (result.IsSuccessful && result.Entity is null) return Result<IDiscordGuildMember?>.FromSuccess(null);
@@ -194,7 +194,7 @@ namespace Color_Chan.Discord.Rest.API.Rest
         public virtual async Task<Result<IDiscordGuildMember>> ModifyGuildMemberAsync(ulong guildId, ulong userId, DiscordModifyGuildMember modifyGuildMember,
                                                                                       string? auditLogReason = null, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
+            var endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
             var result = await HttpClient.PatchAsync<DiscordGuildMemberData, DiscordModifyGuildMember>(endpoint, modifyGuildMember, auditLogReason, ct).ConfigureAwait(false);
             return ApiResultConverters.ConvertResult(result);
         }
@@ -203,28 +203,28 @@ namespace Color_Chan.Discord.Rest.API.Rest
         public virtual async Task<Result> ModifyCurrentUserNickAsync(ulong guildId, DiscordModifyCurrentUserNick modifyGuildMember,
                                                                      string? auditLogReason = null, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/members/@me/nick";
+            var endpoint = $"guilds/{guildId.ToString()}/members/@me/nick";
             return await HttpClient.PatchAsync(endpoint, modifyGuildMember, auditLogReason, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public virtual async Task<Result> AddGuildMemberRoleAsync(ulong guildId, ulong userId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}/roles/{roleId.ToString()}";
+            var endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}/roles/{roleId.ToString()}";
             return await HttpClient.PutAsync(endpoint, auditLogReason, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public virtual async Task<Result> RemoveGuildMemberRoleAsync(ulong guildId, ulong userId, ulong roleId, string? auditLogReason = null, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}/roles/{roleId.ToString()}";
+            var endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}/roles/{roleId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public virtual async Task<Result> RemoveGuildMemberAsync(ulong guildId, ulong userId, string? auditLogReason = null, CancellationToken ct = default)
         {
-            string endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
+            var endpoint = $"guilds/{guildId.ToString()}/members/{userId.ToString()}";
             return await HttpClient.DeleteAsync(endpoint, null, auditLogReason, ct).ConfigureAwait(false);
         }
 

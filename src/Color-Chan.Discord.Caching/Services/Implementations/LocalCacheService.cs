@@ -34,7 +34,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         {
             var cacheConfig = _configurationService.GetCacheConfig<TValue>();
 
-            SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+            var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
 
             await cacheLock.WaitAsync();
             var data = await _memoryCache.GetOrCreateAsync(key, test =>
@@ -64,7 +64,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         /// <inheritdoc />
         public async Task RemoveValueAsync(string key)
         {
-            SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+            var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
 
             await cacheLock.WaitAsync();
             _memoryCache.Remove(key);
@@ -75,7 +75,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
         public async Task CacheValueAsync<TValue>(string key, TValue cachedValue) where TValue : notnull
         {
             // Set the cached value.
-            SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+            var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
             await cacheLock.WaitAsync();
             _memoryCache.Set(key, cachedValue, GetCacheConfig<TValue>());
             cacheLock.Release();
@@ -91,7 +91,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             };
 
             // Set the cached value.
-            SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+            var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
             await cacheLock.WaitAsync();
             _memoryCache.Set(key, cachedValue, cacheConfig);
             cacheLock.Release();
@@ -107,7 +107,7 @@ namespace Color_Chan.Discord.Caching.Services.Implementations
             };
 
             // Set the cached value.
-            SemaphoreSlim cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
+            var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
             await cacheLock.WaitAsync();
             _memoryCache.Set(key, cachedValue, cacheConfig);
             cacheLock.Release();
