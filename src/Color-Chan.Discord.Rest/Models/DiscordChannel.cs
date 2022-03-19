@@ -6,13 +6,8 @@ using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Rest.Models
 {
-    /// <inheritdoc cref="IDiscordChannel"/>
     public record DiscordChannel : IDiscordChannel
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordChannelData"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordChannelData"/>.</param>
         public DiscordChannel(DiscordChannelData data)
         {
             Id = data.Id;

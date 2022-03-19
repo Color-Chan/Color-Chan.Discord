@@ -19,7 +19,7 @@ namespace Color_Chan.Discord.Rest
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
         /// <returns>
-        ///     The <see cref="Result" /> with the deserialized <typeparamref name="TEntity" />.
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
         Task<Result<TEntity>> GetAsync<TEntity>(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, CancellationToken ct = default) where TEntity : notnull;
 
@@ -33,7 +33,7 @@ namespace Color_Chan.Discord.Rest
         /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
         /// <typeparam name="TBody">The entity type that will be used to serialize the <paramref name="body" />.</typeparam>
         /// <returns>
-        ///     The <see cref="Result" /> with the deserialized <typeparamref name="TEntity" />.
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
         Task<Result<TEntity>> PostAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull where TBody : notnull;
 
@@ -58,7 +58,7 @@ namespace Color_Chan.Discord.Rest
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
         /// <returns>
-        ///     The <see cref="Result" /> with the deserialized <typeparamref name="TEntity" />.
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
         Task<Result<TEntity>> PostAsync<TEntity>(string endpoint, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull;
 
@@ -72,7 +72,7 @@ namespace Color_Chan.Discord.Rest
         /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
         /// <typeparam name="TBody">The entity type that will be used to serialize the <paramref name="body" />.</typeparam>
         /// <returns>
-        ///     The <see cref="Result" /> with the deserialized <typeparamref name="TEntity" />.
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
         Task<Result<TEntity>> PatchAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull where TBody : notnull;
 
@@ -98,7 +98,7 @@ namespace Color_Chan.Discord.Rest
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
         /// <returns>
-        ///     The <see cref="Result" /> with the deserialized <typeparamref name="TEntity" />.
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
         Task<Result<TEntity>> DeleteAsync<TEntity>(string endpoint, IEnumerable<KeyValuePair<string, string>>? queries = null, string? auditLogReason = null, CancellationToken ct = default)
             where TEntity : notnull;
@@ -125,7 +125,7 @@ namespace Color_Chan.Discord.Rest
         /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
         /// <typeparam name="TBody">The entity type that will be used to serialize the <paramref name="body" />.</typeparam>
         /// <returns>
-        ///     The <see cref="Result" /> with the deserialized <typeparamref name="TEntity" />.
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
         Task<Result<TEntity>> PutAsync<TEntity, TBody>(string endpoint, TBody body, string? auditLogReason = null, CancellationToken ct = default) where TEntity : notnull where TBody : notnull;
 

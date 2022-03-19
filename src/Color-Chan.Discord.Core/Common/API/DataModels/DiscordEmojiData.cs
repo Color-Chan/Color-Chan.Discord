@@ -1,41 +1,55 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <inheritdoc cref="IDiscordEmoji"/>
     public record DiscordEmojiData
     {
-        /// <inheritdoc cref="IDiscordEmoji.Id"/>
+        /// <summary>
+        ///     Emoji id.
+        /// </summary>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmoji.Name"/>
+        /// <summary>
+        ///     Emoji name
+        /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
 
-        /// <inheritdoc cref="IDiscordEmoji.RoleIds"/>
+        /// <summary>
+        ///     Roles allowed to use this emoji
+        /// </summary>
         [JsonPropertyName("roles")]
         public IEnumerable<ulong>? RoleIds { get; init; }
-        
-        /// <inheritdoc cref="IDiscordEmoji.User"/>
+
+        /// <summary>
+        ///     User that created this emoji
+        /// </summary>
         [JsonPropertyName("user")]
         public DiscordUserData? User { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmoji.RequireColons"/>
+        /// <summary>
+        ///     Whether this emoji must be wrapped in colons.
+        /// </summary>
         [JsonPropertyName("require_colons")]
         public bool? RequireColons { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmoji.IsManaged"/>
+        /// <summary>
+        ///     Whether this emoji is managed.
+        /// </summary>
         [JsonPropertyName("managed")]
         public bool? IsManaged { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmoji.IsAnimated"/>
+        /// <summary>
+        ///     Whether this emoji is animated.
+        /// </summary>
         [JsonPropertyName("animated")]
         public bool? IsAnimated { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmoji.IsAvailable"/>
+        /// <summary>
+        ///     Whether this emoji can be used, may be false due to loss of Server Boosts.
+        /// </summary>
         [JsonPropertyName("available")]
         public bool? IsAvailable { get; init; }
     }

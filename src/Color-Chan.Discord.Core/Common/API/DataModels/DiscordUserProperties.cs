@@ -2,12 +2,8 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <summary>
-    ///     Represents a discord User Flags API model.
-    ///     Docs: https://discord.com/developers/docs/resources/user#user-object-user-flags
-    /// </summary>
     [Flags]
-    public enum DiscordUserFlags
+    public enum DiscordUserProperties
     {
         /// <summary>
         ///     Default value for flags, when none are given to an account.
@@ -82,11 +78,6 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
         /// <summary>
         ///     Flag given to users that are discord certified moderators who has give discord's exam.
         /// </summary>
-        DiscordCertifiedModerator = 1 << 18,
-        
-        /// <summary>
-        ///     Bot uses only HTTP interactions and is shown in the online member list.
-        /// </summary>
-        BotHttpInteractions = 1 << 19
+        DiscordCertifiedModerator = 1 << 18
     }
 }

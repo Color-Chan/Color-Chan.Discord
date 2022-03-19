@@ -4,7 +4,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
 	/// <summary>
 	///     Represents a discord Bitwise Permission Flags API model.
-	///     Docs: https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
+	///     https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags
 	/// </summary>
 	[Flags]
     public enum DiscordPermission : ulong

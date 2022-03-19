@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
-using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -9,20 +8,12 @@ using Color_Chan.Discord.Rest.Models.Embed;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
-    /// <inheritdoc cref="IDiscordInteractionCallback"/>
     public record DiscordInteractionCallback : IDiscordInteractionCallback
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordInteractionCallback"/>
-        /// </summary>
         public DiscordInteractionCallback()
         {
         }
 
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordInteractionCallback"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordInteractionCallback"/>.</param>
         public DiscordInteractionCallback(DiscordInteractionCallbackData data)
         {
             IsTts = data.IsTts;
@@ -45,7 +36,7 @@ namespace Color_Chan.Discord.Rest.Models.Interaction
         public IDiscordAllowedMentions? AllowedMentions { get; init; }
 
         /// <inheritdoc />
-        public DiscordMessageFlags? Flags { get; init; }
+        public DiscordInteractionCallbackFlags? Flags { get; init; }
 
         /// <inheritdoc />
         public IEnumerable<IDiscordComponent>? Components { get; init; }

@@ -1,24 +1,30 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <inheritdoc cref="IDiscordOverwrite"/>
     public record DiscordOverwriteData
     {
-        /// <inheritdoc cref="IDiscordOverwrite.TargetId"/>
+        /// <summary>
+        ///     Role or user id.
+        /// </summary>
         [JsonPropertyName("id")]
         public ulong TargetId { get; init; }
 
-        /// <inheritdoc cref="IDiscordOverwrite.TargetType"/>
+        /// <summary>
+        ///     Either 0 (role) or 1 (member).
+        /// </summary>
         [JsonPropertyName("type")]
         public DiscordPermissionTargetType TargetType { get; init; }
 
-        /// <inheritdoc cref="IDiscordOverwrite.Allow"/>
+        /// <summary>
+        ///     Permission bit set.
+        /// </summary>
         [JsonPropertyName("allow")]
         public DiscordPermission Allow { get; init; }
 
-        /// <inheritdoc cref="IDiscordOverwrite.Deny"/>
+        /// <summary>
+        ///     Permission bit set.
+        /// </summary>
         [JsonPropertyName("deny")]
         public DiscordPermission Deny { get; init; }
     }

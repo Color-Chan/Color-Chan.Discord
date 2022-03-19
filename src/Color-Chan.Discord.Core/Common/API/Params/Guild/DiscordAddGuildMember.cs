@@ -3,10 +3,6 @@ using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Guild
 {
-    /// <summary>
-    ///     Represents a discord Add Guild member API request model.
-    ///     Docs: https://discord.com/developers/docs/resources/guild#membership-screening-object-json-params
-    /// </summary>
     public class DiscordAddGuildMember
     {
         /// <summary>

@@ -2,7 +2,7 @@
 {
     /// <summary>
     ///     Represents a discord Default Message Notification Level API model.
-    ///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
+    ///     https://discord.com/developers/docs/resources/guild#guild-object-default-message-notification-level
     /// </summary>
     public enum DiscordGuildDefaultMessageNotificationLevel : byte
     {

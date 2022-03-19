@@ -1,35 +1,47 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
-using Color_Chan.Discord.Core.Common.API.DataModels.Message;
-using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    /// <inheritdoc cref="IDiscordInteractionCallback"/>
     public record DiscordInteractionCallbackData
     {
-        /// <inheritdoc cref="IDiscordInteractionCallback.IsTts"/>
+        /// <summary>
+        ///     Whether or not the response is TTS.
+        /// </summary>
         [JsonPropertyName("tts")]
         public bool? IsTts { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionCallback.Content"/>
+        /// <summary>
+        ///     The message content.
+        /// </summary>
         [JsonPropertyName("content")]
         public string? Content { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionCallback.Embeds"/>
+        /// <summary>
+        ///     A list of embed that will be added tot he response.
+        /// </summary>
+        /// <remarks>
+        ///     Supports up to 10 embeds.
+        /// </remarks>
         [JsonPropertyName("embeds")]
         public IEnumerable<DiscordEmbedData>? Embeds { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionCallback.AllowedMentions"/>
+        /// <summary>
+        ///     Allowed mentions object.
+        /// </summary>
         [JsonPropertyName("allowed_mentions")]
         public DiscordAllowedMentionsData? AllowedMentions { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionCallback.Flags"/>
+        /// <summary>
+        ///     Interaction application command callback data flags
+        /// </summary>
         [JsonPropertyName("flags")]
-        public DiscordMessageFlags? Flags { get; init; }
+        public DiscordInteractionCallbackFlags? Flags { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionCallback.Components"/>
+        /// <summary>
+        ///     Message components.
+        /// </summary>
         [JsonPropertyName("components")]
         public IEnumerable<DiscordComponentData>? Components { get; init; }
     }

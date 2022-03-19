@@ -4,10 +4,6 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.Models
 {
-    /// <summary>
-    ///     Represents a discord Channel Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/channel#channel-object-channel-structure
-    /// </summary>
     public interface IDiscordChannel
     {
         // Shared

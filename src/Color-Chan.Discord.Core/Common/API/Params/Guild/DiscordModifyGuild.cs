@@ -4,11 +4,7 @@ using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Guild
-{   
-    /// <summary>
-    ///     Represents a discord Modify Guild API request model.
-    ///     Docs: https://discord.com/developers/docs/resources/guild#modify-guild
-    /// </summary>
+{
     public class DiscordModifyGuild
     {
         /// <summary>
@@ -58,7 +54,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         public ulong? AfkChannelId { get; set; }
 
         /// <summary>
-        ///     Afk timeout in seconds.
+        ///     Ffk timeout in seconds.
         /// </summary>
         [JsonPropertyName("afk_timeout")]
         public int AfkTimeout { get; set; }

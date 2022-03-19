@@ -12,7 +12,6 @@ using Microsoft.Extensions.Options;
 
 namespace Color_Chan.Discord.Rest
 {
-    /// <inheritdoc />
     public class DiscordHttpClient : IDiscordHttpClient
     {
         private const string AuditLogHeaderKey = "X-Audit-Log-Reason";
@@ -159,7 +158,7 @@ namespace Color_Chan.Discord.Rest
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
         /// <returns>
-        ///     The <see cref="Result" /> with the deserialized <typeparamref name="TEntity" />.
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
         private async Task<Result<TEntity>> SendRequestAsync<TEntity>(HttpRequestMessageBuilder requestBuilder, CancellationToken ct) where TEntity : notnull
         {
@@ -208,7 +207,7 @@ namespace Color_Chan.Discord.Rest
         /// <param name="ct">The <see cref="CancellationToken" />.</param>
         /// <typeparam name="TEntity">The entity type that will be used for deserialization.</typeparam>
         /// <returns>
-        ///     The <see cref="Result" /> with the deserialized <typeparamref name="TEntity" />.
+        ///     The <see cref="Result" /> with the deserialized <see cref="TEntity" />.
         /// </returns>
         /// <exception cref="NoNullAllowedException">Thrown when <typeparamref name="TEntity" /> is null.</exception>
         private async Task<Result<TEntity>> DeserializeResponseAsync<TEntity>(HttpResponseMessage response, CancellationToken ct = default) where TEntity : notnull

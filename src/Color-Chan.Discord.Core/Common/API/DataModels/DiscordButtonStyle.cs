@@ -1,9 +1,5 @@
 ﻿namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <summary>
-    ///     Represents a discord Button Structure API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/message-components#button-object-button-structure
-    /// </summary>
     public enum DiscordButtonStyle
     {
         /// <summary>

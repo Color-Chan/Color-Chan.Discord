@@ -3,10 +3,6 @@ using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <summary>
-    ///     Represents a discord Sticker Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/sticker#sticker-object-sticker-structure
-    /// </summary>
     public record DiscordStickerData
     {
         /// <summary>
@@ -45,19 +41,14 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels
         /// </summary>
         [Obsolete("Deprecated previously the sticker asset hash, now an empty string")]
         [JsonPropertyName("asset")]
+
         public string? Asset { get; init; }
 
-        /// <summary>
-        ///     Type of sticker.
-        /// </summary>
-        [JsonPropertyName("type")]
-        public DiscordStickerType Type { get; init; }
-        
         /// <summary>
         ///     Type of sticker format.
         /// </summary>
         [JsonPropertyName("format_type")]
-        public DiscordStickerFormatType FormatFormatType { get; init; }
+        public DiscordStickerType FormatType { get; init; }
 
         /// <summary>
         ///     Whether or not the sticker is available.

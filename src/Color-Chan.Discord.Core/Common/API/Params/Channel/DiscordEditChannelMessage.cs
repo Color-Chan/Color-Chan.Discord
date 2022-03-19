@@ -7,10 +7,6 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Channel
 {
-    /// <summary>
-    ///     Represents a discord Edit message API request model.
-    ///     Docs: https://discord.com/developers/docs/resources/channel#embed-limits-jsonform-params
-    /// </summary>
     public class DiscordEditChannelMessage
     {
         /// <summary>

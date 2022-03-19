@@ -7,20 +7,12 @@ using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Rest.Models.Embed
 {
-    /// <inheritdoc cref="IDiscordEmbed"/>
     public record DiscordEmbed : IDiscordEmbed
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordEmbed"/>
-        /// </summary>
         public DiscordEmbed()
         {
         }
 
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordEmbed"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordEmbed"/>.</param>
         public DiscordEmbed(DiscordEmbedData data)
         {
             Title = data.Title;
@@ -77,7 +69,6 @@ namespace Color_Chan.Discord.Rest.Models.Embed
         /// <inheritdoc />
         public IEnumerable<IDiscordEmbedField>? Fields { get; init; }
 
-        /// <inheritdoc />
         public DiscordEmbedData ToDataModel()
         {
             return new DiscordEmbedData

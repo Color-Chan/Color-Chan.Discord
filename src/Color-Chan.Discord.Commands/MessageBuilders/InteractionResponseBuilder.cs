@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
-using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -41,7 +40,7 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// <summary>
         ///     Interaction application command callback data flags
         /// </summary>
-        private DiscordMessageFlags? _flags;
+        private DiscordInteractionCallbackFlags? _flags;
 
         /// <summary>
         ///     Whether or not the response is TTS.
@@ -63,12 +62,10 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// <summary>
         ///     Makes the response only visible to the person that has used the slash command.
         /// </summary>
-        /// <returns>
-        ///     The updated <see cref="InteractionResponseBuilder" />.
-        /// </returns>
+        /// <returns></returns>
         public InteractionResponseBuilder MakePrivate()
         {
-            _flags = DiscordMessageFlags.Ephemeral;
+            _flags = DiscordInteractionCallbackFlags.Ephemeral;
             return this;
         }
 
@@ -165,11 +162,11 @@ namespace Color_Chan.Discord.Commands.MessageBuilders
         /// <returns>
         ///     The build <see cref="IDiscordInteractionResponse" />.
         /// </returns>
-        public IDiscordInteractionResponse Build(DiscordInteractionCallbackType? type = null)
+        public IDiscordInteractionResponse Build(DiscordInteractionResponseType? type = null)
         {
             return new DiscordInteractionResponse
             {
-                Type = type ?? DiscordInteractionCallbackType.ChannelMessageWithSource,
+                Type = type ?? DiscordInteractionResponseType.ChannelMessageWithSource,
                 Data = new DiscordInteractionCallback
                 {
                     Components = _components,

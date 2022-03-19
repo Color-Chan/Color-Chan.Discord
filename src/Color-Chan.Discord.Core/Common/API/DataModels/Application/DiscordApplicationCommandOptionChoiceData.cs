@@ -1,16 +1,22 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
 {
-    /// <inheritdoc cref="IDiscordApplicationCommandOptionChoice"/>
+    /// <summary>
+    ///     Represents a discord Application Command Option Choice Structure API model.
+    ///     https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure
+    /// </summary>
     public record DiscordApplicationCommandOptionChoiceData
     {
-        /// <inheritdoc cref="IDiscordApplicationCommandOptionChoice.Name"/>
+        /// <summary>
+        ///     1-100 character choice name.
+        /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
 
-        /// <inheritdoc cref="IDiscordApplicationCommandOptionChoice.RawValue"/>
+        /// <summary>
+        ///     Value of the choice, up to 100 characters if string.
+        /// </summary>
         [JsonPropertyName("value")]
         public object Value { get; init; } = null!;
     }

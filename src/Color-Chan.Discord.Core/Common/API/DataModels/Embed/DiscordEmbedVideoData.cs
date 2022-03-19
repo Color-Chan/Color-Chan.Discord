@@ -1,24 +1,34 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
 {
-    /// <inheritdoc cref="IDiscordEmbedVideo"/>
+    /// <summary>
+    ///     Represents a discord Embed Video Structure API model.
+    ///     https://discord.com/developers/docs/resources/channel#embed-object-embed-video-structure
+    /// </summary>
     public record DiscordEmbedVideoData
     {
-        /// <inheritdoc cref="IDiscordEmbedVideo.Url"/>
+        /// <summary>
+        ///     Source url of video.
+        /// </summary>
         [JsonPropertyName("url")]
         public string? Url { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmbedVideo.ProxyUrl"/>
+        /// <summary>
+        ///     A proxied url of the video.
+        /// </summary>
         [JsonPropertyName("proxy_url")]
         public string? ProxyUrl { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmbedVideo.Height"/>
+        /// <summary>
+        ///     Height of video.
+        /// </summary>
         [JsonPropertyName("height")]
         public int? Height { get; init; }
 
-        /// <inheritdoc cref="IDiscordEmbedVideo.Width"/>
+        /// <summary>
+        ///     Width of video.
+        /// </summary>
         [JsonPropertyName("width")]
         public int? Width { get; init; }
     }

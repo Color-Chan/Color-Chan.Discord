@@ -3,10 +3,6 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <summary>
-    ///     Represents a discord Webhook Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/webhook#webhook-object-webhook-structure
-    /// </summary>
     public record DiscordWebhookData
     {
         /// <summary>

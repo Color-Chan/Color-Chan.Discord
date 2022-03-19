@@ -4,23 +4,18 @@ using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Rest.Models
 {
-    /// <inheritdoc cref="IDiscordEmoji"/>
     public record DiscordEmoji : IDiscordEmoji
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordEmoji"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordEmoji"/>.</param>
-        public DiscordEmoji(DiscordEmojiData data)
+        public DiscordEmoji(DiscordEmojiData emojiData)
         {
-            Id = data.Id;
-            Name = data.Name;
-            RoleIds = data.RoleIds;
-            User = data.User is not null ? new DiscordUser(data.User) : null;
-            IsAnimated = data.IsAnimated;
-            IsAvailable = data.IsAvailable;
-            IsManaged = data.IsManaged;
-            RequireColons = data.RequireColons;
+            Id = emojiData.Id;
+            Name = emojiData.Name;
+            RoleIds = emojiData.RoleIds;
+            User = emojiData.User is not null ? new DiscordUser(emojiData.User) : null;
+            IsAnimated = emojiData.IsAnimated;
+            IsAvailable = emojiData.IsAvailable;
+            IsManaged = emojiData.IsManaged;
+            RequireColons = emojiData.RequireColons;
         }
 
         /// <inheritdoc />
@@ -47,7 +42,6 @@ namespace Color_Chan.Discord.Rest.Models
         /// <inheritdoc />
         public bool? IsAvailable { get; init; }
 
-        /// <inheritdoc />
         public DiscordEmojiData ToDataModel()
         {
             return new DiscordEmojiData

@@ -12,7 +12,7 @@ namespace Color_Chan.Discord.Core.Common.API.Rest
     // Todo: Implement missing API methods
     /// <summary>
     ///     Contains all the API calls mentioned in the channel object documentation.
-    ///     Docs: https://discord.com/developers/docs/resources/channel
+    ///     https://discord.com/developers/docs/resources/channel
     /// </summary>
     public interface IDiscordRestChannel
     {

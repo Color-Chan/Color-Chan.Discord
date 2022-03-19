@@ -2,7 +2,7 @@
 {
     /// <summary>
     ///     Represents a discord Application Command Option Type API model.
-    ///     Docs: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type
+    ///     https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type
     /// </summary>
     public enum DiscordApplicationCommandOptionType
     {

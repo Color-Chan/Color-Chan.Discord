@@ -146,7 +146,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             // Assert
             result.IsSuccessful.Should().BeTrue();
-            result.Entity!.Type.Should().Be(DiscordInteractionCallbackType.ChannelMessageWithSource);
+            result.Entity!.Type.Should().Be(DiscordInteractionResponseType.ChannelMessageWithSource);
         }
 
         [TestCase("Command14")]
@@ -174,7 +174,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 
             // Assert
             result.IsSuccessful.Should().BeTrue();
-            result.Entity!.Type.Should().Be(DiscordInteractionCallbackType.ChannelMessageWithSource);
+            result.Entity!.Type.Should().Be(DiscordInteractionResponseType.ChannelMessageWithSource);
         }
 
         [TestCase("Command14", "CommandMethod14Async", 7)]

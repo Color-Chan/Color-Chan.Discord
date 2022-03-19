@@ -2,10 +2,6 @@
 
 namespace Color_Chan.Discord.Core.Common.Models.Embed
 {
-    /// <summary>
-    ///     Represents a discord Embed Footer Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
-    /// </summary>
     public interface IDiscordEmbedFooter
     {
         /// <summary>

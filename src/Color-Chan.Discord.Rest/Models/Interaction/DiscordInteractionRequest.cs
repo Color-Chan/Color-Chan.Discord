@@ -9,13 +9,8 @@ using Color_Chan.Discord.Rest.Models.Select;
 
 namespace Color_Chan.Discord.Rest.Models.Interaction
 {
-    /// <inheritdoc cref="IDiscordInteractionRequest"/>
     public record DiscordInteractionRequest : IDiscordInteractionRequest
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordInteractionRequest"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordInteractionRequest"/>.</param>
         public DiscordInteractionRequest(DiscordInteractionRequestData data)
         {
             Id = data.Id;

@@ -9,7 +9,7 @@ namespace Color_Chan.Discord.Core.Results
         ///     Initializes a new instance of <see cref="Result" />.
         /// </summary>
         /// <param name="errorResult">The <see cref="IErrorResult" /> containing the error details.</param>
-        /// <param name="innerResult">The inner <paramref name="errorResult" />.</param>
+        /// <param name="innerResult">The inner <see cref="errorResult" />.</param>
         private Result(IErrorResult? errorResult, IResult? innerResult)
         {
             InnerResult = innerResult;
@@ -92,9 +92,9 @@ namespace Color_Chan.Discord.Core.Results
         /// <summary>
         ///     Initializes a new instance of <see cref="Result" />.
         /// </summary>
-        /// <param name="entity">The <typeparamref name="T" /> containing the result data.</param>
+        /// <param name="entity">The <see cref="T" /> containing the result data.</param>
         /// <param name="errorResult">The <see cref="IErrorResult" /> containing the error details.</param>
-        /// <param name="innerResult">The inner <paramref name="errorResult" />.</param>
+        /// <param name="innerResult">The inner <see cref="errorResult" />.</param>
         private Result(T? entity, IErrorResult? errorResult, IResult? innerResult)
         {
             InnerResult = innerResult;
@@ -119,7 +119,7 @@ namespace Color_Chan.Discord.Core.Results
         /// <summary>
         ///     Initializes a new successful instance of <see cref="Result" />.
         /// </summary>
-        /// <param name="entity">The <typeparamref name="T" /> containing the result data.</param>
+        /// <param name="entity">The <see cref="T" /> containing the result data.</param>
         /// <returns>
         ///     The successful instance of <see cref="Result" />.
         /// </returns>
@@ -131,7 +131,7 @@ namespace Color_Chan.Discord.Core.Results
         /// <summary>
         ///     Initializes a new unsuccessful instance of <see cref="Result" />.
         /// </summary>
-        /// <param name="entity">The <typeparamref name="T" /> containing the result data.</param>
+        /// <param name="entity">The <see cref="T" /> containing the result data.</param>
         /// <param name="errorResult">The <see cref="IErrorResult" /> containing the error details.</param>
         /// <returns>
         ///     The unsuccessful instance of <see cref="Result" />.
@@ -144,7 +144,7 @@ namespace Color_Chan.Discord.Core.Results
         /// <summary>
         ///     Initializes a new unsuccessful instance of <see cref="Result" />.
         /// </summary>
-        /// <param name="entity">The <typeparamref name="T" /> containing the result data.</param>
+        /// <param name="entity">The <see cref="T" /> containing the result data.</param>
         /// <param name="errorResult">The <see cref="IErrorResult" /> containing the error details.</param>
         /// <param name="innerResult">The inner <see cref="IResult" />.</param>
         /// <returns>

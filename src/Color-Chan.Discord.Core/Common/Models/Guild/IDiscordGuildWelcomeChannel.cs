@@ -1,9 +1,5 @@
 namespace Color_Chan.Discord.Core.Common.Models.Guild
 {
-    /// <summary>
-    ///     Represents a discord Welcome Screen Channel Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-channel-structure
-    /// </summary>
     public interface IDiscordGuildWelcomeChannel
     {
         /// <summary>

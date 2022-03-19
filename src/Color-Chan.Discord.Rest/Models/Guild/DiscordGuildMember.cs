@@ -7,13 +7,8 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.Models.Guild
 {
-    /// <inheritdoc cref="IDiscordGuildMember"/>
     public record DiscordGuildMember : IDiscordGuildMember
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordGuildMember"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordGuildMember"/>.</param>
         public DiscordGuildMember(DiscordGuildMemberData data)
         {
             if (data.User is not null) User = new DiscordUser(data.User);
@@ -25,7 +20,6 @@ namespace Color_Chan.Discord.Rest.Models.Guild
             Mute = data.Mute;
             Pending = data.Pending;
             Permissions = data.Permissions;
-            CommunicationDisabledUntil = data.CommunicationDisabledUntil;
         }
 
         /// <inheritdoc />
@@ -54,8 +48,5 @@ namespace Color_Chan.Discord.Rest.Models.Guild
 
         /// <inheritdoc />
         public DiscordPermission? Permissions { get; init; }
-
-        /// <inheritdoc />
-        public DateTimeOffset? CommunicationDisabledUntil { get; set; }
     }
 }

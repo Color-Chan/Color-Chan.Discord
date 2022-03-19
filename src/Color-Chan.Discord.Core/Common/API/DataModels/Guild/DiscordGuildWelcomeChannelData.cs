@@ -1,24 +1,34 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
-    /// <inheritdoc cref="IDiscordGuildWelcomeChannel"/>
+    /// <summary>
+    ///     Represents a discord Welcome Screen Channel Structure API model.
+    ///     https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-channel-structure
+    /// </summary>
     public record DiscordGuildWelcomeChannelData
     {
-        /// <inheritdoc cref="IDiscordGuildWelcomeChannel.ChannelId"/>
+        /// <summary>
+        ///     The channel's id.
+        /// </summary>
         [JsonPropertyName("channel_id")]
         public ulong ChannelId { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildWelcomeChannel.Description"/>
+        /// <summary>
+        ///     The description shown for the channel
+        /// </summary>
         [JsonPropertyName("description")]
         public string? Description { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildWelcomeChannel.EmojiId"/>
+        /// <summary>
+        ///     The emoji id, if the emoji is custom.
+        /// </summary>
         [JsonPropertyName("emoji_id")]
         public string? EmojiId { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildWelcomeChannel.EmojiName"/>
+        /// <summary>
+        ///     The emoji name if custom, the unicode character if standard, or null if no emoji is set.
+        /// </summary>
         [JsonPropertyName("emoji_name")]
         public string? EmojiName { get; init; }
     }

@@ -2,10 +2,6 @@
 
 namespace Color_Chan.Discord.Core.Common.Models.Embed
 {
-    /// <summary>
-    ///     Represents a discord Embed Video Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/channel#embed-object-embed-video-structure
-    /// </summary>
     public interface IDiscordEmbedVideo
     {
         /// <summary>

@@ -68,7 +68,7 @@ namespace Color_Chan.Discord.Core.Tests
         }
 
         /// <summary>
-        ///     Get the test JSON files for the <typeparamref name="TEntity" />.
+        ///     Get the test JSON files for the <see cref="TEntity" />.
         /// </summary>
         protected static IEnumerable<string> GetFiles()
         {

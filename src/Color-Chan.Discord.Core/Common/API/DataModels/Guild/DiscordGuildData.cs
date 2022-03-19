@@ -6,7 +6,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
     /// <summary>
     ///     Represents a discord Guild Structure API model.
-    ///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-guild-structure
+    ///     https://discord.com/developers/docs/resources/guild#guild-object-guild-structure
     /// </summary>
     public record DiscordGuildData
     {
@@ -85,7 +85,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         public ulong? AfkChannelId { get; init; }
 
         /// <summary>
-        ///     Afk timeout in seconds.
+        ///     Ffk timeout in seconds.
         /// </summary>
         [JsonPropertyName("afk_timeout")]
         public int AfkTimeout { get; init; }
@@ -213,7 +213,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
         ///     Only send on the 'GUILD_CREATE' event.
         /// </remarks>
         [JsonPropertyName("voice_states")]
-        public IEnumerable<DiscordVoiceStateData>? VoiceStates { get; init; }
+        public IEnumerable<DiscordVoiceState>? VoiceStates { get; init; }
 
         /// <summary>
         ///     Users in the guild.

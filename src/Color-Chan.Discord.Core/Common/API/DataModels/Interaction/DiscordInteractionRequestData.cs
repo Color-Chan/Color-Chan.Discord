@@ -2,46 +2,66 @@
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Select;
-using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
 {
-    /// <inheritdoc cref="IDiscordInteractionRequest"/>
+    /// <summary>
+    ///     More info on
+    ///     https://discord.com/developers/docs/interactions/slash-commands#interaction-object-application-command-interaction-data-structure.
+    /// </summary>
     public record DiscordInteractionRequestData
     {
-        /// <inheritdoc cref="IDiscordInteractionRequest.Id"/>
+        /// <summary>
+        ///     The ID of the invoked command.
+        /// </summary>
         [JsonPropertyName("id")]
         public ulong Id { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionRequest.Name"/>
+        /// <summary>
+        ///     The name of the invoked command.
+        /// </summary>
         [JsonPropertyName("name")]
         public string Name { get; init; } = null!;
 
-        /// <inheritdoc cref="IDiscordInteractionRequest.Type"/>
+        /// <summary>
+        ///     The type of the invoked command.
+        /// </summary>
         [JsonPropertyName("type")]
         public DiscordApplicationCommandTypes Type { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionRequest.Resolved"/>
+        /// <summary>
+        ///     Converted users + roles + channels.
+        /// </summary>
         [JsonPropertyName("resolved")]
         public DiscordInteractionResolvedData? Resolved { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionRequest.Options"/>
+        /// <summary>
+        ///     The params + values from the user.
+        /// </summary>
         [JsonPropertyName("options")]
         public IEnumerable<DiscordInteractionOptionData>? Options { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionRequest.CustomId"/>
+        /// <summary>
+        ///     For components, the custom_id of the component.
+        /// </summary>
         [JsonPropertyName("custom_id")]
         public string? CustomId { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionRequest.ComponentType"/>
+        /// <summary>
+        ///     For components, the type of the component.
+        /// </summary>
         [JsonPropertyName("component_type")]
         public DiscordComponentType? ComponentType { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionRequest.Values"/>
+        /// <summary>
+        ///     The values the user selected.
+        /// </summary>
         [JsonPropertyName("values")]
         public DiscordSelectOptionData? Values { get; init; }
 
-        /// <inheritdoc cref="IDiscordInteractionRequest.TargetId"/>
+        /// <summary>
+        ///     Id the of user or message targeted by a user or message command.
+        /// </summary>
         [JsonPropertyName("target_id")]
         public ulong? TargetId { get; init; }
     }

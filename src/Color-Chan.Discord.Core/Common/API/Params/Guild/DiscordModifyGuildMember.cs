@@ -1,13 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Guild
 {
-    /// <summary>
-    ///     Represents a discord Modify Guild Member API request model.
-    ///     Docs: https://discord.com/developers/docs/resources/guild#modify-guild-member
-    /// </summary>
     public class DiscordModifyGuildMember
     {
         /// <summary>
@@ -55,20 +50,5 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild
         /// </remarks>
         [JsonPropertyName("channel_id")]
         public ulong? ChannelId { get; set; }
-        
-        /// <summary>
-        ///     When the user's timeout will expire and the user will be able to communicate in the guild again (up to 28 days in the future),
-        ///     set to null to remove timeout.
-        /// </summary>
-        /// <remarks>
-        ///     <para>
-        ///         Will throw a 403 error if the user has the ADMINISTRATOR permission or is the owner of the guild.
-        ///     </para>
-        ///     <para>
-        ///         Requires the MODERATE_MEMBERS permission.
-        ///     </para>
-        /// </remarks>
-        [JsonPropertyName("communication_disabled_until")]
-        public DateTimeOffset? CommunicationDisabledUntil { get; set; }
     }
 }

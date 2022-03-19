@@ -1,20 +1,24 @@
 ﻿using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels
 {
-    /// <inheritdoc cref="IDiscordReaction"/>
     public record DiscordReactionData
     {
-        /// <inheritdoc cref="IDiscordReaction.Count"/>
+        /// <summary>
+        ///     Times this emoji has been used to react.
+        /// </summary>
         [JsonPropertyName("count")]
         public int Count { get; init; }
 
-        /// <inheritdoc cref="IDiscordReaction.ByMe"/>
+        /// <summary>
+        ///     Whether the current user reacted using this emoji.
+        /// </summary>
         [JsonPropertyName("me")]
         public bool ByMe { get; init; }
 
-        /// <inheritdoc cref="IDiscordReaction.Emoji"/>
+        /// <summary>
+        ///     Emoji information.
+        /// </summary>
         [JsonPropertyName("emoji")]
         public DiscordEmojiData Emoji { get; init; } = null!;
     }

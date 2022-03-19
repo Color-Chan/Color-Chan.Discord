@@ -1,17 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
 {
-    /// <inheritdoc cref="IDiscordGuildWelcomeScreen"/>
+    /// <summary>
+    ///     Represents a discord Welcome Screen Structure API model.
+    ///     https://discord.com/developers/docs/resources/guild#welcome-screen-object-welcome-screen-structure
+    /// </summary>
     public record DiscordGuildWelcomeScreenData
     {
-        /// <inheritdoc cref="IDiscordGuildWelcomeScreen.Description"/>
+        /// <summary>
+        ///     The server description shown in the welcome screen.
+        /// </summary>
         [JsonPropertyName("description")]
         public string? Description { get; init; }
 
-        /// <inheritdoc cref="IDiscordGuildWelcomeScreen.WelcomeChannels"/>
+        /// <summary>
+        ///     The server description shown in the welcome screen.
+        /// </summary>
         [JsonPropertyName("welcome_channels")]
         public IEnumerable<DiscordGuildWelcomeChannelData> WelcomeChannels { get; init; } = new List<DiscordGuildWelcomeChannelData>();
     }

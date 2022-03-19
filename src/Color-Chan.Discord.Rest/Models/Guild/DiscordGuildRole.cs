@@ -5,13 +5,8 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.Models.Guild
 {
-    /// <inheritdoc cref="IDiscordGuildRole"/>
     public record DiscordGuildRole : IDiscordGuildRole
     {
-        /// <summary>
-        ///     Initializes a new <see cref="DiscordGuildRole"/>
-        /// </summary>
-        /// <param name="data">The data needed to create the <see cref="DiscordGuildRole"/>.</param>
         public DiscordGuildRole(DiscordGuildRoleData data)
         {
             Id = data.Id;
