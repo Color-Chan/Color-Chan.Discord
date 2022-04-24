@@ -27,7 +27,7 @@ using NUnit.Framework;
 
 namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 {
-    [TestFixtureAttribute]
+    [TestFixture]
     public class SlashCommandServiceTests
     {
         private static readonly Assembly ValidAssembly = typeof(ValidMockCommandModule1).Assembly;
