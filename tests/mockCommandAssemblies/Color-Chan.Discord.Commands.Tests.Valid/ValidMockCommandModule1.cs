@@ -20,16 +20,16 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         public Task<Result<IDiscordInteractionResponse>> CommandMethod1Async
         (
             [SlashCommandOption("RoleName", "A RoleName.")]
-            [SlashCommandChoiceAttribute("roleName 1", "RoleName1")]
-            [SlashCommandChoiceAttribute("RoleName 2", "RoleName2")]
-            [SlashCommandChoiceAttribute("RoleName 3", "RoleName3")]
-            [SlashCommandChoiceAttribute("RoleName 4", "RoleName4")]
+            [SlashCommandChoice("roleName 1", "RoleName1")]
+            [SlashCommandChoice("RoleName 2", "RoleName2")]
+            [SlashCommandChoice("RoleName 3", "RoleName3")]
+            [SlashCommandChoice("RoleName 4", "RoleName4")]
             string roleName,
             [SlashCommandOption("Number", "A random number.", false)]
-            [SlashCommandChoiceAttribute("value name 1", "1")]
-            [SlashCommandChoiceAttribute("value name 1", "2")]
-            [SlashCommandChoiceAttribute("value name 1", "3")]
-            [SlashCommandChoiceAttribute("value name 1", "4")]
+            [SlashCommandChoice("value name 1", "1")]
+            [SlashCommandChoice("value name 1", "2")]
+            [SlashCommandChoice("value name 1", "3")]
+            [SlashCommandChoice("value name 1", "4")]
             int number
         )
         {
@@ -42,16 +42,16 @@ namespace Color_Chan.Discord.Commands.Tests.Valid
         public Task<Result<IDiscordInteractionResponse>> CommandMethod2Async
         (
             [SlashCommandOption("RoleName", "A RoleName.")]
-            [SlashCommandChoiceAttribute("RoleName 1", "RoleName1")]
-            [SlashCommandChoiceAttribute("RoleName 2", "RoleName2")]
-            [SlashCommandChoiceAttribute("RoleName 3", "RoleName3")]
-            [SlashCommandChoiceAttribute("RoleName 4", "RoleName4")]
+            [SlashCommandChoice("RoleName 1", "RoleName1")]
+            [SlashCommandChoice("RoleName 2", "RoleName2")]
+            [SlashCommandChoice("RoleName 3", "RoleName3")]
+            [SlashCommandChoice("RoleName 4", "RoleName4")]
             string roleName,
             [SlashCommandOption("Number", "A random number.", false)]
-            [SlashCommandChoiceAttribute("Value name 1", "1")]
-            [SlashCommandChoiceAttribute("Value name 2", "2")]
-            [SlashCommandChoiceAttribute("Value name 3", "3")]
-            [SlashCommandChoiceAttribute("Value name 4", "4")]
+            [SlashCommandChoice("Value name 1", "1")]
+            [SlashCommandChoice("Value name 2", "2")]
+            [SlashCommandChoice("Value name 3", "3")]
+            [SlashCommandChoice("Value name 4", "4")]
             int number
         )
         {

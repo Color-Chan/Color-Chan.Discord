@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace Color_Chan.Discord.Caching.Tests.Services.Implementations
 {
-    [ParallelizableAttribute]
+    [Parallelizable]
     public class CacheServiceTestBase<TServiceType> where TServiceType : class, ICacheService
     {
         protected TServiceType CacheService = null!;

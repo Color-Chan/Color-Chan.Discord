@@ -12,7 +12,7 @@ using NUnit.Framework;
 
 namespace Color_Chan.Discord.Commands.Tests.Valid
 {
-    [SlashCommandGroupAttribute("role", "a role command")]
+    [SlashCommandGroup("role", "a role command")]
     public class ValidMockCommandModule7 : SlashCommandModule
     {
         [SlashCommand("Command19", "the command")]
