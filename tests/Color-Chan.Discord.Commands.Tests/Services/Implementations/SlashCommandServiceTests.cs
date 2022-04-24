@@ -27,7 +27,7 @@ using NUnit.Framework;
 
 namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
 {
-    [TestFixture]
+    [TestFixtureAttribute]
     public class SlashCommandServiceTests
     {
         private static readonly Assembly ValidAssembly = typeof(ValidMockCommandModule1).Assembly;
@@ -44,7 +44,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         [TestCase("Command5", "CommandMethod5Async")]
         [TestCase("Command6", "CommandMethod6Async")]
         [TestCase("Command7", "CommandMethod7Async")]
-        public void Should_search_interaction_command(string commandName, string methodName)
+        public async Task Should_search_interaction_command(string commandName, string methodName)
         {
             // Arrange
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
@@ -56,7 +56,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
 
             // Act
-            commandService.AddInteractionCommandsAsync(ValidAssembly);
+            await commandService.AddInteractionCommandsAsync(ValidAssembly);
             var command = commandService.SearchSlashCommand(commandName);
 
             // Assert
@@ -65,7 +65,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         }
 
         [TestCase("add", "role", "Command18")]
-        public void Should_search_interaction_command_with_options(string commandGroupName, string subCommandGroupName, string commandName)
+        public async Task Should_search_interaction_command_with_options(string commandGroupName, string subCommandGroupName, string commandName)
         {
             // Arrange
             var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
@@ -77,7 +77,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementServiceMock.Object, autoSyncMock.Object);
 
             // Act
-            commandService.AddInteractionCommandsAsync(ValidAssembly);
+            await commandService.AddInteractionCommandsAsync(ValidAssembly);
             var command = commandService.SearchSlashCommand(commandGroupName, subCommandGroupName, commandName);
 
             // Assert
@@ -181,7 +181,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
         [TestCase("Command15", "CommandMethod15Async", 6)]
         [TestCase("Command16", "CommandMethod16Async", 8)]
         [TestCase("Command17", "CommandMethod17Async", 6)]
-        public void Should_search_interaction_command_with_requirement(string commandName, string methodName, int requirementAmount)
+        public async Task Should_search_interaction_command_with_requirement(string commandName, string methodName, int requirementAmount)
         {
             // Arrange
             var requirementBuilder = new SlashCommandRequirementBuildService(_requirementBuildServiceLoggerMock.Object);
@@ -193,7 +193,7 @@ namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
             var commandService = new SlashCommandService(_commandServiceLoggerMock.Object, buildService, requirementService, autoSyncMock.Object);
 
             // Act
-            commandService.AddInteractionCommandsAsync(ValidAssembly);
+            await commandService.AddInteractionCommandsAsync(ValidAssembly);
             var command = commandService.SearchSlashCommand(commandName);
 
             // Assert
