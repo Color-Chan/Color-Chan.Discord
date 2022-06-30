@@ -10,97 +10,96 @@ using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Rest.Models.Guild;
 using Color_Chan.Discord.Rest.Models.Message;
 
-namespace Color_Chan.Discord.Rest.Models.Interaction
+namespace Color_Chan.Discord.Rest.Models.Interaction;
+
+public record DiscordInteractionResolved : IDiscordInteractionResolved
 {
-    public record DiscordInteractionResolved : IDiscordInteractionResolved
+    public DiscordInteractionResolved(DiscordInteractionResolvedData data)
     {
-        public DiscordInteractionResolved(DiscordInteractionResolvedData data)
+        Users = InitializeUsersDict(data.Users);
+        Channels = InitializeChannelsDict(data.Channels);
+        Roles = InitializeRolesDict(data.Roles);
+        Members = InitializeMembersDict(data.Members);
+        Messages = InitializeMessagesDict(data.Messages);
+    }
+
+    /// <inheritdoc />
+    public IReadOnlyDictionary<ulong, IDiscordUser>? Users { get; init; }
+
+    /// <inheritdoc />
+    public IReadOnlyDictionary<ulong, IDiscordGuildMember>? Members { get; init; }
+
+    /// <inheritdoc />
+    public IReadOnlyDictionary<ulong, IDiscordGuildRole>? Roles { get; init; }
+
+    /// <inheritdoc />
+    public IReadOnlyDictionary<ulong, IDiscordChannel>? Channels { get; init; }
+
+    /// <inheritdoc />
+    public IReadOnlyDictionary<ulong, IDiscordMessage>? Messages { get; init; }
+
+    private static IReadOnlyDictionary<ulong, IDiscordMessage> InitializeMessagesDict(IReadOnlyDictionary<ulong, DiscordMessageData>? data)
+    {
+        if (data is not null)
         {
-            Users = InitializeUsersDict(data.Users);
-            Channels = InitializeChannelsDict(data.Channels);
-            Roles = InitializeRolesDict(data.Roles);
-            Members = InitializeMembersDict(data.Members);
-            Messages = InitializeMessagesDict(data.Messages);
+            var members = new Dictionary<ulong, IDiscordMessage>();
+            foreach (var (key, value) in data) members.Add(key, new DiscordMessage(value));
+
+            return members;
         }
 
-        /// <inheritdoc />
-        public IReadOnlyDictionary<ulong, IDiscordUser>? Users { get; init; }
+        return new Dictionary<ulong, IDiscordMessage>();
+    }
 
-        /// <inheritdoc />
-        public IReadOnlyDictionary<ulong, IDiscordGuildMember>? Members { get; init; }
-
-        /// <inheritdoc />
-        public IReadOnlyDictionary<ulong, IDiscordGuildRole>? Roles { get; init; }
-
-        /// <inheritdoc />
-        public IReadOnlyDictionary<ulong, IDiscordChannel>? Channels { get; init; }
-
-        /// <inheritdoc />
-        public IReadOnlyDictionary<ulong, IDiscordMessage>? Messages { get; init; }
-
-        private static IReadOnlyDictionary<ulong, IDiscordMessage> InitializeMessagesDict(IReadOnlyDictionary<ulong, DiscordMessageData>? data)
+    private static Dictionary<ulong, IDiscordGuildMember> InitializeMembersDict(IReadOnlyDictionary<ulong, DiscordGuildMemberData>? data)
+    {
+        if (data is not null)
         {
-            if (data is not null)
-            {
-                var members = new Dictionary<ulong, IDiscordMessage>();
-                foreach (var (key, value) in data) members.Add(key, new DiscordMessage(value));
+            var members = new Dictionary<ulong, IDiscordGuildMember>();
+            foreach (var (key, value) in data) members.Add(key, new DiscordGuildMember(value));
 
-                return members;
-            }
-
-            return new Dictionary<ulong, IDiscordMessage>();
+            return members;
         }
 
-        private static Dictionary<ulong, IDiscordGuildMember> InitializeMembersDict(IReadOnlyDictionary<ulong, DiscordGuildMemberData>? data)
+        return new Dictionary<ulong, IDiscordGuildMember>();
+    }
+
+    private static Dictionary<ulong, IDiscordUser> InitializeUsersDict(IReadOnlyDictionary<ulong, DiscordUserData>? data)
+    {
+        if (data is not null)
         {
-            if (data is not null)
-            {
-                var members = new Dictionary<ulong, IDiscordGuildMember>();
-                foreach (var (key, value) in data) members.Add(key, new DiscordGuildMember(value));
+            var users = new Dictionary<ulong, IDiscordUser>();
+            foreach (var (key, value) in data) users.Add(key, new DiscordUser(value));
 
-                return members;
-            }
-
-            return new Dictionary<ulong, IDiscordGuildMember>();
+            return users;
         }
 
-        private static Dictionary<ulong, IDiscordUser> InitializeUsersDict(IReadOnlyDictionary<ulong, DiscordUserData>? data)
+        return new Dictionary<ulong, IDiscordUser>();
+    }
+
+    private static Dictionary<ulong, IDiscordGuildRole> InitializeRolesDict(IReadOnlyDictionary<ulong, DiscordGuildRoleData>? data)
+    {
+        if (data is not null)
         {
-            if (data is not null)
-            {
-                var users = new Dictionary<ulong, IDiscordUser>();
-                foreach (var (key, value) in data) users.Add(key, new DiscordUser(value));
+            var roles = new Dictionary<ulong, IDiscordGuildRole>();
+            foreach (var (key, value) in data) roles.Add(key, new DiscordGuildRole(value));
 
-                return users;
-            }
-
-            return new Dictionary<ulong, IDiscordUser>();
+            return roles;
         }
 
-        private static Dictionary<ulong, IDiscordGuildRole> InitializeRolesDict(IReadOnlyDictionary<ulong, DiscordGuildRoleData>? data)
+        return new Dictionary<ulong, IDiscordGuildRole>();
+    }
+
+    private static Dictionary<ulong, IDiscordChannel> InitializeChannelsDict(IReadOnlyDictionary<ulong, DiscordChannelData>? data)
+    {
+        if (data is not null)
         {
-            if (data is not null)
-            {
-                var roles = new Dictionary<ulong, IDiscordGuildRole>();
-                foreach (var (key, value) in data) roles.Add(key, new DiscordGuildRole(value));
+            var channels = new Dictionary<ulong, IDiscordChannel>();
+            foreach (var (key, value) in data) channels.Add(key, new DiscordChannel(value));
 
-                return roles;
-            }
-
-            return new Dictionary<ulong, IDiscordGuildRole>();
+            return channels;
         }
 
-        private static Dictionary<ulong, IDiscordChannel> InitializeChannelsDict(IReadOnlyDictionary<ulong, DiscordChannelData>? data)
-        {
-            if (data is not null)
-            {
-                var channels = new Dictionary<ulong, IDiscordChannel>();
-                foreach (var (key, value) in data) channels.Add(key, new DiscordChannel(value));
-
-                return channels;
-            }
-
-            return new Dictionary<ulong, IDiscordChannel>();
-        }
+        return new Dictionary<ulong, IDiscordChannel>();
     }
 }

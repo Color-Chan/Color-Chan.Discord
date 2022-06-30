@@ -10,35 +10,34 @@ using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models.Interaction;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Commands.Tests.Valid
+namespace Color_Chan.Discord.Commands.Tests.Valid;
+
+[SlashCommandGroup("role", "a role command")]
+public class ValidMockCommandModule7 : SlashCommandModule
 {
-    [SlashCommandGroup("role", "a role command")]
-    public class ValidMockCommandModule7 : SlashCommandModule
+    [SlashCommand("Command19", "the command")]
+    public async Task<Result<IDiscordInteractionResponse>> CommandMethod19Async
+    (
+        [SlashCommandOption("role", "Role id.", true, DiscordApplicationCommandOptionType.Role)]
+        ulong roleId
+    )
     {
-        [SlashCommand("Command19", "the command")]
-        public async Task<Result<IDiscordInteractionResponse>> CommandMethod19Async
-        (
-            [SlashCommandOption("role", "Role id.", true, DiscordApplicationCommandOptionType.Role)]
-            ulong roleId
-        )
+        Assert.NotNull(roleId);
+        Assert.NotNull(Context);
+        Assert.NotNull(Context.Data);
+        Assert.NotNull(Context.Data.Resolved);
+        Assert.NotNull(Context.Data.Resolved?.Roles);
+
+        var role = Context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
+        Assert.NotNull(role);
+
+        return FromSuccess(new DiscordInteractionResponse
         {
-            Assert.NotNull(roleId);
-            Assert.NotNull(Context);
-            Assert.NotNull(Context.Data);
-            Assert.NotNull(Context.Data.Resolved);
-            Assert.NotNull(Context.Data.Resolved?.Roles);
-
-            var role = Context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
-            Assert.NotNull(role);
-
-            return FromSuccess(new DiscordInteractionResponse
+            Type = DiscordInteractionResponseType.ChannelMessageWithSource,
+            Data = new DiscordInteractionCallback
             {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource,
-                Data = new DiscordInteractionCallback
-                {
-                    Content = roleId.ToString()
-                }
-            });
-        }
+                Content = roleId.ToString()
+            }
+        });
     }
 }

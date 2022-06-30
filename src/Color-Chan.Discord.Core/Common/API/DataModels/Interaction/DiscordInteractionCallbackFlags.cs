@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction
+namespace Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+
+[Flags]
+public enum DiscordInteractionCallbackFlags
 {
-    [Flags]
-    public enum DiscordInteractionCallbackFlags
-    {
-        None = 0,
-        Ephemeral = 1 << 6
-    }
+    None = 0,
+    Ephemeral = 1 << 6
 }

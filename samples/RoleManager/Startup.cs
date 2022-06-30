@@ -7,49 +7,48 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RoleManager.Pipelines;
 
-namespace RoleManager
+namespace RoleManager;
+
+public class Startup
 {
-    public class Startup
+    public Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        Configuration = configuration;
+    }
 
-        public IConfiguration Configuration { get; }
+    public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // Configure Color-Chan.Discord
+        var config = new ColorChanConfigurations
         {
-            // Configure Color-Chan.Discord
-            var config = new ColorChanConfigurations
+            SlashCommandConfigs = slashOptions =>
             {
-                SlashCommandConfigs = slashOptions =>
-                {
-                    slashOptions.EnableAutoSync = true;
-                    slashOptions.EnableAutoGetGuild = true;
-                    slashOptions.SendDefaultErrorMessage = true;
-                }
-            };
+                slashOptions.EnableAutoSync = true;
+                slashOptions.EnableAutoGetGuild = true;
+                slashOptions.SendDefaultErrorMessage = true;
+            }
+        };
 
-            //  Replace the arguments with the data of your bot.
-            //  Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.
-            services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999, config); // <---
+        //  Replace the arguments with the data of your bot.
+        //  Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.
+        services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999, config); // <---
 
-            // Register your custom pipelines if any.
-            services.AddInteractionPipeline<PerformancePipeline>(); // <---
+        // Register your custom pipelines if any.
+        services.AddInteractionPipeline<PerformancePipeline>(); // <---
 
-            services.AddControllers();
-        }
+        services.AddControllers();
+    }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            // This is needed to validate incoming interaction requests.
-            app.UseColorChanDiscord(); // <---
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        // This is needed to validate incoming interaction requests.
+        app.UseColorChanDiscord(); // <---
 
-            app.UseRouting();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-        }
+        app.UseRouting();
+        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }
