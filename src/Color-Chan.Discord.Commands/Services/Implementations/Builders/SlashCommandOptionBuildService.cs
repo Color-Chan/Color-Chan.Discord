@@ -87,8 +87,18 @@ namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
             return options;
         }
 
-        /// <inheritdoc />
-        public IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs)
+        /// <summary>
+        ///     Builds the choices for a command option.
+        /// </summary>
+        /// <param name="choicePairs">
+        ///     The <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey,TValue}" />
+        ///     where the key is the choice name and the value is the choice value.
+        /// </param>
+        /// <returns>
+        ///     The generated <see cref="IEnumerable{T}" /> of <see cref="DiscordApplicationCommandOptionChoiceData" />.
+        /// </returns>
+        /// <exception cref="UpdateSlashCommandException">Thrown when the command options exceeds the maximum allowed choices.</exception>
+        private IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs)
         {
             if (choicePairs is null) return null;
 
