@@ -8,7 +8,7 @@ using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Services;
-using Color_Chan.Discord.Commands.Services.Implementations;
+using Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
