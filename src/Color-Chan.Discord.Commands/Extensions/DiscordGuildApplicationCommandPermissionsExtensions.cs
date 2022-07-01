@@ -7,7 +7,8 @@ namespace Color_Chan.Discord.Commands.Extensions;
 
 internal static class DiscordGuildApplicationCommandPermissionsExtensions
 {
-    internal static bool ShouldUpdatePermissions(this List<DiscordBatchEditApplicationCommandPermissions> localCommandPerms, IReadOnlyList<IDiscordGuildApplicationCommandPermissions> existingPerms)
+    internal static bool ShouldUpdatePermissions(this List<DiscordBatchEditApplicationCommandPermissions> localCommandPerms,
+                                                 IReadOnlyList<IDiscordGuildApplicationCommandPermissions> existingPerms)
     {
         foreach (var localCommandPerm in localCommandPerms)
         {
