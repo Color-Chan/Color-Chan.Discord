@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.Models.Application;
 
@@ -12,7 +14,7 @@ internal static class DiscordCreateApplicationCommandDataExtensions
     ///     Filters out any commands that haven't been updated or are not new.
     /// </summary>
     /// <param name="newCommands">The local commands.</param>
-    /// <param name="existingCommands">The commands pulled from discords api.</param>
+    /// <param name="existingDiscordCommands">The commands pulled from discords api.</param>
     /// <returns>
     ///     A <see cref="Tuple" /> of <see cref="DiscordCreateApplicationCommand" /> and <see cref="bool" /> and
     ///     <see cref="ulong" />
@@ -20,61 +22,69 @@ internal static class DiscordCreateApplicationCommandDataExtensions
     ///     The <see cref="ulong" /> contains the command ID if the command was not new.
     /// </returns>
     internal static List<Tuple<DiscordCreateApplicationCommand, bool, ulong?>> GetUpdatedOrNewCommands(this IEnumerable<DiscordCreateApplicationCommand> newCommands,
-                                                                                                       IReadOnlyCollection<IDiscordApplicationCommand> existingCommands)
+                                                                                                       IReadOnlyList<IDiscordApplicationCommand> existingDiscordCommands)
     {
         var updatedCommands = new List<Tuple<DiscordCreateApplicationCommand, bool, ulong?>>();
+        var existingCommands = existingDiscordCommands.Select(existingCommand => new DiscordCreateApplicationCommand
+        {
+            Name = existingCommand.Name, 
+            Description = existingCommand.Description, 
+            DefaultPermission = existingCommand.DefaultPermission, 
+            Options = GetOptions(existingCommand.Options)
+        }).ToList();
 
         foreach (var newCommand in newCommands)
         {
-            var existingCommand = existingCommands.FirstOrDefault(x => x.Name.Equals(newCommand.Name));
-
-            if (existingCommand is null)
+            var existingCommand = existingCommands.FirstOrDefault(command => command.Name == newCommand.Name);
+            if (existingCommand == null)
             {
-                // New command found.
                 updatedCommands.Add(CreateTuple(newCommand, true));
-                continue;
             }
-
-            // Found existing command.
-
-            if (!newCommand.Description.Equals(existingCommand.Description))
+            else if(existingCommand != newCommand)
             {
-                // Description has been updated.
-                updatedCommands.Add(CreateTuple(newCommand, false, existingCommand.Id));
-                continue;
-            }
-
-            if (!newCommand.DefaultPermission == existingCommand.DefaultPermission)
-            {
-                // DefaultPermission has been updated.
-                updatedCommands.Add(CreateTuple(newCommand, false, existingCommand.Id));
-                continue;
-            }
-
-            if (newCommand.Options!.Any())
-            {
-                if (existingCommand.Options is null)
+                Console.WriteLine(JsonSerializer.Serialize(existingCommand, new JsonSerializerOptions
                 {
-                    // Options has been updated.
-                    updatedCommands.Add(CreateTuple(newCommand, false, existingCommand.Id));
-                    continue;
-                }
-
-                if (newCommand.Options!.HasNewOrUpdatedOptions(existingCommand.Options.ToList()))
+                    WriteIndented = true
+                }));
+                Console.WriteLine();
+                Console.WriteLine(JsonSerializer.Serialize(newCommand, new JsonSerializerOptions
                 {
-                    // Options has been updated.
-                    updatedCommands.Add(CreateTuple(newCommand, false, existingCommand.Id));
-                }
-            }
-
-            if (newCommand.Options!.Any() != existingCommand.Options is not null)
-            {
-                // New command doesnt have any options but the existing does.
-                updatedCommands.Add(CreateTuple(newCommand, false, existingCommand.Id));
+                    WriteIndented = true
+                }));
+                var id = existingDiscordCommands.FirstOrDefault(x => x.Name.Equals(newCommand.Name))!.Id;
+                updatedCommands.Add(CreateTuple(newCommand, false, id));
             }
         }
-
+        
         return updatedCommands;
+    }
+
+    private static IEnumerable<DiscordApplicationCommandOptionData>? GetOptions(IEnumerable<IDiscordApplicationCommandOption>? discordOptions)
+    {
+        var options = new List<DiscordApplicationCommandOptionData>();
+
+        if (discordOptions is not null)
+        {
+            options.AddRange(discordOptions.Select(option => new DiscordApplicationCommandOptionData
+            {
+                Description = option.Description,
+                Name = option.Name,
+                Autocomplete = option.Autocomplete,
+                Type = option.Type,
+                ChanelTypes = option.ChanelTypes,
+                IsRequired = option.IsRequired is true ? true : null,
+                MaxValue = option.MaxValue,
+                MinValue = option.MinValue,
+                Choices = option.Choices?.Select(choice => new DiscordApplicationCommandOptionChoiceData
+                {
+                    Name = choice.Name,
+                    Value = choice.RawValue
+                }),
+                SubOptions = GetOptions(option.SubOptions)
+            }));
+        }
+
+        return !options.Any() ? null : options;
     }
 
     private static Tuple<DiscordCreateApplicationCommand, bool, ulong?> CreateTuple(DiscordCreateApplicationCommand command, bool isNew, ulong? commandId = null)

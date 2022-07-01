@@ -104,7 +104,6 @@ public class DiscordApplicationCommandExtensionsTests
                                     {
                                         Name = "role",
                                         Description = "The role name",
-                                        IsRequired = false,
                                         Type = DiscordApplicationCommandOptionType.String,
                                         Choices = new List<DiscordApplicationCommandOptionChoiceData>
                                         {
