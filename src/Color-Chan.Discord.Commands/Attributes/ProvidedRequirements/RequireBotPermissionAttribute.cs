@@ -85,7 +85,7 @@ public class RequireBotPermissionAttribute : InteractionRequirementAttribute
         {
             throw new NullReferenceException("Failed to get the guild");
         }
-
+        
         // Get the bot user.
         var discordTokens = services.GetRequiredService<DiscordTokens>();
         var botMemberResult = await restGuild.GetGuildMemberAsync(context.GuildId.Value, discordTokens.ApplicationId);
