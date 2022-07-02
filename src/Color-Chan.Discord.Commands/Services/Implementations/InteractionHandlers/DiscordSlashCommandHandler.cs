@@ -75,6 +75,7 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
             Data = interaction.Data,
             InteractionId = interaction.Id,
             Token = interaction.Token,
+            Permissions = interaction.Permissions,
             Channel = channel,
             Guild = guild
         };

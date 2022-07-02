@@ -79,4 +79,10 @@ public record DiscordInteractionData
     /// </summary>
     [JsonPropertyName("message")]
     public DiscordMessageData? Message { get; init; }
+    
+    /// <summary>
+    ///     Permissions the app or bot has within the channel the interaction was sent from.
+    /// </summary>
+    [JsonPropertyName("app_permissions")]
+    public DiscordPermission? Permissions { get; init; }
 }

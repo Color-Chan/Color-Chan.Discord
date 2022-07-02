@@ -75,6 +75,7 @@ public class ComponentInteractionHandler : IComponentInteractionHandler
             Data = interaction.Data,
             InteractionId = interaction.Id,
             Token = interaction.Token,
+            Permissions = interaction.Permissions,
             Channel = channel,
             Guild = guild
         };

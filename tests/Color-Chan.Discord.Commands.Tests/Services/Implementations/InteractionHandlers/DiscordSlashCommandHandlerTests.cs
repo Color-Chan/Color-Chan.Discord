@@ -24,7 +24,7 @@ using Microsoft.Extensions.Options;
 using Moq;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Commands.Tests.Services.Implementations;
+namespace Color_Chan.Discord.Commands.Tests.Services.Implementations.InteractionHandlers;
 
 [TestFixture]
 public class DiscordSlashCommandHandlerTests
