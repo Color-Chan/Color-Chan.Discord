@@ -323,5 +323,31 @@ public enum DiscordPermission : ulong
 	/// <remarks>
 	///     Channels types: Text.
 	/// </remarks>
-	UseExternalStickers = (ulong)1 << 37
+	UseExternalStickers = (ulong)1 << 37,
+
+	/// <summary>
+	///		Allows for sending messages in threads.
+	/// </summary>
+	/// <remarks>
+	///		Channels types: Text.
+	/// </remarks>
+	SendMessagesInThreads = (ulong)1 << 38,
+
+	/// <summary>
+	///		Allows for using Activities (applications with the EMBEDDED flag) in a voice channel.
+	/// </summary>
+	/// <remarks>
+	///		Channels types: Voice.
+	/// </remarks>
+	UseEmbeddedActivities = (ulong)1 << 39,
+
+	/// <summary>
+	///		Allows for timing out users to prevent them from sending or reacting
+	///		to messages in chat and threads, and from speaking in voice and stage channels
+	/// </summary>
+	/// <remarks>
+	///		See Permissions for Timed Out Members to understand how permissions are temporarily modified for timed out users.
+	///		https://discord.com/developers/docs/topics/permissions#permissions-for-timed-out-members
+	/// </remarks>
+	ModerateMembers = (ulong)1 << 40
 }
