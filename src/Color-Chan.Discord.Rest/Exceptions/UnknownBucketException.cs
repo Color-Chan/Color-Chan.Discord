@@ -1,11 +1,10 @@
 using System;
 
-namespace Color_Chan.Discord.Rest.Exceptions
+namespace Color_Chan.Discord.Rest.Exceptions;
+
+public class UnknownBucketException : Exception
 {
-    public class UnknownBucketException : Exception
+    public UnknownBucketException(string message) : base(message)
     {
-        public UnknownBucketException(string message) : base(message)
-        {
-        }
     }
 }

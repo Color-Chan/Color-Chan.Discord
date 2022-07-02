@@ -1,9 +1,8 @@
-﻿namespace Color_Chan.Discord.Core.Common.API.DataModels
+﻿namespace Color_Chan.Discord.Core.Common.API.DataModels;
+
+public enum DiscordStickerType
 {
-    public enum DiscordStickerType
-    {
-        Png = 1,
-        APng = 2,
-        Lottie = 3
-    }
+    Png = 1,
+    APng = 2,
+    Lottie = 3
 }

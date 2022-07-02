@@ -11,35 +11,34 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Commands.Tests.Services.Implementations
+namespace Color_Chan.Discord.Commands.Tests.Services.Implementations;
+
+[TestFixture]
+public class InteractionRequirementServiceTests
 {
-    [TestFixture]
-    public class InteractionRequirementServiceTests
+    [TestCase(0, true)]
+    [TestCase(1, false)]
+    [TestCase(2, true)]
+    public async Task ExecuteSlashCommandRequirementsAsync_should_get_one_error(int methodIndex, bool shouldHaveError)
     {
-        [TestCase(0, true)]
-        [TestCase(1, false)]
-        [TestCase(2, true)]
-        public async Task ExecuteSlashCommandRequirementsAsync_should_get_one_error(int methodIndex, bool shouldHaveError)
+        // Arrange
+        var requirementServiceLoggerMock = new Mock<ILogger<InteractionRequirementService>>();
+        var contextMock = new Mock<ISlashCommandContext>();
+        var serviceProviderMock = new Mock<IServiceProvider>();
+        var requirementService = new InteractionRequirementService(requirementServiceLoggerMock.Object);
+
+        var module = typeof(ValidMockCommandModule1).GetTypeInfo();
+        var method = module.GetMethods()[methodIndex];
+        var requirementsAttributes = method.GetCustomAttributes<BoolRequirement>();
+        var commandInfo = new SlashCommandInfo("test", "desc", false, method, module)
         {
-            // Arrange
-            var requirementServiceLoggerMock = new Mock<ILogger<InteractionRequirementService>>();
-            var contextMock = new Mock<ISlashCommandContext>();
-            var serviceProviderMock = new Mock<IServiceProvider>();
-            var requirementService = new InteractionRequirementService(requirementServiceLoggerMock.Object);
+            Requirements = requirementsAttributes
+        };
 
-            var module = typeof(ValidMockCommandModule1).GetTypeInfo();
-            var method = module.GetMethods()[methodIndex];
-            var requirementsAttributes = method.GetCustomAttributes<BoolRequirement>();
-            var commandInfo = new SlashCommandInfo("test", "desc", false, method, module)
-            {
-                Requirements = requirementsAttributes
-            };
+        // Act
+        var result = await requirementService.ExecuteRequirementsAsync(commandInfo.Requirements, contextMock.Object, serviceProviderMock.Object).ConfigureAwait(false);
 
-            // Act
-            var result = await requirementService.ExecuteRequirementsAsync(commandInfo.Requirements, contextMock.Object, serviceProviderMock.Object).ConfigureAwait(false);
-
-            // Assert
-            result.IsSuccessful.Should().Be(!shouldHaveError);
-        }
+        // Assert
+        result.IsSuccessful.Should().Be(!shouldHaveError);
     }
 }

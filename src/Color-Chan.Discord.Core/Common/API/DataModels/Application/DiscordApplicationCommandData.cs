@@ -1,54 +1,53 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
+namespace Color_Chan.Discord.Core.Common.API.DataModels.Application;
+
+/// <summary>
+///     Represents a discord Application Command Structure API model.
+///     https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
+/// </summary>
+public record DiscordApplicationCommandData
 {
     /// <summary>
-    ///     Represents a discord Application Command Structure API model.
-    ///     https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
+    ///     Unique id of the command.
     /// </summary>
-    public record DiscordApplicationCommandData
-    {
-        /// <summary>
-        ///     Unique id of the command.
-        /// </summary>
-        [JsonPropertyName("id")]
-        public ulong Id { get; init; }
+    [JsonPropertyName("id")]
+    public ulong Id { get; init; }
 
-        /// <summary>
-        ///     Unique id of the parent application.
-        /// </summary>
-        [JsonPropertyName("application_id")]
-        public ulong ApplicationId { get; init; }
+    /// <summary>
+    ///     Unique id of the parent application.
+    /// </summary>
+    [JsonPropertyName("application_id")]
+    public ulong ApplicationId { get; init; }
 
-        /// <summary>
-        ///     Guild id of the command, if not global.
-        /// </summary>
-        [JsonPropertyName("guild_id")]
-        public ulong? GuildId { get; init; }
+    /// <summary>
+    ///     Guild id of the command, if not global.
+    /// </summary>
+    [JsonPropertyName("guild_id")]
+    public ulong? GuildId { get; init; }
 
-        /// <summary>
-        ///     1-32 lowercase character name matching ^[\w-]{1,32}$.
-        /// </summary>
-        [JsonPropertyName("name")]
-        public string Name { get; init; } = null!;
+    /// <summary>
+    ///     1-32 lowercase character name matching ^[\w-]{1,32}$.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string Name { get; init; } = null!;
 
-        /// <summary>
-        ///     1-100 character description.
-        /// </summary>
-        [JsonPropertyName("description")]
-        public string Description { get; init; } = null!;
+    /// <summary>
+    ///     1-100 character description.
+    /// </summary>
+    [JsonPropertyName("description")]
+    public string Description { get; init; } = null!;
 
-        /// <summary>
-        ///     the parameters for the command.
-        /// </summary>
-        [JsonPropertyName("options")]
-        public IEnumerable<DiscordApplicationCommandOptionData>? Options { get; init; }
+    /// <summary>
+    ///     the parameters for the command.
+    /// </summary>
+    [JsonPropertyName("options")]
+    public IEnumerable<DiscordApplicationCommandOptionData>? Options { get; init; }
 
-        /// <summary>
-        ///     Whether the command is enabled by default when the app is added to a guild.
-        /// </summary>
-        [JsonPropertyName("default_permission")]
-        public bool? DefaultPermission { get; init; }
-    }
+    /// <summary>
+    ///     Whether the command is enabled by default when the app is added to a guild.
+    /// </summary>
+    [JsonPropertyName("default_permission")]
+    public bool? DefaultPermission { get; init; }
 }

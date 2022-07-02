@@ -8,104 +8,113 @@ using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations.Builders
+namespace Color_Chan.Discord.Commands.Services.Implementations.Builders;
+
+/// <inheritdoc />
+public class SlashCommandOptionBuildService : ISlashCommandOptionBuildService
 {
-    /// <inheritdoc />
-    public class SlashCommandOptionBuildService : ISlashCommandOptionBuildService
+    private const int MaxCommandOptions = 25;
+    private const int MaxCommandOptionChoices = 25;
+    private readonly ILogger<SlashCommandOptionBuildService> _logger;
+
+    /// <summary>
+    ///     Initializes a new instance of <see cref="SlashCommandOptionBuildService" />.
+    /// </summary>
+    /// <param name="logger">The <see cref="ILogger" /> for <see cref="SlashCommandOptionBuildService" />.</param>
+    public SlashCommandOptionBuildService(ILogger<SlashCommandOptionBuildService> logger)
     {
-        private const int MaxCommandOptions = 25;
-        private const int MaxCommandOptionChoices = 25;
-        private readonly ILogger<SlashCommandOptionBuildService> _logger;
+        _logger = logger;
+    }
 
-        /// <summary>
-        ///     Initializes a new instance of <see cref="SlashCommandOptionBuildService" />.
-        /// </summary>
-        /// <param name="logger">The <see cref="ILogger" /> for <see cref="SlashCommandOptionBuildService" />.</param>
-        public SlashCommandOptionBuildService(ILogger<SlashCommandOptionBuildService> logger)
+    /// <inheritdoc />
+    public IEnumerable<ISlashCommandOptionInfo> GetCommandOptions(MethodInfo command)
+    {
+        var options = new List<SlashCommandOptionInfo>();
+
+        foreach (var parameter in command.GetParameters())
         {
-            _logger = logger;
-        }
+            var optionAttribute = parameter.GetCustomAttribute<SlashCommandOptionAttribute>();
+            var choiceAttributes = parameter.GetCustomAttributes<SlashCommandChoiceAttribute>().ToList();
 
-        /// <inheritdoc />
-        public IEnumerable<ISlashCommandOptionInfo> GetCommandOptions(MethodInfo command)
-        {
-            var options = new List<SlashCommandOptionInfo>();
+            if (optionAttribute is null)
+                throw new NoOptionAttributeArgumentException($"Parameter {parameter.Name} for command method {command.Name} is missing SlashCommandOptionAttribute");
 
-            foreach (var parameter in command.GetParameters())
+            if (choiceAttributes.Any())
             {
-                var optionAttribute = parameter.GetCustomAttribute<SlashCommandOptionAttribute>();
-                var choiceAttributes = parameter.GetCustomAttributes<SlashCommandChoiceAttribute>().ToList();
+                var choices = choiceAttributes.Select(choiceAttribute => new KeyValuePair<string, object>(choiceAttribute.Name, choiceAttribute.ObjectValue()))
+                                              .ToList();
 
-                if (optionAttribute is null)
-                    throw new NoOptionAttributeArgumentException($"Parameter {parameter.Name} for command method {command.Name} is missing SlashCommandOptionAttribute");
-
-                if (choiceAttributes.Any())
-                {
-                    var choices = choiceAttributes.Select(choiceAttribute => new KeyValuePair<string, object>(choiceAttribute.Name, choiceAttribute.ObjectValue()))
-                                                  .ToList();
-
-                    options.Add(new SlashCommandOptionInfo(optionAttribute, parameter.ParameterType, choices));
-                }
-                else
-                {
-                    options.Add(new SlashCommandOptionInfo(optionAttribute, parameter.ParameterType));
-                }
+                options.Add(new SlashCommandOptionInfo(optionAttribute, parameter.ParameterType, choices));
             }
-
-            _logger.LogDebug("Found {Count} options for command {MethodName}", options.Count.ToString(), command.Name);
-            return options;
-        }
-
-        /// <inheritdoc />
-        public IEnumerable<DiscordApplicationCommandOptionData>? BuildSlashCommandsOptions(IEnumerable<ISlashCommandOptionInfo>? commandOptionInfos)
-        {
-            if (commandOptionInfos is null) return null;
-
-            var options = new List<DiscordApplicationCommandOptionData>();
-
-            foreach (var optionInfo in commandOptionInfos)
+            else
             {
-                var subOptions = BuildSlashCommandsOptions(optionInfo.CommandOptions);
-
-                options.Add(new DiscordApplicationCommandOptionData
-                {
-                    Name = optionInfo.Name,
-                    Description = optionInfo.Description,
-                    Type = optionInfo.Type,
-                    IsRequired = optionInfo.IsRequired is true ? true : null,
-                    Choices = BuildChoiceData(optionInfo.Choices),
-                    SubOptions = subOptions,
-                    Autocomplete = optionInfo.Autocomplete,
-                    ChanelTypes = optionInfo.ChanelTypes,
-                    MaxValue = optionInfo.MaxValue,
-                    MinValue = optionInfo.MinValue
-                });
+                options.Add(new SlashCommandOptionInfo(optionAttribute, parameter.ParameterType));
             }
-
-            if (options.Count > MaxCommandOptions) throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
-
-            return options;
         }
 
-        /// <inheritdoc />
-        public IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs)
+        _logger.LogDebug("Found {Count} options for command {MethodName}", options.Count.ToString(), command.Name);
+        return options;
+    }
+
+    /// <inheritdoc />
+    public IEnumerable<DiscordApplicationCommandOptionData>? BuildSlashCommandsOptions(IEnumerable<ISlashCommandOptionInfo>? commandOptionInfos)
+    {
+        if (commandOptionInfos is null) return null;
+
+        var options = new List<DiscordApplicationCommandOptionData>();
+
+        foreach (var optionInfo in commandOptionInfos)
         {
-            if (choicePairs is null) return null;
+            var subOptions = BuildSlashCommandsOptions(optionInfo.CommandOptions);
 
-            var choices = new List<DiscordApplicationCommandOptionChoiceData>();
-
-            foreach (var choicePair in choicePairs)
+            options.Add(new DiscordApplicationCommandOptionData
             {
-                choices.Add(new DiscordApplicationCommandOptionChoiceData
-                {
-                    Name = choicePair.Key,
-                    Value = choicePair.Value
-                });
-            }
-
-            if (choices.Count > MaxCommandOptionChoices) throw new UpdateSlashCommandException($"A slash command option can not have more then {MaxCommandOptionChoices} choices.");
-
-            return choices;
+                Name = optionInfo.Name,
+                Description = optionInfo.Description,
+                Type = optionInfo.Type,
+                IsRequired = optionInfo.IsRequired is true ? true : null,
+                Choices = BuildChoiceData(optionInfo.Choices),
+                SubOptions = subOptions,
+                Autocomplete = optionInfo.Autocomplete,
+                ChanelTypes = optionInfo.ChanelTypes,
+                MaxValue = optionInfo.MaxValue,
+                MinValue = optionInfo.MinValue
+            });
         }
+
+        if (options.Count > MaxCommandOptions) throw new UpdateSlashCommandException($"A slash command can not have more then {MaxCommandOptions} options.");
+
+        return options;
+    }
+
+    /// <summary>
+    ///     Builds the choices for a command option.
+    /// </summary>
+    /// <param name="choicePairs">
+    ///     The <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey,TValue}" />
+    ///     where the key is the choice name and the value is the choice value.
+    /// </param>
+    /// <returns>
+    ///     The generated <see cref="IEnumerable{T}" /> of <see cref="DiscordApplicationCommandOptionChoiceData" />.
+    /// </returns>
+    /// <exception cref="UpdateSlashCommandException">Thrown when the command options exceeds the maximum allowed choices.</exception>
+    private IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs)
+    {
+        if (choicePairs is null) return null;
+
+        var choices = new List<DiscordApplicationCommandOptionChoiceData>();
+
+        foreach (var choicePair in choicePairs)
+        {
+            choices.Add(new DiscordApplicationCommandOptionChoiceData
+            {
+                Name = choicePair.Key,
+                Value = choicePair.Value
+            });
+        }
+
+        if (choices.Count > MaxCommandOptionChoices) throw new UpdateSlashCommandException($"A slash command option can not have more then {MaxCommandOptionChoices} choices.");
+
+        return choices;
     }
 }

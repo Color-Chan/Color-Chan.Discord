@@ -1,13 +1,12 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels
+namespace Color_Chan.Discord.Core.Common.API.DataModels;
+
+public enum DiscordAllowedMentionsType
 {
-    public enum DiscordAllowedMentionsType
-    {
-        [EnumMember(Value = "roles")] RoleMentions,
+    [EnumMember(Value = "roles")] RoleMentions,
 
-        [EnumMember(Value = "users")] UserMentions,
+    [EnumMember(Value = "users")] UserMentions,
 
-        [EnumMember(Value = "everyone")] EveryoneMentions
-    }
+    [EnumMember(Value = "everyone")] EveryoneMentions
 }
