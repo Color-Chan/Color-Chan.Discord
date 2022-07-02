@@ -1,4 +1,5 @@
-﻿using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+﻿using Color_Chan.Discord.Core.Common.API.DataModels;
+using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Message;
 
@@ -64,6 +65,11 @@ public interface IDiscordInteraction
     ///     For components, the message they were attached to.
     /// </summary>
     IDiscordMessage? Message { get; init; }
+    
+    /// <summary>
+    ///     Permissions the app or bot has within the channel the interaction was sent from.
+    /// </summary>
+    DiscordPermission? Permissions { get; init; }
 
     /// <summary>
     ///     Checks whether or not the interaction <see cref="RequestType" /> is

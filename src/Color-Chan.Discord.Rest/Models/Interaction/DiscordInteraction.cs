@@ -1,4 +1,5 @@
-﻿using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+﻿using Color_Chan.Discord.Core.Common.API.DataModels;
+using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -23,6 +24,7 @@ public record DiscordInteraction : IDiscordInteraction
         Token = data.Token;
         Versions = data.Versions;
         if (data.Message is not null) Message = new DiscordMessage(data.Message);
+        if (data.Permissions is not null) Permissions = data.Permissions;
     }
 
     /// <inheritdoc />
@@ -59,8 +61,8 @@ public record DiscordInteraction : IDiscordInteraction
     public IDiscordMessage? Message { get; init; }
 
     /// <inheritdoc />
-    public bool IsPingInteraction()
-    {
-        return RequestType == DiscordInteractionRequestType.Ping;
-    }
+    public DiscordPermission? Permissions { get; init; }
+
+    /// <inheritdoc />
+    public bool IsPingInteraction() => RequestType == DiscordInteractionRequestType.Ping;
 }
