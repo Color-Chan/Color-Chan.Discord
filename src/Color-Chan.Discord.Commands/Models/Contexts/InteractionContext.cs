@@ -1,3 +1,4 @@
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -43,4 +44,7 @@ public class InteractionContext : IInteractionContext
 
     /// <inheritdoc />
     public IDiscordChannel? Channel { get; init; }
+    
+    /// <inheritdoc />
+    public DiscordPermission? Permissions { get; init; }
 }

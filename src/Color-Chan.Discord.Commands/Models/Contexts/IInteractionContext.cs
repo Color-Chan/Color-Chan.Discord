@@ -1,4 +1,5 @@
 using Color_Chan.Discord.Commands.Configurations;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -88,4 +89,9 @@ public interface IInteractionContext
     ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild" /> is disabled.
     /// </remarks>
     IDiscordChannel? Channel { get; init; }
+    
+    /// <summary>
+    ///     Permissions the app or bot has within the channel the interaction was sent from.
+    /// </summary>
+    DiscordPermission? Permissions { get; init; }
 }
