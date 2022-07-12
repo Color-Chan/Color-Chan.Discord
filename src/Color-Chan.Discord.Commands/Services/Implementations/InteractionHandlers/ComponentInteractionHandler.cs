@@ -57,31 +57,11 @@ public class ComponentInteractionHandler : IComponentInteractionHandler
     /// <inheritdoc />
     public async Task<InternalInteractionResponse> HandleComponentInteractionAsync(IDiscordInteraction interaction)
     {
-        if (interaction.Data is null)
-        {
-            throw new ArgumentNullException(nameof(interaction.Data), $"{nameof(interaction.Data)} can not be null for a component interaction!");
-        }
+        ArgumentNullException.ThrowIfNull(interaction.Data);
+        ArgumentNullException.ThrowIfNull(interaction.Data.CustomId);
 
-        if (interaction.Data.CustomId is null)
-        {
-            throw new ArgumentNullException(nameof(interaction.Data), $"{nameof(interaction.Data.CustomId)} can not be null for a component interaction!");
-        }
-
-        IDiscordGuild? guild = null;
-        if (_options.EnableAutoGetGuild && interaction.GuildId is not null)
-        {
-            var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
-            guild = guildResult.Entity;
-            _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(), interaction.GuildId.Value.ToString());
-        }
-
-        IDiscordChannel? channel = null;
-        if (_options.EnableAutoGetChannel && interaction.ChannelId is not null)
-        {
-            var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
-            channel = channelResult.Entity;
-            _logger.LogDebug("Interaction: {Id} : Fetched channel data {ChannelId}", interaction.Id.ToString(), interaction.ChannelId.Value.ToString());
-        }
+        var guild = await GetGuildAsync(interaction);
+        var channel = await GetChannelAsync(interaction);
 
         ComponentContext context = new()
         {
@@ -98,16 +78,7 @@ public class ComponentInteractionHandler : IComponentInteractionHandler
             Guild = guild
         };
 
-        var customId = context.Data.CustomId;
-        if (customId.Contains(_options.CustomIdDataSeparator))
-        {
-            _logger.LogDebug("Interaction: {Id} : Parsing custom id arguments", interaction.Id.ToString());
-            var customIdData = context.Data.CustomId.Split(_options.CustomIdDataSeparator).ToList();
-            customId = customIdData.First();
-
-            customIdData.RemoveAt(0);
-            context.Args.AddRange(customIdData);
-        }
+        var customId = GetCustomId(interaction, context);
 
         var componentInfo = _componentService.SearchComponent(customId);
         if (componentInfo is null)
@@ -161,5 +132,43 @@ public class ComponentInteractionHandler : IComponentInteractionHandler
         }
 
         throw new ComponentInteractionResultException($"Component interaction request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
+    }
+    
+    private string GetCustomId(IDiscordInteraction interaction, IComponentContext context)
+    {
+        var customId = context.Data.CustomId!;
+        if (!customId.Contains(_options.CustomIdDataSeparator))
+        {
+            return customId;
+        }
+
+        _logger.LogDebug("Interaction: {Id} : Parsing custom id arguments", interaction.Id.ToString());
+        var customIdData = context.Data.CustomId!.Split(_options.CustomIdDataSeparator).ToList();
+        customId = customIdData.First();
+
+        customIdData.RemoveAt(0);
+        context.Args.AddRange(customIdData);
+
+        return customId;
+    }
+
+    private async Task<IDiscordChannel?> GetChannelAsync(IDiscordInteraction interaction)
+    {
+        if (!_options.EnableAutoGetChannel || interaction.ChannelId is null)
+            return null;
+
+        var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
+        _logger.LogDebug("Interaction: {Id} : Fetched channel data {ChannelId}", interaction.Id.ToString(), interaction.ChannelId.Value.ToString());
+        return channelResult.Entity;
+    }
+
+    private async Task<IDiscordGuild?> GetGuildAsync(IDiscordInteraction interaction)
+    {
+        if (!_options.EnableAutoGetGuild || interaction.GuildId is null)
+            return null;
+
+        var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
+        _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(), interaction.GuildId.Value.ToString());
+        return guildResult.Entity;
     }
 }

@@ -58,26 +58,10 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
     /// <inheritdoc />
     public async Task<InternalInteractionResponse> HandleSlashCommandAsync(IDiscordInteraction interaction)
     {
-        if (interaction.Data is null)
-        {
-            throw new ArgumentNullException(nameof(interaction.Data), $"{nameof(interaction.Data)} can not be null for a slash command!");
-        }
+        ArgumentNullException.ThrowIfNull(interaction.Data);
 
-        IDiscordGuild? guild = null;
-        if (_slashCommandConfiguration.EnableAutoGetGuild && interaction.GuildId is not null)
-        {
-            var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
-            guild = guildResult.Entity;
-            _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(), interaction.GuildId.Value.ToString());
-        }
-
-        IDiscordChannel? channel = null;
-        if (_slashCommandConfiguration.EnableAutoGetChannel && interaction.ChannelId is not null)
-        {
-            var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
-            channel = channelResult.Entity;
-            _logger.LogDebug("Interaction: {Id} : Fetched channel data {ChannelId}", interaction.Id.ToString(), interaction.ChannelId.Value.ToString());
-        }
+        var guild = await GetGuildAsync(interaction);
+        var channel = await GetChannelAsync(interaction);
 
         ISlashCommandContext context = new SlashCommandContext
         {
@@ -210,5 +194,25 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
         }
 
         throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
+    }
+    
+    private async Task<IDiscordChannel?> GetChannelAsync(IDiscordInteraction interaction)
+    {
+        if (!_slashCommandConfiguration.EnableAutoGetChannel || interaction.ChannelId is null)
+            return null;
+
+        var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
+        _logger.LogDebug("Interaction: {Id} : Fetched channel data {ChannelId}", interaction.Id.ToString(), interaction.ChannelId.Value.ToString());
+        return channelResult.Entity;
+    }
+
+    private async Task<IDiscordGuild?> GetGuildAsync(IDiscordInteraction interaction)
+    {
+        if (!_slashCommandConfiguration.EnableAutoGetGuild || interaction.GuildId is null)
+            return null;
+
+        var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
+        _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(), interaction.GuildId.Value.ToString());
+        return guildResult.Entity;
     }
 }
