@@ -34,17 +34,4 @@ public interface ISlashCommandOptionBuildService
     /// </returns>
     /// <exception cref="UpdateSlashCommandException">Thrown when the command exceeds the maximum allowed options.</exception>
     IEnumerable<DiscordApplicationCommandOptionData>? BuildSlashCommandsOptions(IEnumerable<ISlashCommandOptionInfo>? commandOptionInfos);
-
-    /// <summary>
-    ///     Builds the choices for a command option.
-    /// </summary>
-    /// <param name="choicePairs">
-    ///     The <see cref="IEnumerable{T}" /> of <see cref="KeyValuePair{TKey,TValue}" />
-    ///     where the key is the choice name and the value is the choice value.
-    /// </param>
-    /// <returns>
-    ///     The generated <see cref="IEnumerable{T}" /> of <see cref="DiscordApplicationCommandOptionChoiceData" />.
-    /// </returns>
-    /// <exception cref="UpdateSlashCommandException">Thrown when the command options exceeds the maximum allowed choices.</exception>
-    IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs);
 }

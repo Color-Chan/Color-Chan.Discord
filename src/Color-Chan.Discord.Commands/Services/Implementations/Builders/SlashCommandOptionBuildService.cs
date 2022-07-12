@@ -87,21 +87,11 @@ public class SlashCommandOptionBuildService : ISlashCommandOptionBuildService
         return options;
     }
 
-    /// <inheritdoc />
-    public IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs)
+    private IEnumerable<DiscordApplicationCommandOptionChoiceData>? BuildChoiceData(IEnumerable<KeyValuePair<string, object>>? choicePairs)
     {
         if (choicePairs is null) return null;
 
-        var choices = new List<DiscordApplicationCommandOptionChoiceData>();
-
-        foreach (var choicePair in choicePairs)
-        {
-            choices.Add(new DiscordApplicationCommandOptionChoiceData
-            {
-                Name = choicePair.Key,
-                Value = choicePair.Value
-            });
-        }
+        var choices = choicePairs.Select(choicePair => new DiscordApplicationCommandOptionChoiceData { Name = choicePair.Key, Value = choicePair.Value }).ToList();
 
         if (choices.Count > MaxCommandOptionChoices) throw new UpdateSlashCommandException($"A slash command option can not have more then {MaxCommandOptionChoices} choices.");
 
