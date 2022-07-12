@@ -8,7 +8,7 @@ using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Services;
-using Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers;
+using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
@@ -24,7 +24,7 @@ using Microsoft.Extensions.Options;
 using Moq;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Commands.Tests.Services.Implementations.InteractionHandlers;
+namespace Color_Chan.Discord.Commands.Tests.Services.Implementations;
 
 [TestFixture]
 public class DiscordSlashCommandHandlerTests
@@ -118,7 +118,7 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProvider = new ServiceCollection()
-                              .AddInteractionPipeline<ResolvedPipeline>()
+                              .AddSlashCommandPipeline<ResolvedPipeline>()
                               .BuildServiceProvider();
         var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
                                                      _restChannelMock.Object, _options);
@@ -170,8 +170,8 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProvider = new ServiceCollection()
-                              .AddInteractionPipeline<InnerPipeline>()
-                              .AddInteractionPipeline<OuterPipeline>()
+                              .AddSlashCommandPipeline<InnerPipeline>()
+                              .AddSlashCommandPipeline<OuterPipeline>()
                               .BuildServiceProvider();
         var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
                                                      _restChannelMock.Object, _options);
@@ -204,8 +204,8 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProvider = new ServiceCollection()
-                              .AddInteractionPipeline<InnerPipeline>()
-                              .AddInteractionPipeline<OuterPipeline>()
+                              .AddSlashCommandPipeline<InnerPipeline>()
+                              .AddSlashCommandPipeline<OuterPipeline>()
                               .BuildServiceProvider();
         var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
                                                      _restChannelMock.Object, _options);
@@ -246,8 +246,8 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProvider = new ServiceCollection()
-                              .AddInteractionPipeline<InnerPipeline>()
-                              .AddInteractionPipeline<OuterPipeline>()
+                              .AddSlashCommandPipeline<InnerPipeline>()
+                              .AddSlashCommandPipeline<OuterPipeline>()
                               .BuildServiceProvider();
         var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
                                                      _restChannelMock.Object, _options);
@@ -291,12 +291,11 @@ public class DiscordSlashCommandHandlerTests
         _orderTestMessage.Should().Be("outer_inner_command_inner_outer");
     }
 
-    private class OuterPipeline : IInteractionPipeline
+    private class OuterPipeline : ISlashCommandPipeline
     {
-        public async Task<Result<IDiscordInteractionResponse>> HandleAsync(IInteractionContext context, InteractionHandlerDelegate next)
+        public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
         {
-            var slashContext = context as SlashCommandContext;
-            slashContext!.SlashCommandName.Should().NotBeNull();
+            context.SlashCommandName.Should().NotBeNull();
 
             _orderTestMessage += "outer_";
             var result = await next();
@@ -305,12 +304,11 @@ public class DiscordSlashCommandHandlerTests
         }
     }
 
-    private class InnerPipeline : IInteractionPipeline
+    private class InnerPipeline : ISlashCommandPipeline
     {
-        public async Task<Result<IDiscordInteractionResponse>> HandleAsync(IInteractionContext context, InteractionHandlerDelegate next)
+        public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
         {
-            var slashContext = context as SlashCommandContext;
-            slashContext!.SlashCommandName.Should().NotBeNull();
+            context.SlashCommandName.Should().NotBeNull();
 
             _orderTestMessage += "inner_";
             var result = await next();
@@ -320,9 +318,9 @@ public class DiscordSlashCommandHandlerTests
         }
     }
 
-    private class ResolvedPipeline : IInteractionPipeline
+    private class ResolvedPipeline : ISlashCommandPipeline
     {
-        public async Task<Result<IDiscordInteractionResponse>> HandleAsync(IInteractionContext context, InteractionHandlerDelegate next)
+        public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
         {
             var role = context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == 865723094761078804).Value;
 

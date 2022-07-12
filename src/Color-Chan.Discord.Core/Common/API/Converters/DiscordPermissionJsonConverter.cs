@@ -14,9 +14,9 @@ public class DiscordPermissionJsonConverter : JsonConverter<DiscordPermission>
     /// <inheritdoc />
     public override DiscordPermission Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var permissionSpan = reader.GetString().AsSpan();
+        var permissionString = reader.GetString();
 
-        if (!permissionSpan.TryParseDiscordGuildPermission(out var permissions)) throw new JsonException("Failed to parse DiscordGuildPermission");
+        if (!permissionString.TryParseDiscordGuildPermission(out var permissions)) throw new JsonException("Failed to parse DiscordGuildPermission");
 
         return permissions.Value;
     }

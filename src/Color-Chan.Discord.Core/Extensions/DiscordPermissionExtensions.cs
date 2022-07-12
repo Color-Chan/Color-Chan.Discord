@@ -18,7 +18,7 @@ public static class DiscordPermissionExtensions
                                                    DiscordPermission.MuteMembers | DiscordPermission.DeafenMembers | DiscordPermission.MoveMembers | DiscordPermission.UseVoiceActivity |
                                                    DiscordPermission.ManageWebhooks | DiscordPermission.UseApplicationCommands | DiscordPermission.RequestToSpeak |
                                                    DiscordPermission.ManageThreads | DiscordPermission.UsePublicThreads | DiscordPermission.UsePrivateThreads |
-                                                   DiscordPermission.UseExternalStickers | DiscordPermission.SendMessagesInThreads | DiscordPermission.UseEmbeddedActivities;
+                                                   DiscordPermission.UseExternalStickers;
 
     /// <summary>
     ///     Convert a permission <see cref="ReadOnlySpan{T}" /> of <see cref="char" /> into a
@@ -61,37 +61,13 @@ public static class DiscordPermissionExtensions
     /// </param>
     /// <param name="permission">The converted <see cref="DiscordPermission" />.</param>
     /// <returns>
-    ///     Whether or not the <see cref="permissionString" /> has been converted to a <see cref="DiscordPermission" />.
+    ///     Whether or not the <paramref name="permissionString" /> has been converted to a <see cref="DiscordPermission" />.
     /// </returns>
     public static bool TryParseDiscordGuildPermission(this string? permissionString, [NotNullWhen(true)] out DiscordPermission? permission)
     {
         permission = default;
 
         if (ulong.TryParse(permissionString, out var permissionTemp))
-        {
-            permission = (DiscordPermission)Enum.ToObject(typeof(DiscordPermission), permissionTemp);
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    ///     Try to parse a <see cref="ReadOnlySpan{T}" /> of <see cref="char" /> into a <see cref="DiscordPermission" />.
-    /// </summary>
-    /// <param name="permissionSpan">
-    ///     The <see cref="ReadOnlySpan{T}" /> of <see cref="char" /> that will be converter into a
-    ///     <see cref="DiscordPermission" />.
-    /// </param>
-    /// <param name="permission">The converted <see cref="DiscordPermission" />.</param>
-    /// <returns>
-    ///     Whether or not the <see cref="permissionSpan" /> has been converted to a <see cref="DiscordPermission" />.
-    /// </returns>
-    public static bool TryParseDiscordGuildPermission(this ReadOnlySpan<char> permissionSpan, [NotNullWhen(true)] out DiscordPermission? permission)
-    {
-        permission = default;
-
-        if (ulong.TryParse(permissionSpan, out var permissionTemp))
         {
             permission = (DiscordPermission)Enum.ToObject(typeof(DiscordPermission), permissionTemp);
             return true;

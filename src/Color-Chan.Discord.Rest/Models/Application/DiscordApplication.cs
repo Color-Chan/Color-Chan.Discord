@@ -3,8 +3,13 @@ using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Rest.Models.Application;
 
+/// <inheritdoc />
 public class DiscordApplication : IDiscordApplication
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordApplication" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordApplication" />.</param>
     public DiscordApplication(DiscordApplicationData data)
     {
         Id = data.Id;

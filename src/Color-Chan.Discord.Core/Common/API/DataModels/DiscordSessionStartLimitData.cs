@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels;
 
+/// <summary>
+///     Represents a discord Session start limit Structure API model.
+///     Docs: https://discord.com/developers/docs/topics/gateway#session-start-limit-object-session-start-limit-structure
+/// </summary>
 public record DiscordSessionStartLimitData
 {
     /// <summary>

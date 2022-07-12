@@ -4,8 +4,13 @@ using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Rest.Models;
 
+/// <inheritdoc cref="IDiscordAllowedMentions" />
 public record DiscordAllowedMentions : IDiscordAllowedMentions
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordAllowedMentions" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordAllowedMentions" />.</param>
     public DiscordAllowedMentions(DiscordAllowedMentionsData data)
     {
         Allowed = data.Allowed;

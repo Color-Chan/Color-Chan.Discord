@@ -7,12 +7,20 @@ using Color_Chan.Discord.Rest.Models.Select;
 
 namespace Color_Chan.Discord.Rest.Models;
 
+/// <inheritdoc cref="IDiscordComponent" />
 public record DiscordComponent : IDiscordComponent
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordComponentData" />
+    /// </summary>
     public DiscordComponent()
     {
     }
 
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordComponentData" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordComponentData" />.</param>
     public DiscordComponent(DiscordComponentData data)
     {
         Type = data.Type;

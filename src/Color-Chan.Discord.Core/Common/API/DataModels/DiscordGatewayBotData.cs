@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels;
 
+/// <summary>
+///     Represents a discord Gateway bot API model.
+///     Docs: https://discord.com/developers/docs/topics/gateway#stage-instance-delete-json-response
+/// </summary>
 public record DiscordGatewayBotData
 {
     /// <summary>

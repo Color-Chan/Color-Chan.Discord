@@ -8,6 +8,10 @@ using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Core.Common.Models.Message;
 
+/// <summary>
+///     Represents a discord Message Structure API model.
+///     Docs: https://discord.com/developers/docs/resources/channel#message-object-message-structure
+/// </summary>
 public interface IDiscordMessage
 {
     /// <summary>

@@ -2,6 +2,11 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.Models.Application;
 
+/// <summary>
+///     Represents a discord Application Command Permissions Structure API model.
+///     Docs:
+///     https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure
+/// </summary>
 public interface IDiscordApplicationCommandPermissions
 {
     /// <summary>

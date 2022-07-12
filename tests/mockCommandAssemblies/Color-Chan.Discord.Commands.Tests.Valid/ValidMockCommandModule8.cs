@@ -32,7 +32,7 @@ public class ValidMockCommandModule8 : SlashCommandModule
     {
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 }

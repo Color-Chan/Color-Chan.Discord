@@ -3,6 +3,11 @@ using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild;
 
+/// <summary>
+///     Represents a discord Guild Application Command Permissions Structure API model.
+///     Docs:
+///     https://discord.com/developers/docs/interactions/slash-commands#application-command-permissions-object-guild-application-command-permissions-structure
+/// </summary>
 public interface IDiscordGuildApplicationCommandPermissions
 {
     /// <summary>

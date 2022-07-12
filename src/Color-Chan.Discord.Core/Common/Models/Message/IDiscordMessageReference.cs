@@ -1,5 +1,9 @@
 namespace Color_Chan.Discord.Core.Common.Models.Message;
 
+/// <summary>
+///     Represents a discord Message Reference Structure API model.
+///     Docs: https://discord.com/developers/docs/resources/channel#message-reference-object-message-reference-structure
+/// </summary>
 public interface IDiscordMessageReference
 {
     /// <summary>

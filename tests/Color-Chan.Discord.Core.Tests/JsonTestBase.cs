@@ -68,7 +68,7 @@ public class JsonTestBase<TEntity> where TEntity : new()
     }
 
     /// <summary>
-    ///     Get the test JSON files for the <see cref="TEntity" />.
+    ///     Get the test JSON files for the <typeparamref name="TEntity" />.
     /// </summary>
     protected static IEnumerable<string> GetFiles()
     {

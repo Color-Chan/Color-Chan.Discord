@@ -3,12 +3,20 @@ using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Rest.Models.Embed;
 
+/// <inheritdoc cref="IDiscordEmbedImage" />
 public record DiscordEmbedImage : IDiscordEmbedImage
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordEmbedImage" />
+    /// </summary>
     public DiscordEmbedImage()
     {
     }
 
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordEmbedImage" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordEmbedImage" />.</param>
     public DiscordEmbedImage(DiscordEmbedImageData data)
     {
         Url = data.Url;

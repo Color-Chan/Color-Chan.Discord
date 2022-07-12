@@ -24,7 +24,7 @@ public class ValidMockCommandModule6 : SlashCommandModule
     {
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource,
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource,
             Data = new DiscordInteractionCallback
             {
                 Content = $"{nameof(roleName)}:{roleName}:{nameof(number)}:{number.ToString()}"

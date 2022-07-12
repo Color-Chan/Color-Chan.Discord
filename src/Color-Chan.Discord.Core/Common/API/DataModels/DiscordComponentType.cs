@@ -1,5 +1,9 @@
 ﻿namespace Color_Chan.Discord.Core.Common.API.DataModels;
 
+/// <summary>
+///     Represents a discord component types API model.
+///     Docs: https://discord.com/developers/docs/interactions/message-components#component-object-component-types
+/// </summary>
 public enum DiscordComponentType
 {
     /// <summary>

@@ -1,5 +1,9 @@
 namespace Color_Chan.Discord.Core.Common.Models.Application;
 
+/// <summary>
+///     Represents a Application Structure API model.
+///     Docs: https://discord.com/developers/docs/resources/application#application-object-application-structure
+/// </summary>
 public interface IDiscordApplication
 {
     /// <summary>

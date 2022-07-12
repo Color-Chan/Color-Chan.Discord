@@ -24,7 +24,7 @@ public class ValidMockCommandModule5 : SlashCommandModule
     {
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 
@@ -35,7 +35,7 @@ public class ValidMockCommandModule5 : SlashCommandModule
     {
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 
@@ -48,7 +48,7 @@ public class ValidMockCommandModule5 : SlashCommandModule
     {
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 
@@ -59,7 +59,7 @@ public class ValidMockCommandModule5 : SlashCommandModule
     {
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 }

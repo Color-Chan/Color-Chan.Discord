@@ -25,7 +25,7 @@ public class ValidMockCommandModule4 : SlashCommandModule
         _logger.LogInformation("Command10 executed");
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 
@@ -35,7 +35,7 @@ public class ValidMockCommandModule4 : SlashCommandModule
         _logger.LogInformation("Command11 executed");
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 
@@ -45,7 +45,7 @@ public class ValidMockCommandModule4 : SlashCommandModule
         _logger.LogInformation("Command12 executed");
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 
@@ -55,7 +55,7 @@ public class ValidMockCommandModule4 : SlashCommandModule
         _logger.LogInformation("Command13 executed");
         return FromSuccess(new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.ChannelMessageWithSource
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
         });
     }
 }

@@ -3,6 +3,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.Models;
 
+/// <summary>
+///     Represents a discord emoji structure API model.
+///     Docs: https://discord.com/developers/docs/resources/emoji#emoji-object-emoji-structure
+/// </summary>
 public interface IDiscordEmoji
 {
     /// <summary>

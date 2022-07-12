@@ -3,12 +3,20 @@ using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Rest.Models.Embed;
 
+/// <inheritdoc cref="IDiscordEmbedField" />
 public record DiscordEmbedField : IDiscordEmbedField
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordEmbedField" />
+    /// </summary>
     public DiscordEmbedField()
     {
     }
 
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordEmbedField" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordEmbedField" />.</param>
     public DiscordEmbedField(DiscordEmbedFieldData data)
     {
         Name = data.Name;

@@ -6,7 +6,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 /// <summary>
 ///     Represents a discord Guild Structure API model.
-///     https://discord.com/developers/docs/resources/guild#guild-object-guild-structure
+///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-guild-structure
 /// </summary>
 public record DiscordGuildData
 {
@@ -85,7 +85,7 @@ public record DiscordGuildData
     public ulong? AfkChannelId { get; init; }
 
     /// <summary>
-    ///     Ffk timeout in seconds.
+    ///     Afk timeout in seconds.
     /// </summary>
     [JsonPropertyName("afk_timeout")]
     public int AfkTimeout { get; init; }

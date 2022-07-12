@@ -1,55 +1,41 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels;
 
+/// <inheritdoc cref="IDiscordEmoji" />
 public record DiscordEmojiData
 {
-    /// <summary>
-    ///     Emoji id.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmoji.Id" />
     [JsonPropertyName("id")]
     public ulong Id { get; init; }
 
-    /// <summary>
-    ///     Emoji name
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmoji.Name" />
     [JsonPropertyName("name")]
     public string Name { get; init; } = null!;
 
-    /// <summary>
-    ///     Roles allowed to use this emoji
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmoji.RoleIds" />
     [JsonPropertyName("roles")]
     public IEnumerable<ulong>? RoleIds { get; init; }
 
-    /// <summary>
-    ///     User that created this emoji
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmoji.User" />
     [JsonPropertyName("user")]
     public DiscordUserData? User { get; init; }
 
-    /// <summary>
-    ///     Whether this emoji must be wrapped in colons.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmoji.RequireColons" />
     [JsonPropertyName("require_colons")]
     public bool? RequireColons { get; init; }
 
-    /// <summary>
-    ///     Whether this emoji is managed.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmoji.IsManaged" />
     [JsonPropertyName("managed")]
     public bool? IsManaged { get; init; }
 
-    /// <summary>
-    ///     Whether this emoji is animated.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmoji.IsAnimated" />
     [JsonPropertyName("animated")]
     public bool? IsAnimated { get; init; }
 
-    /// <summary>
-    ///     Whether this emoji can be used, may be false due to loss of Server Boosts.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmoji.IsAvailable" />
     [JsonPropertyName("available")]
     public bool? IsAvailable { get; init; }
 }

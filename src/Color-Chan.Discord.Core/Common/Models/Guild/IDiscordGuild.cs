@@ -73,7 +73,7 @@ public interface IDiscordGuild
     ulong? AfkChannelId { get; set; }
 
     /// <summary>
-    ///     Ffk timeout in seconds.
+    ///     Afk timeout in seconds.
     /// </summary>
     int AfkTimeout { get; set; }
 

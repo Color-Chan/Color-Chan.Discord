@@ -2,6 +2,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.Models;
 
+/// <summary>
+///     Represents a Stage Instance Structure API model.
+///     Docs: https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-stage-instance-structure
+/// </summary>
 public interface IDiscordStageInstance
 {
     /// <summary>

@@ -4,7 +4,7 @@ using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 
-namespace Color_Chan.Discord.Commands.Services.InteractionHandlers;
+namespace Color_Chan.Discord.Commands.Services;
 
 /// <summary>
 ///     Handles all incoming component interactions requests.

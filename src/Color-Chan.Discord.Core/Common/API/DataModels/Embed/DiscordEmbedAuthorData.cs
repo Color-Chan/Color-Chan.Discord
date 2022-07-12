@@ -1,34 +1,24 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Embed;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 
-/// <summary>
-///     Represents a discord Embed Author  Structure API model.
-///     https://discord.com/developers/docs/resources/channel#embed-object-embed-author-structure
-/// </summary>
+/// <inheritdoc cref="IDiscordEmbedAuthor" />
 public record DiscordEmbedAuthorData
 {
-    /// <summary>
-    ///     Name of author.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmbedAuthor.Name" />
     [JsonPropertyName("name")]
     public string? Name { get; init; }
 
-    /// <summary>
-    ///     Url of author.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmbedAuthor.Url" />
     [JsonPropertyName("url")]
     public string? Url { get; init; }
 
-    /// <summary>
-    ///     Url of author icon (only supports http(s) and attachments).
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmbedAuthor.IconUrl" />
     [JsonPropertyName("icon_url")]
     public string? IconUrl { get; init; }
 
-    /// <summary>
-    ///     A proxied url of author icon.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordEmbedAuthor.ProxyIconUrl" />
     [JsonPropertyName("proxy_icon_url")]
     public string? ProxyIconUrl { get; init; }
 }

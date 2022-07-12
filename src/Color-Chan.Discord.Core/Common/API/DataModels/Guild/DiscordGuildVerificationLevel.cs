@@ -2,7 +2,7 @@
 
 /// <summary>
 ///     Represents a discord Verification Level API model.
-///     https://discord.com/developers/docs/resources/guild#guild-object-verification-level
+///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-verification-level
 /// </summary>
 public enum DiscordGuildVerificationLevel : byte
 {

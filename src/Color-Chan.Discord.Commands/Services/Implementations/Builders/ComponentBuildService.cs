@@ -68,8 +68,18 @@ public class ComponentBuildService : IComponentBuildService
     /// </returns>
     private IEnumerable<TypeInfo> GetSlashComponentModules(Assembly assembly)
     {
-        return assembly.DefinedTypes.Where(typeInfo => typeInfo.IsPublic || typeInfo.IsNestedPublic)
-                       .Where(IsValidModuleDefinition).ToList();
+        var result = new List<TypeInfo>();
+
+        foreach (var typeInfo in assembly.DefinedTypes)
+        {
+            if (!typeInfo.IsPublic && !typeInfo.IsNestedPublic)
+                continue;
+
+            if (IsValidModuleDefinition(typeInfo))
+                result.Add(typeInfo);
+        }
+
+        return result;
     }
 
     /// <summary>

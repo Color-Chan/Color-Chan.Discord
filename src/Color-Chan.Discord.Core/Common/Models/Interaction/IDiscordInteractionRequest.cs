@@ -5,6 +5,11 @@ using Color_Chan.Discord.Core.Common.Models.Select;
 
 namespace Color_Chan.Discord.Core.Common.Models.Interaction;
 
+/// <summary>
+///     Represents a discord Interaction Request Structure API model.
+///     Docs:
+///     https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-data-structure
+/// </summary>
 public interface IDiscordInteractionRequest
 {
     /// <summary>

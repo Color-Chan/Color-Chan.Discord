@@ -11,6 +11,10 @@ namespace Color_Chan.Discord.Rest.Models.Guild;
 /// <inheritdoc />
 public class DiscordGuild : IDiscordGuild
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordGuild" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordGuild" />.</param>
     public DiscordGuild(DiscordGuildData data)
     {
         Id = data.Id;
@@ -202,6 +206,7 @@ public class DiscordGuild : IDiscordGuild
     /// <inheritdoc />
     public int? ApproximatePresenceCount { get; set; }
 
+    /// <inheritdoc />
     public IDiscordGuildWelcomeScreen? WelcomeScreen { get; set; }
 
     /// <inheritdoc />

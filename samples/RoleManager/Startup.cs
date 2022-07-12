@@ -37,7 +37,7 @@ public class Startup
         services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999, config); // <---
 
         // Register your custom pipelines if any.
-        services.AddInteractionPipeline<PerformancePipeline>(); // <---
+        services.AddSlashCommandPipeline<PerformancePipeline>(); // <---
 
         services.AddControllers();
     }

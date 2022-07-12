@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Application;
 
+/// <summary>
+///     Represents a discord Create Global Application Command API request model.
+///     Docs: https://discord.com/developers/docs/interactions/application-commands#endpoints-json-params
+/// </summary>
 public record DiscordCreateApplicationCommand
 {
     /// <summary>

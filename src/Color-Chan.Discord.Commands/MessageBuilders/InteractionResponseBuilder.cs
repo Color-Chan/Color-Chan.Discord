@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Embed;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -40,7 +41,7 @@ public class InteractionResponseBuilder
     /// <summary>
     ///     Interaction application command callback data flags
     /// </summary>
-    private DiscordInteractionCallbackFlags? _flags;
+    private DiscordMessageFlags? _flags;
 
     /// <summary>
     ///     Whether or not the response is TTS.
@@ -62,10 +63,12 @@ public class InteractionResponseBuilder
     /// <summary>
     ///     Makes the response only visible to the person that has used the slash command.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    ///     The updated <see cref="InteractionResponseBuilder" />.
+    /// </returns>
     public InteractionResponseBuilder MakePrivate()
     {
-        _flags = DiscordInteractionCallbackFlags.Ephemeral;
+        _flags = DiscordMessageFlags.Ephemeral;
         return this;
     }
 
@@ -162,11 +165,11 @@ public class InteractionResponseBuilder
     /// <returns>
     ///     The build <see cref="IDiscordInteractionResponse" />.
     /// </returns>
-    public IDiscordInteractionResponse Build(DiscordInteractionResponseType? type = null)
+    public IDiscordInteractionResponse Build(DiscordInteractionCallbackType? type = null)
     {
         return new DiscordInteractionResponse
         {
-            Type = type ?? DiscordInteractionResponseType.ChannelMessageWithSource,
+            Type = type ?? DiscordInteractionCallbackType.ChannelMessageWithSource,
             Data = new DiscordInteractionCallback
             {
                 Components = _components,

@@ -7,8 +7,13 @@ using Color_Chan.Discord.Rest.Models.Application;
 
 namespace Color_Chan.Discord.Rest.Models.Guild;
 
+/// <inheritdoc cref="IDiscordGuildApplicationCommandPermissions" />
 public class DiscordGuildApplicationCommandPermissions : IDiscordGuildApplicationCommandPermissions
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordGuildApplicationCommandPermissions" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordGuildApplicationCommandPermissions" />.</param>
     public DiscordGuildApplicationCommandPermissions(DiscordGuildApplicationCommandPermissionsData data)
     {
         CommandId = data.CommandId;

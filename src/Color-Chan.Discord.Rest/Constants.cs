@@ -10,7 +10,7 @@ internal static class Constants
     /// <summary>
     ///     The Version that will be used by <see cref="DiscordApiUrl" />.
     /// </summary>
-    internal static int DiscordBaseApiVersion => 9;
+    internal static int DiscordBaseApiVersion => 10;
 
     /// <summary>
     ///     The URL to the discord api with the version from <see cref="DiscordBaseApiVersion" />.

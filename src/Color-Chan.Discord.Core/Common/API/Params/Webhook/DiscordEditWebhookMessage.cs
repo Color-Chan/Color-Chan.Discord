@@ -5,6 +5,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Webhook;
 
+/// <summary>
+///     Represents a discord Edit Webhook Message API request model.
+///     Docs: https://discord.com/developers/docs/resources/webhook#webhook-object-jsonform-params
+/// </summary>
 public record DiscordEditWebhookMessage
 {
     /// <summary>

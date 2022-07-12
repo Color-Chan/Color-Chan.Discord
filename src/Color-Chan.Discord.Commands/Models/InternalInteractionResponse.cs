@@ -35,7 +35,7 @@ public class InternalInteractionResponse
     {
         return new InternalInteractionResponse(false, new DiscordInteractionResponse
         {
-            Type = DiscordInteractionResponseType.Pong,
+            Type = DiscordInteractionCallbackType.Pong,
             Data = null
         });
     }

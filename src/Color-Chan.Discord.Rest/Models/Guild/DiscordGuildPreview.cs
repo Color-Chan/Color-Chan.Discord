@@ -6,8 +6,13 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 
 namespace Color_Chan.Discord.Rest.Models.Guild;
 
+/// <inheritdoc cref="IDiscordGuildPreview" />
 public class DiscordGuildPreview : IDiscordGuildPreview
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordGuildPreview" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordGuildPreview" />.</param>
     public DiscordGuildPreview(DiscordGuildPreviewData data)
     {
         Id = data.Id;
@@ -26,7 +31,7 @@ public class DiscordGuildPreview : IDiscordGuildPreview
     public ulong Id { get; init; }
 
     /// <inheritdoc />
-    public string Name { get; init; } = null!;
+    public string Name { get; init; }
 
     /// <inheritdoc />
     public string? Icon { get; init; }

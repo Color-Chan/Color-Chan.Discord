@@ -8,7 +8,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Guild;
 
 /// <summary>
 ///     Represents a discord Create Guild API parameter model.
-///     https://discord.com/developers/docs/resources/guild#create-guild-json-params
+///     Docs: https://discord.com/developers/docs/resources/guild#create-guild-json-params
 /// </summary>
 public class DiscordCreateGuild
 {

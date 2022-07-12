@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Guild;
 
+/// <summary>
+///     Represents a discord Create Guild role API request model.
+///     Docs: https://discord.com/developers/docs/resources/guild#membership-screening-object-json-params
+/// </summary>
 public record DiscordCreateGuildRole
 {
     /// <summary>

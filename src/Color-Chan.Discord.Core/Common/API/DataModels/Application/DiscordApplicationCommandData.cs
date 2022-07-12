@@ -1,53 +1,37 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Application;
 
-/// <summary>
-///     Represents a discord Application Command Structure API model.
-///     https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
-/// </summary>
+/// <inheritdoc cref="IDiscordApplicationCommand" />
 public record DiscordApplicationCommandData
 {
-    /// <summary>
-    ///     Unique id of the command.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordApplicationCommand.Id" />
     [JsonPropertyName("id")]
     public ulong Id { get; init; }
 
-    /// <summary>
-    ///     Unique id of the parent application.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordApplicationCommand.ApplicationId" />
     [JsonPropertyName("application_id")]
     public ulong ApplicationId { get; init; }
 
-    /// <summary>
-    ///     Guild id of the command, if not global.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordApplicationCommand.GuildId" />
     [JsonPropertyName("guild_id")]
     public ulong? GuildId { get; init; }
 
-    /// <summary>
-    ///     1-32 lowercase character name matching ^[\w-]{1,32}$.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordApplicationCommand.Name" />
     [JsonPropertyName("name")]
     public string Name { get; init; } = null!;
 
-    /// <summary>
-    ///     1-100 character description.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordApplicationCommand.Description" />
     [JsonPropertyName("description")]
     public string Description { get; init; } = null!;
 
-    /// <summary>
-    ///     the parameters for the command.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordApplicationCommand.Options" />
     [JsonPropertyName("options")]
     public IEnumerable<DiscordApplicationCommandOptionData>? Options { get; init; }
 
-    /// <summary>
-    ///     Whether the command is enabled by default when the app is added to a guild.
-    /// </summary>
+    /// <inheritdoc cref="IDiscordApplicationCommand.DefaultPermission" />
     [JsonPropertyName("default_permission")]
     public bool? DefaultPermission { get; init; }
 }

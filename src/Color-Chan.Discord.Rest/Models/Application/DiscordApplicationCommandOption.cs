@@ -6,8 +6,13 @@ using Color_Chan.Discord.Core.Common.Models.Application;
 
 namespace Color_Chan.Discord.Rest.Models.Application;
 
+/// <inheritdoc cref="IDiscordApplicationCommandOption" />
 public record DiscordApplicationCommandOption : IDiscordApplicationCommandOption
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordApplicationCommandOptionData" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordApplicationCommandOptionData" />.</param>
     public DiscordApplicationCommandOption(DiscordApplicationCommandOptionData data)
     {
         Type = data.Type;

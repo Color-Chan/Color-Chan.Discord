@@ -4,7 +4,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 /// <summary>
 ///     Represents a discord System Channel Flags API model.
-///     https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags
+///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-system-channel-flags
 /// </summary>
 [Flags]
 public enum DiscordSystemChannelFlags

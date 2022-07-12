@@ -8,7 +8,6 @@ using Color_Chan.Discord.Commands.MessageBuilders;
 using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Commands.Models.Info;
-using Color_Chan.Discord.Commands.Services.InteractionHandlers;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.API.Rest;
@@ -20,7 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers;
+namespace Color_Chan.Discord.Commands.Services.Implementations;
 
 /// <inheritdoc />
 public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
@@ -59,10 +58,26 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
     /// <inheritdoc />
     public async Task<InternalInteractionResponse> HandleSlashCommandAsync(IDiscordInteraction interaction)
     {
-        ArgumentNullException.ThrowIfNull(interaction.Data);
+        if (interaction.Data is null)
+        {
+            throw new ArgumentNullException(nameof(interaction.Data), $"{nameof(interaction.Data)} can not be null for a slash command!");
+        }
 
-        var guild = await GetGuildAsync(interaction);
-        var channel = await GetChannelAsync(interaction);
+        IDiscordGuild? guild = null;
+        if (_slashCommandConfiguration.EnableAutoGetGuild && interaction.GuildId is not null)
+        {
+            var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
+            guild = guildResult.Entity;
+            _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(), interaction.GuildId.Value.ToString());
+        }
+
+        IDiscordChannel? channel = null;
+        if (_slashCommandConfiguration.EnableAutoGetChannel && interaction.ChannelId is not null)
+        {
+            var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
+            channel = channelResult.Entity;
+            _logger.LogDebug("Interaction: {Id} : Fetched channel data {ChannelId}", interaction.Id.ToString(), interaction.ChannelId.Value.ToString());
+        }
 
         ISlashCommandContext context = new SlashCommandContext
         {
@@ -75,7 +90,6 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
             Data = interaction.Data,
             InteractionId = interaction.Id,
             Token = interaction.Token,
-            Permissions = interaction.Permissions,
             Channel = channel,
             Guild = guild
         };
@@ -83,7 +97,7 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
         IEnumerable<IDiscordInteractionOption>? options = null;
 
         // Get the command name and the options.
-        if (interaction.Data.Options is null || !ContainsSubCommand(interaction))
+        if (interaction.Data.Options is null)
         {
             options = interaction.Data.Options;
             context.SlashCommandName = new[] { interaction.Data.Name };
@@ -151,7 +165,7 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
         {
             var acknowledgeResponse = new DiscordInteractionResponseData
             {
-                Type = DiscordInteractionResponseType.DeferredChannelMessageWithSource
+                Type = DiscordInteractionCallbackType.DeferredChannelMessageWithSource
             };
 
             var acknowledgeResult = await _restApplication.CreateInteractionResponseAsync(interaction.Id, interaction.Token, acknowledgeResponse).ConfigureAwait(false);
@@ -178,8 +192,8 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
         }
 
         // Execute the pipelines and the command.
-        var result = await _serviceProvider.GetServices<IInteractionPipeline>()
-                                           .Aggregate((InteractionHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
+        var result = await _serviceProvider.GetServices<ISlashCommandPipeline>()
+                                           .Aggregate((SlashCommandHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
 
         // Return the response.
         if (result.IsSuccessful)
@@ -196,34 +210,5 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
         }
 
         throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
-    }
-
-    private static bool ContainsSubCommand(IDiscordInteraction interaction)
-    {
-        if (interaction.Data?.Options is null)
-            return false;
-
-        return interaction.Data.Options.Select(x => x.Type).Contains(DiscordApplicationCommandOptionType.SubCommand) ||
-               interaction.Data.Options.Select(x => x.Type).Contains(DiscordApplicationCommandOptionType.SubCommandGroup);
-    }
-
-    private async Task<IDiscordChannel?> GetChannelAsync(IDiscordInteraction interaction)
-    {
-        if (!_slashCommandConfiguration.EnableAutoGetChannel || interaction.ChannelId is null)
-            return null;
-
-        var channelResult = await _restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
-        _logger.LogDebug("Interaction: {Id} : Fetched channel data {ChannelId}", interaction.Id.ToString(), interaction.ChannelId.Value.ToString());
-        return channelResult.Entity;
-    }
-
-    private async Task<IDiscordGuild?> GetGuildAsync(IDiscordInteraction interaction)
-    {
-        if (!_slashCommandConfiguration.EnableAutoGetGuild || interaction.GuildId is null)
-            return null;
-
-        var guildResult = await _restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
-        _logger.LogDebug("Interaction: {Id} : Fetched guild data {GuildId}", interaction.Id.ToString(), interaction.GuildId.Value.ToString());
-        return guildResult.Entity;
     }
 }

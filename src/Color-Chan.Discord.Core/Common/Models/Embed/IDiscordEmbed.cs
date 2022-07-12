@@ -5,6 +5,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 
 namespace Color_Chan.Discord.Core.Common.Models.Embed;
 
+/// <summary>
+///     Represents a discord Embed Object API model.
+///     Docs: https://discord.com/developers/docs/resources/channel#embed-object
+/// </summary>
 public interface IDiscordEmbed
 {
     /// <summary>

@@ -149,4 +149,38 @@ internal static class ApiResultConverters
 
         return Result<IReadOnlyList<IDiscordGuildMember>>.FromSuccess(list);
     }
+
+    internal static Result<IDiscordPartialGuild> ConvertResult(Result<DiscordPartialGuildData> result)
+    {
+        if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordPartialGuild>.FromError(null, result.ErrorResult);
+
+        return Result<IDiscordPartialGuild>.FromSuccess(new DiscordPartialGuild(result.Entity));
+    }
+
+    internal static Result<IReadOnlyList<IDiscordPartialGuild>> ConvertResult(Result<IReadOnlyList<DiscordPartialGuildData>> result)
+    {
+        if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordPartialGuild>>.FromError(null, result.ErrorResult);
+
+        var list = new List<IDiscordPartialGuild>();
+        foreach (var data in result.Entity) list.Add(new DiscordPartialGuild(data));
+
+        return Result<IReadOnlyList<IDiscordPartialGuild>>.FromSuccess(list);
+    }
+
+    internal static Result<IDiscordConnection> ConvertResult(Result<DiscordConnectionData> result)
+    {
+        if (!result.IsSuccessful || result.Entity is null) return Result<IDiscordConnection>.FromError(null, result.ErrorResult);
+
+        return Result<IDiscordConnection>.FromSuccess(new DiscordConnection(result.Entity));
+    }
+
+    internal static Result<IReadOnlyList<IDiscordConnection>> ConvertResult(Result<IReadOnlyList<DiscordConnectionData>> result)
+    {
+        if (!result.IsSuccessful || result.Entity is null) return Result<IReadOnlyList<IDiscordConnection>>.FromError(null, result.ErrorResult);
+
+        var list = new List<IDiscordConnection>();
+        foreach (var data in result.Entity) list.Add(new DiscordConnection(data));
+
+        return Result<IReadOnlyList<IDiscordConnection>>.FromSuccess(list);
+    }
 }

@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Guild;
 
+/// <summary>
+///     Represents a discord Modify Guild Role API request model.
+///     Docs: https://discord.com/developers/docs/resources/guild#modify-guild-role
+/// </summary>
 public record DiscordModifyGuildRole
 {
     /// <summary>

@@ -146,7 +146,7 @@ public class SlashCommandServiceTests
 
         // Assert
         result.IsSuccessful.Should().BeTrue();
-        result.Entity!.Type.Should().Be(DiscordInteractionResponseType.ChannelMessageWithSource);
+        result.Entity!.Type.Should().Be(DiscordInteractionCallbackType.ChannelMessageWithSource);
     }
 
     [TestCase("Command14")]
@@ -174,7 +174,7 @@ public class SlashCommandServiceTests
 
         // Assert
         result.IsSuccessful.Should().BeTrue();
-        result.Entity!.Type.Should().Be(DiscordInteractionResponseType.ChannelMessageWithSource);
+        result.Entity!.Type.Should().Be(DiscordInteractionCallbackType.ChannelMessageWithSource);
     }
 
     [TestCase("Command14", "CommandMethod14Async", 7)]

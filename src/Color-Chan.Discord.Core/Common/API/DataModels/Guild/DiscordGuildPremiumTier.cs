@@ -2,7 +2,7 @@
 
 /// <summary>
 ///     Represents a discord Premium Tier API model.
-///     https://discord.com/developers/docs/resources/guild#guild-object-premium-tier
+///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-premium-tier
 /// </summary>
 public enum DiscordGuildPremiumTier
 {

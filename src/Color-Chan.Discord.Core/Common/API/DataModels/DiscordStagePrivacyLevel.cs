@@ -2,7 +2,7 @@
 
 /// <summary>
 ///     Represents a Privacy Level API model.
-///     https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-privacy-level
+///     Docs: https://discord.com/developers/docs/resources/stage-instance#stage-instance-object-privacy-level
 /// </summary>
 public enum DiscordStagePrivacyLevel
 {

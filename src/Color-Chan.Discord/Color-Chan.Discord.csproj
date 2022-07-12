@@ -5,7 +5,6 @@
         <RootNamespace>Color_Chan.Discord</RootNamespace>
         <Nullable>enable</Nullable>
         <Product>Color-Chan.Discord</Product>
-        <DocumentationFile>bin\Release\Color-Chan.Discord.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -46,6 +45,14 @@
         <RepositoryUrl>https://github.com/Color-Chan/Color-Chan.Discord</RepositoryUrl>
         <PackageTags>slash;commands;discord;library;api;interactions;bot;webhook</PackageTags>
         <PackageIconUrl>https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_256x.png</PackageIconUrl>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DocumentationFile>bin\Release\Color-Chan.Discord.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DocumentationFile>bin\Debug\Color-Chan.Discord.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

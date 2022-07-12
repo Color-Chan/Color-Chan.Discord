@@ -2,6 +2,10 @@
 
 namespace Color_Chan.Discord.Core.Common.Models.Embed;
 
+/// <summary>
+///     Represents a discord Embed Provider Structure API model.
+///     Docs: https://discord.com/developers/docs/resources/channel#embed-object-embed-provider-structure
+/// </summary>
 public interface IDiscordEmbedProvider
 {
     /// <summary>

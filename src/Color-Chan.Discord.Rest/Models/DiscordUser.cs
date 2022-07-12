@@ -3,8 +3,13 @@ using Color_Chan.Discord.Core.Common.Models;
 
 namespace Color_Chan.Discord.Rest.Models;
 
+/// <inheritdoc cref="IDiscordUser" />
 public record DiscordUser : IDiscordUser
 {
+    /// <summary>
+    ///     Initializes a new <see cref="DiscordUser" />
+    /// </summary>
+    /// <param name="data">The data needed to create the <see cref="DiscordUser" />.</param>
     public DiscordUser(DiscordUserData data)
     {
         Id = data.Id;
@@ -53,13 +58,13 @@ public record DiscordUser : IDiscordUser
     public string? Email { get; init; }
 
     /// <inheritdoc />
-    public DiscordUserProperties? PrivateFlags { get; init; }
+    public DiscordUserFlags? PrivateFlags { get; init; }
 
     /// <inheritdoc />
     public DiscordPremiumType? PremiumType { get; init; }
 
     /// <inheritdoc />
-    public DiscordUserProperties? PublicFlags { get; init; }
+    public DiscordUserFlags? PublicFlags { get; init; }
 
     /// <inheritdoc />
     public DiscordUserData ToDataModel()

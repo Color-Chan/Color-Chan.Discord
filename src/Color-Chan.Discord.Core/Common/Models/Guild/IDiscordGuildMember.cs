@@ -4,6 +4,10 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 
 namespace Color_Chan.Discord.Core.Common.Models.Guild;
 
+/// <summary>
+///     Represents a discord Guild Member Structure API model.
+///     Docs: https://discord.com/developers/docs/resources/guild#guild-member-object-guild-member-structure
+/// </summary>
 public interface IDiscordGuildMember
 {
     /// <summary>

@@ -2,7 +2,7 @@
 
 /// <summary>
 ///     Represents a discord MFA Level API model.
-///     https://discord.com/developers/docs/resources/guild#guild-object-mfa-level
+///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-mfa-level
 /// </summary>
 public enum DiscordGuildMfaLevel
 {
