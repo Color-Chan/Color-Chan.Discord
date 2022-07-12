@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 
-namespace Color_Chan.Discord.Commands.Services;
+namespace Color_Chan.Discord.Commands.Services.InteractionHandlers;
 
 /// <summary>
 ///     Handles all incoming slash command requests.

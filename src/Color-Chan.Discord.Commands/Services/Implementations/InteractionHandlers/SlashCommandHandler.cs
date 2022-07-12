@@ -8,6 +8,7 @@ using Color_Chan.Discord.Commands.MessageBuilders;
 using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Commands.Models.Info;
+using Color_Chan.Discord.Commands.Services.InteractionHandlers;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.API.Rest;
@@ -19,7 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations;
+namespace Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers;
 
 /// <inheritdoc />
 public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler

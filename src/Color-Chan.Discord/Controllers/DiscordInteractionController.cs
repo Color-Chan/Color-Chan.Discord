@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Models;
 using Color_Chan.Discord.Commands.Services;
+using Color_Chan.Discord.Commands.Services.InteractionHandlers;
 using Color_Chan.Discord.Configurations;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
