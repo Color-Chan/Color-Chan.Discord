@@ -11,7 +11,7 @@ namespace RoleManager.Pipelines;
 /// <summary>
 ///     A pipeline that will measure the performance of the slash commands.
 /// </summary>
-public class PerformancePipeline : ISlashCommandPipeline
+public class PerformancePipeline : IInteractionPipeline
 {
     private readonly ILogger<PerformancePipeline> _logger;
 
@@ -25,7 +25,7 @@ public class PerformancePipeline : ISlashCommandPipeline
     }
 
     /// <inheritdoc />
-    public async Task<Result<IDiscordInteractionResponse>> HandleAsync(ISlashCommandContext context, SlashCommandHandlerDelegate next)
+    public async Task<Result<IDiscordInteractionResponse>> HandleAsync(IInteractionContext context, InteractionHandlerDelegate next)
     {
         var sw = new Stopwatch();
 

@@ -192,8 +192,8 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
         }
 
         // Execute the pipelines and the command.
-        var result = await _serviceProvider.GetServices<ISlashCommandPipeline>()
-                                           .Aggregate((SlashCommandHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
+        var result = await _serviceProvider.GetServices<IInteractionPipeline>()
+                                           .Aggregate((InteractionHandlerDelegate)Handler, (next, pipeline) => () => pipeline.HandleAsync(context, next))().ConfigureAwait(false);
 
         // Return the response.
         if (result.IsSuccessful)
