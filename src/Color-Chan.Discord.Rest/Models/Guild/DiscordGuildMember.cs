@@ -25,6 +25,7 @@ public record DiscordGuildMember : IDiscordGuildMember
         Mute = data.Mute;
         Pending = data.Pending;
         Permissions = data.Permissions;
+        CommunicationDisabledUntil = data.CommunicationDisabledUntil;
     }
 
     /// <inheritdoc />
@@ -53,4 +54,7 @@ public record DiscordGuildMember : IDiscordGuildMember
 
     /// <inheritdoc />
     public DiscordPermission? Permissions { get; init; }
+    
+    /// <inheritdoc />
+    public DateTimeOffset? CommunicationDisabledUntil { get; set; }
 }
