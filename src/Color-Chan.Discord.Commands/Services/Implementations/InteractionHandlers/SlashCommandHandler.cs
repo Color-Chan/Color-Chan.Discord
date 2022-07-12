@@ -197,7 +197,7 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
 
         throw new SlashCommandResultException($"Command request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
     }
-    
+
     private async Task<IDiscordChannel?> GetChannelAsync(IDiscordInteraction interaction)
     {
         if (!_slashCommandConfiguration.EnableAutoGetChannel || interaction.ChannelId is null)

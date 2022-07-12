@@ -14,16 +14,16 @@ namespace Color_Chan.Discord.Rest.Services.Implementations;
 /// <inheritdoc />
 public class DiscordPermissionCalculator : IDiscordPermissionCalculator
 {
-    private readonly IDiscordRestGuild _restGuild;
-    private readonly IDiscordRestChannel _restChannel;
     private readonly DiscordTokens _discordTokens;
+    private readonly IDiscordRestChannel _restChannel;
+    private readonly IDiscordRestGuild _restGuild;
 
     /// <summary>
-    ///     Initializes a new <see cref="DiscordPermissionCalculator"/>.
+    ///     Initializes a new <see cref="DiscordPermissionCalculator" />.
     /// </summary>
-    /// <param name="restGuild">The <see cref="IDiscordRestGuild"/> REST client.</param>
-    /// <param name="restChannel">The <see cref="IDiscordRestChannel"/> REST client.</param>
-    /// <param name="discordTokens">The <see cref="DiscordTokens"/> needed for the application ID.</param>
+    /// <param name="restGuild">The <see cref="IDiscordRestGuild" /> REST client.</param>
+    /// <param name="restChannel">The <see cref="IDiscordRestChannel" /> REST client.</param>
+    /// <param name="discordTokens">The <see cref="DiscordTokens" /> needed for the application ID.</param>
     public DiscordPermissionCalculator(IDiscordRestGuild restGuild, IDiscordRestChannel restChannel, DiscordTokens discordTokens)
     {
         _restGuild = restGuild;

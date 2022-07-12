@@ -51,7 +51,7 @@ public record DiscordInteractionData
     /// <inheritdoc cref="IDiscordInteraction.Message" />
     [JsonPropertyName("message")]
     public DiscordMessageData? Message { get; init; }
-    
+
     /// <inheritdoc cref="IDiscordInteraction.Permissions" />
     [JsonPropertyName("app_permissions")]
     public DiscordPermission? Permissions { get; init; }

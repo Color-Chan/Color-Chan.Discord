@@ -25,7 +25,7 @@ public class RequireBotPermissionAttributeTests
         // Assert
         result.IsSuccessful.Should().BeFalse();
     }
-    
+
     [TestCase(DiscordPermission.Speak, DiscordPermission.Speak)]
     [TestCase(DiscordPermission.AddReactions, DiscordPermission.Administrator)]
     [TestCase(DiscordPermission.DeafenMembers | DiscordPermission.Stream | DiscordPermission.EmbedLinks, DiscordPermission.DeafenMembers | DiscordPermission.Stream | DiscordPermission.EmbedLinks)]
@@ -45,7 +45,7 @@ public class RequireBotPermissionAttributeTests
         // Assert
         result.IsSuccessful.Should().BeTrue();
     }
-    
+
     [TestCase(DiscordPermission.Speak, DiscordPermission.None)]
     [TestCase(DiscordPermission.Administrator, DiscordPermission.Connect)]
     [TestCase(DiscordPermission.MentionEveryone, DiscordPermission.ManageEmojisAndStickers)]

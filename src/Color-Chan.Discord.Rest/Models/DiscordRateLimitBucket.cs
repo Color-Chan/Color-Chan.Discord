@@ -157,7 +157,7 @@ internal class DiscordRateLimitBucket
     /// </returns>
     internal static DiscordRateLimitBucket GetDefaultGlobalBucket()
     {
-        return new(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), GlobalBucketId);
+        return new DiscordRateLimitBucket(true, int.MaxValue, int.MaxValue, DateTimeOffset.UtcNow.AddYears(1), TimeSpan.FromDays(1), GlobalBucketId);
     }
 
     /// <summary>

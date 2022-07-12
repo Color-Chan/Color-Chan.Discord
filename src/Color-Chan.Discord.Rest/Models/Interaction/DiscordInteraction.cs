@@ -69,5 +69,8 @@ public record DiscordInteraction : IDiscordInteraction
     public DiscordPermission? Permissions { get; init; }
 
     /// <inheritdoc />
-    public bool IsPingInteraction() => RequestType == DiscordInteractionRequestType.Ping;
+    public bool IsPingInteraction()
+    {
+        return RequestType == DiscordInteractionRequestType.Ping;
+    }
 }

@@ -66,8 +66,8 @@ public class RequireBotPermissionAttribute : InteractionRequirementAttribute
         }
 
         var missingPerms = _requiredPermission.ToList().Where(requiredPerm => (context.Permissions & requiredPerm) != requiredPerm).ToList();
-        return Task.FromResult(missingPerms.Any() 
-                                   ? Result.FromError(new RequireBotPermissionErrorResult("Bot did not meet permission requirements", missingPerms)) 
+        return Task.FromResult(missingPerms.Any()
+                                   ? Result.FromError(new RequireBotPermissionErrorResult("Bot did not meet permission requirements", missingPerms))
                                    : Result.FromSuccess());
     }
 }

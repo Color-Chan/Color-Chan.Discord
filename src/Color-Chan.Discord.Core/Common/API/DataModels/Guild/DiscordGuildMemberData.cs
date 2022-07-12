@@ -43,8 +43,8 @@ public record DiscordGuildMemberData
     /// <inheritdoc cref="IDiscordGuildMember.Permissions" />
     [JsonPropertyName("permissions")]
     public DiscordPermission? Permissions { get; init; }
-    
-    /// <inheritdoc cref="IDiscordGuildMember.CommunicationDisabledUntil"/>
+
+    /// <inheritdoc cref="IDiscordGuildMember.CommunicationDisabledUntil" />
     [JsonPropertyName("communication_disabled_until")]
     public DateTimeOffset? CommunicationDisabledUntil { get; set; }
 }

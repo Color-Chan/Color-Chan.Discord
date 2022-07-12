@@ -44,7 +44,7 @@ public class InteractionContext : IInteractionContext
 
     /// <inheritdoc />
     public IDiscordChannel? Channel { get; init; }
-    
+
     /// <inheritdoc />
     public DiscordPermission? Permissions { get; init; }
 }

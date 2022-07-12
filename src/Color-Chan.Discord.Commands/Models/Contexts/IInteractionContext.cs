@@ -89,7 +89,7 @@ public interface IInteractionContext
     ///     Always null when <see cref="SlashCommandConfiguration.EnableAutoGetGuild" /> is disabled.
     /// </remarks>
     IDiscordChannel? Channel { get; init; }
-    
+
     /// <summary>
     ///     Permissions the app or bot has within the channel the interaction was sent from.
     /// </summary>

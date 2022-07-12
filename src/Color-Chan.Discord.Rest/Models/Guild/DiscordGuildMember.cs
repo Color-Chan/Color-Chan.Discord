@@ -54,7 +54,7 @@ public record DiscordGuildMember : IDiscordGuildMember
 
     /// <inheritdoc />
     public DiscordPermission? Permissions { get; init; }
-    
+
     /// <inheritdoc />
     public DateTimeOffset? CommunicationDisabledUntil { get; set; }
 }

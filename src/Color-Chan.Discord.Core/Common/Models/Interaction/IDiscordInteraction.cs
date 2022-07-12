@@ -72,7 +72,7 @@ public interface IDiscordInteraction
     ///     For components, the message they were attached to.
     /// </summary>
     IDiscordMessage? Message { get; init; }
-    
+
     /// <summary>
     ///     Permissions the app or bot has within the channel the interaction was sent from.
     /// </summary>

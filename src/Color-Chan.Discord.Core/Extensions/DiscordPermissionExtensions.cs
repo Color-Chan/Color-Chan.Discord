@@ -76,7 +76,7 @@ public static class DiscordPermissionExtensions
 
         return false;
     }
-    
+
     /// <summary>
     ///     Try to parse a <see cref="ReadOnlySpan{T}" /> of <see cref="char" /> into a <see cref="DiscordPermission" />.
     /// </summary>

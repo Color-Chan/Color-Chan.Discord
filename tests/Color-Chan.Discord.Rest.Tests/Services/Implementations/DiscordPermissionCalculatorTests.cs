@@ -27,12 +27,12 @@ public class DiscordPermissionCalculatorTests
     {
         // Arrange
         var mockRestChannel = new Mock<IDiscordRestChannel>();
-        mockRestChannel.Setup(x=>x.GetChannelAsync(ulong.MaxValue, default))
+        mockRestChannel.Setup(x => x.GetChannelAsync(ulong.MaxValue, default))
                        .ReturnsAsync(Result<IDiscordChannel>.FromSuccess(new DiscordChannel(new DiscordChannelData
                        {
                            PermissionOverwrites = new List<DiscordOverwriteData>
                            {
-                               new ()
+                               new()
                                {
                                    TargetId = 1,
                                    TargetType = DiscordPermissionTargetType.Role,
@@ -41,12 +41,12 @@ public class DiscordPermissionCalculatorTests
                            }
                        })));
         var mockRestGuild = new Mock<IDiscordRestGuild>();
-        mockRestGuild.Setup(x=>x.GetGuildAsync(ulong.MaxValue, false, default))
+        mockRestGuild.Setup(x => x.GetGuildAsync(ulong.MaxValue, false, default))
                      .ReturnsAsync(Result<IDiscordGuild>.FromSuccess(new DiscordGuild(new DiscordGuildData
                      {
                          Roles = new List<DiscordGuildRoleData>
                          {
-                             new ()
+                             new()
                              {
                                  Id = 1,
                                  Permissions = botPerms

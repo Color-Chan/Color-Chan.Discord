@@ -135,7 +135,7 @@ public class ComponentInteractionHandler : IComponentInteractionHandler
 
         throw new ComponentInteractionResultException($"Component interaction request {interaction.Id} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
     }
-    
+
     private string GetCustomId(IDiscordInteraction interaction, IComponentContext context)
     {
         var customId = context.Data.CustomId!;
