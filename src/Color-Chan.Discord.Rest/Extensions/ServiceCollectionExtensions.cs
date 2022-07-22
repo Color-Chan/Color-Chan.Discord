@@ -54,7 +54,7 @@ public static class ServiceCollectionExtensions
         if (botToken == null) throw new ArgumentNullException(nameof(botToken));
 
         // See https://github.com/App-vNext/Polly/wiki/Retry-with-jitter for more info why jitter is used.
-        var retryDelay = Backoff.DecorrelatedJitterBackoffV2(TimeSpan.FromSeconds(1), 5);
+        var retryDelay = Backoff.DecorrelatedJitterBackoffV2(TimeSpan.FromSeconds(1), 1);
 
         // Set the default config if none provided.
         restOptions ??= configuration =>
