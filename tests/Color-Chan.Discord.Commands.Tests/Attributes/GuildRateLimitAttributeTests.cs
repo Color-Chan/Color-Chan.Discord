@@ -15,113 +15,112 @@ using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Commands.Tests.Attributes
+namespace Color_Chan.Discord.Commands.Tests.Attributes;
+
+[TestFixture]
+public class GuildRateLimitAttributeTests
 {
-    [TestFixture]
-    public class GuildRateLimitAttributeTests
+    [Test]
+    public async Task Should_ignore_dm()
     {
-        [Test]
-        public async Task Should_ignore_dm()
+        // Arrange
+        var rateLimitAttribute = new GuildRateLimitAttribute(20, 60);
+        var context = new SlashCommandContext
         {
-            // Arrange
-            var rateLimitAttribute = new GuildRateLimitAttribute(20, 60);
-            var context = new SlashCommandContext
+            GuildId = null,
+            Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
             {
-                GuildId = null,
-                Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
-                {
-                    Id = 456
-                }),
-                MethodName = nameof(Should_detect_rate_limit)
-            };
-            var cacheMock = new Mock<ICacheService>();
-            cacheMock.Setup(service => service.GetValueAsync<RateLimitInfo>(It.IsAny<string>()))
-                     .ReturnsAsync(Result<RateLimitInfo>.FromSuccess(new RateLimitInfo()));
+                Id = 456
+            }),
+            MethodName = nameof(Should_detect_rate_limit)
+        };
+        var cacheMock = new Mock<ICacheService>();
+        cacheMock.Setup(service => service.GetValueAsync<RateLimitInfo>(It.IsAny<string>()))
+                 .ReturnsAsync(Result<RateLimitInfo>.FromSuccess(new RateLimitInfo()));
 
-            var serviceProvider = new ServiceCollection()
-                                  .AddSingleton(cacheMock.Object)
-                                  .BuildServiceProvider();
+        var serviceProvider = new ServiceCollection()
+                              .AddSingleton(cacheMock.Object)
+                              .BuildServiceProvider();
 
-            // Act
-            var result = await rateLimitAttribute.CheckRequirementAsync(context, serviceProvider);
+        // Act
+        var result = await rateLimitAttribute.CheckRequirementAsync(context, serviceProvider);
 
-            // Assert
-            result.IsSuccessful.Should().BeTrue();
-        }
+        // Assert
+        result.IsSuccessful.Should().BeTrue();
+    }
 
-        [TestCaseSource(nameof(GetRateLimitServers))]
-        public async Task Should_detect_rate_limit(Tuple<RateLimitInfo, bool> tuple)
+    [TestCaseSource(nameof(GetRateLimitServers))]
+    public async Task Should_detect_rate_limit(Tuple<RateLimitInfo, bool> tuple)
+    {
+        // Arrange
+        var (rateLimitServer, shouldBeRateLimited) = tuple;
+        var rateLimitAttribute = new GuildRateLimitAttribute(rateLimitServer.Remaining, 60);
+        var context = new SlashCommandContext
         {
-            // Arrange
-            var (rateLimitServer, shouldBeRateLimited) = tuple;
-            var rateLimitAttribute = new GuildRateLimitAttribute(rateLimitServer.Remaining, 60);
-            var context = new SlashCommandContext
+            User = new DiscordUser(new DiscordUserData
             {
-                User = new DiscordUser(new DiscordUserData
-                {
-                    Id = ulong.MaxValue
-                }),
-                GuildId = ulong.MaxValue,
-                Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
-                {
-                    Id = 456
-                }),
-                MethodName = nameof(Should_detect_rate_limit)
-            };
-            var cacheMock = new Mock<ICacheService>();
-            cacheMock.Setup(service => service.GetValueAsync<RateLimitInfo>(It.IsAny<string>()))
-                     .ReturnsAsync(Result<RateLimitInfo>.FromSuccess(rateLimitServer));
+                Id = ulong.MaxValue
+            }),
+            GuildId = ulong.MaxValue,
+            Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
+            {
+                Id = 456
+            }),
+            MethodName = nameof(Should_detect_rate_limit)
+        };
+        var cacheMock = new Mock<ICacheService>();
+        cacheMock.Setup(service => service.GetValueAsync<RateLimitInfo>(It.IsAny<string>()))
+                 .ReturnsAsync(Result<RateLimitInfo>.FromSuccess(rateLimitServer));
 
-            var serviceProvider = new ServiceCollection()
-                                  .AddSingleton(cacheMock.Object)
-                                  .BuildServiceProvider();
+        var serviceProvider = new ServiceCollection()
+                              .AddSingleton(cacheMock.Object)
+                              .BuildServiceProvider();
 
-            // Act
-            var result = await rateLimitAttribute.CheckRequirementAsync(context, serviceProvider);
+        // Act
+        var result = await rateLimitAttribute.CheckRequirementAsync(context, serviceProvider);
 
-            // Assert
-            result.IsSuccessful.Should().Be(!shouldBeRateLimited);
-        }
+        // Assert
+        result.IsSuccessful.Should().Be(!shouldBeRateLimited);
+    }
 
-        protected static IEnumerable<Tuple<RateLimitInfo, bool>> GetRateLimitServers()
+    protected static IEnumerable<Tuple<RateLimitInfo, bool>> GetRateLimitServers()
+    {
+        for (var i = 5 - 1; i >= 0; i--)
         {
-            for (var i = 5 - 1; i >= 0; i--)
+            yield return new Tuple<RateLimitInfo, bool>(new RateLimitInfo
             {
-                yield return new Tuple<RateLimitInfo, bool>(new RateLimitInfo
-                {
-                    Expiration = DateTimeOffset.UtcNow.AddSeconds(20),
-                    Remaining = i
-                }, i == 0);
-            }
+                Expiration = DateTimeOffset.UtcNow.AddSeconds(20),
+                Remaining = i
+            }, i == 0);
         }
+    }
 
-        [Test]
-        public async Task Should_detect_new_rate_limit()
+    [Test]
+    public async Task Should_detect_new_rate_limit()
+    {
+        // Arrange
+        var rateLimitAttribute = new GuildRateLimitAttribute(2, 60);
+        var context = new SlashCommandContext
         {
-            // Arrange
-            var rateLimitAttribute = new GuildRateLimitAttribute(2, 60);
-            var context = new SlashCommandContext
+            GuildId = ulong.MaxValue,
+            Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
             {
-                GuildId = ulong.MaxValue,
-                Data = new DiscordInteractionRequest(new DiscordInteractionRequestData
-                {
-                    Id = 456
-                }),
-                MethodName = nameof(Should_detect_rate_limit)
-            };
-            var cacheMock = new Mock<ICacheService>();
-            cacheMock.Setup(service => service.GetValueAsync<RateLimitInfo>(It.IsAny<string>()))
-                     .ReturnsAsync(Result<RateLimitInfo>.FromError(default, new ErrorResult("error message")));
+                Id = 456
+            }),
+            MethodName = nameof(Should_detect_rate_limit)
+        };
+        var cacheMock = new Mock<ICacheService>();
+        cacheMock.Setup(service => service.GetValueAsync<RateLimitInfo>(It.IsAny<string>()))
+                 .ReturnsAsync(Result<RateLimitInfo>.FromError(default, new ErrorResult("error message")));
 
-            var serviceProvider = new ServiceCollection()
-                                  .AddSingleton(cacheMock.Object)
-                                  .BuildServiceProvider();
+        var serviceProvider = new ServiceCollection()
+                              .AddSingleton(cacheMock.Object)
+                              .BuildServiceProvider();
 
-            // Act
-            var result = await rateLimitAttribute.CheckRequirementAsync(context, serviceProvider);
+        // Act
+        var result = await rateLimitAttribute.CheckRequirementAsync(context, serviceProvider);
 
-            // Assert
-            result.IsSuccessful.Should().BeTrue();
-        }
+        // Assert
+        result.IsSuccessful.Should().BeTrue();
     }
 }

@@ -6,26 +6,25 @@ using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 
-namespace Pong.Commands
+namespace Pong.Commands;
+
+/// <summary>
+///     The command module for all pong commands.
+/// </summary>
+public class PongCommands : SlashCommandModule
 {
     /// <summary>
-    ///     The command module for all pong commands.
+    ///     A simple Ping Pong command.
     /// </summary>
-    public class PongCommands : SlashCommandModule
+    /// <returns>
+    ///     An embedded response with "Pong!".
+    /// </returns>
+    [UserRateLimit(5, 10)] // Sets the rate limit for this command to 5 requests per 10 seconds per user.
+    [SlashCommand("ping", "Ping Pong!")]
+    public async Task<Result<IDiscordInteractionResponse>> PongAsync()
     {
-        /// <summary>
-        ///     A simple Ping Pong command.
-        /// </summary>
-        /// <returns>
-        ///     An embedded response with "Pong!".
-        /// </returns>
-        [UserRateLimit(5, 10)] // Sets the rate limit for this command to 5 requests per 10 seconds per user.
-        [SlashCommand("ping", "Ping Pong!")]
-        public async Task<Result<IDiscordInteractionResponse>> PongAsync()
-        {
-            //  Return the response to Discord.
-            var message = "Pong!";
-            return FromSuccess(message);
-        }
+        //  Return the response to Discord.
+        var message = "Pong!";
+        return FromSuccess(message);
     }
 }

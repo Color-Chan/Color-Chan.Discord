@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Color_Chan.Discord.Commands.Models.Contexts
+namespace Color_Chan.Discord.Commands.Models.Contexts;
+
+/// <inheritdoc cref="ISlashCommandContext" />
+public class SlashCommandContext : InteractionContext, ISlashCommandContext
 {
-    /// <inheritdoc cref="ISlashCommandContext" />
-    public class SlashCommandContext : InteractionContext, ISlashCommandContext
-    {
-        /// <inheritdoc />
-        public IEnumerable<string> SlashCommandName { get; set; } = null!;
-    }
+    /// <inheritdoc />
+    public IEnumerable<string> SlashCommandName { get; set; } = null!;
 }

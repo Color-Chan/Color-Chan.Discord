@@ -5,30 +5,29 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace RoleManager
+namespace RoleManager;
+
+public class Program
 {
-    public class Program
+    public static async Task Main(string[] args)
     {
-        public static async Task Main(string[] args)
-        {
-            var host = CreateHostBuilder(args).Build();
+        var host = CreateHostBuilder(args).Build();
 
-            // Register all the commands in an Assembly.
-            await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly()).ConfigureAwait(false); // <----- 
+        // Register all the commands in an Assembly.
+        await host.RegisterSlashCommandsAsync(Assembly.GetExecutingAssembly()).ConfigureAwait(false); // <----- 
 
-            // Run the WebHost, and start accepting requests.
-            await host.RunAsync().ConfigureAwait(false);
-        }
+        // Run the WebHost, and start accepting requests.
+        await host.RunAsync().ConfigureAwait(false);
+    }
 
-        private static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
-                       .ConfigureLogging(logging =>
-                       {
-                           logging.ClearProviders();
-                           logging.AddConsole();
-                       })
-                       .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
-        }
+    private static IHostBuilder CreateHostBuilder(string[] args)
+    {
+        return Host.CreateDefaultBuilder(args)
+                   .ConfigureLogging(logging =>
+                   {
+                       logging.ClearProviders();
+                       logging.AddConsole();
+                   })
+                   .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }

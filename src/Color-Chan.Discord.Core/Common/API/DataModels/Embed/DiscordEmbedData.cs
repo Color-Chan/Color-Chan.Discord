@@ -2,91 +2,62 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Embed;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
+namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed;
+
+/// <inheritdoc cref="IDiscordEmbed" />
+public record DiscordEmbedData
 {
-    /// <summary>
-    ///     Represents a discord Embed Object API model.
-    ///     https://discord.com/developers/docs/resources/channel#embed-object
-    /// </summary>
-    public record DiscordEmbedData
-    {
-        /// <summary>
-        ///     Title of embed.
-        /// </summary>
-        [JsonPropertyName("title")]
-        public string? Title { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Title" />
+    [JsonPropertyName("title")]
+    public string? Title { get; init; }
 
-        /// <summary>
-        ///     Type of embed (always "rich" for webhook embeds).
-        /// </summary>
-        [JsonPropertyName("type")]
-        public DiscordEmbedType? Type { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Type" />
+    [JsonPropertyName("type")]
+    public DiscordEmbedType? Type { get; init; }
 
-        /// <summary>
-        ///     Description of embed.
-        /// </summary>
-        [JsonPropertyName("description")]
-        public string? Description { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Description" />
+    [JsonPropertyName("description")]
+    public string? Description { get; init; }
 
-        /// <summary>
-        ///     Url of embed.
-        /// </summary>
-        [JsonPropertyName("url")]
-        public string? Url { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Url" />
+    [JsonPropertyName("url")]
+    public string? Url { get; init; }
 
-        /// <summary>
-        ///     Timestamp of embed content.
-        /// </summary>
-        [JsonPropertyName("timestamp")]
-        public DateTimeOffset? Timestamp { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Timestamp" />
+    [JsonPropertyName("timestamp")]
+    public DateTimeOffset? Timestamp { get; init; }
 
-        /// <summary>
-        ///     Color code of the embed.
-        /// </summary>
-        [JsonPropertyName("color")]
-        public Color? Color { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Color" />
+    [JsonPropertyName("color")]
+    public Color? Color { get; init; }
 
-        /// <summary>
-        ///     Footer information.
-        /// </summary>
-        [JsonPropertyName("footer")]
-        public DiscordEmbedFooterData? Footer { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Footer" />
+    [JsonPropertyName("footer")]
+    public DiscordEmbedFooterData? Footer { get; init; }
 
-        /// <summary>
-        ///     Image information.
-        /// </summary>
-        [JsonPropertyName("image")]
-        public DiscordEmbedImageData? Image { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Image" />
+    [JsonPropertyName("image")]
+    public DiscordEmbedImageData? Image { get; init; }
 
-        /// <summary>
-        ///     Thumbnail information.
-        /// </summary>
-        [JsonPropertyName("thumbnail")]
-        public DiscordEmbedThumbnailData? Thumbnail { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Thumbnail" />
+    [JsonPropertyName("thumbnail")]
+    public DiscordEmbedThumbnailData? Thumbnail { get; init; }
 
-        /// <summary>
-        ///     Video information.
-        /// </summary>
-        [JsonPropertyName("video")]
-        public DiscordEmbedVideoData? Video { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Video" />
+    [JsonPropertyName("video")]
+    public DiscordEmbedVideoData? Video { get; init; }
 
-        /// <summary>
-        ///     Provider information.
-        /// </summary>
-        [JsonPropertyName("provider")]
-        public DiscordEmbedProviderData? Provider { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Provider" />
+    [JsonPropertyName("provider")]
+    public DiscordEmbedProviderData? Provider { get; init; }
 
-        /// <summary>
-        ///     Author information.
-        /// </summary>
-        [JsonPropertyName("author")]
-        public DiscordEmbedAuthorData? Author { get; init; }
+    /// <inheritdoc cref="IDiscordEmbed.Author" />
+    [JsonPropertyName("author")]
+    public DiscordEmbedAuthorData? Author { get; init; }
 
-        /// <summary>
-        ///     Fields information.
-        /// </summary>
-        [JsonPropertyName("fields")]
-        public IEnumerable<DiscordEmbedFieldData>? Fields { get; init; }
-    }
+    /// <inheritdoc cref="IDiscordEmbed.Fields" />
+    [JsonPropertyName("fields")]
+    public IEnumerable<DiscordEmbedFieldData>? Fields { get; init; }
 }

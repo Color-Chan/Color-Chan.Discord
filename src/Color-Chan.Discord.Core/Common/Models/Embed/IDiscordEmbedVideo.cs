@@ -1,35 +1,38 @@
 ﻿using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
 
-namespace Color_Chan.Discord.Core.Common.Models.Embed
+namespace Color_Chan.Discord.Core.Common.Models.Embed;
+
+/// <summary>
+///     Represents a discord Embed Video Structure API model.
+///     Docs: https://discord.com/developers/docs/resources/channel#embed-object-embed-video-structure
+/// </summary>
+public interface IDiscordEmbedVideo
 {
-    public interface IDiscordEmbedVideo
-    {
-        /// <summary>
-        ///     Source url of video.
-        /// </summary>
-        string? Url { get; init; }
+    /// <summary>
+    ///     Source url of video.
+    /// </summary>
+    string? Url { get; init; }
 
-        /// <summary>
-        ///     A proxied url of the video.
-        /// </summary>
-        string? ProxyUrl { get; init; }
+    /// <summary>
+    ///     A proxied url of the video.
+    /// </summary>
+    string? ProxyUrl { get; init; }
 
-        /// <summary>
-        ///     Height of video.
-        /// </summary>
-        int? Height { get; init; }
+    /// <summary>
+    ///     Height of video.
+    /// </summary>
+    int? Height { get; init; }
 
-        /// <summary>
-        ///     Width of video.
-        /// </summary>
-        int? Width { get; init; }
+    /// <summary>
+    ///     Width of video.
+    /// </summary>
+    int? Width { get; init; }
 
-        /// <summary>
-        ///     Converts the model back to a discord data model so that it can be send to discord.
-        /// </summary>
-        /// <returns>
-        ///     The converted <see cref="DiscordEmbedVideoData" />.
-        /// </returns>
-        DiscordEmbedVideoData ToDataModel();
-    }
+    /// <summary>
+    ///     Converts the model back to a discord data model so that it can be send to discord.
+    /// </summary>
+    /// <returns>
+    ///     The converted <see cref="DiscordEmbedVideoData" />.
+    /// </returns>
+    DiscordEmbedVideoData ToDataModel();
 }

@@ -1,34 +1,33 @@
-﻿namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild
+﻿namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild;
+
+/// <summary>
+///     Represents a discord Verification Level API model.
+///     Docs: https://discord.com/developers/docs/resources/guild#guild-object-verification-level
+/// </summary>
+public enum DiscordGuildVerificationLevel : byte
 {
     /// <summary>
-    ///     Represents a discord Verification Level API model.
-    ///     https://discord.com/developers/docs/resources/guild#guild-object-verification-level
+    ///     Unrestricted.
     /// </summary>
-    public enum DiscordGuildVerificationLevel : byte
-    {
-        /// <summary>
-        ///     Unrestricted.
-        /// </summary>
-        None = 0,
+    None = 0,
 
-        /// <summary>
-        ///     Must have verified email on account.
-        /// </summary>
-        Low = 1,
+    /// <summary>
+    ///     Must have verified email on account.
+    /// </summary>
+    Low = 1,
 
-        /// <summary>
-        ///     Must be registered on Discord for longer than 5 minutes.
-        /// </summary>
-        Medium = 2,
+    /// <summary>
+    ///     Must be registered on Discord for longer than 5 minutes.
+    /// </summary>
+    Medium = 2,
 
-        /// <summary>
-        ///     Must be a member of the server for longer than 10 minutes.
-        /// </summary>
-        High = 3,
+    /// <summary>
+    ///     Must be a member of the server for longer than 10 minutes.
+    /// </summary>
+    High = 3,
 
-        /// <summary>
-        ///     Must have a verified phone number.
-        /// </summary>
-        VeryHigh = 4
-    }
+    /// <summary>
+    ///     Must have a verified phone number.
+    /// </summary>
+    VeryHigh = 4
 }

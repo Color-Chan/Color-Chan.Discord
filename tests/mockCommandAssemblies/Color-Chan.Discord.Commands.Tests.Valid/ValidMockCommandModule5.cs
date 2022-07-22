@@ -8,59 +8,58 @@ using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models.Interaction;
 
-namespace Color_Chan.Discord.Commands.Tests.Valid
+namespace Color_Chan.Discord.Commands.Tests.Valid;
+
+[BoolRequirement(true)]
+[BoolRequirement(true)]
+[BoolRequirement(true)]
+[BoolRequirement(true)]
+public class ValidMockCommandModule5 : SlashCommandModule
 {
+    [SlashCommand("Command14", "a unit test command.")]
     [BoolRequirement(true)]
     [BoolRequirement(true)]
     [BoolRequirement(true)]
-    [BoolRequirement(true)]
-    public class ValidMockCommandModule5 : SlashCommandModule
+    public async Task<Result<IDiscordInteractionResponse>> CommandMethod14Async()
     {
-        [SlashCommand("Command14", "a unit test command.")]
-        [BoolRequirement(true)]
-        [BoolRequirement(true)]
-        [BoolRequirement(true)]
-        public async Task<Result<IDiscordInteractionResponse>> CommandMethod14Async()
+        return FromSuccess(new DiscordInteractionResponse
         {
-            return FromSuccess(new DiscordInteractionResponse
-            {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource
-            });
-        }
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
+        });
+    }
 
-        [SlashCommand("Command15", "a unit test command.")]
-        [BoolRequirement(true)]
-        [BoolRequirement(true)]
-        public async Task<Result<IDiscordInteractionResponse>> CommandMethod15Async()
+    [SlashCommand("Command15", "a unit test command.")]
+    [BoolRequirement(true)]
+    [BoolRequirement(true)]
+    public async Task<Result<IDiscordInteractionResponse>> CommandMethod15Async()
+    {
+        return FromSuccess(new DiscordInteractionResponse
         {
-            return FromSuccess(new DiscordInteractionResponse
-            {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource
-            });
-        }
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
+        });
+    }
 
-        [SlashCommand("Command16", "a unit test command.")]
-        [BoolRequirement(true)]
-        [BoolRequirement(true)]
-        [BoolRequirement(true)]
-        [BoolRequirement(true)]
-        public async Task<Result<IDiscordInteractionResponse>> CommandMethod16Async()
+    [SlashCommand("Command16", "a unit test command.")]
+    [BoolRequirement(true)]
+    [BoolRequirement(true)]
+    [BoolRequirement(true)]
+    [BoolRequirement(true)]
+    public async Task<Result<IDiscordInteractionResponse>> CommandMethod16Async()
+    {
+        return FromSuccess(new DiscordInteractionResponse
         {
-            return FromSuccess(new DiscordInteractionResponse
-            {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource
-            });
-        }
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
+        });
+    }
 
-        [SlashCommand("Command17", "a unit test command.")]
-        [BoolRequirement(true)]
-        [BoolRequirement(true)]
-        public async Task<Result<IDiscordInteractionResponse>> CommandMethod17Async()
+    [SlashCommand("Command17", "a unit test command.")]
+    [BoolRequirement(true)]
+    [BoolRequirement(true)]
+    public async Task<Result<IDiscordInteractionResponse>> CommandMethod17Async()
+    {
+        return FromSuccess(new DiscordInteractionResponse
         {
-            return FromSuccess(new DiscordInteractionResponse
-            {
-                Type = DiscordInteractionResponseType.ChannelMessageWithSource
-            });
-        }
+            Type = DiscordInteractionCallbackType.ChannelMessageWithSource
+        });
     }
 }

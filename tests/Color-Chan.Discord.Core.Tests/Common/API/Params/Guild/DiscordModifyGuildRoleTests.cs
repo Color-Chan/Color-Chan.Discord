@@ -1,10 +1,9 @@
 using Color_Chan.Discord.Core.Common.API.Params.Guild;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Core.Tests.Common.API.Params.Guild
+namespace Color_Chan.Discord.Core.Tests.Common.API.Params.Guild;
+
+[TestFixture]
+public class DiscordModifyGuildRoleTests : JsonTestBase<DiscordModifyGuildRole>
 {
-    [TestFixture]
-    public class DiscordModifyGuildRoleTests : JsonTestBase<DiscordModifyGuildRole>
-    {
-    }
 }

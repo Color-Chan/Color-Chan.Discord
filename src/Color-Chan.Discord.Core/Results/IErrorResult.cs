@@ -1,13 +1,12 @@
-﻿namespace Color_Chan.Discord.Core.Results
+﻿namespace Color_Chan.Discord.Core.Results;
+
+/// <summary>
+///     An error result.
+/// </summary>
+public interface IErrorResult
 {
     /// <summary>
-    ///     An error result.
+    ///     The message of the error.
     /// </summary>
-    public interface IErrorResult
-    {
-        /// <summary>
-        ///     The message of the error.
-        /// </summary>
-        public string ErrorMessage { get; set; }
-    }
+    public string ErrorMessage { get; set; }
 }

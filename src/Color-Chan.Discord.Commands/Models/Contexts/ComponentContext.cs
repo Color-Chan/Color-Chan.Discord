@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 
-namespace Color_Chan.Discord.Commands.Models.Contexts
+namespace Color_Chan.Discord.Commands.Models.Contexts;
+
+/// <inheritdoc cref="IComponentContext" />
+public class ComponentContext : InteractionContext, IComponentContext
 {
-    /// <inheritdoc cref="IComponentContext" />
-    public class ComponentContext : InteractionContext, IComponentContext
-    {
-        /// <inheritdoc />
-        public List<string> Args { get; set; } = new();
-    }
+    /// <inheritdoc />
+    public List<string> Args { get; set; } = new();
 }

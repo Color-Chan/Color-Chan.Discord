@@ -4,27 +4,26 @@ using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Extensions;
 
-namespace Color_Chan.Discord.Core.Common.API.Converters
+namespace Color_Chan.Discord.Core.Common.API.Converters;
+
+/// <summary>
+///     Converters a <see cref="ulong" /> <see cref="string" /> json value to a <see cref="DiscordPermission" />.
+/// </summary>
+public class DiscordPermissionJsonConverter : JsonConverter<DiscordPermission>
 {
-    /// <summary>
-    ///     Converters a <see cref="ulong" /> <see cref="string" /> json value to a <see cref="DiscordPermission" />.
-    /// </summary>
-    public class DiscordPermissionJsonConverter : JsonConverter<DiscordPermission>
+    /// <inheritdoc />
+    public override DiscordPermission Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        /// <inheritdoc />
-        public override DiscordPermission Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            var permissionString = reader.GetString();
+        var permissionSpan = reader.GetString().AsSpan();
 
-            if (!permissionString.TryParseDiscordGuildPermission(out var permissions)) throw new JsonException("Failed to parse DiscordGuildPermission");
+        if (!permissionSpan.TryParseDiscordGuildPermission(out var permissions)) throw new JsonException("Failed to parse DiscordGuildPermission");
 
-            return permissions.Value;
-        }
+        return permissions.Value;
+    }
 
-        /// <inheritdoc />
-        public override void Write(Utf8JsonWriter writer, DiscordPermission value, JsonSerializerOptions options)
-        {
-            writer.WriteStringValue(value.ConvertToString());
-        }
+    /// <inheritdoc />
+    public override void Write(Utf8JsonWriter writer, DiscordPermission value, JsonSerializerOptions options)
+    {
+        writer.WriteStringValue(value.ConvertToString());
     }
 }

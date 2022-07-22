@@ -8,83 +8,82 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Caching.Tests.Extensions
+namespace Color_Chan.Discord.Caching.Tests.Extensions;
+
+[TestFixture]
+public class ServiceCollectionExtensionsTests
 {
-    [TestFixture]
-    public class ServiceCollectionExtensionsTests
+    public void SetUpDistributedCache()
     {
-        public void SetUpDistributedCache()
-        {
-            _serviceProviderDistributed = new ServiceCollection()
-                                          .AddColorChanCache(null, options => { options.Configuration = "connectionString"; })
-                                          .BuildServiceProvider();
-        }
-
-        public void SetUpDefaultCache()
-        {
-            _serviceProviderDefault = new ServiceCollection()
-                                      .AddColorChanCache()
+        _serviceProviderDistributed = new ServiceCollection()
+                                      .AddColorChanCache(null, options => { options.Configuration = "connectionString"; })
                                       .BuildServiceProvider();
-        }
+    }
 
-        private IServiceProvider _serviceProviderDefault = null!;
-        private IServiceProvider _serviceProviderDistributed = null!;
+    public void SetUpDefaultCache()
+    {
+        _serviceProviderDefault = new ServiceCollection()
+                                  .AddColorChanCache()
+                                  .BuildServiceProvider();
+    }
 
-        [Test]
-        public void Should_resolve_DefaultCacheConfig()
-        {
-            // Arrange 
-            SetUpDefaultCache();
+    private IServiceProvider _serviceProviderDefault = null!;
+    private IServiceProvider _serviceProviderDistributed = null!;
 
-            // Act
-            var cacheConfig = _serviceProviderDefault.GetService<IOptions<CacheConfiguration>>();
+    [Test]
+    public void Should_resolve_DefaultCacheConfig()
+    {
+        // Arrange 
+        SetUpDefaultCache();
 
-            // Assert
-            cacheConfig.Should().NotBeNull();
-            cacheConfig!.Value.Should().NotBeNull();
-            cacheConfig.Value.AbsoluteExpiration.Should().Be(TimeSpan.FromSeconds(30));
-            cacheConfig.Value.SlidingExpiration.Should().Be(TimeSpan.FromSeconds(15));
-        }
+        // Act
+        var cacheConfig = _serviceProviderDefault.GetService<IOptions<CacheConfiguration>>();
 
-        [Test]
-        public void Should_resolve_LocalCacheService()
-        {
-            // Arrange 
-            SetUpDefaultCache();
+        // Assert
+        cacheConfig.Should().NotBeNull();
+        cacheConfig!.Value.Should().NotBeNull();
+        cacheConfig.Value.AbsoluteExpiration.Should().Be(TimeSpan.FromSeconds(30));
+        cacheConfig.Value.SlidingExpiration.Should().Be(TimeSpan.FromSeconds(15));
+    }
 
-            // Act
-            var application = _serviceProviderDefault.GetService<ICacheService>();
+    [Test]
+    public void Should_resolve_LocalCacheService()
+    {
+        // Arrange 
+        SetUpDefaultCache();
 
-            // Assert
-            application.Should().NotBeNull();
-            application!.GetType().Should().Be<LocalCacheService>();
-        }
+        // Act
+        var application = _serviceProviderDefault.GetService<ICacheService>();
 
-        [Test]
-        public void Should_resolve_DistributedCacheService()
-        {
-            // Arrange 
-            SetUpDistributedCache();
+        // Assert
+        application.Should().NotBeNull();
+        application!.GetType().Should().Be<LocalCacheService>();
+    }
 
-            // Act
-            var application = _serviceProviderDistributed.GetService<ICacheService>();
+    [Test]
+    public void Should_resolve_DistributedCacheService()
+    {
+        // Arrange 
+        SetUpDistributedCache();
 
-            // Assert
-            application.Should().NotBeNull();
-            application!.GetType().Should().Be<DistributedCacheService>();
-        }
+        // Act
+        var application = _serviceProviderDistributed.GetService<ICacheService>();
 
-        [Test]
-        public void Should_resolve_ITypeCacheConfigurationService()
-        {
-            // Arrange 
-            SetUpDistributedCache();
+        // Assert
+        application.Should().NotBeNull();
+        application!.GetType().Should().Be<DistributedCacheService>();
+    }
 
-            // Act
-            var typeCache = _serviceProviderDefault.GetService<ITypeCacheConfigurationService>();
+    [Test]
+    public void Should_resolve_ITypeCacheConfigurationService()
+    {
+        // Arrange 
+        SetUpDistributedCache();
 
-            // Assert
-            typeCache.Should().NotBeNull();
-        }
+        // Act
+        var typeCache = _serviceProviderDefault.GetService<ITypeCacheConfigurationService>();
+
+        // Assert
+        typeCache.Should().NotBeNull();
     }
 }

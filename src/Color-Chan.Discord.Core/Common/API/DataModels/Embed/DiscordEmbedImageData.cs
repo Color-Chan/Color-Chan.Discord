@@ -1,35 +1,24 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Embed;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
+namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed;
+
+/// <inheritdoc cref="IDiscordEmbedImage" />
+public record DiscordEmbedImageData
 {
-    /// <summary>
-    ///     Represents a discord Embed Image Structure API model.
-    ///     https://discord.com/developers/docs/resources/channel#embed-object-embed-image-structure
-    /// </summary>
-    public record DiscordEmbedImageData
-    {
-        /// <summary>
-        ///     Source url of image (only supports http(s) and attachments).
-        /// </summary>
-        [JsonPropertyName("url")]
-        public string? Url { get; init; }
+    /// <inheritdoc cref="IDiscordEmbedImage.Url" />
+    [JsonPropertyName("url")]
+    public string? Url { get; init; }
 
-        /// <summary>
-        ///     A proxied url of the image.
-        /// </summary>
-        [JsonPropertyName("proxy_url")]
-        public string? ProxyUrl { get; init; }
+    /// <inheritdoc cref="IDiscordEmbedImage.ProxyUrl" />
+    [JsonPropertyName("proxy_url")]
+    public string? ProxyUrl { get; init; }
 
-        /// <summary>
-        ///     Height of image.
-        /// </summary>
-        [JsonPropertyName("height")]
-        public int? Height { get; init; }
+    /// <inheritdoc cref="IDiscordEmbedImage.Height" />
+    [JsonPropertyName("height")]
+    public int? Height { get; init; }
 
-        /// <summary>
-        ///     Width of image.
-        /// </summary>
-        [JsonPropertyName("width")]
-        public int? Width { get; init; }
-    }
+    /// <inheritdoc cref="IDiscordEmbedImage.Width" />
+    [JsonPropertyName("width")]
+    public int? Width { get; init; }
 }

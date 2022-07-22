@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>Color_Chan.Discord.Core</RootNamespace>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Common" />
+        <Folder Include="Common"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
     </ItemGroup>
 
     <PropertyGroup>
@@ -45,16 +45,15 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <DocumentationFile></DocumentationFile>
+        <DocumentationFile>bin\Debug\Color-Chan.Discord.Core.xml</DocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <DocumentationFile></DocumentationFile>
-        <DebugSymbols>false</DebugSymbols>
+        <DocumentationFile>bin\Release\Color-Chan.Discord.Core.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
-        <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
+        <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
     </ItemGroup>
 
 </Project>

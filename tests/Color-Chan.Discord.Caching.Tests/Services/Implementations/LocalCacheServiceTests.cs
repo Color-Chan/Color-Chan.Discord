@@ -6,26 +6,25 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Caching.Tests.Services.Implementations
+namespace Color_Chan.Discord.Caching.Tests.Services.Implementations;
+
+[TestFixture]
+public class LocalCacheServiceTests : CacheServiceTestBase<LocalCacheService>
 {
-    [TestFixture]
-    public class LocalCacheServiceTests : CacheServiceTestBase<LocalCacheService>
+    [SetUp]
+    public void SetUp()
     {
-        [SetUp]
-        public void SetUp()
+        var typeCache = new TypeCacheConfigurationService(new OptionsWrapper<CacheConfiguration>(new CacheConfiguration
         {
-            var typeCache = new TypeCacheConfigurationService(new OptionsWrapper<CacheConfiguration>(new CacheConfiguration
-            {
-                AbsoluteExpiration = TimeSpan.FromSeconds(30),
-                SlidingExpiration = TimeSpan.FromSeconds(15)
-            }));
+            AbsoluteExpiration = TimeSpan.FromSeconds(30),
+            SlidingExpiration = TimeSpan.FromSeconds(15)
+        }));
 
-            var serviceProvider = new ServiceCollection()
-                                  .AddMemoryCache()
-                                  .BuildServiceProvider();
+        var serviceProvider = new ServiceCollection()
+                              .AddMemoryCache()
+                              .BuildServiceProvider();
 
-            var memCache = serviceProvider.GetRequiredService<IMemoryCache>();
-            CacheService = new LocalCacheService(memCache, typeCache);
-        }
+        var memCache = serviceProvider.GetRequiredService<IMemoryCache>();
+        CacheService = new LocalCacheService(memCache, typeCache);
     }
 }

@@ -1,10 +1,9 @@
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Interaction
+namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Interaction;
+
+[TestFixture]
+public class DiscordInteractionCommandCallbackDataTests : JsonTestBase<DiscordInteractionCallbackData>
 {
-    [TestFixture]
-    public class DiscordInteractionCommandCallbackDataTests : JsonTestBase<DiscordInteractionCallbackData>
-    {
-    }
 }
