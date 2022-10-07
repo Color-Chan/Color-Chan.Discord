@@ -35,11 +35,11 @@ public class DistributedCacheService : ICacheService
     /// <inheritdoc />
     public async Task<Result<TValue>> GetOrCreateValueAsync<TValue>(string key, Func<Task<TValue>> getValue) where TValue : notnull
     {
-        var result = await _distributedCache.GetAsync(key);
+        var result = await _distributedCache.GetAsync(key).ConfigureAwait(false);
 
         if (result is null)
         {
-            return await GetUncachedValueAsync();
+            return await GetUncachedValueAsync().ConfigureAwait(false);
         }
 
         var stream = new MemoryStream(result);
@@ -47,15 +47,15 @@ public class DistributedCacheService : ICacheService
 
         if (cachedValue is null)
         {
-            return await GetUncachedValueAsync();
+            return await GetUncachedValueAsync().ConfigureAwait(false);
         }
 
         return Result<TValue>.FromSuccess(cachedValue);
 
         async Task<Result<TValue>> GetUncachedValueAsync()
         {
-            var uncachedValue = await getValue();
-            await CacheValueAsync(key, uncachedValue);
+            var uncachedValue = await getValue().ConfigureAwait(false);
+            await CacheValueAsync(key, uncachedValue).ConfigureAwait(false);
             return Result<TValue>.FromSuccess(uncachedValue);
         }
     }
@@ -63,7 +63,7 @@ public class DistributedCacheService : ICacheService
     /// <inheritdoc />
     public async Task<Result<TValue>> GetValueAsync<TValue>(string key) where TValue : notnull
     {
-        var result = await _distributedCache.GetAsync(key);
+        var result = await _distributedCache.GetAsync(key).ConfigureAwait(false);
 
         if (result is null)
         {
@@ -81,7 +81,7 @@ public class DistributedCacheService : ICacheService
     /// <inheritdoc />
     public async Task RemoveValueAsync(string key)
     {
-        await _distributedCache.RemoveAsync(key);
+        await _distributedCache.RemoveAsync(key).ConfigureAwait(false);
     }
 
     /// <inheritdoc />
@@ -89,7 +89,7 @@ public class DistributedCacheService : ICacheService
     {
         // Set the cached value.
         var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
-        await _distributedCache.SetAsync(key, bytes, GetCacheConfig<TValue>());
+        await _distributedCache.SetAsync(key, bytes, GetCacheConfig<TValue>()).ConfigureAwait(false);
     }
 
     /// <inheritdoc />
@@ -103,7 +103,7 @@ public class DistributedCacheService : ICacheService
 
         // Set the cached value.
         var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
-        await _distributedCache.SetAsync(key, bytes, redisCacheConfig);
+        await _distributedCache.SetAsync(key, bytes, redisCacheConfig).ConfigureAwait(false);
     }
 
     /// <inheritdoc />
@@ -117,7 +117,7 @@ public class DistributedCacheService : ICacheService
 
         // Set the cached value.
         var bytes = JsonSerializer.SerializeToUtf8Bytes(cachedValue, _serializerOptions);
-        await _distributedCache.SetAsync(key, bytes, redisCacheConfig);
+        await _distributedCache.SetAsync(key, bytes, redisCacheConfig).ConfigureAwait(false);
     }
 
     /// <inheritdoc />
