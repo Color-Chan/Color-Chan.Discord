@@ -50,7 +50,7 @@ public class DiscordPermissionCalculator : IDiscordPermissionCalculator
         }
 
         // Get the bot user.
-        var botMemberResult = await _restGuild.GetGuildMemberAsync(guildId, _discordTokens.ApplicationId);
+        var botMemberResult = await _restGuild.GetGuildMemberAsync(guildId, _discordTokens.ApplicationId).ConfigureAwait(false);
         if (!botMemberResult.IsSuccessful)
         {
             return Result<DiscordPermission?>.FromError(null, botMemberResult.ErrorResult ?? new ErrorResult("Guild member does not exist"));
