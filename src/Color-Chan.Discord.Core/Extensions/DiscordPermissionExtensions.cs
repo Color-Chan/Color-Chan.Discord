@@ -86,7 +86,7 @@ public static class DiscordPermissionExtensions
     /// </param>
     /// <param name="permission">The converted <see cref="DiscordPermission" />.</param>
     /// <returns>
-    ///     Whether or not the <see cref="permissionSpan" /> has been converted to a <see cref="DiscordPermission" />.
+    ///     Whether or not the <paramref name="permissionSpan" /> has been converted to a <see cref="DiscordPermission" />.
     /// </returns>
     public static bool TryParseDiscordGuildPermission(this ReadOnlySpan<char> permissionSpan, [NotNullWhen(true)] out DiscordPermission? permission)
     {
