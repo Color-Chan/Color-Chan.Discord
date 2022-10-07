@@ -61,8 +61,8 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
     {
         ArgumentNullException.ThrowIfNull(interaction.Data);
 
-        var guild = await GetGuildAsync(interaction);
-        var channel = await GetChannelAsync(interaction);
+        var guild = await GetGuildAsync(interaction).ConfigureAwait(false);
+        var channel = await GetChannelAsync(interaction).ConfigureAwait(false);
 
         ISlashCommandContext context = new SlashCommandContext
         {

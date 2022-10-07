@@ -55,7 +55,7 @@ public abstract class BaseRateLimitAttribute : InteractionRequirementAttribute
             {
                 Expiration = absoluteExpiration,
                 Remaining = _max - 1
-            }, null, absoluteExpiration);
+            }, null, absoluteExpiration).ConfigureAwait(false);
             return Result.FromSuccess();
         }
 
@@ -69,7 +69,7 @@ public abstract class BaseRateLimitAttribute : InteractionRequirementAttribute
         {
             rateLimit.Remaining--;
 
-            await cacheService.CacheValueAsync(key, rateLimit, null, rateLimit.Expiration);
+            await cacheService.CacheValueAsync(key, rateLimit, null, rateLimit.Expiration).ConfigureAwait(false);
             return Result.FromSuccess();
         }
 

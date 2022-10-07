@@ -36,7 +36,7 @@ public class LocalCacheService : ICacheService
 
         var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
 
-        await cacheLock.WaitAsync();
+        await cacheLock.WaitAsync().ConfigureAwait(false);
         var data = await _memoryCache.GetOrCreateAsync(key, test =>
         {
             test.SetSlidingExpiration(cacheConfig.SlidingExpiration);
@@ -66,7 +66,7 @@ public class LocalCacheService : ICacheService
     {
         var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
 
-        await cacheLock.WaitAsync();
+        await cacheLock.WaitAsync().ConfigureAwait(false);
         _memoryCache.Remove(key);
         cacheLock.Release();
     }
@@ -76,7 +76,7 @@ public class LocalCacheService : ICacheService
     {
         // Set the cached value.
         var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
-        await cacheLock.WaitAsync();
+        await cacheLock.WaitAsync().ConfigureAwait(false);
         _memoryCache.Set(key, cachedValue, GetCacheConfig<TValue>());
         cacheLock.Release();
     }
@@ -92,7 +92,7 @@ public class LocalCacheService : ICacheService
 
         // Set the cached value.
         var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
-        await cacheLock.WaitAsync();
+        await cacheLock.WaitAsync().ConfigureAwait(false);
         _memoryCache.Set(key, cachedValue, cacheConfig);
         cacheLock.Release();
     }
@@ -108,7 +108,7 @@ public class LocalCacheService : ICacheService
 
         // Set the cached value.
         var cacheLock = _locks.GetOrAdd(key, _ => new SemaphoreSlim(1, 1));
-        await cacheLock.WaitAsync();
+        await cacheLock.WaitAsync().ConfigureAwait(false);
         _memoryCache.Set(key, cachedValue, cacheConfig);
         cacheLock.Release();
     }

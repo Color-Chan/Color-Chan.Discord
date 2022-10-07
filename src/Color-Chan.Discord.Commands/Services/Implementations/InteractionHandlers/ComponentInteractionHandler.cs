@@ -61,8 +61,8 @@ public class ComponentInteractionHandler : IComponentInteractionHandler
         ArgumentNullException.ThrowIfNull(interaction.Data);
         ArgumentNullException.ThrowIfNull(interaction.Data.CustomId);
 
-        var guild = await GetGuildAsync(interaction);
-        var channel = await GetChannelAsync(interaction);
+        var guild = await GetGuildAsync(interaction).ConfigureAwait(false);
+        var channel = await GetChannelAsync(interaction).ConfigureAwait(false);
 
         ComponentContext context = new()
         {

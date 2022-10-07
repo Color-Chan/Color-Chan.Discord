@@ -57,7 +57,7 @@ internal class DiscordRateLimitPolicy : AsyncPolicy<HttpResponseMessage>
             {
                 // A new global bucket needs to be initialized after a global rate limit has ended.
                 _logger.LogDebug("Initializing new global rate limit bucket");
-                await _cacheService.CacheValueAsync(DiscordRateLimitBucket.GlobalBucketId, DiscordRateLimitBucket.GetDefaultGlobalBucket(), null, (TimeSpan?)null);
+                await _cacheService.CacheValueAsync(DiscordRateLimitBucket.GlobalBucketId, DiscordRateLimitBucket.GetDefaultGlobalBucket(), null, (TimeSpan?)null).ConfigureAwait(false);
             }
         }
         else
@@ -96,7 +96,7 @@ internal class DiscordRateLimitPolicy : AsyncPolicy<HttpResponseMessage>
             {
                 // Prevent rate limit buckets that have been reset from being added.
                 if (updatedBucket.ResetsAfter <= TimeSpan.Zero) return response;
-                await _cacheService.CacheValueAsync(DiscordRateLimitBucket.GlobalBucketId, updatedBucket, null, updatedBucket.ResetsAfter);
+                await _cacheService.CacheValueAsync(DiscordRateLimitBucket.GlobalBucketId, updatedBucket, null, updatedBucket.ResetsAfter).ConfigureAwait(false);
                 return response;
             }
         }
@@ -105,7 +105,7 @@ internal class DiscordRateLimitPolicy : AsyncPolicy<HttpResponseMessage>
 
         // Only update the existing bucket if the it isn't already reset.
         if (updatedBucket.ResetsAfter <= TimeSpan.Zero) return response;
-        await _cacheService.CacheValueAsync(endpoint, updatedBucket, null, updatedBucket.ResetsAfter);
+        await _cacheService.CacheValueAsync(endpoint, updatedBucket, null, updatedBucket.ResetsAfter).ConfigureAwait(false);
         return response;
     }
 
