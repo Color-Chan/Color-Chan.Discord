@@ -53,7 +53,7 @@ public class LocalCacheService : ICacheService
     /// <inheritdoc />
     public Task<Result<TValue>> GetValueAsync<TValue>(string key) where TValue : notnull
     {
-        if (_memoryCache.TryGetValue(key, out TValue cachedValue))
+        if (_memoryCache.TryGetValue(key, out TValue? cachedValue) && cachedValue is not null)
         {
             return Task.FromResult(Result<TValue>.FromSuccess(cachedValue));
         }
