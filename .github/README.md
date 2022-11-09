@@ -81,8 +81,8 @@ Color-Chan.Discord is a powerful Discord library made to communicate with the [D
 
 ### Built With
 
-* [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
+* [.NET 7](https://dotnet.microsoft.com/download/dotnet/7.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0)
 
 
 <!-- GETTING STARTED -->
@@ -93,8 +93,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-6.0)
+* [.NET 7](https://dotnet.microsoft.com/download/dotnet/7.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0)
 
 ### Installation
 
