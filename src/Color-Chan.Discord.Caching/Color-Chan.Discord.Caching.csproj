@@ -7,9 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.10" />
-        <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.0" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -47,11 +47,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+        <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj"/>
+        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj" />
     </ItemGroup>
 
 </Project>
