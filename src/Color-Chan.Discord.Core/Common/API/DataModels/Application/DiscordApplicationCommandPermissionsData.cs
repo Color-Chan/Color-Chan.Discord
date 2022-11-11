@@ -1,29 +1,20 @@
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Application;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Application
+namespace Color_Chan.Discord.Core.Common.API.DataModels.Application;
+
+/// <inheritdoc cref="IDiscordApplicationCommandPermissions" />
+public class DiscordApplicationCommandPermissionsData
 {
-    /// <summary>
-    ///     Represents a discord Application Command Permissions Structure API model.
-    ///     https://discord.com/developers/docs/interactions/application-commands#application-command-permissions-object-application-command-permissions-structure
-    /// </summary>
-    public class DiscordApplicationCommandPermissionsData
-    {
-        /// <summary>
-        ///     The id of the role or user.
-        /// </summary>
-        [JsonPropertyName("id")]
-        public ulong Id { get; init; }
+    /// <inheritdoc cref="IDiscordApplicationCommandPermissions.Id" />
+    [JsonPropertyName("id")]
+    public ulong Id { get; init; }
 
-        /// <summary>
-        ///     The type of the <see cref="DiscordApplicationCommandPermissionsData" />.
-        /// </summary>
-        [JsonPropertyName("type")]
-        public DiscordApplicationCommandPermissionsType Type { get; init; }
+    /// <inheritdoc cref="IDiscordApplicationCommandPermissions.Type" />
+    [JsonPropertyName("type")]
+    public DiscordApplicationCommandPermissionsType Type { get; init; }
 
-        /// <summary>
-        ///     true to allow, false, to disallow.
-        /// </summary>
-        [JsonPropertyName("permission")]
-        public bool Allow { get; init; }
-    }
+    /// <inheritdoc cref="IDiscordApplicationCommandPermissions.Allow" />
+    [JsonPropertyName("permission")]
+    public bool Allow { get; init; }
 }

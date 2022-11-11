@@ -1,25 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <RootNamespace>Color_Chan.Discord.Commands.Tests</RootNamespace>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="6.4.0" />
-        <PackageReference Include="GitHubActionsTestLogger" Version="1.3.0" />
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-        <PackageReference Include="Moq" Version="4.17.1" />
-        <PackageReference Include="nunit" Version="3.13.2" />
-        <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+        <PackageReference Include="FluentAssertions" Version="6.8.0"/>
+        <PackageReference Include="GitHubActionsTestLogger" Version="2.0.1"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0"/>
+        <PackageReference Include="Moq" Version="4.18.2"/>
+        <PackageReference Include="nunit" Version="3.13.3"/>
+        <PackageReference Include="NUnit3TestAdapter" Version="4.3.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj" />
-        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Invalid\Color-Chan.Discord.Commands.Tests.Invalid.csproj" />
-        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Valid\Color-Chan.Discord.Commands.Tests.Valid.csproj" />
+        <ProjectReference Include="..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj"/>
+        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Invalid\Color-Chan.Discord.Commands.Tests.Invalid.csproj"/>
+        <ProjectReference Include="..\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Valid\Color-Chan.Discord.Commands.Tests.Valid.csproj"/>
     </ItemGroup>
 
 </Project>

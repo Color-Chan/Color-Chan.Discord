@@ -8,111 +8,110 @@ using Color_Chan.Discord.Rest.Models.Application;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Commands.Tests.Extensions
+namespace Color_Chan.Discord.Commands.Tests.Extensions;
+
+[TestFixture]
+public class DiscordApplicationCommandExtensionsTests
 {
-    [TestFixture]
-    public class DiscordApplicationCommandExtensionsTests
+    [SetUp]
+    public void SetUp()
     {
-        [SetUp]
-        public void SetUp()
+        NewCommands = new List<DiscordCreateApplicationCommand>
         {
-            NewCommands = new List<DiscordCreateApplicationCommand>
+            new()
             {
-                new()
+                Description = "Command1",
+                Name = "commandName",
+                DefaultPermission = false,
+                Options = new List<DiscordApplicationCommandOptionData>
                 {
-                    Description = "Command1",
-                    Name = "commandName",
-                    DefaultPermission = false,
-                    Options = new List<DiscordApplicationCommandOptionData>
+                    new()
                     {
-                        new()
+                        Name = "choice1",
+                        Description = "choiceDesc1",
+                        Type = DiscordApplicationCommandOptionType.Channel,
+                        IsRequired = true,
+                        Choices = new List<DiscordApplicationCommandOptionChoiceData>
                         {
-                            Name = "choice1",
-                            Description = "choiceDesc1",
-                            Type = DiscordApplicationCommandOptionType.Channel,
-                            IsRequired = true,
-                            Choices = new List<DiscordApplicationCommandOptionChoiceData>
+                            new()
                             {
-                                new()
-                                {
-                                    Name = "name1",
-                                    Value = "value1"
-                                },
-                                new()
-                                {
-                                    Name = "name2",
-                                    Value = "value2"
-                                },
-                                new()
-                                {
-                                    Name = "name3",
-                                    Value = "value3"
-                                },
-                                new()
-                                {
-                                    Name = "name4",
-                                    Value = "value4"
-                                }
+                                Name = "name1",
+                                Value = "value1"
+                            },
+                            new()
+                            {
+                                Name = "name2",
+                                Value = "value2"
+                            },
+                            new()
+                            {
+                                Name = "name3",
+                                Value = "value3"
+                            },
+                            new()
+                            {
+                                Name = "name4",
+                                Value = "value4"
                             }
-                        },
-                        new()
+                        }
+                    },
+                    new()
+                    {
+                        Name = "choice2",
+                        Description = "choiceDesc2",
+                        Type = DiscordApplicationCommandOptionType.Channel,
+                        IsRequired = true,
+                        Choices = new List<DiscordApplicationCommandOptionChoiceData>
                         {
-                            Name = "choice2",
-                            Description = "choiceDesc2",
-                            Type = DiscordApplicationCommandOptionType.Channel,
-                            IsRequired = true,
-                            Choices = new List<DiscordApplicationCommandOptionChoiceData>
+                            new()
                             {
-                                new()
-                                {
-                                    Name = "name1",
-                                    Value = "value1"
-                                },
-                                new()
-                                {
-                                    Name = "name2",
-                                    Value = "value2"
-                                },
-                                new()
-                                {
-                                    Name = "name3",
-                                    Value = "value3"
-                                },
-                                new()
-                                {
-                                    Name = "name4",
-                                    Value = "value4"
-                                }
+                                Name = "name1",
+                                Value = "value1"
+                            },
+                            new()
+                            {
+                                Name = "name2",
+                                Value = "value2"
+                            },
+                            new()
+                            {
+                                Name = "name3",
+                                Value = "value3"
+                            },
+                            new()
+                            {
+                                Name = "name4",
+                                Value = "value4"
                             }
-                        },
-                        new()
+                        }
+                    },
+                    new()
+                    {
+                        Name = "group",
+                        Description = "sub command group",
+                        Type = DiscordApplicationCommandOptionType.SubCommandGroup,
+                        SubOptions = new List<DiscordApplicationCommandOptionData>
                         {
-                            Name = "group",
-                            Description = "sub command group",
-                            Type = DiscordApplicationCommandOptionType.SubCommandGroup,
-                            SubOptions = new List<DiscordApplicationCommandOptionData>
+                            new()
                             {
-                                new()
+                                Name = "subCommand",
+                                Description = "sub command description test",
+                                Type = DiscordApplicationCommandOptionType.SubCommand,
+                                IsRequired = true,
+                                SubOptions = new List<DiscordApplicationCommandOptionData>
                                 {
-                                    Name = "subCommand",
-                                    Description = "sub command description test",
-                                    Type = DiscordApplicationCommandOptionType.SubCommand,
-                                    IsRequired = true,
-                                    SubOptions = new List<DiscordApplicationCommandOptionData>
+                                    new()
                                     {
-                                        new()
+                                        Name = "role",
+                                        Description = "The role name",
+                                        IsRequired = false,
+                                        Type = DiscordApplicationCommandOptionType.String,
+                                        Choices = new List<DiscordApplicationCommandOptionChoiceData>
                                         {
-                                            Name = "role",
-                                            Description = "The role name",
-                                            IsRequired = false,
-                                            Type = DiscordApplicationCommandOptionType.String,
-                                            Choices = new List<DiscordApplicationCommandOptionChoiceData>
+                                            new()
                                             {
-                                                new()
-                                                {
-                                                    Name = "name1",
-                                                    Value = 123
-                                                }
+                                                Name = "name1",
+                                                Value = 123
                                             }
                                         }
                                     }
@@ -121,105 +120,105 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                         }
                     }
                 }
-            };
+            }
+        };
 
-            ExistingCommands = new List<DiscordApplicationCommandData>
+        ExistingCommands = new List<DiscordApplicationCommandData>
+        {
+            new()
             {
-                new()
+                Description = "Command1",
+                Name = "commandName",
+                DefaultPermission = false,
+                Options = new List<DiscordApplicationCommandOptionData>
                 {
-                    Description = "Command1",
-                    Name = "commandName",
-                    DefaultPermission = false,
-                    Options = new List<DiscordApplicationCommandOptionData>
+                    new()
                     {
-                        new()
+                        Name = "choice1",
+                        Description = "choiceDesc1",
+                        Type = DiscordApplicationCommandOptionType.Channel,
+                        IsRequired = true,
+                        Choices = new List<DiscordApplicationCommandOptionChoiceData>
                         {
-                            Name = "choice1",
-                            Description = "choiceDesc1",
-                            Type = DiscordApplicationCommandOptionType.Channel,
-                            IsRequired = true,
-                            Choices = new List<DiscordApplicationCommandOptionChoiceData>
+                            new()
                             {
-                                new()
-                                {
-                                    Name = "name1",
-                                    Value = "value1"
-                                },
-                                new()
-                                {
-                                    Name = "name2",
-                                    Value = "value2"
-                                },
-                                new()
-                                {
-                                    Name = "name3",
-                                    Value = "value3"
-                                },
-                                new()
-                                {
-                                    Name = "name4",
-                                    Value = "value4"
-                                }
+                                Name = "name1",
+                                Value = "value1"
+                            },
+                            new()
+                            {
+                                Name = "name2",
+                                Value = "value2"
+                            },
+                            new()
+                            {
+                                Name = "name3",
+                                Value = "value3"
+                            },
+                            new()
+                            {
+                                Name = "name4",
+                                Value = "value4"
                             }
-                        },
-                        new()
+                        }
+                    },
+                    new()
+                    {
+                        Name = "choice2",
+                        Description = "choiceDesc2",
+                        Type = DiscordApplicationCommandOptionType.Channel,
+                        IsRequired = true,
+                        Choices = new List<DiscordApplicationCommandOptionChoiceData>
                         {
-                            Name = "choice2",
-                            Description = "choiceDesc2",
-                            Type = DiscordApplicationCommandOptionType.Channel,
-                            IsRequired = true,
-                            Choices = new List<DiscordApplicationCommandOptionChoiceData>
+                            new()
                             {
-                                new()
-                                {
-                                    Name = "name1",
-                                    Value = "value1"
-                                },
-                                new()
-                                {
-                                    Name = "name2",
-                                    Value = "value2"
-                                },
-                                new()
-                                {
-                                    Name = "name3",
-                                    Value = "value3"
-                                },
-                                new()
-                                {
-                                    Name = "name4",
-                                    Value = "value4"
-                                }
+                                Name = "name1",
+                                Value = "value1"
+                            },
+                            new()
+                            {
+                                Name = "name2",
+                                Value = "value2"
+                            },
+                            new()
+                            {
+                                Name = "name3",
+                                Value = "value3"
+                            },
+                            new()
+                            {
+                                Name = "name4",
+                                Value = "value4"
                             }
-                        },
-                        new()
+                        }
+                    },
+                    new()
+                    {
+                        Name = "group",
+                        Description = "sub command group",
+                        Type = DiscordApplicationCommandOptionType.SubCommandGroup,
+                        SubOptions = new List<DiscordApplicationCommandOptionData>
                         {
-                            Name = "group",
-                            Description = "sub command group",
-                            Type = DiscordApplicationCommandOptionType.SubCommandGroup,
-                            SubOptions = new List<DiscordApplicationCommandOptionData>
+                            new()
                             {
-                                new()
+                                Name = "subCommand",
+                                Description = "sub command description test",
+                                Type = DiscordApplicationCommandOptionType.SubCommand,
+                                IsRequired = true,
+                                SubOptions = new List<DiscordApplicationCommandOptionData>
                                 {
-                                    Name = "subCommand",
-                                    Description = "sub command description test",
-                                    Type = DiscordApplicationCommandOptionType.SubCommand,
-                                    IsRequired = true,
-                                    SubOptions = new List<DiscordApplicationCommandOptionData>
+                                    new()
                                     {
-                                        new()
+                                        Name = "role",
+                                        Description = "The role name",
+                                        IsRequired = null,
+                                        Type = DiscordApplicationCommandOptionType.String,
+                                        Choices = new List<DiscordApplicationCommandOptionChoiceData>
                                         {
-                                            Name = "role",
-                                            Description = "The role name",
-                                            IsRequired = null,
-                                            Type = DiscordApplicationCommandOptionType.String,
-                                            Choices = new List<DiscordApplicationCommandOptionChoiceData>
+                                            new()
                                             {
-                                                new()
-                                                {
-                                                    Name = "name1",
-                                                    Value = 123
-                                                }
+                                                Name = "name1",
+                                                Value = 123
                                             }
                                         }
                                     }
@@ -228,333 +227,333 @@ namespace Color_Chan.Discord.Commands.Tests.Extensions
                         }
                     }
                 }
-            };
-        }
+            }
+        };
+    }
 
-        private List<DiscordCreateApplicationCommand> NewCommands { get; set; } = null!;
+    private List<DiscordCreateApplicationCommand> NewCommands { get; set; } = null!;
 
-        private static List<DiscordApplicationCommandData> ExistingCommands { get; set; } = null!;
+    private static List<DiscordApplicationCommandData> ExistingCommands { get; set; } = null!;
 
-        [Test]
-        public void Should_not_detect_any_new_commands()
+    [Test]
+    public void Should_not_detect_any_new_commands()
+    {
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().BeEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_choices()
+    {
+        // Arrange
+        NewCommands[0].Options!.FirstOrDefault()!.Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices!.Append(new DiscordApplicationCommandOptionChoiceData
         {
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+            Name = "choice5",
+            Value = "choiceValue5"
+        });
 
-            // Assert
-            result.Should().BeEmpty();
-        }
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
-        [Test]
-        public void Should_detect_new_choices()
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_option()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
         {
-            // Arrange
-            NewCommands[0].Options!.FirstOrDefault()!.Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices!.Append(new DiscordApplicationCommandOptionChoiceData
-            {
-                Name = "choice5",
-                Value = "choiceValue5"
-            });
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_option()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                Options = new List<DiscordApplicationCommandOptionData>(NewCommands[0].Options!)
-                {
-                    new()
-                    {
-                        Name = "test",
-                        Description = "test"
-                    }
-                }
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_deleted_options()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                Options = new List<DiscordApplicationCommandOptionData>()
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_options()
-        {
-            // Arrange
-            ExistingCommands[0] = ExistingCommands[0] with
-            {
-                Options = null
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_command_with_name()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                Name = "newName"
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_command_with_desc()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                Description = "new desc"
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_command_with_defaultPerm()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                DefaultPermission = true
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_options_with_name()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                Options = new List<DiscordApplicationCommandOptionData>
-                {
-                    new()
-                    {
-                        Name = NewCommands[0].Options!.FirstOrDefault()!.Name,
-                        Description = NewCommands[0].Options!.FirstOrDefault()!.Description,
-                        Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices,
-                        Type = NewCommands[0].Options!.FirstOrDefault()!.Type,
-                        IsRequired = NewCommands[0].Options!.FirstOrDefault()!.IsRequired,
-                        SubOptions = NewCommands[0].Options!.FirstOrDefault()!.SubOptions
-                    },
-                    new()
-                    {
-                        Name = "test",
-                        Description = "test"
-                    }
-                }
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_options_with_desc()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                Options = new List<DiscordApplicationCommandOptionData>
-                {
-                    new()
-                    {
-                        Name = NewCommands[0].Options!.FirstOrDefault()!.Name,
-                        Description = NewCommands[0].Options!.FirstOrDefault()!.Description,
-                        Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices,
-                        Type = NewCommands[0].Options!.FirstOrDefault()!.Type,
-                        IsRequired = NewCommands[0].Options!.FirstOrDefault()!.IsRequired,
-                        SubOptions = NewCommands[0].Options!.FirstOrDefault()!.SubOptions
-                    },
-                    new()
-                    {
-                        Name = NewCommands[0].Options!.LastOrDefault()!.Name,
-                        Description = "test"
-                    }
-                }
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_options_with_IsRequired()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                Options = new List<DiscordApplicationCommandOptionData>
-                {
-                    new()
-                    {
-                        Name = NewCommands[0].Options!.FirstOrDefault()!.Name,
-                        Description = NewCommands[0].Options!.FirstOrDefault()!.Description,
-                        Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices,
-                        Type = NewCommands[0].Options!.FirstOrDefault()!.Type,
-                        IsRequired = NewCommands[0].Options!.FirstOrDefault()!.IsRequired,
-                        SubOptions = NewCommands[0].Options!.FirstOrDefault()!.SubOptions
-                    },
-                    new()
-                    {
-                        Name = NewCommands[0].Options!.LastOrDefault()!.Name,
-                        Description = NewCommands[0].Options!.LastOrDefault()!.Description,
-                        IsRequired = false
-                    }
-                }
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_options_with_Type()
-        {
-            // Arrange
-            NewCommands[0] = NewCommands[0] with
-            {
-                Options = new List<DiscordApplicationCommandOptionData>
-                {
-                    new()
-                    {
-                        Name = NewCommands[0].Options!.FirstOrDefault()!.Name,
-                        Description = NewCommands[0].Options!.FirstOrDefault()!.Description,
-                        Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices,
-                        Type = NewCommands[0].Options!.FirstOrDefault()!.Type,
-                        IsRequired = NewCommands[0].Options!.FirstOrDefault()!.IsRequired,
-                        SubOptions = NewCommands[0].Options!.FirstOrDefault()!.SubOptions
-                    },
-                    new()
-                    {
-                        Name = NewCommands[0].Options!.LastOrDefault()!.Name,
-                        Description = NewCommands[0].Options!.LastOrDefault()!.Description,
-                        IsRequired = NewCommands[0].Options!.LastOrDefault()!.IsRequired,
-                        Type = DiscordApplicationCommandOptionType.Role
-                    }
-                }
-            };
-
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
-
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
-
-        [Test]
-        public void Should_detect_new_options_with_new_choice_name()
-        {
-            // Arrange
-            NewCommands[0].Options!.FirstOrDefault()!.Choices = new List<DiscordApplicationCommandOptionChoiceData>
+            Options = new List<DiscordApplicationCommandOptionData>(NewCommands[0].Options!)
             {
                 new()
                 {
-                    Name = "new choice"
+                    Name = "test",
+                    Description = "test"
+                }
+            }
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_deleted_options()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
+        {
+            Options = new List<DiscordApplicationCommandOptionData>()
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_options()
+    {
+        // Arrange
+        ExistingCommands[0] = ExistingCommands[0] with
+        {
+            Options = null
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_command_with_name()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
+        {
+            Name = "newName"
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_command_with_desc()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
+        {
+            Description = "new desc"
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_command_with_defaultPerm()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
+        {
+            DefaultPermission = true
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_options_with_name()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
+        {
+            Options = new List<DiscordApplicationCommandOptionData>
+            {
+                new()
+                {
+                    Name = NewCommands[0].Options!.FirstOrDefault()!.Name,
+                    Description = NewCommands[0].Options!.FirstOrDefault()!.Description,
+                    Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices,
+                    Type = NewCommands[0].Options!.FirstOrDefault()!.Type,
+                    IsRequired = NewCommands[0].Options!.FirstOrDefault()!.IsRequired,
+                    SubOptions = NewCommands[0].Options!.FirstOrDefault()!.SubOptions
                 },
-                new(),
-                new(),
                 new()
-            };
+                {
+                    Name = "test",
+                    Description = "test"
+                }
+            }
+        };
 
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
 
-        [Test]
-        public void Should_detect_new_options_with_new_choice_value()
+    [Test]
+    public void Should_detect_new_options_with_desc()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
         {
-            // Arrange
-            NewCommands[0].Options!.FirstOrDefault()!.Choices = new List<DiscordApplicationCommandOptionChoiceData>
+            Options = new List<DiscordApplicationCommandOptionData>
             {
                 new()
                 {
-                    Name = NewCommands[0].Options!.FirstOrDefault()!.Choices!.FirstOrDefault()!.Name,
-                    Value = "new value"
+                    Name = NewCommands[0].Options!.FirstOrDefault()!.Name,
+                    Description = NewCommands[0].Options!.FirstOrDefault()!.Description,
+                    Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices,
+                    Type = NewCommands[0].Options!.FirstOrDefault()!.Type,
+                    IsRequired = NewCommands[0].Options!.FirstOrDefault()!.IsRequired,
+                    SubOptions = NewCommands[0].Options!.FirstOrDefault()!.SubOptions
                 },
-                new(),
-                new(),
                 new()
-            };
+                {
+                    Name = NewCommands[0].Options!.LastOrDefault()!.Name,
+                    Description = "test"
+                }
+            }
+        };
 
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
 
-        [Test]
-        public void Should_detect_new_options_with_new_channelType_value()
+    [Test]
+    public void Should_detect_new_options_with_IsRequired()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
         {
-            // Arrange
-            NewCommands[0].Options!.FirstOrDefault()!.ChanelTypes = new List<DiscordChannelType>
+            Options = new List<DiscordApplicationCommandOptionData>
             {
-                DiscordChannelType.GuildText
-            };
+                new()
+                {
+                    Name = NewCommands[0].Options!.FirstOrDefault()!.Name,
+                    Description = NewCommands[0].Options!.FirstOrDefault()!.Description,
+                    Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices,
+                    Type = NewCommands[0].Options!.FirstOrDefault()!.Type,
+                    IsRequired = NewCommands[0].Options!.FirstOrDefault()!.IsRequired,
+                    SubOptions = NewCommands[0].Options!.FirstOrDefault()!.SubOptions
+                },
+                new()
+                {
+                    Name = NewCommands[0].Options!.LastOrDefault()!.Name,
+                    Description = NewCommands[0].Options!.LastOrDefault()!.Description,
+                    IsRequired = false
+                }
+            }
+        };
 
-            // Act
-            var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
 
-            // Assert
-            result.Should().NotBeNullOrEmpty();
-        }
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_options_with_Type()
+    {
+        // Arrange
+        NewCommands[0] = NewCommands[0] with
+        {
+            Options = new List<DiscordApplicationCommandOptionData>
+            {
+                new()
+                {
+                    Name = NewCommands[0].Options!.FirstOrDefault()!.Name,
+                    Description = NewCommands[0].Options!.FirstOrDefault()!.Description,
+                    Choices = NewCommands[0].Options!.FirstOrDefault()!.Choices,
+                    Type = NewCommands[0].Options!.FirstOrDefault()!.Type,
+                    IsRequired = NewCommands[0].Options!.FirstOrDefault()!.IsRequired,
+                    SubOptions = NewCommands[0].Options!.FirstOrDefault()!.SubOptions
+                },
+                new()
+                {
+                    Name = NewCommands[0].Options!.LastOrDefault()!.Name,
+                    Description = NewCommands[0].Options!.LastOrDefault()!.Description,
+                    IsRequired = NewCommands[0].Options!.LastOrDefault()!.IsRequired,
+                    Type = DiscordApplicationCommandOptionType.Role
+                }
+            }
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_options_with_new_choice_name()
+    {
+        // Arrange
+        NewCommands[0].Options!.FirstOrDefault()!.Choices = new List<DiscordApplicationCommandOptionChoiceData>
+        {
+            new()
+            {
+                Name = "new choice"
+            },
+            new(),
+            new(),
+            new()
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_options_with_new_choice_value()
+    {
+        // Arrange
+        NewCommands[0].Options!.FirstOrDefault()!.Choices = new List<DiscordApplicationCommandOptionChoiceData>
+        {
+            new()
+            {
+                Name = NewCommands[0].Options!.FirstOrDefault()!.Choices!.FirstOrDefault()!.Name,
+                Value = "new value"
+            },
+            new(),
+            new(),
+            new()
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+    }
+
+    [Test]
+    public void Should_detect_new_options_with_new_channelType_value()
+    {
+        // Arrange
+        NewCommands[0].Options!.FirstOrDefault()!.ChanelTypes = new List<DiscordChannelType>
+        {
+            DiscordChannelType.GuildText
+        };
+
+        // Act
+        var result = NewCommands.GetUpdatedOrNewCommands(ExistingCommands.Select(x => new DiscordApplicationCommand(x)).ToList());
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
     }
 }

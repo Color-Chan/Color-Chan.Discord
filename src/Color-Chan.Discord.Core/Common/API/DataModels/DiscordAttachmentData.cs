@@ -1,49 +1,36 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels
+namespace Color_Chan.Discord.Core.Common.API.DataModels;
+
+/// <inheritdoc cref="IDiscordAttachment" />
+public record DiscordAttachmentData
 {
-    public record DiscordAttachmentData
-    {
-        /// <summary>
-        ///     Attachment id.
-        /// </summary>
-        [JsonPropertyName("id")]
-        public ulong Id { get; init; }
+    /// <inheritdoc cref="IDiscordAttachment.Id" />
+    [JsonPropertyName("id")]
+    public ulong Id { get; init; }
 
-        /// <summary>
-        ///     name of file attached.
-        /// </summary>
-        [JsonPropertyName("filename")]
-        public string FileName { get; init; } = null!;
+    /// <inheritdoc cref="IDiscordAttachment.FileName" />
+    [JsonPropertyName("filename")]
+    public string FileName { get; init; } = null!;
 
-        /// <summary>
-        ///     Size of file in bytes.
-        /// </summary>
-        [JsonPropertyName("size")]
-        public int Size { get; init; }
+    /// <inheritdoc cref="IDiscordAttachment.Size" />
+    [JsonPropertyName("size")]
+    public int Size { get; init; }
 
-        /// <summary>
-        ///     Source url of file.
-        /// </summary>
-        [JsonPropertyName("url")]
-        public string Url { get; init; } = null!;
+    /// <inheritdoc cref="IDiscordAttachment.Url" />
+    [JsonPropertyName("url")]
+    public string Url { get; init; } = null!;
 
-        /// <summary>
-        ///     A proxied url of file.
-        /// </summary>
-        [JsonPropertyName("proxy_url")]
-        public string ProxyUrl { get; init; } = null!;
+    /// <inheritdoc cref="IDiscordAttachment.ProxyUrl" />
+    [JsonPropertyName("proxy_url")]
+    public string ProxyUrl { get; init; } = null!;
 
-        /// <summary>
-        ///     Height of file (if image).
-        /// </summary>
-        [JsonPropertyName("height")]
-        public int? Height { get; init; }
+    /// <inheritdoc cref="IDiscordAttachment.Height" />
+    [JsonPropertyName("height")]
+    public int? Height { get; init; }
 
-        /// <summary>
-        ///     Width of file (if image).
-        /// </summary>
-        [JsonPropertyName("width")]
-        public int? Width { get; init; }
-    }
+    /// <inheritdoc cref="IDiscordAttachment.Width" />
+    [JsonPropertyName("width")]
+    public int? Width { get; init; }
 }
