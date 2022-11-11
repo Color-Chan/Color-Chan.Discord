@@ -1,15 +1,14 @@
-﻿namespace Color_Chan.Discord.Benchmarks
-{
-    public class Program
-    {
-        public static void Main()
-        {
-            RunBenchmarks();
-        }
+﻿namespace Color_Chan.Discord.Benchmarks;
 
-        private static void RunBenchmarks()
-        {
-            //BenchmarkRunner.Run<>();
-        }
+public class Program
+{
+    public static void Main()
+    {
+        RunBenchmarks();
+    }
+
+    private static void RunBenchmarks()
+    {
+        //BenchmarkRunner.Run<>();
     }
 }

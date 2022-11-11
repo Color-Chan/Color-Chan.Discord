@@ -4,51 +4,50 @@ using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
 
-namespace Color_Chan.Discord.Commands.Services.Builders
+namespace Color_Chan.Discord.Commands.Services.Builders;
+
+/// <summary>
+///     Holds all the methods to build the <see cref="ISlashCommandInfo" />.
+/// </summary>
+public interface ISlashCommandBuildService
 {
     /// <summary>
-    ///     Holds all the methods to build the <see cref="ISlashCommandInfo" />.
+    ///     Builds all commands in a specific <paramref name="assembly" /> and stores them in a
+    ///     <see cref="IReadOnlyList{T}" /> of <see cref="KeyValuePair{T,U}" /> of <see cref="string" />,
+    ///     <see cref="ISlashCommandInfo" />.
     /// </summary>
-    public interface ISlashCommandBuildService
-    {
-        /// <summary>
-        ///     Builds all commands in a specific <paramref name="assembly" /> and stores them in a
-        ///     <see cref="IReadOnlyList{T}" /> of <see cref="KeyValuePair{T,U}" /> of <see cref="string" />,
-        ///     <see cref="ISlashCommandInfo" />.
-        /// </summary>
-        /// <param name="assembly">
-        ///     The <see cref="Assembly" /> where the <see cref="ISlashCommandBuildService" /> will search for commands.
-        /// </param>
-        /// <returns>
-        ///     A <see cref="IReadOnlyList{T}" /> of <see cref="KeyValuePair{T,U}" /> of <see cref="string" />,
-        ///     <see cref="ISlashCommandInfo" />.
-        ///     The key <see cref="string" /> contains the command name.
-        ///     And the value <see cref="ISlashCommandInfo" /> contains the commands information to execute it.
-        /// </returns>
-        IReadOnlyList<KeyValuePair<string, ISlashCommandInfo>> BuildSlashCommandInfos(Assembly assembly);
+    /// <param name="assembly">
+    ///     The <see cref="Assembly" /> where the <see cref="ISlashCommandBuildService" /> will search for commands.
+    /// </param>
+    /// <returns>
+    ///     A <see cref="IReadOnlyList{T}" /> of <see cref="KeyValuePair{T,U}" /> of <see cref="string" />,
+    ///     <see cref="ISlashCommandInfo" />.
+    ///     The key <see cref="string" /> contains the command name.
+    ///     And the value <see cref="ISlashCommandInfo" /> contains the commands information to execute it.
+    /// </returns>
+    IReadOnlyList<KeyValuePair<string, ISlashCommandInfo>> BuildSlashCommandInfos(Assembly assembly);
 
-        /// <summary>
-        ///     Get all the interaction command modules.
-        ///     These modules need to inherit <see cref="ISlashCommandModule" /> so they can be found by the
-        ///     <see cref="ISlashCommandBuildService" />.
-        /// </summary>
-        /// <param name="assembly">
-        ///     The <see cref="Assembly" /> where the <see cref="ISlashCommandBuildService" /> will search
-        ///     for the modules.
-        /// </param>
-        /// <returns>
-        ///     A <see cref="IEnumerable{T}" /> of <see cref="TypeInfo" />s that inherits
-        ///     <see cref="ISlashCommandModule" />.
-        /// </returns>
-        IEnumerable<TypeInfo> GetSlashCommandModules(Assembly assembly);
+    /// <summary>
+    ///     Get all the interaction command modules.
+    ///     These modules need to inherit <see cref="ISlashCommandModule" /> so they can be found by the
+    ///     <see cref="ISlashCommandBuildService" />.
+    /// </summary>
+    /// <param name="assembly">
+    ///     The <see cref="Assembly" /> where the <see cref="ISlashCommandBuildService" /> will search
+    ///     for the modules.
+    /// </param>
+    /// <returns>
+    ///     A <see cref="IEnumerable{T}" /> of <see cref="TypeInfo" />s that inherits
+    ///     <see cref="ISlashCommandModule" />.
+    /// </returns>
+    IEnumerable<TypeInfo> GetSlashCommandModules(Assembly assembly);
 
-        /// <summary>
-        ///     Builds the slash command parameters so it can be send to Discord's API.
-        /// </summary>
-        /// <param name="commandInfos">The <see cref="ISlashCommandInfo" />s.</param>
-        /// <returns>
-        ///     The build slash command parameters.
-        /// </returns>
-        IEnumerable<DiscordCreateApplicationCommand> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos);
-    }
+    /// <summary>
+    ///     Builds the slash command parameters so it can be send to Discord's API.
+    /// </summary>
+    /// <param name="commandInfos">The <see cref="ISlashCommandInfo" />s.</param>
+    /// <returns>
+    ///     The build slash command parameters.
+    /// </returns>
+    IEnumerable<DiscordCreateApplicationCommand> BuildSlashCommandsParams(IEnumerable<ISlashCommandInfo> commandInfos);
 }

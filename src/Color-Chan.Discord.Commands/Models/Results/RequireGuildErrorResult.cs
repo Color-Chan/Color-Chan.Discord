@@ -1,18 +1,17 @@
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 
-namespace Color_Chan.Discord.Commands.Models.Results
+namespace Color_Chan.Discord.Commands.Models.Results;
+
+/// <summary>
+///     An error describing when a requirement failed for the <see cref="RequireGuildAttribute" />.
+/// </summary>
+public record RequireGuildErrorResult : InteractionRequirementErrorResult
 {
     /// <summary>
-    ///     An error describing when a requirement failed for the <see cref="RequireGuildAttribute" />.
+    ///     Initializes a new instance of <see cref="RequireGuildErrorResult" />.
     /// </summary>
-    public record RequireGuildErrorResult : InteractionRequirementErrorResult
+    /// <param name="errorMessage">The message of the error.</param>
+    public RequireGuildErrorResult(string errorMessage) : base(errorMessage)
     {
-        /// <summary>
-        ///     Initializes a new instance of <see cref="RequireGuildErrorResult" />.
-        /// </summary>
-        /// <param name="errorMessage">The message of the error.</param>
-        public RequireGuildErrorResult(string errorMessage) : base(errorMessage)
-        {
-        }
     }
 }

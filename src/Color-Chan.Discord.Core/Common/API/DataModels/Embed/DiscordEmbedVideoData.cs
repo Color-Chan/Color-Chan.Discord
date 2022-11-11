@@ -1,35 +1,24 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Embed;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
+namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed;
+
+/// <inheritdoc cref="IDiscordEmbedVideo" />
+public record DiscordEmbedVideoData
 {
-    /// <summary>
-    ///     Represents a discord Embed Video Structure API model.
-    ///     https://discord.com/developers/docs/resources/channel#embed-object-embed-video-structure
-    /// </summary>
-    public record DiscordEmbedVideoData
-    {
-        /// <summary>
-        ///     Source url of video.
-        /// </summary>
-        [JsonPropertyName("url")]
-        public string? Url { get; init; }
+    /// <inheritdoc cref="IDiscordEmbedVideo.Url" />
+    [JsonPropertyName("url")]
+    public string? Url { get; init; }
 
-        /// <summary>
-        ///     A proxied url of the video.
-        /// </summary>
-        [JsonPropertyName("proxy_url")]
-        public string? ProxyUrl { get; init; }
+    /// <inheritdoc cref="IDiscordEmbedVideo.ProxyUrl" />
+    [JsonPropertyName("proxy_url")]
+    public string? ProxyUrl { get; init; }
 
-        /// <summary>
-        ///     Height of video.
-        /// </summary>
-        [JsonPropertyName("height")]
-        public int? Height { get; init; }
+    /// <inheritdoc cref="IDiscordEmbedVideo.Height" />
+    [JsonPropertyName("height")]
+    public int? Height { get; init; }
 
-        /// <summary>
-        ///     Width of video.
-        /// </summary>
-        [JsonPropertyName("width")]
-        public int? Width { get; init; }
-    }
+    /// <inheritdoc cref="IDiscordEmbedVideo.Width" />
+    [JsonPropertyName("width")]
+    public int? Width { get; init; }
 }

@@ -9,82 +9,81 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace Color_Chan.Discord.Commands.Tests.Services.Implementations.Builders
+namespace Color_Chan.Discord.Commands.Tests.Services.Implementations.Builders;
+
+[TestFixture]
+public class SlashCommandBuildServiceTests
 {
-    [TestFixture]
-    public class SlashCommandBuildServiceTests
+    private static readonly Assembly ValidAssembly = typeof(ValidMockCommandModule1).Assembly;
+    private static readonly Assembly InValidAssembly = typeof(InValidMockCommandModule1).Assembly;
+
+    [Test]
+    public void Should_get_interaction_command_modules()
     {
-        private static readonly Assembly ValidAssembly = typeof(ValidMockCommandModule1).Assembly;
-        private static readonly Assembly InValidAssembly = typeof(InValidMockCommandModule1).Assembly;
+        // Arrange
+        var loggerMock = new Mock<ILogger<SlashCommandBuildService>>();
+        var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
+        var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
+        var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
+        var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
 
-        [Test]
-        public void Should_get_interaction_command_modules()
-        {
-            // Arrange
-            var loggerMock = new Mock<ILogger<SlashCommandBuildService>>();
-            var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
-            var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
-            var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
-            var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
+        // Act
+        var types = buildService.GetSlashCommandModules(ValidAssembly);
 
-            // Act
-            var types = buildService.GetSlashCommandModules(ValidAssembly);
+        // Assert
+        types.Count().Should().Be(8);
+    }
 
-            // Assert
-            types.Count().Should().Be(8);
-        }
+    [Test]
+    public void Should_get_interaction_commands()
+    {
+        // Arrange
+        var loggerMock = new Mock<ILogger<SlashCommandBuildService>>();
+        var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
+        var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
+        var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
+        var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
 
-        [Test]
-        public void Should_get_interaction_commands()
-        {
-            // Arrange
-            var loggerMock = new Mock<ILogger<SlashCommandBuildService>>();
-            var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
-            var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
-            var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
-            var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
+        // Act
+        var commands = buildService.BuildSlashCommandInfos(ValidAssembly);
 
-            // Act
-            var commands = buildService.BuildSlashCommandInfos(ValidAssembly);
+        // Assert
+        commands.Count.Should().Be(20);
+    }
 
-            // Assert
-            commands.Count.Should().Be(20);
-        }
+    [Test]
+    public void Should_get_empty_interaction_command_modules()
+    {
+        // Arrange
+        var loggerMock = new Mock<ILogger<SlashCommandBuildService>>();
+        var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
+        var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
+        var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
+        var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
 
-        [Test]
-        public void Should_get_empty_interaction_command_modules()
-        {
-            // Arrange
-            var loggerMock = new Mock<ILogger<SlashCommandBuildService>>();
-            var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
-            var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
-            var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
-            var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
+        // Act
+        var types = buildService.GetSlashCommandModules(InValidAssembly).ToList();
 
-            // Act
-            var types = buildService.GetSlashCommandModules(InValidAssembly).ToList();
+        // Assert
+        types.Count.Should().Be(1);
+        var inValidModuleType = types.Any(x => x != typeof(InValidMockCommandModule2));
+        inValidModuleType.Should().BeTrue();
+    }
 
-            // Assert
-            types.Count.Should().Be(1);
-            var inValidModuleType = types.Any(x => x != typeof(InValidMockCommandModule2));
-            inValidModuleType.Should().BeTrue();
-        }
+    [Test]
+    public void Should_not_get_interaction_commands()
+    {
+        // Arrange
+        var loggerMock = new Mock<ILogger<SlashCommandBuildService>>();
+        var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
+        var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
+        var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
+        var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
 
-        [Test]
-        public void Should_not_get_interaction_commands()
-        {
-            // Arrange
-            var loggerMock = new Mock<ILogger<SlashCommandBuildService>>();
-            var requirementBuilderMock = new Mock<ISlashCommandRequirementBuildService>();
-            var guildBuilderMock = new Mock<ISlashCommandGuildBuildService>();
-            var optionBuilderMock = new Mock<ISlashCommandOptionBuildService>();
-            var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
+        // Act
+        var commands = buildService.BuildSlashCommandInfos(InValidAssembly);
 
-            // Act
-            var commands = buildService.BuildSlashCommandInfos(InValidAssembly);
-
-            // Assert
-            commands.Count.Should().Be(0);
-        }
+        // Assert
+        commands.Count.Should().Be(0);
     }
 }

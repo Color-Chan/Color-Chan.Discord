@@ -1,29 +1,20 @@
 ﻿using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.Models.Embed;
 
-namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed
+namespace Color_Chan.Discord.Core.Common.API.DataModels.Embed;
+
+/// <inheritdoc cref="IDiscordEmbedField" />
+public record DiscordEmbedFieldData
 {
-    /// <summary>
-    ///     Represents a discord Embed Field Structure API model.
-    ///     https://discord.com/developers/docs/resources/channel#embed-object-embed-field-structure
-    /// </summary>
-    public record DiscordEmbedFieldData
-    {
-        /// <summary>
-        ///     Name of the field.
-        /// </summary>
-        [JsonPropertyName("name")]
-        public string Name { get; init; } = null!;
+    /// <inheritdoc cref="IDiscordEmbedField.Name" />
+    [JsonPropertyName("name")]
+    public string Name { get; init; } = null!;
 
-        /// <summary>
-        ///     Value of the field.
-        /// </summary>
-        [JsonPropertyName("value")]
-        public string Value { get; init; } = null!;
+    /// <inheritdoc cref="IDiscordEmbedField.Value" />
+    [JsonPropertyName("value")]
+    public string Value { get; init; } = null!;
 
-        /// <summary>
-        ///     Whether or not this field should display inline.
-        /// </summary>
-        [JsonPropertyName("inline")]
-        public bool? Inline { get; init; }
-    }
+    /// <inheritdoc cref="IDiscordEmbedField.Inline" />
+    [JsonPropertyName("inline")]
+    public bool? Inline { get; init; }
 }
