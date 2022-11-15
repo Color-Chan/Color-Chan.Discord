@@ -69,8 +69,5 @@ public class SlashCommandInfo : ISlashCommandInfo
     public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
 
     /// <inheritdoc />
-    public IEnumerable<SlashCommandPermissionAttribute>? Permissions { get; set; }
-
-    /// <inheritdoc />
     public List<ISlashCommandOptionInfo>? CommandOptions { get; set; }
 }
