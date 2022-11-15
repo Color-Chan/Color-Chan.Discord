@@ -56,15 +56,6 @@ public interface ISlashCommandInfo
     public IEnumerable<InteractionRequirementAttribute>? Requirements { get; set; }
 
     /// <summary>
-    ///     A <see cref="IEnumerable{T}" /> of <see cref="SlashCommandPermissionAttribute" />s containing the permission data
-    ///     for this command.
-    /// </summary>
-    /// <remarks>
-    ///     Always null on global slash command.
-    /// </remarks>
-    public IEnumerable<SlashCommandPermissionAttribute>? Permissions { get; set; }
-
-    /// <summary>
     ///     The options for the slash command.
     /// </summary>
     public List<ISlashCommandOptionInfo>? CommandOptions { get; set; }

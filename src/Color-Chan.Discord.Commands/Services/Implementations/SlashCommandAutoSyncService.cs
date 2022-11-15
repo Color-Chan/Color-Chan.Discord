@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core;
-using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.API.Rest;
-using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -25,7 +22,6 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
     private const int MaxGuildCommands = 100;
     private readonly ISlashCommandBuildService _commandBuildService;
     private readonly DiscordTokens _discordTokens;
-    private readonly ISlashCommandGuildBuildService _guildBuildService;
     private readonly ILogger<SlashCommandAutoSyncService> _logger;
     private readonly IDiscordRestApplication _restApplication;
     private readonly SlashCommandConfiguration _slashConfigs;
@@ -42,15 +38,11 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
     ///     The <see cref="ISlashCommandBuildService" /> that will be used to build the slash
     ///     commands parameters.
     /// </param>
-    /// <param name="guildBuildService">
-    ///     The <see cref="ISlashCommandGuildBuildService" /> that will be used to build the guild command permissions.
-    /// </param>
     /// <param name="slashConfigs">The configurations for the slash commands.</param>
     public SlashCommandAutoSyncService(IDiscordRestApplication restApplication, DiscordTokens discordTokens, ILogger<SlashCommandAutoSyncService> logger,
-                                       ISlashCommandBuildService commandBuildService, ISlashCommandGuildBuildService guildBuildService, IOptions<SlashCommandConfiguration> slashConfigs)
+                                       ISlashCommandBuildService commandBuildService, IOptions<SlashCommandConfiguration> slashConfigs)
     {
         _commandBuildService = commandBuildService;
-        _guildBuildService = guildBuildService;
         _slashConfigs = slashConfigs.Value;
         _restApplication = restApplication;
         _discordTokens = discordTokens;
@@ -145,7 +137,6 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
 
         foreach (var guildId in guildIds)
         {
-            var remainingCommands = new List<IDiscordApplicationCommand>();
 
             // Build the slash commands.
             var guildCommandInfos = GetGuildCommandInfos(slashCommandInfos, guildId).ToList();
@@ -169,7 +160,6 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
                     var result = await _restApplication.CreateGuildApplicationCommandAsync(_discordTokens.ApplicationId, guildId, newCommand).ConfigureAwait(false);
                     if (!result.IsSuccessful) return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult("Failed to create guild slash commands."));
 
-                    remainingCommands.Add(result.Entity ?? throw new ArgumentNullException(nameof(result.Entity)));
                     _logger.LogInformation("Created new guild slash command {CommandName} {Id}", result.Entity!.Name, result.Entity!.Id.ToString());
                 }
                 else
@@ -194,7 +184,6 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
             {
                 if (guildCommands.Select(x => x.Name).Contains(existingCommand.Name))
                 {
-                    remainingCommands.Add(existingCommand);
                     continue;
                 }
 
@@ -204,52 +193,7 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
 
                 _logger.LogInformation("Deleted old guild slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
             }
-
-            // Link local command perms with their command ID.
-            var localCommandPerms = new Dictionary<ulong, IEnumerable<SlashCommandPermissionAttribute>>();
-            foreach (var remainingCommand in remainingCommands)
-            {
-                var commandInfo = guildCommandInfos.FirstOrDefault(x => x.CommandName == remainingCommand.Name);
-                if (commandInfo is null) continue;
-
-                localCommandPerms.Add(remainingCommand.Id, commandInfo.Permissions ?? new List<SlashCommandPermissionAttribute>());
-            }
-
-            // Get the existing command perms.
-            var existingCommandPerms = await _restApplication.GetGuildApplicationCommandPermissionsAsync(_discordTokens.ApplicationId, guildId).ConfigureAwait(false);
-            if (!existingCommandPerms.IsSuccessful)
-            {
-                return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult($"Failed to get existing guild command permissions for guild {guildId.ToString()}"));
-            }
-
-            // Todo: Remove the batchPerms stuff here since it's depricated.
-            // Only update the perms if needed.
-            var batchPerms = _guildBuildService.BuildGuildPermissions(localCommandPerms).ToList();
-            if (batchPerms.ShouldUpdatePermissions(existingCommandPerms.Entity!))
-            {
-                // A quick fix because the batch update perms is deprecated and a fix was needed.
-                foreach (var batchPerm in batchPerms)
-                {
-                    var editPermsResult = await _restApplication.EditGuildApplicationCommandPermissionsAsync(
-                                                           _discordTokens.ApplicationId,
-                                                           guildId,
-                                                           batchPerm.CommandId,
-                                                           new DiscordEditApplicationCommandPermissions
-                                                           {
-                                                               Permissions = batchPerm.Permissions
-                                                           }).ConfigureAwait(false);
-                    
-                    if (!editPermsResult.IsSuccessful)
-                    {
-                        return Result.FromError(existingCommands.ErrorResult
-                                                ?? new ErrorResult($"Failed edit guild command permissions for guild {guildId.ToString()}, command: {batchPerm.CommandId.ToString()}"));
-                    }
-                }
-                
-                _logger.LogInformation("Updated command permissions for guild {GuildId}", guildId.ToString());
-            }
-
-
+            
             _logger.LogInformation("Finished syncing guild slash commands for guild {Id}", guildId.ToString());
         }
 

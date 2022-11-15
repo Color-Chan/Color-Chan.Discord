@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
@@ -150,27 +149,6 @@ public class DiscordRestApplication : DiscordRestBase, IDiscordRestApplication
     {
         var endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/{commandId.ToString()}/permissions";
         var result = await HttpClient.GetAsync<IReadOnlyList<DiscordGuildApplicationCommandPermissionsData>>(endpoint, ct: ct).ConfigureAwait(false);
-        return ApiResultConverters.ConvertResult(result);
-    }
-
-    /// <inheritdoc />
-    public virtual async Task<Result<IDiscordGuildApplicationCommandPermissions>> EditGuildApplicationCommandPermissionsAsync(
-        ulong applicationId, ulong guildId, ulong commandId, DiscordEditApplicationCommandPermissions body, CancellationToken ct = default)
-    {
-        var endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/{commandId.ToString()}/permissions";
-        var result = await HttpClient.PutAsync<DiscordGuildApplicationCommandPermissionsData, DiscordEditApplicationCommandPermissions>(endpoint, body, ct: ct).ConfigureAwait(false);
-        return ApiResultConverters.ConvertResult(result);
-    }
-
-    /// <inheritdoc />
-    [Obsolete("This endpoint has been disabled with updates to command permissions (Permissions v2)." +
-              "Instead, you can edit each application command permissions.")]
-    public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissionsAsync(
-        ulong applicationId, ulong guildId, IEnumerable<DiscordBatchEditApplicationCommandPermissions> body, CancellationToken ct = default)
-    {
-        var endpoint = $"applications/{applicationId.ToString()}/guilds/{guildId.ToString()}/commands/permissions";
-        var result = await HttpClient.PutAsync<IReadOnlyList<DiscordGuildApplicationCommandPermissionsData>, IEnumerable<DiscordBatchEditApplicationCommandPermissions>>(endpoint, body, ct: ct)
-                                     .ConfigureAwait(false);
         return ApiResultConverters.ConvertResult(result);
     }
 
