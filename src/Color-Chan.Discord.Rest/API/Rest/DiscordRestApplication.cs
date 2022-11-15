@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
@@ -162,6 +163,8 @@ public class DiscordRestApplication : DiscordRestBase, IDiscordRestApplication
     }
 
     /// <inheritdoc />
+    [Obsolete("This endpoint has been disabled with updates to command permissions (Permissions v2)." +
+              "Instead, you can edit each application command permissions.")]
     public virtual async Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> BatchEditApplicationCommandPermissionsAsync(
         ulong applicationId, ulong guildId, IEnumerable<DiscordBatchEditApplicationCommandPermissions> body, CancellationToken ct = default)
     {

@@ -9,6 +9,7 @@ using Color_Chan.Discord.Commands.Extensions;
 using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.API.Rest;
 using Color_Chan.Discord.Core.Common.Models.Application;
 using Color_Chan.Discord.Core.Results;
@@ -221,17 +222,30 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
                 return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult($"Failed to get existing guild command permissions for guild {guildId.ToString()}"));
             }
 
+            // Todo: Remove the batchPerms stuff here since it's depricated.
             // Only update the perms if needed.
             var batchPerms = _guildBuildService.BuildGuildPermissions(localCommandPerms).ToList();
             if (batchPerms.ShouldUpdatePermissions(existingCommandPerms.Entity!))
             {
-                var batchPermResult = await _restApplication.BatchEditApplicationCommandPermissionsAsync(_discordTokens.ApplicationId, guildId, batchPerms).ConfigureAwait(false);
-
-                if (!batchPermResult.IsSuccessful)
+                // A quick fix because the batch update perms is deprecated and a fix was needed.
+                foreach (var batchPerm in batchPerms)
                 {
-                    return Result.FromError(existingCommands.ErrorResult ?? new ErrorResult($"Failed batch edit guild command permissions for guild {guildId.ToString()}"));
+                    var editPermsResult = await _restApplication.EditGuildApplicationCommandPermissionsAsync(
+                                                           _discordTokens.ApplicationId,
+                                                           guildId,
+                                                           batchPerm.CommandId,
+                                                           new DiscordEditApplicationCommandPermissions
+                                                           {
+                                                               Permissions = batchPerm.Permissions
+                                                           }).ConfigureAwait(false);
+                    
+                    if (!editPermsResult.IsSuccessful)
+                    {
+                        return Result.FromError(existingCommands.ErrorResult
+                                                ?? new ErrorResult($"Failed edit guild command permissions for guild {guildId.ToString()}, command: {batchPerm.CommandId.ToString()}"));
+                    }
                 }
-
+                
                 _logger.LogInformation("Updated command permissions for guild {GuildId}", guildId.ToString());
             }
 
