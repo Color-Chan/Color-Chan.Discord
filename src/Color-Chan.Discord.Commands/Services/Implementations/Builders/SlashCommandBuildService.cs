@@ -145,8 +145,7 @@ public class SlashCommandBuildService : ISlashCommandBuildService
             {
                 Guilds = _guildBuildService.GetCommandGuilds(validMethod),
                 CommandOptions = _optionBuildService.GetCommandOptions(validMethod).ToList(),
-                Requirements = _requirementBuildService.GetCommandRequirements(validMethod),
-                Permissions = _guildBuildService.GetCommandGuildPermissions(validMethod)
+                Requirements = _requirementBuildService.GetCommandRequirements(validMethod)
             };
             return new KeyValuePair<string, ISlashCommandInfo>(commandAttribute.Name, commandInfo);
         }
@@ -161,8 +160,7 @@ public class SlashCommandBuildService : ISlashCommandBuildService
         var commandGroup = new SlashCommandInfo(groupAttribute.Name, groupAttribute.Description, groupAttribute.DefaultPermission, parentModule)
         {
             CommandOptions = new List<ISlashCommandOptionInfo>(),
-            Guilds = _guildBuildService.GetCommandGuilds(parentModule),
-            Permissions = _guildBuildService.GetCommandGuildPermissions(parentModule)
+            Guilds = _guildBuildService.GetCommandGuilds(parentModule)
         };
         var rawValidCommands = GetValidSubSlashCommandsMethods(parentModule);
 
