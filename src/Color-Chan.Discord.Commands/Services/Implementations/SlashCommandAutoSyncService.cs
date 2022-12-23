@@ -137,7 +137,6 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
 
         foreach (var guildId in guildIds)
         {
-
             // Build the slash commands.
             var guildCommandInfos = GetGuildCommandInfos(slashCommandInfos, guildId).ToList();
             var guildCommands = _commandBuildService.BuildSlashCommandsParams(guildCommandInfos).ToList();
@@ -193,7 +192,7 @@ public class SlashCommandAutoSyncService : ISlashCommandAutoSyncService
 
                 _logger.LogInformation("Deleted old guild slash command {CommandName} {Id}", existingCommand.Name, existingCommand.Id.ToString());
             }
-            
+
             _logger.LogInformation("Finished syncing guild slash commands for guild {Id}", guildId.ToString());
         }
 
