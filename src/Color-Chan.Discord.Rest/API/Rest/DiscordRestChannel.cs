@@ -134,7 +134,7 @@ public class DiscordRestChannel : DiscordRestBase, IDiscordRestChannel
         };
 
         var endpoint = $"channels/{channelId.ToString()}/messages/bulk-delete";
-        return await HttpClient.DeleteAsync(endpoint, queries, auditLogReason, ct).ConfigureAwait(false);
+        return await HttpClient.PostAsync(endpoint, queries, auditLogReason, ct).ConfigureAwait(false);
     }
 
     #endregion
