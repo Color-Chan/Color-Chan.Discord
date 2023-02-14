@@ -23,11 +23,6 @@ internal static class Constants
     internal static class Headers
     {
         /// <summary>
-        ///     The query name for a list of message ids.
-        /// </summary>
-        internal static string MessageQueryName { get; } = "messages";
-
-        /// <summary>
         ///     The query name to limit a request to a certain number of results.
         /// </summary>
         internal static string LimitQueryName { get; } = "limit";

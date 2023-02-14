@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Core.Common.API.DataModels;
@@ -11,22 +10,18 @@ using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models;
-using Microsoft.Extensions.Options;
 
 namespace Color_Chan.Discord.Rest.API.Rest;
 
 /// <inheritdoc cref="IDiscordRestChannel" />
 public class DiscordRestChannel : DiscordRestBase, IDiscordRestChannel
 {
-    private readonly IOptions<JsonSerializerOptions> _serializerOptions;
-
     /// <summary>
     ///     Initializes a new instance of <see cref="DiscordRestGuild" />.
     /// </summary>
     /// <inheritdoc />
-    public DiscordRestChannel(IDiscordHttpClient httpClient, IOptions<JsonSerializerOptions> serializerOptions) : base(httpClient)
+    public DiscordRestChannel(IDiscordHttpClient httpClient) : base(httpClient)
     {
-        _serializerOptions = serializerOptions;
     }
 
     // All api calls for channels.
@@ -128,13 +123,11 @@ public class DiscordRestChannel : DiscordRestBase, IDiscordRestChannel
     {
         if (messageIds.Count is < 2 or > 100) throw new ArgumentOutOfRangeException(nameof(messageIds), "The amount of message IDs has to be between 2 and 100.");
 
-        var queries = new List<KeyValuePair<string, string>>
-        {
-            new(Constants.Headers.MessageQueryName, JsonSerializer.Serialize(messageIds, _serializerOptions.Value))
-        };
-
         var endpoint = $"channels/{channelId.ToString()}/messages/bulk-delete";
-        return await HttpClient.PostAsync(endpoint, queries, auditLogReason, ct).ConfigureAwait(false);
+        return await HttpClient.PostAsync(endpoint, new DiscordBulkDeleteMessages
+        {
+            MessageIds = messageIds
+        }, auditLogReason, ct).ConfigureAwait(false);
     }
 
     #endregion
