@@ -33,19 +33,31 @@ jobs:
       run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
 
     - name: Pack Color-Chan.Discord
-      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+      run: dotnet pack ./src/Color-Chan.Discord --configuration Release /p:Version=${VERSION} --no-build --output .
 
     - name: Push Color-Chan.Discord nuget.org
       run: dotnet nuget push Color-Chan.Discord.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
+    - name: Pack Color-Chan.Discord.Rest
+      run: dotnet pack ./src/Color-Chan.Discord.Rest --configuration Release /p:Version=${VERSION} --no-build --output .
+
     - name: Push Color-Chan.Discord.Rest nuget.org
       run: dotnet nuget push Color-Chan.Discord.Rest.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+    - name: Pack Color-Chan.Discord.Core
+      run: dotnet pack ./src/Color-Chan.Discord.Core --configuration Release /p:Version=${VERSION} --no-build --output .
 
     - name: Push Color-Chan.Discord.Core nuget.org
       run: dotnet nuget push Color-Chan.Discord.Core.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
+    - name: Pack Color-Chan.Discord.Commands
+      run: dotnet pack ./src/Color-Chan.Discord.Commands --configuration Release /p:Version=${VERSION} --no-build --output .
+
     - name: Push Color-Chan.Discord.Commands nuget.org
       run: dotnet nuget push Color-Chan.Discord.Commands.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+    - name: Pack Color-Chan.Discord.Caching
+      run: dotnet pack ./src/Color-Chan.Discord.Caching --configuration Release /p:Version=${VERSION} --no-build --output .
 
     - name: Push Color-Chan.Discord.Caching nuget.org
       run: dotnet nuget push Color-Chan.Discord.Caching.${VERSION}.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json --skip-duplicate
