@@ -7,8 +7,7 @@ LABEL org.label-schema.description="A sample project for Color-Chan.Discord"
 LABEL org.label-schema.url="https://github.com/Color-Chan/Color-Chan.Discord"
 
 # Setup workspace
-WORKDIR /samples
-COPY /samples .
+COPY . .
 WORKDIR /samples/Pong
 
 # Restore dependencies
