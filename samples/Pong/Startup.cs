@@ -1,3 +1,4 @@
+using System;
 using Color_Chan.Discord.Configurations;
 using Color_Chan.Discord.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -30,9 +31,17 @@ public class Startup
             }
         };
 
-        //  Replace the arguments with the data of your bot.
-        //  Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.
-        services.AddColorChanDiscord("TOKEN", "PUBLIC_KEY", 999999999999999, config); // <---
+        // Replace the arguments with the data of your bot.
+        // See https://github.com/Color-Chan/Color-Chan.Discord/tree/main/samples/Secrets.md for more info.
+        // Note: It is not recommended to hardcode them in, loading them from an environment variable or from a json file is better.
+        var token = Configuration["Discord:Token"];
+        var publicKey = Configuration["Discord:PublicKey"];
+        var applicationId = Configuration.GetValue<ulong>("Discord:ApplicationId");
+
+        ArgumentException.ThrowIfNullOrEmpty(token, nameof(token));
+        ArgumentException.ThrowIfNullOrEmpty(publicKey, nameof(publicKey));
+
+        services.AddColorChanDiscord(token, publicKey, applicationId, config); // <---
 
         services.AddControllers();
     }

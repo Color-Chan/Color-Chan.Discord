@@ -32,6 +32,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Color-Chan.Discord.Rest.Tests", "tests\Color-Chan.Discord.Rest.Tests\Color-Chan.Discord.Rest.Tests.csproj", "{47E4B187-33E2-437E-9840-E12D41275743}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{B2D862F3-8ED1-4D09-8248-8D4B5EB2737A}"
+	ProjectSection(SolutionItems) = preProject
+		samples\Secrets.md = samples\Secrets.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pong", "samples\Pong\Pong.csproj", "{4CF397C8-467A-436D-B16C-D885B2EA3DA3}"
 EndProject
