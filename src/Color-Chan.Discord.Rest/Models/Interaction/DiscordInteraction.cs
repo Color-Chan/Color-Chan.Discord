@@ -32,6 +32,7 @@ public record DiscordInteraction : IDiscordInteraction
         if (data.Message is not null) Message = new DiscordMessage(data.Message);
         if (data.Permissions is not null) Permissions = data.Permissions;
         EntitlementSkuIds = data.EntitlementSkuIds;
+        Entitlements = data.Entitlements;
     }
 
     /// <inheritdoc />
@@ -72,6 +73,9 @@ public record DiscordInteraction : IDiscordInteraction
 
     /// <inheritdoc />
     public IEnumerable<ulong> EntitlementSkuIds { get; init; }
+
+    /// <inheritdoc />
+    public IEnumerable<DiscordInteractionData> Entitlements { get; init; }
 
     /// <inheritdoc />
     public bool IsPingInteraction()

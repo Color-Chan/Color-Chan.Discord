@@ -78,11 +78,16 @@ public interface IDiscordInteraction
     ///     Permissions the app or bot has within the channel the interaction was sent from.
     /// </summary>
     DiscordPermission? Permissions { get; init; }
-    
+
     /// <summary>
     ///     The ids of the entitlements SKUs attached to the interaction.
     /// </summary>
     IEnumerable<ulong> EntitlementSkuIds { get; init; }
+
+    /// <summary>
+    ///    The entitlements attached to the interaction.
+    /// </summary>
+    IEnumerable<DiscordInteractionData> Entitlements { get; init; }
 
     /// <summary>
     ///     Checks whether or not the interaction <see cref="RequestType" /> is
