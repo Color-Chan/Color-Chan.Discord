@@ -1,3 +1,4 @@
+using System;
 using Color_Chan.Discord.Core.Common.API.DataModels.Entitlement;
 
 namespace Color_Chan.Discord.Core.Common.Models.Entitlement;
@@ -32,6 +33,22 @@ public interface IDiscordEntitlement
     ///     The id of the promotion that the entitlement was used with.
     /// </summary>
     public ulong? PromotionId { get; init; }
+    
+    /// <summary>
+    ///     The time at which the entitlement starts at.
+    /// </summary>
+    public DateTimeOffset? StartAt { get; set; }
+
+    /// <summary>
+    ///     The time at which the entitlement ends at.
+    /// </summary>
+    public DateTimeOffset? EndAt { get; set; }
+    
+    /// <summary>
+    ///    The id of the subscription that was used to bought the entitlement.
+    ///     This is only present if the entitlement was bought through a subscription.
+    /// </summary>
+    public ulong? SubscriptionId { get; set; }
 
     /// <summary>
     ///     Whether the entitlement has been consumed.

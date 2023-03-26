@@ -1,5 +1,9 @@
 namespace Color_Chan.Discord.Core.Common.API.DataModels.Entitlement;
 
+/// <summary>
+///     The type of entitlement.
+///     Docs: https://discord.com/developers/docs/game-sdk/store#data-models-entitlementtype-enum
+/// </summary>
 public enum DiscordEntitlementType
 {
     /// <summary>

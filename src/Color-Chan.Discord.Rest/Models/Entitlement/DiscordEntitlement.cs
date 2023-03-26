@@ -1,3 +1,4 @@
+using System;
 using Color_Chan.Discord.Core.Common.API.DataModels.Entitlement;
 using Color_Chan.Discord.Core.Common.Models.Entitlement;
 
@@ -20,6 +21,9 @@ public class DiscordEntitlement : IDiscordEntitlement
         Consumed = data.Consumed;
         Deleted = data.Deleted;
         Type = data.Type;
+        StartAt = data.StartAt;
+        EndAt = data.EndAt;
+        SubscriptionId = data.SubscriptionId;
     }
 
     /// <inheritdoc />
@@ -36,6 +40,15 @@ public class DiscordEntitlement : IDiscordEntitlement
 
     /// <inheritdoc />
     public ulong? PromotionId { get; init; }
+
+    /// <inheritdoc />
+    public DateTimeOffset? StartAt { get; set; }
+
+    /// <inheritdoc />
+    public DateTimeOffset? EndAt { get; set; }
+
+    /// <inheritdoc />
+    public ulong? SubscriptionId { get; set; }
 
     /// <inheritdoc />
     public bool Consumed { get; init; }

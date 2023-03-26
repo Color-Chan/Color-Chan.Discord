@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.Models.Entitlement;
 
@@ -25,6 +26,18 @@ public record DiscordEntitlementData
     /// <inheritdoc cref="IDiscordEntitlement.PromotionId" />
     [JsonPropertyName("promotion_id")]
     public ulong? PromotionId { get; set; }
+
+    /// <inheritdoc cref="IDiscordEntitlement.StartAt" />
+    [JsonPropertyName("start_at")]
+    public DateTimeOffset? StartAt { get; set; }
+
+    /// <inheritdoc cref="IDiscordEntitlement.EndAt" />
+    [JsonPropertyName("end_at")]
+    public DateTimeOffset? EndAt { get; set; }
+    
+    /// <inheritdoc cref="IDiscordEntitlement.SubscriptionId" />
+    [JsonPropertyName("subscription_id")]
+    public ulong? SubscriptionId { get; set; }
 
     /// <inheritdoc cref="IDiscordEntitlement.Consumed" />
     [JsonPropertyName("consumed")]
