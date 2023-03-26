@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -55,4 +56,8 @@ public record DiscordInteractionData
     /// <inheritdoc cref="IDiscordInteraction.Permissions" />
     [JsonPropertyName("app_permissions")]
     public DiscordPermission? Permissions { get; init; }
+    
+    /// <inheritdoc cref="IDiscordInteraction.EntitlementSkuIds" />
+    [JsonPropertyName("entitlement_sku_ids")]
+    public IEnumerable<ulong> EntitlementSkuIds { get; init; } = new List<ulong>();
 }
