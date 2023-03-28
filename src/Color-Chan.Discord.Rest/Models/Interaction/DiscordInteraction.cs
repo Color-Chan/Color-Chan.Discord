@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models;
+using Color_Chan.Discord.Core.Common.Models.Entitlement;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Message;
+using Color_Chan.Discord.Rest.Models.Entitlement;
 using Color_Chan.Discord.Rest.Models.Guild;
 using Color_Chan.Discord.Rest.Models.Message;
 
@@ -32,7 +35,7 @@ public record DiscordInteraction : IDiscordInteraction
         if (data.Message is not null) Message = new DiscordMessage(data.Message);
         if (data.Permissions is not null) Permissions = data.Permissions;
         EntitlementSkuIds = data.EntitlementSkuIds;
-        Entitlements = data.Entitlements;
+        Entitlements = data.Entitlements.Select(x => new DiscordEntitlement(x));
     }
 
     /// <inheritdoc />
@@ -75,7 +78,7 @@ public record DiscordInteraction : IDiscordInteraction
     public IEnumerable<ulong> EntitlementSkuIds { get; init; }
 
     /// <inheritdoc />
-    public IEnumerable<DiscordInteractionData> Entitlements { get; init; }
+    public IEnumerable<IDiscordEntitlement> Entitlements { get; init; }
 
     /// <inheritdoc />
     public bool IsPingInteraction()

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Color_Chan.Discord.Core.Common.API.DataModels.Entitlement;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -63,5 +64,5 @@ public record DiscordInteractionData
     
     /// <inheritdoc cref="IDiscordInteraction.Entitlements" />
     [JsonPropertyName("entitlements")]
-    public IEnumerable<DiscordInteractionData> Entitlements { get; init; } = new List<DiscordInteractionData>();
+    public IEnumerable<DiscordEntitlementData> Entitlements { get; init; } = new List<DiscordEntitlementData>();
 }

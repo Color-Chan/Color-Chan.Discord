@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.Models.Entitlement;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Message;
 
@@ -87,7 +88,7 @@ public interface IDiscordInteraction
     /// <summary>
     ///    The entitlements attached to the interaction.
     /// </summary>
-    IEnumerable<DiscordInteractionData> Entitlements { get; init; }
+    IEnumerable<IDiscordEntitlement> Entitlements { get; init; }
 
     /// <summary>
     ///     Checks whether or not the interaction <see cref="RequestType" /> is
