@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Color_Chan.Discord.Commands.Models.Contexts;
-using Color_Chan.Discord.Core.Common.Models.Interaction;
 
 namespace Color_Chan.Discord.Commands.Extensions;
 
