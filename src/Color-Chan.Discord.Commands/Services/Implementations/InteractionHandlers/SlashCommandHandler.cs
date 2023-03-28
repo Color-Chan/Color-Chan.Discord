@@ -77,7 +77,8 @@ public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler
             Token = interaction.Token,
             Channel = channel,
             Guild = guild,
-            Permissions = interaction.Permissions
+            Permissions = interaction.Permissions,
+            Entitlements = interaction.Entitlements
         };
 
         IEnumerable<IDiscordInteractionOption>? options = null;
