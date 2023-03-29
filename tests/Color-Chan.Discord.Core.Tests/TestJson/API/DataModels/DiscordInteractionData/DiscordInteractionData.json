@@ -57,5 +57,7 @@
     "permissions": "274877906943"
   },
   "token": "token",
-  "version": 1
+  "version": 1,
+  "entitlement_sku_ids": [],
+  "entitlements": []
 }

@@ -77,7 +77,8 @@ public class ComponentInteractionHandler : IComponentInteractionHandler
             Token = interaction.Token,
             Channel = channel,
             Guild = guild,
-            Permissions = interaction.Permissions
+            Permissions = interaction.Permissions,
+            Entitlements = interaction.Entitlements
         };
 
         var customId = GetCustomId(interaction, context);

@@ -10,5 +10,7 @@
   "guild_id": "9999999999999999",
   "channel_id": "9999999999999999",
   "token": "token",
-  "version": 1
+  "version": 1,
+  "entitlement_sku_ids": [],
+  "entitlements": []
 }

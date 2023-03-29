@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Color-Chan.Discord.Caching\Color-Chan.Discord.Caching.csproj"/>
-        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj"/>
+        <ProjectReference Include="..\Color-Chan.Discord.Caching\Color-Chan.Discord.Caching.csproj" />
+        <ProjectReference Include="..\Color-Chan.Discord.Core\Color-Chan.Discord.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -17,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -55,7 +55,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+        <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
     </ItemGroup>
 
 </Project>
