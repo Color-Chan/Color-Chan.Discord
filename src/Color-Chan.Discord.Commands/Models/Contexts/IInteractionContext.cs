@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
+using Color_Chan.Discord.Core.Common.Models.Entitlement;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Message;
@@ -94,4 +96,9 @@ public interface IInteractionContext
     ///     Permissions the app or bot has within the channel the interaction was sent from.
     /// </summary>
     DiscordPermission? Permissions { get; init; }
+
+    /// <summary>
+    ///    The entitlements attached to the interaction.
+    /// </summary>
+    IEnumerable<IDiscordEntitlement> Entitlements { get; init; }
 }

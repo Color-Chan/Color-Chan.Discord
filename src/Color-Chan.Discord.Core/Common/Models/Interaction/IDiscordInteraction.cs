@@ -1,5 +1,7 @@
-﻿using Color_Chan.Discord.Core.Common.API.DataModels;
+﻿using System.Collections.Generic;
+using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
+using Color_Chan.Discord.Core.Common.Models.Entitlement;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Message;
 
@@ -77,6 +79,16 @@ public interface IDiscordInteraction
     ///     Permissions the app or bot has within the channel the interaction was sent from.
     /// </summary>
     DiscordPermission? Permissions { get; init; }
+
+    /// <summary>
+    ///     The ids of the entitlements SKUs attached to the interaction.
+    /// </summary>
+    IEnumerable<ulong> EntitlementSkuIds { get; init; }
+
+    /// <summary>
+    ///    The entitlements attached to the interaction.
+    /// </summary>
+    IEnumerable<IDiscordEntitlement> Entitlements { get; init; }
 
     /// <summary>
     ///     Checks whether or not the interaction <see cref="RequestType" /> is

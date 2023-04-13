@@ -36,5 +36,20 @@ public enum DiscordInteractionCallbackType
     /// <remarks>
     ///     Only valid for component-based interactions.
     /// </remarks>
-    UpdateMessage = 7
+    UpdateMessage = 7,
+    
+    /// <summary>
+    ///     Respond to an autocomplete interaction with suggested choices.
+    /// </summary>
+    ApplicationCommandAutocompleteResult = 8,
+    
+    /// <summary>
+    ///     Respond to an interaction with a popup modal.
+    /// </summary>
+    Modal = 9,
+    
+    /// <summary>
+    ///     Used for the premium apps beta!
+    /// </summary>
+    Premium = 10
 }
