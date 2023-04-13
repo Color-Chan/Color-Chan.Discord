@@ -27,13 +27,13 @@ public record DiscordEntitlementData
     [JsonPropertyName("promotion_id")]
     public ulong? PromotionId { get; set; }
 
-    /// <inheritdoc cref="IDiscordEntitlement.StartAt" />
-    [JsonPropertyName("start_at")]
-    public DateTimeOffset? StartAt { get; set; }
+    /// <inheritdoc cref="IDiscordEntitlement.StartsAt" />
+    [JsonPropertyName("starts_at")]
+    public DateTimeOffset? StartsAt { get; set; }
 
-    /// <inheritdoc cref="IDiscordEntitlement.EndAt" />
-    [JsonPropertyName("end_at")]
-    public DateTimeOffset? EndAt { get; set; }
+    /// <inheritdoc cref="IDiscordEntitlement.EndsAt" />
+    [JsonPropertyName("ends_at")]
+    public DateTimeOffset? EndsAt { get; set; }
     
     /// <inheritdoc cref="IDiscordEntitlement.SubscriptionId" />
     [JsonPropertyName("subscription_id")]

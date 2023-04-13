@@ -268,6 +268,7 @@ public class SlashCommandOptionAttribute : Attribute
             throw new ArgumentException("Channel types can only be used with channel options.");
         }
 
+        // ReSharper disable once PatternIsRedundant
         if (Type is not DiscordApplicationCommandOptionType.Number or DiscordApplicationCommandOptionType.Integer && (MinValue is not null || MaxValue is not null))
         {
             throw new ArgumentException("Min and max values can only be used with numbers and integers.");

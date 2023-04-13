@@ -21,8 +21,8 @@ public class DiscordEntitlement : IDiscordEntitlement
         Consumed = data.Consumed;
         Deleted = data.Deleted;
         Type = data.Type;
-        StartAt = data.StartAt;
-        EndAt = data.EndAt;
+        StartsAt = data.StartsAt;
+        EndsAt = data.EndsAt;
         SubscriptionId = data.SubscriptionId;
     }
 
@@ -42,10 +42,10 @@ public class DiscordEntitlement : IDiscordEntitlement
     public ulong? PromotionId { get; init; }
 
     /// <inheritdoc />
-    public DateTimeOffset? StartAt { get; set; }
+    public DateTimeOffset? StartsAt { get; set; }
 
     /// <inheritdoc />
-    public DateTimeOffset? EndAt { get; set; }
+    public DateTimeOffset? EndsAt { get; set; }
 
     /// <inheritdoc />
     public ulong? SubscriptionId { get; set; }

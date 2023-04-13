@@ -24,10 +24,10 @@ public static class InteractionContextExtensions
             x => x.SkuId == skuId &&
                 x.SubscriptionId is null ||
                 (
-                    x.StartAt is not null &&
-                    x.StartAt <= now &&
-                    x.EndAt is not null &&
-                    x.EndAt >= now
+                    x.StartsAt is not null &&
+                    x.StartsAt <= now &&
+                    x.EndsAt is not null &&
+                    x.EndsAt >= now
                 )
         );
     }

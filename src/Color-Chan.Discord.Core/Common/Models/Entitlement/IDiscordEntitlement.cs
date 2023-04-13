@@ -38,13 +38,13 @@ public interface IDiscordEntitlement
     ///     The time at which the entitlement starts at.
     ///     This is only present if the entitlement is not a test subscription.
     /// </summary>
-    public DateTimeOffset? StartAt { get; set; }
+    public DateTimeOffset? StartsAt { get; set; }
 
     /// <summary>
     ///     The time at which the entitlement ends at.
     ///     This is only present if the entitlement is not a test subscription.
     /// </summary>
-    public DateTimeOffset? EndAt { get; set; }
+    public DateTimeOffset? EndsAt { get; set; }
 
     /// <summary>
     ///    The id of the subscription that was used to bought the entitlement.
