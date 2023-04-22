@@ -5,6 +5,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.API.Params.Application;
 using Color_Chan.Discord.Core.Common.API.Params.Webhook;
 using Color_Chan.Discord.Core.Common.Models.Application;
+using Color_Chan.Discord.Core.Common.Models.Entitlement;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Message;
 using Color_Chan.Discord.Core.Results;
@@ -17,6 +18,43 @@ namespace Color_Chan.Discord.Core.Common.API.Rest;
 /// </summary>
 public interface IDiscordRestApplication
 {
+    /// <summary>
+    ///     Get the entitlements for an application.
+    /// </summary>
+    /// <param name="applicationId">The id of the application where the entitlement belongs to.</param>
+    /// <param name="ct">The <see cref="CancellationToken" />.</param>
+    /// <returns>
+    ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of <see cref="IDiscordEntitlement" />
+    ///     with the request results.
+    /// </returns>
+    Task<Result<IReadOnlyList<IDiscordEntitlement>>> GetEntitlementsAsync(ulong applicationId, CancellationToken ct = default);
+
+    /// <summary>
+    ///     Create a new test entitlement for a user or guild.
+    /// </summary>
+    /// <param name="applicationId">The id of the application where the entitlement will belong to.</param>
+    /// <param name="entitlement">The <see cref="DiscordCreateTestEntitlement"/> containing all the request params.</param>
+    /// <param name="ct">The <see cref="CancellationToken" />.</param>
+    /// <returns>
+    ///     The <see cref="Result{T}" /> of <see cref="IDiscordEntitlement" /> with the request results.
+    /// </returns>
+    Task<Result<IDiscordEntitlement>> CreateTestEntitlementAsync(
+        ulong applicationId,
+        DiscordCreateTestEntitlement entitlement,
+        CancellationToken ct = default
+    );
+
+    /// <summary>
+    ///     Delete a test entitlement for a user or guild.
+    /// </summary>
+    /// <param name="applicationId">The id of the application where the entitlement belongs to.</param>
+    /// <param name="entitlementId">The id of the entitlement.</param>
+    /// <param name="ct">The <see cref="CancellationToken" />.</param>
+    /// <returns>
+    ///     The <see cref="Result" /> with the request results.
+    /// </returns>
+    Task<Result> DeleteTestEntitlementAsync(ulong applicationId, ulong entitlementId, CancellationToken ct = default);
+
     /// <summary>
     ///     Fetch all of the global application commands for your application.
     /// </summary>
@@ -44,7 +82,11 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result{T}" /> of <see cref="IDiscordApplicationCommand" /> with the request results.
     /// </returns>
-    Task<Result<IDiscordApplicationCommand>> CreateGlobalApplicationCommandAsync(ulong applicationId, DiscordCreateApplicationCommand command, CancellationToken ct = default);
+    Task<Result<IDiscordApplicationCommand>> CreateGlobalApplicationCommandAsync(
+        ulong applicationId,
+        DiscordCreateApplicationCommand command,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Fetch a global application command for your application..
@@ -70,8 +112,12 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result{T}" /> of <see cref="IDiscordApplicationCommand" /> with the request results.
     /// </returns>
-    Task<Result<IDiscordApplicationCommand>> EditGlobalApplicationCommandAsync(ulong applicationId, ulong commandId,
-                                                                               DiscordCreateApplicationCommand command, CancellationToken ct = default);
+    Task<Result<IDiscordApplicationCommand>> EditGlobalApplicationCommandAsync(
+        ulong applicationId,
+        ulong commandId,
+        DiscordCreateApplicationCommand command,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Deletes a global application command.
@@ -94,7 +140,11 @@ public interface IDiscordRestApplication
     ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of <see cref="IDiscordApplicationCommand" />
     ///     with the request results.
     /// </returns>
-    Task<Result<IReadOnlyList<IDiscordApplicationCommand>>> GetGuildApplicationCommandsAsync(ulong applicationId, ulong guildId, CancellationToken ct = default);
+    Task<Result<IReadOnlyList<IDiscordApplicationCommand>>> GetGuildApplicationCommandsAsync(
+        ulong applicationId,
+        ulong guildId,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Overwrites existing application commands that are registered globally for the application.
@@ -110,9 +160,11 @@ public interface IDiscordRestApplication
     ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of <see cref="IDiscordApplicationCommand" />
     ///     with the request results.
     /// </returns>
-    Task<Result<IReadOnlyList<IDiscordApplicationCommand>>> BulkOverwriteGlobalApplicationCommandsAsync(ulong applicationId,
-                                                                                                        IEnumerable<DiscordCreateApplicationCommand> commandParams,
-                                                                                                        CancellationToken ct = default);
+    Task<Result<IReadOnlyList<IDiscordApplicationCommand>>> BulkOverwriteGlobalApplicationCommandsAsync(
+        ulong applicationId,
+        IEnumerable<DiscordCreateApplicationCommand> commandParams,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Create a new guild application command.
@@ -128,8 +180,11 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result{T}" /> of <see cref="IDiscordApplicationCommand" /> with the request results.
     /// </returns>
-    Task<Result<IDiscordApplicationCommand>> CreateGuildApplicationCommandAsync(ulong applicationId, ulong guildId,
-                                                                                DiscordCreateApplicationCommand command, CancellationToken ct = default
+    Task<Result<IDiscordApplicationCommand>> CreateGuildApplicationCommandAsync(
+        ulong applicationId,
+        ulong guildId,
+        DiscordCreateApplicationCommand command,
+        CancellationToken ct = default
     );
 
     /// <summary>
@@ -142,7 +197,12 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result{T}" /> of <see cref="IDiscordApplicationCommand" /> with the request results.
     /// </returns>
-    Task<Result<IDiscordApplicationCommand>> GetGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId, CancellationToken ct = default);
+    Task<Result<IDiscordApplicationCommand>> GetGuildApplicationCommandAsync(
+        ulong applicationId,
+        ulong guildId,
+        ulong commandId,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Edit a guild application command.
@@ -159,8 +219,13 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result{T}" /> of <see cref="IDiscordApplicationCommand" /> with the request results.
     /// </returns>
-    Task<Result<IDiscordApplicationCommand>> EditGuildApplicationCommandAsync(ulong applicationId, ulong guildId, ulong commandId,
-                                                                              DiscordCreateApplicationCommand command, CancellationToken ct = default);
+    Task<Result<IDiscordApplicationCommand>> EditGuildApplicationCommandAsync(
+        ulong applicationId,
+        ulong guildId,
+        ulong commandId,
+        DiscordCreateApplicationCommand command,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Delete a guild application command.
@@ -189,9 +254,12 @@ public interface IDiscordRestApplication
     ///     The <see cref="Result{T}" /> of <see cref="IReadOnlyList{T}" /> of <see cref="IDiscordApplicationCommand" />
     ///     with the request results.
     /// </returns>
-    Task<Result<IReadOnlyList<IDiscordApplicationCommand>>> BulkOverwriteGuildApplicationCommandsAsync(ulong applicationId, ulong guildId,
-                                                                                                       IEnumerable<DiscordCreateApplicationCommand> commandParams,
-                                                                                                       CancellationToken ct = default);
+    Task<Result<IReadOnlyList<IDiscordApplicationCommand>>> BulkOverwriteGuildApplicationCommandsAsync(
+        ulong applicationId,
+        ulong guildId,
+        IEnumerable<DiscordCreateApplicationCommand> commandParams,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Fetches command permissions for all commands for your application in a guild.
@@ -204,7 +272,10 @@ public interface IDiscordRestApplication
     ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
     /// </returns>
     Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissionsAsync(
-        ulong applicationId, ulong guildId, CancellationToken ct = default);
+        ulong applicationId,
+        ulong guildId,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Fetches command permissions for a command for your application in a guild.
@@ -218,7 +289,11 @@ public interface IDiscordRestApplication
     ///     <see cref="IDiscordGuildApplicationCommandPermissions" /> with the request results.
     /// </returns>
     Task<Result<IReadOnlyList<IDiscordGuildApplicationCommandPermissions>>> GetGuildApplicationCommandPermissionsAsync(
-        ulong applicationId, ulong guildId, ulong commandId, CancellationToken ct = default);
+        ulong applicationId,
+        ulong guildId,
+        ulong commandId,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Create a response to an Interaction from the gateway.
@@ -230,7 +305,12 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result" /> with the request results.
     /// </returns>
-    Task<Result> CreateInteractionResponseAsync(ulong interactionId, string token, DiscordInteractionResponseData response, CancellationToken ct = default);
+    Task<Result> CreateInteractionResponseAsync(
+        ulong interactionId,
+        string token,
+        DiscordInteractionResponseData response,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Returns the initial Interaction response.
@@ -253,7 +333,12 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
     /// </returns>
-    Task<Result<IDiscordMessage>> EditOriginalInteractionResponseAsync(ulong applicationId, string token, DiscordEditWebhookMessage webhookMessage, CancellationToken ct = default);
+    Task<Result<IDiscordMessage>> EditOriginalInteractionResponseAsync(
+        ulong applicationId,
+        string token,
+        DiscordEditWebhookMessage webhookMessage,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Deletes the initial Interaction response.
@@ -276,7 +361,12 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
     /// </returns>
-    Task<Result<IDiscordMessage>> CreateFollowupMessageAsync(ulong applicationId, string token, DiscordCreateFollowupMessage followupMessage, CancellationToken ct = default);
+    Task<Result<IDiscordMessage>> CreateFollowupMessageAsync(
+        ulong applicationId,
+        string token,
+        DiscordCreateFollowupMessage followupMessage,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Returns a followup message for an Interaction.
@@ -307,7 +397,13 @@ public interface IDiscordRestApplication
     /// <returns>
     ///     The <see cref="Result{T}" /> of <see cref="IDiscordMessage" /> with the request results.
     /// </returns>
-    Task<Result<IDiscordMessage>> EditFollowupMessageAsync(ulong applicationId, string token, ulong messageId, DiscordEditWebhookMessage webhookMessage, CancellationToken ct = default);
+    Task<Result<IDiscordMessage>> EditFollowupMessageAsync(
+        ulong applicationId,
+        string token,
+        ulong messageId,
+        DiscordEditWebhookMessage webhookMessage,
+        CancellationToken ct = default
+    );
 
     /// <summary>
     ///     Deletes a followup message for an Interaction.
