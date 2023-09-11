@@ -17,13 +17,13 @@
 <br />
 <p align="center">
   <a href="https://github.com/Color-Chan/Color-Chan.Discord">
-    <img src="https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_round_512x.png" alt="Logo" width="120" height="120">
+    <img src="https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_round_512x.png" alt="Logo" width="140">
   </a>
 
   <h3 align="center">Color-Chan.Discord</h3>
 
   <p align="center">
-    A Discord library made in .NET 5 for interactions using HTTPS.
+    A Discord library made in .NET for interactions using webhooks.
     <br />
     <a href="https://discord-library.colorchan.com/"><strong>Explore the docs »</strong></a>
     <br />
@@ -69,16 +69,20 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Color-Chan.Discord is a C# Discord library made for slash commands, using Discord webhooks, .NET 5 and ASP.NET.  
-The library is still in development so there expect some bug here and there, but please report it if you find one!
+Color-Chan.Discord is a powerful Discord library made to communicate with the [Discord API](https://discord.com/developers/docs).
 
-Color-Chan.Discord was originally made because i wanted full controll over what the bot exactly does, i also wanted it to be reliable and it had to run without a connection with discord gateway.
+### Features
 
+- Application commands
+- Message components
+- HTTP Webhooks
+- Modular
+- Completely asynchronous
 
 ### Built With
 
-* [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
+* [.NET 7](https://dotnet.microsoft.com/download/dotnet/7.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0)
 
 
 <!-- GETTING STARTED -->
@@ -89,8 +93,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0)
+* [.NET 7](https://dotnet.microsoft.com/download/dotnet/7.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0)
 
 ### Installation
 
@@ -124,23 +128,24 @@ The induvidial components are also available on NuGet:
    ```sh
    git clone https://github.com/Color-Chan/Color-Chan.Discord.git
    ```
-2. Build the repo
+2. Move to the correct folder
+   ```sh
+   cd Color-Chan.Discord
+   ```
+3. Build the repo
    ```sh
    dotnet build
    ```
 
 
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-
 Create a new ASP.NET project and add the following to Program.cs and Startup.cs.
 
-
 ### Program.cs
-You will have to replace `Assembly.GetExecutingAssembly()` with the assembly where your commands will be located.
 
+You will have to replace `Assembly.GetExecutingAssembly()` with the assembly where your commands will be located.
 
 ```csharp
 public static async Task Main(string[] args)
@@ -155,10 +160,9 @@ public static async Task Main(string[] args)
 }
 ```
 
-
 ### Startup.cs
-You will need to add your bot token, public key and application id, these can be found at [discordapp.com](https://discordapp.com/developers/applications/).
 
+You will need to add your bot token, public key and application id, these can be found at [discordapp.com](https://discordapp.com/developers/applications/).
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -189,11 +193,10 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-
 ### Commands
+
 After this you can start to create your own commands!
 Here is a simple example on how you can do that.
-
 
 ```csharp
 public class PongCommands : SlashCommandModule
@@ -219,13 +222,10 @@ You will need to add this URL to you [application](https://discord.com/developer
 &nbsp;  
 [![interactionUrlSetup](https://cdn.colorchan.com/examples/interactionUrlExample.png)](https://discord.com/developers/applications/)
 
-
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/Color-Chan/Color-Chan.Discord/issues) for a list of proposed features (and known issues) W.I.P.
-
-
+See the [milestones](https://github.com/Color-Chan/Color-Chan.Discord/milestones) for a list of proposed features.
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -238,18 +238,14 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
 ## Versioning
 
 Color-Chan.Discord uses [Semantic Versioning 2.0.0](https://semver.org/#semantic-versioning-200) for its versioning.
-
 
 ### Summary
 
@@ -260,8 +256,6 @@ The versioning will be using the following format: MAJOR.MINOR.PATCH.
 * PATCH version when you make backwards compatible bug fixes.
 * Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 
-
-
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
@@ -269,10 +263,8 @@ The versioning will be using the following format: MAJOR.MINOR.PATCH.
 * [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/)
 * [Readme-template](https://github.com/othneildrew/Best-README-Template)
 * [Scrutor](https://github.com/khellang/Scrutor)
-
-
-
-
+* [Fluent Assertions](https://github.com/fluentassertions/fluentassertions)
+* [Moq](https://github.com/moq/moq4)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
