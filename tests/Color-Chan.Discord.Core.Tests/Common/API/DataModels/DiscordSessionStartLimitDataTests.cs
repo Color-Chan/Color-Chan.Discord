@@ -4,6 +4,4 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels;
 
 [TestFixture]
-public class DiscordSessionStartLimitDataTests : JsonTestBase<DiscordSessionStartLimitData>
-{
-}
+public class DiscordSessionStartLimitDataTests : JsonTestBase<DiscordSessionStartLimitData>;

@@ -4,6 +4,4 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Embed;
 
 [TestFixture]
-public class DiscordEmbedFooterDataTests : JsonTestBase<DiscordEmbedFooterData>
-{
-}
+public class DiscordEmbedFooterDataTests : JsonTestBase<DiscordEmbedFooterData>;
