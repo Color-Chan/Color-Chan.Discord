@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <RootNamespace>Color_Chan.Discord</RootNamespace>
         <Nullable>enable</Nullable>
         <Product>Color-Chan.Discord</Product>
@@ -25,7 +25,7 @@
         <Title>Color-Chan.Discord</Title>
         <Authors>BrammyS</Authors>
         <Copyright>BrammyS 2021</Copyright>
-        <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 5.</Description>
+        <Description>A Discord library made for slash commands. Using Discord webhooks and .NET 8.</Description>
 
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

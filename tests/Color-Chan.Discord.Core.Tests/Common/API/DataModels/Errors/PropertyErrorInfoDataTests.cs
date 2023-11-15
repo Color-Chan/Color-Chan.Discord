@@ -4,6 +4,4 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Errors;
 
 [TestFixture]
-public class PropertyErrorInfoDataTests : JsonTestBase<PropertyErrorInfoData>
-{
-}
+public class PropertyErrorInfoDataTests : JsonTestBase<PropertyErrorInfoData>;

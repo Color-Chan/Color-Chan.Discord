@@ -4,6 +4,4 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Interaction;
 
 [TestFixture]
-public class DiscordInteractionCommandOptionDataTests : JsonTestBase<DiscordInteractionOptionData>
-{
-}
+public class DiscordInteractionCommandOptionDataTests : JsonTestBase<DiscordInteractionOptionData>;
