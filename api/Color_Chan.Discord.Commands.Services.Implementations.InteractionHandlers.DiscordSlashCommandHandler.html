@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DiscordSlashCommandHandler
+   | Color-Chan.Discord </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DiscordSlashCommandHandler
+   | Color-Chan.Discord ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler">
+  
+  
+  <h1 id="Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler" data-uid="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler" class="text-break">Class DiscordSlashCommandHandler
+  </h1>
+  <div class="markdown level0 summary"><p>Handles all incoming slash command requests.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">DiscordSlashCommandHandler</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Color_Chan.Discord.Commands.Services.InteractionHandlers.IDiscordSlashCommandHandler.html">IDiscordSlashCommandHandler</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.html">Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers</a></h6>
+  <h6><strong>Assembly</strong>: Color-Chan.Discord.Commands.dll</h6>
+  <h5 id="Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DiscordSlashCommandHandler : IDiscordSlashCommandHandler</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Color-Chan/Color-Chan.Discord/new/272bb1212fb100006c2e4831d9dac4f6483c779f/apiSpec/new?filename=Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler__ctor_Color_Chan_Discord_Commands_Services_ISlashCommandService_System_IServiceProvider_Microsoft_Extensions_Logging_ILogger_Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler__Color_Chan_Discord_Core_Common_API_Rest_IDiscordRestApplication_Color_Chan_Discord_Core_Common_API_Rest_IDiscordRestGuild_Color_Chan_Discord_Core_Common_API_Rest_IDiscordRestChannel_Microsoft_Extensions_Options_IOptions_Color_Chan_Discord_Commands_Configurations_SlashCommandConfiguration__.md&amp;value=---%0Auid%3A%20Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler.%23ctor(Color_Chan.Discord.Commands.Services.ISlashCommandService%2CSystem.IServiceProvider%2CMicrosoft.Extensions.Logging.ILogger%7BColor_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler%7D%2CColor_Chan.Discord.Core.Common.API.Rest.IDiscordRestApplication%2CColor_Chan.Discord.Core.Common.API.Rest.IDiscordRestGuild%2CColor_Chan.Discord.Core.Common.API.Rest.IDiscordRestChannel%2CMicrosoft.Extensions.Options.IOptions%7BColor_Chan.Discord.Commands.Configurations.SlashCommandConfiguration%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Color-Chan/Color-Chan.Discord/blob/272bb1212fb100006c2e4831d9dac4f6483c779f/src/Color-Chan.Discord.Commands/Services/Implementations/InteractionHandlers/SlashCommandHandler.cs/#L46">View Source</a>
+  </span>
+  <a id="Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler__ctor_" data-uid="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler.#ctor*"></a>
+  <h4 id="Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler__ctor_Color_Chan_Discord_Commands_Services_ISlashCommandService_System_IServiceProvider_Microsoft_Extensions_Logging_ILogger_Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler__Color_Chan_Discord_Core_Common_API_Rest_IDiscordRestApplication_Color_Chan_Discord_Core_Common_API_Rest_IDiscordRestGuild_Color_Chan_Discord_Core_Common_API_Rest_IDiscordRestChannel_Microsoft_Extensions_Options_IOptions_Color_Chan_Discord_Commands_Configurations_SlashCommandConfiguration__" data-uid="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler.#ctor(Color_Chan.Discord.Commands.Services.ISlashCommandService,System.IServiceProvider,Microsoft.Extensions.Logging.ILogger{Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler},Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestApplication,Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestGuild,Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestChannel,Microsoft.Extensions.Options.IOptions{Color_Chan.Discord.Commands.Configurations.SlashCommandConfiguration})">DiscordSlashCommandHandler(ISlashCommandService, IServiceProvider, ILogger&lt;DiscordSlashCommandHandler&gt;, IDiscordRestApplication, IDiscordRestGuild, IDiscordRestChannel, IOptions&lt;SlashCommandConfiguration&gt;)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of <a class="xref" href="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler.html">DiscordSlashCommandHandler</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DiscordSlashCommandHandler(ISlashCommandService slashCommandService, IServiceProvider serviceProvider, ILogger&lt;DiscordSlashCommandHandler&gt; logger, IDiscordRestApplication restApplication, IDiscordRestGuild restGuild, IDiscordRestChannel restChannel, IOptions&lt;SlashCommandConfiguration&gt; slashCommandConfiguration)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Color_Chan.Discord.Commands.Services.ISlashCommandService.html">ISlashCommandService</a></td>
+        <td><span class="parametername">slashCommandService</span></td>
+        <td><p>The <a class="xref" href="Color_Chan.Discord.Commands.Services.ISlashCommandService.html">ISlashCommandService</a> that will execute the slash command.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IServiceProvider</span></td>
+        <td><span class="parametername">serviceProvider</span></td>
+        <td><p>The service provider.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Microsoft.Extensions.Logging.ILogger</span>&lt;<a class="xref" href="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler.html">DiscordSlashCommandHandler</a>&gt;</td>
+        <td><span class="parametername">logger</span></td>
+        <td><p>The logger.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestApplication.html">IDiscordRestApplication</a></td>
+        <td><span class="parametername">restApplication</span></td>
+        <td><p>The rest class for application calls.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestGuild.html">IDiscordRestGuild</a></td>
+        <td><span class="parametername">restGuild</span></td>
+        <td><p>The rest class for Guilds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Color_Chan.Discord.Core.Common.API.Rest.IDiscordRestChannel.html">IDiscordRestChannel</a></td>
+        <td><span class="parametername">restChannel</span></td>
+        <td><p>The rest class for Channels.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">Microsoft.Extensions.Options.IOptions</span>&lt;<a class="xref" href="Color_Chan.Discord.Commands.Configurations.SlashCommandConfiguration.html">SlashCommandConfiguration</a>&gt;</td>
+        <td><span class="parametername">slashCommandConfiguration</span></td>
+        <td><p>The configuration class for slash commands.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Color-Chan/Color-Chan.Discord/new/272bb1212fb100006c2e4831d9dac4f6483c779f/apiSpec/new?filename=Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler_HandleSlashCommandAsync_Color_Chan_Discord_Core_Common_Models_Interaction_IDiscordInteraction_.md&amp;value=---%0Auid%3A%20Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler.HandleSlashCommandAsync(Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteraction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Color-Chan/Color-Chan.Discord/blob/272bb1212fb100006c2e4831d9dac4f6483c779f/src/Color-Chan.Discord.Commands/Services/Implementations/InteractionHandlers/SlashCommandHandler.cs/#L60">View Source</a>
+  </span>
+  <a id="Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler_HandleSlashCommandAsync_" data-uid="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler.HandleSlashCommandAsync*"></a>
+  <h4 id="Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler_HandleSlashCommandAsync_Color_Chan_Discord_Core_Common_Models_Interaction_IDiscordInteraction_" data-uid="Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler.HandleSlashCommandAsync(Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteraction)">HandleSlashCommandAsync(IDiscordInteraction)</h4>
+  <div class="markdown level1 summary"><p>Handles a interaction slash command request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public async Task&lt;InternalInteractionResponse&gt; HandleSlashCommandAsync(IDiscordInteraction interaction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteraction.html">IDiscordInteraction</a></td>
+        <td><span class="parametername">interaction</span></td>
+        <td><p>The interaction that was used.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Color_Chan.Discord.Commands.Models.InternalInteractionResponse.html">InternalInteractionResponse</a>&gt;</td>
+        <td><p>A <a class="xref" href="Color_Chan.Discord.Commands.Models.InternalInteractionResponse.html">InternalInteractionResponse</a> containing the result of the slash command.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when <a class="xref" href="Color_Chan.Discord.Core.Common.Models.Interaction.IDiscordInteraction.html#Color_Chan_Discord_Core_Common_Models_Interaction_IDiscordInteraction_Data">Data</a> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Color_Chan.Discord.Commands.Services.InteractionHandlers.IDiscordSlashCommandHandler.html">IDiscordSlashCommandHandler</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Color-Chan/Color-Chan.Discord/new/272bb1212fb100006c2e4831d9dac4f6483c779f/apiSpec/new?filename=Color_Chan_Discord_Commands_Services_Implementations_InteractionHandlers_DiscordSlashCommandHandler.md&amp;value=---%0Auid%3A%20Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers.DiscordSlashCommandHandler%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Color-Chan/Color-Chan.Discord/blob/272bb1212fb100006c2e4831d9dac4f6483c779f/src/Color-Chan.Discord.Commands/Services/Implementations/InteractionHandlers/SlashCommandHandler.cs/#L26" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
