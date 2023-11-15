@@ -4,6 +4,4 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Guild;
 
 [TestFixture]
-public class DiscordGuildDefaultMessageNotificationLevelTests : JsonTestBase<DiscordGuildDefaultMessageNotificationLevel>
-{
-}
+public class DiscordGuildDefaultMessageNotificationLevelTests : JsonTestBase<DiscordGuildDefaultMessageNotificationLevel>;

@@ -4,6 +4,4 @@ using NUnit.Framework;
 namespace Color_Chan.Discord.Core.Tests.Common.API.DataModels.Guild;
 
 [TestFixture]
-public class DiscordGuildVerificationLevelTests : JsonTestBase<DiscordGuildVerificationLevel>
-{
-}
+public class DiscordGuildVerificationLevelTests : JsonTestBase<DiscordGuildVerificationLevel>;

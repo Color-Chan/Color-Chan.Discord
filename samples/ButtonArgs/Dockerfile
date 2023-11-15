@@ -1,5 +1,5 @@
 # Setup base image
-FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS base
 
 LABEL maintainer="BrammyS <https://github.com/BrammyS>"
 LABEL org.label-schema.name="ButtonArgs"
@@ -11,18 +11,18 @@ COPY . .
 WORKDIR /samples/ButtonArgs
 
 # Restore dependencies
-RUN dotnet restore "ButtonArgs.csproj"  --runtime alpine-x64
+RUN dotnet restore "ButtonArgs.csproj"  --runtime linux-musl-x64
 
 # Publish the application
 RUN dotnet publish "ButtonArgs.csproj" \
     -c Release -o /app/publish \
     --no-restore \
-    --runtime alpine-x64 \
+    --runtime linux-musl-x64 \
     --self-contained true \
     /p:PublishSingleFile=true
 
 # Setup final runtime image
-FROM mcr.microsoft.com/dotnet/runtime-deps:7.0-alpine AS final
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-alpine AS final
 
 # Create a user to run the application
 RUN adduser --disabled-password \
