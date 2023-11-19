@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Commands.Services.Builders;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations.Builders;
+namespace Color_Chan.Discord.Commands.Services.Builders.Implementations;
 
 /// <inheritdoc />
 public class SlashCommandRequirementBuildService : ISlashCommandRequirementBuildService
@@ -26,7 +25,10 @@ public class SlashCommandRequirementBuildService : ISlashCommandRequirementBuild
         var attributes = new List<InteractionRequirementAttribute>();
 
         var parentAttributes = command.DeclaringType?.GetCustomAttributes<InteractionRequirementAttribute>();
-        if (parentAttributes != null) attributes.AddRange(parentAttributes);
+        if (parentAttributes != null)
+        {
+            attributes.AddRange(parentAttributes);
+        }
 
         var methodAttributes = command.GetCustomAttributes<InteractionRequirementAttribute>();
         attributes.AddRange(methodAttributes);
