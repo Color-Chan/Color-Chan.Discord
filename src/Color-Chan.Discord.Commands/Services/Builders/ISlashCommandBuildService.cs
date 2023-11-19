@@ -37,10 +37,10 @@ public interface ISlashCommandBuildService
     ///     for the modules.
     /// </param>
     /// <returns>
-    ///     A <see cref="List{T}" /> of <see cref="TypeInfo" />s that inherits
+    ///     A <see cref="IEnumerable{T}" /> of <see cref="TypeInfo" />s that inherits
     ///     <see cref="ISlashCommandModule" />.
     /// </returns>
-    List<TypeInfo> GetSlashCommandModules(Assembly assembly);
+    IEnumerable<TypeInfo> GetSlashCommandModules(Assembly assembly);
 
     /// <summary>
     ///     Builds the slash command parameters so it can be send to Discord's API.

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Services.Builders;
-using Color_Chan.Discord.Commands.Services.Builders.Implementations;
+using Color_Chan.Discord.Commands.Services.Implementations.Builders;
 using Color_Chan.Discord.Commands.Tests.Invalid;
 using Color_Chan.Discord.Commands.Tests.Valid;
 using FluentAssertions;
@@ -62,7 +62,7 @@ public class SlashCommandBuildServiceTests
         var buildService = new SlashCommandBuildService(requirementBuilderMock.Object, guildBuilderMock.Object, loggerMock.Object, optionBuilderMock.Object);
 
         // Act
-        var types = buildService.GetSlashCommandModules(InValidAssembly);
+        var types = buildService.GetSlashCommandModules(InValidAssembly).ToList();
 
         // Assert
         types.Count.Should().Be(1);
