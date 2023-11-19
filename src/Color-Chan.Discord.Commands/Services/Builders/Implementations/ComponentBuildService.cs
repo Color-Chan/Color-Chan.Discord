@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Modules;
-using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations.Builders;
+namespace Color_Chan.Discord.Commands.Services.Builders.Implementations;
 
 /// <inheritdoc />
 public class ComponentBuildService : IComponentBuildService
@@ -39,15 +38,26 @@ public class ComponentBuildService : IComponentBuildService
         _logger.LogInformation("Loading components for assembly {AssemblyName}", assembly.FullName);
         var validComponents = new List<IComponentInfo>();
 
-        foreach (var parentModule in GetSlashComponentModules(assembly))
+        var componentModules = GetSlashComponentModules(assembly);
+        foreach (var parentModule in componentModules)
         {
-            foreach (var validMethod in GetValidComponentMethods(parentModule))
+            var validMethods = GetValidComponentMethods(parentModule);
+            foreach (var validMethod in validMethods)
             {
                 var componentAttribute = validMethod.GetCustomAttribute<ComponentAttribute>();
-                if (componentAttribute is null) throw new NullReferenceException(nameof(componentAttribute));
+                if (componentAttribute is null)
+                {
+                    throw new NullReferenceException(nameof(componentAttribute));
+                }
 
-                var componentInfo = new ComponentInfo(componentAttribute.CustomId, componentAttribute.Type, validMethod, parentModule, componentAttribute.Acknowledge,
-                                                      componentAttribute.EditOriginalMessage)
+                var componentInfo = new ComponentInfo(
+                    componentAttribute.CustomId,
+                    componentAttribute.Type,
+                    validMethod,
+                    parentModule,
+                    componentAttribute.Acknowledge,
+                    componentAttribute.EditOriginalMessage
+                )
                 {
                     Requirements = _requirementBuildService.GetCommandRequirements(validMethod)
                 };
@@ -66,11 +76,12 @@ public class ComponentBuildService : IComponentBuildService
     /// <returns>
     ///     The <see cref="TypeInfo" />s of all the classes that extend <see cref="IComponentInteractionModule" />.
     /// </returns>
-    private IEnumerable<TypeInfo> GetSlashComponentModules(Assembly assembly)
+    private static List<TypeInfo> GetSlashComponentModules(Assembly assembly)
     {
         return assembly.DefinedTypes
-                       .Where(typeInfo => typeInfo.IsPublic || typeInfo.IsNestedPublic)
-                       .Where(IsValidModuleDefinition).ToList();
+            .Where(typeInfo => typeInfo.IsPublic || typeInfo.IsNestedPublic)
+            .Where(IsValidModuleDefinition)
+            .ToList();
     }
 
     /// <summary>
@@ -78,13 +89,14 @@ public class ComponentBuildService : IComponentBuildService
     /// </summary>
     /// <param name="parentModule">The class that contains the components.</param>
     /// <returns>
-    ///     A <see cref="IEnumerable{T}" /> of <see cref="MethodInfo" />s containing only valid component methods.
+    ///     A <see cref="List{T}" /> of <see cref="MethodInfo" />s containing only valid component methods.
     /// </returns>
-    private static IEnumerable<MethodInfo> GetValidComponentMethods(IReflect parentModule)
+    private static List<MethodInfo> GetValidComponentMethods(IReflect parentModule)
     {
         return parentModule
-               .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-               .Where(IsValidCommandDefinition);
+            .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Where(IsValidCommandDefinition)
+            .ToList();
     }
 
     /// <summary>
@@ -96,7 +108,7 @@ public class ComponentBuildService : IComponentBuildService
     /// </returns>
     private static bool IsValidModuleDefinition(TypeInfo typeInfo)
     {
-        return ModuleTypeInfo.IsAssignableFrom(typeInfo) && !typeInfo.IsAbstract && !typeInfo.ContainsGenericParameters;
+        return ModuleTypeInfo.IsAssignableFrom(typeInfo) && typeInfo is { IsAbstract: false, ContainsGenericParameters: false };
     }
 
     /// <summary>
@@ -108,9 +120,8 @@ public class ComponentBuildService : IComponentBuildService
     /// </returns>
     private static bool IsValidCommandDefinition(MethodInfo methodInfo)
     {
-        return methodInfo.IsDefined(typeof(ComponentAttribute))
-               && methodInfo.ReturnType == typeof(Task<Result<IDiscordInteractionResponse>>)
-               && !methodInfo.IsStatic
-               && !methodInfo.IsGenericMethod;
+        return methodInfo.IsDefined(typeof(ComponentAttribute)) &&
+            methodInfo.ReturnType == typeof(Task<Result<IDiscordInteractionResponse>>) &&
+            methodInfo is { IsStatic: false, IsGenericMethod: false };
     }
 }

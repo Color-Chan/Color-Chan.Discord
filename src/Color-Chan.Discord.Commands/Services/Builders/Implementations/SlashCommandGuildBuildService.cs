@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Color_Chan.Discord.Commands.Attributes;
-using Color_Chan.Discord.Commands.Services.Builders;
 using Microsoft.Extensions.Logging;
 
-namespace Color_Chan.Discord.Commands.Services.Implementations.Builders;
+namespace Color_Chan.Discord.Commands.Services.Builders.Implementations;
 
 /// <inheritdoc />
 public class SlashCommandGuildBuildService : ISlashCommandGuildBuildService
@@ -26,7 +25,10 @@ public class SlashCommandGuildBuildService : ISlashCommandGuildBuildService
     {
         var attributes = new List<SlashCommandGuildAttribute>();
 
-        if (includeParentAttributes && command.DeclaringType is not null) attributes.AddRange(GetCommandGuilds(command.DeclaringType));
+        if (includeParentAttributes && command.DeclaringType is not null)
+        {
+            attributes.AddRange(GetCommandGuilds(command.DeclaringType));
+        }
 
         var methodAttributes = command.GetCustomAttributes<SlashCommandGuildAttribute>();
         attributes.AddRange(methodAttributes);
