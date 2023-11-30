@@ -8,7 +8,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 using Color_Chan.Discord.Rest.Models.Interaction;
-using NUnit.Framework;
+using FluentAssertions;
 
 namespace Color_Chan.Discord.Commands.Tests.Valid;
 
@@ -16,28 +16,28 @@ namespace Color_Chan.Discord.Commands.Tests.Valid;
 public class ValidMockCommandModule7 : SlashCommandModule
 {
     [SlashCommand("Command19", "the command")]
-    public async Task<Result<IDiscordInteractionResponse>> CommandMethod19Async
-    (
+    public async Task<Result<IDiscordInteractionResponse>> CommandMethod19Async(
         [SlashCommandOption("role", "Role id.", true, DiscordApplicationCommandOptionType.Role)]
         ulong roleId
     )
     {
-        Assert.NotNull(roleId);
-        Assert.NotNull(Context);
-        Assert.NotNull(Context.Data);
-        Assert.NotNull(Context.Data.Resolved);
-        Assert.NotNull(Context.Data.Resolved?.Roles);
+        Context.Should().NotBeNull();
+        Context.Data.Should().NotBeNull();
+        Context.Data.Resolved.Should().NotBeNull();
+        Context.Data.Resolved?.Roles.Should().NotBeNull();
 
         var role = Context.Data.Resolved?.Roles?.FirstOrDefault(x => x.Key == roleId).Value;
-        Assert.NotNull(role);
+        role.Should().NotBeNull();
 
-        return FromSuccess(new DiscordInteractionResponse
-        {
-            Type = DiscordInteractionCallbackType.ChannelMessageWithSource,
-            Data = new DiscordInteractionCallback
+        return FromSuccess(
+            new DiscordInteractionResponse
             {
-                Content = roleId.ToString()
+                Type = DiscordInteractionCallbackType.ChannelMessageWithSource,
+                Data = new DiscordInteractionCallback
+                {
+                    Content = roleId.ToString()
+                }
             }
-        });
+        );
     }
 }
