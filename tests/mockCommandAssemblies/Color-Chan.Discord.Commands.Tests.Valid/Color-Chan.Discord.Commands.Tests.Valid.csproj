@@ -13,8 +13,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentAssertions" Version="6.12.1" />
-        <PackageReference Include="NUnit" Version="4.2.2"/>
+        <PackageReference Include="FluentAssertions" Version="8.1.1" />
+        <PackageReference Include="NUnit" Version="4.3.2"/>
     </ItemGroup>
 
 </Project>
