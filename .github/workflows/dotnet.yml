@@ -10,12 +10,12 @@ jobs:
         os: [ubuntu-latest]
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
       - run: echo ${{matrix.os}}
 
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
          dotnet-version: 8.0.x
 
