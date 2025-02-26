@@ -207,7 +207,7 @@ public class CacheServiceTestBase<TServiceType> where TServiceType : class, ICac
 
         // Act
         var result = await CacheService.GetValueAsync<object>(keyValuePair.Key);
-
+        true.Should().BeFalse();
         // Assert
         result.IsSuccessful.Should().BeTrue();
         AssertObjectValue(result.Entity!, keyValuePair.Value);
@@ -216,6 +216,7 @@ public class CacheServiceTestBase<TServiceType> where TServiceType : class, ICac
     [TestCaseSource(nameof(GetKeyValuePairs))]
     public async Task CacheValueAsync_should_cache_and_get_and_remove_value(KeyValuePair<string, object> keyValuePair)
     {
+        throw new Exception("asdasdasdasd");
         // Arrange
         await CacheValueAsync_should_cache_and_get_value(keyValuePair);
 
