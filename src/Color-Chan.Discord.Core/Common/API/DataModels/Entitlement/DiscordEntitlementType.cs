@@ -39,5 +39,10 @@ public enum DiscordEntitlementType
     /// <summary>
     ///     Entitlement was claimed by user for free as a Nitro Subscriber.
     /// </summary>
-    PremiumPurchase = 7
+    PremiumPurchase = 7,
+    
+    /// <summary>
+    ///     Entitlement was purchased as an app subscription.
+    /// </summary>
+    ApplicationSubscription = 8
 }
