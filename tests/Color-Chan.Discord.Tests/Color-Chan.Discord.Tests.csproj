@@ -22,4 +22,10 @@
         <ProjectReference Include="..\..\src\Color-Chan.Discord\Color-Chan.Discord.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Parsers\TestData\testRequest.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
