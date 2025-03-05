@@ -60,6 +60,7 @@ public class ActionRowComponentBuilder
         if (label.Length > MaxLabelLength) throw new ArgumentOutOfRangeException(nameof(label), $"{nameof(label)} can not be longer then {MaxLabelLength} characters.");
         if (customId is null && url is null) throw new MissingButtonPropertiesException($"{nameof(url)} or {nameof(customId)} needs to be set");
         if (customId is not null && url is not null) throw new ArgumentException($"Only one of {nameof(url)} or {nameof(customId)} can be set");
+        if (string.IsNullOrWhiteSpace(customId)) throw new ArgumentException($"{nameof(customId)} can not be empty or whitespace.");
         if (label is null) throw new ArgumentNullException(nameof(label));
 
         _childComponents.Add(new DiscordComponent
