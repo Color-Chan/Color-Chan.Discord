@@ -8,6 +8,8 @@ using Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers;
 using Color_Chan.Discord.Commands.Services.InteractionHandlers;
 using Color_Chan.Discord.Configurations;
 using Color_Chan.Discord.Core;
+using Color_Chan.Discord.Parsers;
+using Color_Chan.Discord.Parsers.Interfaces;
 using Color_Chan.Discord.Rest.Configurations;
 using Color_Chan.Discord.Rest.Extensions;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
@@ -73,6 +75,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(_ => new DiscordTokens(botToken, publicBotToken, applicationId));
         services.AddSingleton<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
         services.TryAddTransient<IDiscordInteractionAuthService, DiscordInteractionAuthService>();
+        services.TryAddTransient<IDiscordInteractionParser, DiscordInteractionParser>();
 
         interactionConfigs ??= configuration => { configuration.VerifyInteractions = true; };
 

@@ -31,7 +31,7 @@ public class DiscordRateLimitBucketTests
 
         // Assert
         bucket.Should().NotBeNull();
-        bucket!.Limit.Should().Be(int.Parse(limit));
+        bucket.Limit.Should().Be(int.Parse(limit));
         bucket.Remaining.Should().Be(int.Parse(remaining));
         bucket.ResetsAt.Should().Be(DateTimeOffset.UnixEpoch + TimeSpan.FromSeconds(double.Parse(resetAt, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture)));
         bucket.ResetsAfter.Should().Be(TimeSpan.FromMilliseconds(double.Parse(resetAfter, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture) * 1000));
@@ -70,7 +70,7 @@ public class DiscordRateLimitBucketTests
 
         // Assert
         bucket.Should().NotBeNull();
-        bucket!.Limit.Should().Be(0);
+        bucket.Limit.Should().Be(0);
         bucket.Remaining.Should().Be(0);
         bucket.ResetsAfter.Should().Be(TimeSpan.FromMilliseconds(double.Parse(resetAtString, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture) * 1000));
         bucket.Id.Should().Be(DiscordRateLimitBucket.GlobalBucketId);
