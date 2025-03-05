@@ -61,7 +61,7 @@ public class SlashCommandServiceTests
 
         // Assert
         command.Should().NotBeNull();
-        command!.CommandMethod!.Name.Should().Be(methodName);
+        command.CommandMethod!.Name.Should().Be(methodName);
     }
 
     [TestCase("add", "role", "Command18")]
@@ -82,7 +82,7 @@ public class SlashCommandServiceTests
 
         // Assert
         command.Should().NotBeNull();
-        command!.CommandOptions!.Count.Should().Be(2);
+        command.CommandOptions!.Count.Should().Be(2);
     }
 
     [TestCase("CommandWithError1", "Command error 1")]
@@ -198,7 +198,7 @@ public class SlashCommandServiceTests
 
         // Assert
         command.Should().NotBeNull();
-        command!.CommandMethod!.Name.Should().Be(methodName);
+        command.CommandMethod!.Name.Should().Be(methodName);
         command.Requirements?.Count().Should().Be(requirementAmount);
     }
 
