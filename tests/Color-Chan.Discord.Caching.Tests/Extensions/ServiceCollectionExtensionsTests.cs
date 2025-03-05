@@ -41,7 +41,7 @@ public class ServiceCollectionExtensionsTests
 
         // Assert
         cacheConfig.Should().NotBeNull();
-        cacheConfig!.Value.Should().NotBeNull();
+        cacheConfig.Value.Should().NotBeNull();
         cacheConfig.Value.AbsoluteExpiration.Should().Be(TimeSpan.FromSeconds(30));
         cacheConfig.Value.SlidingExpiration.Should().Be(TimeSpan.FromSeconds(15));
     }
@@ -57,7 +57,7 @@ public class ServiceCollectionExtensionsTests
 
         // Assert
         application.Should().NotBeNull();
-        application!.GetType().Should().Be<LocalCacheService>();
+        application.GetType().Should().Be<LocalCacheService>();
     }
 
     [Test]
@@ -71,7 +71,7 @@ public class ServiceCollectionExtensionsTests
 
         // Assert
         application.Should().NotBeNull();
-        application!.GetType().Should().Be<DistributedCacheService>();
+        application.GetType().Should().Be<DistributedCacheService>();
     }
 
     [Test]

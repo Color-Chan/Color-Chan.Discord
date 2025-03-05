@@ -12,11 +12,18 @@ public class Uint64Converter : JsonConverter<ulong>
     /// <inheritdoc />
     public override ulong Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        var ulongString = reader.GetString();
+        if (reader.TokenType == JsonTokenType.String)
+        {
+            var ulongString = reader.GetString();
+            if (ulong.TryParse(ulongString, out var number)) return number;
+        }
+            
+        if (reader.TokenType == JsonTokenType.Number)
+        {
+            return reader.GetUInt64();
+        }
 
-        if (ulong.TryParse(ulongString, out var number)) return number;
-
-        throw new JsonException("Failed to convert uin64 (ulong)");
+        throw new JsonException("Failed to convert uin64 (ulong), unknown json type.");
     }
 
     /// <inheritdoc />
