@@ -63,6 +63,10 @@ public record DiscordComponentData
     /// <inheritdoc cref="IDiscordComponent.Content" />
     [JsonPropertyName("content")]
     public string? Content { get; init; }
+    
+    /// <inheritdoc cref="IDiscordComponent.Accessory" />
+    [JsonPropertyName("accessory")]
+    public DiscordComponentData? Accessory { get; init; }
 
     /// <inheritdoc cref="IDiscordComponent.ChildComponents" />
     [JsonPropertyName("components")]

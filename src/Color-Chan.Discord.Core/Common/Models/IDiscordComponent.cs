@@ -77,14 +77,19 @@ public interface IDiscordComponent
     public int? MaxValues { get; init; }
     
     /// <summary>
-    ///     Identifier for a purchasable SKU, only available when using premium-style buttons
+    ///     Identifier for a purchasable SKU, only available when using premium-style buttons.
     /// </summary>
     ulong? SkuId { get; init; }
     
     /// <summary>
-    ///     Text that will be displayed similar to a message
+    ///     Text that will be displayed similar to a message.
     /// </summary>
     string? Content { get; init; }
+    
+    /// <summary>
+    ///     A thumbnail or a button component, with a future possibility of adding more compatible components.
+    /// </summary>
+    IDiscordComponent Accessory { get; set; }
 
     /// <summary>
     ///     A list of child components.

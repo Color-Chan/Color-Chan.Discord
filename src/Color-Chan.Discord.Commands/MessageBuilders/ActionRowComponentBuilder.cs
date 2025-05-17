@@ -21,8 +21,6 @@ namespace Color_Chan.Discord.Commands.MessageBuilders;
 /// </remarks>
 public class ActionRowComponentBuilder
 {
-    private const int MaxCustomIdLength = 100;
-    private const int MaxLabelLength = 80;
     private const int MaxButtons = 5;
     private const int MaxSelectOptions = 25;
 
@@ -62,11 +60,11 @@ public class ActionRowComponentBuilder
         bool disabled = false
     )
     {
-        if (customId is not null && customId.Length > MaxCustomIdLength)
-            throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {MaxCustomIdLength} characters.");
+        if (customId is not null && customId.Length > ButtonComponentBuilder.MaxCustomIdLength)
+            throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {ButtonComponentBuilder.MaxCustomIdLength} characters.");
         if (_selectMenu is not null) throw new InvalidActionRowException("An action row can not have a select menu and buttons");
         if (_childComponents.Count >= MaxButtons) throw new ArgumentOutOfRangeException(nameof(_childComponents), $"An action row can not have more then {MaxButtons} buttons");
-        if (label.Length > MaxLabelLength) throw new ArgumentOutOfRangeException(nameof(label), $"{nameof(label)} can not be longer then {MaxLabelLength} characters.");
+        if (label.Length > ButtonComponentBuilder.MaxLabelLength) throw new ArgumentOutOfRangeException(nameof(label), $"{nameof(label)} can not be longer then {ButtonComponentBuilder.MaxLabelLength} characters.");
         if (customId is null && url is null) throw new MissingButtonPropertiesException($"{nameof(url)} or {nameof(customId)} needs to be set");
         if (customId is not null && url is not null) throw new ArgumentException($"Only one of {nameof(url)} or {nameof(customId)} can be set");
         if (string.IsNullOrWhiteSpace(customId) && url is null) throw new ArgumentException($"{nameof(customId)} can not be empty or whitespace when the URL is not set.");
@@ -112,8 +110,8 @@ public class ActionRowComponentBuilder
     /// <exception cref="InvalidActionRowException">When the <see cref="_childComponents" /> contains a select menu component.</exception>
     public ActionRowComponentBuilder WithButton(IDiscordEmoji emoji, DiscordButtonStyle style, string? customId = null, string? url = null, bool disabled = false)
     {
-        if (customId is not null && customId.Length > MaxCustomIdLength)
-            throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {MaxCustomIdLength} characters.");
+        if (customId is not null && customId.Length > ButtonComponentBuilder.MaxCustomIdLength)
+            throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {ButtonComponentBuilder.MaxCustomIdLength} characters.");
         if (_selectMenu is not null) throw new InvalidActionRowException("An action row can not have a select menu and buttons");
         if (_childComponents.Count >= MaxButtons) throw new ArgumentOutOfRangeException(nameof(_childComponents), $"An action row can not have more then {MaxButtons} buttons");
         if (customId is null && url is null) throw new MissingButtonPropertiesException($"{nameof(url)} or {nameof(customId)} needs to be set");

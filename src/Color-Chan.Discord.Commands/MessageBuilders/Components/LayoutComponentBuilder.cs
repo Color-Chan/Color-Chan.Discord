@@ -12,7 +12,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders.Components;
 /// </summary>
 public class LayoutComponentBuilder(DiscordComponentType type) : IComponentBuilder
 {
+    private const int ActionRowMaxButtons = 5;
     private readonly List<IComponentBuilder> _subComponentBuilders = [];
+    private IComponentBuilder? _accessory;
 
     /// <summary>
     ///     Adds a subcomponent to the layout component.
@@ -24,12 +26,38 @@ public class LayoutComponentBuilder(DiscordComponentType type) : IComponentBuild
     /// <exception cref="ArgumentException">Thrown when the component type is not valid for a subcomponent.</exception>
     public LayoutComponentBuilder WithSubComponent(IComponentBuilder subComponentBuilder)
     {
-        if (type is (DiscordComponentType.ActionRow or DiscordComponentType.Section or DiscordComponentType.Container))
+        if (type == DiscordComponentType.ActionRow && _subComponentBuilders.Count >= ActionRowMaxButtons)
         {
-            throw new ArgumentException("Invalid component type for a sub component builder.", nameof(type));
+            throw new ArgumentOutOfRangeException(nameof(_subComponentBuilders), $"An action row can not have more then {ActionRowMaxButtons} buttons");
         }
 
         _subComponentBuilders.Add(subComponentBuilder);
+        return this;
+    }
+
+    /// <summary>
+    ///     Adds a button accessory to the layout component.
+    /// </summary>
+    /// <param name="buttonAccessory">The button accessory to be added.</param>
+    /// <returns>
+    ///     The updated <see cref="LayoutComponentBuilder" />.
+    /// </returns>
+    /// <remarks>
+    ///     Only valid for <see cref="DiscordComponentType.Section" />.
+    /// </remarks>
+    public LayoutComponentBuilder WithAccessory(ButtonComponentBuilder buttonAccessory)
+    {
+        return InternalWithAccessory(buttonAccessory);
+    }
+
+    private LayoutComponentBuilder InternalWithAccessory(IComponentBuilder accessory)
+    {
+        if (type is not DiscordComponentType.Section)
+        {
+            throw new ArgumentException("Invalid component type for accessory.", nameof(type));
+        }
+
+        _accessory = accessory;
         return this;
     }
 
@@ -44,6 +72,7 @@ public class LayoutComponentBuilder(DiscordComponentType type) : IComponentBuild
         return new DiscordComponent
         {
             Type = type,
+            Accessory = _accessory?.Build(),
             ChildComponents = _subComponentBuilders.Select(subComponentBuilder => subComponentBuilder.Build()).ToList()
         };
     }

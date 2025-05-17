@@ -10,6 +10,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders.Components;
 /// </summary>
 public class ButtonComponentBuilder : BaseComponentBuilder<ButtonComponentBuilder>, IComponentBuilder
 {
+    public const int MaxCustomIdLength = 100;
+    public const int MaxLabelLength = 80;
+    
     private string? _label;
     private string? _url;
     private string? _customId;
@@ -92,6 +95,9 @@ public class ButtonComponentBuilder : BaseComponentBuilder<ButtonComponentBuilde
     /// </returns>
     public ButtonComponentBuilder WithCustomId(string customId)
     {
+        if (customId is not null && customId.Length > MaxCustomIdLength)
+            throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {MaxCustomIdLength} characters.");
+        
         _customId = customId;
         return this;
     }
@@ -120,6 +126,7 @@ public class ButtonComponentBuilder : BaseComponentBuilder<ButtonComponentBuilde
         {
             Id = Id,
             Label = _label,
+            CustomId = _customId,
             Emoji = _emoji,
             Disabled = _disabled,
             ButtonStyle = _style,

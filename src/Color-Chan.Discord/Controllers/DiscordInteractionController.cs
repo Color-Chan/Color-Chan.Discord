@@ -177,7 +177,9 @@ public class DiscordInteractionController : ControllerBase
     /// </returns>
     private ContentResult SerializeResult(DiscordInteractionResponseData data)
     {
-        return Content(_discordInteractionParser.SerializeInteraction(data), ReturnContentType, Encoding.UTF8);
+        var json = _discordInteractionParser.SerializeInteraction(data);
+        Console.WriteLine(json);
+        return Content(json, ReturnContentType, Encoding.UTF8);
     }
 
     private ActionResult UnauthorizedInteraction()

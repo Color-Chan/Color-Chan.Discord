@@ -33,7 +33,8 @@ public class TextDisplayComponentBuilder : BaseComponentBuilder<TextDisplayCompo
         return new DiscordComponent
         {
             Id = Id,
-            Content = _content
+            Content = _content,
+            Type = DiscordComponentType.TextDisplay
         };
     }
 }
