@@ -55,6 +55,14 @@ public record DiscordComponentData
     /// <inheritdoc cref="IDiscordComponent.MaxValues" />
     [JsonPropertyName("max_values")]
     public int? MaxValues { get; init; }
+    
+    /// <inheritdoc cref="IDiscordComponent.SkuId" />
+    [JsonPropertyName("sku_id")]
+    public ulong? SkuId { get; init; }
+    
+    /// <inheritdoc cref="IDiscordComponent.Content" />
+    [JsonPropertyName("content")]
+    public string? Content { get; init; }
 
     /// <inheritdoc cref="IDiscordComponent.ChildComponents" />
     [JsonPropertyName("components")]

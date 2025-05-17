@@ -68,19 +68,19 @@ public class InteractionResponseBuilder
     /// </returns>
     public InteractionResponseBuilder MakePrivate()
     {
-        _flags |= DiscordMessageFlags.Ephemeral;
-        return this;
+        return WithMessageFlag(DiscordMessageFlags.Ephemeral);
     }
 
     /// <summary>
-    ///     Enables the use of components v2.
+    ///     Adds a flag to the response.
     /// </summary>
+    /// <param name="flag">The flag that will be added.</param>
     /// <returns>
     ///     The updated <see cref="InteractionResponseBuilder" />.
     /// </returns>
-    public InteractionResponseBuilder UseComponentsV2()
+    public InteractionResponseBuilder WithMessageFlag(DiscordMessageFlags flag)
     {
-        _flags |= DiscordMessageFlags.IsComponentV2;
+        _flags |= flag;
         return this;
     }
 

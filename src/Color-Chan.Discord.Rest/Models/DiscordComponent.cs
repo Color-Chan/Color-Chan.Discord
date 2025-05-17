@@ -35,6 +35,8 @@ public record DiscordComponent : IDiscordComponent
         MaxValues = data.MaxValues;
         MinValues = data.MinValues;
         Placeholder = data.Placeholder;
+        SkuId = data.SkuId;
+        Content = data.Content;
         SelectOptions = data.SelectOptions?.Select(selectData => new DiscordSelectOption(selectData)).Cast<IDiscordSelectOption>().ToList();
     }
 
@@ -73,6 +75,12 @@ public record DiscordComponent : IDiscordComponent
 
     /// <inheritdoc />
     public int? MaxValues { get; init; }
+    
+    /// <inheritdoc />
+    public ulong? SkuId { get; init; }
+    
+    /// <inheritdoc />
+    public string? Content { get; init; }
 
     /// <inheritdoc />
     public IEnumerable<IDiscordComponent>? ChildComponents { get; init; }
@@ -93,7 +101,9 @@ public record DiscordComponent : IDiscordComponent
             SelectOptions = SelectOptions?.Select(x => x.ToDataModel()),
             Placeholder = Placeholder,
             MaxValues = MaxValues,
-            MinValues = MinValues
+            MinValues = MinValues,
+            SkuId = SkuId,
+            Content = Content
         };
     }
 }

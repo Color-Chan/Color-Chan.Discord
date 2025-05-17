@@ -75,6 +75,16 @@ public interface IDiscordComponent
     ///     The maximum number of items that can be chosen; default 1, max 25.
     /// </summary>
     public int? MaxValues { get; init; }
+    
+    /// <summary>
+    ///     Identifier for a purchasable SKU, only available when using premium-style buttons
+    /// </summary>
+    ulong? SkuId { get; init; }
+    
+    /// <summary>
+    ///     Text that will be displayed similar to a message
+    /// </summary>
+    string? Content { get; init; }
 
     /// <summary>
     ///     A list of child components.
