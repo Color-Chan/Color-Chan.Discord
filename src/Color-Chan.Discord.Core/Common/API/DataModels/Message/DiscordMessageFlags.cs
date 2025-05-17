@@ -4,7 +4,7 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Message;
 
 /// <summary>
 ///     Represents a discord Message Flags API model.
-///     Docs: https://discord.com/developers/docs/resources/channel#message-object-message-flags
+///     Docs: https://discord.com/developers/docs/resources/message#message-object-message-flags
 /// </summary>
 [Flags]
 public enum DiscordMessageFlags
@@ -60,5 +60,25 @@ public enum DiscordMessageFlags
     /// <summary>
     ///     This message failed to mention some roles and add their members to the thread.
     /// </summary>
-    FailedToMentionSomeRolesInThread = 1 << 8
+    FailedToMentionSomeRolesInThread = 1 << 8,
+
+    /// <summary>
+    ///     This message will not trigger push and desktop notifications.
+    /// </summary>
+    SuppressNotification = 1 << 12,
+
+    /// <summary>
+    ///     This message is a voice message.
+    /// </summary>
+    IsVoiceMessage = 1 << 13,
+
+    /// <summary>
+    ///     This message has a snapshot (via Message Forwarding).
+    /// </summary>
+    HasSnapshot = 1 << 14,
+
+    /// <summary>
+    ///     Allows you to create fully component-driven messages.
+    /// </summary>
+    IsComponentV2 = 1 << 15,
 }
