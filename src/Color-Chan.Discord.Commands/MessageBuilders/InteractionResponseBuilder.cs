@@ -41,7 +41,7 @@ public class InteractionResponseBuilder
     /// <summary>
     ///     Interaction application command callback data flags
     /// </summary>
-    private DiscordMessageFlags? _flags;
+    private DiscordMessageFlags _flags;
 
     /// <summary>
     ///     Whether or not the response is TTS.
@@ -68,7 +68,19 @@ public class InteractionResponseBuilder
     /// </returns>
     public InteractionResponseBuilder MakePrivate()
     {
-        _flags = DiscordMessageFlags.Ephemeral;
+        _flags |= DiscordMessageFlags.Ephemeral;
+        return this;
+    }
+
+    /// <summary>
+    ///     Enables the use of components v2.
+    /// </summary>
+    /// <returns>
+    ///     The updated <see cref="InteractionResponseBuilder" />.
+    /// </returns>
+    public InteractionResponseBuilder UseComponentsV2()
+    {
+        _flags |= DiscordMessageFlags.IsComponentV2;
         return this;
     }
 

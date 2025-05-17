@@ -141,7 +141,7 @@ public class ActionRowComponentBuilder
 
         _selectMenu = new DiscordComponent
         {
-            Type = DiscordComponentType.SelectMenu,
+            Type = DiscordComponentType.StringSelect,
             CustomId = customId,
             SelectOptions = new List<IDiscordSelectOption>(),
             Placeholder = placeholder,
