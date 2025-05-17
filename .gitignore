@@ -248,3 +248,5 @@ _Pvt_Extensions
 /NDependOut
 /CleanArchitecture.ndproj
 update.bat
+
+samples/ComponentsV2/appsettings.Development.json

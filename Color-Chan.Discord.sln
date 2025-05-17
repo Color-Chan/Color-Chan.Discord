@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorldButton", "samples
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonArgs", "samples\ButtonArgs\ButtonArgs.csproj", "{7F0D86B2-209D-4C6A-BB68-489C59756FC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentsV2", "samples\ComponentsV2\ComponentsV2.csproj", "{3D545B51-0245-43BF-9588-2C299B7DD9A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,10 @@ Global
 		{7F0D86B2-209D-4C6A-BB68-489C59756FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F0D86B2-209D-4C6A-BB68-489C59756FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F0D86B2-209D-4C6A-BB68-489C59756FC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D545B51-0245-43BF-9588-2C299B7DD9A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D545B51-0245-43BF-9588-2C299B7DD9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D545B51-0245-43BF-9588-2C299B7DD9A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D545B51-0245-43BF-9588-2C299B7DD9A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +161,7 @@ Global
 		{A0B1D8ED-FA1F-4706-BC82-B98EA47C077D} = {1BA385BC-A756-40AE-9892-D9C172455B76}
 		{4D344610-2AD1-44D1-A3FE-76908972AA9B} = {B2D862F3-8ED1-4D09-8248-8D4B5EB2737A}
 		{7F0D86B2-209D-4C6A-BB68-489C59756FC2} = {B2D862F3-8ED1-4D09-8248-8D4B5EB2737A}
+		{3D545B51-0245-43BF-9588-2C299B7DD9A5} = {B2D862F3-8ED1-4D09-8248-8D4B5EB2737A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC84D902-ABC1-47C3-9993-F769F483E5CE}
