@@ -1,5 +1,6 @@
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.MessageBuilders;
+using Color_Chan.Discord.Commands.MessageBuilders.Components;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -17,10 +18,9 @@ public class HelloWorld : SlashCommandModule
             .WithButton("test", DiscordButtonStyle.Link, url: "https://google.com")
             .WithButton("test", DiscordButtonStyle.Link, url: "https://google.com")
             .WithButton("test", DiscordButtonStyle.Link, url: "https://google.com");
-        
+
         var responseBuilder = new InteractionResponseBuilder()
-            .WithComponent(components.Build())
-            .UseComponentsV2();
+            .WithComponent(components.Build());
 
         return Task.FromResult(FromSuccess(responseBuilder.Build()));
     }

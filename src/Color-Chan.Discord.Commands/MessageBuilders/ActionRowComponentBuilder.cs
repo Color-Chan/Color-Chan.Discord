@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Color_Chan.Discord.Commands.Exceptions;
+using Color_Chan.Discord.Commands.MessageBuilders.Components;
 using Color_Chan.Discord.Core.Common.API.DataModels;
+using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models;
 using Color_Chan.Discord.Core.Common.Models.Select;
 using Color_Chan.Discord.Rest.Models;
@@ -11,8 +13,12 @@ using Color_Chan.Discord.Rest.Models.Select;
 namespace Color_Chan.Discord.Commands.MessageBuilders;
 
 /// <summary>
-///     A builder class used to build action row components.
+///     The <see cref="IComponentBuilder"/> for <see cref="DiscordComponentType.ActionRow"/>s.
 /// </summary>
+/// <remarks>
+///     Do not use this when using <see cref="DiscordMessageFlags.IsComponentV2"/>.
+///     Use the <see cref="LayoutComponentBuilder"/> instead.
+/// </remarks>
 public class ActionRowComponentBuilder
 {
     private const int MaxCustomIdLength = 100;
@@ -20,11 +26,7 @@ public class ActionRowComponentBuilder
     private const int MaxButtons = 5;
     private const int MaxSelectOptions = 25;
 
-    /// <summary>
-    ///     A list of child components.
-    /// </summary>
-    private readonly List<IDiscordComponent> _childComponents = new();
-
+    private readonly List<IDiscordComponent> _childComponents = [];
     private DiscordComponent? _selectMenu;
 
     /// <summary>
@@ -51,7 +53,14 @@ public class ActionRowComponentBuilder
     /// <exception cref="ArgumentException">When <paramref name="url" /> <paramref name="customId" /> are both set.</exception>
     /// <exception cref="ArgumentNullException">When <paramref name="label" /> is null.</exception>
     /// <exception cref="InvalidActionRowException">When the <see cref="_childComponents" /> contains a select menu component.</exception>
-    public ActionRowComponentBuilder WithButton(string label, DiscordButtonStyle style, string? customId = null, string? url = null, IDiscordEmoji? emoji = null, bool disabled = false)
+    public ActionRowComponentBuilder WithButton(
+        string label,
+        DiscordButtonStyle style,
+        string? customId = null,
+        string? url = null,
+        IDiscordEmoji? emoji = null,
+        bool disabled = false
+    )
     {
         if (customId is not null && customId.Length > MaxCustomIdLength)
             throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {MaxCustomIdLength} characters.");
@@ -63,17 +72,19 @@ public class ActionRowComponentBuilder
         if (string.IsNullOrWhiteSpace(customId) && url is null) throw new ArgumentException($"{nameof(customId)} can not be empty or whitespace when the URL is not set.");
         if (label is null) throw new ArgumentNullException(nameof(label));
 
-        _childComponents.Add(new DiscordComponent
-        {
-            Disabled = disabled,
-            CustomId = customId,
-            Label = label,
-            ButtonStyle = style,
-            Emoji = emoji,
-            Type = DiscordComponentType.Button,
-            Url = url,
-            ChildComponents = null
-        });
+        _childComponents.Add(
+            new DiscordComponent
+            {
+                Disabled = disabled,
+                CustomId = customId,
+                Label = label,
+                ButtonStyle = style,
+                Emoji = emoji,
+                Type = DiscordComponentType.Button,
+                Url = url,
+                ChildComponents = null
+            }
+        );
 
         return this;
     }
@@ -108,15 +119,17 @@ public class ActionRowComponentBuilder
         if (customId is null && url is null) throw new MissingButtonPropertiesException($"{nameof(url)} or {nameof(customId)} needs to be set");
         if (customId is not null && url is not null) throw new ArgumentException($"Only one of {nameof(url)} or {nameof(customId)} can be set");
 
-        _childComponents.Add(new DiscordComponent
-        {
-            Disabled = disabled,
-            CustomId = customId,
-            ButtonStyle = style,
-            Emoji = emoji,
-            Type = DiscordComponentType.Button,
-            Url = url
-        });
+        _childComponents.Add(
+            new DiscordComponent
+            {
+                Disabled = disabled,
+                CustomId = customId,
+                ButtonStyle = style,
+                Emoji = emoji,
+                Type = DiscordComponentType.Button,
+                Url = url
+            }
+        );
 
         return this;
     }
@@ -178,12 +191,14 @@ public class ActionRowComponentBuilder
         if (_selectMenu.SelectOptions.Count >= MaxSelectOptions)
             throw new ArgumentOutOfRangeException(nameof(_selectMenu.SelectOptions), $"A select menu can not have more then {MaxSelectOptions} options");
 
-        _selectMenu.SelectOptions.Add(new DiscordSelectOption(label, value)
-        {
-            Description = description,
-            Emoji = emoji,
-            Default = disabled
-        });
+        _selectMenu.SelectOptions.Add(
+            new DiscordSelectOption(label, value)
+            {
+                Description = description,
+                Emoji = emoji,
+                Default = disabled
+            }
+        );
 
         return this;
     }
