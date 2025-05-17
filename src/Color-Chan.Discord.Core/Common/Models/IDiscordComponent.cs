@@ -11,6 +11,17 @@ namespace Color_Chan.Discord.Core.Common.Models;
 public interface IDiscordComponent
 {
     /// <summary>
+    ///     32-bit integer used as an optional identifier for component.
+    /// </summary>
+    /// <remarks>
+    ///     The id field is optional and is used to identify components in the response from an interaction that aren't interactive components.
+    /// </remarks>
+    /// <remarks>
+    ///     The id must be unique within the message and is generated sequentially if left empty. Generation of ids won't use another id that exists in the message if you have one defined for another component.
+    /// </remarks>
+    int? Id { get; init; }
+    
+    /// <summary>
     ///     The component type.
     /// </summary>
     DiscordComponentType Type { get; init; }

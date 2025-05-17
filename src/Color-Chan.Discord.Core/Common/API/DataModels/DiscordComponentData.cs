@@ -8,6 +8,10 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels;
 /// <inheritdoc cref="IDiscordComponent" />
 public record DiscordComponentData
 {
+    /// <inheritdoc cref="IDiscordComponent.Id" />
+    [JsonPropertyName("id")]
+    public int? Id { get; init; }
+    
     /// <inheritdoc cref="IDiscordComponent.Type" />
     [JsonPropertyName("type")]
     public DiscordComponentType Type { get; init; }

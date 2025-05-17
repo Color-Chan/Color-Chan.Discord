@@ -23,6 +23,7 @@ public record DiscordComponent : IDiscordComponent
     /// <param name="data">The data needed to create the <see cref="DiscordComponentData" />.</param>
     public DiscordComponent(DiscordComponentData data)
     {
+        Id = data.Id;
         Type = data.Type;
         ButtonStyle = data.ButtonStyle;
         Label = data.Label;
@@ -36,6 +37,9 @@ public record DiscordComponent : IDiscordComponent
         Placeholder = data.Placeholder;
         SelectOptions = data.SelectOptions?.Select(selectData => new DiscordSelectOption(selectData)).Cast<IDiscordSelectOption>().ToList();
     }
+
+    /// <inheritdoc />
+    public int? Id { get; init; }
 
     /// <inheritdoc />
     public DiscordComponentType Type { get; init; }
