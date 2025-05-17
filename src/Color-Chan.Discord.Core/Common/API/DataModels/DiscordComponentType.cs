@@ -79,5 +79,5 @@ public enum DiscordComponentType
     /// <summary>
     ///     Container that visually groups a set of components.
     /// </summary>
-    Content = 15
+    Container = 17
 }
