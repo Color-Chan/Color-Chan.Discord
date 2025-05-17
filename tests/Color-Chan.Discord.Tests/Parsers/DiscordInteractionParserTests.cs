@@ -1,13 +1,11 @@
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
 using Color_Chan.Discord.Core.Extensions;
 using Color_Chan.Discord.Parsers;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
-using Sodium.Exceptions;
 
 namespace Color_Chan.Discord.Tests.Parsers;
 
