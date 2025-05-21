@@ -9,23 +9,26 @@ using Color_Chan.Discord.Core.Results;
 
 namespace ComponentsV2.Commands;
 
+[SlashCommandGroup("hello", "A command group that contains all the 'hello' sub commands.")]
 public class HelloWorld : SlashCommandModule
 {
-    [SlashCommand("hello", "Says hello to the user.")]
+    [SlashCommand("world", "Send a messaging contains componentsV2 items.")]
     public Task<Result<IDiscordInteractionResponse>> InitButtonAsync()
     {
         var responseBuilder = new InteractionResponseBuilder()
             .WithMessageFlag(DiscordMessageFlags.IsComponentV2)
             .WithComponent(
-                new LayoutComponentBuilder(DiscordComponentType.ActionRow)
+                new ActionRowComponentBuilder()
                     .WithSubComponent(
                         new ButtonComponentBuilder()
+                            .WithId(5)
                             .WithLabel("test 1")
                             .WithUrl("https://example.com")
                             .WithStyle(DiscordButtonStyle.Link)
                     )
                     .WithSubComponent(
                         new ButtonComponentBuilder()
+                            .WithId(7)
                             .WithLabel("test 2")
                             .WithUrl("https://example.com")
                             .WithStyle(DiscordButtonStyle.Link)
@@ -39,12 +42,12 @@ public class HelloWorld : SlashCommandModule
                     )
                     .Build()
             )
-            .WithComponent(new TextDisplayComponentBuilder().WithContent("- this is a test").Build())
-            .WithComponent(new TextDisplayComponentBuilder().WithContent("# this is a test").Build())
-            .WithComponent(new TextDisplayComponentBuilder().WithContent("## this is a test").Build())
+            .WithComponent(new TextDisplayComponentBuilder().WithId(4).WithContent("- this is a test").Build())
+            .WithComponent(new TextDisplayComponentBuilder().WithId(10).WithContent("# this is a test").Build())
+            .WithComponent(new TextDisplayComponentBuilder().WithId(8).WithContent("## this is a test").Build())
             .WithComponent(new TextDisplayComponentBuilder().WithContent("### this is a test").Build())
             .WithComponent(
-                new LayoutComponentBuilder(DiscordComponentType.Section)
+                new SectionComponentBuilder()
                     .WithSubComponent(new TextDisplayComponentBuilder().WithContent("# section test"))
                     .WithAccessory(new ButtonComponentBuilder().WithLabel("test").WithStyle(DiscordButtonStyle.Danger).WithCustomId("test"))
                     .Build()
