@@ -89,7 +89,7 @@ public interface IDiscordComponent
     /// <summary>
     ///     A thumbnail or a button component, with a future possibility of adding more compatible components.
     /// </summary>
-    IDiscordComponent Accessory { get; set; }
+    IDiscordComponent? Accessory { get; set; }
 
     /// <summary>
     ///     A list of child components.

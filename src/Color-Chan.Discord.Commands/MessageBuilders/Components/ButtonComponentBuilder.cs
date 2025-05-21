@@ -10,8 +10,8 @@ namespace Color_Chan.Discord.Commands.MessageBuilders.Components;
 /// </summary>
 public class ButtonComponentBuilder : BaseComponentBuilder<ButtonComponentBuilder>, IComponentBuilder
 {
-    public const int MaxCustomIdLength = 100;
-    public const int MaxLabelLength = 80;
+    internal const int MaxCustomIdLength = 100;
+    internal const int MaxLabelLength = 80;
     
     private string? _label;
     private string? _url;
