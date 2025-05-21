@@ -27,7 +27,7 @@ public class HelloWorldButtonCommand : SlashCommandModule
     [SlashCommand("world", "Initializes a button component.")]
     public async Task<Result<IDiscordInteractionResponse>> InitButtonAsync()
     {
-        var actionRowBuilder = new ActionRowComponentBuilder()
+        var actionRowBuilder = new DiscordEmbedActionRowBuilder()
             .WithButton("Hello world", DiscordButtonStyle.Primary, HelloWorldComponent.HelloWorldComponentId);
 
         var responseBuilder = new InteractionResponseBuilder()

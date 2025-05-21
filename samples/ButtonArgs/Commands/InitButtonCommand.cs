@@ -39,7 +39,7 @@ public class InitButtonCommand : SlashCommandModule
         if (args2 is not null) customId += $";{args2}";
         if (args3 is not null) customId += $";{args3}";
 
-        var actionRowBuilder = new ActionRowComponentBuilder()
+        var actionRowBuilder = new DiscordEmbedActionRowBuilder()
             .WithButton("Don't press me!", DiscordButtonStyle.Danger, customId);
 
         var responseBuilder = new InteractionResponseBuilder()

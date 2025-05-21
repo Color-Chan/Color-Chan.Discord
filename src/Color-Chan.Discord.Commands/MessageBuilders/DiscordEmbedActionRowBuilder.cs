@@ -17,9 +17,9 @@ namespace Color_Chan.Discord.Commands.MessageBuilders;
 /// </summary>
 /// <remarks>
 ///     Do not use this when using <see cref="DiscordMessageFlags.IsComponentV2"/>.
-///     Use the <see cref="LayoutComponentBuilder"/> instead.
+///     Use the <see cref="ActionRowComponentBuilder"/> instead.
 /// </remarks>
-public class ActionRowComponentBuilder
+public class DiscordEmbedActionRowBuilder
 {
     private const int MaxButtons = 5;
     private const int MaxSelectOptions = 25;
@@ -37,7 +37,7 @@ public class ActionRowComponentBuilder
     /// <param name="emoji">The emoji the button will use.</param>
     /// <param name="disabled">Whether or not the button is disabled.</param>
     /// <returns>
-    ///     The <see cref="ActionRowComponentBuilder" /> with the added button.
+    ///     The <see cref="DiscordEmbedActionRowBuilder" /> with the added button.
     /// </returns>
     /// <remarks>
     ///     Only one of <paramref name="url" /> or <paramref name="customId" /> can be set!
@@ -51,7 +51,7 @@ public class ActionRowComponentBuilder
     /// <exception cref="ArgumentException">When <paramref name="url" /> <paramref name="customId" /> are both set.</exception>
     /// <exception cref="ArgumentNullException">When <paramref name="label" /> is null.</exception>
     /// <exception cref="InvalidActionRowException">When the <see cref="_childComponents" /> contains a select menu component.</exception>
-    public ActionRowComponentBuilder WithButton(
+    public DiscordEmbedActionRowBuilder WithButton(
         string label,
         DiscordButtonStyle style,
         string? customId = null,
@@ -96,7 +96,7 @@ public class ActionRowComponentBuilder
     /// <param name="url">The URL the button will open. Required if <paramref name="customId" /> is not set.</param>
     /// <param name="disabled">Whether or not the button is disabled.</param>
     /// <returns>
-    ///     The <see cref="ActionRowComponentBuilder" /> with the added button.
+    ///     The <see cref="DiscordEmbedActionRowBuilder" /> with the added button.
     /// </returns>
     /// <remarks>
     ///     Only one of <paramref name="url" /> or <paramref name="customId" /> can be set!
@@ -108,7 +108,7 @@ public class ActionRowComponentBuilder
     /// </exception>
     /// <exception cref="ArgumentException">When <paramref name="url" /> <paramref name="customId" /> are both set.</exception>
     /// <exception cref="InvalidActionRowException">When the <see cref="_childComponents" /> contains a select menu component.</exception>
-    public ActionRowComponentBuilder WithButton(IDiscordEmoji emoji, DiscordButtonStyle style, string? customId = null, string? url = null, bool disabled = false)
+    public DiscordEmbedActionRowBuilder WithButton(IDiscordEmoji emoji, DiscordButtonStyle style, string? customId = null, string? url = null, bool disabled = false)
     {
         if (customId is not null && customId.Length > ButtonComponentBuilder.MaxCustomIdLength)
             throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {ButtonComponentBuilder.MaxCustomIdLength} characters.");
@@ -141,11 +141,11 @@ public class ActionRowComponentBuilder
     /// <param name="maxValues">The maximum number of items that can be chosen; default 1, max 25.</param>
     /// <param name="disabled">Disable the select, default false.</param>
     /// <returns>
-    ///     The <see cref="ActionRowComponentBuilder" /> with the added select menu.
+    ///     The <see cref="DiscordEmbedActionRowBuilder" /> with the added select menu.
     /// </returns>
     /// <exception cref="InvalidActionRowException">Thrown when the action row has button assigned to it.</exception>
     /// <exception cref="InvalidActionRowException">Thrown when the action row already has a select menu.</exception>
-    public ActionRowComponentBuilder WithSelectMenu(string customId, string? placeholder = null, int? minValues = null, int? maxValues = null, bool? disabled = null)
+    public DiscordEmbedActionRowBuilder WithSelectMenu(string customId, string? placeholder = null, int? minValues = null, int? maxValues = null, bool? disabled = null)
     {
         if (_childComponents.Select(x => x.Type).Any(x => x == DiscordComponentType.Button)) throw new InvalidActionRowException("An action row can not have a select menu and buttons");
         if (_selectMenu is not null) throw new InvalidActionRowException("An action row can not have more then one select menu");
@@ -174,13 +174,13 @@ public class ActionRowComponentBuilder
     /// <param name="emoji">The emoji containing the id, name, and animated.</param>
     /// <param name="disabled">Will render this option as selected by default.</param>
     /// <returns>
-    ///     The <see cref="ActionRowComponentBuilder" /> with the added select menu option.
+    ///     The <see cref="DiscordEmbedActionRowBuilder" /> with the added select menu option.
     /// </returns>
     /// <exception cref="InvalidActionRowException">Thrown when the action row has button assigned to it.</exception>
     /// <exception cref="InvalidActionRowException">Thrown when the action row does not contain a select menu.</exception>
     /// <exception cref="NullReferenceException">Thrown when the <see cref="IDiscordComponent.SelectOptions" /> is null.</exception>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the select menu already contains 25 option.</exception>
-    public ActionRowComponentBuilder WithSelectMenuOption(string label, string value, string? description = null, IDiscordEmoji? emoji = null, bool? disabled = false)
+    public DiscordEmbedActionRowBuilder WithSelectMenuOption(string label, string value, string? description = null, IDiscordEmoji? emoji = null, bool? disabled = false)
     {
         if (_childComponents.Select(x => x.Type).Any(x => x == DiscordComponentType.Button)) throw new InvalidActionRowException("An action row can not have a select menu and buttons");
 
@@ -198,6 +198,19 @@ public class ActionRowComponentBuilder
             }
         );
 
+        return this;
+    }
+    
+    /// <summary>
+    ///     Adds a button to the action row.
+    /// </summary>
+    /// <param name="button">The button to be added.</param>
+    /// <returns>
+    ///     The <see cref="DiscordEmbedActionRowBuilder" /> with the added button.
+    /// </returns>
+    public DiscordEmbedActionRowBuilder WithButton(ButtonComponentBuilder button)
+    {
+        _childComponents.Add(button.Build());
         return this;
     }
 
