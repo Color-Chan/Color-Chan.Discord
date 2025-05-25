@@ -64,6 +64,18 @@ public record DiscordComponentData
     [JsonPropertyName("content")]
     public string? Content { get; init; }
     
+    /// <inheritdoc cref="IDiscordComponent.Description" />
+    [JsonPropertyName("description")]
+    public string? Description { get; init; }
+    
+    /// <inheritdoc cref="IDiscordComponent.Spoiler" />
+    [JsonPropertyName("spoiler")]
+    public bool? Spoiler { get; init; }
+    
+    /// <inheritdoc cref="IDiscordComponent.Media" />
+    [JsonPropertyName("media")]
+    public DiscordUnfurledMediaItemData? Media { get; init; }
+    
     /// <inheritdoc cref="IDiscordComponent.Accessory" />
     [JsonPropertyName("accessory")]
     public DiscordComponentData? Accessory { get; init; }

@@ -90,11 +90,26 @@ public interface IDiscordComponent
     ///     A thumbnail or a button component, with a future possibility of adding more compatible components.
     /// </summary>
     IDiscordComponent? Accessory { get; set; }
+    
+    /// <summary>
+    ///     A description of the component.
+    /// </summary>
+    string? Description { get; set; }
+
+    /// <summary>
+    ///     Whether the component should be treated as a spoiler.
+    /// </summary>
+    bool? Spoiler { get; set; }
 
     /// <summary>
     ///     A list of child components.
     /// </summary>
     IEnumerable<IDiscordComponent>? ChildComponents { get; init; }
+    
+    /// <summary>
+    ///     A url or attachment for the component, such as a thumbnail or image.
+    /// </summary>
+    IDiscordUnfurledMediaItem? Media { get; set; }
 
     /// <summary>
     ///     Converts the model back to a discord data model so that it can be send to discord.

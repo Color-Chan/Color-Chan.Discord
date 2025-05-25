@@ -37,6 +37,9 @@ public record DiscordComponent : IDiscordComponent
         Placeholder = data.Placeholder;
         SkuId = data.SkuId;
         Content = data.Content;
+        Description = data.Description;
+        Spoiler = data.Spoiler;
+        Media = data.Media is not null ? new DiscordUnfurledMediaItem { Url = data.Media.Url } : null;
         Accessory = data.Accessory is not null ? new DiscordComponent(data.Accessory) : null;
         SelectOptions = data.SelectOptions?.Select(selectData => new DiscordSelectOption(selectData)).Cast<IDiscordSelectOption>().ToList();
     }
@@ -76,10 +79,10 @@ public record DiscordComponent : IDiscordComponent
 
     /// <inheritdoc />
     public int? MaxValues { get; init; }
-    
+
     /// <inheritdoc />
     public ulong? SkuId { get; init; }
-    
+
     /// <inheritdoc />
     public string? Content { get; init; }
 
@@ -87,7 +90,16 @@ public record DiscordComponent : IDiscordComponent
     public IDiscordComponent? Accessory { get; set; }
 
     /// <inheritdoc />
+    public string? Description { get; set; }
+
+    /// <inheritdoc />
+    public bool? Spoiler { get; set; }
+
+    /// <inheritdoc />
     public IEnumerable<IDiscordComponent>? ChildComponents { get; init; }
+
+    /// <inheritdoc />
+    public IDiscordUnfurledMediaItem? Media { get; set; }
 
     /// <inheritdoc />
     public DiscordComponentData ToDataModel()
@@ -109,7 +121,10 @@ public record DiscordComponent : IDiscordComponent
             MinValues = MinValues,
             SkuId = SkuId,
             Content = Content,
-            Accessory = Accessory?.ToDataModel()
+            Accessory = Accessory?.ToDataModel(),
+            Description = Description,
+            Spoiler = Spoiler,
+            Media = Media?.ToDataModel()
         };
     }
 }

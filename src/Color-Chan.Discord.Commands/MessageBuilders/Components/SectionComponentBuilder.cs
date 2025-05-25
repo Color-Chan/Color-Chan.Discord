@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
@@ -20,18 +21,18 @@ public class SectionComponentBuilder : BaseLayoutComponentBuilder<SectionCompone
     }
     
     /// <summary>
-    ///     Adds a button accessory to the layout component.
+    ///     Adds a component accessory to the section component.
     /// </summary>
-    /// <param name="buttonAccessory">The button accessory to be added.</param>
+    /// <param name="componentBuilder">The component builder to be added as an accessory.</param>
     /// <returns>
     ///     The updated <see cref="SectionComponentBuilder" />.
     /// </returns>
     /// <remarks>
     ///     Only valid for <see cref="DiscordComponentType.Section" />.
     /// </remarks>
-    public SectionComponentBuilder WithAccessory(ButtonComponentBuilder buttonAccessory)
+    public SectionComponentBuilder WithAccessory(IComponentBuilder componentBuilder)
     {
-        _accessory = buttonAccessory;
+        _accessory = componentBuilder;
         return this;
     }
 
@@ -43,6 +44,11 @@ public class SectionComponentBuilder : BaseLayoutComponentBuilder<SectionCompone
     /// </returns>
     public override IDiscordComponent Build()
     {
+        if (SubComponentBuilders.Count == 0)
+        {
+            throw new InvalidOperationException("Section components must have at least one sub-component.");
+        }
+        
         return new DiscordComponent
         {
             Id = Id,
