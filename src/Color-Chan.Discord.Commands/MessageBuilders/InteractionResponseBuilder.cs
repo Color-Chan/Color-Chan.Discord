@@ -16,7 +16,6 @@ namespace Color_Chan.Discord.Commands.MessageBuilders;
 public class InteractionResponseBuilder
 {
     private const int MaxEmbeds = 10;
-    private const int MaxActionRows = 5;
 
     /// <summary>
     ///     Allowed mentions object.
@@ -41,7 +40,7 @@ public class InteractionResponseBuilder
     /// <summary>
     ///     Interaction application command callback data flags
     /// </summary>
-    private DiscordMessageFlags? _flags;
+    private DiscordMessageFlags _flags;
 
     /// <summary>
     ///     Whether or not the response is TTS.
@@ -68,7 +67,19 @@ public class InteractionResponseBuilder
     /// </returns>
     public InteractionResponseBuilder MakePrivate()
     {
-        _flags = DiscordMessageFlags.Ephemeral;
+        return WithMessageFlag(DiscordMessageFlags.Ephemeral);
+    }
+
+    /// <summary>
+    ///     Adds a flag to the response.
+    /// </summary>
+    /// <param name="flag">The flag that will be added.</param>
+    /// <returns>
+    ///     The updated <see cref="InteractionResponseBuilder" />.
+    /// </returns>
+    public InteractionResponseBuilder WithMessageFlag(DiscordMessageFlags flag)
+    {
+        _flags |= flag;
         return this;
     }
 
@@ -127,9 +138,6 @@ public class InteractionResponseBuilder
     public InteractionResponseBuilder WithComponent(IDiscordComponent component)
     {
         _components ??= new List<IDiscordComponent>();
-
-        if (_components.Count >= MaxActionRows) throw new ArgumentOutOfRangeException(nameof(component), "Can not add more then 5 components to one message");
-
         _components.Add(component);
         return this;
     }

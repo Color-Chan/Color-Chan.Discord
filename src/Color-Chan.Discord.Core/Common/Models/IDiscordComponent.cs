@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models.Select;
 
@@ -10,6 +11,17 @@ namespace Color_Chan.Discord.Core.Common.Models;
 /// </summary>
 public interface IDiscordComponent
 {
+    /// <summary>
+    ///     32-bit integer used as an optional identifier for component.
+    /// </summary>
+    /// <remarks>
+    ///     The id field is optional and is used to identify components in the response from an interaction that aren't interactive components.
+    /// </remarks>
+    /// <remarks>
+    ///     The id must be unique within the message and is generated sequentially if left empty. Generation of ids won't use another id that exists in the message if you have one defined for another component.
+    /// </remarks>
+    int? Id { get; init; }
+    
     /// <summary>
     ///     The component type.
     /// </summary>
@@ -64,11 +76,61 @@ public interface IDiscordComponent
     ///     The maximum number of items that can be chosen; default 1, max 25.
     /// </summary>
     public int? MaxValues { get; init; }
+    
+    /// <summary>
+    ///     Identifier for a purchasable SKU, only available when using premium-style buttons.
+    /// </summary>
+    ulong? SkuId { get; init; }
+    
+    /// <summary>
+    ///     Text that will be displayed similar to a message.
+    /// </summary>
+    string? Content { get; init; }
+    
+    /// <summary>
+    ///     A thumbnail or a button component, with a future possibility of adding more compatible components.
+    /// </summary>
+    IDiscordComponent? Accessory { get; init; }
+    
+    /// <summary>
+    ///     A description of the component.
+    /// </summary>
+    string? Description { get; init; }
+
+    /// <summary>
+    ///     Whether the component should be treated as a spoiler.
+    /// </summary>
+    bool? Spoiler { get; init; }
+    
+    /// <summary>
+    ///     The items in the media gallery, such as images or videos.
+    /// </summary>
+    IEnumerable<IMediaGalleryItem>? Items { get; init; }
 
     /// <summary>
     ///     A list of child components.
     /// </summary>
     IEnumerable<IDiscordComponent>? ChildComponents { get; init; }
+    
+    /// <summary>
+    ///     A url or attachment for the component, such as a thumbnail or image.
+    /// </summary>
+    IDiscordUnfurledMediaItem? Media { get; init; }
+    
+    /// <summary>
+    ///     Color for the accent on container components.
+    /// </summary>
+    Color? AccentColor { get; init; }
+    
+    /// <summary>
+    ///     For separator components, size of separator padding—1 for small padding, 2 for large padding. Defaults to 1.
+    /// </summary>
+    int? Spacing { get; init; }
+
+    /// <summary>
+    ///     For separator components, whether  a visual divider should be displayed in the component. Defaults to true.
+    /// </summary>
+    bool? Divider { get; init; }
 
     /// <summary>
     ///     Converts the model back to a discord data model so that it can be send to discord.
