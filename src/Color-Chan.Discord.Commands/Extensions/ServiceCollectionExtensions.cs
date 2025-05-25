@@ -2,6 +2,7 @@
 using Color_Chan.Discord.Caching.Configurations;
 using Color_Chan.Discord.Caching.Extensions;
 using Color_Chan.Discord.Commands.Configurations;
+using Color_Chan.Discord.Commands.InteractionHandlers;
 using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Commands.Services.Implementations;
@@ -36,11 +37,13 @@ public static class ServiceCollectionExtensions
     /// <returns>
     ///     The updated <see cref="IServiceCollection" />.
     /// </returns>
-    public static IServiceCollection AddColorChanDiscordCommand(this IServiceCollection services,
-                                                                Action<SlashCommandConfiguration>? slashCommandConfigs = null,
-                                                                Action<CacheConfiguration>? defaultCacheConfig = null,
-                                                                Action<RedisCacheOptions>? redisCacheOptions = null,
-                                                                Action<ComponentInteractionConfiguration>? componentInteractionConfig = null)
+    public static IServiceCollection AddColorChanDiscordCommand(
+        this IServiceCollection services,
+        Action<SlashCommandConfiguration>? slashCommandConfigs = null,
+        Action<CacheConfiguration>? defaultCacheConfig = null,
+        Action<RedisCacheOptions>? redisCacheOptions = null,
+        Action<ComponentInteractionConfiguration>? componentInteractionConfig = null
+    )
     {
         services.TryAddTransient<ISlashCommandRequirementBuildService, SlashCommandRequirementBuildService>();
         services.TryAddTransient<ISlashCommandRequirementService, InteractionRequirementService>();
@@ -73,6 +76,13 @@ public static class ServiceCollectionExtensions
         services.Configure(componentInteractionConfig);
 
         services.AddColorChanCache(defaultCacheConfig, redisCacheOptions);
+
+        services.Scan(scan => scan
+            .FromAssemblyOf<IInteractionHandler>()
+            .AddClasses(classes => classes.AssignableTo<IInteractionHandler>())
+            .AsImplementedInterfaces()
+            .WithTransientLifetime()
+        );
 
         return services;
     }
