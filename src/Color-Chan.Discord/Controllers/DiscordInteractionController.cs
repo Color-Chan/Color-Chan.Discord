@@ -52,9 +52,16 @@ public class DiscordInteractionController : ControllerBase
     /// <param name="restApplication">The REST class for application api calls.</param>
     /// <param name="discordTokens">The bot tokens and IDs.</param>
     /// <param name="componentInteractionHandler">The handler for the component interaction requests.</param>
-    public DiscordInteractionController(IDiscordInteractionAuthService authService, ILogger<DiscordInteractionController> logger, IDiscordInteractionParser discordInteractionParser,
-                                        IDiscordSlashCommandHandler commandHandler, IOptions<InteractionsConfiguration> configuration, IDiscordRestApplication restApplication,
-                                        DiscordTokens discordTokens, IComponentInteractionHandler componentInteractionHandler)
+    public DiscordInteractionController(
+        IDiscordInteractionAuthService authService,
+        ILogger<DiscordInteractionController> logger,
+        IDiscordInteractionParser discordInteractionParser,
+        IDiscordSlashCommandHandler commandHandler,
+        IOptions<InteractionsConfiguration> configuration,
+        IDiscordRestApplication restApplication,
+        DiscordTokens discordTokens,
+        IComponentInteractionHandler componentInteractionHandler
+    )
     {
         _authService = authService;
         _logger = logger;
@@ -112,10 +119,12 @@ public class DiscordInteractionController : ControllerBase
             }
 
             _logger.LogDebug("Interaction {Id} : Returning empty interaction response to discord", interactionData.Id.ToString());
-            return SerializeResult(new DiscordInteractionResponseData
-            {
-                Type = DiscordInteractionCallbackType.DeferredUpdateMessage
-            });
+            return SerializeResult(
+                new DiscordInteractionResponseData
+                {
+                    Type = DiscordInteractionCallbackType.DeferredUpdateMessage
+                }
+            );
         }
 
         if (!interactionResponse.Acknowledged)
@@ -143,10 +152,12 @@ public class DiscordInteractionController : ControllerBase
         if (responseResult.ErrorResult is DiscordHttpErrorResult httpErrorResult)
         {
             // Send an error response.
-            _logger.LogWarning("Interaction {Id} : Failed to edit interaction response, reason: {Message}, details: {Details}",
-                               interactionData.Id.ToString(),
-                               responseResult.ErrorResult?.ErrorMessage,
-                               JsonSerializer.Serialize(httpErrorResult.ErrorData));
+            _logger.LogWarning(
+                "Interaction {Id} : Failed to edit interaction response, reason: {Message}, details: {Details}",
+                interactionData.Id.ToString(),
+                responseResult.ErrorResult?.ErrorMessage,
+                JsonSerializer.Serialize(httpErrorResult.ErrorData)
+            );
             return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
         }
 
@@ -178,7 +189,6 @@ public class DiscordInteractionController : ControllerBase
     private ContentResult SerializeResult(DiscordInteractionResponseData data)
     {
         var json = _discordInteractionParser.SerializeInteraction(data);
-        Console.WriteLine(json);
         return Content(json, ReturnContentType, Encoding.UTF8);
     }
 
