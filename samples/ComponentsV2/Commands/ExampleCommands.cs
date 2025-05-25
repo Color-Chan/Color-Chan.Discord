@@ -97,8 +97,9 @@ public class ExampleCommands : SlashCommandModule
             .WithAccentColor(Color.Aquamarine)
             .WithSpoiler(true)
             .WithSubComponent(new TextDisplayComponentBuilder().WithContent("This is a container component with a text display."))
-            .WithSubComponent(new SeparatorComponentBuilder())
+            .WithSubComponent(new SeparatorComponentBuilder().WithSpacing(2).WithDivider(false))
             .WithSubComponent(new TextDisplayComponentBuilder().WithContent("Is this great?"))
+            .WithSubComponent(new SeparatorComponentBuilder())
             .WithSubComponent(
                 new ActionRowComponentBuilder()
                     .WithSubComponent(

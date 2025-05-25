@@ -28,7 +28,7 @@ public class SeparatorComponentBuilder : BaseComponentBuilder<SeparatorComponent
     /// </summary>
     /// <param name="isDivider">Whether the separator is a divider.</param>
     /// <returns>The updated <see cref="SeparatorComponentBuilder"/>.</returns>
-    public SeparatorComponentBuilder AsDivider(bool isDivider)
+    public SeparatorComponentBuilder WithDivider(bool isDivider)
     {
         _divider = isDivider;
         return this;
