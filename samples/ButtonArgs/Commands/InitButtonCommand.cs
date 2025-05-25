@@ -4,6 +4,7 @@ using ButtonArgs.Components;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Commands.MessageBuilders;
+using Color_Chan.Discord.Commands.MessageBuilders.Components;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -25,8 +26,7 @@ public class InitButtonCommand : SlashCommandModule
     /// </example>
     [UserRateLimit(2, 10)] // Sets the rate limit for this command to 2 requests per 10 seconds per user.
     [SlashCommand("button", "Initializes a button component.")]
-    public async Task<Result<IDiscordInteractionResponse>> InitButtonAsync
-    (
+    public async Task<Result<IDiscordInteractionResponse>> InitButtonAsync(
         [SlashCommandOption("args", "A string argument", true)]
         string args,
         [SlashCommandOption("args2", "A string argument", false)]
@@ -39,12 +39,17 @@ public class InitButtonCommand : SlashCommandModule
         if (args2 is not null) customId += $";{args2}";
         if (args3 is not null) customId += $";{args3}";
 
-        var actionRowBuilder = new DiscordEmbedActionRowBuilder()
-            .WithButton("Don't press me!", DiscordButtonStyle.Danger, customId);
+        var actionRowBuilder = new ActionRowComponentBuilder()
+            .WithSubComponent(
+                new ButtonComponentBuilder()
+                    .WithLabel("Don't press me!")
+                    .WithStyle(DiscordButtonStyle.Danger)
+                    .WithCustomId(customId)
+            );
 
         var responseBuilder = new InteractionResponseBuilder()
-                              .WithContent("Press the button below!")
-                              .WithComponent(actionRowBuilder.Build());
+            .WithContent("Press the button below!")
+            .WithComponent(actionRowBuilder.Build());
 
         //  Return the response to Discord.
         return FromSuccess(responseBuilder.Build());

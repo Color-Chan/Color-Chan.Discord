@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Attributes;
 using Color_Chan.Discord.Commands.Attributes.ProvidedRequirements;
 using Color_Chan.Discord.Commands.MessageBuilders;
+using Color_Chan.Discord.Commands.MessageBuilders.Components;
 using Color_Chan.Discord.Commands.Modules;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
@@ -27,12 +28,17 @@ public class HelloWorldButtonCommand : SlashCommandModule
     [SlashCommand("world", "Initializes a button component.")]
     public async Task<Result<IDiscordInteractionResponse>> InitButtonAsync()
     {
-        var actionRowBuilder = new DiscordEmbedActionRowBuilder()
-            .WithButton("Hello world", DiscordButtonStyle.Primary, HelloWorldComponent.HelloWorldComponentId);
+        var actionRowBuilder = new ActionRowComponentBuilder()
+            .WithSubComponent(
+                new ButtonComponentBuilder()
+                    .WithLabel("Hello World")
+                    .WithStyle(DiscordButtonStyle.Primary)
+                    .WithCustomId(HelloWorldComponent.HelloWorldComponentId)
+            );
 
         var responseBuilder = new InteractionResponseBuilder()
-                              .WithContent("hello world button")
-                              .WithComponent(actionRowBuilder.Build());
+            .WithContent("hello world button")
+            .WithComponent(actionRowBuilder.Build());
 
         //  Return the response to Discord.
         return FromSuccess(responseBuilder.Build());
