@@ -35,7 +35,7 @@ public class ButtonComponentBuilder : BaseComponentBuilder<ButtonComponentBuilde
     }
     
     /// <summary>
-    ///     Adds a emoji to the button component.
+    ///     Adds an emoji to the button component.
     /// </summary>
     /// <param name="emoji">The emoji to be added.</param>
     /// <returns>
@@ -96,7 +96,7 @@ public class ButtonComponentBuilder : BaseComponentBuilder<ButtonComponentBuilde
     public ButtonComponentBuilder WithCustomId(string customId)
     {
         if (customId is not null && customId.Length > MaxCustomIdLength)
-            throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer then {MaxCustomIdLength} characters.");
+            throw new ArgumentOutOfRangeException(nameof(customId), $"{nameof(customId)} can not be longer than {MaxCustomIdLength} characters.");
         
         _customId = customId;
         return this;

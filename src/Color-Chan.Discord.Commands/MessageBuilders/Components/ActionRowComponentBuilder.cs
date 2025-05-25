@@ -35,7 +35,7 @@ public class ActionRowComponentBuilder : BaseLayoutComponentBuilder<ActionRowCom
             if (subComponents.Count > MaxSelectComponentCount &&
                 discordComponent.Type is DiscordComponentType.StringSelect or DiscordComponentType.UserSelect or DiscordComponentType.RoleSelect or DiscordComponentType.MentionableSelect)
             {
-                throw new ArgumentOutOfRangeException(nameof(SubComponentBuilders), $"An action row can not have more than {MaxSelectComponentCount} select component");
+                throw new ArgumentOutOfRangeException(nameof(SubComponentBuilders), $"An action row can not have more than {MaxSelectComponentCount} select components");
             }
 
             if (subComponents.Count > MaxButtonComponents && discordComponent.Type is DiscordComponentType.Button)
