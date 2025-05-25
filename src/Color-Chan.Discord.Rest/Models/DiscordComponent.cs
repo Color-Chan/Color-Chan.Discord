@@ -42,6 +42,7 @@ public record DiscordComponent : IDiscordComponent
         Media = data.Media is not null ? new DiscordUnfurledMediaItem { Url = data.Media.Url } : null;
         Accessory = data.Accessory is not null ? new DiscordComponent(data.Accessory) : null;
         SelectOptions = data.SelectOptions?.Select(selectData => new DiscordSelectOption(selectData)).Cast<IDiscordSelectOption>().ToList();
+        Items = data.Items?.Select(itemData => new MediaGalleryItem(itemData)).Cast<IMediaGalleryItem>().ToList();
     }
 
     /// <inheritdoc />
@@ -94,7 +95,10 @@ public record DiscordComponent : IDiscordComponent
 
     /// <inheritdoc />
     public bool? Spoiler { get; set; }
-
+    
+    /// <inheritdoc />
+    public IEnumerable<IMediaGalleryItem>? Items { get; init; }
+    
     /// <inheritdoc />
     public IEnumerable<IDiscordComponent>? ChildComponents { get; init; }
 
@@ -124,7 +128,8 @@ public record DiscordComponent : IDiscordComponent
             Accessory = Accessory?.ToDataModel(),
             Description = Description,
             Spoiler = Spoiler,
-            Media = Media?.ToDataModel()
+            Media = Media?.ToDataModel(),
+            Items = Items?.Select(item => item.ToDataModel()).ToList()
         };
     }
 }

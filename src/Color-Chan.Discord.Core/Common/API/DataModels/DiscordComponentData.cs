@@ -72,6 +72,10 @@ public record DiscordComponentData
     [JsonPropertyName("spoiler")]
     public bool? Spoiler { get; init; }
     
+    /// <inheritdoc cref="IDiscordComponent.Items" />
+    [JsonPropertyName("items")]
+    public IEnumerable<MediaGalleryItemData>? Items { get; init; }
+    
     /// <inheritdoc cref="IDiscordComponent.Media" />
     [JsonPropertyName("media")]
     public DiscordUnfurledMediaItemData? Media { get; init; }

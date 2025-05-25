@@ -17,9 +17,29 @@ public class HelloWorld : SlashCommandModule
         var responseBuilder = new InteractionResponseBuilder()
             .WithMessageFlag(DiscordMessageFlags.IsComponentV2)
             .WithComponent(
+                new MediaGalleryComponentBuilder().WithMedia("https://minio.proxied.brammys.com/screenshots/2025/05/ZAvD9HCcKp3L6Ukd.png")
+                    .WithMedia("https://minio.proxied.brammys.com/screenshots/2025/05/qajy70aMtDFAaDv5.png")
+                    .WithMedia("https://minio.proxied.brammys.com/screenshots/2025/05/raBQRTVYXqvENnfx.gif")
+                    .Build()
+            )
+            .WithComponent(
                 new SectionComponentBuilder()
                     .WithAccessory(new ThumbnailComponentBuilder().WithUrl("https://minio.proxied.brammys.com/screenshots/2025/05/rO14p3jrl5A8cirC.png"))
-                    .WithSubComponent(new TextDisplayComponentBuilder().WithContent("test text"))
+                    .WithSubComponent(
+                        new TextDisplayComponentBuilder().WithContent(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                    )
+                    .WithSubComponent(
+                        new TextDisplayComponentBuilder().WithContent(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                    )
+                    .WithSubComponent(
+                        new TextDisplayComponentBuilder().WithContent(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        )
+                    )
                     .Build()
             );
 

@@ -100,6 +100,11 @@ public interface IDiscordComponent
     ///     Whether the component should be treated as a spoiler.
     /// </summary>
     bool? Spoiler { get; set; }
+    
+    /// <summary>
+    ///     The items in the media gallery, such as images or videos.
+    /// </summary>
+    IEnumerable<IMediaGalleryItem>? Items { get; init; }
 
     /// <summary>
     ///     A list of child components.
