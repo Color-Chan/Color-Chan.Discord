@@ -5,8 +5,21 @@
 
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions-deps:
+        patterns:
+          - "*"
+
   - package-ecosystem: "nuget" # See documentation for possible values
     directory: "/" # Location of package manifests
     target-branch: "dev" # The branch that dependabot will target
     schedule:
-      interval: "daily"
+      interval: "weekly"
+    groups:
+      nuget-deps:
+        patterns:
+          - "*"
