@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models;
@@ -43,6 +44,7 @@ public record DiscordComponent : IDiscordComponent
         Accessory = data.Accessory is not null ? new DiscordComponent(data.Accessory) : null;
         SelectOptions = data.SelectOptions?.Select(selectData => new DiscordSelectOption(selectData)).Cast<IDiscordSelectOption>().ToList();
         Items = data.Items?.Select(itemData => new MediaGalleryItem(itemData)).Cast<IMediaGalleryItem>().ToList();
+        AccentColor = data.AccentColor;
     }
 
     /// <inheritdoc />
@@ -88,13 +90,13 @@ public record DiscordComponent : IDiscordComponent
     public string? Content { get; init; }
 
     /// <inheritdoc />
-    public IDiscordComponent? Accessory { get; set; }
+    public IDiscordComponent? Accessory { get; init; }
 
     /// <inheritdoc />
-    public string? Description { get; set; }
+    public string? Description { get; init; }
 
     /// <inheritdoc />
-    public bool? Spoiler { get; set; }
+    public bool? Spoiler { get; init; }
     
     /// <inheritdoc />
     public IEnumerable<IMediaGalleryItem>? Items { get; init; }
@@ -103,7 +105,10 @@ public record DiscordComponent : IDiscordComponent
     public IEnumerable<IDiscordComponent>? ChildComponents { get; init; }
 
     /// <inheritdoc />
-    public IDiscordUnfurledMediaItem? Media { get; set; }
+    public IDiscordUnfurledMediaItem? Media { get; init; }
+
+    /// <inheritdoc />
+    public Color? AccentColor { get; init; }
 
     /// <inheritdoc />
     public DiscordComponentData ToDataModel()
@@ -129,7 +134,8 @@ public record DiscordComponent : IDiscordComponent
             Description = Description,
             Spoiler = Spoiler,
             Media = Media?.ToDataModel(),
-            Items = Items?.Select(item => item.ToDataModel()).ToList()
+            Items = Items?.Select(item => item.ToDataModel()).ToList(),
+            AccentColor = AccentColor
         };
     }
 }

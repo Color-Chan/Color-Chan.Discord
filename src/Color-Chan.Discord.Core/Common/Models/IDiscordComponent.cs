@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.Models.Select;
 
@@ -89,17 +90,17 @@ public interface IDiscordComponent
     /// <summary>
     ///     A thumbnail or a button component, with a future possibility of adding more compatible components.
     /// </summary>
-    IDiscordComponent? Accessory { get; set; }
+    IDiscordComponent? Accessory { get; init; }
     
     /// <summary>
     ///     A description of the component.
     /// </summary>
-    string? Description { get; set; }
+    string? Description { get; init; }
 
     /// <summary>
     ///     Whether the component should be treated as a spoiler.
     /// </summary>
-    bool? Spoiler { get; set; }
+    bool? Spoiler { get; init; }
     
     /// <summary>
     ///     The items in the media gallery, such as images or videos.
@@ -114,7 +115,12 @@ public interface IDiscordComponent
     /// <summary>
     ///     A url or attachment for the component, such as a thumbnail or image.
     /// </summary>
-    IDiscordUnfurledMediaItem? Media { get; set; }
+    IDiscordUnfurledMediaItem? Media { get; init; }
+    
+    /// <summary>
+    ///     Color for the accent on container components.
+    /// </summary>
+    Color? AccentColor { get; init; }
 
     /// <summary>
     ///     Converts the model back to a discord data model so that it can be send to discord.
