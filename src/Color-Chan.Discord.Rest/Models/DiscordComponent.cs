@@ -94,6 +94,7 @@ public record DiscordComponent : IDiscordComponent
     {
         return new DiscordComponentData
         {
+            Id = Id,
             Disabled = Disabled,
             Emoji = Emoji?.ToDataModel(),
             Label = Label,
