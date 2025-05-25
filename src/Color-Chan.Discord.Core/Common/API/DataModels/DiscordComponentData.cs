@@ -92,4 +92,12 @@ public record DiscordComponentData
     /// <inheritdoc cref="IDiscordComponent.AccentColor" />
     [JsonPropertyName("accent_color")]
     public Color? AccentColor { get; init; }
+
+    /// <inheritdoc cref="IDiscordComponent.Spacing" />
+    [JsonPropertyName("spacing")]
+    public int? Spacing { get; init; }
+
+    /// <inheritdoc cref="IDiscordComponent.Divider" />
+    [JsonPropertyName("divider")]
+    public bool? Divider { get; init; }
 }

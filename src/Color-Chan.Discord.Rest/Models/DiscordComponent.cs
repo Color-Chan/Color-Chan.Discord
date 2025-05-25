@@ -45,6 +45,8 @@ public record DiscordComponent : IDiscordComponent
         SelectOptions = data.SelectOptions?.Select(selectData => new DiscordSelectOption(selectData)).Cast<IDiscordSelectOption>().ToList();
         Items = data.Items?.Select(itemData => new MediaGalleryItem(itemData)).Cast<IMediaGalleryItem>().ToList();
         AccentColor = data.AccentColor;
+        Spacing = data.Spacing;
+        Divider = data.Divider;
     }
 
     /// <inheritdoc />
@@ -111,6 +113,12 @@ public record DiscordComponent : IDiscordComponent
     public Color? AccentColor { get; init; }
 
     /// <inheritdoc />
+    public int? Spacing { get; init; }
+    
+    /// <inheritdoc />
+    public bool? Divider { get; init; }
+
+    /// <inheritdoc />
     public DiscordComponentData ToDataModel()
     {
         return new DiscordComponentData
@@ -135,7 +143,9 @@ public record DiscordComponent : IDiscordComponent
             Spoiler = Spoiler,
             Media = Media?.ToDataModel(),
             Items = Items?.Select(item => item.ToDataModel()).ToList(),
-            AccentColor = AccentColor
+            AccentColor = AccentColor,
+            Spacing = Spacing,
+            Divider = Divider
         };
     }
 }

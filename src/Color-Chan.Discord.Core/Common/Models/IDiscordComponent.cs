@@ -121,6 +121,16 @@ public interface IDiscordComponent
     ///     Color for the accent on container components.
     /// </summary>
     Color? AccentColor { get; init; }
+    
+    /// <summary>
+    ///     For separator components, size of separator padding—1 for small padding, 2 for large padding. Defaults to 1.
+    /// </summary>
+    int? Spacing { get; init; }
+
+    /// <summary>
+    ///     For separator components, whether  a visual divider should be displayed in the component. Defaults to true.
+    /// </summary>
+    bool? Divider { get; init; }
 
     /// <summary>
     ///     Converts the model back to a discord data model so that it can be send to discord.
