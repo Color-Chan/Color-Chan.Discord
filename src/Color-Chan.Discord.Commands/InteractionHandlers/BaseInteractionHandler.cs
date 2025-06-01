@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Exceptions;
 using Color_Chan.Discord.Commands.MessageBuilders;
 using Color_Chan.Discord.Commands.Models;
@@ -12,25 +11,38 @@ using Color_Chan.Discord.Core.Common.Models.Guild;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Color_Chan.Discord.Commands.InteractionHandlers;
 
 /// <summary>
 ///     The base class for all interaction handlers.
 /// </summary>
-/// <param name="slashCommandConfiguration">The configuration for slash commands.</param>
+/// <param name="sendDefaultErrorMessage">Whether to send a default error message when the interaction returns unsuccessfully.</param>
+/// <param name="enableAutoGetGuild">Whether to automatically get the guild information for the interaction.</param>
+/// <param name="enableAutoGetChannel">Whether to automatically get the channel information for the interaction.</param>
 /// <param name="restGuild">The REST class for guild API calls.</param>
 /// <param name="restChannel">The REST class for channel API calls.</param>
 /// <param name="logger">The logger for logging messages.</param>
 public class BaseInteractionHandler(
-    IOptions<SlashCommandConfiguration> slashCommandConfiguration,
+    bool sendDefaultErrorMessage,
+    bool enableAutoGetGuild,
+    bool enableAutoGetChannel,
     IDiscordRestGuild restGuild,
     IDiscordRestChannel restChannel,
     IDiscordRestApplication restApplication,
     ILogger logger
 )
 {
+    /// <summary>
+    ///     Gets the <see cref="InternalInteractionResponse"/> from a <see cref="Result{IDiscordInteractionResponse}"/>.
+    /// </summary>
+    /// <param name="result">The result of the interaction response.</param>
+    /// <param name="acknowledged">True if the interaction was acknowledged, false otherwise.</param>
+    /// <param name="interactionId">The ID of the interaction.</param>
+    /// <returns>
+    ///     The <see cref="InternalInteractionResponse"/> containing the interaction response data.
+    /// </returns>
+    /// <exception cref="InteractionResultException">Thrown when the interaction response is unsuccessful.</exception>
     protected InternalInteractionResponse GetInternalInteractionResponse(Result<IDiscordInteractionResponse> result, bool acknowledged, ulong interactionId)
     {
         // Return the response.
@@ -41,16 +53,25 @@ public class BaseInteractionHandler(
         }
 
         logger.LogWarning("Interaction: {Id} : Slash command interaction returned unsuccessfully, reason: {ErrorReason}", interactionId.ToString(), result.ErrorResult?.ErrorMessage);
-        if (slashCommandConfiguration.Value.SendDefaultErrorMessage)
+        if (sendDefaultErrorMessage)
         {
             logger.LogWarning("Interaction: {Id} : Sending default error message", interactionId.ToString());
             return new InternalInteractionResponse(acknowledged, new InteractionResponseBuilder().DefaultErrorMessage());
         }
-        
+
         logger.LogError("Interaction: {Id} : Failed to handle interaction command, reason: {ErrorReason}", interactionId.ToString(), result.ErrorResult?.ErrorMessage);
         throw new InteractionResultException($"Command request {interactionId} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
     }
-    
+
+    /// <summary>
+    ///     Acknowledges the interaction if required.
+    /// </summary>
+    /// <param name="interaction">The interaction to acknowledge.</param>
+    /// <param name="callbackType">The type of callback to send.</param>
+    /// <returns>
+    ///     True if the interaction was acknowledged successfully, false otherwise.
+    /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown when the interaction is null.</exception>
     protected async Task<bool> AcknowledgedIfRequiredAsync(IDiscordInteraction interaction, DiscordInteractionCallbackType callbackType)
     {
         var acknowledgeResponse = new DiscordInteractionResponseData
@@ -69,6 +90,14 @@ public class BaseInteractionHandler(
         return true;
     }
 
+    /// <summary>
+    ///     Gets the interaction context for the given interaction.
+    /// </summary>
+    /// <param name="interaction">The interaction to get the context for.</param>
+    /// <returns>
+    ///     The <see cref="IInteractionContext"/> for the interaction request.
+    /// </returns>
+    /// <exception cref="NullReferenceException">Thrown when required properties of the interaction are null.</exception>
     protected async Task<IInteractionContext> GetInteractionContextAsync(IDiscordInteraction interaction)
     {
         ArgumentNullException.ThrowIfNull(interaction.Data);
@@ -95,17 +124,17 @@ public class BaseInteractionHandler(
 
         return context;
     }
-    
+
     private async Task<IDiscordChannel?> GetChannelAsync(IDiscordInteraction interaction)
     {
-        if (!slashCommandConfiguration.Value.EnableAutoGetChannel || interaction.ChannelId is null) return null;
+        if (!enableAutoGetChannel || interaction.ChannelId is null) return null;
         var channelResult = await restChannel.GetChannelAsync(interaction.ChannelId.Value).ConfigureAwait(false);
         return channelResult.Entity;
     }
 
     private async Task<IDiscordGuild?> GetGuildAsync(IDiscordInteraction interaction)
     {
-        if (!slashCommandConfiguration.Value.EnableAutoGetGuild || interaction.GuildId is null) return null;
+        if (!enableAutoGetGuild || interaction.GuildId is null) return null;
 
         var guildResult = await restGuild.GetGuildAsync(interaction.GuildId.Value, true).ConfigureAwait(false);
         return guildResult.Entity;

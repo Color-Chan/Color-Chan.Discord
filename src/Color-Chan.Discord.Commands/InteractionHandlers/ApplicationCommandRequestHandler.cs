@@ -23,13 +23,22 @@ namespace Color_Chan.Discord.Commands.InteractionHandlers;
 /// </summary>
 public class ApplicationCommandRequestHandler(
     ILogger<ApplicationCommandRequestHandler> logger,
-    IOptions<SlashCommandConfiguration> slashCommandConfiguration,
+    IOptions<SlashCommandConfiguration> config,
     IDiscordRestGuild restGuild,
     IDiscordRestChannel restChannel,
     IDiscordRestApplication restApplication,
     ISlashCommandService slashCommandService,
     IServiceProvider serviceProvider
-) : BaseInteractionHandler(slashCommandConfiguration, restGuild, restChannel, restApplication, logger), IInteractionHandler
+) : BaseInteractionHandler(
+        config.Value.SendDefaultErrorMessage,
+        config.Value.EnableAutoGetGuild,
+        config.Value.EnableAutoGetChannel,
+        restGuild,
+        restChannel,
+        restApplication,
+        logger
+    ),
+    IInteractionHandler
 {
     /// <inheritdoc />
     public bool CanHandle(IDiscordInteraction interaction)

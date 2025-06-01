@@ -7,8 +7,6 @@ using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Commands.Services.Implementations.Builders;
-using Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers;
-using Color_Chan.Discord.Commands.Services.InteractionHandlers;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -52,9 +50,7 @@ public static class ServiceCollectionExtensions
         services.TryAddTransient<ISlashCommandAutoSyncService, SlashCommandAutoSyncService>();
         services.TryAddTransient<ISlashCommandBuildService, SlashCommandBuildService>();
 
-        services.TryAddTransient<IComponentInteractionHandler, ComponentInteractionHandler>();
         services.TryAddTransient<IComponentBuildService, ComponentBuildService>();
-
         services.TryAddSingleton<IComponentService, ComponentService>();
         services.TryAddSingleton<ISlashCommandService, SlashCommandService>();
 

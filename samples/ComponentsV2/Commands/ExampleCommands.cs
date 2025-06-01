@@ -7,6 +7,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
+using ComponentsV2.Components;
 
 namespace ComponentsV2.Commands;
 
@@ -25,13 +26,13 @@ public class ExampleCommands : SlashCommandModule
                 new ButtonComponentBuilder()
                     .WithLabel("Click Me!")
                     .WithStyle(DiscordButtonStyle.Primary)
-                    .WithCustomId("example:action-row-button")
+                    .WithCustomId($"{ExampleButtonComponent.ButtonId};1")
             )
             .WithSubComponent(
                 new ButtonComponentBuilder()
                     .WithLabel("Don't Click Me!")
                     .WithStyle(DiscordButtonStyle.Danger)
-                    .WithCustomId("example:action-row-button-2")
+                    .WithCustomId($"{ExampleButtonComponent.ButtonId};2")
             )
             .WithSubComponent(
                 new ButtonComponentBuilder()
@@ -107,13 +108,13 @@ public class ExampleCommands : SlashCommandModule
                         new ButtonComponentBuilder()
                             .WithLabel("This is great!")
                             .WithStyle(DiscordButtonStyle.Primary)
-                            .WithCustomId("example:container-button")
+                            .WithCustomId($"{ExampleButtonComponent.ButtonId};1")
                     )
                     .WithSubComponent(
                         new ButtonComponentBuilder()
                             .WithLabel("This is great! 2")
                             .WithStyle(DiscordButtonStyle.Secondary)
-                            .WithCustomId("example:container-button2")
+                            .WithCustomId($"{ExampleButtonComponent.ButtonId};2")
                     )
             );
 

@@ -94,9 +94,9 @@ public class DiscordInteractionController : ControllerBase
             _logger.LogWarning("Interaction {Id} : No handler found for interaction type {Type}", interactionData.Id.ToString(), interactionData.RequestType);
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
-        
+
         var interactionResponse = await interactionHandler.HandleInteractionAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false);
-        
+
         // Check if the response contains a message.
         if (interactionResponse.Response is null)
         {

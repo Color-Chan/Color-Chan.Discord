@@ -15,11 +15,11 @@ public class ComponentAttribute : Attribute
     /// <param name="customId">The custom id of the component that the underlying method will handle.</param>
     /// <param name="type">The type of the component that will be handled.</param>
     /// <param name="acknowledge">
-    ///     Whether or not the component interaction should be automatically acknowledge to prevent the token
+    ///     Whether the component interaction should be automatically acknowledge to prevent the token
     ///     from turning inactive after 3 seconds.
     /// </param>
     /// <param name="editOriginalMessage">
-    ///     Whether or not the original message of the component should be edited with the returned response. Ignored if
+    ///     Whether the original message of the component should be edited with the returned response. Ignored if
     ///     <paramref name="acknowledge" /> is set to false.
     /// </param>
     public ComponentAttribute(string customId, DiscordComponentType type, bool acknowledge = false, bool editOriginalMessage = false)
@@ -41,13 +41,13 @@ public class ComponentAttribute : Attribute
     public DiscordComponentType Type { get; }
 
     /// <summary>
-    ///     Whether or not the component interaction should be automatically acknowledge to prevent the token
+    ///     Whether the component interaction should be automatically acknowledge to prevent the token
     ///     from turning inactive after 3 seconds.
     /// </summary>
     public bool Acknowledge { get; }
 
     /// <summary>
-    ///     Whether or not the original message of the component should be edited with the returned response.
+    ///     Whether the original message of the component should be edited with the returned response.
     /// </summary>
     public bool EditOriginalMessage { get; }
 }
