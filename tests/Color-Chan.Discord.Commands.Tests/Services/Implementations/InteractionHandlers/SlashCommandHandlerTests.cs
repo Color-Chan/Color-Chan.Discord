@@ -5,10 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.Configurations;
 using Color_Chan.Discord.Commands.Extensions;
+using Color_Chan.Discord.Commands.InteractionHandlers;
 using Color_Chan.Discord.Commands.Models.Contexts;
 using Color_Chan.Discord.Commands.Models.Info;
 using Color_Chan.Discord.Commands.Services;
-using Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Application;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
@@ -35,7 +35,7 @@ public class DiscordSlashCommandHandlerTests
         _restGuildMock = new Mock<IDiscordRestGuild>();
         _restChannelMock = new Mock<IDiscordRestChannel>();
         _restApplicationMock = new Mock<IDiscordRestApplication>();
-        _handlerLoggerMock = new Mock<ILogger<DiscordSlashCommandHandler>>();
+        _handlerLoggerMock = new Mock<ILogger<ApplicationCommandRequestHandler>>();
         _options = new OptionsWrapper<SlashCommandConfiguration>(new SlashCommandConfiguration());
         _commandServiceMock = new Mock<ISlashCommandService>();
         _orderTestMessage = string.Empty;
@@ -44,15 +44,25 @@ public class DiscordSlashCommandHandlerTests
         _commandServiceMock.Setup(x => x.SearchSlashCommand(It.IsAny<string>(), It.IsAny<string>())).Returns(new SlashCommandOptionInfo("", "", true, null!, null!));
         _commandServiceMock.Setup(x => x.SearchSlashCommand(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new SlashCommandOptionInfo("", "", true, null!, null!));
 
-        _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<ISlashCommandInfo>(), It.IsAny<ISlashCommandContext>(),
-                                                                  It.IsAny<List<IDiscordInteractionOption>>(), It.IsAny<IServiceProvider>()))
-                           .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
-                           .Callback(FakeSlashCommandCall);
+        _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(
+                    It.IsAny<ISlashCommandInfo>(),
+                    It.IsAny<ISlashCommandContext>(),
+                    It.IsAny<List<IDiscordInteractionOption>>(),
+                    It.IsAny<IServiceProvider>()
+                )
+            )
+            .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
+            .Callback(FakeSlashCommandCall);
 
-        _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(It.IsAny<SlashCommandOptionInfo>(), It.IsAny<ISlashCommandContext>(),
-                                                                  It.IsAny<List<IDiscordInteractionOption>>(), It.IsAny<IServiceProvider>()))
-                           .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
-                           .Callback(FakeSlashCommandCall);
+        _commandServiceMock.Setup(x => x.ExecuteSlashCommandAsync(
+                    It.IsAny<SlashCommandOptionInfo>(),
+                    It.IsAny<ISlashCommandContext>(),
+                    It.IsAny<List<IDiscordInteractionOption>>(),
+                    It.IsAny<IServiceProvider>()
+                )
+            )
+            .ReturnsAsync(Result<IDiscordInteractionResponse>.FromSuccess(new DiscordInteractionResponse()))
+            .Callback(FakeSlashCommandCall);
 
         void FakeSlashCommandCall()
         {
@@ -60,7 +70,7 @@ public class DiscordSlashCommandHandlerTests
         }
     }
 
-    private Mock<ILogger<DiscordSlashCommandHandler>> _handlerLoggerMock = null!;
+    private Mock<ILogger<ApplicationCommandRequestHandler>> _handlerLoggerMock = null!;
     private OptionsWrapper<SlashCommandConfiguration> _options = null!;
     private Mock<ISlashCommandService> _commandServiceMock = null!;
     private Mock<IDiscordRestChannel> _restChannelMock = null!;
@@ -73,40 +83,55 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProviderMock = new Mock<IServiceProvider>();
-        var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProviderMock.Object, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
-                                                     _restChannelMock.Object, _options);
+        var handler = new ApplicationCommandRequestHandler(
+            _handlerLoggerMock.Object,
+            _options,
+            _restGuildMock.Object,
+            _restChannelMock.Object,
+            _restApplicationMock.Object,
+            _commandServiceMock.Object,
+            serviceProviderMock.Object
+        );
         var interaction = new DiscordInteraction(new DiscordInteractionData());
 
         // Act & Assert
-        Assert.ThrowsAsync<ArgumentNullException>(() => handler.HandleSlashCommandAsync(interaction));
+        Assert.ThrowsAsync<ArgumentNullException>(() => handler.HandleInteractionAsync(interaction));
     }
 
     [Test]
     public async Task Should_execute_top_level_command_with_no_pipelines()
     {
         // Arrange
-        var serviceProvider = new ServiceCollection()
-            .BuildServiceProvider();
-        var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
-                                                     _restChannelMock.Object, _options);
-        var interaction = new DiscordInteraction(new DiscordInteractionData
-        {
-            Data = new DiscordInteractionRequestData
+        var serviceProvider = new ServiceCollection().BuildServiceProvider();
+        var handler = new ApplicationCommandRequestHandler(
+            _handlerLoggerMock.Object,
+            _options,
+            _restGuildMock.Object,
+            _restChannelMock.Object,
+            _restApplicationMock.Object,
+            _commandServiceMock.Object,
+            serviceProvider
+        );
+        var interaction = new DiscordInteraction(
+            new DiscordInteractionData
             {
-                Id = ulong.MaxValue,
-                Name = "command"
-            },
-            User = new DiscordUserData
-            {
-                Id = 1
-            },
-            ApplicationId = 2,
-            ChannelId = 3,
-            Token = "token"
-        });
+                Data = new DiscordInteractionRequestData
+                {
+                    Id = ulong.MaxValue,
+                    Name = "command"
+                },
+                User = new DiscordUserData
+                {
+                    Id = 1
+                },
+                ApplicationId = 2,
+                ChannelId = 3,
+                Token = "token"
+            }
+        );
 
         // Act
-        var result = await handler.HandleSlashCommandAsync(interaction);
+        var result = await handler.HandleInteractionAsync(interaction);
 
         // Assert
         result.Should().NotBeNull();
@@ -118,47 +143,56 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProvider = new ServiceCollection()
-                              .AddInteractionPipeline<ResolvedPipeline>()
-                              .BuildServiceProvider();
-        var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
-                                                     _restChannelMock.Object, _options);
-        var interaction = new DiscordInteraction(new DiscordInteractionData
-        {
-            Data = new DiscordInteractionRequestData
+            .AddInteractionPipeline<ResolvedPipeline>()
+            .BuildServiceProvider();
+        var handler = new ApplicationCommandRequestHandler(
+            _handlerLoggerMock.Object,
+            _options,
+            _restGuildMock.Object,
+            _restChannelMock.Object,
+            _restApplicationMock.Object,
+            _commandServiceMock.Object,
+            serviceProvider
+        );
+        var interaction = new DiscordInteraction(
+            new DiscordInteractionData
             {
-                Id = ulong.MaxValue,
-                Name = "command",
-                Resolved = new DiscordInteractionResolvedData
+                Data = new DiscordInteractionRequestData
                 {
-                    Roles = new Dictionary<ulong, DiscordGuildRoleData>
+                    Id = ulong.MaxValue,
+                    Name = "command",
+                    Resolved = new DiscordInteractionResolvedData
                     {
+                        Roles = new Dictionary<ulong, DiscordGuildRoleData>
                         {
-                            865723094761078804, new DiscordGuildRoleData
                             {
-                                Id = 865723094761078804,
-                                Color = Color.Red,
-                                Managed = false,
-                                Name = "red",
-                                Mentionable = true,
-                                Permissions = DiscordPermission.None,
-                                Position = 12,
-                                IsHoisted = false
+                                865723094761078804, new DiscordGuildRoleData
+                                {
+                                    Id = 865723094761078804,
+                                    Color = Color.Red,
+                                    Managed = false,
+                                    Name = "red",
+                                    Mentionable = true,
+                                    Permissions = DiscordPermission.None,
+                                    Position = 12,
+                                    IsHoisted = false
+                                }
                             }
                         }
                     }
-                }
-            },
-            User = new DiscordUserData
-            {
-                Id = 1
-            },
-            ApplicationId = 2,
-            ChannelId = 3,
-            Token = "token"
-        });
+                },
+                User = new DiscordUserData
+                {
+                    Id = 1
+                },
+                ApplicationId = 2,
+                ChannelId = 3,
+                Token = "token"
+            }
+        );
 
         // Act
-        var result = await handler.HandleSlashCommandAsync(interaction);
+        var result = await handler.HandleInteractionAsync(interaction);
 
         // Assert
         result.Should().NotBeNull();
@@ -170,29 +204,38 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProvider = new ServiceCollection()
-                              .AddInteractionPipeline<InnerPipeline>()
-                              .AddInteractionPipeline<OuterPipeline>()
-                              .BuildServiceProvider();
-        var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
-                                                     _restChannelMock.Object, _options);
-        var interaction = new DiscordInteraction(new DiscordInteractionData
-        {
-            Data = new DiscordInteractionRequestData
+            .AddInteractionPipeline<InnerPipeline>()
+            .AddInteractionPipeline<OuterPipeline>()
+            .BuildServiceProvider();
+        var handler = new ApplicationCommandRequestHandler(
+            _handlerLoggerMock.Object,
+            _options,
+            _restGuildMock.Object,
+            _restChannelMock.Object,
+            _restApplicationMock.Object,
+            _commandServiceMock.Object,
+            serviceProvider
+        );
+        var interaction = new DiscordInteraction(
+            new DiscordInteractionData
             {
-                Id = ulong.MaxValue,
-                Name = "command"
-            },
-            User = new DiscordUserData
-            {
-                Id = 1
-            },
-            ApplicationId = 2,
-            ChannelId = 3,
-            Token = "token"
-        });
+                Data = new DiscordInteractionRequestData
+                {
+                    Id = ulong.MaxValue,
+                    Name = "command"
+                },
+                User = new DiscordUserData
+                {
+                    Id = 1
+                },
+                ApplicationId = 2,
+                ChannelId = 3,
+                Token = "token"
+            }
+        );
 
         // Act
-        var result = await handler.HandleSlashCommandAsync(interaction);
+        var result = await handler.HandleInteractionAsync(interaction);
 
         // Assert
         result.Should().NotBeNull();
@@ -204,37 +247,46 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProvider = new ServiceCollection()
-                              .AddInteractionPipeline<InnerPipeline>()
-                              .AddInteractionPipeline<OuterPipeline>()
-                              .BuildServiceProvider();
-        var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
-                                                     _restChannelMock.Object, _options);
-        var interaction = new DiscordInteraction(new DiscordInteractionData
-        {
-            Data = new DiscordInteractionRequestData
+            .AddInteractionPipeline<InnerPipeline>()
+            .AddInteractionPipeline<OuterPipeline>()
+            .BuildServiceProvider();
+        var handler = new ApplicationCommandRequestHandler(
+            _handlerLoggerMock.Object,
+            _options,
+            _restGuildMock.Object,
+            _restChannelMock.Object,
+            _restApplicationMock.Object,
+            _commandServiceMock.Object,
+            serviceProvider
+        );
+        var interaction = new DiscordInteraction(
+            new DiscordInteractionData
             {
-                Id = ulong.MaxValue,
-                Name = "sub",
-                Options = new List<DiscordInteractionOptionData>
+                Data = new DiscordInteractionRequestData
                 {
-                    new()
+                    Id = ulong.MaxValue,
+                    Name = "sub",
+                    Options = new List<DiscordInteractionOptionData>
                     {
-                        Type = DiscordApplicationCommandOptionType.SubCommand,
-                        Name = "command"
+                        new()
+                        {
+                            Type = DiscordApplicationCommandOptionType.SubCommand,
+                            Name = "command"
+                        }
                     }
-                }
-            },
-            User = new DiscordUserData
-            {
-                Id = 1
-            },
-            ApplicationId = 2,
-            ChannelId = 3,
-            Token = "token"
-        });
+                },
+                User = new DiscordUserData
+                {
+                    Id = 1
+                },
+                ApplicationId = 2,
+                ChannelId = 3,
+                Token = "token"
+            }
+        );
 
         // Act
-        var result = await handler.HandleSlashCommandAsync(interaction);
+        var result = await handler.HandleInteractionAsync(interaction);
 
         // Assert
         result.Should().NotBeNull();
@@ -246,45 +298,54 @@ public class DiscordSlashCommandHandlerTests
     {
         // Arrange
         var serviceProvider = new ServiceCollection()
-                              .AddInteractionPipeline<InnerPipeline>()
-                              .AddInteractionPipeline<OuterPipeline>()
-                              .BuildServiceProvider();
-        var handler = new DiscordSlashCommandHandler(_commandServiceMock.Object, serviceProvider, _handlerLoggerMock.Object, _restApplicationMock.Object, _restGuildMock.Object,
-                                                     _restChannelMock.Object, _options);
-        var interaction = new DiscordInteraction(new DiscordInteractionData
-        {
-            Data = new DiscordInteractionRequestData
+            .AddInteractionPipeline<InnerPipeline>()
+            .AddInteractionPipeline<OuterPipeline>()
+            .BuildServiceProvider();
+        var handler = new ApplicationCommandRequestHandler(
+            _handlerLoggerMock.Object,
+            _options,
+            _restGuildMock.Object,
+            _restChannelMock.Object,
+            _restApplicationMock.Object,
+            _commandServiceMock.Object,
+            serviceProvider
+        );
+        var interaction = new DiscordInteraction(
+            new DiscordInteractionData
             {
-                Id = ulong.MaxValue,
-                Name = "sub",
-                Options = new List<DiscordInteractionOptionData>
+                Data = new DiscordInteractionRequestData
                 {
-                    new()
+                    Id = ulong.MaxValue,
+                    Name = "sub",
+                    Options = new List<DiscordInteractionOptionData>
                     {
-                        Type = DiscordApplicationCommandOptionType.SubCommandGroup,
-                        Name = "command",
-                        SubOptions = new List<DiscordInteractionOptionData>
+                        new()
                         {
-                            new()
+                            Type = DiscordApplicationCommandOptionType.SubCommandGroup,
+                            Name = "command",
+                            SubOptions = new List<DiscordInteractionOptionData>
                             {
-                                Type = DiscordApplicationCommandOptionType.SubCommand,
-                                Name = "group"
+                                new()
+                                {
+                                    Type = DiscordApplicationCommandOptionType.SubCommand,
+                                    Name = "group"
+                                }
                             }
                         }
                     }
-                }
-            },
-            User = new DiscordUserData
-            {
-                Id = 1
-            },
-            ApplicationId = 2,
-            ChannelId = 3,
-            Token = "token"
-        });
+                },
+                User = new DiscordUserData
+                {
+                    Id = 1
+                },
+                ApplicationId = 2,
+                ChannelId = 3,
+                Token = "token"
+            }
+        );
 
         // Act
-        var result = await handler.HandleSlashCommandAsync(interaction);
+        var result = await handler.HandleInteractionAsync(interaction);
 
         // Assert
         result.Should().NotBeNull();

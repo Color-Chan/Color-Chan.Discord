@@ -16,7 +16,8 @@ namespace ComponentsV2.Commands;
 [SlashCommandGroup("example", "A command group that contains all the 'example' sub commands.")]
 public class ExampleCommands : SlashCommandModule
 {
-    [SlashCommand("action-row", "Send an action row with a button components.")]
+    [SlashCommandGroup("action", "A command group that contains all the 'action' sub commands.")]
+    [SlashCommand("row", "Send an action row with a button components.")]
     public Task<Result<IDiscordInteractionResponse>> ActionRowExample()
     {
         var actionRowBuilder = new ActionRowComponentBuilder()

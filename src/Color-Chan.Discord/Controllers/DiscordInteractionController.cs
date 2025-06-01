@@ -6,7 +6,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Color_Chan.Discord.Commands.InteractionHandlers;
 using Color_Chan.Discord.Commands.Services;
-using Color_Chan.Discord.Commands.Services.InteractionHandlers;
 using Color_Chan.Discord.Configurations;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
@@ -35,8 +34,6 @@ public class DiscordInteractionController : ControllerBase
     private const string TimeStampHeader = "X-Signature-Timestamp";
     private const string ReturnContentType = "application/json";
     private readonly IDiscordInteractionAuthService _authService;
-    private readonly IDiscordSlashCommandHandler _commandHandler;
-    private readonly IComponentInteractionHandler _componentInteractionHandler;
     private readonly InteractionsConfiguration _configuration;
     private readonly DiscordTokens _discordTokens;
     private readonly ILogger<DiscordInteractionController> _logger;
@@ -51,33 +48,26 @@ public class DiscordInteractionController : ControllerBase
     /// <param name="authService">The <see cref="IDiscordInteractionAuthService" /> that will verify the request.</param>
     /// <param name="discordInteractionParser">The parser for all the discord interactions.</param>
     /// <param name="interactionHandlers">The interaction handlers that will handle the interactions.</param>
-    /// <param name="commandHandler">The command handler for all the slash commands.</param>
     /// <param name="configuration">The configurations for interactions.</param>
     /// <param name="restApplication">The REST class for application api calls.</param>
     /// <param name="discordTokens">The bot tokens and IDs.</param>
-    /// <param name="componentInteractionHandler">The handler for the component interaction requests.</param>
     public DiscordInteractionController(
         ILogger<DiscordInteractionController> logger,
         IDiscordInteractionAuthService authService,
         IDiscordInteractionParser discordInteractionParser,
         IEnumerable<IInteractionHandler> interactionHandlers,
-        
-        IDiscordSlashCommandHandler commandHandler,
         IOptions<InteractionsConfiguration> configuration,
         IDiscordRestApplication restApplication,
-        DiscordTokens discordTokens,
-        IComponentInteractionHandler componentInteractionHandler
+        DiscordTokens discordTokens
     )
     {
         _authService = authService;
         _logger = logger;
         _discordInteractionParser = discordInteractionParser;
         _interactionHandlers = interactionHandlers;
-        _commandHandler = commandHandler;
         _configuration = configuration.Value;
         _restApplication = restApplication;
         _discordTokens = discordTokens;
-        _componentInteractionHandler = componentInteractionHandler;
     }
 
     /// <summary>
@@ -107,13 +97,6 @@ public class DiscordInteractionController : ControllerBase
         
         var interactionResponse = await interactionHandler.HandleInteractionAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false);
         
-        // var interactionResponse = interactionData.RequestType switch
-        // {
-        //     DiscordInteractionRequestType.ApplicationCommand => await _commandHandler.HandleSlashCommandAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
-        //     DiscordInteractionRequestType.MessageComponent => await _componentInteractionHandler.HandleComponentInteractionAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
-        //     _ => throw new ArgumentOutOfRangeException()
-        // };
-
         // Check if the response contains a message.
         if (interactionResponse.Response is null)
         {

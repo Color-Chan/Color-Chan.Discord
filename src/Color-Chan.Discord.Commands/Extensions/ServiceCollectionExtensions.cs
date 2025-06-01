@@ -51,7 +51,6 @@ public static class ServiceCollectionExtensions
         services.TryAddTransient<ISlashCommandGuildBuildService, SlashCommandGuildBuildService>();
         services.TryAddTransient<ISlashCommandAutoSyncService, SlashCommandAutoSyncService>();
         services.TryAddTransient<ISlashCommandBuildService, SlashCommandBuildService>();
-        services.TryAddTransient<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
 
         services.TryAddTransient<IComponentInteractionHandler, ComponentInteractionHandler>();
         services.TryAddTransient<IComponentBuildService, ComponentBuildService>();
