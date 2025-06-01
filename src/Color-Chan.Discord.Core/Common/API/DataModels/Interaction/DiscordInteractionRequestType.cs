@@ -19,5 +19,15 @@ public enum DiscordInteractionRequestType : byte
     /// <summary>
     ///     A Message component request.
     /// </summary>
-    MessageComponent = 3
+    MessageComponent = 3,
+    
+    /// <summary>
+    ///     A Message component autocomplete request.
+    /// </summary>
+    ApplicationCommandAutocomplete = 4,
+    
+    /// <summary>
+    ///     A Modal submit interaction request.
+    /// </summary>
+    ModalSubmit = 5
 }

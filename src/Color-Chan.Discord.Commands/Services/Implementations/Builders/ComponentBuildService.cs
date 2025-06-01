@@ -46,8 +46,14 @@ public class ComponentBuildService : IComponentBuildService
                 var componentAttribute = validMethod.GetCustomAttribute<ComponentAttribute>();
                 if (componentAttribute is null) throw new NullReferenceException(nameof(componentAttribute));
 
-                var componentInfo = new ComponentInfo(componentAttribute.CustomId, componentAttribute.Type, validMethod, parentModule, componentAttribute.Acknowledge,
-                                                      componentAttribute.EditOriginalMessage)
+                var componentInfo = new ComponentInfo(
+                    componentAttribute.CustomId,
+                    componentAttribute.Type,
+                    validMethod,
+                    parentModule,
+                    componentAttribute.Acknowledge,
+                    componentAttribute.EditOriginalMessage
+                )
                 {
                     Requirements = _requirementBuildService.GetCommandRequirements(validMethod)
                 };
@@ -69,8 +75,9 @@ public class ComponentBuildService : IComponentBuildService
     private IEnumerable<TypeInfo> GetSlashComponentModules(Assembly assembly)
     {
         return assembly.DefinedTypes
-                       .Where(typeInfo => typeInfo.IsPublic || typeInfo.IsNestedPublic)
-                       .Where(IsValidModuleDefinition).ToList();
+            .Where(typeInfo => typeInfo.IsPublic || typeInfo.IsNestedPublic)
+            .Where(IsValidModuleDefinition)
+            .ToList();
     }
 
     /// <summary>
@@ -83,8 +90,8 @@ public class ComponentBuildService : IComponentBuildService
     private static IEnumerable<MethodInfo> GetValidComponentMethods(IReflect parentModule)
     {
         return parentModule
-               .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-               .Where(IsValidCommandDefinition);
+            .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Where(IsValidCommandDefinition);
     }
 
     /// <summary>
@@ -108,9 +115,6 @@ public class ComponentBuildService : IComponentBuildService
     /// </returns>
     private static bool IsValidCommandDefinition(MethodInfo methodInfo)
     {
-        return methodInfo.IsDefined(typeof(ComponentAttribute))
-               && methodInfo.ReturnType == typeof(Task<Result<IDiscordInteractionResponse>>)
-               && !methodInfo.IsStatic
-               && !methodInfo.IsGenericMethod;
+        return methodInfo.IsDefined(typeof(ComponentAttribute)) && methodInfo.ReturnType == typeof(Task<Result<IDiscordInteractionResponse>>) && !methodInfo.IsStatic && !methodInfo.IsGenericMethod;
     }
 }

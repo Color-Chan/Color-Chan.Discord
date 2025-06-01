@@ -2,12 +2,11 @@
 using Color_Chan.Discord.Caching.Configurations;
 using Color_Chan.Discord.Caching.Extensions;
 using Color_Chan.Discord.Commands.Configurations;
+using Color_Chan.Discord.Commands.InteractionHandlers;
 using Color_Chan.Discord.Commands.Services;
 using Color_Chan.Discord.Commands.Services.Builders;
 using Color_Chan.Discord.Commands.Services.Implementations;
 using Color_Chan.Discord.Commands.Services.Implementations.Builders;
-using Color_Chan.Discord.Commands.Services.Implementations.InteractionHandlers;
-using Color_Chan.Discord.Commands.Services.InteractionHandlers;
 using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -36,11 +35,13 @@ public static class ServiceCollectionExtensions
     /// <returns>
     ///     The updated <see cref="IServiceCollection" />.
     /// </returns>
-    public static IServiceCollection AddColorChanDiscordCommand(this IServiceCollection services,
-                                                                Action<SlashCommandConfiguration>? slashCommandConfigs = null,
-                                                                Action<CacheConfiguration>? defaultCacheConfig = null,
-                                                                Action<RedisCacheOptions>? redisCacheOptions = null,
-                                                                Action<ComponentInteractionConfiguration>? componentInteractionConfig = null)
+    public static IServiceCollection AddColorChanDiscordCommand(
+        this IServiceCollection services,
+        Action<SlashCommandConfiguration>? slashCommandConfigs = null,
+        Action<CacheConfiguration>? defaultCacheConfig = null,
+        Action<RedisCacheOptions>? redisCacheOptions = null,
+        Action<ComponentInteractionConfiguration>? componentInteractionConfig = null
+    )
     {
         services.TryAddTransient<ISlashCommandRequirementBuildService, SlashCommandRequirementBuildService>();
         services.TryAddTransient<ISlashCommandRequirementService, InteractionRequirementService>();
@@ -48,11 +49,8 @@ public static class ServiceCollectionExtensions
         services.TryAddTransient<ISlashCommandGuildBuildService, SlashCommandGuildBuildService>();
         services.TryAddTransient<ISlashCommandAutoSyncService, SlashCommandAutoSyncService>();
         services.TryAddTransient<ISlashCommandBuildService, SlashCommandBuildService>();
-        services.TryAddTransient<IDiscordSlashCommandHandler, DiscordSlashCommandHandler>();
 
-        services.TryAddTransient<IComponentInteractionHandler, ComponentInteractionHandler>();
         services.TryAddTransient<IComponentBuildService, ComponentBuildService>();
-
         services.TryAddSingleton<IComponentService, ComponentService>();
         services.TryAddSingleton<ISlashCommandService, SlashCommandService>();
 
@@ -73,6 +71,13 @@ public static class ServiceCollectionExtensions
         services.Configure(componentInteractionConfig);
 
         services.AddColorChanCache(defaultCacheConfig, redisCacheOptions);
+
+        services.Scan(scan => scan
+            .FromAssemblyOf<IInteractionHandler>()
+            .AddClasses(classes => classes.AssignableTo<IInteractionHandler>())
+            .AsImplementedInterfaces()
+            .WithTransientLifetime()
+        );
 
         return services;
     }

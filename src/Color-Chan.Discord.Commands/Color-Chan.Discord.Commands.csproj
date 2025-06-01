@@ -56,4 +56,8 @@
         <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ApplicationCommandHandlers\" />
+    </ItemGroup>
+
 </Project>

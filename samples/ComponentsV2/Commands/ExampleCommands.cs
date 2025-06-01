@@ -7,6 +7,7 @@ using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Core.Results;
+using ComponentsV2.Components;
 
 namespace ComponentsV2.Commands;
 
@@ -16,7 +17,8 @@ namespace ComponentsV2.Commands;
 [SlashCommandGroup("example", "A command group that contains all the 'example' sub commands.")]
 public class ExampleCommands : SlashCommandModule
 {
-    [SlashCommand("action-row", "Send an action row with a button components.")]
+    [SlashCommandGroup("action", "A command group that contains all the 'action' sub commands.")]
+    [SlashCommand("row", "Send an action row with a button components.")]
     public Task<Result<IDiscordInteractionResponse>> ActionRowExample()
     {
         var actionRowBuilder = new ActionRowComponentBuilder()
@@ -24,13 +26,13 @@ public class ExampleCommands : SlashCommandModule
                 new ButtonComponentBuilder()
                     .WithLabel("Click Me!")
                     .WithStyle(DiscordButtonStyle.Primary)
-                    .WithCustomId("example:action-row-button")
+                    .WithCustomId($"{ExampleButtonComponent.ButtonId};1")
             )
             .WithSubComponent(
                 new ButtonComponentBuilder()
                     .WithLabel("Don't Click Me!")
                     .WithStyle(DiscordButtonStyle.Danger)
-                    .WithCustomId("example:action-row-button-2")
+                    .WithCustomId($"{ExampleButtonComponent.ButtonId};2")
             )
             .WithSubComponent(
                 new ButtonComponentBuilder()
@@ -106,13 +108,13 @@ public class ExampleCommands : SlashCommandModule
                         new ButtonComponentBuilder()
                             .WithLabel("This is great!")
                             .WithStyle(DiscordButtonStyle.Primary)
-                            .WithCustomId("example:container-button")
+                            .WithCustomId($"{ExampleButtonComponent.ButtonId};1")
                     )
                     .WithSubComponent(
                         new ButtonComponentBuilder()
                             .WithLabel("This is great! 2")
                             .WithStyle(DiscordButtonStyle.Secondary)
-                            .WithCustomId("example:container-button2")
+                            .WithCustomId($"{ExampleButtonComponent.ButtonId};2")
                     )
             );
 
