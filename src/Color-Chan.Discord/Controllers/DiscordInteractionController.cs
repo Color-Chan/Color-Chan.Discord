@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Color_Chan.Discord.Commands.Models;
+using Color_Chan.Discord.Commands.InteractionHandlers;
 using Color_Chan.Discord.Commands.Services;
-using Color_Chan.Discord.Commands.Services.InteractionHandlers;
 using Color_Chan.Discord.Configurations;
 using Color_Chan.Discord.Core;
 using Color_Chan.Discord.Core.Common.API.DataModels.Interaction;
@@ -33,37 +34,40 @@ public class DiscordInteractionController : ControllerBase
     private const string TimeStampHeader = "X-Signature-Timestamp";
     private const string ReturnContentType = "application/json";
     private readonly IDiscordInteractionAuthService _authService;
-    private readonly IDiscordSlashCommandHandler _commandHandler;
-    private readonly IComponentInteractionHandler _componentInteractionHandler;
     private readonly InteractionsConfiguration _configuration;
     private readonly DiscordTokens _discordTokens;
     private readonly ILogger<DiscordInteractionController> _logger;
     private readonly IDiscordInteractionParser _discordInteractionParser;
+    private readonly IEnumerable<IInteractionHandler> _interactionHandlers;
     private readonly IDiscordRestApplication _restApplication;
 
     /// <summary>
     ///     Initializes a new instance of <see cref="DiscordInteractionController" />.
     /// </summary>
-    /// <param name="authService">The <see cref="IDiscordInteractionAuthService" /> that will verify the request.</param>
     /// <param name="logger">The logger.</param>
+    /// <param name="authService">The <see cref="IDiscordInteractionAuthService" /> that will verify the request.</param>
     /// <param name="discordInteractionParser">The parser for all the discord interactions.</param>
-    /// <param name="commandHandler">The command handler for all the slash commands.</param>
+    /// <param name="interactionHandlers">The interaction handlers that will handle the interactions.</param>
     /// <param name="configuration">The configurations for interactions.</param>
     /// <param name="restApplication">The REST class for application api calls.</param>
     /// <param name="discordTokens">The bot tokens and IDs.</param>
-    /// <param name="componentInteractionHandler">The handler for the component interaction requests.</param>
-    public DiscordInteractionController(IDiscordInteractionAuthService authService, ILogger<DiscordInteractionController> logger, IDiscordInteractionParser discordInteractionParser,
-                                        IDiscordSlashCommandHandler commandHandler, IOptions<InteractionsConfiguration> configuration, IDiscordRestApplication restApplication,
-                                        DiscordTokens discordTokens, IComponentInteractionHandler componentInteractionHandler)
+    public DiscordInteractionController(
+        ILogger<DiscordInteractionController> logger,
+        IDiscordInteractionAuthService authService,
+        IDiscordInteractionParser discordInteractionParser,
+        IEnumerable<IInteractionHandler> interactionHandlers,
+        IOptions<InteractionsConfiguration> configuration,
+        IDiscordRestApplication restApplication,
+        DiscordTokens discordTokens
+    )
     {
         _authService = authService;
         _logger = logger;
         _discordInteractionParser = discordInteractionParser;
-        _commandHandler = commandHandler;
+        _interactionHandlers = interactionHandlers;
         _configuration = configuration.Value;
         _restApplication = restApplication;
         _discordTokens = discordTokens;
-        _componentInteractionHandler = componentInteractionHandler;
     }
 
     /// <summary>
@@ -72,36 +76,26 @@ public class DiscordInteractionController : ControllerBase
     /// <returns>
     ///     An <see cref="ActionResult" /> with the json result of the request.
     /// </returns>
-    /// <exception cref="JsonException">Thrown when the provided request body isn't valid.</exception>
     [HttpPost("interaction")]
     public async Task<ActionResult> HandleInteractionRequestAsync()
     {
-        // Check if the request has the headers needed for verification.
-        if (!Request.Headers.ContainsKey(SignatureHeader) || !Request.Headers.ContainsKey(TimeStampHeader))
+        if (!await ValidateSignatureAsync().ConfigureAwait(false))
         {
-            return UnauthorizedInteraction();
-        }
-
-        // Verify the interaction request.
-        var signature = Request.Headers[SignatureHeader].ToString();
-        var timeStamp = Request.Headers[TimeStampHeader].ToString();
-
-        if (_configuration.VerifyInteractions && !await _authService.VerifySignatureAsync(signature, timeStamp, Request.Body).ConfigureAwait(false))
-        {
-            return UnauthorizedInteraction();
+            _logger.LogWarning("Interaction {Id} : Failed to verify interaction command", "unknown");
+            return Unauthorized("Failed to verify signatures");
         }
 
         var interactionData = await _discordInteractionParser.ParseInteractionAsync(Request.Body).ConfigureAwait(false);
         _logger.LogDebug("Interaction {Id} : Verified", interactionData.Id.ToString());
 
-        // Execute the correct interaction type.
-        var interactionResponse = interactionData.RequestType switch
+        var interactionHandler = _interactionHandlers.FirstOrDefault(handler => handler.CanHandle(new DiscordInteraction(interactionData)));
+        if (interactionHandler is null)
         {
-            DiscordInteractionRequestType.Ping => InternalInteractionResponse.PingResponse(),
-            DiscordInteractionRequestType.ApplicationCommand => await _commandHandler.HandleSlashCommandAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
-            DiscordInteractionRequestType.MessageComponent => await _componentInteractionHandler.HandleComponentInteractionAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false),
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            _logger.LogWarning("Interaction {Id} : No handler found for interaction type {Type}", interactionData.Id.ToString(), interactionData.RequestType);
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        var interactionResponse = await interactionHandler.HandleInteractionAsync(new DiscordInteraction(interactionData)).ConfigureAwait(false);
 
         // Check if the response contains a message.
         if (interactionResponse.Response is null)
@@ -112,17 +106,12 @@ public class DiscordInteractionController : ControllerBase
             }
 
             _logger.LogDebug("Interaction {Id} : Returning empty interaction response to discord", interactionData.Id.ToString());
-            return SerializeResult(new DiscordInteractionResponseData
-            {
-                Type = DiscordInteractionCallbackType.DeferredUpdateMessage
-            });
+            return SerializeResult(new DiscordInteractionResponseData { Type = DiscordInteractionCallbackType.DeferredUpdateMessage });
         }
 
         if (!interactionResponse.Acknowledged)
         {
-            // Send the response back to discord.
             _logger.LogDebug("Interaction {Id} : Returning interaction response to discord", interactionData.Id.ToString());
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             return SerializeResult(interactionResponse.Response);
         }
 
@@ -143,10 +132,12 @@ public class DiscordInteractionController : ControllerBase
         if (responseResult.ErrorResult is DiscordHttpErrorResult httpErrorResult)
         {
             // Send an error response.
-            _logger.LogWarning("Interaction {Id} : Failed to edit interaction response, reason: {Message}, details: {Details}",
-                               interactionData.Id.ToString(),
-                               responseResult.ErrorResult?.ErrorMessage,
-                               JsonSerializer.Serialize(httpErrorResult.ErrorData));
+            _logger.LogWarning(
+                "Interaction {Id} : Failed to edit interaction response, reason: {Message}, details: {Details}",
+                interactionData.Id.ToString(),
+                responseResult.ErrorResult?.ErrorMessage,
+                JsonSerializer.Serialize(httpErrorResult.ErrorData)
+            );
             return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
         }
 
@@ -155,34 +146,31 @@ public class DiscordInteractionController : ControllerBase
         return StatusCode(StatusCodes.Status500InternalServerError, responseResult.ErrorResult);
     }
 
-    /// <summary>
-    ///     Serializes a <see cref="IDiscordInteractionResponse" /> to json content.
-    /// </summary>
-    /// <param name="result">The <see cref="IDiscordInteractionResponse" /> that will be serialized.</param>
-    /// <returns>
-    ///     The serialized <see cref="IDiscordInteractionResponse" />.
-    /// </returns>
+    private async Task<bool> ValidateSignatureAsync()
+    {
+        // Check if the request has the headers needed for verification.
+        if (!Request.Headers.TryGetValue(SignatureHeader, out var signature) || !Request.Headers.TryGetValue(TimeStampHeader, out var timeStamp))
+        {
+            return false;
+        }
+
+        if (_configuration.VerifyInteractions && !await _authService.VerifySignatureAsync(signature.ToString(), timeStamp.ToString(), Request.Body).ConfigureAwait(false))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     private ContentResult SerializeResult(IDiscordInteractionResponse result)
     {
         var data = result.ToDataModel();
         return SerializeResult(data);
     }
 
-    /// <summary>
-    ///     Serializes a <see cref="DiscordInteractionResponseData" /> to json content.
-    /// </summary>
-    /// <param name="data">The <see cref="DiscordInteractionResponseData" /> that will be serialized.</param>
-    /// <returns>
-    ///     The serialized <see cref="DiscordInteractionResponseData" />.
-    /// </returns>
     private ContentResult SerializeResult(DiscordInteractionResponseData data)
     {
-        return Content(_discordInteractionParser.SerializeInteraction(data), ReturnContentType, Encoding.UTF8);
-    }
-
-    private ActionResult UnauthorizedInteraction()
-    {
-        _logger.LogWarning("Interaction {Id} : Failed to verify interaction command", "unknown");
-        return Unauthorized("Failed to verify signatures");
+        var json = _discordInteractionParser.SerializeInteraction(data);
+        return Content(json, ReturnContentType, Encoding.UTF8);
     }
 }

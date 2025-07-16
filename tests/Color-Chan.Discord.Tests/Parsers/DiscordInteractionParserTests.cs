@@ -18,10 +18,6 @@ public class DiscordInteractionParserTests
         // Arrange
         var jsonOptions = Options.Create(new JsonSerializerOptions().RegisterJsonOptions());
         var parser = new DiscordInteractionParser(jsonOptions);
-        // var jsonString = await File.ReadAllTextAsync("Parsers/TestData/testRequest.json");
-        // var stream = new MemoryStream();
-        // var writer = new StreamWriter(stream);
-        // await writer.WriteAsync(jsonString);
         var filestream = new FileStream("Parsers/TestData/testRequest.json", FileMode.Open);
 
         // Act
