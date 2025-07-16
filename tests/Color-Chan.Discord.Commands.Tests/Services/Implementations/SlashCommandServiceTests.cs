@@ -276,7 +276,10 @@ public class SlashCommandServiceTests
                             new DiscordGuildRoleData
                             {
                                 Id = 865723094761078804,
-                                Color = Color.Red,
+                                Colors = new DiscordGuildRoleColorsData
+                                {
+                                    Primary = Color.Red,
+                                },
                                 Managed = false,
                                 Mentionable = true,
                                 Name = "red",

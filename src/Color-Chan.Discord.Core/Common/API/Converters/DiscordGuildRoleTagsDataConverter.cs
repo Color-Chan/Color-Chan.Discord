@@ -2,7 +2,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
-using Color_Chan.Discord.Core.Exceptions;
 
 namespace Color_Chan.Discord.Core.Common.API.Converters;
 
@@ -15,7 +14,7 @@ namespace Color_Chan.Discord.Core.Common.API.Converters;
 public class DiscordGuildRoleTagsDataConverter : JsonConverter<DiscordGuildRoleTagsData>
 {
     /// <inheritdoc />
-    public override DiscordGuildRoleTagsData? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override DiscordGuildRoleTagsData Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (reader.TokenType != JsonTokenType.StartObject)
         {
