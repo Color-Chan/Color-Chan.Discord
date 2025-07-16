@@ -67,23 +67,12 @@ public class DiscordGuildRoleTagsDataConverter : JsonConverter<DiscordGuildRoleT
     {
         writer.WriteStartObject();
 
-        if (value.BotId.HasValue)
-            writer.WriteString("bot_id", value.BotId.Value.ToString());
-
-        if (value.IntegrationId.HasValue)
-            writer.WriteString("integration_id", value.IntegrationId.Value.ToString());
-
-        if (value.SubscriptionListingId.HasValue)
-            writer.WriteString("subscription_listing_id", value.SubscriptionListingId.Value.ToString());
-
-        if (value.PremiumSubscriber)
-            writer.WriteNull("premium_subscriber");
-
-        if (value.AvailableForPurchase)
-            writer.WriteNull("available_for_purchase");
-
-        if (value.GuildConnections)
-            writer.WriteNull("guild_connections");
+        if (value.BotId.HasValue) writer.WriteString("bot_id", value.BotId.Value.ToString());
+        if (value.IntegrationId.HasValue) writer.WriteString("integration_id", value.IntegrationId.Value.ToString());
+        if (value.SubscriptionListingId.HasValue) writer.WriteString("subscription_listing_id", value.SubscriptionListingId.Value.ToString());
+        if (value.PremiumSubscriber) writer.WriteNull("premium_subscriber");
+        if (value.AvailableForPurchase) writer.WriteNull("available_for_purchase");
+        if (value.GuildConnections) writer.WriteNull("guild_connections");
 
         writer.WriteEndObject();
     }
