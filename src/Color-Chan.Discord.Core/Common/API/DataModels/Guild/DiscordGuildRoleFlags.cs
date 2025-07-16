@@ -17,5 +17,5 @@ public enum DiscordGuildRoleFlags
     /// <summary>
     ///     Role can be selected by members in an onboarding prompt.
     /// </summary>
-    InPromt = 1 << 0
+    InPrompt = 1 << 0
 }
