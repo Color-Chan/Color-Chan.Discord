@@ -7,15 +7,15 @@ namespace Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 /// <inheritdoc cref="IDiscordGuildRoleColors" />
 public record DiscordGuildRoleColorsData
 {
-    /// <inheritdoc cref="IDiscordGuildRoleColors" />
+    /// <inheritdoc cref="IDiscordGuildRoleColors.Primary" />
     [JsonPropertyName("primary_color")]
     public Color Primary { get; init; }
 
-    /// <inheritdoc cref="IDiscordGuildRoleColors" />
+    /// <inheritdoc cref="IDiscordGuildRoleColors.Secondary" />
     [JsonPropertyName("secondary_color")]
     public Color? Secondary { get; init; }
 
-    /// <inheritdoc cref="IDiscordGuildRoleColors" />
+    /// <inheritdoc cref="IDiscordGuildRoleColors.Tertiary" />
     [JsonPropertyName("tertiary_color")]
     public Color? Tertiary { get; init; }
 }
