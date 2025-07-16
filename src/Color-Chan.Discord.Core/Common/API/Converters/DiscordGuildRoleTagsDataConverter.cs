@@ -23,6 +23,7 @@ public class DiscordGuildRoleTagsDataConverter : JsonConverter<DiscordGuildRoleT
 
         var tagsData = new DiscordGuildRoleTagsData();
 
+        var uint64Converter = new Uint64Converter();
         while (reader.Read() && reader.TokenType != JsonTokenType.EndObject)
         {
             if (reader.TokenType != JsonTokenType.PropertyName)
@@ -36,16 +37,16 @@ public class DiscordGuildRoleTagsDataConverter : JsonConverter<DiscordGuildRoleT
             switch (propertyName)
             {
                 case "bot_id":
-                    tagsData.BotId = new Uint64Converter().Read(ref reader, typeof(ulong), options);
+                    tagsData.BotId = uint64Converter.Read(ref reader, typeof(ulong), options);
                     break;
                 case "integration_id":
-                    tagsData.IntegrationId = new Uint64Converter().Read(ref reader, typeof(ulong), options);
+                    tagsData.IntegrationId = uint64Converter.Read(ref reader, typeof(ulong), options);
                     break;
                 case "premium_subscriber":
                     tagsData.PremiumSubscriber = true;
                     break;
                 case "subscription_listing_id":
-                    tagsData.SubscriptionListingId = new Uint64Converter().Read(ref reader, typeof(ulong), options);
+                    tagsData.SubscriptionListingId = uint64Converter.Read(ref reader, typeof(ulong), options);
                     break;
                 case "available_for_purchase":
                     tagsData.AvailableForPurchase = true;

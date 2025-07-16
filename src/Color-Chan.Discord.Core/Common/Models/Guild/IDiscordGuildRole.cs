@@ -27,7 +27,9 @@ public interface IDiscordGuildRole
     [Obsolete("Use Colors instead.")]
     Color Color { get; init; }
     
-    /// <inheritdoc cref="IDiscordGuildRole.Colors" />
+    /// <summary>
+    ///     The role's colors.     
+    /// </summary>
     public IDiscordGuildRoleColors Colors { get; init; }
 
     /// <summary>
