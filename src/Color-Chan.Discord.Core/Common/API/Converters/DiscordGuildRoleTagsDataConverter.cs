@@ -8,7 +8,7 @@ namespace Color_Chan.Discord.Core.Common.API.Converters;
 
 /// <summary>
 ///     Enables us to have a decent domain model for <see cref="DiscordGuildRoleTagsData" />.
-///     I hate discord so much for implementing this in such a dump way....
+///     I hate discord so much for implementing this in such a dumb way....
 ///     Why is boolean true when the json property exists, and false when it doesn't?
 ///     They better have a good reason for this (:
 /// </summary>
