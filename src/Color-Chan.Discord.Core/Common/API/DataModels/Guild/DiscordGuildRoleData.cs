@@ -34,8 +34,8 @@ public record DiscordGuildRoleData
     public string? Icon { get; init; }
     
     /// <inheritdoc cref="IDiscordGuildRole.UnicodeEmoji" />
+    [JsonPropertyName("unicode_emoji")]
     public string? UnicodeEmoji { get; init; }
-
     /// <inheritdoc cref="IDiscordGuildRole.Position" />
     [JsonPropertyName("position")]
     public int Position { get; init; }
