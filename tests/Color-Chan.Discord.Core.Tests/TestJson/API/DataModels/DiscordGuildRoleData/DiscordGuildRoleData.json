@@ -6,5 +6,6 @@
   "position": 34,
   "permissions": "274877906943",
   "managed": true,
-  "mentionable": true
+  "mentionable": true,
+  "flags": 0
 }
