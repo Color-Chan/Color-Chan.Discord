@@ -1,0 +1,20 @@
+﻿{
+  "id": "41771983423143936",
+  "name": "Role name!!",
+  "color": 3447003,
+  "colors": {
+    "primary_color": 3447003
+  },
+  "hoist": true,
+  "icon": "cf3ced8600b777c9486c6d8d84fb4327",
+  "position": 1,
+  "permissions": "66321471",
+  "managed": false,
+  "mentionable": false,
+  "tags": {
+    "bot_id": "123456789012345678",
+    "integration_id": "987654321098765432",
+    "premium_subscriber": null
+  },
+  "flags": 0
+}

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.Models.Guild;
 
@@ -17,11 +18,23 @@ public record DiscordGuildRoleData
 
     /// <inheritdoc cref="IDiscordGuildRole.Color" />
     [JsonPropertyName("color")]
+    [Obsolete("Use Colors instead.")]
     public Color Color { get; init; }
+    
+    /// <inheritdoc cref="IDiscordGuildRole.Colors" />
+    [JsonPropertyName("colors")]
+    public DiscordGuildRoleColorsData Colors { get; init; } = null!;
 
     /// <inheritdoc cref="IDiscordGuildRole.IsHoisted" />
     [JsonPropertyName("hoist")]
     public bool IsHoisted { get; init; }
+    
+    /// <inheritdoc cref="IDiscordGuildRole.Icon" />
+    [JsonPropertyName("icon")]
+    public string? Icon { get; init; }
+    
+    /// <inheritdoc cref="IDiscordGuildRole.UnicodeEmoji" />
+    public string? UnicodeEmoji { get; init; }
 
     /// <inheritdoc cref="IDiscordGuildRole.Position" />
     [JsonPropertyName("position")]
@@ -38,4 +51,12 @@ public record DiscordGuildRoleData
     /// <inheritdoc cref="IDiscordGuildRole.Mentionable" />
     [JsonPropertyName("mentionable")]
     public bool Mentionable { get; init; }
+    
+    /// <inheritdoc cref="IDiscordGuildRole.Tags" />
+    [JsonPropertyName("tags")]
+    public DiscordGuildRoleTagsData? Tags { get; init; }
+    
+    /// <inheritdoc cref="IDiscordGuildRole.Flags" />
+    [JsonPropertyName("flags")]
+    public DiscordGuildRoleFlags Flags { get; init; }
 }

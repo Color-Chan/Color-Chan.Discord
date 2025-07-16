@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
@@ -23,12 +24,26 @@ public interface IDiscordGuildRole
     /// <summary>
     ///     Integer representation of hexadecimal color code.
     /// </summary>
+    [Obsolete("Use Colors instead.")]
     Color Color { get; init; }
+    
+    /// <inheritdoc cref="IDiscordGuildRole.Colors" />
+    public IDiscordGuildRoleColors Colors { get; init; }
 
     /// <summary>
     ///     If this role is pinned in the user listing.
     /// </summary>
     bool IsHoisted { get; init; }
+    
+    /// <summary>
+    ///     Role icon hash.
+    /// </summary>
+    string? Icon { get; init; }
+    
+    /// <summary>
+    ///     Role unicode emoji.
+    /// </summary>
+    string? UnicodeEmoji { get; init; }
 
     /// <summary>
     ///     Position of this role.
@@ -49,6 +64,16 @@ public interface IDiscordGuildRole
     ///     Whether this role is mentionable
     /// </summary>
     bool Mentionable { get; init; }
+    
+    /// <summary>
+    ///     The tags this role has
+    /// </summary>
+    IDiscordGuildRoleTags? Tags { get; init; }
+    
+    /// <summary>
+    ///     Role can be selected by members in an onboarding prompt
+    /// </summary>
+    DiscordGuildRoleFlags Flags { get; init; }
 
     /// <summary>
     ///     Converts the model back to a discord data model so that it can be send to discord.
