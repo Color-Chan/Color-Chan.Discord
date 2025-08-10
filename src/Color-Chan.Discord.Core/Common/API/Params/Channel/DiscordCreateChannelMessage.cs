@@ -82,5 +82,5 @@ public class DiscordCreateChannelMessage
     ///     Only SUPPRESS_EMBEDS, SUPPRESS_NOTIFICATIONS, IS_VOICE_MESSAGE, and IS_COMPONENTS_V2 can be set!
     /// </remarks>
     [JsonPropertyName("flags")]
-    public IEnumerable<DiscordMessageFlags>? Flags { get; set; }
+    public DiscordMessageFlags? Flags { get; set; }
 }
