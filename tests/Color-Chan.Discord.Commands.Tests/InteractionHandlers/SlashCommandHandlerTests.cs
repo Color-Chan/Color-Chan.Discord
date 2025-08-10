@@ -169,7 +169,10 @@ public class DiscordSlashCommandHandlerTests
                                 865723094761078804, new DiscordGuildRoleData
                                 {
                                     Id = 865723094761078804,
-                                    Color = Color.Red,
+                                    Colors = new DiscordGuildRoleColorsData
+                                    {
+                                        Primary = Color.Red,
+                                    },
                                     Managed = false,
                                     Name = "red",
                                     Mentionable = true,
