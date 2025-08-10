@@ -9,7 +9,7 @@ namespace Color_Chan.Discord.Core.Common.API.Params.Channel;
 
 /// <summary>
 ///     Represents a discord Create Message API request model.
-///     Docs: https://discord.com/developers/docs/resources/channel#embed-limits-jsonform-params
+///     Docs: https://discord.com/developers/docs/resources/message#get-channel-message
 /// </summary>
 public class DiscordCreateChannelMessage
 {
@@ -74,4 +74,13 @@ public class DiscordCreateChannelMessage
     /// </remarks>
     [JsonPropertyName("sticker_ids")]
     public IEnumerable<ulong>? StickerIds { get; set; }
+
+    /// <summary>
+    ///     Message flags combined as a bitfield.
+    /// </summary>
+    /// <remarks>
+    ///     Only SUPPRESS_EMBEDS, SUPPRESS_NOTIFICATIONS, IS_VOICE_MESSAGE, and IS_COMPONENTS_V2 can be set!
+    /// </remarks>
+    [JsonPropertyName("flags")]
+    public DiscordMessageFlags? Flags { get; set; }
 }
