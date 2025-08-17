@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels;
 using Color_Chan.Discord.Core.Common.API.DataModels.Embed;
+using Color_Chan.Discord.Core.Common.API.DataModels.Message;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Webhook;
 
@@ -40,4 +41,10 @@ public record DiscordEditWebhookMessage
     /// </summary>
     [JsonPropertyName("components")]
     public IEnumerable<DiscordComponentData>? Components { get; set; }
+    
+    /// <summary>
+    ///     Message flags combined as a bitfield (SUPPRESS_EMBEDS and IS_COMPONENTS_V2 only)
+    /// </summary>
+    [JsonPropertyName("flags")]
+    public DiscordMessageFlags? Flags { get; set; }
 }
