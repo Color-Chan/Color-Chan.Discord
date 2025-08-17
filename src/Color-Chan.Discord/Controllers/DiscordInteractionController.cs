@@ -122,7 +122,8 @@ public class DiscordInteractionController : ControllerBase
             Content = responseData?.Content,
             Embeds = responseData?.Embeds,
             Components = responseData?.Components,
-            AllowedMentions = responseData?.AllowedMentions
+            AllowedMentions = responseData?.AllowedMentions,
+            Flags = responseData?.Flags,
         };
 
         _logger.LogDebug("Interaction {Id} : Editing original interaction response", interactionData.Id.ToString());
