@@ -17,6 +17,7 @@ public class DiscordEditChannelMessage
     ///     The message contents (up to 2000 characters).
     /// </summary>
     [JsonPropertyName("content")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string? Content { get; set; }
 
     // Todo: implemented file content support.
@@ -27,19 +28,20 @@ public class DiscordEditChannelMessage
     ///     Embedded rich content (up to 6000 characters).
     /// </summary>
     [JsonPropertyName("embeds")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public IEnumerable<DiscordEmbedData>? Embeds { get; set; }
 
     /// <summary>
     ///     Embedded rich content.
     /// </summary>
-    [JsonPropertyName("embed ")]
+    [JsonPropertyName("embed")]
     [Obsolete("deprecated in favor of Embeds")]
     public IEnumerable<DiscordEmbedData>? Embed { get; set; }
 
     /// <summary>
-    ///     Edit the flags of a message (only SUPPRESS_EMBEDS can currently be set/unset).
+    ///     Edit the flags of a message (SUPPRESS_EMBEDS and IS_COMPONENTS_V2 only)
     /// </summary>
-    [JsonPropertyName("flags ")]
+    [JsonPropertyName("flags")]
     public DiscordMessageFlags? Flags { get; set; }
 
     /// <summary>
