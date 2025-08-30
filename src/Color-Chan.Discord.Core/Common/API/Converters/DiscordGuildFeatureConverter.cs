@@ -46,6 +46,9 @@ public class DiscordGuildFeatureConverter : JsonConverter<DiscordGuildFeature>
             "VERIFIED" => DiscordGuildFeature.Verified,
             "VIP_REGIONS" => DiscordGuildFeature.VipRegions,
             "WELCOME_SCREEN_ENABLED" => DiscordGuildFeature.WelcomeScreenEnabled,
+            "GUESTS_ENABLED" => DiscordGuildFeature.GuestsEnabled,
+            "GUILD_TAGS" => DiscordGuildFeature.GuildTags,
+            "ENHANCED_ROLE_COLORS" => DiscordGuildFeature.EnhancedRoleColors,
             _ => DiscordGuildFeature.Unknown
         };
     }
@@ -144,6 +147,15 @@ public class DiscordGuildFeatureConverter : JsonConverter<DiscordGuildFeature>
                 break;
             case DiscordGuildFeature.WelcomeScreenEnabled:
                 writer.WriteStringValue("WELCOME_SCREEN_ENABLED");
+                break;
+            case DiscordGuildFeature.GuestsEnabled:
+                writer.WriteStringValue("GUESTS_ENABLED");
+                break;
+            case DiscordGuildFeature.GuildTags:
+                writer.WriteStringValue("GUILD_TAGS");
+                break;
+            case DiscordGuildFeature.EnhancedRoleColors:
+                writer.WriteStringValue("ENHANCED_ROLE_COLORS");
                 break;
             case DiscordGuildFeature.Unknown:
                 break;
