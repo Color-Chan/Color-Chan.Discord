@@ -1,6 +1,8 @@
+using System;
 using System.Drawing;
 using System.Text.Json.Serialization;
 using Color_Chan.Discord.Core.Common.API.DataModels;
+using Color_Chan.Discord.Core.Common.API.DataModels.Guild;
 
 namespace Color_Chan.Discord.Core.Common.API.Params.Guild;
 
@@ -25,8 +27,18 @@ public record DiscordModifyGuildRole
     /// <summary>
     ///     The RGB color value.
     /// </summary>
+    /// <remarks>
+    ///     Color will still be returned by the API, but using the colors field is recommended when doing requests.
+    /// </remarks>
     [JsonPropertyName("color")]
-    public Color? Color { get; set; }
+    [Obsolete("Use Colors property instead.")]
+    public Color Color { get; set; }
+
+    /// <summary>
+    ///     The role's colors.
+    /// </summary>
+    [JsonPropertyName("colors")]
+    public DiscordGuildRoleColorsData Colors { get; set; } = null!;
 
     /// <summary>
     ///     Whether the role should be displayed separately in the sidebar.
