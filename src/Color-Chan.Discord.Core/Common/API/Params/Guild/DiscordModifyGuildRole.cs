@@ -32,13 +32,13 @@ public record DiscordModifyGuildRole
     /// </remarks>
     [JsonPropertyName("color")]
     [Obsolete("Use Colors property instead.")]
-    public Color Color { get; set; }
+    public Color? Color { get; set; }
 
     /// <summary>
     ///     The role's colors.
     /// </summary>
     [JsonPropertyName("colors")]
-    public DiscordGuildRoleColorsData Colors { get; set; } = null!;
+    public DiscordGuildRoleColorsData? Colors { get; set; } = null!;
 
     /// <summary>
     ///     Whether the role should be displayed separately in the sidebar.
