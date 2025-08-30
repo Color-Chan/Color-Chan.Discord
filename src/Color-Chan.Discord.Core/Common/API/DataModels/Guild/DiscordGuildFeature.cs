@@ -137,6 +137,11 @@ public enum DiscordGuildFeature
     Soundboard,
 
     /// <summary>
+    ///     Guild has enabled ticketed events.
+    /// </summary>
+    TicketedEventsEnabled,
+
+    /// <summary>
     ///     Guild has access to set a vanity URL.
     /// </summary>
     VanityUrl,
@@ -155,9 +160,19 @@ public enum DiscordGuildFeature
     ///     Guild has enabled the welcome screen.
     /// </summary>
     WelcomeScreenEnabled,
-
+    
     /// <summary>
-    ///     Guild has enabled ticketed events.
+    ///     Guild has access to guest invites.
     /// </summary>
-    TicketedEventsEnabled
+    GuestsEnabled,
+    
+    /// <summary>
+    ///     Guild has access to set guild tags.
+    /// </summary>
+    GuildTags,
+    
+    /// <summary>
+    ///     Guild is able to set gradient colors to roles.
+    /// </summary>
+    EnhancedRoleColors
 }
