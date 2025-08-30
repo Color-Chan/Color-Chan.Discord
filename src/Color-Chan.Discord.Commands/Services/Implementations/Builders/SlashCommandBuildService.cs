@@ -141,7 +141,7 @@ public class SlashCommandBuildService : ISlashCommandBuildService
         var commandAttribute = validMethod.GetCustomAttribute<SlashCommandAttribute>();
         if (commandAttribute is not null)
         {
-            var commandInfo = new SlashCommandInfo(commandAttribute.Name, commandAttribute.Description, commandAttribute.DefaultPermission, validMethod, parentModule)
+            var commandInfo = new SlashCommandInfo(commandAttribute.Name, commandAttribute.Description, commandAttribute.DefaultPermission, validMethod, parentModule, commandAttribute.Acknowledge)
             {
                 Guilds = _guildBuildService.GetCommandGuilds(validMethod),
                 CommandOptions = _optionBuildService.GetCommandOptions(validMethod).ToList(),
