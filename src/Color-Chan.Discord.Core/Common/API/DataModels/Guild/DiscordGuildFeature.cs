@@ -87,7 +87,7 @@ public enum DiscordGuildFeature
     MemberVerificationGateEnabled,
 
     /// <summary>
-    ///     Guild has access to set an invite splash background.
+    ///     Guild has increased custom soundboard sound slots.
     /// </summary>
     MoreSoundboard,
 
@@ -112,7 +112,7 @@ public enum DiscordGuildFeature
     PreviewEnabled,
     
     /// <summary>
-    ///     
+    ///     Guild has disabled alerts for join raids in the configured safety alerts channel.
     /// </summary>
     RaidAlertsDisabled,
     
@@ -142,7 +142,7 @@ public enum DiscordGuildFeature
     VanityUrl,
 
     /// <summary>
-    ///     Gild is verified.
+    ///     Guild is verified.
     /// </summary>
     Verified,
 
