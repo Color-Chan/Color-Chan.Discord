@@ -11,9 +11,24 @@ public enum DiscordGuildFeature
     Unknown,
 
     /// <summary>
+    ///     Guild has access to set an animated guild banner image.
+    /// </summary>
+    AnimatedBanner,
+
+    /// <summary>
     ///     Guild has access to set an animated guild icon.
     /// </summary>
     AnimatedIcon,
+
+    /// <summary>
+    ///     Guild is using the old permissions configuration behavior.
+    /// </summary>
+    ApplicationCommandPermissionsV2,
+
+    /// <summary>
+    ///     Guild has set up auto moderation rules.
+    /// </summary>
+    AutoModeration,
 
     /// <summary>
     ///     Guild has access to set a guild banner image.
@@ -32,6 +47,21 @@ public enum DiscordGuildFeature
     Community,
 
     /// <summary>
+    ///     Guild has enabled monetization.
+    /// </summary>
+    CreatorMonetizableProvisional,
+
+    /// <summary>
+    ///     Guild has enabled the role subscription promo page.
+    /// </summary>
+    CreatorStorePage,
+
+    /// <summary>
+    ///     Guild has been set as a support server on the App Directory.
+    /// </summary>
+    DeveloperSupportServer,
+
+    /// <summary>
     ///     Guild is able to be discovered in the directory.
     /// </summary>
     Discoverable,
@@ -42,6 +72,11 @@ public enum DiscordGuildFeature
     Featurable,
 
     /// <summary>
+    ///     Guild has paused invites, preventing new users from joining.
+    /// </summary>
+    InvitesDisabled,
+
+    /// <summary>
     ///     Guild has access to set an invite splash background.
     /// </summary>
     InviteSplash,
@@ -50,6 +85,16 @@ public enum DiscordGuildFeature
     ///     Guild has enabled Membership Screening.
     /// </summary>
     MemberVerificationGateEnabled,
+
+    /// <summary>
+    ///     Guild has increased custom soundboard sound slots.
+    /// </summary>
+    MoreSoundboard,
+
+    /// <summary>
+    ///     Guild has increased custom sticker slots.
+    /// </summary>
+    MoreStickers,
 
     /// <summary>
     ///     Guild has access to create news channels.
@@ -65,6 +110,31 @@ public enum DiscordGuildFeature
     ///     Guild can be previewed before joining via Membership Screening or the directory.
     /// </summary>
     PreviewEnabled,
+    
+    /// <summary>
+    ///     Guild has disabled alerts for join raids in the configured safety alerts channel.
+    /// </summary>
+    RaidAlertsDisabled,
+    
+    /// <summary>
+    ///     Guild is able to set role icons.
+    /// </summary>
+    RoleIcons,
+   
+    /// <summary>
+    ///     Guild has role subscriptions that can be purchased.
+    /// </summary>
+    RoleSubscriptionsAvailableForPurchase,
+    
+    /// <summary>
+    ///     Guild has enabled role subscriptions.
+    /// </summary>
+    RoleSubscriptionsEnabled,
+    
+    /// <summary>
+    ///     Guild has created soundboard sounds.
+    /// </summary>
+    Soundboard,
 
     /// <summary>
     ///     Guild has access to set a vanity URL.
@@ -72,7 +142,7 @@ public enum DiscordGuildFeature
     VanityUrl,
 
     /// <summary>
-    ///     Gild is verified.
+    ///     Guild is verified.
     /// </summary>
     Verified,
 
@@ -89,30 +159,5 @@ public enum DiscordGuildFeature
     /// <summary>
     ///     Guild has enabled ticketed events.
     /// </summary>
-    TicketedEventsEnabled,
-
-    /// <summary>
-    ///     Guild has enabled monetization.
-    /// </summary>
-    MonetizationEnabled,
-
-    /// <summary>
-    ///     Guild has increased custom sticker slots.
-    /// </summary>
-    MoreStickers,
-
-    /// <summary>
-    ///     Guild has access to the three day archive time for threads.
-    /// </summary>
-    ThreeDayThreadArchive,
-
-    /// <summary>
-    ///     Guild has access to the seven day archive time for threads.
-    /// </summary>
-    SevenDayThreadArchive,
-
-    /// <summary>
-    ///     Guild has access to create private threads.
-    /// </summary>
-    PrivateThreads
+    TicketedEventsEnabled
 }
