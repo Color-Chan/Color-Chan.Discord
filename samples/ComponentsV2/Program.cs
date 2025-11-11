@@ -34,8 +34,8 @@ var token = configuration["Discord:Token"];
 var publicKey = configuration["Discord:PublicKey"];
 var applicationId = configuration.GetValue<ulong>("Discord:ApplicationId");
 
-ArgumentException.ThrowIfNullOrEmpty(token, nameof(token));
-ArgumentException.ThrowIfNullOrEmpty(publicKey, nameof(publicKey));
+ArgumentException.ThrowIfNullOrEmpty(token);
+ArgumentException.ThrowIfNullOrEmpty(publicKey);
 
 builder.Services.AddColorChanDiscord(token, publicKey, applicationId, config); // <---
 

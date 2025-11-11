@@ -40,8 +40,8 @@ public class Startup
         var publicKey = Configuration["Discord:PublicKey"];
         var applicationId = Configuration.GetValue<ulong>("Discord:ApplicationId");
 
-        ArgumentException.ThrowIfNullOrEmpty(token, nameof(token));
-        ArgumentException.ThrowIfNullOrEmpty(publicKey, nameof(publicKey));
+        ArgumentException.ThrowIfNullOrEmpty(token);
+        ArgumentException.ThrowIfNullOrEmpty(publicKey);
 
         services.AddColorChanDiscord(token, publicKey, applicationId, config); // <---
 

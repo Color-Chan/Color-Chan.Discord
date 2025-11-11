@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <RootNamespace>Color_Chan.Discord.Core</RootNamespace>
         <Nullable>enable</Nullable>
     </PropertyGroup>
@@ -11,8 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="9.0.10" />
-        <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.10" />
+        <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="10.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
     </ItemGroup>
 
     <ItemGroup>

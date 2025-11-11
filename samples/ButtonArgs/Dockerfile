@@ -1,5 +1,5 @@
 # Setup base image
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS base
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS base
 
 LABEL maintainer="BrammyS <https://github.com/BrammyS>"
 LABEL org.label-schema.name="ButtonArgs"
@@ -22,7 +22,7 @@ RUN dotnet publish "ButtonArgs.csproj" \
     /p:PublishSingleFile=true
 
 # Setup final runtime image
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-alpine AS final
+FROM mcr.microsoft.com/dotnet/runtime-deps:10.0-alpine AS final
 
 # Create a user to run the application
 RUN adduser --disabled-password \

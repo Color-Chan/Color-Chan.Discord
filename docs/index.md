@@ -20,7 +20,7 @@
     <img src="https://cdn.colorchan.com/pfp/pfp3/Color-Chan03_round_512x.png" alt="Logo" width="140">
   </a>
 
-  <h3 align="center">Color-Chan.Discord</h3>
+<h3 align="center">Color-Chan.Discord</h3>
 
   <p align="center">
     A Discord library made in .NET for interactions using webhooks.
@@ -81,8 +81,8 @@ Color-Chan.Discord is a powerful Discord library made to communicate with the [D
 
 ### Built With
 
-* [.NET 7](https://dotnet.microsoft.com/download/dotnet/7.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0)
+* [.NET 10](https://dotnet.microsoft.com/download/dotnet/10.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-10.0)
 
 
 <!-- GETTING STARTED -->
@@ -93,8 +93,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* [.NET 7](https://dotnet.microsoft.com/download/dotnet/7.0)
-* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0)
+* [.NET 10](https://dotnet.microsoft.com/download/dotnet/10.0)
+* [ASP.NET](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-10.0)
 
 ### Installation
 
@@ -108,7 +108,7 @@ Color-Chan.Discord is available on [NuGet](https://www.nuget.org/packages/Color-
   Install-Package Color-Chan.Discord
   ```
 
-  OR
+OR
 
   ```powershell
   dotnet add package Color-Chan.Discord

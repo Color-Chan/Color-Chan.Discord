@@ -67,7 +67,7 @@ public class RoleCommands : SlashCommandModule
         var embedBuilder = new DiscordEmbedBuilder()
                            .WithTitle("New role created!")
                            .WithDescription($"Role: {roleName} has been created.")
-                           .WithColor(newRoleResponse.Entity!.Color)
+                           .WithColor(newRoleResponse.Entity!.Colors.Primary)
                            .WithTimeStamp();
 
         //  Return the response to Discord.
@@ -104,7 +104,7 @@ public class RoleCommands : SlashCommandModule
         var embedBuilder = new DiscordEmbedBuilder()
                            .WithTitle($"Role {role?.Name} deleted")
                            .WithDescription("The role has been successfully deleted!")
-                           .WithColor(role?.Color ?? Color.FromArgb(0))
+                           .WithColor(role?.Colors.Primary ?? Color.FromArgb(0))
                            .WithTimeStamp();
 
         //  Return the response to Discord.
