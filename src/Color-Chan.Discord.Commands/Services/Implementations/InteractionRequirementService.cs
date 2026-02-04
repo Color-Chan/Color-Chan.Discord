@@ -30,7 +30,7 @@ public class InteractionRequirementService : ISlashCommandRequirementService
             return Result.FromSuccess();
         }
 
-        _logger.LogDebug("Interaction {Id} : Executing interaction requirements", context.InteractionId.ToString());
+        _logger.LogDebug("Interaction {Id} : Executing interaction requirements", context.InteractionId);
 
         foreach (var requirement in requirements)
         {
@@ -38,7 +38,7 @@ public class InteractionRequirementService : ISlashCommandRequirementService
 
             if (result.IsSuccessful) continue;
 
-            _logger.LogDebug("Interaction {Id} : Failed to pass requirement {RequirementName}", context.InteractionId.ToString(), requirement.GetType().Name);
+            _logger.LogDebug("Interaction {Id} : Failed to pass requirement {RequirementName}", context.InteractionId, requirement.GetType().Name);
             return Result.FromError(result.ErrorResult!);
         }
 

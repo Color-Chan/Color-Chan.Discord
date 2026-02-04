@@ -90,7 +90,7 @@ public class SlashCommandService : ISlashCommandService
         context.MethodName = commandMethod.Name;
         instance.SetContext(context);
 
-        _logger.LogInformation("Interaction: {Id} : Executing slash command {Name}", context.InteractionId.ToString(), context.SlashCommandName);
+        _logger.LogInformation("Interaction: {Id} : Executing slash command {Name}", context.InteractionId, context.SlashCommandName);
 
         // Try to run the requirements for the slash command.
         try
@@ -103,7 +103,7 @@ public class SlashCommandService : ISlashCommandService
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Interaction: {Id} : Exception thrown while running command {CommandName} requirements", context.InteractionId.ToString(), commandMethod.Name);
+            _logger.LogError(e, "Interaction: {Id} : Exception thrown while running command {CommandName} requirements", context.InteractionId, commandMethod.Name);
             return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException!));
         }
 
@@ -126,7 +126,7 @@ public class SlashCommandService : ISlashCommandService
             if (commandMethod.Invoke(instance, args.ToArray()) is not Task<Result<IDiscordInteractionResponse>> task)
             {
                 var errorMessage = $"Failed to cast {commandMethod.Name} to Task<Result<IDiscordInteractionResponse>>";
-                _logger.LogWarning("Interaction: {Id} : {ErrorMessage}", context.InteractionId.ToString(), errorMessage);
+                _logger.LogWarning("Interaction: {Id} : {ErrorMessage}", context.InteractionId, errorMessage);
                 return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult(errorMessage));
             }
 
@@ -134,7 +134,7 @@ public class SlashCommandService : ISlashCommandService
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Interaction: {Id} : Exception thrown while running command {CommandName}", context.InteractionId.ToString(), commandMethod.Name);
+            _logger.LogError(e, "Interaction: {Id} : Exception thrown while running command {CommandName}", context.InteractionId, commandMethod.Name);
             return Result<IDiscordInteractionResponse>.FromError(default, new ExceptionResult(e.InnerException ?? e));
         }
     }
@@ -148,7 +148,7 @@ public class SlashCommandService : ISlashCommandService
             return await ExecuteSlashCommandAsync(commandInfo.CommandMethod, commandInfo.CommandOptions, commandInfo.Requirements, context, suppliedOptions, serviceProvider).ConfigureAwait(false);
         }
 
-        _logger.LogWarning("Interaction: {Id} : Failed to executed {Name} since it was a command group or a sub command group", context.InteractionId.ToString(), commandInfo.CommandName);
+        _logger.LogWarning("Interaction: {Id} : Failed to executed {Name} since it was a command group or a sub command group", context.InteractionId, commandInfo.CommandName);
         return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
     }
 
@@ -166,7 +166,7 @@ public class SlashCommandService : ISlashCommandService
                                                   serviceProvider).ConfigureAwait(false);
         }
 
-        _logger.LogWarning("Interaction: {Id} : Failed to executed {Name} since it was a command group or a sub command group", context.InteractionId.ToString(), commandOptionInfo.Name);
+        _logger.LogWarning("Interaction: {Id} : Failed to executed {Name} since it was a command group or a sub command group", context.InteractionId, commandOptionInfo.Name);
         return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult("Can not execute command group or sub command group"));
     }
 
@@ -202,7 +202,7 @@ public class SlashCommandService : ISlashCommandService
         Result<IDiscordInteractionResponse> NoCommandFoundResponse()
         {
             var readableCommandName = string.Join(" ", context.SlashCommandName);
-            _logger.LogWarning("Interaction: {Id} : Command {Name} is not registered", context.InteractionId.ToString(), context.SlashCommandName);
+            _logger.LogWarning("Interaction: {Id} : Command {Name} is not registered", context.InteractionId, context.SlashCommandName);
             return Result<IDiscordInteractionResponse>.FromError(default, new ErrorResult($"Failed to find command {readableCommandName}"));
         }
 
