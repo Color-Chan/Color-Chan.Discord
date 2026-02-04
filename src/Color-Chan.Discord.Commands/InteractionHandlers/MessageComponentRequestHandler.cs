@@ -84,7 +84,7 @@ public class MessageComponentRequestHandler(
             return customId;
         }
 
-        logger.LogDebug("Interaction: {Id} : Parsing custom id arguments", interaction.Id.ToString());
+        logger.LogDebug("Interaction: {Id} : Parsing custom id arguments", interaction.Id);
         var customIdData = context.Data.CustomId!.Split(config.Value.CustomIdDataSeparator).ToList();
         customId = customIdData.First();
 

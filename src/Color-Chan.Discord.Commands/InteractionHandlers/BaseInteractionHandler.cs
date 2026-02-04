@@ -48,18 +48,18 @@ public class BaseInteractionHandler(
         // Return the response.
         if (result.IsSuccessful)
         {
-            logger.LogInformation("Interaction: {Id} : Slash command interaction returned successfully", interactionId.ToString());
+            logger.LogInformation("Interaction: {Id} : Slash command interaction returned successfully", interactionId);
             return new InternalInteractionResponse(acknowledged, result.Entity!);
         }
 
-        logger.LogWarning("Interaction: {Id} : Slash command interaction returned unsuccessfully, reason: {ErrorReason}", interactionId.ToString(), result.ErrorResult?.ErrorMessage);
+        logger.LogWarning("Interaction: {Id} : Slash command interaction returned unsuccessfully, reason: {ErrorReason}", interactionId, result.ErrorResult?.ErrorMessage);
         if (sendDefaultErrorMessage)
         {
-            logger.LogWarning("Interaction: {Id} : Sending default error message", interactionId.ToString());
+            logger.LogWarning("Interaction: {Id} : Sending default error message", interactionId);
             return new InternalInteractionResponse(acknowledged, new InteractionResponseBuilder().DefaultErrorMessage());
         }
 
-        logger.LogError("Interaction: {Id} : Failed to handle interaction command, reason: {ErrorReason}", interactionId.ToString(), result.ErrorResult?.ErrorMessage);
+        logger.LogError("Interaction: {Id} : Failed to handle interaction command, reason: {ErrorReason}", interactionId, result.ErrorResult?.ErrorMessage);
         throw new InteractionResultException($"Command request {interactionId} returned unsuccessfully, {result.ErrorResult?.ErrorMessage}");
     }
 
@@ -82,11 +82,11 @@ public class BaseInteractionHandler(
         var acknowledgeResult = await restApplication.CreateInteractionResponseAsync(interaction.Id, interaction.Token, acknowledgeResponse).ConfigureAwait(false);
         if (!acknowledgeResult.IsSuccessful)
         {
-            logger.LogWarning("Interaction: {Id} : Failed to acknowledge interaction command, reason: {Message}", interaction.Id.ToString(), acknowledgeResult.ErrorResult?.ErrorMessage);
+            logger.LogWarning("Interaction: {Id} : Failed to acknowledge interaction command, reason: {Message}", interaction.Id, acknowledgeResult.ErrorResult?.ErrorMessage);
             return false;
         }
 
-        logger.LogDebug("Interaction: {Id} : Acknowledged interaction command", interaction.Id.ToString());
+        logger.LogDebug("Interaction: {Id} : Acknowledged interaction command", interaction.Id);
         return true;
     }
 
