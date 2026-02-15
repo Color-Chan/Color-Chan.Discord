@@ -15,6 +15,7 @@ using Color_Chan.Discord.Core.Common.Models.Interaction;
 using Color_Chan.Discord.Parsers.Interfaces;
 using Color_Chan.Discord.Rest.Models.Interaction;
 using Color_Chan.Discord.Rest.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -76,6 +77,7 @@ public class DiscordInteractionController : ControllerBase
     /// <returns>
     ///     An <see cref="ActionResult" /> with the json result of the request.
     /// </returns>
+    [AllowAnonymous]
     [HttpPost("interaction")]
     public async Task<ActionResult> HandleInteractionRequestAsync()
     {
