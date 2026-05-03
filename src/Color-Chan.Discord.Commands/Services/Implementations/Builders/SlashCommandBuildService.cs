@@ -41,8 +41,11 @@ public class SlashCommandBuildService : ISlashCommandBuildService
     ///     The <see cref="ISlashCommandOptionBuildService" /> that will get and build the
     ///     <see cref="ISlashCommandOptionInfo" />s.
     /// </param>
-    public SlashCommandBuildService(ISlashCommandRequirementBuildService requirementBuildService, ISlashCommandGuildBuildService guildBuildService, ILogger<SlashCommandBuildService> logger,
-                                    ISlashCommandOptionBuildService optionBuildService)
+    public SlashCommandBuildService(
+        ISlashCommandRequirementBuildService requirementBuildService,
+        ISlashCommandGuildBuildService guildBuildService,
+        ILogger<SlashCommandBuildService> logger,
+        ISlashCommandOptionBuildService optionBuildService)
     {
         _requirementBuildService = requirementBuildService;
         _guildBuildService = guildBuildService;
@@ -51,40 +54,45 @@ public class SlashCommandBuildService : ISlashCommandBuildService
     }
 
     /// <inheritdoc />
-    public IReadOnlyList<KeyValuePair<string, ISlashCommandInfo>> BuildSlashCommandInfos(Assembly assembly)
+    public IReadOnlyList<KeyValuePair<string, ISlashCommandInfo>> BuildSlashCommandInfos(params Assembly[] assemblies)
     {
-        _logger.LogInformation("Loading interaction commands for assembly {AssemblyName}", assembly.FullName);
         var validCommands = new List<KeyValuePair<string, ISlashCommandInfo>>();
 
-        foreach (var parentModule in GetSlashCommandModules(assembly))
+        foreach (var assembly in assemblies)
         {
-            if (IsValidCommandGroupModuleDefinition(parentModule))
+            _logger.LogInformation("Loading interaction commands for assembly {AssemblyName}", assembly.FullName);
+
+            foreach (var parentModule in GetSlashCommandModules(assembly))
             {
-                var groupAttribute = parentModule.GetCustomAttribute<SlashCommandGroupAttribute>();
-                if (groupAttribute is null)
+                if (IsValidCommandGroupModuleDefinition(parentModule))
                 {
-                    _logger.LogWarning("Can not load command group {ModuleName} since it doesn't have the SlashCommandGroupAttribute attribute", parentModule.Name);
-                    continue;
+                    var groupAttribute = parentModule.GetCustomAttribute<SlashCommandGroupAttribute>();
+                    if (groupAttribute is null)
+                    {
+                        _logger.LogWarning("Can not load command group {ModuleName} since it doesn't have the SlashCommandGroupAttribute attribute", parentModule.Name);
+                        continue;
+                    }
+
+                    var commandInfoKeyValuePair = BuildCommandGroupInfoKeyValuePair(groupAttribute, parentModule);
+                    validCommands.Add(commandInfoKeyValuePair);
+                    _logger.LogDebug("Found valid command in command module {TopLevelCommandName}", commandInfoKeyValuePair.Key);
                 }
 
-                var commandInfoKeyValuePair = BuildCommandGroupInfoKeyValuePair(groupAttribute, parentModule);
-                validCommands.Add(commandInfoKeyValuePair);
-                _logger.LogDebug("Found valid command in command module {TopLevelCommandName}", commandInfoKeyValuePair.Key);
+                // The command is not a sub command / group.
+
+                foreach (var validMethod in GetValidSlashCommandsMethods(parentModule))
+                {
+                    var commandInfoKeyValuePair = BuildCommandInfoKeyValuePair(validMethod, parentModule);
+
+                    if (!commandInfoKeyValuePair.HasValue) continue;
+                    validCommands.Add(commandInfoKeyValuePair.Value);
+                    _logger.LogDebug("Found valid command in command module {TopLevelCommandName}", commandInfoKeyValuePair.Value.Key);
+                }
             }
 
-            // The command is not a sub command / group.
-
-            foreach (var validMethod in GetValidSlashCommandsMethods(parentModule))
-            {
-                var commandInfoKeyValuePair = BuildCommandInfoKeyValuePair(validMethod, parentModule);
-
-                if (!commandInfoKeyValuePair.HasValue) continue;
-                validCommands.Add(commandInfoKeyValuePair.Value);
-                _logger.LogDebug("Found valid command in command module {TopLevelCommandName}", commandInfoKeyValuePair.Value.Key);
-            }
+            _logger.LogDebug("Found {CommandCount} valid commands in assembly {AssemblyName}", validCommands.Count.ToString(), assembly.FullName);
         }
 
-        _logger.LogDebug("Found {CommandCount} valid commands in assembly {AssemblyName}", validCommands.Count.ToString(), assembly.FullName);
         return validCommands;
     }
 
@@ -183,12 +191,12 @@ public class SlashCommandBuildService : ISlashCommandBuildService
             var commandRequirements = _requirementBuildService.GetCommandRequirements(rawValidCommand);
             var options = _optionBuildService.GetCommandOptions(rawValidCommand);
             var subCommand = new SlashCommandOptionInfo(subCommandAttribute.Name,
-                                                        subCommandAttribute.Description,
-                                                        subCommandAttribute.Acknowledge,
-                                                        rawValidCommand,
-                                                        parentModule,
-                                                        commandRequirements,
-                                                        options.ToList());
+                subCommandAttribute.Description,
+                subCommandAttribute.Acknowledge,
+                rawValidCommand,
+                parentModule,
+                commandRequirements,
+                options.ToList());
 
             // Check if the command doesn't belong to a sub command group.
             if (subCommandGroupAttribute is null)
@@ -235,8 +243,8 @@ public class SlashCommandBuildService : ISlashCommandBuildService
         if (IsValidCommandGroupModuleDefinition(parentModule)) return new List<MethodInfo>();
 
         return parentModule
-               .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-               .Where(IsValidCommandDefinition);
+            .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Where(IsValidCommandDefinition);
     }
 
     /// <summary>
@@ -251,8 +259,8 @@ public class SlashCommandBuildService : ISlashCommandBuildService
         if (!IsValidCommandGroupModuleDefinition(parentModule)) return new List<MethodInfo>();
 
         return parentModule
-               .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-               .Where(IsValidCommandDefinition);
+            .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Where(IsValidCommandDefinition);
     }
 
     /// <summary>

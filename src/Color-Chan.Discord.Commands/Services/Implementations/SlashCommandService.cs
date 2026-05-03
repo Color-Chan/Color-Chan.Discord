@@ -42,8 +42,11 @@ public class SlashCommandService : ISlashCommandService
     ///     The <see cref="ISlashCommandAutoSyncService" /> that handles all the syncing of
     ///     the slash commands.
     /// </param>
-    public SlashCommandService(ILogger<SlashCommandService> logger, ISlashCommandBuildService slashCommandBuildService,
-                               ISlashCommandRequirementService requirementService, ISlashCommandAutoSyncService commandAutoSyncService)
+    public SlashCommandService(
+        ILogger<SlashCommandService> logger,
+        ISlashCommandBuildService slashCommandBuildService,
+        ISlashCommandRequirementService requirementService,
+        ISlashCommandAutoSyncService commandAutoSyncService)
     {
         _logger = logger;
         _slashCommandBuildService = slashCommandBuildService;
@@ -52,12 +55,12 @@ public class SlashCommandService : ISlashCommandService
     }
 
     /// <inheritdoc />
-    public async Task AddInteractionCommandsAsync(Assembly assembly)
+    public async Task AddInteractionCommandsAsync(params Assembly[] assemblies)
     {
         _logger.LogDebug("Registering slash commands...");
 
         // Build all commands in a specific assembly.
-        var commandInfos = _slashCommandBuildService.BuildSlashCommandInfos(assembly);
+        var commandInfos = _slashCommandBuildService.BuildSlashCommandInfos(assemblies);
         foreach (var (key, commandInfo) in commandInfos)
         {
             if (_slashCommands.TryAdd(key, commandInfo)) continue;
@@ -70,18 +73,18 @@ public class SlashCommandService : ISlashCommandService
 
         _logger.LogInformation("Registered {Count} slash commands to the command registry", _slashCommands.Count.ToString());
 
-        var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(commandInfos.Select(x => x.Value)).ConfigureAwait(false);
-
+        var result = await _commandAutoSyncService.UpdateApplicationCommandsAsync(_slashCommands.Select(x => x.Value)).ConfigureAwait(false);
         if (!result.IsSuccessful) throw new UpdateSlashCommandException(result.ErrorResult?.ErrorMessage ?? "Failed to sync the slash command to discord.");
     }
 
     /// <inheritdoc />
-    public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(MethodInfo commandMethod,
-                                                                                    IEnumerable<ISlashCommandOptionInfo>? options,
-                                                                                    IEnumerable<InteractionRequirementAttribute>? requirements,
-                                                                                    ISlashCommandContext context,
-                                                                                    List<IDiscordInteractionOption>? suppliedOptions = null,
-                                                                                    IServiceProvider? serviceProvider = null)
+    public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(
+        MethodInfo commandMethod,
+        IEnumerable<ISlashCommandOptionInfo>? options,
+        IEnumerable<InteractionRequirementAttribute>? requirements,
+        ISlashCommandContext context,
+        List<IDiscordInteractionOption>? suppliedOptions = null,
+        IServiceProvider? serviceProvider = null)
     {
         serviceProvider ??= DefaultServiceProvider.Instance;
 
@@ -140,8 +143,11 @@ public class SlashCommandService : ISlashCommandService
     }
 
     /// <inheritdoc />
-    public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context,
-                                                                                    List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+    public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(
+        ISlashCommandInfo commandInfo,
+        ISlashCommandContext context,
+        List<IDiscordInteractionOption>? suppliedOptions = null,
+        IServiceProvider? serviceProvider = null)
     {
         if (commandInfo.CommandMethod is not null)
         {
@@ -153,17 +159,20 @@ public class SlashCommandService : ISlashCommandService
     }
 
     /// <inheritdoc />
-    public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandOptionInfo commandOptionInfo, ISlashCommandContext context,
-                                                                                    List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null)
+    public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(
+        ISlashCommandOptionInfo commandOptionInfo,
+        ISlashCommandContext context,
+        List<IDiscordInteractionOption>? suppliedOptions = null,
+        IServiceProvider? serviceProvider = null)
     {
         if (commandOptionInfo.CommandMethod is not null)
         {
             return await ExecuteSlashCommandAsync(commandOptionInfo.CommandMethod,
-                                                  commandOptionInfo.CommandOptions,
-                                                  commandOptionInfo.Requirements,
-                                                  context,
-                                                  suppliedOptions,
-                                                  serviceProvider).ConfigureAwait(false);
+                commandOptionInfo.CommandOptions,
+                commandOptionInfo.Requirements,
+                context,
+                suppliedOptions,
+                serviceProvider).ConfigureAwait(false);
         }
 
         _logger.LogWarning("Interaction: {Id} : Failed to executed {Name} since it was a command group or a sub command group", context.InteractionId, commandOptionInfo.Name);
@@ -171,8 +180,10 @@ public class SlashCommandService : ISlashCommandService
     }
 
     /// <inheritdoc />
-    public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionOption>? options = null,
-                                                                                    IServiceProvider? serviceProvider = null)
+    public async Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(
+        ISlashCommandContext context,
+        IEnumerable<IDiscordInteractionOption>? options = null,
+        IServiceProvider? serviceProvider = null)
     {
         var arr = context.SlashCommandName.ToArray();
         var count = arr.Length;

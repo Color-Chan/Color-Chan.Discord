@@ -12,12 +12,12 @@ namespace Color_Chan.Discord.Commands.Services.Builders;
 public interface ISlashCommandBuildService
 {
     /// <summary>
-    ///     Builds all commands in a specific <paramref name="assembly" /> and stores them in a
+    ///     Builds all commands in a specific <paramref name="assemblies" /> and stores them in a
     ///     <see cref="IReadOnlyList{T}" /> of <see cref="KeyValuePair{T,U}" /> of <see cref="string" />,
     ///     <see cref="ISlashCommandInfo" />.
     /// </summary>
-    /// <param name="assembly">
-    ///     The <see cref="Assembly" /> where the <see cref="ISlashCommandBuildService" /> will search for commands.
+    /// <param name="assemblies">
+    ///     The <see cref="Assembly" />s where the <see cref="ISlashCommandBuildService" /> will search for commands.
     /// </param>
     /// <returns>
     ///     A <see cref="IReadOnlyList{T}" /> of <see cref="KeyValuePair{T,U}" /> of <see cref="string" />,
@@ -25,7 +25,7 @@ public interface ISlashCommandBuildService
     ///     The key <see cref="string" /> contains the command name.
     ///     And the value <see cref="ISlashCommandInfo" /> contains the commands information to execute it.
     /// </returns>
-    IReadOnlyList<KeyValuePair<string, ISlashCommandInfo>> BuildSlashCommandInfos(Assembly assembly);
+    IReadOnlyList<KeyValuePair<string, ISlashCommandInfo>> BuildSlashCommandInfos(params Assembly[] assemblies);
 
     /// <summary>
     ///     Get all the interaction command modules.
