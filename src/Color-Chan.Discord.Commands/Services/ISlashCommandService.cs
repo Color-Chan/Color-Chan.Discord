@@ -16,7 +16,7 @@ namespace Color_Chan.Discord.Commands.Services;
 public interface ISlashCommandService
 {
     /// <summary>
-    ///     Add all interaction commands in an <see cref="Assembly" /> to the <see cref="ISlashCommandService" />.
+    ///     Add all interaction commands in <see cref="Assembly" />s to the <see cref="ISlashCommandService" />.
     /// </summary>
     /// <param name="assemblies">The <see cref="Assembly" />s where the commands are located.</param>
     /// <seealso cref="Result" />

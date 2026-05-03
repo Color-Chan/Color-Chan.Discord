@@ -12,7 +12,7 @@ namespace Color_Chan.Discord.Commands.Services.Builders;
 public interface ISlashCommandBuildService
 {
     /// <summary>
-    ///     Builds all commands in a specific <paramref name="assemblies" /> and stores them in a
+    ///     Builds all commands in specific <paramref name="assemblies" /> and stores them in a
     ///     <see cref="IReadOnlyList{T}" /> of <see cref="KeyValuePair{T,U}" /> of <see cref="string" />,
     ///     <see cref="ISlashCommandInfo" />.
     /// </summary>
