@@ -16,12 +16,12 @@ namespace Color_Chan.Discord.Commands.Services;
 public interface ISlashCommandService
 {
     /// <summary>
-    ///     Add all interaction commands in an <see cref="Assembly" /> to the <see cref="ISlashCommandService" />.
+    ///     Add all interaction commands in <see cref="Assembly" />s to the <see cref="ISlashCommandService" />.
     /// </summary>
-    /// <param name="assembly">The <see cref="Assembly" /> where the commands are located.</param>
+    /// <param name="assemblies">The <see cref="Assembly" />s where the commands are located.</param>
     /// <seealso cref="Result" />
     /// <seealso cref="SlashCommandAttribute" />
-    Task AddInteractionCommandsAsync(Assembly assembly);
+    Task AddInteractionCommandsAsync(params Assembly[] assemblies);
 
     /// <summary>
     ///     Execute a specific command with their dependencies.
@@ -41,9 +41,14 @@ public interface ISlashCommandService
     /// </returns>
     /// <seealso cref="Result" />
     /// <seealso cref="SlashCommandAttribute" />
-    Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(MethodInfo commandMethod, IEnumerable<ISlashCommandOptionInfo>? options,
-                                                                       IEnumerable<InteractionRequirementAttribute>? requirements, ISlashCommandContext context,
-                                                                       List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null);
+    Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(
+        MethodInfo commandMethod,
+        IEnumerable<ISlashCommandOptionInfo>? options,
+        IEnumerable<InteractionRequirementAttribute>? requirements,
+        ISlashCommandContext context,
+        List<IDiscordInteractionOption>? suppliedOptions = null,
+        IServiceProvider? serviceProvider = null
+    );
 
     /// <summary>
     ///     Execute a specific command with their dependencies.
@@ -61,8 +66,12 @@ public interface ISlashCommandService
     /// </returns>
     /// <seealso cref="Result" />
     /// <seealso cref="SlashCommandAttribute" />
-    Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandInfo commandInfo, ISlashCommandContext context, List<IDiscordInteractionOption>? suppliedOptions = null,
-                                                                       IServiceProvider? serviceProvider = null);
+    Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(
+        ISlashCommandInfo commandInfo,
+        ISlashCommandContext context,
+        List<IDiscordInteractionOption>? suppliedOptions = null,
+        IServiceProvider? serviceProvider = null
+    );
 
     /// <summary>
     ///     Execute a specific command with their dependencies.
@@ -80,8 +89,12 @@ public interface ISlashCommandService
     /// </returns>
     /// <seealso cref="Result" />
     /// <seealso cref="SlashCommandAttribute" />
-    Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandOptionInfo commandOptionInfo, ISlashCommandContext context,
-                                                                       List<IDiscordInteractionOption>? suppliedOptions = null, IServiceProvider? serviceProvider = null);
+    Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(
+        ISlashCommandOptionInfo commandOptionInfo,
+        ISlashCommandContext context,
+        List<IDiscordInteractionOption>? suppliedOptions = null,
+        IServiceProvider? serviceProvider = null
+    );
 
     /// <summary>
     ///     Execute a specific command with their dependencies.
@@ -98,8 +111,11 @@ public interface ISlashCommandService
     /// </returns>
     /// <seealso cref="Result" />
     /// <seealso cref="SlashCommandAttribute" />
-    Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(ISlashCommandContext context, IEnumerable<IDiscordInteractionOption>? options = null,
-                                                                       IServiceProvider? serviceProvider = null);
+    Task<Result<IDiscordInteractionResponse>> ExecuteSlashCommandAsync(
+        ISlashCommandContext context,
+        IEnumerable<IDiscordInteractionOption>? options = null,
+        IServiceProvider? serviceProvider = null
+    );
 
     /// <summary>
     ///     Search for a command by its <see cref="SlashCommandAttribute.Name" />.

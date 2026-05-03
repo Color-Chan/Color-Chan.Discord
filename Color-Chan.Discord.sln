@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonArgs", "samples\Butto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentsV2", "samples\ComponentsV2\ComponentsV2.csproj", "{3D545B51-0245-43BF-9588-2C299B7DD9A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color-Chan.Discord.Commands.Tests.Valid2", "tests\mockCommandAssemblies\Color-Chan.Discord.Commands.Tests.Valid2\Color-Chan.Discord.Commands.Tests.Valid2.csproj", "{A19857F5-7AC6-4CAE-BAB4-7CE371F96300}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +138,10 @@ Global
 		{3D545B51-0245-43BF-9588-2C299B7DD9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D545B51-0245-43BF-9588-2C299B7DD9A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D545B51-0245-43BF-9588-2C299B7DD9A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A19857F5-7AC6-4CAE-BAB4-7CE371F96300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A19857F5-7AC6-4CAE-BAB4-7CE371F96300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A19857F5-7AC6-4CAE-BAB4-7CE371F96300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A19857F5-7AC6-4CAE-BAB4-7CE371F96300}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,6 +168,7 @@ Global
 		{4D344610-2AD1-44D1-A3FE-76908972AA9B} = {B2D862F3-8ED1-4D09-8248-8D4B5EB2737A}
 		{7F0D86B2-209D-4C6A-BB68-489C59756FC2} = {B2D862F3-8ED1-4D09-8248-8D4B5EB2737A}
 		{3D545B51-0245-43BF-9588-2C299B7DD9A5} = {B2D862F3-8ED1-4D09-8248-8D4B5EB2737A}
+		{A19857F5-7AC6-4CAE-BAB4-7CE371F96300} = {ADBC5773-D0F4-4A9E-BC6F-6EF9220718A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC84D902-ABC1-47C3-9993-F769F483E5CE}
