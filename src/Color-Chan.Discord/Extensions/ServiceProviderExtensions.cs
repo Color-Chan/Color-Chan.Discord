@@ -12,14 +12,14 @@ namespace Color_Chan.Discord.Extensions;
 public static class ServiceProviderExtensions
 {
     /// <summary>
-    ///     Registers all slash commands in an <see cref="Assembly" /> to the <see cref="ISlashCommandService" />.
+    ///     Registers all slash commands from the <see cref="Assembly" />s to the <see cref="ISlashCommandService" />.
     /// </summary>
     /// <param name="serviceProvider">The <see cref="IServiceProvider" /> that contains the services where the <see cref="ISlashCommandService" /> is registered.</param>
-    /// <param name="assembly">The <see cref="Assembly" /> where the commands are located.</param>
+    /// <param name="assemblies">The <see cref="Assembly" />s where the commands are located.</param>
     /// <returns>
     ///     The updated <see cref="IServiceProvider" />.
     /// </returns>
-    public static async Task<IServiceProvider> RegisterSlashCommandsAsync(this IServiceProvider serviceProvider, Assembly assembly)
+    public static async Task<IServiceProvider> RegisterSlashCommandsAsync(this IServiceProvider serviceProvider, params Assembly[] assemblies)
     {
         var scope = serviceProvider.CreateAsyncScope();
         
@@ -27,13 +27,13 @@ public static class ServiceProviderExtensions
         var commandService = scope.ServiceProvider.GetRequiredService<ISlashCommandService>();
 
         // Add all commands in an assembly to the slash command service.
-        await commandService.AddInteractionCommandsAsync(assembly).ConfigureAwait(false);
+        await commandService.AddInteractionCommandsAsync(assemblies).ConfigureAwait(false);
 
         // Get the slash command service.
         var componentService = scope.ServiceProvider.GetRequiredService<IComponentService>();
 
         // Add all components in an assembly to the component service.
-        await componentService.AddComponentsAsync(assembly).ConfigureAwait(false);
+        await componentService.AddComponentsAsync(assemblies).ConfigureAwait(false);
         
         return serviceProvider;
     }

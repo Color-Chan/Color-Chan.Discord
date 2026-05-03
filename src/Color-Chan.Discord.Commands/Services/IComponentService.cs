@@ -15,11 +15,11 @@ namespace Color_Chan.Discord.Commands.Services;
 public interface IComponentService
 {
     /// <summary>
-    ///     Adds all components in an <paramref name="assembly" /> to the component registry.
+    ///     Adds all components from the <paramref name="assemblies" /> to the component registry.
     /// </summary>
-    /// <param name="assembly">The assembly where the <see cref="IComponentInteractionModule" /> are located.</param>
+    /// <param name="assemblies">The assemblies where the <see cref="IComponentInteractionModule" /> are located.</param>
     /// <exception cref="Exception">Thrown when 2 or more component had the same custom id.</exception>
-    Task AddComponentsAsync(Assembly assembly);
+    Task AddComponentsAsync(params Assembly[] assemblies);
 
     /// <summary>
     ///     Executes a component interaction.

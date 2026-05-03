@@ -11,19 +11,19 @@ namespace Color_Chan.Discord.Extensions;
 public static class HostExtensions
 {
     /// <summary>
-    ///     Add all slash commands in an <see cref="Assembly" /> to the <see cref="ISlashCommandService" />.
+    ///     Add all slash commands from the <see cref="Assembly" />s to the <see cref="ISlashCommandService" />.
     /// </summary>
     /// <param name="host">
     ///     The <see cref="IHost" /> that contains the services where the <see cref="ISlashCommandService" /> is
     ///     registered.
     /// </param>
-    /// <param name="assembly">The <see cref="Assembly" /> where the commands are located.</param>
+    /// <param name="assemblies">The <see cref="Assembly" />s where the commands are located.</param>
     /// <returns>
     ///     The used <see cref="IHost" />.
     /// </returns>
-    public static async Task<IHost> RegisterSlashCommandsAsync(this IHost host, Assembly assembly)
+    public static async Task<IHost> RegisterSlashCommandsAsync(this IHost host, params Assembly[] assemblies)
     {
-        await host.Services.RegisterSlashCommandsAsync(assembly).ConfigureAwait(false);
+        await host.Services.RegisterSlashCommandsAsync(assemblies).ConfigureAwait(false);
         return host;
     }
 }

@@ -39,12 +39,12 @@ public class ComponentService : IComponentService
     }
 
     /// <inheritdoc />
-    public Task AddComponentsAsync(Assembly assembly)
+    public Task AddComponentsAsync(params Assembly[] assemblies)
     {
         _logger.LogDebug("Registering component interactions...");
 
         // Build all the component interactions.
-        var componentInfos = _componentBuildService.BuildComponentInfos(assembly);
+        var componentInfos = _componentBuildService.BuildComponentInfos(assemblies);
         foreach (var componentInfo in componentInfos)
         {
             if (_components.TryAdd(componentInfo.CustomId, componentInfo)) continue;

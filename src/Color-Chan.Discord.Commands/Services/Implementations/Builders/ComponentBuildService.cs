@@ -34,31 +34,35 @@ public class ComponentBuildService : IComponentBuildService
     }
 
     /// <inheritdoc />
-    public IEnumerable<IComponentInfo> BuildComponentInfos(Assembly assembly)
+    public IEnumerable<IComponentInfo> BuildComponentInfos(params Assembly[] assemblies)
     {
-        _logger.LogInformation("Loading components for assembly {AssemblyName}", assembly.FullName);
         var validComponents = new List<IComponentInfo>();
 
-        foreach (var parentModule in GetSlashComponentModules(assembly))
+        foreach (var assembly in assemblies)
         {
-            foreach (var validMethod in GetValidComponentMethods(parentModule))
-            {
-                var componentAttribute = validMethod.GetCustomAttribute<ComponentAttribute>();
-                if (componentAttribute is null) throw new NullReferenceException(nameof(componentAttribute));
+            _logger.LogInformation("Loading components for assembly {AssemblyName}", assembly.FullName);
 
-                var componentInfo = new ComponentInfo(
-                    componentAttribute.CustomId,
-                    componentAttribute.Type,
-                    validMethod,
-                    parentModule,
-                    componentAttribute.Acknowledge,
-                    componentAttribute.EditOriginalMessage
-                )
+            foreach (var parentModule in GetSlashComponentModules(assembly))
+            {
+                foreach (var validMethod in GetValidComponentMethods(parentModule))
                 {
-                    Requirements = _requirementBuildService.GetCommandRequirements(validMethod)
-                };
-                validComponents.Add(componentInfo);
-                _logger.LogDebug("Found valid Component {Id} in Component module {ModuleName}", componentInfo.CustomId, parentModule.FullName);
+                    var componentAttribute = validMethod.GetCustomAttribute<ComponentAttribute>();
+                    if (componentAttribute is null) throw new NullReferenceException(nameof(componentAttribute));
+
+                    var componentInfo = new ComponentInfo(
+                        componentAttribute.CustomId,
+                        componentAttribute.Type,
+                        validMethod,
+                        parentModule,
+                        componentAttribute.Acknowledge,
+                        componentAttribute.EditOriginalMessage
+                    )
+                    {
+                        Requirements = _requirementBuildService.GetCommandRequirements(validMethod)
+                    };
+                    validComponents.Add(componentInfo);
+                    _logger.LogDebug("Found valid Component {Id} in Component module {ModuleName}", componentInfo.CustomId, parentModule.FullName);
+                }
             }
         }
 
@@ -95,11 +99,11 @@ public class ComponentBuildService : IComponentBuildService
     }
 
     /// <summary>
-    ///     Checks whether or not a component module is valid.
+    ///     Checks whether a component module is valid.
     /// </summary>
     /// <param name="typeInfo">The component module that will be checked if its valid.</param>
     /// <returns>
-    ///     Whether or not a component module is valid.
+    ///     Whether a component module is valid.
     /// </returns>
     private static bool IsValidModuleDefinition(TypeInfo typeInfo)
     {
@@ -107,11 +111,11 @@ public class ComponentBuildService : IComponentBuildService
     }
 
     /// <summary>
-    ///     Checks whether or not a command method is valid.
+    ///     Checks whether a command method is valid.
     /// </summary>
     /// <param name="methodInfo">The method that will be checked if it valid.</param>
     /// <returns>
-    ///     Whether or not a command method is valid.
+    ///     Whether a command method is valid.
     /// </returns>
     private static bool IsValidCommandDefinition(MethodInfo methodInfo)
     {
