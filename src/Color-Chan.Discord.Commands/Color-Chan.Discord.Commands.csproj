@@ -14,7 +14,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.203" PrivateAssets="All" />
-        <PackageReference Include="Sodium.Core" Version="1.4.0" />
+        <PackageReference Include="Sodium.Core" Version="1.4.1" />
     </ItemGroup>
 
     <PropertyGroup>
