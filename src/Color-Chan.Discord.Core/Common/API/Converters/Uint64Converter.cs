@@ -23,7 +23,7 @@ public class Uint64Converter : JsonConverter<ulong>
             return reader.GetUInt64();
         }
 
-        throw new JsonException("Failed to convert uin64 (ulong), unknown json type.");
+        throw new JsonException("Failed to convert uint64 (ulong), unknown json type.");
     }
 
     /// <inheritdoc />
